@@ -1,0 +1,43 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav>
+        <ul class="nav pull-right">
+          <% if signed_in? %>
+            <li><%= form_tag users_path, :method => "get", :class => "search-bar" do %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Search Nfuse" %>
+                <% end %></li>
+            <li><%= link_to feed_path do %>
+                <%= image_tag('home.fw.png', size: "32x32") %>
+                <% end %></li>
+            <li><%= link_to feed_user_path(current_user) do %>
+                <%= image_tag('profile.fw.png', size: "32x32") %>
+                <% end %></li>
+            <li><%= link_to root_path do %>
+                <%= image_tag('chat.fw.png', size: "32x32") %>
+                <% end %></li>
+            <li><%= link_to root_path do %>
+                <%= image_tag('plus.fw.png', size: "32x32") %>
+                <% end %></li>
+            <li id="fat-menu" class="dropdown nav-icons">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= image_tag('menu.fw.png', size: "32x32") %><b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                <li><%= link_to "Help", help_path %></li>
+                <li><%= link_to "Feedback", contacts_path %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Log out", signout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-font"><%= link_to "Home", root_path %></li>
+            <li class="nav-font"><%= link_to "Sign up", signup_path %></li>
+            <li class="nav-font"><%= link_to "Log in", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+</nav>

@@ -1,0 +1,29 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <div class="main-avatar"><%= image_tag @user.avatar, size: "210x210" %> </div>
+        <div>
+          <ul class="pull-left inline follow-btn">
+            <li><h1><%= @user.full_name %></h1></li>
+            <li><%= render 'follow_form' if signed_in? %></li>
+          </ul>
+        </div>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+
+    </section>
+  </aside>
+  <div class="span8">
+      <h1><%= @title %></h1>
+    <div class="span3 offset1">
+      <% if @users.any? %>
+        <ul class="users">
+          <%= render @users %>
+        </ul>
+        <%= will_paginate %>
+      <% end %>
+    </div>
+  </div>
+</div>

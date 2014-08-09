@@ -1,0 +1,24 @@
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+
+    </aside>
+
+  </div>
+<% else %>
+  <div class="center hero-unit hero">
+
+    <%= image_tag "Banner-logo.png", id: "home banner"%>
+ 
+
+    <h2 class="hero-text">
+      Connect with friends and share all your networks.
+    </h2>
+
+    <%= link_to "Sign up now!!!", signup_path,
+                                class: "btn btn-large btn-info" %>
+  </div>
+
+  
+  
+<% end %>
