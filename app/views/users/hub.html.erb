@@ -1,0 +1,10 @@
+
+<% if @hub_feed.present? %>
+  <% @hub_feed.each do |post| %>
+    <% if post == "twitter" %>
+      <%= render partial: "twitter_post", locals: {post: post} %>
+    <% elsif post == "instagram" %>
+      <%= render partial: "instagram_post", locals: {post: post} %>
+    <% end %>
+  <% end %>
+<% end %>

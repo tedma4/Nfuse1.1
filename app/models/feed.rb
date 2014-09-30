@@ -1,5 +1,4 @@
 class Feed
-
   include ApplicationHelper
 
   attr_reader :poster_recipient_profile_hash,
@@ -9,8 +8,8 @@ class Feed
               :facebook_pagination_id,
               :instagram_max_id
 
-  def initialize(current_user)
-    @current_user = current_user
+  def initialize(user)
+    @user = user
     @unauthed_accounts = []
   end
 
@@ -24,8 +23,8 @@ class Feed
 
   def twitter_posts(twitter_pagination_id)
     twitter_posts = []
-    if current_user_has_provider?('twitter', @current_user)
-      twitter_timeline = Twitter::Timeline.new(@current_user)
+    if user_has_provider?('twitter', @user)
+      twitter_timeline = Twitter::Timeline.new(@user)
       begin
         twitter_posts = twitter_timeline.posts(twitter_pagination_id).map { |post| Twitter::Post.from(post) }
         @twitter_pagination_id = twitter_timeline.last_post_id
@@ -39,8 +38,8 @@ class Feed
   end
 
   def instagram_posts(instagram_max_id)
-    if current_user_has_provider?('instagram', @current_user)
-      instagram_timeline = Instagram::Timeline.new(@current_user)
+    if user_has_provider?('instagram', @user)
+      instagram_timeline = Instagram::Timeline.new(@user)
       instagram_posts = instagram_timeline.posts(instagram_max_id).map { |post| Instagram::Post.from(post) }
       auth_instagram(instagram_timeline)
       @instagram_max_id = instagram_timeline.pagination_max_id
@@ -57,8 +56,8 @@ class Feed
   end
 
   def facebook_posts(facebook_pagination_id)
-    if current_user_has_provider?('facebook', @current_user)
-      facebook_timeline = Facebook::Timeline.new(@current_user)
+    if user_has_provider?('facebook', @user)
+      facebook_timeline = Facebook::Timeline.new(@user)
       facebook_posts = facebook_timeline.posts(facebook_pagination_id).map { |post| Facebook::Post.from(post) }
 
       auth_facebook(facebook_timeline)

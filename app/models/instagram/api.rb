@@ -30,12 +30,12 @@ module Instagram
 
     def create_url
       if @max_id.nil?
-        "https://api.instagram.com/v1/users/self/feed?access_token=#{@access_token}&count=5"
+        "https://api.instagram.com/v1/users/self/media/recent/?access_token=#{@access_token}&count=15"
+       # "https://api.instagram.com/v1/users/self/feed?access_token=#{@access_token}&count=5"
       else
-        "https://api.instagram.com/v1/users/self/feed?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
+        "https://api.instagram.com/v1/users/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
+       # "https://api.instagram.com/v1/users/self/feed?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
       end
     end
-
   end
-
 end

@@ -10,7 +10,7 @@ module ApplicationHelper
     end
   end
   
-  def current_user_has_provider?(provider, user = current_user)
+  def user_has_provider?(provider, user = current_user)
     user.tokens.by_name(provider).any?
   end  
 end

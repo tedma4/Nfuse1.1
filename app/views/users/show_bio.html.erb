@@ -8,7 +8,10 @@
             <li><h1><%= @user.full_name %></h1></li>
             <li><%= render 'follow_form' if signed_in? %></li>
             <li><% unless !current_user?(@user) %> 
-                  <%= link_to "Edit", edit_user_path, class: "btn btn-medium"  %> 
+                  <%= link_to "Edit", edit_user_path(session[:user_id]), class: "btn btn-medium"  %> 
+                  <% else %>
+                  <%= link_to "Send Message", "#", class: "btn btn-info btn-xs start-conversation",
+                    "data-sid" => current_user.id, "data-rip" => @user.id %>
                 <% end %> 
             </li>
           </ul>

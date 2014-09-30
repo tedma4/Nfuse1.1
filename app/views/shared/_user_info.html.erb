@@ -5,5 +5,5 @@
   <%= current_user.full_name %>
 </h1>
 <span>
-  <%= link_to "view my profile", feed_user_path(path) %>
+  <%= link_to "view my profile", feed_user_path(params[:id]) %>
 </span>

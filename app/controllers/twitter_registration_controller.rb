@@ -1,13 +1,15 @@
 class TwitterRegistrationController < ApplicationController
 
   def create
-    begin
-      Token.update_or_create_with_omniauth(current_user, request.env["omniauth.auth"])
-      flash[:twitter_success] = "You have successfully Nfused Twitter"
-    rescue ActiveRecord::RecordInvalid
-      flash[:registration_failure] = "Registration with Twitter failed, please try again"
-    end
-    redirect_to feed_path
+    auth = request.env["omniauth.auth"]
+    user = User.find(session[:user_id])
+    Token.update_or_create_with_twitter_omniauth(user.id, auth)
+    redirect_to feed_user_path(user)
+    #redirect_to feed_user_path(session[:user_id])
+  end
+
+  def failure
+    redirect_to edit_user_path(session[:user_id]), flash: {:auth_failure => "Authentication failed."}
   end
 
 end

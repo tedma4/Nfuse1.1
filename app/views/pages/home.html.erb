@@ -1,10 +1,26 @@
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
 
-    </aside>
+  <%= render file: "users/hub" %>
+  <!--<div class="row">
+    
+    <div class="span12">
+      <h1>Hub</h1>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#home" role="tab" data-toggle="tab">Hub</a></li>
+        <li><a href="#profile" role="tab" data-toggle="tab">Explore</a></li>
+      </ul>
 
-  </div>
+      <div class="tab-content">
+        <div class="tab-pane active" id="Hub">
+            <div class="span8">
+              <h1><%= @title %></h1>
+            </div>
+        </div>
+        <div class="tab-pane" id="Explore">
+        </div>
+      </div>
+    </div>
+  </div> -->
 <% else %>
   <div class="center hero-unit hero">
 
@@ -12,11 +28,15 @@
  
 
     <h2 class="hero-text">
-      Connect with friends and share all your networks.
+      "A Simpler Way To Connect"
     </h2>
 
-    <%= link_to "Sign up now!!!", signup_path,
+    <%= link_to "Join Nfuse", signup_path,
                                 class: "btn btn-large btn-info" %>
+
+    <%= link_to "Learn more", about_path,
+                                class: "learn-more btn btn-large btn-default" %>
+
   </div>
 
   

@@ -1,0 +1,24 @@
+<% unless @unauthed_accounts.empty? %>
+  <%= render partial: "unauthed_accounts" %>
+<% end %>
+<% if @timeline.present? %>
+  <% @timeline.each do |post| %>
+    <% if post.provider == "twitter" %>
+      <%= render partial: "twitter_post", locals: {post: post} %>
+    <% elsif post.provider == "instagram" %>
+      <%= render partial: "instagram_post", locals: {post: post} %>
+    <% elsif post.provider == "facebook" %>
+      <%= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
+    <% end %>
+  <% end %>
+  <div class="load_posts_link">
+    <%= link_to "Load more posts", @load_more_url, id: "load-more" %>
+  </div>
+<% elsif @timeline.blank? && @unauthed_accounts.empty? %>
+  <div id="empty_feed_container">
+    <p>
+      Click one of the below links or visit "Account Settings" to link an account and get started.
+    </p>
+    <%= render partial: "link_networks" %>
+  </div>
+<% end %>

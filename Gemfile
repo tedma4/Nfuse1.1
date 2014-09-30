@@ -23,6 +23,8 @@ gem 'oj_mimic_json', '~> 1.0.0'
 gem 'newrelic_rpm', '~> 3.8.1.221'
 gem 'bourbon', '~> 3.2.3'
 gem 'neat', '~> 1.5.1'
+gem 'private_pub'
+gem 'thin'
 
 group :development, :test do
   gem 'sqlite3'

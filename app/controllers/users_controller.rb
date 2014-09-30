@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :signed_in_user,
                 only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
+    #@users = User.paginate(page: params[:page])
+    @conversations = Conversation.involving(current_user).order("created_at DESC")
     if params[:search]
       @users = User.search(params[:search]).order("created_at DESC")
     else
@@ -24,7 +27,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      sign_in @user
+      session[:user_id] = @user.id
       flash[:success] = "Welcome to Nfuse!"
       redirect_to feed_user_path(@user)
     else
@@ -32,8 +35,8 @@ class UsersController < ApplicationController
     end
   end
 
- def settings
-    @display_welcome = false
+  def settings
+    @display_networks = false
   end
 
   def edit
@@ -54,10 +57,43 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def indexed
+    @providers = Providers.for(@user)
+    if @providers.none?
+      @display_welcome = true
+      render 'users/settings'
+    end
+  end
+
   def feed
     @title = "Feed"
+    puts params
     @user = User.find(params[:id])
+    feed = Feed.new(@user)
+    @providers = Providers.for(@user)
+    @timeline = feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
+    @unauthed_accounts = feed.unauthed_accounts
+    @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
+    @commenter_profile_hash = feed.commenter_profile_hash
+
+    @load_more_url = feed_content_path(
+      :twitter_pagination => feed.twitter_pagination_id,
+      :facebook_pagination_id => feed.facebook_pagination_id,
+      :instagram_max_id => feed.instagram_max_id
+    )
+
     render 'show_feed'
+  end
+
+  def hub
+    @title = "Hub"
+    @user = User.find(params[:id])
+    @providers = Providers.for(@user)
+    @hub_feed = []
+    @timeline = current_user.followed_users.each do |f|
+      @hub_feed << Feed.new(f).posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
+    end
+    render "hub"
   end
 
   def bio
@@ -80,79 +116,4 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  private
-
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :avatar, 
-        :intro,
-        :height,
-        :relationship_status,
-        :interested_in,
-        :looking_for,
-        :gender,
-        :birthdate, 
-        :religious_views,
-        :hometown,
-        :political_views,
-        :occupation,
-        :skills,
-        :phone_number,
-        :fav_movie,
-        :fav_book,
-        :fav_music,
-        :fav_food,
-        :fav_quote,
-        :movie_or_play,
-        :wishes,
-        :tv_or_book,
-        :invisible_or_read_minds,
-        :lottery_or_perfect_job,
-        :visit_any_country,
-        :fail_or_never_try,
-        :meet_in_history,
-        :nobody_judges_you,
-        :change_about_the_world
-        )
-    end
-
-    # Before filters
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
-
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
-  end
-
-
-#    add_column :users, :intro, :text
-#    add_column :users, :gender, :integer, default: 1
-#    add_column :users, :birthdate, :datetime
-#    add_column :users, :height, :integer
-#    add_column :users, :relationship_status, :integer, default: 1
-#    add_column :users, :interested_in, :integer, default: 1
-#    add_column :users, :looking_for, :integer, default: 1
-#    add_column :users, :religious_views, :string
-#    add_column :users, :hometown, :string
-#    add_column :users, :political_views, :string
-#    add_column :users, :occupation, :string
-#    add_column :users, :skills, :string
-#    add_column :users, :phone_number, :string
-#    add_column :users, :fav_movie, :string
-#    add_column :users, :fav_book, :string
-#    add_column :users, :fav_music, :string
-#    add_column :users, :fav_food, :string
-#    add_column :users, :fav_quote, :string
-#    add_column :users, :movie_or_play, :string
-#    add_column :users, :wishes, :string
-#    add_column :users, :tv_or_book, :string
-#    add_column :users, :invisible_or_read_minds, :string
-#    add_column :users, :lottery_or_perfect_job, :string
-#    add_column :users, :visit_any_country, :string
-#    add_column :users, :fail_or_never_try, :string
-#    add_column :users, :meet_in_history, :string
-#    add_column :users, :nobody_judges_you, :string
-#    add_column :users, :change_about_the_world, :string
+end

@@ -1,0 +1,34 @@
+#create_posts_container {
+  @include outer-container;
+  background-color: $white;
+  padding: 1.25em;
+  margin: .5em;
+  @include media($large-screen) {
+    margin: 2em 0 0 0;
+  }
+  label {
+    font-size: 1.25em;
+  }
+  input {
+    display: block;
+    margin: .5em 0 1em 0;
+    &:last-child {
+      color: $logo-green;
+      border: 1px solid $logo-green;
+      background-color: white;
+      &:hover {
+        border: 1px solid $logo-green;
+        background-color: lighten($logo-green, 60%);
+      }
+    }
+  }
+  textarea {
+    display: block;
+    margin: .5em 0 1em 0;
+    width: 80%;
+    height: 5em;
+    @include media($large-screen) {
+      width: 50%;
+    }
+  }
+}
