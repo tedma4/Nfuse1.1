@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'searches/index'
+
   resources :conversations do
     resources :messages
   end
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   match '/contacts', to: 'contacts#new',         via: 'get'
   match '/settings', to: 'users#settings',       via: 'get'
    get '/feed_content', to: 'users#feed', as: :feed_content
+   get "search" => "searches#index"
   
   get '/auth/instagram/callback', to: 'instagram_registration#create'
   get '/auth/twitter/callback', to: 'twitter_registration#create'

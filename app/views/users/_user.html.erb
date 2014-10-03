@@ -1,10 +1,13 @@
 <li>
   <%= image_tag user.avatar(:medium) %>
-  <h4><%= link_to user.full_name, feed_user_path(user), :class => "follow-color" %></h4>
-  <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
-                              "data-sid" => current_user.id, "data-rip" => user.id %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
+  <ul class="pull-left inline follow-btn">
+	  <li><h4><%= link_to user.full_name, feed_user_path(user), :class => "follow-color" %></h4></li>
+	  <li><%= link_to "#", class: "start-conversation", "data-sid" => current_user.id, "data-rip" => user.id do %>
+	  	<%= image_tag('chat56.fw.png', size: "30x30") %>
+	  <% end %>
+	  <% if current_user.admin? && !current_user?(user) %>
+	    | <%= link_to "delete", user, method: :delete,
+	                                  data: { confirm: "You sure?" } %>
+	  <% end %></li>
+	</ul>
 </li>

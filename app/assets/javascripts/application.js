@@ -15,5 +15,6 @@
 //= require chat
 //= require turbolinks
 //= require private_pub
+//= require foxycomplete
 //= require bootstrap
 //= require_tree .

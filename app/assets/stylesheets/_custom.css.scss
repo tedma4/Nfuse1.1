@@ -682,7 +682,7 @@ text-align: left;
 }
 
 .chatboxhead {
-    background: #666;
+    background-color: rgba(0,0,0,.8);
     color: white;
     padding: 0.5rem;
     overflow: hidden;
@@ -842,4 +842,8 @@ text-align: left;
 
 .chatboxtitle {
     float: left;
+}
+
+.chat-name { 
+  color:87ceeb;
 }
