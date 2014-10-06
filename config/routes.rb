@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'searches/index'
 
   resources :conversations do
     resources :messages
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :uploads
   resources :password_resets
   root to: 'pages#home'
   match '/signup',   to: 'users#new',            via: 'get'
