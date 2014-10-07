@@ -1,4 +1,5 @@
 module MessagesHelper
+	#This determines if a user is the sender or recipient
   def self_or_other(message)
     message.user == current_user ? "self" : "other"
   end

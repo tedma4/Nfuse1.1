@@ -9,7 +9,7 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
-  
+  #This determines whether a user has a provider or not
   def user_has_provider?(provider, user = current_user)
     user.tokens.by_name(provider).any?
   end  

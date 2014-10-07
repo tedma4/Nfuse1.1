@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+#This says that the messages'resources are apart of the conversation
   resources :conversations do
     resources :messages
   end

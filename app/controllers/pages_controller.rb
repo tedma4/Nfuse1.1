@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  #this is the static pages used in Nfuse
 
   def home
   end

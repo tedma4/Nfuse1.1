@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  #This controlls the post process for facebook and twitter
 
   def create
     tweet = nil

@@ -1,9 +1,12 @@
 class UploadsController < ApplicationController
+  #This controlls the Nfuse dropbox
   def new
+    #This starts the new upload process
     @upload = Upload.new
   end
  
   def create
+    #This creates an upload and shows it
     @upload = Upload.create(upload_params)
     if @upload.save
       # send success header
@@ -16,6 +19,7 @@ class UploadsController < ApplicationController
   end
  
   def destroy
+    #This deletes an upload
     @upload = Upload.find(params[:id])
     if @upload.destroy    
       render json: { message: "File deleted from server" }
@@ -26,6 +30,7 @@ class UploadsController < ApplicationController
  
   private
   def upload_params
+    #These are the kinds of permitted files that can be uploaded
     params.require(:upload).permit(:image)
   end
 end

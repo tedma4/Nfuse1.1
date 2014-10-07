@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  #this controller pulls the likes/favorites count from the respective network and displays it
 
   def twitter
     tweet_id = params[:tweet_id]

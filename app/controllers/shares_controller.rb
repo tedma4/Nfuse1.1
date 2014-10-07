@@ -1,4 +1,5 @@
 class SharesController < ApplicationController
+	#This pulls the share count from a user's twitter post
 
   def twitter
     tweet_id = params[:tweet_id]
