@@ -19,9 +19,13 @@
   </div>
 <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
   <div id="empty_feed_container">
+    <% unless !current_user?(@user) %>
     <p>
       Click one of the below links or visit "Account Settings" to link an account and get started.
     </p>
     <%= render partial: "link_networks" %>
+    <% else %>
+    <p> This user has not Nfused their netowrks. </p>
+    <% end %>
   </div>
 <% end %>
