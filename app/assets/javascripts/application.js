@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require analytics
+//= require google_analytics
 //= require chat
 //= require dropzone.min
 //= require turbolinks
