@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006170718) do
+ActiveRecord::Schema.define(version: 20140926230836) do
 
   create_table "contacts", force: true do |t|
     t.datetime "created_at"
@@ -61,18 +61,6 @@ ActiveRecord::Schema.define(version: 20141006170718) do
   end
 
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
-
-  create_table "uploads", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  add_index "uploads", ["user_id"], name: "index_uploads_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"

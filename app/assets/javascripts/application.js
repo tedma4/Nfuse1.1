@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require chat
-//= require dropzone.min
 //= require turbolinks
 //= require private_pub
 //= require foxycomplete
