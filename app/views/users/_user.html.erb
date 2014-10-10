@@ -2,7 +2,7 @@
 <li>
 	<div class="col-sm-6 col-md-4">
 		<div class="thumbnail span3">
-		  <%= image_tag user.avatar(:medium) %>
+		  <%= image_tag user.avatar(:followp), class: "followers-pic" %>
 		  <ul class="inline follow-btn">
 			  <li><h4><%= link_to user.full_name, feed_user_path(user), :class => "follow-color" %></h4></li>
 			  <li><%= link_to "#", class: "start-conversation", "data-sid" => current_user.id, "data-rip" => user.id do %>

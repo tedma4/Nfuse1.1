@@ -8,15 +8,10 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
+    #user = User.find(params[:id])
     #This shows all the users a user has a conversation with
     @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
-    #@users = User.paginate(page: params[:page])
     @conversations = Conversation.involving(current_user).order("created_at DESC")
-    if params[:search]
-      @users = User.search(params[:search]).order("created_at DESC")
-    else
-      @users = User.all.order('created_at DESC')
-    end
   end
 
   def show

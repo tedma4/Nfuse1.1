@@ -17,7 +17,7 @@ class ConversationsController < ApplicationController
  
   def show
     #shows the chatbox
-    #@user = User.find(params[:id])
+    #user = User.find(params[:id])
     @conversation = Conversation.find(params[:id])
     @reciever = interlocutor(@conversation)
     @messages = @conversation.messages

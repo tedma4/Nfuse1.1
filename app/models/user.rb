@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: {minimum: 6}, allow_blank: true
-  has_attached_file :avatar, styles: { larger: '210x260>', medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/default.png"
+  has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
+                                default_url: "/assets/default.png",
+                                :url  => "/assets/products/:id/:style/:basename.:extension",
+                                :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+                                
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   #This allows a user to have multiple oauth tokens
   has_many :tokens, dependent: :destroy
@@ -91,3 +95,5 @@ class User < ActiveRecord::Base
       self.remember_token = User.digest(User.new_remember_token)
     end
 end
+#<%= link_to image_tag("http://placehold.it/50x50", class: "media-object"), conversation_path(conversation), class: "pull-left" %>
+

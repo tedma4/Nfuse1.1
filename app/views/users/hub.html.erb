@@ -1,6 +1,6 @@
 
-<% if @hub_feed.present? %>
-  <% @hub_feed.each do |post| %>
+<% if @timeline.present? %>
+  <% @timeline.each do |post| %>
     <% if post == "twitter" %>
       <%= render partial: "twitter_post", locals: {post: post} %>
     <% elsif post == "instagram" %>
@@ -8,3 +8,4 @@
     <% end %>
   <% end %>
 <% end %>
+

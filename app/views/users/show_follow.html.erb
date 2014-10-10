@@ -1,8 +1,8 @@
 <% provide(:title, @title) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span4" id="content-box-profile">
     <section>
-      <div class="main-avatar"><%= image_tag @user.avatar, size: "210x210" %> </div>
+      <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main" %> </div>
         <div>
           <ul class="pull-left inline follow-btn">
             <li><h1><%= @user.full_name %></h1></li>
