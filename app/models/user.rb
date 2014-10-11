@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: {minimum: 6}, allow_blank: true
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
-                                default_url: "/assets/default.png",
+                                default_url: "/assets/default_:styles.png",
                                 :url  => "/assets/products/:id/:style/:basename.:extension",
-                                :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
-                                
+                                :path => ":rails_root/assets/products/:id/:style/:basename.:extension"
+
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   #This allows a user to have multiple oauth tokens
   has_many :tokens, dependent: :destroy
