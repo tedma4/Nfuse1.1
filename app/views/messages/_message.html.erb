@@ -1,6 +1,6 @@
 <li class="<%=  self_or_other(message) %>">
-  <div class="avatard">
-    <img src="http://placehold.it/50x50" />
+  <div class="avatar">
+    <%= image_tag message_interlocutor(message).avatar(:thumb), class: "img-rounded" %>
   </div>
   <div class="chatboxmessagecontent">
     <p><%= message.body %></p>

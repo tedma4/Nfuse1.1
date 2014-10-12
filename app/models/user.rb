@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: {minimum: 6}, allow_blank: true
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
-                                default_url: "/assets/default_:styles.png",
+                                default_url: "/assets/:style/default.png",
                                 :url  => "/assets/products/:id/:style/:basename.:extension",
                                 :path => ":rails_root/assets/products/:id/:style/:basename.:extension"
 
