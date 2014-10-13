@@ -72,9 +72,9 @@ module Facebook
 
     def create_feed_request
       if @pagination_id.nil?
-        Typhoeus::Request.new("https://graph.facebook.com/v2.0/me/feed?limit=5&access_token=#{@access_token}")
+        Typhoeus::Request.new("https://graph.facebook.com/v2.0/me/feed?fields=type&limit=15&access_token=#{@access_token}")
       else
-        Typhoeus::Request.new("https://graph.facebook.com/v2.0/me/feed?limit=25&access_token=#{@access_token}&until=#{@pagination_id}")
+        Typhoeus::Request.new("https://graph.facebook.com/v2.0/me/feed?fields=type&limit=25&access_token=#{@access_token}&until=#{@pagination_id}")
       end
     end
 
