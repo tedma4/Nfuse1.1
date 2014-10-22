@@ -6,8 +6,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = request.env["omniauth.auth"]["email"]
-    user = Token.update_or_create_with_omniauth(id, auth)#from_omniauth(auth)#User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth) #
+
+    if omniauth_env = request.env.fetch("omniauth.auth", nil)
+      email = request.env['omniauth.auth']['email']
+    else
+      email = params['session']['email']
+    end
+
+    user = Identity.find_by(email: email).user
+    Token.update_or_create_with_omniauth(user, auth) if omniauth_env
+
+    #from_omniauth(auth)
+    # #User.find_by_provider_and_uid(auth["provider"],
+    # auth["uid"]) || User.create_with_omniauth(auth)
+
     if user
       session[:user_id] = user.id
       redirect_to feed_user_path(user), notice: "Signed in!"
@@ -17,6 +29,7 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
   #def create
   #This logs a user in 
   #  user = Token.from_omniauth(env["omniauth.auth"])
