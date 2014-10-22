@@ -20,12 +20,12 @@ class Token < ActiveRecord::Base
     token
   end
 
-  def self.update_or_create_with_omniauth(id, auth)
+  def self.update_or_create_with_omniauth(user, auth)
     token = where(provider: auth["provider"], uid: auth['uid']).first_or_initialize
     token.provider = auth["provider"]
     token.uid = auth["uid"]
     token.access_token = auth["credentials"]["token"]
-    token.user_id = id
+    token.user_id = user.id
     token.save!
     token
   end

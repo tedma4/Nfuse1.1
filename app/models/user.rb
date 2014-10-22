@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  delegate :email, to: :identity
+
+  has_one :identity, dependent: :nullify
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id",
