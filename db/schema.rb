@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926230836) do
+ActiveRecord::Schema.define(version: 20141019205336) do
 
   create_table "contacts", force: true do |t|
     t.datetime "created_at"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20140926230836) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id"
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
+
+  create_table "identities", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["email"], name: "index_identities_on_email", unique: true
 
   create_table "messages", force: true do |t|
     t.text     "body"
@@ -63,10 +74,6 @@ ActiveRecord::Schema.define(version: 20140926230836) do
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
@@ -105,9 +112,10 @@ ActiveRecord::Schema.define(version: 20140926230836) do
     t.string   "change_about_the_world"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

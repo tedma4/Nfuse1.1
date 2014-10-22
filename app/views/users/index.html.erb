@@ -4,14 +4,14 @@
   <h1>Chat</h1>
     <div>
       <% if @conversations.any? %>
-        <ul class="media-list">
+        <ul class="media-list current-chat-list">
           <% @conversations.each do |conversation| %>
-            <li class="media">
+            <li>
                 <%= image_tag conversation_interlocutor(conversation).avatar(:thumb), class: "media-object pull-left img-rounded" %>
               <div class="media-body">
                 <%= link_to conversation_path(conversation), class: "conversation", "data-cid" => conversation.id do %>
-                <h4 class="media-heading"><%= conversation_interlocutor(conversation).full_name %></h4>
-                <p><%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %></p>
+                <h4 class="media-heading-custom"><%= conversation_interlocutor(conversation).full_name %></h4>
+                <p class="conversation-custom"> "<%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %>"</p>
                   <% end %>
               </div>
             </li>

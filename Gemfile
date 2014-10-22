@@ -7,6 +7,7 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'sprockets', '~> 2.11.0'
 #This is used to encrypt a user's password
 gem 'bcrypt', '~> 3.1.7'
+gem 'omniauth-identity'
 #This adds pagination to pages that need it
 gem 'will_paginate', '~> 3.0.4'
 gem 'bootstrap-will_paginate', '~> 0.0.9'

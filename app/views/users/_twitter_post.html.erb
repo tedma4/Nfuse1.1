@@ -1,5 +1,6 @@
-<div class="individual_post twitter_post" data-id="<%= post.tweet_id %>">
+<div class="individual_post twitter_post" data-id="<%= post.tweet_id %>" id="content-box-feed">
   <div class="network_logo">
+
     <%= image_tag("Twitter_logo_blue.png", :class => "provider_logo") %>
   </div>
   <div class="post_main">
@@ -10,15 +11,14 @@
         </li>
         <li><%= link_to post.user_name, post.user_url, :target => "_blank" %></li>
         <li>@<%= post.screen_name %></li>
-        <li><%= time_ago_in_words(post.created_time) %> ago</li>
       </ul>
     </div>
     <div class="post_content">
       <ul>
-        <li><%= post.tweet_text %></li>
         <% if post.tweet_image.present? %>
           <li><%= image_tag(post.tweet_image) %></li>
         <% end %>
+        <li><%= post.tweet_text %> <%= time_ago_in_words(post.created_time) %> ago</li>
       </ul>
       <div class="post_stats">
         <ul>

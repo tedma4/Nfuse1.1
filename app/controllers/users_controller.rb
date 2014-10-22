@@ -73,7 +73,6 @@ class UsersController < ApplicationController
 
   def feed
     #This controlls a users feed
-    @title = "Feed"
     puts params
     @user = User.find(params[:id])
     feed = Feed.new(@user)
@@ -106,7 +105,6 @@ class UsersController < ApplicationController
 
   def bio
     #This controlls a users bio
-    @title = "Bio"
     @user = User.find(params[:id])
     render 'show_bio'
   end

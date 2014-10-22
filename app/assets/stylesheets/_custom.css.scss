@@ -18,7 +18,6 @@ html {
 
 body {
   padding-top: 50px;
-
 }
 
 section {
@@ -272,12 +271,14 @@ aside {
 
 .stats {
   overflow: auto;
-  padding-left: 20px;
+  margin-left: 2px;
+  padding-left: 6px;
+  padding-right: 2px;
   a {
     float: left;
-    padding: 0 10px;
+    padding: 0 6px;
     border-left: 1px solid $grayLighter;
-    color: gray;
+    color: #87ceeb;
     &:first-child {
       padding-left: 0;
       border: 0;
@@ -740,7 +741,7 @@ color: #468847;
 text-align: left;
 }
 
-/* ------------------------ chat box--------------------------- */
+/* ------------------------ chat page--------------------------- */
 
 /**
  * GMAIL Like chat css
@@ -922,3 +923,97 @@ text-align: left;
   color:87ceeb;
 }
 
+
+.conversation-custom { 
+  color: #87ceeb;
+  padding-left: 18px;
+  margin-left: 2px;
+  }
+
+.media-heading-custom { 
+  color: black;
+  padding-left:  10px;
+  padding-bottom: -10px;
+  padding-top: 2px;
+  margin-bottom: 0px;
+  margin-left: 2px; 
+  margin-top: 2px;
+}
+
+current-chat-list { 
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+/* ------------------ feed ------------ */
+
+#content-box-feed {
+    position: relative;
+    color: #444;
+    font-size: 14px;
+    line-height: 20px;
+    width: 480px;
+    margin: 0px auto 10px;
+        margin-top: 15px;
+        margin-right-value: auto;
+        margin-bottom: 10px;
+        margin-left-value: auto;
+        margin-left-ltr-source: physical;
+        margin-left-rtl-source: physical;
+        margin-right-ltr-source: physical;
+        margin-right-rtl-source: physical;
+    border-radius: 12px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+    padding: 30px;
+        padding-top: 30px;
+        padding-right-value: 30px;
+        padding-bottom: 30px;
+        padding-left-value: 30px;
+        padding-left-ltr-source: physical;
+        padding-left-rtl-source: physical;
+        padding-right-ltr-source: physical;
+        padding-right-rtl-source: physical;
+    box-shadow: 0px 0px 2px 3px rgba(44, 44, 44, 0.1);
+    border: 3px solid #FFF;
+        border-top-width: 3px;
+        border-right-width-value: 3px;
+        border-right-width-ltr-source: physical;
+        border-right-width-rtl-source: physical;
+        border-bottom-width: 3px;
+        border-left-width-value: 3px;
+        border-left-width-ltr-source: physical;
+        border-left-width-rtl-source: physical;
+        border-top-style: solid;
+        border-right-style-value: solid;
+        border-right-style-ltr-source: physical;
+        border-right-style-rtl-source: physical;
+        border-bottom-style: solid;
+        border-left-style-value: solid;
+        border-left-style-ltr-source: physical;
+        border-left-style-rtl-source: physical;
+        border-top-color: #FFF;
+        border-right-color-value: #FFF;
+        border-right-color-ltr-source: physical;
+        border-right-color-rtl-source: physical;
+        border-bottom-color: #FFF;
+        border-left-color-value: #FFF;
+        border-left-color-ltr-source: physical;
+        border-left-color-rtl-source: physical;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image-source: none;
+        border-image-slice: 100% 100% 100% 100%;
+        border-image-width: 1 1 1 1;
+        border-image-outset: 0 0 0 0;
+        border-image-repeat: stretch stretch;
+}
+
+.time-ago {
+  color: #87ceeb;
+  padding-left: 20px;
+}

@@ -5,22 +5,17 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-  before_save { self.email = email.downcase }
   before_create :create_remember_token
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
-  has_secure_password
-  validates :password, length: {minimum: 6}, allow_blank: true
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
                                 default_url: "/assets/:style/default.png",
                                 :url  => "/assets/products/:id/:style/:basename.:extension",
                                 :path => ":rails_root/assets/products/:id/:style/:basename.:extension"
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  
+  validates :first_name, :last_name, presence: true
   #This allows a user to have multiple oauth tokens
   has_many :tokens, dependent: :destroy
-
   has_many :conversations, :foreign_key => :sender_id
 #This sends the email with the password reset token in it
   def send_password_reset
