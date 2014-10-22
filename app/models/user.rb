@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   before_create :create_remember_token
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
-                                default_url: "/assets/:style/default.png",
-                                :url  => "/assets/products/:id/:style/:basename.:extension",
-                                :path => ":rails_root/assets/products/:id/:style/:basename.:extension"
+                                default_url: "/assets/:style/default.png"
+                                #:url  => "/assets/images/:id/:style/:basename.:extension",
+                                #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
