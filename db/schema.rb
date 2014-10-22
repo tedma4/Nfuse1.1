@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(version: 20141019205336) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "identities", ["email"], name: "index_identities_on_email", unique: true
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "messages", force: true do |t|
     t.text     "body"
@@ -62,16 +64,28 @@ ActiveRecord::Schema.define(version: 20141019205336) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "tokens", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
     t.string   "access_token"
-    t.string   "access_token_secret"
     t.integer  "user_id"
+    t.string   "access_token_secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
+
+  create_table "uploads", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "uploads", ["user_id"], name: "index_uploads_on_user_id"
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
@@ -110,6 +124,7 @@ ActiveRecord::Schema.define(version: 20141019205336) do
     t.string   "meet_in_history"
     t.string   "nobody_judges_you"
     t.string   "change_about_the_world"
+    t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "first_name"
