@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :identities
+
   resources :users do
     member do
       get :following, :followers, :bio, :feed, :settings, :hub
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
   resources :uploads
   resources :password_resets
   root to: 'pages#home'
-  match '/signup',   to: 'users#new',            via: 'get'
+  match '/signup',   to: 'identities#new',       via: 'get'
   match '/signin',   to: 'sessions#new',         via: 'get'
   match '/signout',  to: 'sessions#destroy',     via: 'delete'
   match '/help',     to: 'pages#help',           via: 'get'
@@ -40,6 +42,8 @@ Rails.application.routes.draw do
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
   post '/instagram/like/:media_id', to: 'likes#instagram'
   post '/facebook/like/:post_id', to: 'likes#facebook'
+
+  match "/auth/identity/callback", to: "sessions#create", via: 'post'
 
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
