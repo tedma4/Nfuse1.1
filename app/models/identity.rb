@@ -9,14 +9,13 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
   validates :conditions, acceptance: true, allow_nil: false, on: :create
   attr_accessor :conditions
 
+  # this is a hook ( callback ) that executes
+  # when it sees that create is called.
   before_create do |new_record|
-    user = User.create(first_name: new_record.name,
-                       last_name: '',
-                       email: new_record.email)
-    new_record.user_id = usre.id
-    end
+    user = User.create(first_name: new_record.first_name,
+                       last_name: new_record.last_name)
+    new_record.user = user
   end
-
 
   def full_name
   first_name + " " + last_name
