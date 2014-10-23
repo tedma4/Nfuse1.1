@@ -13,7 +13,7 @@ def create
     else
       email = params['session']['email']
     end
- 
+
     user = Identity.find_or_create_by(email: email).user
     Token.update_or_create_with_omniauth(user, omniauth_env) if omniauth_env
  

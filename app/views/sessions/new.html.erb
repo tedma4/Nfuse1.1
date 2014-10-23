@@ -1,31 +1,14 @@
 <% provide(:title, "Log in") %>
 
-  <p><strong>Sign in through one of these services:</strong></p>
-
-  <div class="auth_providers">
-    <a href="/auth/twitter" class="auth_provider">
-      <%= image_tag "twitter13.fw.png", size: "64x64", alt: "Twitter" %>
-      Twitter
-    </a>
-    <a href="/auth/facebook" class="auth_provider">
-      <%= image_tag "facebook23.fw.png", size: "64x64", alt: "Facebook" %>
-      Facebook
-    </a>  </div>
-  
-  <p>
-    <strong>Don't use these services?</strong>
-    <%= link_to "Create an account", new_identity_path %> or login below.
-  </p>
-
 <div class="row" id="content-box-signup">
   <div class="span4">
   <%= form_tag "/auth/identity/callback" do %>
     <div class="field">
-      <%= label_tag :auth_key, "Email" %><br>
+      <%= label_tag :auth_key, "Email" %>
       <%= text_field_tag :auth_key %>
     </div>
     <div class="field">
-      <%= label_tag :password %><br>
+      <%= label_tag :password %>
       <%= password_field_tag :password %>
     </div>
     <div class="actions"><%= submit_tag "Login" %></div>

@@ -20,6 +20,17 @@ class Token < ActiveRecord::Base
     token
   end
 
+  def self.update_or_create_with_other_omniauth(id, auth)
+    token = where(provider: auth["provider"]).first_or_initialize
+    token.provider = auth["provider"]
+    token.uid = auth["uid"]
+    token.access_token = auth["credentials"]["token"]
+    token.user_id = id
+    token.save!
+    token
+  end
+
+
   def self.update_or_create_with_omniauth(user, auth)
     token = where(provider: auth["provider"], uid: auth['uid']).first_or_initialize
     token.provider = auth["provider"]
@@ -39,22 +50,4 @@ class Token < ActiveRecord::Base
     end
     client
   end
-
-  def self.from_omniauth(auth)
-    find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
-  end
-
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      token.user_id = id
-      token.save!
-      token
-    end
-  end
-
-  #Should go to the token.rb
-  
-
 end
