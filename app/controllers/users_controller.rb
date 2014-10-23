@@ -95,9 +95,14 @@ class UsersController < ApplicationController
     #This controlls a users hub
     @title = "Hub"
     @user = User.find(params[:id])
+    # this returns *User within *Provider obj
     @providers = Providers.for(@user)
+    # new array
     @hub_feed = []
-    @timeline = current_user.followed_users.each do |f|
+    # current_user is nil for some reason.
+    # should it have been this?
+    # I think current_user is not being set becaue :hub is not in the before_action *list
+    @timeline = @providers.user.followed_users.each do |f|
       @hub_feed << Feed.new(f).posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
     end
     render "hub"

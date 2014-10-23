@@ -1,4 +1,5 @@
 class Providers
+  attr_reader :user
 
   def self.for(user)
     new(user)
