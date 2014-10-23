@@ -1,5 +1,5 @@
-<h1>New Account</h1>
-
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
 <%= form_tag "/auth/identity/register" do %>
   <% if @identity && @identity.errors.any? %>
     <div class="error_messages">
@@ -11,31 +11,35 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= label_tag :first_name %><br>
-    <%= text_field_tag :first_name, @identity.try(:first_name) %>
+  <div class="row" id="content-box-signup">
+    <div class="span4">  
+      <div class="field">
+        <%= label_tag :first_name %>
+        <%= text_field_tag :first_name, @identity.try(:first_name) %>
+      </div>
+      <div class="field">
+        <%= label_tag :last_name %>
+        <%= text_field_tag :last_name, @identity.try(:last_name) %>
+      </div>
+      <div class="field">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, @identity.try(:email) %>
+      </div>
+      <div class="field">
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </div>
+      <div class="field">
+        <%= label_tag :password_confirmation %>
+        <%= password_field_tag :password_confirmation %>
+      </div>
+      <div class="field">
+    	  <%= label_tag :conditions %>
+    	  <%= check_box_tag :conditions %>
+    	</div>
+    	<br>
+      <div class="actions"><%= submit_tag "Create my account", class: "btn btn-large btn-info" %></div>
+    </div>
   </div>
-  <div class="field">
-    <%= label_tag :last_name %><br>
-    <%= text_field_tag :last_name, @identity.try(:last_name) %>
-  </div>
-  <div class="field">
-    <%= label_tag :email %><br>
-    <%= text_field_tag :email, @identity.try(:email) %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= label_tag :password_confirmation %><br>
-    <%= password_field_tag :password_confirmation %>
-  </div>
-  <div class="field">
-	  <%= label_tag :conditions %><br>
-	  <%= check_box_tag :conditions %>
-	</div>
-	<br>
-  <div class="actions"><%= submit_tag "Register" %></div>
 <% end %>
 

@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
     #This starts the login process
   end
 
-  def create
-
+def create
+ 
     if omniauth_env = request.env.fetch("omniauth.auth", nil)
       # That was the issue.
       email = request.env['omniauth.auth']['info']['email']
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     #from_omniauth(auth)
     # #User.find_by_provider_and_uid(auth["provider"],
     # auth["uid"]) || User.create_with_omniauth(auth)
-
+ 
     if user
       session[:user_id] = user.id
       redirect_to feed_user_path(user), notice: "Signed in!"

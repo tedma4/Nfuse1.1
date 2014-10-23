@@ -92,8 +92,6 @@ class UsersController < ApplicationController
   end
 
   def hub
-    #This controlls a users hub
-    @title = "Hub"
     @user = User.find(params[:id])
     # this returns *User within *Provider obj
     @providers = Providers.for(@user)
