@@ -16,7 +16,6 @@ def create
 
     user = Identity.find_or_create_by(email: email).user
     Token.update_or_create_with_omniauth(user, omniauth_env) if omniauth_env
- 
     #from_omniauth(auth)
     # #User.find_by_provider_and_uid(auth["provider"],
     # auth["uid"]) || User.create_with_omniauth(auth)
