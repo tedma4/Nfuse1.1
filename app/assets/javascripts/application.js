@@ -1,6 +1,8 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+//Last Edited by Ryan 10/22/2014 
+
+//This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
-//
+// 
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
@@ -10,11 +12,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require bootstrap
+//= require bootstrap-dropdown
+//*************
+// For whatever reason Bootstrap has to be above Jquery
+// http://stackoverflow.com/questions/10218587/twitter-bootstrap-drop-down-suddenly-not-working
+// rake assets:clean if dropdown stops working 
+//***************
 //= require jquery
 //= require jquery_ujs
 //= require chat
 //= require turbolinks
 //= require private_pub
 //= require foxycomplete
-//= require bootstrap
+
 //= require_tree .
