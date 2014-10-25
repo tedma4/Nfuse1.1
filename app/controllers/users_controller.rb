@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,     only: :destroy
+  before_action :fetch_user,     only: [:feed, :hub, :bio, :followers, :following]
 
   def index
     #user = User.find(params[:id])
@@ -73,8 +74,6 @@ class UsersController < ApplicationController
 
   def feed
     #This controlls a users feed
-    puts params
-    @user = User.find(params[:id])
     feed = Feed.new(@user)
     @providers = Providers.for(@user)
     @timeline = feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
@@ -92,25 +91,25 @@ class UsersController < ApplicationController
   end
 
   def hub
-    @user = User.find(params[:id])
     @providers = Providers.for(@user)
     @hub_feed = []
     @timeline = current_user.followed_users.each do |f|
-      @hub_feed << Feed.new(f).posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
+      @hub_feed << Feed.new(f).posts(params[:twitter_pagination],
+                                     params[:facebook_pagination_id],
+                                     params[:instagram_max_id])
     end
+    @hub_feed.flatten
     render "hub"
   end
 
   def bio
     #This controlls a users bio
-    @user = User.find(params[:id])
     render 'show_bio'
   end
 
   def following
     #This shows all the users a user is following
     @title = "Following"
-    @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
@@ -118,9 +117,14 @@ class UsersController < ApplicationController
   def followers
     #This shows all the users following the current user
     @title = "Followers"
-    @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  protected
+
+  def fetch_user
+    @user = User.find(params[:id])
   end
 
 end
