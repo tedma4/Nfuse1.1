@@ -1,10 +1,10 @@
-
+<!-- Last Edited by Ryan 10/22/2014 -->
 <!-- Start of regular landing page -->
 
 <% if signed_in? %>
 
   <%= render file: "users/hub" %>
-  <!--<div class="row">
+  <div class="row">
     
     <div class="span12">
       <h1>Hub</h1>
@@ -23,9 +23,11 @@
         </div>
       </div>
     </div>
-  </div> -->
-<% else %>
-  <div class="center hero-unit hero">
+  </div> 
+<% else %> <!-- Not signed in, display this -->
+<div class="container-fluid jumbotronwidth center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="jumbotron center hero-unit hero col-sm-12 col-xs-12 col-lg-12 col-md-12">
+  
 
     <%= image_tag "Banner-logo.png", id: "home banner"%>
  
@@ -40,8 +42,22 @@
     <%= link_to "Learn more", about_path,
                                 class: "learn-more btn btn-large btn-default" %>
 
-  </div>
+  
+</div>
 
-  
-  
-<% end %>
+  <div class="container-fluid center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+    <h3 class="about">About</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas.</p>
+  </div>
+  <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+    <h3 class="about">Features</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
+  </div> 
+  <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+      <h3 class="about">NFusers</h3>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
+    </div>  
+    </div>
+  </div> <!-- lower container -->
+  <% end %>

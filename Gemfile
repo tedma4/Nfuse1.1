@@ -37,6 +37,8 @@ gem 'newrelic_rpm', '~> 3.8.1.221'
 #This allows us to use burbon css file
 gem 'bourbon', '~> 3.2.3'
 gem 'neat', '~> 1.5.1'
+gem 'seed-fu', '~> 2.3'
+
 #This allows the use of the faye websocket server
 gem 'private_pub'
 gem 'thin'
@@ -45,8 +47,8 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   #This allows us to test
-  #gem 'pry'
-  #gem 'pry-byebug'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 2.13.1'
   gem 'brakeman', :require => false
   #gem 'rubocop', '0.20.1', require: false
