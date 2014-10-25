@@ -54,6 +54,9 @@ $footer-height: 4em;
     margin-top: 0;
   }
 }
+.jumbotronwidth {
+  max-width:100%;
+}
 
 #privacy_policy_container {
   @include outer-container;

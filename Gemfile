@@ -37,6 +37,8 @@ gem 'newrelic_rpm', '~> 3.8.1.221'
 #This allows us to use burbon css file
 gem 'bourbon', '~> 3.2.3'
 gem 'neat', '~> 1.5.1'
+gem 'seed-fu', '~> 2.3'
+
 #This allows the use of the faye websocket server
 gem 'private_pub'
 gem 'thin'
