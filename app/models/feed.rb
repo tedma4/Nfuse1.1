@@ -38,9 +38,9 @@ class Feed
   #
   # -----------  Twitter
   #
-  def twitter_posts(twitter_pagination_id)
+  def twitter_posts(_pagination_id)
       # all methods act like begin; end can contain a rescue
-      twitter_timeline
+      @old_twitter_pagination_id = _pagination_id
       fetch_twitter_posts
       # This is a catch all for all Twitter errors.
     rescue Twitter::Error => error
@@ -59,8 +59,8 @@ class Feed
   end
 
   def fetch_twitter_posts
-    @twitter_posts ||= @twitter_timeline
-                      .posts(twitter_pagination_id)
+    @twitter_posts ||= twitter_timeline
+                      .posts(@old_twitter_pagination_id)
                       .map { |post| Twitter::Post.from(post) }
   end
   #
