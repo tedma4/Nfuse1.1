@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     feed = Feed.new(@user)
     @providers = Providers.for(@user)
-    @timeline = feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
+    @timeline = fetch_feed(feed)
     @unauthed_accounts = feed.unauthed_accounts
     @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
     @commenter_profile_hash = feed.commenter_profile_hash
@@ -87,17 +87,28 @@ class UsersController < ApplicationController
       :facebook_pagination_id => feed.facebook_pagination_id,
       :instagram_max_id => feed.instagram_max_id
     )
-
     render 'show_feed'
+  end
+
+  def fetch_feed(feed)
+    feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
   end
 
   def hub
     @user = User.find(params[:id])
     @providers = Providers.for(@user)
-    @hub_feed = []
-    @timeline = current_user.followed_users.each do |f|
-      @hub_feed << Feed.new(f).posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
-    end
+    # @timeline=[]
+    # current_user.followed_users.each do |_user|
+    #   feed=Feed.new(_user)
+    #   @timeline << fetch_feed(feed)
+    #   # @unauthed_accounts = feed.unauthed_accounts
+    #   # @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
+    #   # @commenter_profile_hash = feed.commenter_profile_hash
+    # end
+    # *****
+    # #inject returns its first parameter always.
+    # in this case  array.inject( [] )
+    @timeline = current_user.followed_users.inject([]) {|acc, user| acc << fetch_feed(Feed.new(user)) }.flatten
     render "hub"
   end
 
