@@ -1,11 +1,5 @@
-
-<% if @timeline.present? %>
-  <% @timeline.each do |post| %>
-    <% if post == "twitter" %>
-      <%= render partial: "twitter_post", locals: {post: post} %>
-    <% elsif post == "instagram" %>
-      <%= render partial: "instagram_post", locals: {post: post} %>
-    <% end %>
-  <% end %>
+<% @timeline.each do |post| %>
+     <%= render partial: "twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
+     <%= render partial: "instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
 <% end %>
 
