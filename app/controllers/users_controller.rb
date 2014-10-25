@@ -97,18 +97,11 @@ class UsersController < ApplicationController
   def hub
     @user = User.find(params[:id])
     @providers = Providers.for(@user)
-    # @timeline=[]
-    # current_user.followed_users.each do |_user|
-    #   feed=Feed.new(_user)
-    #   @timeline << fetch_feed(feed)
-    #   # @unauthed_accounts = feed.unauthed_accounts
-    #   # @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
-    #   # @commenter_profile_hash = feed.commenter_profile_hash
-    # end
-    # *****
-    # #inject returns its first parameter always.
-    # in this case  array.inject( [] )
-    @timeline = current_user.followed_users.inject([]) {|acc, user| acc << fetch_feed(Feed.new(user)) }.flatten
+    timeline = []
+    current_user.followed_users.each do |user|
+      timeline << fetch_feed(Feed.new(user))
+    end
+    @timeline=timeline.flatten #.sort {|a, b|  b.created_time <=> a.created_time }
     render "hub"
   end
 
