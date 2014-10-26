@@ -25,5 +25,4 @@
 //= require turbolinks
 //= require private_pub
 //= require foxycomplete
-
 //= require_tree .
