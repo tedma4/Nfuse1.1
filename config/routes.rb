@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 #This says that the messages'resources are apart of the conversation
   resources :conversations do
-    resources :messages
+    resources :messages, only: [:create]
   end
 
   resources :identities
@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :uploads
   resources :password_resets
   root to: 'pages#home'
   match '/signup',   to: 'identities#new',       via: 'get'
