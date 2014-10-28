@@ -12,8 +12,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap
-//= require bootstrap-dropdown
 //*************
 // For whatever reason Bootstrap has to be above Jquery
 // http://stackoverflow.com/questions/10218587/twitter-bootstrap-drop-down-suddenly-not-working
@@ -21,6 +19,8 @@
 //***************
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-dropdown
 //= require chat
 //= require turbolinks
 //= require private_pub

@@ -121,9 +121,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.all
-    @users.except.current_user.followed_users.each do |user|
-    timeline << fetch_feed(Feed.new(user))
+    @users = User.where.not(id: current_user.followed_users || current_user.id)
+    @users.each do |user|
+      timeline << fetch_feed(Feed.new(user))
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
     render "explore"
