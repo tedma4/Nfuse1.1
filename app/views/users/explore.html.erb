@@ -1,13 +1,15 @@
 <ul class="nav pull-right navbar-right navbar-nav">
 	<li>        
 	  <%= link_to hub_user_path(session[:user_id]) do %>
-	    <%= image_tag('home1.fw.png', size: "32x32") %>
+	    <%= image_tag('molecule4.png', size: "32x32") %>
 	  <% end %>
+	  hub
 	</li>
 	<li>        
 	  <%= link_to explore_user_path(session[:user_id]) do %>
-	    <%= image_tag('home1.fw.png', size: "32x32") %>
+	    <%= image_tag('educational27.png', size: "32x32") %>
 	  <% end %>
+	  explore
 	</li>
 </ul>
 <% @timeline.each do |post| %>
