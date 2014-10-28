@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :identities
 
   resources :users do
+    resources :conversations
     member do
       get :following, :followers, :bio, :feed, :settings, :hub
     end
