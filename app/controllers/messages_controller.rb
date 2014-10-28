@@ -1,6 +1,9 @@
 class MessagesController < ApplicationController
-  #This ensures that a user must be logged in to send a chat message
+  #include UsersHelper
+  #before_action :correct_user,
+  #                only: [:create]
   before_action :signed_in_user
+  #skip_before_filter :verify_authenticity_token
   
 	def create
     #Creates a new message b/w the currently logged in user and the user they are in a conversation with
