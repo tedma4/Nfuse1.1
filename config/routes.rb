@@ -9,11 +9,13 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :conversations
+    resources :shouts
     member do
       get :following, :followers, :bio, :feed, :settings, :hub, :explore
     end
   end
 
+  resources :shouts,    only: [:new, :create, :destroy]
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]

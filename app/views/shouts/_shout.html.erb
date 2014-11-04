@@ -1,0 +1,43 @@
+<!-- Defined Embedded Ruby post rules -->
+<%= form_for @post, :html => { :multipart => true } do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, :class => "h3" %><br />
+    <%= f.text_field :title, :class => "form-control", :placeholder => "What do you want to name it?" %>
+  </div><br />
+  <div class="field">
+    <%=raw f.label :content, :class => "h3" %><br />
+    <%=raw f.text_area :content, :class => "form-control", :rows => "10", :placeholder => "There you are! What's new today? " %>
+  </div><br />
+   <div class="visible-xs">
+  <%= f.file_field :photo, :style => "center" %>
+  <%= f.check_box :photo_delete, :style => "center" %> &nbsp;Delete Photo
+</div><br />
+   <div class="visible-md visible-lg">
+  <%= f.file_field :photo, :style => "float: left;" %>
+  <%= f.check_box :photo_delete, :style => "float: left;" %> &nbsp;Delete Photo
+  </div><br />
+  <div class="visible-xs">
+  <%= f.file_field :video, :style => "center" %>
+  <%= f.check_box :video_delete, :style => "center" %> &nbsp;Delete Video
+</div><br />
+   <div class="visible-md visible-lg">
+  <%= f.file_field :video, :style => "float: left;" %>
+  <%= f.check_box :video_delete, :style => "float: left;" %> &nbsp;Delete Video
+  </div><br />
+  <!-- f.file_field : photo %> !-->
+  <div class="center">
+    <%= f.submit :class => "btn btn-info", :style => "margin-top: 20px;" %>
+  </div><br />
+<% end %>

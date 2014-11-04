@@ -195,6 +195,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    paperclip-ffmpeg (1.0.1)
+      paperclip (>= 2.5.2)
     pg (0.15.1)
     pg (0.15.1-x86-mingw32)
     polyglot (0.3.5)
@@ -347,6 +349,7 @@ DEPENDENCIES
   omniauth-instagram (~> 1.0.1)
   omniauth-twitter (~> 1.0.1)
   paperclip
+  paperclip-ffmpeg (~> 1.0.0)
   pg (~> 0.15.1)
   private_pub
   rails (= 4.1.2)
