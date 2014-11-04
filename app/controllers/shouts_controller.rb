@@ -2,6 +2,7 @@ class ShoutsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
   respond_to :json, :js, :html
+
   #def index
   #  @shouts = Shout.all
   #end
@@ -28,30 +29,30 @@ class ShoutsController < ApplicationController
   # end
   #end
 
-  def create
-    @shout = Post.create(params[:shout])
-
-    respond_to do |format|
-      if @shout.save
-        format.html { redirect_to @shout, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @shout }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @shout.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   #def create
-  #  @shout = current_user.shouts.build(shout_params)
-  #  if @shout.save
-  #    flash[:success] = "Shout created!"
-  #    redirect_to root_url
-  #  else
-  #    @feed_items = []
-  #    render 'static_pages/home'
+  #  @shout = Shout.new(shout_params)
+
+  #  respond_to do |format|
+  #    if @shout.save
+  #      format.html { redirect_to @shout, notice: 'Post was successfully created.' }
+  #      format.json { render action: 'show', status: :created, location: @shout }
+  #    else
+  #      format.html { render action: 'new' }
+  #      format.json { render json: @shout.errors, status: :unprocessable_entity }
+  #    end
   #  end
   #end
+
+  def create
+    @shout = current_user.shouts.build(shout_params)
+    if @shout.save
+      flash[:success] = "Shout created!"
+      redirect_to root_url
+    else
+      @feed_items = []
+      render 'static_pages/home'
+    end
+  end
 
   def destroy
     @shout.destroy

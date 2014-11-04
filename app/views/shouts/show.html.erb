@@ -12,14 +12,6 @@
 			  <%=raw @post.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
 				</p>
 			</div>
-			<div class="center">
-			<% if admin_signed_in? %>
-			<%= link_to 'Edit', edit_post_path(@post) %> |
-			<%= link_to 'Back', posts_path %>
-			<% else %>
-			<%= link_to 'Back', pages_news_path %>
-			<% end %>
-			</div>
 		</div>
 <% elsif @post.video? %>
 		<h1 class="center">
@@ -36,14 +28,6 @@
 			  	<%=raw @post.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
 				</p>
 			</div>
-			<div class="center">
-				<% if admin_signed_in? %>
-				<%= link_to 'Edit', edit_post_path(@post) %> |
-				<%= link_to 'Back', posts_path %>
-				<% else %>
-				<%= link_to 'Back', pages_news_path %>
-				<% end %>
-			</div>
 		</div>
 <% else %>		
 		<div style="padding-left: 5%; padding-right: 5%;">
@@ -55,89 +39,6 @@
 			  	<%=raw @post.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
 				</p>
 			</div>
-			<div class="center">
-			<% if admin_signed_in? %>
-			<%= link_to 'Edit', edit_post_path(@post) %> |
-			<%= link_to 'Back', posts_path %>
-			<% else %>
-			<%= link_to 'Back', pages_news_path %>
-			<% end %>
-			</div>
 		</div>
 <% end %> 
 </div>
-
-<!-- ################################# MOBILE VERSION ################################### -->
-
-<div class="visible-xs">
-	<% if @post.photo? %>
-	<div class="form-signin-show">
-		<h2 class="center" style="margin-top: -1%;">
-		  <%= @post.title %>
-		</h2>
-		<h6 class="text-muted"><%= @post.created_at.strftime("%A %H. %M %p - %B %d %Y ") %> </h6>
-	</div>
-	<div class="center" style=" max-width: 100%; overflow: hidden; position: relative;">
-     <%= image_tag @post.photo.url, :style => 'width: 150%; height: 250px;'%> 
-  	</div>
-
-  	<div class="form-signin-show">
-		<p style="margin-left: 3%;">
-			<%=raw @post.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
-		</p>
-	</div>
-	<div class="center">
-		<% if admin_signed_in? %>
-		<%= link_to 'Edit', edit_post_path(@post) %> |
-		<%= link_to 'Back', posts_path %>
-		<% else %>
-		<%= link_to 'Back', pages_news_path %>
-		<% end %>
-	</div>
-
-<% elsif @post.video? %>
-	<div class="form-signin-show">
-			<h2 class="center" style="margin-top: -1%;">
-		  <%= @post.title %>
-		</h2>
-		<h6 class="text-muted"><%= @post.created_at.strftime("%A %H. %M %p - %B %d %Y ") %> </h6>
-	</div>
-		<video align="center" preload controls style=" width:100%; height:200px;">
-			<source src="<%= @post.video.url(:original) %>" type="video/ogg">
-				Your browser does not support the video tag.
-		</video>
-	<div class="form-signin-show">
-		<p style="margin-left: 3%;">
-			<%=raw @post.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
-		</p>
-	</div>
-	<div class="center">
-		<% if admin_signed_in? %>
-		<%= link_to 'Edit', edit_post_path(@post) %> |
-		<%= link_to 'Back', posts_path %>
-		<% else %>
-		<%= link_to 'Back', pages_news_path %>
-		<% end %>
-	</div>
-
-<% else %>		
-	<div style="padding-left: 5%; padding-right: 5%;">
-		<h1 class="center">
-		  <%= @post.title %>
-		</h1>
-		<div class="form-signin-show">
-			<p style="margin-left: 3%;" >
-			  <%=raw @post.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
-			</p>
-		</div>
-		<div class="center">
-			<% if admin_signed_in? %>
-			<%= link_to 'Edit', edit_post_path(@post) %> |
-			<%= link_to 'Back', posts_path %>
-			<% else %>
-			<%= link_to 'Back', pages_news_path %>
-			<% end %>
-		</div>
-	</div>
-<% end %> 
-</div><br /><br />
