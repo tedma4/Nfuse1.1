@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :tokens, dependent: :destroy
   has_many :conversations, :foreign_key => :sender_id
 #This sends the email with the password reset token in it
+  has_many :shouts,    dependent: :destroy
+  has_many :comments
+  
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now

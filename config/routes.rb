@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shouts,    only: [:new, :create, :destroy]
+  resources :shouts do
+    resources :comments
+  end
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]

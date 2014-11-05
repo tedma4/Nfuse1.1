@@ -1,7 +1,8 @@
 class Shout < ActiveRecord::Base
 	require 'paperclip-ffmpeg'
-  belongs_to :user
-  validates :content, presence: true, length: { maximum: 120 }
+  has_many :comments, dependent: :destroy
+  belongs_to :user  
+  validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
   default_scope -> { order('created_at DESC') }
 	#attr_accessible :content, :title, :photo, :photo_delete, :video, :video_delete, :dependent => :destroy
