@@ -44,13 +44,21 @@ class ShoutsController < ApplicationController
   #end
 
   def create
+    @user = User.find(params[:id])
     @shout = current_user.shouts.build(shout_params)
+    if params[:content]
+      ShoutPost.create(params[:content])
+    elsif params[:pic]
+      PicPost.create(params[:pic])
+    elsif params[:snip]
+      SnipPost.create(params[:snip])
+    end
     if @shout.save
       flash[:success] = "Shout created!"
-      redirect_to root_url
+      redirect_to feed_user_path(@user)
     else
       @feed_items = []
-      render 'static_pages/home'
+      render 'new'
     end
   end
 
@@ -70,7 +78,7 @@ class ShoutsController < ApplicationController
   private
 
     def shout_params
-      params.require(:shout).permit(:title, :content, :photo, :video)
+      params.require(:shout).permit(:content, :pic, :snip)
     end
 
     def correct_user
