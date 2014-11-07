@@ -17,7 +17,12 @@ Rails.application.routes.draw do
 
   resources :shouts do
     resources :comments
+    member do
+      put "like", to: "shouts#like"
+      put "dislike", to: "shouts#dislike"
+    end
   end
+  
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]

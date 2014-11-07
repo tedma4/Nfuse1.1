@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'paperclip'
 # Handles video upload
 gem "paperclip-ffmpeg", "~> 1.0.0"
+gem 'acts_as_votable', '~> 0.10.0'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'

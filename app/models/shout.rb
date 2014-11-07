@@ -4,6 +4,8 @@ class Shout < ActiveRecord::Base
   validates :user_id, presence: true
   has_many :comments, dependent: :destroy
   default_scope -> { order('created_at DESC') }
+  acts_as_votable
+
 	#attr_accessor :content, :photo, :photo_delete, :video, :video_delete, :dependent => :destroy
 	#has_destroyable_file :photo, :video
 

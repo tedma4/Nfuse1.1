@@ -8,6 +8,15 @@ class ShoutsController < ApplicationController
   #end
 
   def show
+    @comment = Comment.new
+    @shout = Shout.find(params[:id])
+    @comments = @shout.comments
+
+    respond_to do |format|
+       format.html # show.html.erb
+       format.json { render json: @post }
+    end
+
   end
 
   def new
@@ -15,6 +24,7 @@ class ShoutsController < ApplicationController
   end
 
   #def edit
+  #  @shout = Shout.find(params[:id])
   #end
 
   #def update
@@ -29,37 +39,35 @@ class ShoutsController < ApplicationController
   # end
   #end
 
-  #def create
-  #  @shout = Shout.new(shout_params)
-
-  #  respond_to do |format|
-  #    if @shout.save
-  #      format.html { redirect_to @shout, notice: 'Post was successfully created.' }
-  #      format.json { render action: 'show', status: :created, location: @shout }
-  #    else
-  #      format.html { render action: 'new' }
-  #      format.json { render json: @shout.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
-
   def create
     @user = User.find(params[:id])
-    @shout = current_user.shouts.build(shout_params)
-    if params[:content]
-      ShoutPost.create(params[:content])
-    elsif params[:pic]
-      PicPost.create(params[:pic])
-    elsif params[:snip]
-      SnipPost.create(params[:snip])
-    end
-    if @shout.save
-      flash[:success] = "Shout created!"
-      redirect_to feed_user_path(@user)
-    else
-      @feed_items = []
-      render 'new'
-    end
+    @shout = Shout.create(shout_params)
+    @shout.user = current_user
+      
+      respond_to do |format|
+        if @shout.save
+            format.html { redirect_to @shout, notice: 'Post was successfully created.' }
+            format.json { render json: @shout, status: :created, location: @shout }
+        else
+            format.html { render action: "new" }
+            format.json { render json: @shout.errors, status: :unprocessable_entity }
+        end
+      end
+
+    #if params[:content]
+    #  ShoutPost.create(params[:content])
+    #elsif params[:pic]
+    #  PicPost.create(params[:pic])
+    #elsif params[:snip]
+    #  SnipPost.create(params[:snip])
+    #end
+    #if @shout.save
+    #  flash[:success] = "Shout created!"
+    #  redirect_to feed_user_path(@user)
+    #else
+    #  @feed_items = []
+    #  render 'new'
+    #end
   end
 
   def destroy
@@ -75,14 +83,48 @@ class ShoutsController < ApplicationController
   #  end
   #end
 
+  def like
+    @shout = Shout.find(params[:id])
+    if current_user.liked_by? @shout
+      @shout.unliked_by current_user
+      respond_to do |format|
+        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
+        format.html {redirect_to @shout}
+      end
+    else
+      @shout.like :voter => current_user, :like => 'like'
+      respond_to do |format|
+        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
+        format.html {redirect_to @shout, notice: "Thank you for voting!"}
+      end
+    end 
+  end
+
+  def dislike
+    @shout = Shout.find(params[:id])
+    if current_user.disliked_by? @shout
+      @shout.undisliked_by current_user
+      respond_to do |format|
+        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
+        format.html {redirect_to @shout}
+      end
+    else
+      @shout.dislike :voter => current_user, :dislike => 'dislike'
+      respond_to do |format|
+        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
+        format.html {redirect_to @shout, notice: "Thank you for voting!"}
+      end
+    end 
+  end
+
   private
 
     def shout_params
-      params.require(:shout).permit(:content, :pic, :snip)
+      params.require(:shout).permit(:content, :pic, :snip, :user_id)
     end
 
     def correct_user
       @shout = current_user.shouts.find_by(id: params[:id])
-      redirect_to root_url if @shout.nil?
+      redirect_to feed_user_path(@user) if @shout.nil?
     end
 end
