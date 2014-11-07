@@ -40,7 +40,6 @@ class ShoutsController < ApplicationController
   #end
 
   def create
-    @user = User.find(params[:id])
     @shout = Shout.create(shout_params)
     @shout.user = current_user
       

@@ -1,44 +1,18 @@
 <div class="visible-md visible-lg">
-<% if @shout.photo? %>
-		<div class="center"><p>
-      	<%= image_tag @shout.pic.url, :style => 'width:100%; height: 500px;'%> </p> 
-    	</div>
-		<div style="padding-left: 5%; padding-right: 5%;">
-			<h1 class="center" style="font-size:500%; color: white; z-index:2; margin-top: -200px;">  
-		  	<%= @shout.title %>
-			</h1><br /><br /><br /><br /><br />
-			<div class="form-signin-show">
-				<p>
-			  <%=raw @shout.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
-				</p>
-			</div>
-		</div>
-<% elsif @shout.video? %>
-		<h1 class="center">
-		  <%= @shout.title %>
-		</h1>
-		<video align="center" preload controls style="margin-left: 20%; margin-right: 20%; width:60%; height:400px;">
-			<source src="<%= @shout.snip.url(:original) %>" type="video/ogg">
-				Your browser does not support the video tag.
-		</video>
-		</div>  
-    	<div style="padding-left: 5%; padding-right: 5%;">
-			<div class="form-signin-show">
-				<p>
-			  	<%=raw @shout.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
-				</p>
-			</div>
-		</div>
-<% else %>		
-		<div style="padding-left: 5%; padding-right: 5%;">
-			<h1 class="center">
-		  	<%= @shout.title %>
-			</h1>
-			<div class="form-signin-show">
-				<p>
-			  	<%=raw @shout.content.html_safe.gsub(/\r\n?/,"<br/>").html_safe %>
-				</p>
-			</div>
-		</div>
-<% end %> 
+<p id="notice"><%= notice %></p>
+<div class="user-box">
+<%= image_tag @shout.user.avatar.url(:thumb), class: 'user' %>
+<%= link_to @shout.user.full_name, @shout.user %>
+<%= image_tag "beaker.fw.png", size: "50x50" %>
 </div>
+<p>
+  <%= @shout.content %>
+</p>
+<%= image_tag @shout.pic.url if @shout.pic.exists? %>
+ <div class="<%= @shout.class %>-<%= @shout.id %>">
+<%=link_to "Like", like_shout_path(@shout), method: :put%> | <%=link_to "Dislike", dislike_shout_path(@shout), method: :put%>
+<%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
+</div>
+<%= render @comments  %>
+</div>
+
