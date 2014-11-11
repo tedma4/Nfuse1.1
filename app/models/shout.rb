@@ -22,7 +22,7 @@ end
 #end
 
 #class SnipPost < Shout
-#  has_attached_file :video, :styles => {
+#  has_attached_file :snip, :styles => {
 #                            :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
 #                                        }, :processors => [:ffmpeg, :qtfaststart]
 #end

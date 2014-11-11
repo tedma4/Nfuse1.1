@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
 #This says that the messages'resources are apart of the conversation
   resources :conversations do
     resources :messages, only: [:create]

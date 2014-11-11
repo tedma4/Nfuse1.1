@@ -73,7 +73,6 @@ class UsersController < ApplicationController
 
   def feed
     #This controlls a users feed
-    puts params
     @user = User.find(params[:id])
     feed = Feed.new(@user)
     @providers = Providers.for(@user)
