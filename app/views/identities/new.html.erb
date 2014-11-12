@@ -1,5 +1,6 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
+
 <%= form_tag "/auth/identity/register" do %>
   <% if @identity && @identity.errors.any? %>
     <div class="error_messages">
@@ -22,6 +23,10 @@
         <%= text_field_tag :last_name, @identity.try(:last_name) %>
       </div>
       <div class="field">
+        <%= label_tag :user_name %>
+        <%= text_field_tag :user_name, @identity.try(:user_name) %>
+      </div>
+      <div class="field">
         <%= label_tag :email %>
         <%= text_field_tag :email, @identity.try(:email) %>
       </div>
@@ -33,13 +38,8 @@
         <%= label_tag :password_confirmation %>
         <%= password_field_tag :password_confirmation %>
       </div>
-      <div class="field">
-    	  <%= label_tag :conditions %>
-    	  <%= check_box_tag :conditions %>
-    	</div>
-    	<br>
+      <br>
       <div class="actions"><%= submit_tag "Create my account", class: "btn btn-large btn-info" %></div>
     </div>
   </div>
 <% end %>
-

@@ -6,8 +6,8 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: {minimum: 6}, allow_blank: true
-  validates :conditions, acceptance: true, allow_nil: false, on: :create
-  attr_accessor :conditions
+  #validates :conditions, acceptance: true, allow_nil: false, on: :create
+  #attr_accessor :conditions
 
   # this is a hook ( callback ) that executes
   # when it sees that create is called.
