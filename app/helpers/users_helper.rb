@@ -15,7 +15,7 @@ module UsersHelper
   private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :avatar, :admin,
+      params.require(:user).permit(:first_name, :last_name, :user_name, :avatar, :admin,
       	:password_reset_token,
         :intro,
         :height,

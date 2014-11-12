@@ -21,6 +21,7 @@ gem 'paperclip'
 gem "paperclip-ffmpeg", "~> 1.0.0"
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'activeadmin', github: 'activeadmin'
+gem 'wicked'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'

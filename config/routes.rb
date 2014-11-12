@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :identities
+  resources :callback_links
 
   resources :users do
     resources :conversations
