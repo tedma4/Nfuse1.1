@@ -1,6 +1,6 @@
 class CallbackLinksController < ApplicationController
 	include Wicked::Wizard
-  steps :callbacks
+  steps :callbacks, :avatar_pic
   
   def show
   	@user = current_user
@@ -14,7 +14,7 @@ class CallbackLinksController < ApplicationController
 	end
 
 private
-	def redirect_to_finish_wizard
-	  redirect_to feed_user_path(user), notice: "Thanks for signing up."
-	endlo
+  def redirect_to_finish_wizard(options = nil)
+    redirect_to feed_user_path(@user), notice: "Thank you for signing up."
+  end
 end

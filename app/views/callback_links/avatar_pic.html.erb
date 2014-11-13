@@ -1,0 +1,16 @@
+<% provide(:title, "Edit user") %>
+
+
+<div class="row" id="content-box">
+  <div class="span6 offset0">
+    <h1>Last step</h1>
+    <%= simple_form_for(@user,:multipart => true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+        <%= f.file_field :avatar %>
+        <%= image_tag @user.avatar(:medium) %> <br>
+              
+       <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
+        <% end %>
+    </div>
+  </div>
