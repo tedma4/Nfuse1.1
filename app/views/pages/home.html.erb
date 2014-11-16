@@ -1,17 +1,20 @@
-<!-- Last Edited by Ryan 10/22/2014 -->
 <!-- Start of regular landing page -->
-
 <% if signed_in? %>
-
-  <div class="row">
-    
-    <div class="span12">
-      <h1>Hub</h1>
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#home" role="tab" data-toggle="tab">Hub</a></li>
-        <li><a href="#profile" role="tab" data-toggle="tab">Explore</a></li>
+<div class="center container">
+  <div class="containerMain center">
+  <h1>Hub</h1>
+      <ul class="hubTabs" role="tablist">
+        <li class="tab"><a href="#home" class="tabLink" role="tab" data-toggle="tab">Hub</a></li>
+        <li class="tab"><a href="#profile" class="tabLink" role="tab" data-toggle="tab">Explore</a></li>
       </ul>
+      <script> 
+        $('.tabLink').click(function() {
+          //alert('tab clicked');
+          $('.tabLink').removeClass('activeTab');
+          $(this).addClass('activeTab');
 
+        });
+      </script>
       <div class="tab-content">
         <div class="tab-pane active" id="Hub">
             <div class="span8">
@@ -23,40 +26,45 @@
       </div>
     </div>
   </div> 
-<% else %> <!-- Not signed in, display this -->
-<div class="container-fluid jumbotronwidth center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<div class="jumbotron center hero-unit hero col-sm-12 col-xs-12 col-lg-12 col-md-12">
+<% else %> 
+
+<div class="center">
+<div class="center containerHome">
   
 
-    <%= image_tag "Banner-logo.png", id: "home banner"%>
+    <%= image_tag "Banner-logo.png", id: "banner"%>
  
 
     <h2 class="hero-text">
       "A Simpler Way To Connect"
     </h2>
-
-    <%= link_to "Join Nfuse", signup_path,
-                                class: "btn btn-large btn-info" %>
-
-    <%= link_to "Learn more", about_path,
-                                class: "learn-more btn btn-large btn-default" %>
-
+    <div class="button" id="signupButton">
+    <%= button_to "Join Nfuse", signup_path,
+                              :class => "button", :method => :get %>
+    </div>
+    <div class="button" id="aboutButton">
+    <%= button_to "Learn More", about_path,
+                             :class => 'button', :method => :get %>
+    </div>
+    
   
+                           
 </div>
 
-  <div class="container-fluid center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-  <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+  <div class="containerContent">
+  <div class="span_1_of_3 col">
     <h3 class="about">About</h3>
     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas.</p>
   </div>
-  <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+  <div class="col span_1_of_3">
     <h3 class="about">Features</h3>
     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
   </div> 
-  <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+  <div class="col span_1_of_3">
       <h3 class="about">NFusers</h3>
       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
     </div>  
     </div>
+
   </div> <!-- lower container -->
   <% end %>

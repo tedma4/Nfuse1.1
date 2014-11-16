@@ -25,6 +25,10 @@ body {
   width: 75vw;
   margin-left: 12.5vw;
   margin-right: 12.5vw;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
 
 }
 .span_2_of_2 {
@@ -420,17 +424,31 @@ td {
 /* #Hub
 ================================================= */
 .tab {
-  
   height: 40px;
   width: 80px;
-  background-color: red;
   color: white;
-  
+  text-decoration: none;
+}
+.tabLink {
+  color: white;
+  text-decoration: none;
+}
+.tabLink:visited {
+  color: white;
+  text-decoration: none;
+} 
+.tabLink:hover {
+  color: #f3f3f3;
+}
+.activeTab {
+  background-color: #87CEEB;
+  color: black;
 }
 .hubTabs {
-position:fixed;
-  right: 20vw;
-top: 100px;
+background-color: rgba(47,48,54,0.8);
+position:absolute;
+  right: 22.4vw;
+top: 84px;
 }
 
 .individual_post {
