@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116235832) do
+ActiveRecord::Schema.define(version: 20141111224617) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -53,20 +53,6 @@ ActiveRecord::Schema.define(version: 20141116235832) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id"
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
-
-  create_table "identities", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "user_name"
-  end
-
-  add_index "identities", ["email"], name: "index_identities_on_email", unique: true
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "messages", force: true do |t|
     t.text     "body"
@@ -152,19 +138,11 @@ ActiveRecord::Schema.define(version: 20141116235832) do
 
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
 
-  create_table "uploads", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  add_index "uploads", ["user_id"], name: "index_uploads_on_user_id"
-
   create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
@@ -204,13 +182,10 @@ ActiveRecord::Schema.define(version: 20141116235832) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "user_name"
-    t.string   "email"
-    t.string   "password_digest"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "votes", force: true do |t|
