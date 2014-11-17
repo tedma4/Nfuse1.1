@@ -10,7 +10,7 @@ class IdentitiesController < ApplicationController
   def update
     @identity = Identity.find(params[:id])
     if @identity.update_attributes(params[:identity])
-      render 'edit', :flash => { :success => "Your password has been changed." }
+      render 'edit', :flash => { :success => "Your Profile has been updated." }
     end
   end
 

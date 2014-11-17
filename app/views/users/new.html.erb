@@ -1,20 +1,42 @@
 <% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
 
-
-<div class="row" id="content-box-signup">
-  <div class="span4">
-    <h1>Sign Up!</h1>
-    <%= simple_form_for @user do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-          <%= f.input :first_name %> 
-          <%= f.input :last_name %> 
-          <%= f.input :user_name %> 
-          <%= f.input :email, input_html: { name: "email" } %> 
-          <%= f.input :password, as: 'password', input_html: { name: "password" } %> 
-          <%= f.input :password_confirmation, label: "Confirm Password", as: 'password', input_html: { name: "password_confirmation" } %> 
-          <%= f.input :conditions, as: :radio %>   
-          <%= f.button :submit, label: 'Create my account' %> 
-    <% end %>
+<%= form_tag("/auth/identity/register", method: 'post') do %>
+  <% if @identity && @identity.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <ul>
+      <% @identity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row" id="content-box-signup">
+    <div class="span4">  
+      <div class="field">
+        <%= label_tag :first_name %>
+        <%= text_field_tag :first_name, @identity.try(:first_name) %>
+      </div>
+      <div class="field">
+        <%= label_tag :last_name %>
+        <%= text_field_tag :last_name, @identity.try(:last_name) %>
+      </div>
+      <div class="field">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, @identity.try(:email) %>
+      </div>
+      <div class="field">
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </div>
+      <div class="field">
+        <%= label_tag :password_confirmation %>
+        <%= password_field_tag :password_confirmation %>
+      </div>
+      <br>
+      <div class="actions"><%= submit_tag "Create my account", class: "btn btn-large btn-info" %></div>
+    </div>
   </div>
-</div>
+<% end %>
+

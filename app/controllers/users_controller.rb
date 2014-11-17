@@ -21,10 +21,11 @@ class UsersController < ApplicationController
 
   def new
     #This starts th new user process
-    @user = User.new
+    @user = env['omniauth.identity'] ||= User.new
   end
 
   def create
+
     #This creats a new user
     @user = User.new(user_params)
     if @user.save

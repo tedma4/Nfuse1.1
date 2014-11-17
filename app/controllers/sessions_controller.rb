@@ -19,7 +19,7 @@ def create
 
     if user
       session[:user_id] = user.id
-      redirect_to callback_links_path, notice: "Signed in!"
+      redirect_to feed_user_path(@user), notice: "Signed in!"
     else
       session[:user_id] = nil
       flash.now[:error] = 'Invalid email/password combination'

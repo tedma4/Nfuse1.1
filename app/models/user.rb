@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  delegate :email, to: :identity
-  delegate :user_name, to: :identity
 
   has_one :identity, dependent: :nullify
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -19,6 +17,12 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
   validates :first_name, :last_name, presence: true
+  before_save { self.email = email.downcase }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  has_secure_password
+  validates :password, length: {minimum: 6}, allow_blank: true
   #This allows a user to have multiple oauth tokens
   has_many :tokens, dependent: :destroy
   has_many :conversations, :foreign_key => :sender_id

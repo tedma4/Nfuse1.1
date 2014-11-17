@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  resources :identities
   resources :callback_links
 
   resources :users do
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :identities
   resources :shouts do
     resources :comments
     member do
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
   root to: 'pages#home'
-  match '/signup',   to: 'identities#new',       via: 'get'
+  match '/signup',   to: 'users#new',       via: 'get'
   match '/signin',   to: 'sessions#new',         via: 'get'
   match '/signout',  to: 'sessions#destroy',     via: 'delete'
   match '/help',     to: 'pages#help',           via: 'get'
