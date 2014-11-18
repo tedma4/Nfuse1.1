@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < OmniAuth::Identity::Models::ActiveRecord
 
 
   has_one :identity, dependent: :nullify

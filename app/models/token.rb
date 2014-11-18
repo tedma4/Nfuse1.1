@@ -21,7 +21,7 @@ class Token < ActiveRecord::Base
   end
 
   def self.update_or_create_with_other_omniauth(id, auth)
-    token = where(provider: auth["provider"]).first_or_initialize
+    token = where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
     token.provider = auth["provider"]
     token.uid = auth["uid"]
     token.access_token = auth["credentials"]["token"]
@@ -30,6 +30,13 @@ class Token < ActiveRecord::Base
     token
   end
 
+  def self.find_with_omniauth(auth)
+    find_by_provider_and_uid(auth['provider'], auth['uid'])
+  end
+ 
+  def self.create_with_omniauth(auth)
+    create(uid: auth['uid'], provider: auth['provider']) # and other data you might want from the auth hash
+  end
 
   def self.update_or_create_with_omniauth(user, auth)
     token = where(provider: auth["provider"], uid: auth['uid']).first_or_initialize

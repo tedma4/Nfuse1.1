@@ -20,6 +20,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     fields: [:email, :first_name, :last_name, :user_name],
   	model: User,
   	on_failed_registration: lambda { |env|
-    				UsersController.action(:new).call(env)
+    	UsersController.action(:new).call(env)
   }
 end
