@@ -55,12 +55,10 @@
   <div class="inLineRight ">
     <%= form_tag "/auth/identity/callback", class: "loginForm" do %>
       <span>
-        <%= label_tag :auth_key, "Email", class: "navbarInput" %>
-        <%= text_field_tag :auth_key %>
+        <%= text_field_tag :auth_key, params[:email], placeholder: "Email", class: "navbarInput"  %>
       </span>
       <span>
-        <%= label_tag :password, 'Password', class: "navbarInput" %>
-        <%= password_field_tag :password %>
+        <%= password_field_tag :password, params[:password], placeholder: "Password", class: "navbarInput" %>
       </span>
       <span>
         <div class="actions"><%= submit_tag "Login", class: "button ", id: "loginButton" %></div>
