@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   post '/facebook/like/:post_id', to: 'likes#facebook'
 
   match "/auth/identity/callback", to: "sessions#create", via: 'post'
+  match "/auth/failure", to: "sessions#failure",  via: 'get'
 
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296

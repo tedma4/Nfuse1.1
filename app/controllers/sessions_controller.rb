@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
         # The authentication we found had a user associated with it so let's 
         # just log them in here
         self.current_user = @authentication.user
-        redirect_to hub_user_path(@user), notice: "Signed in!"
+        session[:user_id] = current_user.id
+        redirect_to hub_user_path(current_user), notice: "Signed in!"
       else
         # The authentication has no user assigned and there is no user signed in
         # Our decision here is to create a new account for the user
@@ -43,6 +44,10 @@ class SessionsController < ApplicationController
   def destroy
     self.current_user = nil
     redirect_to root_path, notice: "Signed out!"
+  end
+
+  def failure  
+    redirect_to signin_path, alert: "Signin failed, please try again."  
   end
 
 end

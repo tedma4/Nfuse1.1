@@ -53,15 +53,17 @@
  <% else %> <!-- -->
 
   <div class="inLineRight ">
-    <%= form_for(:session, url: sessions_path, html: { class: "loginForm" }) do |f| %>
+    <%= form_tag "/auth/identity/callback", class: "loginForm" do %>
       <span>
-        <%= f.text_field :email, placeholder: "Email", class: "navbarInput" %>
+        <%= label_tag :auth_key, "Email", class: "navbarInput" %>
+        <%= text_field_tag :auth_key %>
       </span>
       <span>
-        <%= f.password_field :password, placeholder: "Password", class: "navbarInput" %>
+        <%= label_tag :password, 'Password', class: "navbarInput" %>
+        <%= password_field_tag :password %>
       </span>
       <span>
-        <%= f.submit "Log in", class: "button ", id: "loginButton" %>
+        <div class="actions"><%= submit_tag "Login", class: "button ", id: "loginButton" %></div>
       </span>
      <% end %>
   </div>
