@@ -10,9 +10,4 @@ class TwitterRegistrationController < ApplicationController
     #redirect_to feed_user_path(session[:user_id])
   end
 
-  def failure
-    #This is the failure notice when the authentication fails
-    redirect_to edit_user_path(session[:user_id]), flash: {:auth_failure => "Authentication failed."}
-  end
-
 end

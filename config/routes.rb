@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :identities
   resources :shouts do
     resources :comments
     member do
@@ -47,7 +46,6 @@ Rails.application.routes.draw do
   get '/auth/instagram/callback', to: 'instagram_registration#create'
   get '/auth/twitter/callback', to: 'twitter_registration#create'
   get '/auth/facebook/callback', to: 'facebook_registration#create'
-  get '/auth/failure', to: 'twitter_registration#failure'
 
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
@@ -55,6 +53,7 @@ Rails.application.routes.draw do
   post '/facebook/like/:post_id', to: 'likes#facebook'
 
   match "/auth/identity/callback", to: "sessions#create", via: 'post'
+  match "/auth/identity/register", to: "users#new", via: 'get'
   match "/auth/failure", to: "sessions#failure",  via: 'get'
 
 end
