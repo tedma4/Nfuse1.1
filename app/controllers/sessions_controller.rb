@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         # The authentication we found had a user associated with it so let's 
         # just log them in here
         self.current_user = @authentication.user
-        session[:user_id] = current_user.id
+        #session[:user_id] = current_user.id
         redirect_to hub_user_path(current_user), notice: "Signed in!"
       else
         # The authentication has no user assigned and there is no user signed in
