@@ -1,5 +1,4 @@
-<h2>Hello</h2>
-<div class="visible-md visible-lg">
+<div class="visible-md visible-lg" data-id="<%= shout.id %>" data-provider="<%= shout.provider %>">
   <p id="notice"><%= notice %></p>
   <div class="timeline-user-box">
     <%= image_tag shout.user.avatar.url(:thumb), class: 'user' %>
@@ -11,6 +10,7 @@
     <%= image_tag shout.pic.url if shout.pic.exists? %>
   </p>
   <div class="<%= shout.class %>-<%= shout.id %>">
-    <%=link_to "Like", like_shout_path(shout), method: :put%> | <%=link_to "Dislike", dislike_shout_path(shout), method: :put %>
+    <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(shout.id), method: :put,
+                                                                           remote: true  %>
   </div>
 </div>
