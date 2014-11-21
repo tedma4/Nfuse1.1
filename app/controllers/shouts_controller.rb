@@ -60,47 +60,23 @@ class ShoutsController < ApplicationController
     redirect_to hub_user_path(@user)
   end
 
-  #def destroy
-  #  @shout.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to shouts_url }
-  #    format.json { head :no_content }
-  #  end
-  #end
-
   def like
     @shout = Shout.find(params[:id])
-    if current_user.liked_by? @shout
-      @shout.unliked_by current_user
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout}
-      end
-    else
-      @shout.like :voter => current_user, :like => 'like'
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout, notice: "Thank you for voting!"}
-      end
-    end 
+    # like_or_dislike(current_user)
+    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
+      @shout.like_by current_user
+    end
+    render js: 'alert("Liked")'
   end
 
   def dislike
     @shout = Shout.find(params[:id])
-    if current_user.disliked_by? @shout
-      @shout.undisliked_by current_user
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout}
-      end
-    else
-      @shout.dislike :voter => current_user, :dislike => 'dislike'
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout, notice: "Thank you for voting!"}
-      end
-    end 
+    if ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
+      @shout.unliked_by current_user
+    end
+    render js: 'alert("UnLiked")'
   end
+
 
   private
 
