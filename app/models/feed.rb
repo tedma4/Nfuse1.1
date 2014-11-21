@@ -13,18 +13,19 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id)
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id )
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
-                                   users_posts
+                                   users_posts(user_id)
     )
   #
   end
 
   private
-  def users_posts
-    @user.shouts.map {|shout|
+  def users_posts(user_id)
+    user = User.find(user_id)
+    user.shouts.map {|shout|
       Nfuse::Post.new(shout)
     }
   end
