@@ -1,6 +1,7 @@
 class ShoutsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  before_action :like_shout_type, only: [:like, :dislike]
   respond_to :json, :js, :html
 
   #def index
@@ -77,10 +78,24 @@ class ShoutsController < ApplicationController
     render js: 'alert("UnLiked")'
   end
 
-
   private
+  def like_shout_type
 
-    def shout_params
+    if params[:key] == 'twitter'
+      ActsAsVotable::Vote.create do |vote|
+        vote.social_flag = "twitter"
+        vote.votable_id = params[:id]
+        vote.voter_id = current_user.id
+        vote.votable_type = 'Twitter::Vote'
+        vote.vote_flag = true
+      end
+    end
+
+    binding.pry
+    render 'alert("liked twitter")' and return
+  end
+
+  def shout_params
       params.require(:shout).permit(:content, :pic, :snip, :user_id)
     end
 
