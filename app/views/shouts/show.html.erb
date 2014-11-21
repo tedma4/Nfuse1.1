@@ -5,13 +5,13 @@
 <%= link_to @shout.user.full_name, @shout.user %>
 <%= image_tag "beaker.fw.png", size: "50x50" %>
 </div>
-<p>
+<p class="user-box">
   <%= @shout.content %>
+  <%= image_tag @shout.pic.url if @shout.pic.exists? %>
 </p>
-<%= image_tag @shout.pic.url if @shout.pic.exists? %>
- <div class="<%= @shout.class %>-<%= @shout.id %>">
-<%=link_to "Like", like_shout_path(@shout), method: :put%> | <%=link_to "Dislike", dislike_shout_path(@shout), method: :put%>
-<%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
+  <div class="<%= @shout.class %>-<%= @shout.id %>">
+  <%=link_to "Like", like_shout_path(@shout), method: :put%> | <%=link_to "Dislike", dislike_shout_path(@shout), method: :put%>
+  <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 </div>
 <%= render @comments  %>
 </div>
