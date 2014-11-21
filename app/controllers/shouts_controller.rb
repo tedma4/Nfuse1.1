@@ -24,24 +24,11 @@ class ShoutsController < ApplicationController
     @shout = Shout.new
   end
 
-  #def edit
-  #  @shout = Shout.find(params[:id])
-  #end
-
-  #def update
-  #  respond_to do |format|
-  #    if @shout.update(params[:shout])
-  #      format.html { redirect_to @shout, notice: 'Shout was successfully updated.' }
-  #      format.json { head :no_content }
-  #    else
-  #      format.html { render action: 'edit' }
-  #      format.json { render json: @shout.errors, status: :unprocessable_entity }
-  #    end
-  # end
-  #end
 
   def create
-    @shout = Shout.create(shout_params)
+    @shout = Shout.create(shout_params) do |shout|
+      shout.is_video = true if params[:shout][:snip]
+    end
     @shout.user = current_user
       
       respond_to do |format|
