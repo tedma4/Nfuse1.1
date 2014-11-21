@@ -7,17 +7,18 @@ module SessionsHelper
     # self.current_user = user
   # end
 
-  def signed_in?
-    !!session[:user_id]
-  end
 
   def current_user
-  #   remember_token  = User.digest(cookies[:remember_token])
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_id(session[:user_id])
   end
-
-  def current_user=(user) # set current user
-    @current_user = user # session[:user_id] = user.id
+ 
+  def signed_in?
+    !!current_user
+  end
+ 
+  def current_user=(user)
+    @current_user = user
+    session[:user_id] = user.nil? ? user : user.id
   end
 
   def current_user?(user) # get current user
@@ -30,6 +31,10 @@ module SessionsHelper
       redirect_to signin_url, notice: "Please sign in."
     end
   end
+
+
+
+
 
   # def sign_out
   #   current_user.update_attribute(:remember_token,

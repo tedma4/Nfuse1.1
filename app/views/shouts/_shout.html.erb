@@ -1,0 +1,34 @@
+<!-- Defined Embedded Ruby post rules -->
+<%= form_for @shout, :html => { :multipart => true } do |f| %>
+  <% if @shout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shout.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @shout.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%=raw f.label :content, :class => "h3" %><br />
+    <%=raw f.text_area :content, :class => "form-control", :rows => "10", :placeholder => "There you are! What's new today? " %>
+  </div><br />
+   <div class="visible-xs">
+  <%= f.file_field :pic, :style => "center" %>
+</div><br />
+   <div class="visible-md visible-lg">
+  <%= f.file_field :pic, :style => "float: left;" %>
+  </div><br />
+  <div class="visible-xs">
+  <%= f.file_field :snip, :style => "center" %>
+</div><br />
+   <div class="visible-md visible-lg">
+  <%= f.file_field :snip, :style => "float: left;" %>
+  </div><br />
+  <!-- f.file_field : photo %> !-->
+  <div class="center">
+    <%= f.submit :class => "btn btn-info", :style => "margin-top: 20px;" %>
+  </div><br />
+<% end %>

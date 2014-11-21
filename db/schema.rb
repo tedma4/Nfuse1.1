@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019205336) do
+ActiveRecord::Schema.define(version: 20141112010415) do
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "shout_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["shout_id"], name: "index_comments_on_shout_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "contacts", force: true do |t|
     t.datetime "created_at"
@@ -36,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141019205336) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_name"
   end
 
   add_index "identities", ["email"], name: "index_identities_on_email", unique: true
@@ -52,6 +79,20 @@ ActiveRecord::Schema.define(version: 20141019205336) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
+  create_table "pics", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "caption"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pics", ["user_id"], name: "index_pics_on_user_id"
+
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -62,6 +103,42 @@ ActiveRecord::Schema.define(version: 20141019205336) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "shouts", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
+    t.string   "snip_file_name"
+    t.string   "snip_content_type"
+    t.integer  "snip_file_size"
+    t.datetime "snip_updated_at"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.integer  "comments"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"
+  add_index "shouts", ["user_id", "created_at"], name: "index_shouts_on_user_id_and_created_at"
+
+  create_table "snips", force: true do |t|
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+    t.string   "caption"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "snips", ["user_id"], name: "index_snips_on_user_id"
 
   create_table "tokens", force: true do |t|
     t.string   "provider"
@@ -129,8 +206,24 @@ ActiveRecord::Schema.define(version: 20141019205336) do
     t.datetime "password_reset_sent_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "user_name"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "votes", force: true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end
