@@ -1,3 +1,4 @@
+
 class Shout < ActiveRecord::Base
 	require 'paperclip-ffmpeg'
   belongs_to :user  
@@ -29,3 +30,26 @@ end
 #                            :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
 #                                        }, :processors => [:ffmpeg, :qtfaststart]
 #end
+
+=begin
+  
+Here are the posting params. 
+Written posts alone are gone. 
+Its just uploading images or videos and 
+adding a description to those posts and 
+the process is like this for the user:
+They click the add button and get sent 
+to the post page. On the page 
+are two upload links. 
+
+One for images and videos. 
+When a user chooses the file type 
+for the respective link they are then able
+to add a 140 char max description of the post.
+The description can not be blank. 
+When the post is submitted 
+it gets sent to the top of the users feed
+  
+=end
+
+
