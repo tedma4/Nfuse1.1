@@ -28,6 +28,12 @@
           <li>
             <%= link_to "View on Twitter", post.link_to_tweet, :target => "_blank" %>
           </li>
+          <li>
+            <div class="<%= post.class %>-<%= post.tweet_id %>">
+              <%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put,
+                                                                                                        remote: true  %>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
