@@ -53,20 +53,6 @@ class ShoutsController < ApplicationController
         end
       end
 
-    #if params[:content]
-    #  ShoutPost.create(params[:content])
-    #elsif params[:pic]
-    #  PicPost.create(params[:pic])
-    #elsif params[:snip]
-    #  SnipPost.create(params[:snip])
-    #end
-    #if @shout.save
-    #  flash[:success] = "Shout created!"
-    #  redirect_to feed_user_path(@user)
-    #else
-    #  @feed_items = []
-    #  render 'new'
-    #end
   end
 
   def destroy
