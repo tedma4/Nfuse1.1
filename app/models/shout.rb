@@ -11,6 +11,7 @@ class Shout < ActiveRecord::Base
   has_attached_file :snip, :styles => {
                             :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
                                         }, :processors => [:ffmpeg, :qtfaststart]
+<<<<<<< HEAD
   after_create :this_is_video!
   acts_as_votable
 	#attr_accessor :content, :photo, :photo_delete, :video, :video_delete, :dependent => :destroy
@@ -19,6 +20,11 @@ class Shout < ActiveRecord::Base
   def this_is_video!
     update_attribute(:video, true) if !self.snip_file_name.nil?
   end
+=======
+
+	attr_accessor :content, :pic, :photo_delete, :snip, :video_delete, :dependent => :destroy
+	has_destroyable_file :pic, :snip
+>>>>>>> master
 
   def all_votes
     ActsAsVotable::Vote.where(votable_id: self.id)
