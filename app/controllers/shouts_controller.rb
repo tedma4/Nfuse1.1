@@ -1,6 +1,7 @@
 class ShoutsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  before_action :like_shout_type, only: [:like, :dislike]
   respond_to :json, :js, :html
 
   #def index
@@ -23,24 +24,11 @@ class ShoutsController < ApplicationController
     @shout = Shout.new
   end
 
-  #def edit
-  #  @shout = Shout.find(params[:id])
-  #end
-
-  #def update
-  #  respond_to do |format|
-  #    if @shout.update(params[:shout])
-  #      format.html { redirect_to @shout, notice: 'Shout was successfully updated.' }
-  #      format.json { head :no_content }
-  #    else
-  #      format.html { render action: 'edit' }
-  #      format.json { render json: @shout.errors, status: :unprocessable_entity }
-  #    end
-  # end
-  #end
 
   def create
-    @shout = Shout.create(shout_params)
+    @shout = Shout.create(shout_params) do |shout|
+      shout.is_video = true if params[:shout][:snip]
+    end
     @shout.user = current_user
       
       respond_to do |format|
@@ -53,20 +41,6 @@ class ShoutsController < ApplicationController
         end
       end
 
-    #if params[:content]
-    #  ShoutPost.create(params[:content])
-    #elsif params[:pic]
-    #  PicPost.create(params[:pic])
-    #elsif params[:snip]
-    #  SnipPost.create(params[:snip])
-    #end
-    #if @shout.save
-    #  flash[:success] = "Shout created!"
-    #  redirect_to feed_user_path(@user)
-    #else
-    #  @feed_items = []
-    #  render 'new'
-    #end
   end
 
   def destroy
@@ -74,51 +48,41 @@ class ShoutsController < ApplicationController
     redirect_to hub_user_path(@user)
   end
 
-  #def destroy
-  #  @shout.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to shouts_url }
-  #    format.json { head :no_content }
-  #  end
-  #end
-
   def like
     @shout = Shout.find(params[:id])
-    if current_user.liked_by? @shout
-      @shout.unliked_by current_user
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout}
-      end
-    else
-      @shout.like :voter => current_user, :like => 'like'
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout, notice: "Thank you for voting!"}
-      end
-    end 
+    # like_or_dislike(current_user)
+    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
+      @shout.like_by current_user
+    end
+    render js: 'alert("Liked")'
   end
 
   def dislike
     @shout = Shout.find(params[:id])
-    if current_user.disliked_by? @shout
-      @shout.undisliked_by current_user
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout}
-      end
-    else
-      @shout.dislike :voter => current_user, :dislike => 'dislike'
-      respond_to do |format|
-        format.json { render json:{vote_id: @shout.id, count: @shout.votes.count}}
-        format.html {redirect_to @shout, notice: "Thank you for voting!"}
-      end
-    end 
+    if ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
+      @shout.unliked_by current_user
+    end
+    render js: 'alert("UnLiked")'
   end
 
   private
+  def like_shout_type
 
-    def shout_params
+    if params[:key] == 'twitter'
+      ActsAsVotable::Vote.create do |vote|
+        vote.social_flag = "twitter"
+        vote.votable_id = params[:id]
+        vote.voter_id = current_user.id
+        vote.votable_type = 'Twitter::Vote'
+        vote.vote_flag = true
+      end
+    end
+
+    binding.pry
+    render 'alert("liked twitter")' and return
+  end
+
+  def shout_params
       params.require(:shout).permit(:content, :pic, :snip, :user_id)
     end
 

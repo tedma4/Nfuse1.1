@@ -13,13 +13,22 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id)
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id )
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
-                                   facebook_posts(facebook_pagination_id))
+                                   facebook_posts(facebook_pagination_id),
+                                   users_posts(user_id)
+    )
+  #
   end
 
   private
+  def users_posts(user_id)
+    user = User.find(user_id)
+    user.shouts.map {|shout|
+      Nfuse::Post.new(shout)
+    }
+  end
 
   def twitter_posts(twitter_pagination_id)
     twitter_posts = []
@@ -28,7 +37,7 @@ class Feed
       begin
         twitter_posts = twitter_timeline.posts(twitter_pagination_id).map { |post| Twitter::Post.from(post) }
         @twitter_pagination_id = twitter_timeline.last_post_id
-      rescue Twitter::Error::Forbidden, Twitter::Error::Unauthorized
+      rescue => e
         @unauthed_accounts << "twitter"
       end
       twitter_posts
@@ -77,3 +86,32 @@ class Feed
   end
 
 end
+
+#
+# -------- Copying from Instagram/Facebook/Twitter::Post
+#
+class Nfuse
+  class Post
+    delegate :created_at, :user, :pic, :id, to: :shout
+
+    attr_reader :provider
+    attr_accessor :shout
+
+    def initialize(shout)
+      @shout = shout
+      @provider = "nfuse"
+    end
+
+    def created_time
+      @shout.created_at
+    end
+
+    def content
+      "image"
+    end
+
+  end
+end
+#
+# -------- Copying from Instagram/Facebook/Twitter::Post
+#

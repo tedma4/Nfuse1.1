@@ -19,7 +19,9 @@
 .secret
 /.idea
 .rvmrc
-
+system
+public/uploads
+public/system
 # Ignore hidden files
 **.DS_Store
 **.swp

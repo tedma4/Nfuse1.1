@@ -53,15 +53,18 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   #This allows us to test
-  #gem 'pry'
-  #gem 'pry-byebug'
+
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 2.13.1'
   gem 'brakeman', :require => false
-  #gem 'rubocop', '0.20.1', require: false
 
+  #gem 'rubocop', '0.20.1', require: false
 end
 #These are the gems used in the test enviornment
 group :test do
+  gem 'rspec-rails', '~> 2.13.1'
+  gem 'brakeman', :require => false
   gem 'capybara', '~> 2.1.0'
   gem 'factory_girl_rails', '~> 4.2.0'
   # gem 'rb-notifu', '0.0.4'

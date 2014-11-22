@@ -90,28 +90,19 @@ class UsersController < ApplicationController
     render 'show_feed'
   end
  
-  def fetch_feed(feed)
-    feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id])
+  def fetch_feed(feed, user=current_user)
+    feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id], user.id)
   end
 
   def hub
     @user = User.find(params[:id])
     @providers = Providers.for(@user)
-     # @timeline=[]
-    # current_user.followed_users.each do |_user|
-    #   feed=Feed.new(_user)
-    #   @timeline << fetch_feed(feed)
-    #   # @unauthed_accounts = feed.unauthed_accounts
-    #   # @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
-    #   # @commenter_profile_hash = feed.commenter_profile_hash
-    # end
-    # *****
-    # #inject returns its first parameter always.
-    # in this case  array.inject( [] )
+
     timeline = []
     current_user.followed_users.each do |user|
-      timeline << fetch_feed(Feed.new(user))
+      timeline << fetch_feed( Feed.new(user), user )
     end
+
     @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
     render "hub"
   end
@@ -122,7 +113,7 @@ class UsersController < ApplicationController
     timeline = []
     @users = User.where.not(id: current_user.followed_users || current_user.id)
     @users.each do |user|
-      timeline << fetch_feed(Feed.new(user))
+      timeline << fetch_feed(Feed.new(user), user)
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
     render "explore"
