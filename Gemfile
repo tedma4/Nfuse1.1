@@ -54,8 +54,8 @@ group :development, :test do
   gem 'sqlite3'
   #This allows us to test
 
-  gem 'pry'
-  gem 'pry-byebug'
+  #gem 'pry'
+  #gem 'pry-byebug'
   gem 'rspec-rails', '~> 2.13.1'
   gem 'brakeman', :require => false
 

@@ -44,6 +44,7 @@ class ShoutsController < ApplicationController
   end
 
   def destroy
+    @shout = Shout.find(params[:id])
     @shout.destroy
     redirect_to hub_user_path(@user)
   end
@@ -66,6 +67,7 @@ class ShoutsController < ApplicationController
   end
 
   private
+
   def like_shout_type
 
     if params[:key] == 'twitter'
@@ -78,8 +80,7 @@ class ShoutsController < ApplicationController
       end
     end
 
-    binding.pry
-    render 'alert("liked twitter")' and return
+    render js: 'alert("like")' and return
   end
 
   def shout_params
