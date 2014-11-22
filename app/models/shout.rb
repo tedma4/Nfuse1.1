@@ -11,8 +11,8 @@ class Shout < ActiveRecord::Base
                             :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
                                         }, :processors => [:ffmpeg, :qtfaststart]
 
-	#attr_accessor :content, :photo, :photo_delete, :video, :video_delete, :dependent => :destroy
-	#has_destroyable_file :photo, :video
+	attr_accessor :content, :pic, :photo_delete, :snip, :video_delete, :dependent => :destroy
+	has_destroyable_file :pic, :snip
 
 end
 
