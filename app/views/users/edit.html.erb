@@ -34,6 +34,9 @@
 
                   <%= f.file_field :avatar %>
                   <%= image_tag @user.avatar(:medium) %> <br>
+
+                  <%= f.file_field :banner %>
+                  <%= image_tag @user.banner(:large) %> <br>
             </div>
           </div>
         </div>

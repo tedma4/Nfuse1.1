@@ -1,4 +1,4 @@
-<div class="individual_post instagram_post" id="content-box-feed">
+<div class="individual_post instagram_post" data-id="<%= post.id %>" id="content-box-feed">
   <div class="network_logo">
     <%= image_tag("Instagram_Icon_Large.png", :class => "provider_logo" ) %>
   </div>
@@ -32,6 +32,12 @@
           <li data-instagram-like-count="<%= post.id %>"><%= link_to "Like:", "/instagram/like/#{post.id}" %> <span class="js-instagram-like-count"><%= post.likes_count %></span></li>
           <li>
             <%= link_to "View on Instagram", post.link_to_post, :target => "_blank" %>
+          </li>
+          <li>
+            <div class="<%= post.class %>-<%= post.id %>">
+              <%= link_to "Like", like_shout_path(post.id, key: :instagram), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.id, key: :instagram), method: :put,
+                                                              remote: true  %>
+            </div>
           </li>
         </ul>
       </div>

@@ -14,6 +14,13 @@ class User < OmniAuth::Identity::Models::ActiveRecord
                                 #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+  has_attached_file :banner, styles: { large: "851x315#" }, 
+                                default_url: "default.png"
+                                #:url  => "/assets/images/:id/:style/:basename.:extension",
+                                #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
+
+  validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
   
   validates :first_name, :last_name, presence: true
   before_save { self.email = email.downcase }

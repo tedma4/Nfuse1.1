@@ -14,6 +14,7 @@
 </ul>
 <% @timeline.each do |post| %>
     <%= render partial: "twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
-     <%= render partial: "instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
+    <%= render partial: "instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
+    <%= render partial: "users/shout", locals: {shout: post } if post.is_a? Nfuse::Post %>
 <% end %>
 

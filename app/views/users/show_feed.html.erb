@@ -1,9 +1,9 @@
-
 <!-- Start of regular page -->
 <% provide(:title, @title) %>
 <div class="row">
   <aside class="span4" id="content-box-profile">
     <section>
+      <div><%= image_tag @user.banner(:large) %> </div>
       <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main" %> </div>
         <div>
           <ul class="pull-left inline follow-btn">

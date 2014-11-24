@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121035241) do
+ActiveRecord::Schema.define(version: 20141124174738) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -184,6 +184,10 @@ ActiveRecord::Schema.define(version: 20141121035241) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "user_name"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

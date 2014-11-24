@@ -33,7 +33,7 @@ class ShoutsController < ApplicationController
       
       respond_to do |format|
         if @shout.save
-            format.html { redirect_to @shout, notice: 'Post was successfully created.' }
+            format.html { redirect_to feed_user_path(@user), notice: 'Post was successfully created.' }
             format.json { render json: @shout, status: :created, location: @shout }
         else
             format.html { render action: "new" }
@@ -76,6 +76,24 @@ class ShoutsController < ApplicationController
         vote.votable_id = params[:id]
         vote.voter_id = current_user.id
         vote.votable_type = 'Twitter::Vote'
+        vote.vote_flag = true
+      end
+    elsif
+      params[:key] == 'instagram'
+      ActsAsVotable::Vote.create do |vote|
+        vote.social_flag = "instagram"
+        vote.votable_id = params[:id]
+        vote.voter_id = current_user.id
+        vote.votable_type = 'Instagram::Vote'
+        vote.vote_flag = true
+      end
+    else
+      params[:key] == 'facebook'
+      ActsAsVotable::Vote.create do |vote|
+        vote.social_flag = "facebook"
+        vote.votable_id = params[:id]
+        vote.voter_id = current_user.id
+        vote.votable_type = 'Facebook::Vote'
         vote.vote_flag = true
       end
     end

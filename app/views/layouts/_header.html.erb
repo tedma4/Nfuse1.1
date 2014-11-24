@@ -39,7 +39,7 @@
           <%= image_tag('menu24.fw.png', size: "32x32") %> <b class="caret"></b>
         </a>
         <ul class="menuDropdown">
-          <li class="doubleDrop"><%= link_to "Settings", edit_user_path(:user_id) %></li>
+          <li class="doubleDrop"><%= link_to "Settings", edit_user_path(session[:user_id]) %></li>
           <li class="doubleDrop"><%= link_to "Help", help_path %></li>
           <li class="doubleDrop"><%= link_to "Feedback", contacts_path %></li>
           <li class="divider"></li>

@@ -1,4 +1,4 @@
-<div class="individual_post facebook_post">
+<div class="individual_post facebook_post" data-id="<%= post.id %>">
   <div class="network_logo">
     <%= image_tag("FB-f-Logo__blue_50.png", :class => "provider_logo") %>
   </div>
@@ -69,6 +69,12 @@
           <% if post.link_to_post %>
             <li>
               <%= link_to "View on Facebook", post.link_to_post, :target => "_blank" %>
+            </li>
+            <li>
+              <div class="<%= post.class %>-<%= post.id %>">
+                <%= link_to "Like", like_shout_path(post.id, key: :facebook), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.id, key: :facebook), method: :put,
+                                                               remote: true  %>
+              </div>
             </li>
           <% end %>
         </ul>
