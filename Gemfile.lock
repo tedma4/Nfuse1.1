@@ -405,7 +405,7 @@ DEPENDENCIES
   omniauth-instagram (~> 1.0.1)
   omniauth-twitter (~> 1.0.1)
   panda
-  paperclip
+  paperclip (~> 4.2)
   paperclip-ffmpeg (~> 1.0.0)
   pg (~> 0.15.1)
   private_pub

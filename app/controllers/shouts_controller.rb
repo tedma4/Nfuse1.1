@@ -33,7 +33,7 @@ class ShoutsController < ApplicationController
       
       respond_to do |format|
         if @shout.save
-            format.html { redirect_to feed_user_path(@user), notice: 'Post was successfully created.' }
+            format.html { redirect_to @shout, notice: 'Post was successfully created.' }
             format.json { render json: @shout, status: :created, location: @shout }
         else
             format.html { render action: "new" }
@@ -102,11 +102,12 @@ class ShoutsController < ApplicationController
   end
 
   def shout_params
-      params.require(:shout).permit(:content, :pic, :snip, :user_id)
+      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video)
     end
 
     def correct_user
       @shout = current_user.shouts.find_by(id: params[:id])
       redirect_to feed_user_path(@user) if @shout.nil?
     end
+
 end

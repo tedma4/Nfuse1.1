@@ -16,7 +16,7 @@ gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem 'paperclip'
+gem "paperclip", "~> 4.2"
 gem 'panda'
 # Handles video upload
 gem "paperclip-ffmpeg", "~> 1.0.0"
@@ -56,8 +56,8 @@ group :development, :test do
 
   #gem 'pry'
   #gem 'pry-byebug'
-  gem 'rspec-rails', '~> 2.13.1'
-  gem 'brakeman', :require => false
+  #gem 'rspec-rails', '~> 2.13.1'
+  #gem 'brakeman', :require => false
 
   #gem 'rubocop', '0.20.1', require: false
 end

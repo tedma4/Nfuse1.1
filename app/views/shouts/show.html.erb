@@ -13,7 +13,6 @@
   <%=link_to "Like", like_shout_path(@shout), method: :put%> | <%=link_to "Dislike", dislike_shout_path(@shout), method: :put%>
   <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 </div>
-<%= text_tag, :comment %>
 <%= render @comments  %>
 </div>
 
