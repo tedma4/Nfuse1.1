@@ -109,5 +109,4 @@ class User < OmniAuth::Identity::Models::ActiveRecord
       self.remember_token = User.digest(User.new_remember_token)
     end
 end
-#<%= link_to image_tag("http://placehold.it/50x50", class: "media-object"), conversation_path(conversation), class: "pull-left" %>
 

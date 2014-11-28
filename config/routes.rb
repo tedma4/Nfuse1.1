@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       put "dislike", to: "shouts#dislike"
     end
   end
+  resources :events do
+    resources :comments
+  end
   
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]

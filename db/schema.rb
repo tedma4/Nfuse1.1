@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124174738) do
+ActiveRecord::Schema.define(version: 20141126225106) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 20141124174738) do
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "shout_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
-  add_index "comments", ["shout_id"], name: "index_comments_on_shout_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "contacts", force: true do |t|
     t.datetime "created_at"
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 20141124174738) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id"
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.date     "date"
+    t.time     "time"
+    t.string   "city"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", force: true do |t|
     t.text     "body"
