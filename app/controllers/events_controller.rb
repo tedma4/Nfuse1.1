@@ -1,146 +1,83 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.xml
-  def index
-    @events = Event.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @events }
-    end
-  end
+	before_action :signed_in_user, only: [:create, :destroy]
+  before_action :correct_user,   only: :destroy
+  respond_to :json, :js, :html
 
-  # GET /events/1
-  # GET /events/1.xml
-  def show
-    #@community = Community.find(params[:community_id])
-    @event = Event.find(params[:id])
-    @comment = Comment.new
-   
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @event }
-    end
-  end
-
-  # GET /events/new
-  # GET /events/new.xml
-  def new
-    @event = Event.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @event }
-    end
-  end
-
-  # GET /events/1/edit
-  def edit
-    @event = Event.find(params[:id])
-  end
-
-  # POST /events
-  # POST /events.xml
-  def create
-    @event = Event.new(params[:event])
-
-    @event.community = @community
-    @event.user = current_user
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to([@community, @event], :notice => 'Event was successfully created.') }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /events/1
-  # PUT /events/1.xml
-  def update
-    @event = Event.find(params[:id])
-    @community = Community.find(params[:community_id])
-
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to([@community, @event], :notice => 'Event was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /events/1
-  # DELETE /events/1.xml
-  def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(events_url) }
-      format.xml  { head :ok }
-    end
-  end
-  private
-  
-  def event_params
-      params.require(:event).permit(:name, :description, :date, :time, :city, :user_id)
-  end
-end
-
-
-
-
-
-
-
-
-
-class ArticlesController < ApplicationController
-  def index
-    @articles = Article.all
-  end
+  #def index
+  #  @event = Event.all
+  #end
 
   def show
-    @article = Article.find(params[:id])
-    @commentable = @article
+    @event = Event.find(params[:id])
+    @commentable = @event
     @comments = @commentable.comments
     @comment = Comment.new
+
+    respond_to do |format|
+       format.html # show.html.erb
+       format.json { render json: @event }
+    end
   end
 
   def new
-    @article = Article.new
+    @event = Event.new
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def create
-    @article = Article.new(params[:article])
-    if @article.save
-      redirect_to @article, notice: "Article was successfully created."
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to @event, notice: "Event was successfully created."
     else
       render :new
     end
   end
 
   def update
-    @article = Article.find(params[:id])
-    if @article.update_attributes(params[:article])
-      redirect_to @article, notice: "Article was successfully updated."
+    @event = Event.find(params[:id])
+    if @event.update_attributes(event_params)
+      redirect_to @event, notice: "Event was successfully updated."
     else
       render :edit
     end
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
-    redirect_to articles_url, notice: "Article was destroyed."
+    @Event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_url, notice: "Event was destroyed."
+  end
+
+  def like
+    @event = Event.find(params[:id])
+    # like_or_dislike(current_user)
+    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @event.id)
+      @event.like_by current_user
+    end
+    render js: 'alert("Liked")'
+  end
+
+  def dislike
+    @event = Event.find(params[:id])
+    if ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @event.id)
+      @event.unliked_by current_user
+    end
+    render js: 'alert("UnLiked")'
+  end
+
+  private
+  
+  def event_params
+      params.require(:event).permit(:name, :description, :date, :time, :city, :user_id)
+  end
+
+  def correct_user
+    @event = current_user.events.find_by(id: params[:id])
+    redirect_to feed_user_path(@user) if @event.nil?
   end
 end
+
+

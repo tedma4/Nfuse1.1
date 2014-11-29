@@ -8,9 +8,11 @@ class Event < ActiveRecord::Base
 
   attr_accessor :content, :cover, :photo_delete#, dependent: :destroy
   has_destroyable_file :cover
-  has_attached_file :cover, :styles => { :event_cover => "851x315#" }
+  has_attached_file :cover, :styles => { :event_cover => "851x315#", :event_single => "170x63#"  }
 
   validates_attachment_content_type :cover, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
 
-
+  def all_votes
+    ActsAsVotable::Vote.where(votable_id: self.id)
+  end
 end
