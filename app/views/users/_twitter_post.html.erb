@@ -1,4 +1,4 @@
-<div class="individual_post twitter_post" data-id="<%= post.tweet_id %>" id="content-box-feed">
+<div class="individual_post mosaicflow__item twitter_post" data-id="<%= post.tweet_id %>" id="content-box-feed">
   <div class="network_logo">
     <%= image_tag("Twitter_logo_blue.png", :class => "provider_logo") %>
   </div>
@@ -31,7 +31,7 @@
           <li>
             <div class="<%= post.class %>-<%= post.tweet_id %>">
               <%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put,
-                                                                  remote: true  %>
+                                                                                                        remote: true  %>
             </div>
           </li>
         </ul>

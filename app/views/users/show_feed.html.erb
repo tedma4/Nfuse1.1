@@ -5,9 +5,13 @@
     <section>
       <div><%= image_tag @user.banner(:large) %> </div>
       <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main" %> </div>
+
+       <h1><%= @user.full_name%></h1>
+
+
         <div>
           <ul class="pull-left inline follow-btn">
-            <li><h1><%= @user.full_name %></h1></li>
+            <li></li>
             <li><%= render 'follow_form' if signed_in? %></li>
             <li><% unless !current_user?(@user) %> 
                   <%= link_to "Edit", edit_user_path(session[:user_id]), class: "btn btn-medium"  %> 
@@ -24,8 +28,8 @@
       <%= render 'shared/stats' %>
     </section>
   </aside>
-  <div class="span8">
-    <h1><%= @title %></h1>
+  <div class="center">
+   
       <%= render file: "users/feed" %>
   </div>
 </div>

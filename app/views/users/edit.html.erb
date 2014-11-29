@@ -1,151 +1,150 @@
 <% provide(:title, "Edit user") %>
 
 
-<div class="row" id="content-box">
-  <div class="span6 offset0">
-    <h1>Settings</h1>
+<div class="container">
+  <div class="containerMain">
+    <h1 class="center">Settings</h1>
     <%= simple_form_for(@user, :multipart => true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Account Info
-              </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse in">
-            <div class="panel-body">
-                  <%= f.label :first_name, "First Name" %>
-                  <%= f.text_field :first_name %>
+        <table>
+          <tr>
+            <td><%= f.label :first_name, "First Name" %></td>
+            <td><%= f.text_field :first_name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :last_name %></td>
+            <td><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :email %></td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password %></td>
+            <td><%= f.password_field :password %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password_confirmation, "Confirm Password" %></td>
+            <td><%= f.password_field :password_confirmation %></td>
+          </tr>
+          <tr>
+            <td><%= f.file_field :avatar %></td>
+            <td><%= image_tag @user.avatar(:medium) %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :gender, "Gender" %></td>
+            <td><%= f.select :gender, [["Not Telling", 1], ["Male", 2], ["Female", 3]] %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :birthdate, "Bithdate" %></td>
+            <td><%= f.date_select :birthdate, {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' },:start_year => Time.now.year-70, :end_year => Time.now.year} %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :hometown, "Hometown" %></td>
+            <td><%= f.text_field :hometown %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :relationship_status, "What is your relationship status?" %></td>
+            <td><%= f.select :relationship_status, [["I don’t want to say", 1], ["Single", 2], ["In a relationship", 3], ["Engaged", 4], ["Married", 5], ["It’s complicated", 6], ["In an open relationship", 7], ["Widowed", 8], ["In a domestic partnership", 9], ["In a civil union", 10]] %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :interested_in, "What are you interested in?" %></td>
+            <td><%= f.select :interested_in, [["Women", 1], ["Men", 2], ["Women and Men", 3]] %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :looking_for, "What are you looking for?" %></td>
+            <td><%= f.select :looking_for, [["Friends", 1], ["Dating", 2], ["A relationship", 3], ["Networking", 4], ["Buttsecks with strippers", 5]] %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :religious_views, "Religious Views" %></td>
+            <td><%= f.text_field :religious_views %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :political_views, "Political Views" %></td>
+            <td><%= f.text_field :political_views %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :occupation, "Occupation" %></td>
+            <td><%= f.text_field :occupation %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :skills, "Skills" %></td>
+            <td><%= f.text_field :skills %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :phone_number, "Phone Number" %></td>
+            <td><%= f.text_field :phone_number %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :fav_movie, "Whats your favorite movie" %></td>
+            <td><%= f.text_field :fav_movie %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :fav_book, "Whats your favorite book" %></td>
+            <td><%= f.text_field :fav_book %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :fav_music, "Whats your favorite type of music" %></td>
+            <td><%= f.text_field :fav_music %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :fav_food, "Whats your favorite type of food" %></td>
+            <td><%= f.text_field :fav_food %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :fav_quote, "Whats your favorite quote" %></td>
+            <td><%= f.text_field :fav_quote %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :movie_or_play, "Go to a movie or play?" %></td>
+            <td><%= f.text_field :movie_or_play %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :wishes, "Have 3 wishes in 10 years or 1 wish today?" %></td>
+            <td><%= f.text_field :wishes %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :tv_or_book, "Watch TV or read a book? " %></td>
+            <td><%= f.text_field :tv_or_book %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :invisible_or_read_minds, "Be invisible or be able to read minds? " %></td>
+            <td><%= f.text_field :invisible_or_read_minds %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :lottery_or_perfect_job, "Win the lottery or have the perfect job? " %></td>
+            <td><%= f.text_field :lottery_or_perfect_job %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :visit_any_country, "If you could visit any country in the world, where would you go? " %></td>
+            <td><%= f.text_field :visit_any_country %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :fail_or_never_try, "Which is worse, failing or never trying?" %></td>
+            <td><%= f.text_field :fail_or_never_try %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :meet_in_history, "If you could go back in history, who would you like to meet? " %></td>
+            <td><%= f.text_field :meet_in_history %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :nobody_judges_you, "What would you do differently if you knew nobody would judge you?" %></td>
+            <td><%= f.text_field :nobody_judges_you %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :change_about_the_world, "What is the one thing you’d most like to change about the world?" %></td>
+            <td><%= f.text_field :change_about_the_world %></td>
+          </tr>
+          <tr>
+            <td><%= render "link_networks" %></td>
+            <td><%= f.submit "Save changes", class: "btn btn-large btn-info" %></td>
+          </tr>
 
-                  <%= f.label :last_name %>
-                  <%= f.text_field :last_name %>      
-
-                  <%= f.label :email %>
-                  <%= f.text_field :email %>
-
-                  <%= f.label :password %>
-                  <%= f.password_field :password %>
-
-                  <%= f.label :password_confirmation, "Confirm Password" %>
-                  <%= f.password_field :password_confirmation %>
-
-                  <%= f.file_field :avatar %>
-                  <%= image_tag @user.avatar(:medium) %> <br>
-
-                  <%= f.file_field :banner %>
-                  <%= image_tag @user.banner(:large) %> <br>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                Bio Info
-              </a>
-            </h4>
-          </div>
-          <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-              <%= f.label :gender, "Gender" %>
-              <%= f.select :gender, [["Not Telling", 1], ["Male", 2], ["Female", 3]] %>
-
-              <%= f.label :birthdate, "Bithdate" %>
-              <%= f.date_select :birthdate, {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' },:start_year => Time.now.year-70, :end_year => Time.now.year} %>
-
-              <%= f.label :hometown, "Hometown" %>
-              <%= f.text_field :hometown %>
-
-              <%= f.label :relationship_status, "What is your relationship status?" %>
-              <%= f.select :relationship_status, [["I don’t want to say", 1], ["Single", 2], ["In a relationship", 3], ["Engaged", 4], ["Married", 5], ["It’s complicated", 6], ["In an open relationship", 7], ["Widowed", 8], ["In a domestic partnership", 9], ["In a civil union", 10]] %>
-
-              <%= f.label :interested_in, "What are you interested in?" %>
-              <%= f.select :interested_in, [["Women", 1], ["Men", 2], ["Women and Men", 3]] %>
-
-              <%= f.label :looking_for, "What are you looking for?" %>
-              <%= f.select :looking_for, [["Friends", 1], ["Dating", 2], ["A relationship", 3], ["Networking", 4], ["Fun", 5]] %>
-
-              <%= f.label :religious_views, "Religious Views" %>
-              <%= f.text_field :religious_views %>
-
-              <%= f.label :political_views, "Political Views" %>
-              <%= f.text_field :political_views %>
-
-              <%= f.label :occupation, "Occupation" %>
-              <%= f.text_field :occupation %>
-
-              <%= f.label :skills, "Skills" %>
-              <%= f.text_field :skills %>
-
-              <%= f.label :phone_number, "Phone Number" %>
-              <%= f.text_field :phone_number %>
-
-              <%= f.label :fav_movie, "Whats your favorite movie" %>
-              <%= f.text_field :fav_movie %>
-
-              <%= f.label :fav_book, "Whats your favorite book" %>
-              <%= f.text_field :fav_book %>
-
-              <%= f.label :fav_music, "Whats your favorite type of music" %>
-              <%= f.text_field :fav_music %>
-
-              <%= f.label :fav_food, "Whats your favorite type of food" %>
-              <%= f.text_field :fav_food %>
-
-              <%= f.label :fav_quote, "Whats your favorite quote" %>
-              <%= f.text_field :fav_quote %>
-
-              <%= f.label :movie_or_play, "Go to a movie or play?" %>
-              <%= f.text_field :movie_or_play %>
-
-              <%= f.label :wishes, "Have 3 wishes in 10 years or 1 wish today?" %>
-              <%= f.text_field :wishes %>
-
-              <%= f.label :tv_or_book, "Watch TV or read a book? " %>
-              <%= f.text_field :tv_or_book %>
-
-              <%= f.label :invisible_or_read_minds, "Be invisible or be able to read minds? " %>
-              <%= f.text_field :invisible_or_read_minds %>
-
-              <%= f.label :lottery_or_perfect_job, "Win the lottery or have the perfect job? " %>
-              <%= f.text_field :lottery_or_perfect_job %>
-
-              <%= f.label :visit_any_country, "If you could visit any country in the world, where would you go? " %>
-              <%= f.text_field :visit_any_country %>
-
-              <%= f.label :fail_or_never_try, "Which is worse, failing or never trying?" %>
-              <%= f.text_field :fail_or_never_try %>
-
-              <%= f.label :meet_in_history, "If you could go back in history, who would you like to meet? " %>
-              <%= f.text_field :meet_in_history %>
-
-              <%= f.label :nobody_judges_you, "What would you do differently if you knew nobody would judge you?" %>
-              <%= f.text_field :nobody_judges_you %>
-
-              <%= f.label :change_about_the_world, "What is the one thing you’d most like to change about the world?" %>
-              <%= f.text_field :change_about_the_world %>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                Networks
-              </a>
-            </h4>
-          </div>
-          <div id="collapseThree" class="panel-collapse collapse">
-            <div class="panel-body">
-               <%= render "link_networks" %>
-            </div>
-          </div>
-        </div>
-      </div>
-       <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
+               
+        
+        
+       
         <% end %>
-    </div>
-  </div>
+          </table>
+            </div>
+          </div>

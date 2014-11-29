@@ -15,12 +15,27 @@ body {
   margin-left: 12.5%;
   margin-right: 12.5%;
   background-color: green;
-
+}
+img {
+  max-width: 100%;
 }
 
 /* #Grid =========================================
 ================================================== */
-.center {margin:auto;}
+.center {
+  margin:auto;
+  text-align: center;
+}
+.mosaicflow__column {
+    float:left;
+}
+
+.mosaicflow__item {
+    display:block;
+    width:100%;
+    height:auto;
+}
+
 .containerMain{
   width: 75vw;
   margin-left: 12.5vw;
@@ -145,6 +160,7 @@ body {
 ================================================== */
 .loginForm {
   margin-top: 1px;
+  display: inline;
 }
 ul{
 list-style-type:none;
@@ -215,7 +231,7 @@ ul li a:hover + .hidden, .hidden:hover {
 .navbarBack {
   background-color: rgba(47,48,54,0.8); //#2f3036; 
   overflow: hidden;
-  height: 61px;
+  height: 60px;
   width: 100vw;
   margin: 0;
   position: fixed;
@@ -225,20 +241,24 @@ ul li a:hover + .hidden, .hidden:hover {
   height:100px;
   width: 100vw;
 }
+.navbarInput {
+  display: inline;
+  float: right;
 
+}
 .navbar {
   width: 75%;
   //background-color: rgba(47,48,54,0.8); //#2f3036; 
    margin-left: 12.5%;
   margin-right: 12.5%;
   overflow: hidden;
-  display: inline-block;
+  display: inline;
   position: fixed;
 }
 
 .inLineLeft .inLineRight {
   width: 50%;
-  display: inline-block;
+  display: inline;
 }
 
 .inLineLeft {        /*---Logo in Here---*/
@@ -254,7 +274,7 @@ ul li a:hover + .hidden, .hidden:hover {
 
 #menu li {
   display:block;  
-  margin:5px;
+  margin:0 5px 0 0;
 }
 .menuDropdown li{
   
@@ -263,16 +283,17 @@ ul li a:hover + .hidden, .hidden:hover {
 .menuDropdown {
   position: fixed;
   right: 13vw;
-  
   overflow:show;
+  top: 42px;
 
 }
 .iconBar {
   position:fixed;
   right: 12.5vw;
-  top: 10px;
+  top: -12px;
 
 }
+
 
 /*  #Footer 
 ================================================ */
@@ -383,6 +404,7 @@ ul li a:hover + .hidden, .hidden:hover {
 
 #loginButton {
   height: 30px;  
+  display: inline;
 }
 /* #Settings
 ================================================== */
@@ -400,6 +422,17 @@ tr {
 td {
   padding: 20px;
   margin: 20px;  
+}
+
+/* #Tables 
+================================================== */
+.signupTable {
+  margin: 0;
+  padding:0;
+}
+.floatRight {
+  float:right;
+
 }
 
 
@@ -451,7 +484,34 @@ position:absolute;
 top: 84px;
 }
 
+
+/* #Posts
+================================================= */
 .individual_post {
   display: inline-block;
+}
+
+.twitter_post {
+  border: 2px solid aqua;
+  overflow: hidden;
+}
+
+.nFuse_post {
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.instagram_post {
+  overflow: hidden;
+  border: 2px solid tan;
+}
+.facebook_post {
+  overflow: hidden;
+  border: 2px solid  blue;
 
 }
+#content-box-profile {
+  background-color: green;
+
+}
+

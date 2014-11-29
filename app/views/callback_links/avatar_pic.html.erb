@@ -1,8 +1,8 @@
 <% provide(:title, "Step 3") %>
 
 
-<div class="row" id="content-box">
-  <div class="span6 offset0">
+<div class="container">
+  <div class="containerMain">
     <h1>Last step</h1>
     <%= form_for(@user, :multipart => true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>

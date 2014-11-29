@@ -1,6 +1,8 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
 
+<h1 class="center">Sign up</h1>
+<div class="container">
+  <div class="containerMain">
 <%= form_tag("/auth/identity/register", method: 'post') do %>
   <% if @identity && @identity.errors.any? %>
     <div class="error_messages">
@@ -12,31 +14,34 @@
       </ul>
     </div>
   <% end %>
-  <div class="row" id="content-box-signup">
-    <div class="span4">  
-      <div class="field">
-        <%= label_tag :first_name %>
-        <%= text_field_tag :first_name, @identity.try(:first_name) %>
-      </div>
-      <div class="field">
-        <%= label_tag :last_name %>
-        <%= text_field_tag :last_name, @identity.try(:last_name) %>
-      </div>
-      <div class="field">
-        <%= label_tag :email %>
-        <%= text_field_tag :email, @identity.try(:email) %>
-      </div>
-      <div class="field">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-      </div>
-      <div class="field">
-        <%= label_tag :password_confirmation %>
-        <%= password_field_tag :password_confirmation %>
-      </div>
-      <br>
-      <div class="actions"><%= submit_tag "Create my account", class: "btn btn-large btn-info" %></div>
-    </div>
-  </div>
+
+  <!-- make a table noob -->
+
+  <table class="signupTable">
+  <tr>
+    <td><%= label_tag :first_name %></td>
+    <td><%= text_field_tag :first_name, @identity.try(:first_name) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag :last_name %></td>
+    <td><%= text_field_tag :last_name, @identity.try(:last_name) %></td>
+  </tr>    
+  <tr>
+    <td><%= label_tag :email %></td>
+    <td><%= text_field_tag :email, @identity.try(:email) %></td>
+  </tr>    
+  <tr>
+    <td><%= label_tag :password %></td>
+    <td><%= password_field_tag :password %></td>
+  </tr>   
+  <tr>
+    <td><%= label_tag :password_confirmation %></td>
+    <td><%= password_field_tag :password_confirmation %></td>
+  </tr>
+        
+      <tr><td><%= submit_tag "Create my account", class: "btn" %></td></tr>
+  </table>
+</div>
+
 <% end %>
 

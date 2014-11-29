@@ -1,31 +1,35 @@
-  <div class="network_container">
-    <div class="network_login">
-      <% if current_user && user_has_provider?('twitter') %>
-        <%= link_to "reNfuse Twitter", "/auth/twitter" %>
-      <% else %>
-        <%= link_to "Nfuse Twitter", "/auth/twitter" %>
-      <% end %>
-      <%= link_to image_tag("Twitter_logo_blue.png", size: "100x100"), "/auth/twitter", :class => "network_login_link" %>
+  <div class="container">
+    <div class="containerMain">
+      <table>
+        <tr>  
+          <td><% if current_user && user_has_provider?('twitter') %>
+          <%= link_to "reNfuse Twitter", "/auth/twitter" %>
+          <% else %>
+          <%= link_to "Nfuse Twitter", "/auth/twitter" %>
+          <% end %> </td>
+          <td><%= link_to image_tag("Twitter_logo_blue.png", size: "100x100"), "/auth/twitter", :class => "network_login_link" %></td>
+        </tr>
+        <tr>
+          <td><% if current_user && user_has_provider?('facebook') %>
+              <%= link_to "reNfuse Facebook", "/auth/facebook" %>
+              <% else %>
+              <%= link_to "Nfuse Facebook", "/auth/facebook" %>
+              <% end %></td>
+          <td><%= link_to image_tag("FB-f-Logo__blue_50.png", size: "100x100"), "/auth/facebook", :class => "network_login_link" %></td>
+        </tr>
+        <tr>
+          <td><% if current_user && user_has_provider?('instagram') %>
+              <%= link_to "reNfuse Instagram", "/auth/instagram" %>
+              <% else %>
+              <%= link_to "Nfuse Instagram", "/auth/instagram" %>
+              <% end %></td>
+        
+          <td><%= link_to image_tag("Instagram_Icon_Large.png", size: "100x100"), "/auth/instagram", :class => "network_login_link" %></td>
+        </tr>
+        <tr>
+          <td class="floatRight"> <%= link_to "skip this step", next_wizard_path %> </td>
+        </tr>
+      </table>
     </div>
   </div>
-  <div class="network_container">
-    <div class="network_login">
-      <% if current_user && user_has_provider?('facebook') %>
-        <%= link_to "reNfuse Facebook", "/auth/facebook" %>
-      <% else %>
-        <%= link_to "Nfuse Facebook", "/auth/facebook" %>
-      <% end %>
-      <%= link_to image_tag("FB-f-Logo__blue_50.png", size: "100x100"), "/auth/facebook", :class => "network_login_link" %>
-    </div>
-  </div>
-  <div class="network_container">
-    <div class="network_login">
-      <% if current_user && user_has_provider?('instagram') %>
-        <%= link_to "reNfuse Instagram", "/auth/instagram" %>
-      <% else %>
-        <%= link_to "Nfuse Instagram", "/auth/instagram" %>
-      <% end %>
-      <%= link_to image_tag("Instagram_Icon_Large.png", size: "100x100"), "/auth/instagram", :class => "network_login_link" %>
-    </div>
-  </div>
-<%= link_to "skip this step", next_wizard_path %>
+
