@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
   before_filter :load_commentable
   respond_to :js, :json, :html
 
-  #def index
-  #  @comments = @commentable.comments
-  #end
+  def index
+    @comments = @commentable.comments
+  end
 
   def new
     @comment = @commentable.comments.new
