@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- *Start* Views/layouts/application.html -->
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -6,19 +7,20 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
-    <%= javascript_include_tag '//Mosaic/jquery.mosaicflow.min.js'%>
+    <%= javascript_include_tag 'app/assets/javascripts/Mosaic/jquery.mosaicflow.min.js'%>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body><!--app.html body start-->
     <%= render 'layouts/header' %>
-    <div class="container">
+    <div class="container_app_html">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-        <div class="content_container">
+
+        <div class="content_container_app_html">
           <%= yield %>
         </div>
           <% if signed_in? %>
@@ -28,4 +30,5 @@
       <% end %>
     </div>
   </body>
+  <!-- *End* Views/layouts/application.html -->
 </html>

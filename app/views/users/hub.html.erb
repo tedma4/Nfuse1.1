@@ -1,4 +1,6 @@
-<ul class="nav pull-right navbar-right navbar-nav">
+<!-- *START* Views/users/hub.html.erb  -->
+<div class="subNav">
+<ul class="subNavList">
 	<li>        
 	  <%= link_to hub_user_path(session[:user_id]) do %>
 	    <%= image_tag('molecule4.png', size: "32x32") %>
@@ -12,9 +14,12 @@
 	  explore
 	</li>
 </ul>
+</div>
+<div class="center block hub_container clearfix mosaicflow">
 <% @timeline.each do |post| %>
     <%= render partial: "twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
     <%= render partial: "instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
     <%= render partial: "users/shout", locals: {shout: post } if post.is_a? Nfuse::Post %>
 <% end %>
-
+</div>
+<!-- *End* Views/users/hub.html.erb  -->

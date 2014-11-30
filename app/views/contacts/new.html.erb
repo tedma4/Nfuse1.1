@@ -1,5 +1,6 @@
+<!-- *Start* Views/contacts/new.html -->
 <% provide(:title, 'Contact') %>
-<% if signed_in? %>
+<% if signed_in? %> <!-- if signed in contacts/new-->
 <div align="center" id="content-box">
   <h2 class="fb-hd">Nprove your Nfuse experience? </h2>
   <p class="fb-par"> We work hard to make Nfuse an easy and pleasant experience, that’s why we need your help to keep getting better. Any advice you could give us about Nfuse will be awesome, we look forward to hearing from you. Thanks! </p>
@@ -19,8 +20,7 @@
   <p class ="fb-par-btm"> If you need to contact us about anything besides feedback just fill out the form and we will get back to you as soon as possible. Nothing on your mind right now? Don’t worry, this form will be available for you to leave us your thoughts whenever you feel like it. </p>
 </div>
 
-<% else %>
-
+<% else %> <!-- else contacts/new-->
 
 <div align="center" id="content-box">
   <h3>Send A Message</h3>
@@ -39,3 +39,4 @@
   <% end %>
 </div>
 <% end %>
+<!-- *End* Views/contacts/new.html -->
