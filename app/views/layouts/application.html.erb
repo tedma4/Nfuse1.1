@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- *Start* Views/layouts/application.html -->
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -12,13 +13,14 @@
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body><!--app.html body start-->
     <%= render 'layouts/header' %>
-    <div class="container">
+    <div class="container_app_html">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-        <div class="content_container">
+
+        <div class="content_container_app_html">
           <%= yield %>
         </div>
           <% if signed_in? %>
@@ -28,4 +30,5 @@
       <% end %>
     </div>
   </body>
+  <!-- *End* Views/layouts/application.html -->
 </html>

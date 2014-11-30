@@ -1,3 +1,4 @@
+<!-- *Start* Views/layouts/_header.html -->
 <div class="navSpacing"></div>
 <div class="navbarBack">
 <nav class="navbar" role="navigation">
@@ -10,7 +11,7 @@
     </ul>
   </div>
 
- <% if signed_in? %>
+ <% if signed_in? %> <!-- if signed in _header-->
 
   <div class="inLineRight iconBar">
     <ul id="menu">
@@ -51,18 +52,18 @@
   </div>
 
 
- <% else %> <!-- -->
+ <% else %> <!-- else _header-->
 
-  <div class="inLineRight ">
+  <div class="inLineRight">
     <%= form_tag "/auth/identity/callback", class: "loginForm" do %>
       <span>
-        <%= text_field_tag :auth_key, params[:email], placeholder: "Email", class: "navbarInput"  %>
+        <%= submit_tag "Login", class: "button ", id: "loginButton" %>
       </span>
       <span>
         <%= password_field_tag :password, params[:password], placeholder: "Password", class: "navbarInput" %>
       </span>
       <span>
-        <div class="actions"><%= submit_tag "Login", class: "button ", id: "loginButton" %></div>
+       <%= text_field_tag :auth_key, params[:email], placeholder: "Email", class: "navbarInput"  %>
       </span>
      <% end %>
   </div>
@@ -81,4 +82,4 @@ $(document).ready(function(){
 });
 </script>
 </div>
-
+<!-- *End* Views/layouts/_header.html -->
