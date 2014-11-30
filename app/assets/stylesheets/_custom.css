@@ -1,0 +1,578 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #D2DADD;  
+}
+.container_app_html {
+  margin:-40px 0 0 0;
+  padding:0;
+
+}
+.container {
+  width: 100vw;
+  margin:0;
+  padding:0;
+  display: inline-block;
+}
+.container_profile {
+  width:75vw;
+  margin:0 12.5% 0 12.5%;
+
+}
+.hub {
+  width:75%;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+  background-color: green;
+}
+img {
+  max-width: 100%;
+}
+.content_container_app_html {
+  margin:0;
+  padding:0;
+}
+.block {
+  display: inline-block;
+
+}
+
+/* #Grid =========================================
+================================================== */
+.center {
+  margin:auto;
+  text-align: center;
+}
+.mosaicflow__column {
+    float:left;
+}
+
+.mosaicflow__item {
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+.containerMain{
+  width: 75vw;
+  margin-left: 12.5vw;
+  margin-right: 12.5vw;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+
+}
+.span_2_of_2 {
+  width: 100%;
+}
+
+.span_1_of_2 {
+  width: 49.2%;
+}
+
+.span_3_of_3 {
+  width: 100%; 
+}
+
+.span_2_of_3 {
+  width: 66.13%; 
+}
+
+.span_1_of_3 {
+  width: 32.26%; 
+}
+
+.span_4_of_4 {
+  width: 100%; 
+}
+
+.span_3_of_4 {
+  width: 74.6%; 
+}
+
+.span_2_of_4 {
+  width: 49.2%; 
+}
+
+.span_1_of_4 {
+  width: 23.8%; 
+}
+
+
+
+
+/* ========== sections ========== */
+
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* ========== grouping ========== */
+
+
+.group:before,
+.group:after {
+    content:"";
+    display:table;
+}
+.group:after {
+    clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+/* ========== col  ========== */
+
+.col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+}
+
+.col:first-child { margin-left: 0; } /* all browsers except IE6 and lower */
+
+
+/* ========== media query for grid==========  */
+
+@media only screen and (max-width: 720px) {
+  .col { 
+    margin: 1% 0 1% 0%;
+  }
+  .span_2_of_2 {
+    width: 100%; 
+  }
+  .span_1_of_2 {
+    width: 100%; 
+  }
+
+  .span_3_of_3 {
+    width: 100%; 
+  }
+  .span_2_of_3 {
+    width: 100%; 
+  }
+  .span_1_of_3 {
+    width: 100%;
+  }
+
+  .span_4_of_4 {
+    width: 100%; 
+  }
+  .span_3_of_4 {
+    width: 100%; 
+  }
+  .span_2_of_4 {
+    width: 100%; 
+  }
+  .span_1_of_4 {
+    width: 100%; 
+  }
+}
+
+/* #Header
+================================================== */
+.loginForm {
+  margin-top: 0;
+  width: 300px;
+  display: inline;
+}
+ul{
+list-style-type:none;
+}
+
+li {
+  display:inline-block;
+  float: left;
+  margin-right: 1px;
+}
+
+#menu ul li a {
+  display:block;
+  min-width:50px;
+  height: 40px;
+  text-align: center;
+  line-height: 50px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+ // background-color: rgba(47,48,54,0.8); //#2f3036; 
+  text-decoration: none;
+}
+
+#menu ul li:hover a{
+  color: #87CEEB;
+  
+}
+
+#menu ul li:hover ul a {
+  background: #f3f3f3;
+  color: #2f3036;
+  height: 40px;
+  line-height: 40px;
+}
+
+li ul {
+  display: block;
+  margin-top: 18px;
+  background-color: rgba(47,48,54,0.8); //#2f3036; 
+}
+
+li ul li {
+  display: hidden;
+  float: none;
+
+}
+
+li ul li a {
+  width: auto;
+  min-width: 100px;
+  padding: 0;
+}
+
+ul li a:hover + .hidden, .hidden:hover {
+  display: block;
+}
+
+.show-menu {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  background: #19c589;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}
+
+.navbarBack {
+  background-color: rgba(47,48,54,0.8); //#2f3036; 
+  overflow: hidden;
+  height: 60px;
+  width: 100vw;
+  margin: 0;
+  margin-bottom: -50px;
+  position: fixed;
+  top: 0;
+}
+.navSpacing {
+  height:100px;
+  width: 100vw;
+}
+.navbarInput {
+  display: inline;
+  float: right;
+  width: 100px;
+  height: 30px;
+
+}
+.navbar {
+  width: 75%;
+  //background-color: rgba(47,48,54,0.8); //#2f3036; 
+   margin-left: 12.5%;
+  margin-right: 12.5%;
+  overflow: hidden;
+  display: inline;
+  position: fixed;
+  margin-bottom: 0;
+}
+
+.inLineLeft .inLineRight {
+  width: 50%;
+  display: inline;
+}
+
+.inLineLeft {        /*---Logo in Here---*/
+  float: left;
+  margin: 1px 0 0 0;
+
+}
+
+.inLineRight {
+  float: right;
+  margin: 15px;
+}
+
+#menu li {
+  display:block;  
+  margin:0 5px 0 0;
+}
+.menuDropdown li{
+  
+  z-index:5;
+}
+.menuDropdown {
+  position: fixed;
+  right: 13vw;
+  overflow:show;
+  top: 42px;
+  z-index: 100;
+
+}
+.iconBar {
+  position: fixed;
+  right: 12.5vw;
+  top: -12px;
+
+}
+
+
+/*  #Footer 
+================================================ */
+
+.footer{
+  width: 75%;
+  margin-right: 12.5%;
+  margin-left: 12.5%;
+  margin-top: 20px;
+}
+.footer p {
+  
+  float:right;
+  display: inline;
+  padding-left: 53vw;
+}
+.footer-link{
+  margin:8px;
+  padding: 10px;
+  display: inline;
+}
+.footerLinks{
+  display: inline;
+  margin:0px;
+  width:0;  
+}
+.footerLinks a:hover {
+  color: #87CEEB;
+  background-color: #D2DADD; 
+}
+.footerLinks a{
+  background-color: #D2DADD;  
+  color: black;
+}
+/* #Home
+=============================================== */
+.banner {
+  margin-top: 0px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  width: 100%;
+}
+#hero-text {
+  padding: 20px;
+  margin: 20px;
+}
+.containerHome {
+  background-color: grey;
+  width: 75%;
+  height: 400px;
+  padding-top: 40px;
+  }
+.containerContent {
+  border: 1px solid grey;
+  width: 75%;
+  margin-right: 12.5%;
+  margin-left: 12.5%;
+}
+.hero-text {
+  margin:auto;
+  margin-left:33.5vw;
+}
+
+
+/* #Buttons
+================================================== */
+#signupButton, #aboutButton {
+  display: inline-block;
+  width:50px;
+  margin-left:0px;
+  margin-right:0;
+}
+#signupButton {
+  margin-left:40vw;
+  height:30px;
+
+}
+#aboutButton {
+  margin-left:3.5vw;
+
+}
+
+.button:hover{
+  background-color: #87CEEB;
+}
+
+.button {
+ background: #999999;
+ width: 100px;
+ height: 30px;
+ text-decoration: none;
+ border: 0px solid white;
+ display: inline-block;
+}
+
+.test {
+  padding-top:25px;
+  background-color: red;
+  height: 75px;
+  width: 75vw;
+  margin-left: 12.5vw;
+}
+
+.editButton {
+  height: 50px;
+}
+
+#loginButton {
+  height: 30px;  
+  display: inline;
+  float: right; 
+}
+/* #Settings
+================================================== */
+#settingsTable {
+  background-color: white;
+  margin: auto;
+  padding-left: 90px;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+}
+tr {
+  padding: 20px;
+  margin: 20px;
+}
+td {
+  padding: 20px;
+  margin: 20px;  
+}
+
+/* #Tables 
+================================================== */
+.signupTable {
+  margin: 0;
+  padding:0;
+}
+.floatRight {
+  float:right;
+
+}
+
+
+
+/* #Users
+================================================== */
+
+.main-avatar {
+
+  margin:0;
+}
+.avatar-picture-main {
+  width: 200px;
+}
+.userFeedBox {
+  background-color: blue;
+  height: 400px;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+#profile-picture {
+  margin-top: -20vh;
+  margin-left: 5vw;
+  z-index: 25;
+}
+
+/* #Hub
+================================================= */
+.tab {
+  height: 40px;
+  width: 80px;
+  color: white;
+  text-decoration: none;
+}
+.tabLink {
+  color: white;
+  text-decoration: none;
+}
+.tabLink:visited {
+  color: white;
+  text-decoration: none;
+} 
+.tabLink:hover {
+  color: #f3f3f3;
+}
+.activeTab {
+  background-color: #87CEEB;
+  color: black;
+}
+.hubTabs {
+background-color: rgba(47,48,54,0.8);
+position:absolute;
+  right: 22.4vw;
+top: 84px;
+}
+.hub_container {
+  margin: 50px 0 0 0;
+
+}
+
+.explore_container{
+  margin: 50px 0 0 0;
+
+}
+
+/* #Posts
+================================================= */
+.individual_post {
+  display: inline-block;
+}
+
+.twitter_post {
+  border: 2px solid aqua;
+  overflow: hidden;
+}
+
+.nFuse_post {
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.instagram_post {
+  overflow: hidden;
+  border: 2px solid tan;
+}
+.facebook_post {
+  overflow: hidden;
+  border: 2px solid  blue;
+
+}
+#content-box-profile {
+ height: 100vh;
+ overflow: hidden;
+ top: 0;
+}
+
+/* #SeccondNavbar 
+=================================================== */
+.subNav {
+  background-color: rgba(135,206,235,0.8);
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 0;
+  margin: 0px 0 10px 0;
+}
+.subNavList {
+  width: 75%;
+  margin: 0 12.5% 0 12.5%;
+
+}
+.subNavList li {
+  margin: .5vh 2vw 0 2vw;
+
+
+}
+
