@@ -32,6 +32,10 @@
             <td><%= image_tag @user.avatar(:medium) %></td>
           </tr>
           <tr>
+            <td><%= f.file_field :banner %></td>
+            <td><%= image_tag @user.banner(:medium) %></td>
+          </tr>
+          <tr>
             <td><%= f.label :gender, "Gender" %></td>
             <td><%= f.select :gender, [["Not Telling", 1], ["Male", 2], ["Female", 3]] %></td>
           </tr>

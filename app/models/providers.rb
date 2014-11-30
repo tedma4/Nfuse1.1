@@ -21,6 +21,7 @@ class Providers
   end
 
   def nfuse?
+    @user.shouts.where(provider: 'nfuse').count > 0
   end
 
   def none?

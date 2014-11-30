@@ -41,21 +41,6 @@
           </li>
         </ul>
       </div>
-      <% if post.comments_count > 0 %>
-        <div class="post_comments">
-          <ul>
-            <% post.comments.each do |comment| %>
-              <li class="commenter_profile_picture">
-                <%= link_to image_tag(comment.profile_picture), comment.link_to_profile, :target => "_blank" %>
-              </li>
-              <li class="commenter_username">
-                <%= link_to "@#{comment.username}", comment.link_to_profile, :target => "_blank" %>
-              </li>
-              <li><%= comment.text %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>

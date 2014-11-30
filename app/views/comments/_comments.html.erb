@@ -1,5 +1,5 @@
 <div class="row">
-<%= image_tag comment.user.avatar, class: 'profile' %>
+<%= image_tag @comment.user.avatar(:thumb), class: 'profile' %>
 <%= comment.user.full_name %>
 <div>
 <%= comment.body %>
