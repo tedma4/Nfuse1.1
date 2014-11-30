@@ -7,15 +7,15 @@ class ShoutsController < ApplicationController
   #def index
   #  @shouts = Shout.all
   #end
+
   def show
-    @shout = Shout.find(params[:id])
-    @commentable = @shout
-    @comments = @commentable.comments
     @comment = Comment.new
+    @shout = Shout.find(params[:id])
+    @comments = @shout.comments
 
     respond_to do |format|
        format.html # show.html.erb
-       format.json { render json: @shout }
+       format.json { render json: @post }
     end
 
   end
@@ -24,35 +24,23 @@ class ShoutsController < ApplicationController
     @shout = Shout.new
   end
 
-  def edit
-    @shout = Shout.find(params[:id])
-  end
-
 
   def create
     @shout = Shout.create(shout_params) do |shout|
       shout.is_video = true if params[:shout][:snip]
     end
     @shout.user = current_user
-
-    respond_to do |format|
-      if @shout.save
-          format.html { redirect_to @shout, notice: 'Post was successfully created.' }
-          format.json { render json: @shout, status: :created, location: @shout }
-      else
-          format.html { render action: "new" }
-          format.json { render json: @shout.errors, status: :unprocessable_entity }
+      
+      respond_to do |format|
+        if @shout.save
+            format.html { redirect_to @shout, notice: 'Post was successfully created.' }
+            format.json { render json: @shout, status: :created, location: @shout }
+        else
+            format.html { render action: "new" }
+            format.json { render json: @shout.errors, status: :unprocessable_entity }
+        end
       end
-    end
-  end
 
-  def update
-    @shout = Shout.find(params[:id])
-    if @shout.update_attributes(shout_params)
-      redirect_to @shout, notice: "Shout was successfully updated."
-    else
-      render :edit
-    end
   end
 
   def destroy

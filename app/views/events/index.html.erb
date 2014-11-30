@@ -1,9 +1,0 @@
-<h1>Events</h1>
-
-<% @events.each do |event| %>
-  <div class="event">
-    <h3><%= event.name %></h3>
-    <div class="date">From <%= event.starts_at.strftime("%B %d, %Y") %> to <%= event.ends_at.strftime("%B %d, %Y") %></div>
-    <div><%= event.description %></div>
-  </div>
-<% end %>

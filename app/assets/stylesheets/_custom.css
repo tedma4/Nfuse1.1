@@ -3,12 +3,21 @@ body {
   padding: 0;
   background-color: #D2DADD;  
 }
+.container_app_html {
+  margin:-40px 0 0 0;
+  padding:0;
 
+}
 .container {
   width: 100vw;
-  margin-left: 0;
-  margin-right: 0;
+  margin:0;
+  padding:0;
   display: inline-block;
+}
+.container_profile {
+  width:75vw;
+  margin:0 12.5% 0 12.5%;
+
 }
 .hub {
   width:75%;
@@ -18,6 +27,14 @@ body {
 }
 img {
   max-width: 100%;
+}
+.content_container_app_html {
+  margin:0;
+  padding:0;
+}
+.block {
+  display: inline-block;
+
 }
 
 /* #Grid =========================================
@@ -159,7 +176,8 @@ img {
 /* #Header
 ================================================== */
 .loginForm {
-  margin-top: 1px;
+  margin-top: 0;
+  width: 300px;
   display: inline;
 }
 ul{
@@ -234,6 +252,7 @@ ul li a:hover + .hidden, .hidden:hover {
   height: 60px;
   width: 100vw;
   margin: 0;
+  margin-bottom: -50px;
   position: fixed;
   top: 0;
 }
@@ -244,6 +263,8 @@ ul li a:hover + .hidden, .hidden:hover {
 .navbarInput {
   display: inline;
   float: right;
+  width: 100px;
+  height: 30px;
 
 }
 .navbar {
@@ -254,6 +275,7 @@ ul li a:hover + .hidden, .hidden:hover {
   overflow: hidden;
   display: inline;
   position: fixed;
+  margin-bottom: 0;
 }
 
 .inLineLeft .inLineRight {
@@ -285,10 +307,11 @@ ul li a:hover + .hidden, .hidden:hover {
   right: 13vw;
   overflow:show;
   top: 42px;
+  z-index: 100;
 
 }
 .iconBar {
-  position:fixed;
+  position: fixed;
   right: 12.5vw;
   top: -12px;
 
@@ -330,12 +353,13 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 /* #Home
 =============================================== */
-#banner {
-  margin-top: 50px;
+.banner {
+  margin-top: 0px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
+  width: 100%;
 }
 #hero-text {
   padding: 20px;
@@ -405,6 +429,7 @@ ul li a:hover + .hidden, .hidden:hover {
 #loginButton {
   height: 30px;  
   display: inline;
+  float: right; 
 }
 /* #Settings
 ================================================== */
@@ -441,8 +466,8 @@ td {
 ================================================== */
 
 .main-avatar {
-  width: 400px;
-  height: 400px;
+
+  margin:0;
 }
 .avatar-picture-main {
   width: 200px;
@@ -452,6 +477,12 @@ td {
   height: 400px;
   margin-bottom: 0px;
   display: inline-block;
+}
+
+#profile-picture {
+  margin-top: -20vh;
+  margin-left: 5vw;
+  z-index: 25;
 }
 
 /* #Hub
@@ -483,7 +514,15 @@ position:absolute;
   right: 22.4vw;
 top: 84px;
 }
+.hub_container {
+  margin: 50px 0 0 0;
 
+}
+
+.explore_container{
+  margin: 50px 0 0 0;
+
+}
 
 /* #Posts
 ================================================= */
@@ -511,7 +550,29 @@ top: 84px;
 
 }
 #content-box-profile {
-  background-color: green;
+ height: 100vh;
+ overflow: hidden;
+ top: 0;
+}
+
+/* #SeccondNavbar 
+=================================================== */
+.subNav {
+  background-color: rgba(135,206,235,0.8);
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 0;
+  margin: 0px 0 10px 0;
+}
+.subNavList {
+  width: 75%;
+  margin: 0 12.5% 0 12.5%;
+
+}
+.subNavList li {
+  margin: .5vh 2vw 0 2vw;
+
 
 }
 
