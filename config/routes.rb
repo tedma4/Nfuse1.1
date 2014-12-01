@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :conversations
     resources :shouts
+    resources :comments
     member do
       get :following, :followers, :bio, :feed, :settings, :hub, :explore
     end

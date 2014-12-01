@@ -1,16 +1,17 @@
-<!-- Start of regular page -->
+<!-- *START* Views/users/show_feed.html.erb  -->
+<!-- Start of regular page Show_feed-->
 <% provide(:title, @title) %>
-<div class="row">
-  <aside class="span4" id="content-box-profile">
-    <section>
-      <div><%= image_tag @user.banner(:large) %> </div>
-      <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main" %> </div>
+<div class="container_profile">
+  
+    
+      <div><%= image_tag @user.banner(:large), class: "banner" %> </div>
+      <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
 
-       <h1><%= @user.full_name%></h1>
+       <h1 class="inLineLeft"><%= @user.full_name%></h1>
 
 
         <div>
-          <ul class="pull-left inline follow-btn">
+          <ul class="inLineRight">
             <li></li>
             <li><%= render 'follow_form' if signed_in? %></li>
             <li><% unless !current_user?(@user) %> 
@@ -23,12 +24,11 @@
             </li>
           </ul>
         </div>
-    </section>
-    <section>
+   
       <%= render 'shared/stats' %>
-    </section>
-  </aside>
-  <div class="center">
+    
+  
+  <div class="center block">
    
       <%= render file: "users/feed" %>
   </div>
@@ -39,3 +39,4 @@
           FeedIndex.initialize();
         });
       </script>
+<!-- *End* Views/users/show_feed.html.erb  -->
