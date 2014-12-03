@@ -78,6 +78,14 @@ class ShoutsController < ApplicationController
     render js: 'alert("UnLiked")'
   end
 
+  def like_score
+    self.get_likes.size
+  end
+
+  def dislike_score
+    self.get_dislikes.size
+  end
+
   private
 
   def like_shout_type
