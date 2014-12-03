@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   respond_to :js, :json, :html
 
   def index
-    @comments = @commentable.comments
+    @comments = Comment.all
   end
 
   def new

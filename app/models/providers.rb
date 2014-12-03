@@ -21,11 +21,11 @@ class Providers
   end
 
   def nfuse?
-    @user.shouts.where(provider: 'nfuse').count > 0
+    @user.posts.where(provider: 'nfuse').count > 0 
   end
 
   def none?
-    !(facebook? || twitter? || instagram?)
+    !(facebook? || twitter? || instagram? || nfuse?)
   end
 
 end

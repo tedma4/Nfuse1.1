@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :conversations
     resources :shouts
+    resources :events
     resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :hub, :explore
+      get :following, :followers, :bio, :feed, :settings, :hub, :explore, :eventer
     end
   end
 
@@ -26,6 +27,10 @@ Rails.application.routes.draw do
   end
   resources :events do
     resources :comments
+    member do
+      put "like", to: "events#like"
+      put "dislike", to: "events#dislike"
+    end
   end
   
   resources :contacts, only: [:new, :create]

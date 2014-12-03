@@ -11,7 +11,7 @@
   <%= image_tag @shout.pic.url if @shout.pic.exists? %>
 </p>
   <div class="<%= @shout.class %>-<%= @shout.id %>">
-  <%=link_to "Like", like_shout_path(@shout), method: :put%> | <%=link_to "Dislike", dislike_shout_path(@shout), method: :put%>
+  <%= link_to "Like", like_shout_path(@shout), method: :put%> | <%= link_to "Dislike", dislike_shout_path(@shout), method: :put%>
   <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 </div>
 <%= render @comments  %>

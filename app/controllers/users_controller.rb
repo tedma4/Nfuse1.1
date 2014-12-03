@@ -106,7 +106,7 @@ class UsersController < ApplicationController
     @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
     render "hub"
   end
-
+  
   def explore
     @user = User.find(params[:id])
     @providers = Providers.for(@user)

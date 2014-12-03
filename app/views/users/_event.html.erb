@@ -1,0 +1,17 @@
+<!-- *Start* Views/users/_event.html -->
+<div class="visible-md visible-lg individual_post nFuse_post mosaicflow__item" data-id="<%= event.id %>" data-provider="<%= event.provider %>">
+  <p id="notice"><%= notice %></p>
+  <div class="timeline-user-box">
+    <%= image_tag event.user.avatar.url(:thumb), class: 'user' %>
+    <%= link_to event.user.full_name, event.user %>
+    <%= image_tag "beaker.fw.png", size: "50x50" %>
+  </div>
+  <p class="timeline-user-box">
+    <%= event.name %>
+    <%= image_tag event.banner.url if event.banner.exists? %>
+  </p>
+  <div class="<%= event.class %>-<%= event.id %>">
+    <%= link_to "Like", like_event_path(event.id), method: :put, remote: true %> | <%=link_to "Dislike", dislike_event_path(event.id), method: :put,
+                                                                           remote: true  %>
+
+  </div>

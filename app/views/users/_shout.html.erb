@@ -13,4 +13,5 @@
   <div class="<%= shout.class %>-<%= shout.id %>">
     <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(shout.id), method: :put,
                                                                            remote: true  %>
+
   </div>

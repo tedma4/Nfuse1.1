@@ -1,14 +1,7 @@
-<div class="row">
-<%= image_tag @comment.user.avatar(:thumb), class: 'profile' %>
-<%= comment.user.full_name %>
-<div>
-<%= comment.body %>
-</div>
-</div>
 <div id="comments">
 <% @comments.each do |comment| %>
   <div class="comment">
-    <%= simple_format comment.content %>
+    <%= simple_format comment.body %>
   </div>
 <% end %>
 </div>

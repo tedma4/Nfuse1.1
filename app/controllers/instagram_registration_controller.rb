@@ -6,7 +6,7 @@ class InstagramRegistrationController < ApplicationController
     user = User.find(session[:user_id])
     Token.update_or_create_with_other_omniauth(user.id, auth)
     #redirect_to feed_user_path(user)
-    redirect_to callback_links_path(user)
+    redirect_to request.env['omniauth.origin'] || '/default' #callback_links_path(user)
   end
 
 end
