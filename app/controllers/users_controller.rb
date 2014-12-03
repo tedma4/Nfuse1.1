@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def new
     #This starts th new user process
-    @user = env['omniauth.identity'] ||= User.new
+    @user = User.new
   end
 
   def create
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
     @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
     render "hub"
   end
-  
+
   def explore
     @user = User.find(params[:id])
     @providers = Providers.for(@user)
