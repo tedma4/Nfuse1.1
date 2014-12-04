@@ -94,19 +94,6 @@ class UsersController < ApplicationController
     feed.posts(params[:twitter_pagination], params[:facebook_pagination_id], params[:instagram_max_id], user.id)
   end
 
-  def hub
-    @user = User.find(params[:id])
-    @providers = Providers.for(@user)
-
-    timeline = []
-    current_user.followed_users.each do |user|
-      timeline << fetch_feed( Feed.new(user), user )
-    end
-
-    @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
-    render "hub"
-  end
-
   def explore
     @user = User.find(params[:id])
     @providers = Providers.for(@user)

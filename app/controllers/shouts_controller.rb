@@ -58,7 +58,7 @@ class ShoutsController < ApplicationController
   def destroy
     @shout = Shout.find(params[:id])
     @shout.destroy
-    redirect_to hub_user_path(@user)
+    redirect_to root_path
   end
 
   def like

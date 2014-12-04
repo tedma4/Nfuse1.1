@@ -1,31 +1,30 @@
 <!-- *Start* Views/pages/home.html -->
 <% if signed_in? %>
-<div class="center container">
-  <div class="containerMain center">
-  <h1>Hub</h1>
-      <ul class="hubTabs" role="tablist">
-        <li class="tab"><a href="#home" class="tabLink" role="tab" data-toggle="tab">Hub</a></li>
-        <li class="tab"><a href="#profile" class="tabLink" role="tab" data-toggle="tab">Explore</a></li>
-      </ul>
-      <script> 
-        $('.tabLink').click(function() {
-          //alert('tab clicked');
-          $('.tabLink').removeClass('activeTab');
-          $(this).addClass('activeTab');
-
-        });
-      </script>
-      <div class="tab-content">
-        <div class="tab-pane active" id="Hub">
-            <div class="span8">
-              <h1><%= @title %></h1>
-            </div>
-        </div>
-        <div class="tab-pane" id="Explore">
-        </div>
-      </div>
-    </div>
-  </div> 
+<!-- *START* Views/users/hub.html.erb  -->
+<div class="subNav">
+<ul class="subNavList">
+  <li>        
+    <%= link_to root_path do %>
+      <%= image_tag('molecule4.png', size: "32x32") %>
+    <% end %>
+    hub
+  </li>
+  <li>        
+    <%= link_to explore_user_path(session[:user_id]) do %>
+      <%= image_tag('educational27.png', size: "32x32") %>
+    <% end %>
+    explore
+  </li>
+</ul>
+</div>
+<div class="center block hub_container clearfix mosaicflow">
+<% @timeline.each do |post| %>
+    <%= render partial: "users/twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
+    <%= render partial: "users/instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
+    <%= render partial: "users/shout", locals: {shout: post } if post.is_a? Nfuse::Post %>
+<% end %>
+</div>
+<!-- *End* Views/users/hub.html.erb  -->
 <% else %> 
 
 <div class="center">

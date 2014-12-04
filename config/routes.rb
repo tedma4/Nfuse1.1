@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :events
     resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :hub, :explore, :eventer
+      get :following, :followers, :bio, :feed, :settings, :explore
     end
   end
 
