@@ -22,4 +22,12 @@ class Shout < ActiveRecord::Base
   def all_votes
     ActsAsVotable::Vote.where(votable_id: self.id)
   end
+
+  def like_score
+    self.get_likes.size
+  end
+
+  def dislike_score
+    self.get_dislikes.size
+  end
 end

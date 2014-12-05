@@ -14,6 +14,8 @@
   <%= link_to "Like", like_shout_path(@shout), method: :put%><%= @shout.like_score %> | <%= link_to "Dislike", dislike_shout_path(@shout), method: :put%><%= @shout.dislike_score %>
   <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 </div>
-<%= render @comments  %>
+
+<%= render "comments/comments" %>
+<%= render "comments/form" %>
 </div>
 <!-- *End* Views/shouts/show.html -->

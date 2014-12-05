@@ -4,12 +4,10 @@ class PagesController < ApplicationController
   def home
     @user = User.find(session[:user_id])
     @providers = Providers.for(@user)
-
     timeline = []
     current_user.followed_users.each do |user|
       timeline << fetch_feed( Feed.new(user), user )
     end
-
     @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
     render "home"
   end
