@@ -3,12 +3,8 @@
   <div class="comment">
   	<ul>
   		<li>
-  			<%= @user.avatar.url(:thumb) %>
-  		</li>
-  		<li>
-  			<%= @user.full_name %>
-  		</li>
-  		<li>
+  			<%= image_tag comment.user.avatar.url(:thumb) %>
+  			<%= comment.user.full_name %>
     		<%= comment.body %>
   		</li>
   	</ul>

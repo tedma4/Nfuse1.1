@@ -127,12 +127,12 @@ class Nfuse
       @shout.user.avatar
     end
 
-    def profile
-      @shout.user
-    end
-
     def full_name
       @shout.user.full_name
+    end
+
+    def new_comment
+      @shout.commentable_type.comments.new
     end
   end
 
@@ -149,10 +149,6 @@ class Nfuse
 
     def created_time
       @comment.created_at
-    end
-
-    def comments
-      @comment.comments.map { |comment| Comment.from(comment) }
     end
     
     def avatar

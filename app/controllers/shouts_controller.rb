@@ -67,15 +67,15 @@ class ShoutsController < ApplicationController
     unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
       @shout.like_by current_user
     end
-    render js: 'alert("Liked")'
+    render 'like'
   end
 
   def dislike
     @shout = Shout.find(params[:id])
     if ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
-      @shout.unliked_by current_user
+      @shout.dislike_by current_user
     end
-    render js: 'alert("UnLiked")'
+    render 'dislike'
   end
 
   private
@@ -99,7 +99,7 @@ class ShoutsController < ApplicationController
         vote.votable_type = 'Instagram::Vote'
         vote.vote_flag = true
       end
-    else
+    elsif
       params[:key] == 'facebook'
       ActsAsVotable::Vote.create do |vote|
         vote.social_flag = "facebook"

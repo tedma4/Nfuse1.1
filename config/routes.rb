@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   
   get '/auth/instagram/callback', to: 'instagram_registration#create'
   get '/auth/twitter/callback', to: 'twitter_registration#create'
+  get '/auth/failure', to: 'twitter_registration#failure'
   get '/auth/facebook/callback', to: 'facebook_registration#create'
 
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
@@ -62,7 +63,6 @@ Rails.application.routes.draw do
 
   match "/auth/identity/callback", to: "sessions#create", via: 'post'
   match "/auth/identity/register", to: "users#new", via: 'get'
-  match "/auth/failure", to: "sessions#failure",  via: 'get'
 
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296

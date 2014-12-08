@@ -9,5 +9,7 @@ class TwitterRegistrationController < ApplicationController
     redirect_to request.env['omniauth.origin'] || '/default' #callback_links_path(user)
     #redirect_to feed_user_path(session[:user_id])
   end
-
+  def failure  
+    redirect_to request.env['omniauth.origin'] || '/default', alert: "Something happened, please try again."  
+  end
 end

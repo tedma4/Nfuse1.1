@@ -2,7 +2,7 @@ class Shout < ActiveRecord::Base
 	require 'paperclip-ffmpeg'
   belongs_to :user  
   validates :user_id, presence: true
-  has_many :comments, :as=> :commentable
+  has_many :comments, :as => :commentable
   after_create :this_is_video!
   acts_as_votable
 
