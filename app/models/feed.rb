@@ -84,13 +84,10 @@ class Feed
       @unauthed_accounts << "facebook"
     end
   end
-
 end
 
-#
-# -------- Copying from Instagram/Facebook/Twitter::Post
-#
 class Nfuse
+
   class Post
     delegate :created_at, :user, :pic, :id, to: :shout
 
@@ -110,8 +107,68 @@ class Nfuse
       "image"
     end
 
+    def comments_count
+      @shout.comments.count
+    end
+
+    def like_score
+      @shout.get_likes.size
+    end
+
+    def dislike_score
+      @shout.get_dislikes.size
+    end
+
+    def comments
+      @shout.comments { |comment| Comment.from(comment) }
+    end
+
+    def avatar
+      @shout.user.avatar
+    end
+
+    def profile
+      @shout.user
+    end
+
+    def full_name
+      @shout.user.full_name
+    end
+  end
+
+  class Comment
+    delegate :created_at, :user, :body, :id, to: :comment
+
+    attr_reader :provider
+    attr_accessor :comment
+
+    def initialize(comment)
+      @comment = comment
+      @provider = "nfuse"
+    end
+
+    def created_time
+      @comment.created_at
+    end
+
+    def comments
+      @comment.comments.map { |comment| Comment.from(comment) }
+    end
+    
+    def avatar
+      @comment.user.avatar
+    end
+
+    def profile
+      @comment.user
+    end
+
+    def full_name
+      @comment.user.full_name
+    end
+
+    def body
+      @comment.body
+    end
   end
 end
-#
-# -------- Copying from Instagram/Facebook/Twitter::Post
-#

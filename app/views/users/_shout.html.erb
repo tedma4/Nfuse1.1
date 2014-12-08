@@ -10,7 +10,15 @@
     <%= image_tag shout.pic.url if shout.pic.exists? %>
   </p>
   <div class="<%= shout.class %>-<%= shout.id %>">
-    <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(shout.id), method: :put,
-                                                                           remote: true  %>
-
+    <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> | 
+    <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %>
+    <%= pluralize shout.comments_count, "comment" %>
   </div>
+  <div class="post_comments">
+    <ul>
+      <% shout.comments.each do |comment| %>
+        <li><%= comment.body %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

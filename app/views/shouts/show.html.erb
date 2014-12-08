@@ -7,15 +7,22 @@
 <%= image_tag "beaker.fw.png", size: "50x50" %>
 </div>
 <p class="user-box">
-  <%= @shout.content %>
   <%= image_tag @shout.pic.url if @shout.pic.exists? %>
+  <%= @shout.content %>
 </p>
   <div class="<%= @shout.class %>-<%= @shout.id %>">
-  <%= link_to "Like", like_shout_path(@shout), method: :put%><%= @shout.like_score %> | <%= link_to "Dislike", dislike_shout_path(@shout), method: :put%><%= @shout.dislike_score %>
-  <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
-</div>
-
-<%= render "comments/comments" %>
-<%= render "comments/form" %>
+	  <%= link_to "Like", like_shout_path(@shout), method: :put %><%= @shout.like_score %> | 
+	  <%= link_to "Dislike", dislike_shout_path(@shout), method: :put %><%= @shout.dislike_score %>
+	  <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
+	</div>
+	<div>
+		<div>
+			<%= render "comments/comments" %>
+		</div>
+		
+		<div>
+			<%= render "comments/form" %>
+		</div>
+	</div>
 </div>
 <!-- *End* Views/shouts/show.html -->
