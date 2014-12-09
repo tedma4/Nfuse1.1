@@ -16,7 +16,7 @@ gem 'mail_form'
 gem 'simple_form'
 #This allows the us to upload images, videos and files
 gem "paperclip", "~> 4.2"
-gem 'panda'
+#gem 'panda'
 # Handles video upload
 gem "paperclip-ffmpeg", "~> 1.0.0"
 gem 'acts_as_votable', '~> 0.10.0'
