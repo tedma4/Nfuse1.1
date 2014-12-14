@@ -4,27 +4,11 @@ class Shout < ActiveRecord::Base
   validates :user_id, presence: true
   has_many :comments, :as => :commentable
   after_create :this_is_video!
+  after_create :this_is_link!
   acts_as_votable
 
-  YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
-
-  before_create -> do
-    uid = link.match(YT_LINK_FORMAT)
-
-    self.uid = uid[2] if uid && uid[2]
-
-    if self.uid.to_s.length != 11
-      self.errors.add(:link, 'is invalid.')
-      false
-    elsif Video.where(uid: self.uid).any?
-      self.errors.add(:link, 'is not unique.')
-      false
-    else
-      get_additional_info
-    end
-  end
-
-  validates :link, presence: true, format: YT_LINK_FORMAT
+  YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
+  validates :link, format: YT_LINK_FORMAT, allow_blank: true
 
   attr_accessor :content, :pic, :photo_delete, :snip, :video_delete#, dependent: :destroy
   has_destroyable_file :pic, :snip
@@ -36,7 +20,22 @@ class Shout < ActiveRecord::Base
                             :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
                                         }, :processors => [:ffmpeg, :qtfaststart]
   def this_is_video!
-    update_attribute(:video, true) if !self.snip_file_name.nil?
+    update_attribute(:is_video, true) if !self.snip_file_name.nil?
+  end
+
+  def this_is_link!
+    update_attribute(:is_link, true) if self.snip_file_name.nil? || self.pic_file_name.nil?
+      uid = link.match(YT_LINK_FORMAT)
+      self.uid = uid[2] if uid && uid[2]
+      if self.uid.to_s.length != 11
+        self.errors.add(:link, 'is invalid.')
+        false
+      elsif Shout.where(uid: self.uid).any?
+        self.errors.add(:link, 'is not unique.')
+        false
+      else
+        get_additional_info
+      end
   end
 
   def all_votes
@@ -55,13 +54,11 @@ class Shout < ActiveRecord::Base
 
   def get_additional_info
     begin
-      client = YouTubeIt::OAuth2Client.new(dev_key: ENV['YT_DEV'])
-      video = client.video_by(uid)
-      self.title = video.title
-      self.duration = parse_duration(video.duration)
-      self.author = video.author.name
-      self.likes = video.rating.likes
-      self.dislikes = video.rating.dislikes
+      client = YouTubeIt::OAuth2Client.new(dev_key: ENV['AI39si5tETPAcvSl00_0nrLcd2sC7dfDddSCqYtRVPE7pBwf1Ajf5SusGyLhrd3KGT7TqUuHJDBtI6GYxDgfVQK9Jkk0haSOKg'])
+      link = client.video_by(uid)
+      self.title = link.title
+      self.duration = parse_duration(link.duration)
+      self.author = link.author.name
     rescue
       self.title = '' ; self.duration = '00:00:00' ; self.author = '' ; self.likes = 0 ; self.dislikes = 0
     end

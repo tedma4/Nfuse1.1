@@ -1,28 +1,37 @@
 <!-- *Start* Views/shouts/show.html -->
 <div class="visible-md visible-lg">
-<p id="notice"><%= notice %></p>
-<div class="user-box">
-<%= image_tag @shout.user.avatar.url(:thumb), class: 'user' %>
-<%= link_to @shout.user.full_name, @shout.user %>
-<%= image_tag "beaker.fw.png", size: "50x50" %>
-</div>
-<p class="user-box">
-  <%= image_tag @shout.pic.url if @shout.pic.exists? %>
-  <%= @shout.content %>
-</p>
+	<div class="user-box">
+		<%= image_tag @shout.user.avatar.url(:thumb), class: 'user' %>
+		<%= link_to @shout.user.full_name, @shout.user %>
+		<%= image_tag "beaker.fw.png", size: "50x50" %>
+	</div>
+
+	<% if @shout.pic %>
+		<p class="user-box">
+		  <%= image_tag @shout.pic.url if @shout.pic.exists? %>
+		  <%= @shout.content %>
+		</p>
+	<% elsif @shout.link %>
+	  <div class="col-md-4">
+	    <div class="yt_link thumbnail">
+	      <%= image_tag "https://img.youtube.com/vi/#{shout.link.uid}/mqdefault.jpg", alt: shout.link.title, class: 'yt_preview img-rounded', :"data-uid" => shout.link.uid %>
+	      <div class="caption">
+	        <h5><%= shout.link.title %></h5>
+	        <p>Author: <b><%= shout.link.author %></b></p>
+	        <p>Duration: <b><%= shout.link.duration %></b></p>
+	      </div>
+	    </div>
+	  </div>
+	<% end %>
+
   <div class="<%= @shout.class %>-<%= @shout.id %>">
 	  <%= link_to "Like", like_shout_path(@shout), method: :put %><%= @shout.like_score %> | 
 	  <%= link_to "Dislike", dislike_shout_path(@shout), method: :put %><%= @shout.dislike_score %>
 	  <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 	</div>
 	<div>
-		<div>
-			<%= render "comments/comments" %>
-		</div>
-		
-		<div>
-			<%= render "comments/form" %>
-		</div>
+		<div><%= render "comments/comments" %></div>
+		<div><%= render "comments/form" %></div>
 	</div>
 </div>
 <!-- *End* Views/shouts/show.html -->

@@ -4,9 +4,10 @@ class ShoutsController < ApplicationController
   before_action :like_shout_type, only: [:like, :dislike]
   respond_to :json, :js, :html
 
-  #def index
-  #  @shouts = Shout.all
-  #end
+  def index
+    @shouts = Shout.order('created_at DESC')
+  end
+  
   def show
     @shout = Shout.find(params[:id])
     @commentable = @shout
@@ -32,12 +33,13 @@ class ShoutsController < ApplicationController
   def create
     @shout = Shout.create(shout_params) do |shout|
       shout.is_video = true if params[:shout][:snip]
+      shout.is_link = true if params[:shout][:link]
     end
     @shout.user = current_user
 
     respond_to do |format|
       if @shout.save
-          format.html { redirect_to @shout, notice: 'Post was successfully created.' }
+          format.html { redirect_to @shout, notice: 'Shout was successfully created.' }
           format.json { render json: @shout, status: :created, location: @shout }
       else
           format.html { render action: "new" }

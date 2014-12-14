@@ -10,6 +10,8 @@
     <%= javascript_include_tag '//Mosaic/jquery.mosaicflow.min.js'%>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
   </head>
@@ -17,7 +19,10 @@
     <%= render 'layouts/header' %>
     <div class="container_app_html">
       <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %>">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= value %>
+        </div>
       <% end %>
 
         <div class="content_container_app_html">
