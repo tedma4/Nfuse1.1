@@ -7,7 +7,7 @@ class ShoutsController < ApplicationController
   def index
     @shouts = Shout.order('created_at DESC')
   end
-  
+
   def show
     @shout = Shout.find(params[:id])
     @commentable = @shout
@@ -116,7 +116,7 @@ class ShoutsController < ApplicationController
   end
 
   def shout_params
-      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link)
+      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link )
     end
 
     def correct_user

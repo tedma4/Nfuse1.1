@@ -55,12 +55,12 @@ class Shout < ActiveRecord::Base
   def get_additional_info
     begin
       client = YouTubeIt::OAuth2Client.new(dev_key: ENV['AI39si5tETPAcvSl00_0nrLcd2sC7dfDddSCqYtRVPE7pBwf1Ajf5SusGyLhrd3KGT7TqUuHJDBtI6GYxDgfVQK9Jkk0haSOKg'])
-      link = client.video_by(uid)
-      self.title = link.title
-      self.duration = parse_duration(link.duration)
-      self.author = link.author.name
+      video = client.video_by(uid)
+      self.title = video.title
+      self.duration = parse_duration(video.duration)
+      self.author = video.author.name
     rescue
-      self.title = '' ; self.duration = '00:00:00' ; self.author = '' ; self.likes = 0 ; self.dislikes = 0
+      self.title = '' ; self.duration = '00:00:00' ; self.author = ''
     end
   end
 
