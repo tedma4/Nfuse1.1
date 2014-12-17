@@ -19,6 +19,8 @@ class Shout < ActiveRecord::Base
   has_attached_file :snip, :styles => {
                             :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
                                         }, :processors => [:ffmpeg, :qtfaststart]
+
+
   def this_is_video!
     update_attribute(:is_video, true) if !self.snip_file_name.nil?
   end
@@ -54,7 +56,7 @@ class Shout < ActiveRecord::Base
 
   def get_additional_info
     begin
-      client = YouTubeIt::OAuth2Client.new(dev_key: ENV['AI39si5tETPAcvSl00_0nrLcd2sC7dfDddSCqYtRVPE7pBwf1Ajf5SusGyLhrd3KGT7TqUuHJDBtI6GYxDgfVQK9Jkk0haSOKg'])
+      client = YouTubeIt::OAuth2Client.new(dev_key: 'AI39si5tETPAcvSl00_0nrLcd2sC7dfDddSCqYtRVPE7pBwf1Ajf5SusGyLhrd3KGT7TqUuHJDBtI6GYxDgfVQK9Jkk0haSOKg')
       video = client.video_by(uid)
       self.title = video.title
       self.duration = parse_duration(video.duration)

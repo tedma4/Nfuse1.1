@@ -104,7 +104,7 @@ class Nfuse
     end
 
     def content
-      "image"
+      @shout.content
     end
 
     def comments_count
@@ -133,6 +133,30 @@ class Nfuse
 
     def new_comment
       @shout.commentable_type.comments.new
+    end
+
+    def link?
+      @shout.link
+    end
+
+    def uid
+      @shout.uid
+    end
+
+    def title
+      @shout.title
+    end
+
+    def author
+      @shout.author
+    end
+
+    def duration
+      @shout.duration
+    end
+
+    def pic?
+      @shout.pic
     end
   end
 

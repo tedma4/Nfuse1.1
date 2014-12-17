@@ -6,23 +6,23 @@
 		<%= image_tag "beaker.fw.png", size: "50x50" %>
 	</div>
 
-	<% if @shout.pic %>
+	<% if @shout.link? %>
+		<div id="player-wrapper"></div>
+	  <div class="col-md-4">
+	    <div class="yt_link thumbnail">
+	      <%= image_tag "https://img.youtube.com/vi/#{@shout.uid}/mqdefault.jpg", alt: @shout.title, class: 'yt_preview img-rounded', :"data-uid" => @shout.uid %>
+	      <div class="caption">
+	        <h5><%= @shout.title %></h5>
+	        <p>Author: <b><%= @shout.author %></b></p>
+	        <p>Duration: <b><%= @shout.duration %></b></p>
+	      </div>
+	    </div>
+	  </div>
+	<% else @shout.pic? %>
 		<p class="user-box">
 		  <%= image_tag @shout.pic.url if @shout.pic.exists? %>
 		  <%= @shout.content %>
 		</p>
-	<% else %>
-		<div id="player-wrapper"></div>
-	  <div class="col-md-4">
-	    <div class="yt_link thumbnail">
-	      <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %>
-	      <div class="caption">
-	        <h5><%= shout.title %></h5>
-	        <p>Author: <b><%= shout.author %></b></p>
-	        <p>Duration: <b><%= shout.duration %></b></p>
-	      </div>
-	    </div>
-	  </div>
 	<% end %>
 
   <div class="<%= @shout.class %>-<%= @shout.id %>">

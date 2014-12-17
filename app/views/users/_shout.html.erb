@@ -6,9 +6,25 @@
     <%= link_to shout.user.full_name, shout.user %>
     <%= image_tag "beaker.fw.png", size: "50x50" %>
   </div>
-  <p class="timeline-user-box">
-    <%= image_tag shout.pic.url if shout.pic.exists? %>
-  </p>
+
+  <% if shout.link? %>
+    <div id="player-wrapper"></div>
+    <div class="col-md-4">
+      <div class="yt_link thumbnail">
+        <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %>
+        <div class="caption">
+          <h5><%= shout.title %></h5>
+          <p>Author: <b><%= shout.author %></b></p>
+          <p>Duration: <b><%= shout.duration %></b></p>
+        </div>
+      </div>
+    </div>
+  <% else shout.pic? %>
+    <p class="timeline-user-box">
+      <%= image_tag shout.pic.url if shout.pic.exists? %>
+      <%= shout.content %>
+    </p>
+  <% end %>
   <div class="<%= shout.class %>-<%= shout.id %>">
     <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> | 
     <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %>
