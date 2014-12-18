@@ -16,4 +16,6 @@
 //= require chat
 //= require private_pub
 //= require foxycomplete
+//= require jquery.bind_with_delay
+//= require yt_player
 //= require_tree .

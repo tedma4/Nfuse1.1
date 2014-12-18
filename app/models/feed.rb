@@ -139,6 +139,10 @@ class Nfuse
       @shout.link
     end
 
+    def link
+      @shout.link
+    end
+
     def uid
       @shout.uid
     end

@@ -15,7 +15,7 @@ jQuery ->
     return
   , 500)
 
-  makeVideoPlayer = (video) ->
+  makeVideoPlayer = (shout) ->
     if !window.ytPlayerLoaded
       player_wrapper = $('#player-wrapper')
       player_wrapper.append('<div id="ytPlayer"><p>Loading player...</p></div>')
@@ -23,7 +23,7 @@ jQuery ->
       window.ytplayer = new YT.Player('ytPlayer', {
         width: '100%'
         height: player_wrapper.width() / 1.777777777
-        videoId: video
+        videoId: shout
         playerVars: {
           wmode: 'opaque'
           autoplay: 0
@@ -35,7 +35,7 @@ jQuery ->
         }
       })
     else
-      window.ytplayer.loadVideoById(video)
+      window.ytplayer.loadVideoById(shout6+)
       window.ytplayer.pauseVideo()
     return
 
