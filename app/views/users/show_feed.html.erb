@@ -7,10 +7,10 @@
       <div><%= image_tag @user.banner(:large), class: "banner" %> </div>
       <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
 
-       <h1 class="inLineLeft"><%= @user.full_name%></h1>
+       <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%></h1>
 
 
-        <div>
+        
           <ul class="inLineRight">
             <li></li>
             <li><%= render 'follow_form' if signed_in? %></li>
@@ -23,10 +23,10 @@
                 <% end %> 
             </li>
           </ul>
-        </div>
+        
    
       <%= render 'shared/stats' %>
-    
+    </div>
   
   <div class="center block">
    
