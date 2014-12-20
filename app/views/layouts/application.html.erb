@@ -8,10 +8,11 @@
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
     <%= javascript_include_tag '//Mosaic/jquery.mosaicflow.min.js'%>
+
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <script src="https://www.google.com/jsapi"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
   </head>

@@ -531,13 +531,13 @@ top: 84px;
 }
 
 .twitter_post {
-  border: 2px solid aqua;
   overflow: hidden;
+  border: 2px solid aqua;
 }
 
 .nFuse_post {
-  border: 2px solid black;
   overflow: hidden;
+  border: 2px solid black;
 }
 
 .instagram_post {

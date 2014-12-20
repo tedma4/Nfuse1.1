@@ -7,9 +7,11 @@
     <h1>Last step</h1>
     <%= form_for(@user, :multipart => true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      
+        <h2>Upload a Profile Pcture</h2>
+
         <%= f.file_field :avatar %>
-        <%= image_tag @user.avatar(:larger) %> <br>
+        <%= image_tag @user.avatar(:medium) %> <br>
+        <h2>Upload a Profile Banner</h2>
       
         <%= f.file_field :banner %>
         <%= image_tag @user.banner(:large) %> <br>

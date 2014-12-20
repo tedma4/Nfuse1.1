@@ -1,11 +1,9 @@
 jQuery ->
   $('.yt_preview').click -> makeVideoPlayer $(this).data('uid')
 
-  # Initially the player is not loaded
   window.ytPlayerLoaded = false
 
   _run = ->
-    # Runs as soon as Google API is loaded
     $('.yt_preview').first().click()
     return
 
@@ -15,7 +13,7 @@ jQuery ->
     return
   , 500)
 
-  makeVideoPlayer = (shout) ->
+  makeVideoPlayer = (video) ->
     if !window.ytPlayerLoaded
       player_wrapper = $('#player-wrapper')
       player_wrapper.append('<div id="ytPlayer"><p>Loading player...</p></div>')
@@ -23,7 +21,7 @@ jQuery ->
       window.ytplayer = new YT.Player('ytPlayer', {
         width: '100%'
         height: player_wrapper.width() / 1.777777777
-        videoId: shout
+        videoId: video
         playerVars: {
           wmode: 'opaque'
           autoplay: 0
@@ -35,7 +33,7 @@ jQuery ->
         }
       })
     else
-      window.ytplayer.loadVideoById(shout6+)
+      window.ytplayer.loadVideoById(video)
       window.ytplayer.pauseVideo()
     return
 

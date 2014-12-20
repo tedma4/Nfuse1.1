@@ -6,17 +6,17 @@
  
     <% @shouts.in_groups_of(3) do |group| %>
       <div class="row">
-        <% group.each do |link| %>
-          <% if link %>
+        <% group.each do |shout| %>
+          <% if shout %>
             <div class="col-md-4">
               <div class="yt_link thumbnail">
-                <%= image_tag "https://img.youtube.com/vi/#{link.uid}/mqdefault.jpg", alt: link.title,
-                              class: 'yt_preview img-rounded', :"data-uid" => link.uid %>
+                <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title,
+                              class: 'yt_preview img-rounded', :"data-uid" => shout.uid %>
  
                 <div class="caption">
-                  <h5><%= link.title %></h5>
-                  <p>Author: <b><%= link.author %></b></p>
-                  <p>Duration: <b><%= link.duration %></b></p>
+                  <h5><%= shout.title %></h5>
+                  <p>Author: <b><%= shout.author %></b></p>
+                  <p>Duration: <b><%= shout.duration %></b></p>
                 </div>
               </div>
             </div>
