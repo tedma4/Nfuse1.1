@@ -1,7 +1,7 @@
 <!-- *Start* Views/pages/home.html -->
 <% if signed_in? %>
 <!-- *START* Views/users/hub.html.erb  -->
-<div class="subNav">
+<!--<div class="subNav">
 <ul class="subNavList">
   <li>        
     <%= link_to root_path do %>
@@ -16,7 +16,7 @@
     explore
   </li>
 </ul>
-</div>
+</div> -->
 <div class="center block hub_container clearfix mosaicflow">
 <% @timeline.each do |post| %>
     <%= render partial: "users/twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>

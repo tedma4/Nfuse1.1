@@ -1,42 +1,23 @@
 <!-- *Start* Views/users/_twitter_post.html -->
 <div class="individual_post mosaicflow__item twitter_post" data-id="<%= post.tweet_id %>" id="content-box-feed">
-  <div class="network_logo">
-    <%= image_tag("Twitter_logo_blue.png", :class => "provider_logo") %>
-  </div>
   <div class="post_main">
-    <div class="post_header">
-      <ul>
-        <li>
-          <%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url, :target => "_blank" %>
-        </li>
-        <li><%= link_to post.user_name, post.user_url, :target => "_blank" %></li>
-        <li>@<%= post.screen_name %></li>
-      </ul>
+    <ul class="post_header">
+      <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url, :target => "_blank" %></li>
+        <li class="user_name"><%= link_to post.user_name, post.user_url, :target => "_blank" %></li>
+        <li class="right"><%= link_to image_tag("Twitter_logo_blue.png", :class => "provider_logo"), post.link_to_tweet, :target => "_blank" %></li>
+    </ul>
+  </div>
+  <div class="post_content">
+    <% if post.tweet_image.present? %>
+      <%= image_tag(post.tweet_image) %>
+    <% end %>
+      <%= post.tweet_text %> 
+  </div>
+  <div class="<%= post.class %>-<%= post.tweet_id %> post_footer">
+    <div class="left"> <%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true  %>      
     </div>
-    <div class="post_content">
-      <ul>
-        <% if post.tweet_image.present? %>
-          <li><%= image_tag(post.tweet_image) %></li>
-        <% end %>
-        <li><%= post.tweet_text %> <%= time_ago_in_words(post.created_time) %> ago</li>
-      </ul>
-      <div class="post_stats">
-        <ul>
-          <li data-twitter-retweet-count><%= link_to "Retweet:", "/twitter/retweet/#{post.tweet_id}" %> <span class="js-twitter-retweet-count"><%= post.retweet_count %></span></li>
-          <li data-twitter-favorite-count="<%= post.tweet_id %>">
-            <%= link_to "Favorite:", "/twitter/favorite/#{post.tweet_id}" %> <span class="js-twitter-favorite-count"><%= post.favorite_count %></span>
-          </li>
-          <li>
-            <%= link_to "View on Twitter", post.link_to_tweet, :target => "_blank" %>
-          </li>
-          <li>
-            <div class="<%= post.class %>-<%= post.tweet_id %>">
-              <%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put,
-                                                                                                        remote: true  %>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div class="right">        
+      <%= time_ago_in_words(post.created_time) %> ago
     </div>
   </div>
 </div>

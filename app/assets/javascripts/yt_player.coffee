@@ -33,7 +33,7 @@ jQuery ->
         }
       })
     else
-      window.ytplayer.loadVideoById(video)
+      window.ytplayer.loadVideoById(shout)
       window.ytplayer.pauseVideo()
     return
 
