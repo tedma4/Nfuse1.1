@@ -2,8 +2,8 @@
 <div class="individual_post instagram_post" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
-      <li>%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url, :target => "_blank" %></li>
-        <li class="user_name"><%= link_to "@#{post.username}", post.user_url, :target => "_blank" %></li>
+      <li><%= link_to image_tag(@user.avatar(:thumb), :class => "user_profile_picture"), feed_user_path(@user), :target => "_blank" %></li>
+        <li class="user_name"><%= link_to "#{@user.full_name}", post.user_url, :target => "_blank" %></li>
         <li class="right"><%= link_to image_tag("Instagram_Icon_Large.png", :class => "provider_logo"), post.link_to_post, :target => "_blank" %></li>
     </ul>
   </div>

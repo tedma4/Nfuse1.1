@@ -29,10 +29,12 @@
             <td><%= f.password_field :password_confirmation %></td>
           </tr>
           <tr>
+            <td><p>Your profile pic</p></td>
             <td><%= f.file_field :avatar %></td>
             <td><%= image_tag @user.avatar(:medium) %></td>
           </tr>
           <tr>
+            <td><p>Your profile banner</p></td>
             <td><%= f.file_field :banner %></td>
             <td><%= image_tag @user.banner(:medium) %></td>
           </tr>

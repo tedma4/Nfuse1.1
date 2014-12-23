@@ -12,6 +12,13 @@
   </div>
 
  <% if signed_in? %> <!-- if signed in _header-->
+  <ul class="navbar-left">
+    <li>
+      <%= form_tag search_path, method: "get", class: "search-bar" do %>
+      <%= text_field_tag :search, params[:search], placeholder: "SooDoo" %>
+      <% end %>
+    </li>
+  </ul>
 
   <div class="inLineRight iconBar">
     <ul id="menu">

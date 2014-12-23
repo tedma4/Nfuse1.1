@@ -24,7 +24,7 @@ module Instagram
     end
 
     def username
-      @post["user"]["username"]
+      @post["user"]["name"]
     end
 
     def user_url
@@ -66,6 +66,10 @@ module Instagram
     def video
       @post["videos"]["standard_resolution"]["url"]
     end
+
+    #def fullname
+    #  @post.user.full_name
+    #end
 
   end
 
