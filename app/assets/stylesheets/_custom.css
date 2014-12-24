@@ -33,7 +33,10 @@ img {
 .block {
   display: inline-block;
 }
+.alert {
+  background-color: green;
 
+}
 /* #Grid =========================================
 ================================================== */
 .center {
@@ -462,7 +465,11 @@ td {
 
 /* #Users
 ================================================== */
-
+.box-main {
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
 
 .userFeedBox {
   background-color: blue;
