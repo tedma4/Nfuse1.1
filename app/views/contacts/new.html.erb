@@ -1,28 +1,39 @@
 <!-- *Start* Views/contacts/new.html -->
 <% provide(:title, 'Contact') %>
+<div class="container_profile">
+  <div align="center" class="box-main drop">
 <% if signed_in? %> <!-- if signed in contacts/new-->
-<div align="center" id="content-box">
   <h2 class="fb-hd">Nprove your Nfuse experience? </h2>
-  <p class="fb-par"> We work hard to make Nfuse an easy and pleasant experience, that’s why we need your help to keep getting better. Any advice you could give us about Nfuse will be awesome, we look forward to hearing from you. Thanks! </p>
+  <p class="fb-par"> We work hard to make Nfuse an easy and pleasant experience, that’s why we need your help to keep getting better. <br> Any advice you could give us about Nfuse will be awesome, we look forward to hearing from you. Thanks! </p>
+  <table class="signupTable">
 
-  <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
-    <%= f.input :full_name, :required => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :message, :as => :text, :required => true %>
-    <div class= "hidden">
-      <%= f.input :nickname, :hint => 'Leave this field blank!' %>
-    </div>
-    <div>
-      </br>
-      <%= f.button :submit, 'Send message', :class=> "btn btn-info" %>
-    </div>
+  <%= simple_form_for @contact, :html => {:class => 'table' } do |f| %>
+<tr>
+  <td></td>
+  <td><%= f.input :full_name, :required => true %></td>
+</tr>
+<tr>
+  <td></td>
+  <td><%= f.input :email, :required => true %></td>
+</tr>
+<tr>
+  <td></td>
+  <td><%= f.input :message, :as => :text, :required => true %></td>
+</tr>
+<tr> 
+<div class= "hidden">
+  <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+</div>
+<tr><td><%= f.button :submit, 'Send message', :class=> "btn btn-info" %></td></tr>
+   
   <% end %>
-  <p class ="fb-par-btm"> If you need to contact us about anything besides feedback just fill out the form and we will get back to you as soon as possible. Nothing on your mind right now? Don’t worry, this form will be available for you to leave us your thoughts whenever you feel like it. </p>
+</table>
+  <p class ="fb-par-btm"> If you need to contact us about anything besides feedback just fill out the form and we will get back to you as soon as possible. <br> Nothing on your mind right now? Don’t worry, this form will be available for you to leave us your thoughts whenever you feel like it. </p>
 </div>
 
 <% else %> <!-- else contacts/new-->
 
-<div align="center" id="content-box">
+
   <h3>Send A Message</h3>
 
   <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>

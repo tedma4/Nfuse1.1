@@ -246,7 +246,10 @@ ul li a:hover + .hidden, .hidden:hover {
   padding: 10px 0;
   display: none;
 }
+.drop{
+  margin-top: 50px;
 
+}
 .navbarBack {
   background-color: rgba(47,48,54,0.8); //#2f3036; 
   overflow: hidden;
@@ -271,7 +274,7 @@ ul li a:hover + .hidden, .hidden:hover {
 .navbar {
   width: 75%;
   //background-color: rgba(47,48,54,0.8); //#2f3036; 
-   margin-left: 12.5%;
+  margin-left: 12.5%;
   margin-right: 12.5%;
   overflow: hidden;
   display: inline;
@@ -461,7 +464,10 @@ td {
 
 }
 
+.hidden{
+  display: hidden;
 
+}
 
 /* #Users
 ================================================== */
