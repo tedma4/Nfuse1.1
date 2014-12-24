@@ -60,6 +60,5 @@ module Twitter
         nil
       end
     end
-
   end
 end

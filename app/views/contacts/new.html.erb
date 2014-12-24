@@ -7,24 +7,24 @@
   <p class="fb-par"> We work hard to make Nfuse an easy and pleasant experience, that’s why we need your help to keep getting better. <br> Any advice you could give us about Nfuse will be awesome, we look forward to hearing from you. Thanks! </p>
   <table class="signupTable">
 
-  <%= simple_form_for @contact, :html => {:class => 'table' } do |f| %>
+  <%= form_for @contact, :html => {:class => 'table' } do |f| %>
 <tr>
-  <td></td>
-  <td><%= f.input :full_name, :required => true %></td>
+  <td><%= f.label :full_name %></td>
+  <td><%= f.text_field :full_name, :required => true %></td>
 </tr>
 <tr>
-  <td></td>
-  <td><%= f.input :email, :required => true %></td>
+  <td><%= f.label :email %></td>
+  <td><%= f.text_field :email, :required => true %></td>
 </tr>
 <tr>
-  <td></td>
-  <td><%= f.input :message, :as => :text, :required => true %></td>
+  <td><%= f.label :message %></td>
+  <td><%= f.text_field :message, :required => true %></td>
 </tr>
 <tr> 
 <div class= "hidden">
-  <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+  <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
 </div>
-<tr><td><%= f.button :submit, 'Send message', :class=> "btn btn-info" %></td></tr>
+<tr><td><%= f.submit :class=> "btn btn-info" %></td></tr>
    
   <% end %>
 </table>

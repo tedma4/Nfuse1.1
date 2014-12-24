@@ -68,6 +68,5 @@ module Twitter
         @last_post_id = nil
       end
     end
-
   end
 end
