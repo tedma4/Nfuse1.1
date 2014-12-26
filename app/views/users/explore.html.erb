@@ -1,20 +1,4 @@
-<!-- *START* Views/users/explore.html.erb  -->
-<!-- <div class="subNav">
-<ul class="subNavList">
-	<li>        
-	  <%= link_to root_path do %>
-	    <%= image_tag('molecule4.png', size: "32x32") %>
-	  <% end %>
-	  hub
-	</li>
-	<li>        
-	  <%= link_to explore_user_path(session[:user_id]) do %>
-	    <%= image_tag('educational27.png', size: "32x32") %>
-	  <% end %>
-	  explore
-	</li>
-</ul> -->
-</div>
+
 <div class="center block explore_container clearfix mosaicflow">
 <% @timeline.each do |post| %>
     <%= render partial: "twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
