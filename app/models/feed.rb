@@ -89,7 +89,7 @@ end
 class Nfuse
 
   class Post
-    delegate :created_at, :user, :pic, :id, to: :shout
+    delegate :created_at, :user, :pic, :id, :commentable_type, to: :shout
 
     attr_reader :provider
     attr_accessor :shout
@@ -131,10 +131,6 @@ class Nfuse
       @shout.user.full_name
     end
 
-    def new_comment
-      @shout.commentable_type.comments.new
-    end
-
     def link?
       @shout.link
     end
@@ -161,6 +157,18 @@ class Nfuse
 
     def pic?
       @shout.pic
+    end
+
+    def user_url
+      feed_user_path(@shout.user)
+    end
+
+    def commentable
+      @shout.commentable
+    end
+
+    def comment
+      @shout.comment
     end
   end
 

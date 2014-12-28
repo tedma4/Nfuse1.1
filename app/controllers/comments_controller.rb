@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
-  before_filter :load_commentable
+  #before_filter :find_commentable
   respond_to :js, :json, :html
 
   def index
@@ -26,6 +26,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @commentable = find_commentable
     @comment = @commentable.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
@@ -65,8 +66,17 @@ class CommentsController < ApplicationController
     redirect_to feed_user_path(@user) if @event.nil?
   end
 
-  def load_commentable
-    resource, id = request.path.split('/')[1, 2]
-    @commentable = resource.singularize.classify.constantize.find(id)
+  #def load_commentable
+  #  resource, id = request.path.split('/')[1, 2]
+  #  @commentable = resource.singularize.classify.constantize.find(id)
+  #end
+
+  def find_commentable
+    params.each do |name, value|
+        if name =~ /(.+)_id$/
+            return $1.classify.constantize.find(value)
+        end
+    end
+    raise ActiveRecord:NoRecord.new("Couldn\'t find it captain!")
   end
 end

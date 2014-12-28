@@ -3,8 +3,8 @@ class Shout < ActiveRecord::Base
   belongs_to :user  
   validates :user_id, presence: true
   has_many :comments, :as => :commentable
-  after_create :this_is_video!
-  after_create :this_is_link!
+  before_create :this_is_video!
+  before_create :this_is_link!
   acts_as_votable
 
   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
