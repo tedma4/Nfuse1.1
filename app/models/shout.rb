@@ -3,8 +3,7 @@ class Shout < ActiveRecord::Base
   belongs_to :user  
   validates :user_id, presence: true
   has_many :comments, :as => :commentable
-  after_create :this_is_video!
-  after_create :this_is_link!
+  before_create :set_content_type
   acts_as_votable
 
   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
@@ -20,13 +19,12 @@ class Shout < ActiveRecord::Base
                             :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
                                         }, :processors => [:ffmpeg, :qtfaststart]
 
+  def set_content_type
+    self.is_video = !self.snip_file_name.nil?
+    self.is_link = !self.link.nil?
 
-  def this_is_video!
-    update_attribute(:is_video, true) if !self.snip_file_name.nil?
-  end
-
-  def this_is_link!
-    update_attribute(:is_link, true) if self.snip_file_name.nil? || self.pic_file_name.nil?
+    # parse link
+    if self.is_link
       uid = link.match(YT_LINK_FORMAT)
       self.uid = uid[2] if uid && uid[2]
       if self.uid.to_s.length != 11
@@ -38,6 +36,7 @@ class Shout < ActiveRecord::Base
       else
         get_additional_info
       end
+    end
   end
 
   def all_votes
