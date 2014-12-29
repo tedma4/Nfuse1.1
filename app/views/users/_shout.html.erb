@@ -9,15 +9,17 @@
 
   <% if shout.link? %>
     <div class="yt-video">
+      <h4><%= shout.title %></h4>
       <div class="yt-player-wrapper"></div>
       <div class="yt_link thumbnail" id="player-wrapper">
-        <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %>
+        <!-- No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. -->
+        <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %> 
         <div class="caption">
-          <h5><%= shout.title %></h5>
-          <p>Author: <b><%= shout.author %></b></p>
-          <p>Duration: <b><%= shout.duration %></b></p>
+                    
+          <!-- <p>Duration: <b><%= shout.duration %></b></p> -->
         </div>
       </div>
+      <p>Author: <b><%= shout.author %></b></p>
     </div>
   <% else shout.pic? %>
     <p class="timeline-user-box">

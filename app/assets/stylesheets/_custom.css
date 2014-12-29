@@ -550,6 +550,9 @@ top: 84px;
 .individual_post {
   display: inline-block;
 }
+#player-wrapper {
+  display: none;
+}
 
 .twitter_post {
   overflow: hidden;
