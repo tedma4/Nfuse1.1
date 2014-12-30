@@ -632,6 +632,11 @@ top: 84px;
   padding: 0;
 }
 
+.yt_link {
+float: right;
+
+}
+
 /* #SeccondNavbar 
 =================================================== */
 .subNav {

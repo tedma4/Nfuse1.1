@@ -12,7 +12,7 @@
       <h4><%= shout.title %></h4>
       <div class="yt-player-wrapper"></div>
       <div class="yt_link thumbnail" id="player-wrapper">
-        <!-- No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. -->
+        <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
         <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %> 
         <div class="caption">
                     
