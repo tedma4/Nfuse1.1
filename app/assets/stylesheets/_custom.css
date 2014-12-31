@@ -45,6 +45,7 @@ img {
 }
 .mosaicflow__column {
     float:left;
+    margin: 0 10px;
 }
 
 .mosaicflow__item {
@@ -52,6 +53,8 @@ img {
     width:100%;
     height:auto;
     padding: 5px;
+    margin-bottom: 10px;
+
 }
 
 .containerMain{
@@ -549,6 +552,7 @@ top: 84px;
 ================================================= */
 .individual_post {
   display: inline-block;
+  border-radius: 15px;
 }
 #player-wrapper {
   display: none;
