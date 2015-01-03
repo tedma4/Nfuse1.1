@@ -17,8 +17,8 @@
         <%= image_tag @user.banner(:large) %> <br>
               
        <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
-        <% end %>
-      <%= link_to "skip this step", next_wizard_path %>
+        <% end %><br><br>
+      <%= link_to "Skip step", next_wizard_path %>
     </div>
   </div>
 <!-- *End* Views/callback_links/avatar_pic.html -->

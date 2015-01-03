@@ -1,23 +1,23 @@
 class Shout < ActiveRecord::Base
   require 'paperclip-ffmpeg'
-   belongs_to :user  
-   validates :user_id, presence: true
-   has_many :comments, :as => :commentable
-   before_create :set_content_type
-   acts_as_votable
+  belongs_to :user  
+  validates :user_id, presence: true
+  has_many :comments, :as => :commentable
+  acts_as_votable
  
-   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
-   validates :link, format: YT_LINK_FORMAT, allow_blank: true
+  YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
+  validates :link, allow_blank: true, format: YT_LINK_FORMAT
+  before_create :set_content_type
+
+  attr_accessor :content, :pic, :photo_delete, :snip, :video_delete#, dependent: :destroy
+  has_destroyable_file :pic, :snip
+  has_attached_file :pic, :styles => { :thumb => "600x600#", :medium => "300x300#", :small => "160x160#"}
  
-   attr_accessor :content, :pic, :photo_delete, :snip, :video_delete#, dependent: :destroy
-   has_destroyable_file :pic, :snip
-   has_attached_file :pic, :styles => { :thumb => "600x600#", :medium => "300x300#", :small => "160x160#"}
+  validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
  
-   validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
- 
-   has_attached_file :snip, :styles => {
-                             :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
-                                         }, :processors => [:ffmpeg, :qtfaststart]
+  has_attached_file :snip, :styles => {
+                           :mobile => {:geometry => "400x300", :format => 'ogg', :streaming => true}
+                                        }, :processors => [:ffmpeg, :qtfaststart]
  
   def set_content_type
     self.is_video = !self.snip_file_name.nil?

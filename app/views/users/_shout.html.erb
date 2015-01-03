@@ -30,17 +30,17 @@
   <div class="<%= shout.class %>-<%= shout.id %>">
     <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> | 
     <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %>
-    <%= pluralize shout.comments_count, "comment" %>
+    <%#= pluralize shout.comments_count, "comment" %>
   </div>
-  <div class="post_comments">
+  <!--<div class="post_comments">
     <ul>
-      <% shout.comments.each do |comment| %>
-        <li><%= image_tag comment.user.avatar(:thumb) %>
-          <%= comment.user.full_name %>
-          <%= comment.body %></li>
-      <% end %>
+      <%# shout.comments.each do |comment| %>
+        <li><%#= image_tag comment.user.avatar(:thumb) %>
+          <%#= comment.user.full_name %>
+          <%#= comment.body %></li>
+      <%# end %>
     </ul>
-    <!--<%#= form_for([shout, Comment.new]) do |f| %>
+    <%#= form_for([shout, Comment.new]) do |f| %>
 
       <div class="field">
         <%#= f.text_area :body, rows: 8 %>
@@ -48,6 +48,6 @@
       <div class="actions">
         <%#= f.submit %>
       </div>
-    <%# end %>  -->
-  </div>
+    <%# end %>  
+  </div>-->
 </div>

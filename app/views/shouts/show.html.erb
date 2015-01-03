@@ -28,11 +28,11 @@
   <div class="<%= @shout.class %>-<%= @shout.id %>">
 	  <%= link_to "Like", like_shout_path(@shout), method: :put %><%= @shout.like_score %> | 
 	  <%= link_to "Dislike", dislike_shout_path(@shout), method: :put %><%= @shout.dislike_score %>
-	  <%= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
+	  <%#= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 	</div>
-	<div>
-		<div><%= render "comments/comments" %></div>
-		<div><%= render "comments/form" %></div>
-	</div>
+	<!--<div>
+		<div><%#= render "comments/comments" %></div>
+		<div><%#= render "comments/form" %></div>
+	</div>-->
 </div>
 <!-- *End* Views/shouts/show.html -->
