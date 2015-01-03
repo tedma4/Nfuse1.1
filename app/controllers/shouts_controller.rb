@@ -69,7 +69,7 @@ class ShoutsController < ApplicationController
     unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
       @shout.like_by current_user
     end
-    render 'like'
+    redirect_to @shout
   end
 
   def dislike

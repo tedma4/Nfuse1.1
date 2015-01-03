@@ -1,7 +1,7 @@
 <!-- *Start* Views/shouts/show.html -->
 <div class="visible-md visible-lg container_profile">
 	<div class="user-box">
-		<%= image_tag @shout.user.avatar.url(:thumb), class: 'user' %>
+		<%= image_tag @shout.user.avatar(:thumb), class: 'user' %>
 		<%= link_to @shout.user.full_name, @shout.user %>
 		<%= image_tag "beaker.fw.png", size: "50x50" %>
 	</div>

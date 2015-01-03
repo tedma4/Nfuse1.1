@@ -22,15 +22,15 @@
 
   <div class="inLineRight iconBar">
     <ul id="menu">
-      <li>        
-    <%= link_to explore_user_path(session[:user_id]) do %>
-      <%= image_tag('educational27.png', size: "32x32") %>
-    <% end %>
-      </li>
         <li>        
           <%= link_to root_path do %>
           <%= image_tag('home1.fw.png', size: "32x32") %>
           <% end %>
+        </li>
+        <li>        
+        <%= link_to explore_user_path(session[:user_id]) do %>
+          <%= image_tag('educational27.png', size: "32x32") %>
+        <% end %>
         </li>
         <li> 
           <%= link_to feed_user_path(session[:user_id]) do %>
