@@ -9,16 +9,36 @@
       <%= render 'shared/error_messages', object: f.object %>
         <h2>Upload a Profile Picture</h2>
 
-        <%= f.file_field :avatar %>
+        <%= f.file_field :avatar, id: "pictureInput"  %>
         <%= image_tag @user.avatar(:medium) %> <br>
+        <div id="target"></div>
+        
         <h2>Upload a Profile Banner</h2>
       
-        <%= f.file_field :banner %>
+        <%= f.file_field :banner, id: "pictureInput"  %>
         <%= image_tag @user.banner(:large) %> <br>
+        <div id="target"></div>
               
        <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
         <% end %><br><br>
       <%= link_to "Skip step", next_wizard_path %>
     </div>
+  <script>
+    $(function() {
+      $('#pictureInput').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#target').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
   </div>
 <!-- *End* Views/callback_links/avatar_pic.html -->

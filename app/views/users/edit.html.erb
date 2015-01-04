@@ -30,13 +30,15 @@
           </tr>
           <tr>
             <td><p>Your profile pic</p></td>
-            <td><%= f.file_field :avatar %></td>
+            <td><%= f.file_field :avatar, id: "pictureInput" %></td>
             <td><%= image_tag @user.avatar(:medium) %></td>
+            <div id="target"></div>
           </tr>
           <tr>
             <td><p>Your profile banner</p></td>
-            <td><%= f.file_field :banner %></td>
+            <td><%= f.file_field :banner, id: "pictureInput" %></td>
             <td><%= image_tag @user.banner(:medium) %></td>
+            <div id="target"></div>
           </tr>
           <tr>
             <td><%= f.label :gender, "Gender" %></td>
@@ -148,8 +150,25 @@
           </tr>
 
         <% end %>
-          </table>
-            </div>
-          </div>
+      </table>
+    </div>
 
+  <script>
+    $(function() {
+      $('#pictureInput').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#target').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+</div>
 <!-- *End* Views/users/edit.html.erb  -->
