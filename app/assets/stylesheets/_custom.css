@@ -565,17 +565,19 @@ top: 84px;
 
 .twitter_post {
   overflow: hidden;
-  border: 2px solid aqua;
+  /*border: 2px solid aqua; */
+  box-shadow: 5px 5px rgba(0,200,200,0.8);
 }
 
 .nFuse_post {
   overflow: hidden;
-  border: 2px solid black;
+  /*border: 2px solid black; */
+  box-shadow: 5px 5px rgba(200,200,200,0.8);
 }
 
 .instagram_post {
   overflow: hidden;
-  border: 2px solid tan;
+  box-shadow: 10px 10px rgba(205,179,139,0.8);
 }
 
 .facebook_post {
