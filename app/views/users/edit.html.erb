@@ -36,9 +36,9 @@
           </tr>
           <tr>
             <td><p>Your profile banner</p></td>
-            <td><%= f.file_field :banner, id: "pictureInput" %></td>
+            <td><%= f.file_field :banner, id: "pictureInput2" %></td>
             <td><%= image_tag @user.banner(:medium) %></td>
-            <div id="target"></div>
+            <div id="target2"></div>
           </tr>
           <tr>
             <td><%= f.label :gender, "Gender" %></td>
@@ -164,6 +164,24 @@
           console.log(file);
           img.src = file.target.result;
           $('#target').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+
+  <script>
+    $(function() {
+      $('#pictureInput2').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#target2').html(img);
         }
         reader.readAsDataURL(image);
         console.log(files);
