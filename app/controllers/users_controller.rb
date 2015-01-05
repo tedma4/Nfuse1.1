@@ -103,6 +103,8 @@ class UsersController < ApplicationController
       timeline << fetch_feed(Feed.new(user), user)
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+      #@poster_recipient_profile_hash = feed.poster_recipient_profile_hash
+      #@commenter_profile_hash = feed.commenter_profile_hash
     render "explore"
   end
 

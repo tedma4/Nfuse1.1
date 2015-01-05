@@ -11,6 +11,11 @@
       </ul>
     </div>
   <% end %>
+    <h3>What's on your Mind?</h3>
+  <div class="visible-xs">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
   <div class="uploads">
     <h3>Upload Photo</h3>
   <div class="visible-xs">
@@ -27,7 +32,7 @@
   </div>
   <!-- f.file_field :photo %> !-->
   <div class="center">
-    <%= f.submit :class => "btn btn-info" %>
+    <%= f.submit "Create Post", :class => "btn btn-info" %>
   </div>
 
   </div>

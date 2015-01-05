@@ -15,9 +15,9 @@
         
         <h2>Upload a Profile Banner</h2>
       
-        <%= f.file_field :banner, id: "pictureInput"  %>
+        <%= f.file_field :banner, id: "pictureInput2"  %>
         <%= image_tag @user.banner(:large) %> <br>
-        <div id="target"></div>
+        <div id="target2"></div>
               
        <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
         <% end %><br><br>
@@ -34,6 +34,23 @@
           console.log(file);
           img.src = file.target.result;
           $('#target').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+  <script>
+    $(function() {
+      $('#pictureInput2').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#target2').html(img);
         }
         reader.readAsDataURL(image);
         console.log(files);
