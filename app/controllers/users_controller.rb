@@ -96,10 +96,11 @@ class UsersController < ApplicationController
 
   def explore
     @user = User.find(params[:id])
-    @providers = Providers.for(@user)
     feed = Feed.new(@user)
+    @providers = Providers.for(@user)
     @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
     @commenter_profile_hash = feed.commenter_profile_hash
+    
     timeline = []
     @users = User.where.not(id: current_user.followed_users || current_user.id)
     @users.each do |user|

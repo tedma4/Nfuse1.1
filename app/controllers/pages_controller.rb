@@ -4,8 +4,8 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @user = User.find(session[:user_id])
-      @providers = Providers.for(@user)
       feed = Feed.new(@user)
+      @providers = Providers.for(@user)
       @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
       @commenter_profile_hash = feed.commenter_profile_hash
       timeline = []
