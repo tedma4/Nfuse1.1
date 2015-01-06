@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   has_attached_file :banner, styles: { larger: "851x315#", medium: "300x300#" }, 
-                                default_url: "default2.jpeg"
+                                default_url: "default2.png"
                                 #:url  => "/assets/images/:id/:style/:basename.:extension",
                                 #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
 
