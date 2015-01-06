@@ -566,7 +566,7 @@ top: 84px;
 .twitter_post {
   overflow: hidden;
   /*border: 2px solid aqua; */
-  box-shadow: 5px 5px rgba(0,200,200,0.8);
+  box-shadow: 5px 5px rgba(64,153,255,0.8);
 }
 
 .nFuse_post {
@@ -577,7 +577,7 @@ top: 84px;
 
 .instagram_post {
   overflow: hidden;
-  box-shadow: 10px 10px rgba(205,179,139,0.8);
+  box-shadow: 5px 5px rgba(205,179,139,0.8);
 }
 
 .facebook_post {
