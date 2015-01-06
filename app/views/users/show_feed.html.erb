@@ -2,7 +2,7 @@
 <!-- Start of regular page Show_feed-->
 <% provide(:title, @title) %>
   <div class="container_profile">
-    <div><%= image_tag @user.banner(:large), class: "banner" %> </div>
+    <div><%= image_tag @user.banner(:larger), class: "banner" %> </div>
       <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
         <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%></h1>
           <ul class="inLineRight">

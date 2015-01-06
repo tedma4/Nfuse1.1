@@ -16,7 +16,7 @@
         <h2>Upload a Profile Banner</h2>
       
         <%= f.file_field :banner, id: "pictureInput2"  %>
-        <%= image_tag @user.banner(:large) %> <br>
+        <%= image_tag @user.banner(:medium) %> <br>
         <div id="target2"></div>
               
        <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
