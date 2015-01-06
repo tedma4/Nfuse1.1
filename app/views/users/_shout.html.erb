@@ -1,11 +1,13 @@
 <!-- *Start* Views/users/_shout.html -->
 <div class="visible-md visible-lg individual_post nFuse_post mosaicflow__item" data-id="<%= shout.id %>" data-provider="<%= shout.provider %>">
-  <p id="notice"><%= notice %></p>
-  <div class="timeline-user-box">
-    <%= image_tag shout.user.avatar(:thumb), class: 'user' %>
-    <%= link_to shout.user.full_name, shout.user %>
-    <%= image_tag "Beaker_new.png", size: "50x50" %>
-  </div>
+  <!--<p id="notice"><%#= notice %></p>-->
+  <div class="post_main">
+    <ul class="post_header">
+      <li><%= link_to image_tag(shout.user.avatar(:thumb), :class => "user_profile_picture"), feed_user_path(shout.user) %></li>
+      <li class="user_name"><%= link_to shout.user.full_name, feed_user_path(shout.user) %></li>
+      <li class="right"><%= image_tag "Beaker_new.png", size: "50x50" %></li>
+    </ul>
+  </div><br>
 
   <% if shout.link? %>
     <div class="yt-video">
