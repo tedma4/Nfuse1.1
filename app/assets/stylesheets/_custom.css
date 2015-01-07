@@ -582,7 +582,7 @@ top: 84px;
 
 .facebook_post {
   overflow: hidden;
-  border: 2px solid  blue;
+  box-shadow: 5px 5px rgba(59,89,152,0.8);
 }
 #content-box-profile {
  height: 100vh;
