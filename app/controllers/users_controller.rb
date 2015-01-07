@@ -98,6 +98,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     feed = Feed.new(@user)
     @providers = Providers.for(@user)
+    @unauthed_accounts = feed.unauthed_accounts
     @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
     @commenter_profile_hash = feed.commenter_profile_hash
     
