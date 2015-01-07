@@ -8,19 +8,18 @@
   <%= render partial: "unauthed_accounts" %>
 <% end %>
 <div class="clearfix mosaicflow">
-<% if @timeline.present? %>
-  <% @timeline.each do |post| %>
-    <% if post.provider == 'twitter' %>
-      <%= render partial: "twitter_post", locals: {post: post} %>
-    <% elsif post.provider == "instagram" %>
-      <%= render partial: "instagram_post", locals: {post: post} %>
-    <% elsif post.provider == "facebook" %>
-      <%= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
-    <% elsif post.provider == "nfuse" %>
-      <%=  render partial: 'users/shout', locals: {shout: post} %>
+  <% if @timeline.present? %>
+    <% @timeline.each do |post| %>
+      <% if post.provider == 'twitter' %>
+        <%= render partial: "twitter_post", locals: {post: post} %>
+      <% elsif post.provider == "instagram" %>
+        <%= render partial: "instagram_post", locals: {post: post} %>
+      <% elsif post.provider == "facebook" %>
+        <%= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
+      <% elsif post.provider == "nfuse" %>
+        <%=  render partial: 'users/shout', locals: {shout: post} %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
   <div class="load_posts_link">
     <%= link_to "Load more posts", @load_more_url, id: "load-more" %>
   </div>
@@ -36,4 +35,5 @@
     <% end %>
   </div>
 <% end %>
+</div>
 <!-- *End* Views/users/feed.html.erb  -->
