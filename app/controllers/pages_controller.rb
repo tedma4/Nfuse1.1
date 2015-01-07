@@ -4,15 +4,15 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @user = User.find(session[:user_id])
-      feed = Feed.new(@user)
       @providers = Providers.for(@user)
-      @unauthed_accounts = feed.unauthed_accounts
-      @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
-      @commenter_profile_hash = feed.commenter_profile_hash
 
       timeline = []
       current_user.followed_users.each do |user|
-        timeline << fetch_feed( Feed.new(user), user )
+        feed=Feed.new(user)
+        timeline << fetch_feed( feed, user )
+      @unauthed_accounts = feed.unauthed_accounts
+      @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
+      @commenter_profile_hash = feed.commenter_profile_hash
       end
       @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
       render "home"

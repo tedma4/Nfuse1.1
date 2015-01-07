@@ -6,11 +6,11 @@
   <div class="post_main">
     <div class="post_header">
       <ul id="facebook_post_header">
-        <% if poster_recipient_profile_hash.exists?(post.from.id) %>
+        <%# if poster_recipient_profile_hash.has_key?(post.from.id) %>
           <li>
             <%= link_to image_tag(poster_recipient_profile_hash[post.from.id], :class => "user_profile_picture"), post.from.link_to_profile, :target => "_blank" %>
           </li>
-        <% end %>
+        <%# end %>
         <li><%= link_to post.from.name, post.from.link_to_profile, :target => "_blank" %></li>
         <% if post.to %>
           <li><%= image_tag("arrow.png", :class => "arrow_image") %></li>
