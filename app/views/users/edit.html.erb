@@ -45,7 +45,7 @@
             <td><%= f.select :gender, [["Not Telling", 1], ["Male", 2], ["Female", 3]] %></td>
           </tr>
           <tr>
-            <td><%= f.label :birthdate, "Bithdate" %></td>
+            <td><%= f.label :birthdate, "Birthdate" %></td>
             <td><%= f.date_select :birthdate, {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' },:start_year => Time.now.year-70, :end_year => Time.now.year} %></td>
           </tr>
           <tr>

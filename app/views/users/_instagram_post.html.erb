@@ -24,7 +24,7 @@
           </li>
         </ul>
       <% end %>
-    </div>
+    </div><br>
   <div class="<%= post.class %>-<%= post.id %> post_footer">
     <%= link_to "Like", like_shout_path(post.id, key: :instagram), method: :put, remote: true %> | 
     <%=link_to "Dislike", dislike_shout_path(post.id, key: :instagram), method: :put,  remote: true  %>
