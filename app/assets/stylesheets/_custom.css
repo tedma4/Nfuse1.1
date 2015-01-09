@@ -3,6 +3,7 @@
   padding: 0;
   background-color: #D2DADD;  
 }
+
 .container_app_html {
   margin:-40px 0 0 0;
   padding:0;
@@ -255,7 +256,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 .navbarBack {
   background-color: rgba(47,48,54,0.8); //#2f3036; 
-  overflow: hidden;
+ 
   height: 60px;
   width: 100vw;
   margin: 0;
@@ -276,13 +277,14 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 .navbar {
   width: 75%;
-  //background-color: rgba(47,48,54,0.8); //#2f3036; 
+ 
   margin-left: 12.5%;
   margin-right: 12.5%;
-  overflow: hidden;
+  
   display: inline;
   position: fixed;
   margin-bottom: 0;
+  z-index: 5;
 }
 
 .inLineLeft .inLineRight {
@@ -312,14 +314,14 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 .menuDropdown li{
   
-  z-index:5;
+  z-index:3;
 }
 .menuDropdown {
   position: fixed;
   right: 13vw;
   overflow:show;
   top: 42px;
-  z-index: 100;
+  z-index: 3;
 
 }
 .iconBar {
@@ -493,18 +495,22 @@ td {
 }
 
 #profile-picture {
-  position: absolute;
   margin-top: -225px;
   margin-left: 35px;
-  z-index: 25;
   width: 200px;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 .profile_bar{
-  #background-color: white;
-  height:50px;
+  background-color: white;
+  height:70px;
+  margin-top: -23px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 .profile_bar .inLineLeft {
   margin-left:35px; 
+  margin-top: 23px;
 }
 .profile_bar .stats {
   margin-left: 40%;
@@ -586,7 +592,7 @@ top: 84px;
 }
 #content-box-profile {
  height: 100vh;
- overflow: hidden;
+ 
  top: 0;
 }
 .post_main{
