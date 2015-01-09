@@ -630,11 +630,19 @@ top: 84px;
   padding: 25px;
 }
 .post_footer{
-  margin: 0;
+  margin: 0px;
   padding: 0;
 }
 .post_footer .right{
   font-size: .6em;
+}
+.post_footer_li{
+  margin-top: 0px;
+  padding: 0;
+  text-decoration: none;
+  height: auto;
+  display: inline;
+  list-style-type: none;
 }
 .right{
   float: right;
