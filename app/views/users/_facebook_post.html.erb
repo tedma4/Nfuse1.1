@@ -73,11 +73,11 @@
       </ul>
     </div>-->
   <div class="<%= post.class %>-<%= post.id %> post_footer" >
-    <%= link_to "Like", like_shout_path(post.id, key: :facebook), method: :put, remote: true %> | 
-    <%= link_to "Dislike", dislike_shout_path(post.id, key: :facebook), method: :put, remote: true  %>
-    <div class="right">     
-    <%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago
-    </div>  
+    <ul class="post_footer_li">
+      <li><%= link_to "Like", like_shout_path(post.id, key: :facebook), method: :put, remote: true %> | 
+        <%= link_to "Dislike", dislike_shout_path(post.id, key: :facebook), method: :put, remote: true  %></li>
+      <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
+    </ul>
   </div>
   <!--<%# if post.comments %>
     <div class="post_comments">

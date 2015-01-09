@@ -30,9 +30,12 @@
       <%= shout.content %>
     </p>
   <% end %>
-  <div class="<%= shout.class %>-<%= shout.id %>">
-    <%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> | 
-    <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %>
+  <div class="<%= shout.class %>-<%= shout.id %> post_footer">
+    <ul class="post_footer_li">
+      <li><%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> |
+        <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %></li>
+      <li class="right"><%= time_ago_in_words(shout.created_time) %> ago</li>
+    <ul>
     <%#= pluralize shout.comments_count, "comment" %>
   </div>
   <!--<div class="post_comments">
