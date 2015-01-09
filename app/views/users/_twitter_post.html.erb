@@ -12,13 +12,13 @@
       <%= image_tag(post.tweet_image) %>
     <% end %>
       <%= post.tweet_text %> 
-  </div>
+  </div><br>
   <div class="<%= post.class %>-<%= post.tweet_id %> post_footer">
-    <div class="left"> <%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> | <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true  %>      
-    </div><br>
-    <div class="right">        
-      <%= time_ago_in_words(post.created_time) %> ago
-    </div>
+    <ul class="post_footer_li">
+      <li><%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> |
+        <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true  %></li>
+      <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
+    </ul>
   </div>
 </div>
 <!-- *End* Views/users/_twitter_post.html -->
