@@ -22,7 +22,7 @@
 
   <div class="inLineRight iconBar">
     <ul id="menu">
-        <li>        
+        <li>
           <%= link_to root_path do %>
           <%= image_tag('home1.fw.png', size: "32x32") %>
           <% end %>
@@ -32,12 +32,12 @@
           <%= image_tag('educational27.png', size: "32x32") %>
         <% end %>
         </li>
-        <li> 
+        <li>
           <%= link_to feed_user_path(session[:user_id]) do %>
           <%= image_tag('profile.fw.png', size: "32x32") %>
           <% end %>
         </li>
-        <li>  
+        <li>
           <%= link_to new_shout_path do %>
           <%= image_tag('add50.fw.png', size: "32x32") %>
           <% end %>

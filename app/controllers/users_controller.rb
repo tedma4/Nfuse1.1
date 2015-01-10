@@ -48,7 +48,6 @@ class UsersController < ApplicationController
   def update
     #This updates a user's profile with the information they edited and saves it
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
       redirect_to feed_user_path(@user)
     else
       render 'edit'
