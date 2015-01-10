@@ -7,7 +7,6 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'sprockets', '~> 2.11.0'
 #This is used to encrypt a user's password
 gem 'bcrypt', '~> 3.1.7'
-gem 'omniauth-identity'
 #This adds pagination to pages that need it
 gem 'will_paginate', '~> 3.0.4'
 gem 'bootstrap-will_paginate', '~> 0.0.9'
@@ -16,7 +15,13 @@ gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem 'paperclip'
+gem "paperclip", "~> 4.2"
+#gem 'panda'
+# Handles video upload
+gem "paperclip-ffmpeg", "~> 1.0.0"
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'activeadmin', github: 'activeadmin'
+gem 'wicked'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'
@@ -28,6 +33,8 @@ gem 'omniauth-twitter', '~> 1.0.1'
 gem 'fb_graph'
 #This allows the use of the twitter api
 gem 'twitter', '~> 5.8.0'
+gem 'youtube_it', '~> 2.4.0'
+gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth 
 gem 'omniauth-instagram', '~> 1.0.1'
 gem 'faraday', '~> 0.9.0'
@@ -37,6 +44,8 @@ gem 'newrelic_rpm', '~> 3.8.1.221'
 #This allows us to use burbon css file
 gem 'bourbon', '~> 3.2.3'
 gem 'neat', '~> 1.5.1'
+gem 'seed-fu', '~> 2.3'
+
 #This allows the use of the faye websocket server
 gem 'private_pub'
 gem 'thin'
@@ -45,15 +54,18 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   #This allows us to test
-  gem 'pry'
-  gem 'pry-byebug'
-  gem 'rspec-rails', '~> 2.13.1'
-  gem 'brakeman', :require => false
-  gem 'rubocop', '0.20.1', require: false
 
+  #gem 'pry'
+  #gem 'pry-byebug'
+  #gem 'rspec-rails', '~> 2.13.1'
+  #gem 'brakeman', :require => false
+
+  #gem 'rubocop', '0.20.1', require: false
 end
 #These are the gems used in the test enviornment
 group :test do
+  gem 'rspec-rails', '~> 2.13.1'
+  gem 'brakeman', :require => false
   gem 'capybara', '~> 2.1.0'
   gem 'factory_girl_rails', '~> 4.2.0'
   # gem 'rb-notifu', '0.0.4'

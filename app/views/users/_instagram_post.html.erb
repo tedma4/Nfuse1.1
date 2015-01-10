@@ -1,55 +1,36 @@
-<div class="individual_post instagram_post" id="content-box-feed">
-  <div class="network_logo">
-    <%= image_tag("Instagram_Icon_Large.png", :class => "provider_logo" ) %>
-  </div>
+<!-- *Start* Views/users/_instagram_post.html -->
+<div class="individual_post instagram_post mosaicflow__item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
-    <div class="post_header">
-      <ul>
-        <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url, :target => "_blank" %></li>
-        <li><%= link_to "@#{post.username}", post.user_url, :target => "_blank" %></li>
-      </ul>
-    </div>
+    <ul class="post_header">
+      <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), feed_user_path(@user) %></li>
+        <li class="user_name"><%= link_to "#{post.full_name}", post.user_url, :target => "_blank" %></li>
+      <li class="right"><%= link_to image_tag("Instagram_Icon_Large.png", :class => "provider_logo"), post.link_to_post, :target => "_blank" %></li>
+    </ul>
+  </div>
     <div class="post_content">
       <% if post.type == "image" %>
         <ul>
           <li><%= image_tag(post.low_resolution_image_url) %></li>
           <% if post.caption.present? %>
-            <li><%= post.caption_text %> <%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
+            <li><%= post.caption_text %></li>
           <% end %>
-        </ul>
+        </ul><br>
       <% elsif post.type == "video" %>
         <ul>
           <li>
-            <video width="360" height="360" controls>
+            <video width="200" height="200" controls>
               <source src="<%= post.video %>" type="video/mp4">
             </video>
           </li>
         </ul>
       <% end %>
-      <div class="post_stats">
-        <ul>
-          <li>Comment: <%= post.comments_count %></li>
-          <li data-instagram-like-count="<%= post.id %>"><%= link_to "Like:", "/instagram/like/#{post.id}" %> <span class="js-instagram-like-count"><%= post.likes_count %></span></li>
-          <li>
-            <%= link_to "View on Instagram", post.link_to_post, :target => "_blank" %>
-          </li>
-        </ul>
-      </div>
-      <% if post.comments_count > 0 %>
-        <div class="post_comments">
-          <ul>
-            <% post.comments.each do |comment| %>
-              <li class="commenter_profile_picture">
-                <%= link_to image_tag(comment.profile_picture), comment.link_to_profile, :target => "_blank" %>
-              </li>
-              <li class="commenter_username">
-                <%= link_to "@#{comment.username}", comment.link_to_profile, :target => "_blank" %>
-              </li>
-              <li><%= comment.text %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
     </div>
+  <div class="<%= post.class %>-<%= post.id %> post_footer">
+    <ul class="post_footer_li">
+      <li><%= link_to "Like", like_shout_path(post.id, key: :instagram), method: :put, remote: true %> | 
+        <%=link_to "Dislike", dislike_shout_path(post.id, key: :instagram), method: :put,  remote: true  %></li>
+      <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
+    </ul>
   </div>
 </div>
+<!-- *End* Views/users/_instagram_post.html -->

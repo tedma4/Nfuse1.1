@@ -1,0 +1,26 @@
+
+<div class="center block explore_container clearfix mosaicflow">
+<!--<%# @timeline.each do |post| %>
+    <%#= render partial: "twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
+    <%#= render partial: "instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
+    <%#= render partial: "users/shout", locals: {shout: post } if post.is_a? Nfuse::Post %>
+		<%#= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} if post.is_a? Facebook::DefaultPost %>
+<%# end %>-->
+
+<% @timeline.each do |post| %>
+  <% if post.provider == "twitter" %>
+    <%= render partial: "users/twitter_post", locals: {post: post} %>
+  <% elsif post.provider == "instagram" %>
+    <%= render partial: "users/instagram_post", locals: {post: post} %>
+  <% elsif post.provider == "facebook" %>
+    <%= render partial: "users/facebook_post", locals: {post: post, 
+                                                        poster_recipient_profile_hash: @poster_recipient_profile_hash, 
+                                                        commenter_profile_hash: @commenter_profile_hash} %>
+  <% elsif post.provider == "nfuse" %>
+    <%=  render partial: "users/shout", locals: {shout: post} %>
+  <% end %>
+<% end %>
+
+
+</div>
+<!-- *End* Views/users/explore.html.erb  -->

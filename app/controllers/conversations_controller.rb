@@ -1,17 +1,16 @@
 class ConversationsController < ApplicationController 
   #This ensures that a user must be logged in to send a chat message
   before_action :signed_in_user
-
+  respond_to :json, :js, :html
   layout false
 
   def create
-    #Creates a new conversation b/w the currently logged in user and another user
+    #binding.pry
     if Conversation.between(params[:sender_id],params[:recipient_id]).present?
       @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
     else
       @conversation = Conversation.create!(conversation_params)
     end
- 
     render json: { conversation_id: @conversation.id }
   end
  

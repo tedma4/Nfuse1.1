@@ -1,24 +1,31 @@
 <!DOCTYPE html>
+<!-- *Start* Views/layouts/application.html -->
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><%= full_title(yield(:title)) %></title>
-    <%= stylesheet_link_tag "application", media: "all",
-                                           "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <%= javascript_include_tag 'Mosaic/jquery.mosaicflow.min.js'%>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body><!--app.html body start-->
     <%= render 'layouts/header' %>
-    <div class="container">
+    <div class="container_app_html">
       <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %>">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= value %>
+        </div>
       <% end %>
-        <div class="content_container">
+
+        <div class="content_container_app_html">
           <%= yield %>
         </div>
           <% if signed_in? %>
@@ -28,4 +35,5 @@
       <% end %>
     </div>
   </body>
+  <!-- *End* Views/layouts/application.html -->
 </html>

@@ -54,11 +54,20 @@ $footer-height: 4em;
     margin-top: 0;
   }
 }
+.jumbotronwidth {
+  max-width:100%;
+}
 
 #privacy_policy_container {
   @include outer-container;
     margin: .5em;
   @include media($large-screen) {
     margin: 2em 0 0 0;
+  }
+}
+
+.user-box {
+  img {
+   max-width: 150px;
   }
 }

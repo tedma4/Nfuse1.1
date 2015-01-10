@@ -1,19 +1,11 @@
+<!-- *Start* Views/shared/_stats.html -->
 <% @user ||= current_user %>
 <div class="stats">
-  <a href="<%= feed_user_path(@user) %>">
-    <strong> feed </strong>
-  </a>
-  <a href="<%= bio_user_path(@user) %>">
-    <strong> bio </strong>
-  </a>
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      following: <%= @user.followed_users.count %>
-    </strong>
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      followers: <%= @user.followers.count %>
-    </strong>
-  </a>
+  <ul class="profile_nav_links">
+    <li><%= link_to "feed", feed_user_path(@user) %></li>
+    <li><%= link_to "bio", bio_user_path(@user) %></li>
+    <li><%= link_to "following: #{@user.followed_users.count}", following_user_path(@user) %></li>
+    <li><%= link_to "followers: #{@user.followers.count}", followers_user_path(@user) %></li>
+  </ul>
 </div>
+<!-- *End* Views/shared/_stats.html -->

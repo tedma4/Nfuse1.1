@@ -1,25 +1,43 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
 #This says that the messages'resources are apart of the conversation
   resources :conversations do
-    resources :messages
+    resources :messages, only: [:create]
   end
 
-  resources :identities
+  resources :callback_links
 
   resources :users do
+    resources :conversations
+    resources :shouts
+    resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :hub
+      get :following, :followers, :bio, :feed, :settings, :explore
     end
   end
 
+  resources :shouts do
+    resources :comments
+    member do
+      put "like", to: "shouts#like"
+      put "dislike", to: "shouts#dislike"
+    end
+  end
+  resources :events do
+    resources :comments
+    member do
+      put "like", to: "events#like"
+      put "dislike", to: "events#dislike"
+    end
+  end
+  
   resources :contacts, only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :uploads
   resources :password_resets
   root to: 'pages#home'
-  match '/signup',   to: 'identities#new',       via: 'get'
+  match '/signup',   to: 'users#new',       via: 'get'
   match '/signin',   to: 'sessions#new',         via: 'get'
   match '/signout',  to: 'sessions#destroy',     via: 'delete'
   match '/help',     to: 'pages#help',           via: 'get'
@@ -35,8 +53,8 @@ Rails.application.routes.draw do
   
   get '/auth/instagram/callback', to: 'instagram_registration#create'
   get '/auth/twitter/callback', to: 'twitter_registration#create'
-  get '/auth/facebook/callback', to: 'facebook_registration#create'
   get '/auth/failure', to: 'twitter_registration#failure'
+  get '/auth/facebook/callback', to: 'facebook_registration#create'
 
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
@@ -44,6 +62,7 @@ Rails.application.routes.draw do
   post '/facebook/like/:post_id', to: 'likes#facebook'
 
   match "/auth/identity/callback", to: "sessions#create", via: 'post'
+  match "/auth/identity/register", to: "users#new", via: 'get'
 
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296

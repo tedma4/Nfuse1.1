@@ -23,12 +23,12 @@ module Instagram
       @post["user"]["profile_picture"]
     end
 
-    def username
-      @post["user"]["username"]
+    def full_name
+      @post["user"]["full_name"]
     end
 
     def user_url
-      "http://www.instagram.com/#{username}"
+      "http://www.instagram.com/#{full_name}"
     end
 
     def low_resolution_image_url

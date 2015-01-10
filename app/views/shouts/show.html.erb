@@ -1,0 +1,42 @@
+<!-- *Start* Views/shouts/show.html -->
+<div class="visible-md visible-lg container_profile">
+
+  <div class="post_main">
+    <ul class="post_header">
+	    <li></li><%= image_tag @shout.user.avatar(:thumb), class: 'user' %>
+			<li></li><%= link_to @shout.user.full_name, feed_user_path(@shout.user) %>
+			<li></li><%= image_tag "beaker.fw.png", size: "50x50" %>
+		</ul>
+	</div><br>
+
+	<% if @shout.link? %>
+		<div class="yt-video">
+			<div class="yt-player-wrapper"></div>
+	    <div class="yt_link thumbnail">
+	      <%= image_tag "https://img.youtube.com/vi/#{@shout.uid}/mqdefault.jpg", alt: @shout.title, class: 'yt_preview img-rounded', :"data-uid" => @shout.uid %>
+	      <div class="caption">
+	        <h5><%= @shout.title %></h5>
+	        <p>Author: <b><%= @shout.author %></b></p>
+	        <p>Duration: <b><%= @shout.duration %></b></p>
+		  		<p><%= @shout.content %></p>
+	      </div>
+	    </div>
+	  </div>
+	<% else @shout.pic? %>
+		<p class="user-box">
+		  <%= image_tag @shout.pic.url if @shout.pic.exists? %>
+		  <%= @shout.content %>
+		</p>
+	<% end %>
+
+  <div class="<%= @shout.class %>-<%= @shout.id %>">
+	  <%= link_to "Like", like_shout_path(@shout), method: :put %><%= @shout.like_score %> | 
+	  <%= link_to "Dislike", dislike_shout_path(@shout), method: :put %><%= @shout.dislike_score %>
+	  <%#= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
+	</div>
+	<!--<div>
+		<div><%#= render "comments/comments" %></div>
+		<div><%#= render "comments/form" %></div>
+	</div>-->
+</div>
+<!-- *End* Views/shouts/show.html -->

@@ -20,8 +20,12 @@ class Providers
     @user.tokens.where(provider: 'instagram').count > 0
   end
 
+  def nfuse?
+    @user.posts.where(provider: 'nfuse').count > 0 
+  end
+
   def none?
-    !(facebook? || twitter? || instagram?)
+    !(facebook? || twitter? || instagram? || nfuse?)
   end
 
 end

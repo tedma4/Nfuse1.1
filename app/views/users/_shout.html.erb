@@ -1,0 +1,59 @@
+<!-- *Start* Views/users/_shout.html -->
+<div class="visible-md visible-lg individual_post nFuse_post mosaicflow__item" data-id="<%= shout.id %>" data-provider="<%= shout.provider %>">
+  <!--<p id="notice"><%#= notice %></p>-->
+  <div class="post_main">
+    <ul class="post_header">
+      <li><%= link_to image_tag(shout.user.avatar(:thumb), :class => "user_profile_picture"), feed_user_path(shout.user) %></li>
+      <li class="user_name"><%= link_to shout.user.full_name, feed_user_path(shout.user) %></li>
+      <li class="right"><%= image_tag "Beaker_new.png", size: "50x50" %></li>
+    </ul>
+  </div><br>
+
+  <% if shout.link? %>
+    <div class="yt-video">
+      <h4><%= shout.title %></h4>
+      <div class="yt-player-wrapper"></div>
+      <div class="yt_link thumbnail" id="player-wrapper">
+        <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
+        <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %> 
+        <div class="caption">
+                    
+          <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
+        </div>
+      </div>
+      <p>Author: <b><%= shout.author %></b></p>
+      <p><%= shout.content %></p>
+    </div>
+  <% else shout.pic? %>
+    <p class="timeline-user-box">
+      <%= image_tag shout.pic.url if shout.pic.exists? %>
+      <%= shout.content %>
+    </p>
+  <% end %>
+  <div class="<%= shout.class %>-<%= shout.id %> post_footer">
+    <ul class="post_footer_li">
+      <li><%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> |
+        <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %></li>
+      <li class="right"><%= time_ago_in_words(shout.created_time) %> ago</li>
+    <ul>
+    <%#= pluralize shout.comments_count, "comment" %>
+  </div>
+  <!--<div class="post_comments">
+    <ul>
+      <%# shout.comments.each do |comment| %>
+        <li><%#= image_tag comment.user.avatar(:thumb) %>
+          <%#= comment.user.full_name %>
+          <%#= comment.body %></li>
+      <%# end %>
+    </ul>
+    <%#= form_for([shout, Comment.new]) do |f| %>
+
+      <div class="field">
+        <%#= f.text_area :body, rows: 8 %>
+      </div>
+      <div class="actions">
+        <%#= f.submit %>
+      </div>
+    <%# end %>  
+  </div>-->
+</div>

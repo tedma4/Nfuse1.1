@@ -1,0 +1,41 @@
+<h1>Event</h1>
+
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<h2>Comments</h2>
+
+<%= render "comments/comments" %>
+<%= render "comments/form" %>
+
+
+
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= raw  @event.description %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%= @event.place %>
+</p>
+
+<%= link_to 'Edit', edit_community_event_path(@community, @event) %> |
+<%= link_to 'Back', community_events_path %>
+

@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
-
-  delegate :email, to: :identity
-
-  has_one :identity, dependent: :nullify
+  
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id",
@@ -11,17 +8,35 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   before_create :create_remember_token
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
-                                default_url: "/assets/:style/default.png",
-                                :url  => "/assets/products/:id/:style/:basename.:extension",
-                                :path => ":rails_root/assets/products/:id/:style/:basename.:extension"
+                                default_url: "default.png"
+                                #:url  => "/assets/images/:id/:style/:basename.:extension",
+                                #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+  has_attached_file :banner, styles: { larger: "851x315#", medium: "300x300#" }, 
+                                default_url: "default2.png"
+                                #:url  => "/assets/images/:id/:style/:basename.:extension",
+                                #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
+
+  validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
   
   validates :first_name, :last_name, presence: true
+  before_save { self.email = email.downcase }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  has_secure_password
+  validates :password, length: {minimum: 6}, allow_blank: true
   #This allows a user to have multiple oauth tokens
   has_many :tokens, dependent: :destroy
   has_many :conversations, :foreign_key => :sender_id
 #This sends the email with the password reset token in it
+  has_many :shouts 
+  has_many :comments
+
+  acts_as_voter
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
@@ -94,5 +109,4 @@ class User < ActiveRecord::Base
       self.remember_token = User.digest(User.new_remember_token)
     end
 end
-#<%= link_to image_tag("http://placehold.it/50x50", class: "media-object"), conversation_path(conversation), class: "pull-left" %>
 

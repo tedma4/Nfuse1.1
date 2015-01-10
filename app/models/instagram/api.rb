@@ -1,7 +1,5 @@
 module Instagram
-
-  class Unauthorized < StandardError
-  end
+  class Unauthorized < StandardError; end
 
   class Api
 
@@ -11,30 +9,39 @@ module Instagram
     end
 
     def get_timeline
-      Response.new(
-        Faraday.get("#{create_url}")
-      )
+      Response.new(Faraday.get("#{create_url}"))
     end
 
     def like_post(media_id)
-      Typhoeus.post("https://api.instagram.com/v1/media/#{media_id}/likes?access_token=#{@access_token}")
+      Typhoeus.post("#{media_api}/#{media_id}/likes?access_token=#{@access_token}")
     end
 
     def get_post(media_id)
       Response.new(
-        Typhoeus.get("https://api.instagram.com/v1/media/#{media_id}/?access_token=#{@access_token}")
+        Typhoeus.get("#{media_api}/#{media_id}/?access_token=#{@access_token}")
       )
     end
 
     private
+    # reduce the amount of barewords. (strings)
+
+    def api_https_url
+      'https://api.instagram.com/v1'
+    end
+
+    def media_api
+      api_https_url + '/media'
+    end
+
+    def users_api
+      api_https_url + '/users'
+    end
 
     def create_url
       if @max_id.nil?
-        "https://api.instagram.com/v1/users/self/media/recent/?access_token=#{@access_token}&count=15"
-       # "https://api.instagram.com/v1/users/self/feed?access_token=#{@access_token}&count=5"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=15"
       else
-        "https://api.instagram.com/v1/users/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
-       # "https://api.instagram.com/v1/users/self/feed?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
       end
     end
   end

@@ -13,13 +13,22 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id)
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
-                                   facebook_posts(facebook_pagination_id))
+                                   facebook_posts(facebook_pagination_id),
+                                   users_posts(user_id)
+    )
+  #
   end
 
   private
+  def users_posts(user_id)
+    user = User.find(user_id)
+    user.shouts.map {|shout|
+      Nfuse::Post.new(shout)
+    }
+  end
 
   def twitter_posts(twitter_pagination_id)
     twitter_posts = []
@@ -28,7 +37,7 @@ class Feed
       begin
         twitter_posts = twitter_timeline.posts(twitter_pagination_id).map { |post| Twitter::Post.from(post) }
         @twitter_pagination_id = twitter_timeline.last_post_id
-      rescue Twitter::Error::Forbidden, Twitter::Error::Unauthorized
+      rescue => e
         @unauthed_accounts << "twitter"
       end
       twitter_posts
@@ -75,5 +84,123 @@ class Feed
       @unauthed_accounts << "facebook"
     end
   end
+end
 
+class Nfuse
+
+  class Post
+    delegate :created_at, :user, :pic, :id, :commentable_type, to: :shout
+
+    attr_reader :provider
+    attr_accessor :shout
+
+    def initialize(shout)
+      @shout = shout
+      @provider = "nfuse"
+    end
+
+    def created_time
+      @shout.created_at
+    end
+
+    def content
+      @shout.content
+    end
+
+    def comments_count
+      @shout.comments.count
+    end
+
+    def like_score
+      @shout.get_likes.size
+    end
+
+    def dislike_score
+      @shout.get_dislikes.size
+    end
+
+    def comments
+      @shout.comments { |comment| Comment.from(comment) }
+    end
+
+    def avatar
+      @shout.user.avatar
+    end
+
+    def full_name
+      @shout.user.full_name
+    end
+
+    def link?
+      @shout.link
+    end
+
+    def link
+      @shout.link
+    end
+
+    def uid
+      @shout.uid
+    end
+
+    def title
+      @shout.title
+    end
+
+    def author
+      @shout.author
+    end
+
+    def duration
+      @shout.duration
+    end
+
+    def pic?
+      @shout.pic
+    end
+
+    def user_url
+      feed_user_path(@shout.user)
+    end
+
+    def commentable
+      @shout.commentable
+    end
+
+    def comment
+      @shout.comment
+    end
+  end
+
+  class Comment
+    delegate :created_at, :user, :body, :id, to: :comment
+
+    attr_reader :provider
+    attr_accessor :comment
+
+    def initialize(comment)
+      @comment = comment
+      @provider = "nfuse"
+    end
+
+    def created_time
+      @comment.created_at
+    end
+    
+    def avatar
+      @comment.user.avatar
+    end
+
+    def profile
+      @comment.user
+    end
+
+    def full_name
+      @comment.user.full_name
+    end
+
+    def body
+      @comment.body
+    end
+  end
 end

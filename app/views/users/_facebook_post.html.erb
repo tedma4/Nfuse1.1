@@ -1,95 +1,49 @@
-<div class="individual_post facebook_post">
-  <div class="network_logo">
-    <%= image_tag("FB-f-Logo__blue_50.png", :class => "provider_logo") %>
-  </div>
+<!-- *Start* Views/users/_facebook_post.html -->
+<div class="individual_post facebook_post mosaicflow__item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
-    <div class="post_header">
-      <ul id="facebook_post_header">
-        <% if poster_recipient_profile_hash.has_key?(post.from.id) %>
-          <li>
-            <%= link_to image_tag(poster_recipient_profile_hash[post.from.id], :class => "user_profile_picture"), post.from.link_to_profile, :target => "_blank" %>
-          </li>
-        <% end %>
-        <li><%= link_to post.from.name, post.from.link_to_profile, :target => "_blank" %></li>
-        <% if post.to %>
-          <li><%= image_tag("arrow.png", :class => "arrow_image") %></li>
-          <li><%= link_to post.to.name, post.to.link_to_profile, :target => "_blank" %></li>
-        <% end %>
-        <li><%= time_ago_in_words(post.created_time) %> ago</li>
-      </ul>
-      <div class="subheader">
-        <% if post.application_name %>
-          <ul>
-            <li>via <%= post.application_name %></li>
-          </ul>
-        <% end %>
-      </div>
-    </div>
-    <div class="post_content">
-      <ul>
-        <% if post.story %>
-          <li><%= post.story %></li>
-        <% end %>
-        <% if post.message %>
-          <li><%= post.message %></li>
-        <% end %>
-        <% if post.image %>
-          <li><%= image_tag(post.image) %></li>
-        <% end %>
-        <% if post.caption_text && post.status_type != "shared_story" %>
-          <li><%= post.caption_text %></li>
-        <% end %>
-        <% if post.article_link && post.type == "link" %>
-          <li><%= link_to "View the Link", post.article_link, :target => "_blank" %></li>
-        <% end %>
-      </ul>
-      <% if post.story_tags %>
-        <ul class="story_tags">
-          <% post.story_tags.each do |story_tag| %>
-            <% if story_tag.type == "user" %>
-              <li><%= link_to story_tag.name, story_tag.link_to_profile, :target => "_blank" %></li>
-            <% else %>
-              <li><%= story_tag.name %></li>
-            <% end %>
-          <% end %>
-          <% if post.story_tags.length > 1 %>
-            <li>were tagged in this post.</li>
+    <ul class="post_header">
+      <li class="user_name"><%= link_to post.from.name, post.from.link_to_profile, :target => "_blank" %></li>
+      <li class="right"><%= link_to image_tag("FB-f-Logo__blue_50.png", :class => "provider_logo"), post.link_to_post, target: "_blank" %></li>
+    </ul>
+  </div>
+  <div class="post_content">
+    <ul>
+      <% if post.story %>
+        <li><%= post.story %></li>
+      <% end %>
+      <% if post.image %>
+        <li><%= image_tag(post.image) %></li>
+      <% end %>
+      <% if post.caption_text && post.status_type != "shared_story" %>
+        <li><%= post.caption_text %></li>
+      <% end %>
+      <% if post.article_link && post.type == "link" %>
+        <li><%= link_to "View the Link", post.article_link, :target => "_blank" %></li>
+      <% end %>
+    </ul>
+    <% if post.story_tags %>
+      <ul class="story_tags">
+        <% post.story_tags.each do |story_tag| %>
+          <% if story_tag.type == "user" %>
+            <li><%= link_to story_tag.name, story_tag.link_to_profile, :target => "_blank" %></li>
           <% else %>
-            <li>was tagged in this post.</li>
+            <li><%= story_tag.name %></li>
           <% end %>
-        </ul>
-      <% end %>
-      <div class="post_stats">
-        <ul>
-          <li>Comments: <%= post.comments_count %></li>
-          <li data-facebook-like-count="<%= post.id %>"><%= link_to "Like:", "/facebook/like/#{post.id}" %> <span class="js-facebook-like-count"><%= post.likes_count %></span></li>
-          <% if post.shares_count %>
-            <li>Shares: <%= post.shares_count %></li>
-          <% end %>
-          <% if post.link_to_post %>
-            <li>
-              <%= link_to "View on Facebook", post.link_to_post, :target => "_blank" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <% if post.comments %>
-        <div class="post_comments">
-          <ul>
-            <% post.comments.each do |comment| %>
-              <li class="commenter_profile_picture">
-                <%= link_to image_tag(commenter_profile_hash[comment[:from][:id]]), comment[:from][:link_to_profile], :target => "_blank" %>
-              </li>
-              <li class="commenter_username">
-                <%= link_to comment[:from][:name], comment[:from][:link_to_profile], :target => "_blank" %>
-              </li>
-              <li><%= time_ago_in_words(comment[:created_time]) %> ago</li>
-              <li><%= comment[:message] %></li>
-              <li>Likes: <%= comment[:like_count] %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+        <% if post.story_tags.length > 1 %>
+          <li>were tagged in this post.</li>
+        <% else %>
+          <li>was tagged in this post.</li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div><br>
+  <div class="<%= post.class %>-<%= post.id %> post_footer" >
+    <ul class="post_footer_li">
+      <li><%= link_to "Like", like_shout_path(post.id, key: :facebook), method: :put, remote: true %> | 
+        <%= link_to "Dislike", dislike_shout_path(post.id, key: :facebook), method: :put, remote: true  %></li>
+      <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
+    </ul>
   </div>
 </div>
+<!-- *End* Views/users/_facebook_post.html -->

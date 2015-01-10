@@ -1,47 +1,93 @@
-
-<!-- Start of regular landing page -->
-
+<!-- *Start* Views/pages/home.html -->
 <% if signed_in? %>
+<!-- *START* Views/users/hub.html.erb  -->
+<!--<div class="subNav">
+<ul class="subNavList">
+  <li>        
+    <%#= link_to root_path do %>
+      <%#= image_tag('molecule4.png', size: "32x32") %>
+    <%# end %>
+    hub
+  </li>
+  <li>        
+    <%#= link_to explore_user_path(session[:user_id]) do %>
+      <%#= image_tag('educational27.png', size: "32x32") %>
+    <%# end %>
+    explore
+  </li>
+</ul>
+</div> -->
+<div class="center block hub_container clearfix mosaicflow">
 
-  <%= render file: "users/hub" %>
-  <!--<div class="row">
-    
-    <div class="span12">
-      <h1>Hub</h1>
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#home" role="tab" data-toggle="tab">Hub</a></li>
-        <li><a href="#profile" role="tab" data-toggle="tab">Explore</a></li>
-      </ul>
+<!--<%# @timeline.each do |post| %>
+  <%#= render partial: "users/twitter_post", locals: {post: post} if post.is_a? Twitter::Post %>
+  <%#= render partial: "users/instagram_post", locals: {post: post} if post.is_a? Instagram::Post %>
+  <%#= render partial: "users/shout", locals: {shout: post } if post.is_a? Nfuse::Post %>
+  <%#= render partial: "users/facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} if post.is_a? Facebook::DefaultPost%>
+<%# end %>-->
 
-      <div class="tab-content">
-        <div class="tab-pane active" id="Hub">
-            <div class="span8">
-              <h1><%= @title %></h1>
-            </div>
-        </div>
-        <div class="tab-pane" id="Explore">
-        </div>
-      </div>
-    </div>
-  </div> -->
-<% else %>
-  <div class="center hero-unit hero">
 
-    <%= image_tag "Banner-logo.png", id: "home banner"%>
+
+<% @timeline.each do |post| %>
+  <% if post.provider == "twitter" %>
+    <%= render partial: "users/twitter_post", locals: {post: post} %>
+  <% elsif post.provider == "instagram" %>
+    <%= render partial: "users/instagram_post", locals: {post: post} %>
+  <% elsif post.provider == "facebook" %>
+    <%= render partial: "users/facebook_post", locals: {post: post, 
+                                                        poster_recipient_profile_hash: @poster_recipient_profile_hash, 
+                                                        commenter_profile_hash: @commenter_profile_hash} %>
+  <% elsif post.provider == "nfuse" %>
+    <%=  render partial: "users/shout", locals: {shout: post} %>
+  <% end %>
+<% end %>
+
+
+
+
+
+</div>
+<!-- *End* Views/users/hub.html.erb  -->
+<% else %> 
+
+<div class="center">
+<div class="center containerHome">
+  
+
+    <%= image_tag "Banner-logo.png", id: "banner"%>
  
 
     <h2 class="hero-text">
       "A Simpler Way To Connect"
     </h2>
+    <div class="button" id="signupButton">
+    <%= button_to "Join Nfuse", signup_path,
+                              :class => "button", :method => :get %>
+    </div>
+    <div class="button" id="aboutButton">
+    <%= button_to "Learn More", about_path,
+                             :class => 'button', :method => :get %>
+    </div>
+    
+  
+                           
+</div>
 
-    <%= link_to "Join Nfuse", signup_path,
-                                class: "btn btn-large btn-info" %>
-
-    <%= link_to "Learn more", about_path,
-                                class: "learn-more btn btn-large btn-default" %>
-
+  <div class="containerContent">
+  <div class="span_1_of_3 col">
+    <h3 class="about">About</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas.</p>
   </div>
+  <div class="col span_1_of_3">
+    <h3 class="about">Features</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
+  </div> 
+  <div class="col span_1_of_3">
+      <h3 class="about">NFusers</h3>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
+    </div>  
+    </div>
 
-  
-  
-<% end %>
+  </div> 
+  <% end %>
+<!-- *End* Views/pages/home.html -->
