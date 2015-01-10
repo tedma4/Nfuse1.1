@@ -101,7 +101,7 @@ class UsersController < ApplicationController
     timeline = []
     @users = User.where.not(id: current_user.followed_users || current_user.id)
     @users.each do |user|
-      feed = Feed.new(user)
+      feed=Feed.new(user)
       timeline << fetch_feed( feed, user)
     @unauthed_accounts = feed.unauthed_accounts
     @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
