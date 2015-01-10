@@ -515,7 +515,10 @@ td {
 .profile_bar .stats {
   margin-left: 40%;
   padding-top: 15px;
-
+}
+.profile_nav_links{
+  text-decoration: none;
+  color: black;
 }
 .profile_bar .inLineRight {}
  
