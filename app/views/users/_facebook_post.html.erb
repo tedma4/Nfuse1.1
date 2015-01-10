@@ -76,7 +76,7 @@
     <ul class="post_footer_li">
       <li><%= link_to "Like", like_shout_path(post.id, key: :facebook), method: :put, remote: true %> | 
         <%= link_to "Dislike", dislike_shout_path(post.id, key: :facebook), method: :put, remote: true  %></li>
-      <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
+      <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
     </ul>
   </div>
   <!--<%# if post.comments %>
