@@ -9,13 +9,15 @@
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    <%= javascript_include_tag 'Mosaic/jquery.mosaicflow.min.js'%>
+    <%= javascript_include_tag 'masonry.pkgd.js'%>
+    <%= javascript_include_tag 'imagesloaded.pkgd.js'%>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
   </head>
   <body><!--app.html body start-->
+    
     <%= render 'layouts/header' %>
     <div class="container_app_html">
       <% flash.each do |key, value| %>
@@ -34,6 +36,26 @@
             <%= render 'layouts/footer' %>
       <% end %>
     </div>
+   <script>
+
+
+var $container = $('#masonJar');
+// initialize Masonry after all images have loaded  
+$container.imagesLoaded( function() {
+     $container.masonry({
+
+      itemSelector: '.item',
+      isAnimated: true,
+      "gutter":50,
+      columnWidth: function(containerWidth){
+        return containerWidth /5;
+      }
+      
+    });
+
+});
+    
+    </script>
   </body>
   <!-- *End* Views/layouts/application.html -->
 </html>
