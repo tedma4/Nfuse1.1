@@ -8,47 +8,54 @@
   margin:-40px 0 0 0;
   padding:0;
 }
+
 .container {
   width: 100vw;
   margin:0;
   padding:0;
   display: inline-block;
 }
+
 .container_profile {
   width:75vw;
   margin:0 12.5% 0 12.5%;
 }
+
 .hub {
   width:75%;
   margin-left: 12.5%;
   margin-right: 12.5%;
   background-color: green;
 }
+
 img {
   max-width: 100%;
 }
+
 .content_container_app_html {
   margin:0;
   padding:0;
 }
+
 .block {
   display: inline-block;
 }
+
 .alert {
   background-color: green;
-
 }
+
 /* #Grid =========================================
 ================================================== */
 .center {
   margin:auto;
   text-align: center;
 }
+
 .item{
   width: 19%;
   height: auto;
   margin: 0 0 20px 0;
-
 }
 
 .containerMain{
@@ -59,8 +66,8 @@ img {
   background-color: white;
   padding: 25px;
   border-radius: 15px;
-
 }
+
 .span_2_of_2 {
   width: 100%;
 }
@@ -110,15 +117,16 @@ img {
 
 /* ========== grouping ========== */
 
-
 .group:before,
 .group:after {
     content:"";
     display:table;
 }
+
 .group:after {
     clear:both;
 }
+
 .group {
     zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
@@ -143,6 +151,7 @@ img {
   width: 300px;
   display: inline;
 }
+
 ul{
 list-style-type:none;
 }
@@ -167,7 +176,6 @@ li {
 
 #menu ul li:hover a{
   color: #87CEEB;
-  
 }
 
 #menu ul li:hover ul a {
@@ -186,7 +194,6 @@ li ul {
 li ul li {
   display: hidden;
   float: none;
-
 }
 
 li ul li a {
@@ -208,13 +215,13 @@ ul li a:hover + .hidden, .hidden:hover {
   padding: 10px 0;
   display: none;
 }
+
 .drop{
   margin-top: 50px;
-
 }
+
 .navbarBack {
   background-color: rgba(47,48,54,0.8); //#2f3036; 
- 
   height: 60px;
   width: 100vw;
   margin: 0;
@@ -222,23 +229,23 @@ ul li a:hover + .hidden, .hidden:hover {
   position: fixed;
   top: 0;
 }
+
 .navSpacing {
   height:100px;
   width: 100vw;
 }
+
 .navbarInput {
   display: inline;
   float: right;
   width: 100px;
   height: 30px;
-
 }
+
 .navbar {
   width: 75%;
- 
   margin-left: 12.5%;
   margin-right: 12.5%;
-  
   display: inline;
   position: fixed;
   margin-bottom: 0;
@@ -253,12 +260,11 @@ ul li a:hover + .hidden, .hidden:hover {
 .inLineLeft ul li {
   margin-top: -12px;
   margin-right: 20px;
-
 }
+
 .inLineLeft {        /*---Logo in Here---*/
   float: left;
   margin: 1px 0 0 0;
-
 }
 
 .inLineRight {
@@ -270,23 +276,23 @@ ul li a:hover + .hidden, .hidden:hover {
   display:block;  
   margin:0 5px 0 0;
 }
+
 .menuDropdown li{
-  
   z-index:3;
 }
+
 .menuDropdown {
   position: fixed;
   right: 13vw;
   overflow:show;
   top: 42px;
   z-index: 3;
-
 }
+
 .iconBar {
   position: fixed;
   right: 12.5vw;
   top: -12px;
-
 }
 
 
@@ -299,30 +305,35 @@ ul li a:hover + .hidden, .hidden:hover {
   margin-left: 12.5%;
   margin-top: 20px;
 }
+
 .footer p {
-  
   float:right;
   display: inline;
   padding-left: 53vw;
 }
+
 .footer-link{
   margin:8px;
   padding: 10px;
   display: inline;
 }
+
 .footerLinks{
   display: inline;
   margin:0px;
   width:0;  
 }
+
 .footerLinks a:hover {
   color: #87CEEB;
   background-color: #D2DADD; 
 }
+
 .footerLinks a{
   background-color: #D2DADD;  
   color: black;
 }
+
 /* #Home
 =============================================== */
 .banner {
@@ -333,22 +344,26 @@ ul li a:hover + .hidden, .hidden:hover {
   padding: 0;
   width: 100%;
 }
+
 #hero-text {
   padding: 20px;
   margin: 20px;
 }
+
 .containerHome {
   background-color: grey;
   width: 75%;
   height: 400px;
   padding-top: 40px;
-  }
+}
+
 .containerContent {
   border: 1px solid grey;
   width: 75%;
   margin-right: 12.5%;
   margin-left: 12.5%;
 }
+
 .hero-text {
   margin:auto;
   margin-left:33.5vw;
@@ -363,14 +378,14 @@ ul li a:hover + .hidden, .hidden:hover {
   margin-left:0px;
   margin-right:0;
 }
+
 #signupButton {
   margin-left:40vw;
   height:30px;
-
 }
+
 #aboutButton {
   margin-left:3.5vw;
-
 }
 
 .button:hover{
@@ -384,14 +399,6 @@ ul li a:hover + .hidden, .hidden:hover {
  text-decoration: none;
  border: 0px solid white;
  display: inline-block;
-}
-
-.test {
-  padding-top:25px;
-  background-color: red;
-  height: 75px;
-  width: 75vw;
-  margin-left: 12.5vw;
 }
 
 .editButton {
@@ -412,10 +419,12 @@ ul li a:hover + .hidden, .hidden:hover {
   border-radius: 25px;
   border: 2px solid #ccc;
 }
+
 tr {
   padding: 20px;
   margin: 20px;
 }
+
 td {
   padding: 20px;
   margin: 20px;  
@@ -427,14 +436,13 @@ td {
   margin: 0;
   padding:0;
 }
+
 .floatRight {
   float:right;
-
 }
 
 .hidden{
   display: hidden;
-
 }
 
 /* #Users
@@ -445,6 +453,10 @@ td {
   border-radius: 15px;
 }
 
+#masonJar {
+  width:100%;
+
+}
 .userFeedBox {
   background-color: blue;
   height: 400px;
@@ -459,6 +471,7 @@ td {
   border: 2px solid black;
   border-radius: 5px;
 }
+
 .profile_bar{
   background-color: white;
   height:70px;
@@ -466,20 +479,21 @@ td {
   border-radius: 5px;
   margin-bottom: 20px;
 }
+
 .profile_bar .inLineLeft {
   margin-left:35px; 
   margin-top: 23px;
 }
+
 .profile_bar .stats {
   margin-left: 40%;
   padding-top: 15px;
 }
+
 .profile_nav_links{
   text-decoration: none;
   color: black;
 }
-.profile_bar .inLineRight {}
- 
 
 /* #Hub
 ================================================= */
@@ -489,35 +503,39 @@ td {
   color: white;
   text-decoration: none;
 }
+
 .tabLink {
   color: white;
   text-decoration: none;
 }
+
 .tabLink:visited {
   color: white;
   text-decoration: none;
 } 
+
 .tabLink:hover {
   color: #f3f3f3;
 }
+
 .activeTab {
   background-color: #87CEEB;
   color: black;
 }
+
 .hubTabs {
-background-color: rgba(47,48,54,0.8);
-position:absolute;
+  background-color: rgba(47,48,54,0.8);
+  position:absolute;
   right: 22.4vw;
-top: 84px;
+  top: 84px;
 }
+
 .hub_container {
   margin: 50px 0 0 0;
-
 }
 
 .explore_container{
   margin: 50px 0 0 0;
-
 }
 
 /* #Posts
@@ -527,18 +545,17 @@ top: 84px;
   width:20%;
   min-width: 220px;
 }
+
 #player-wrapper {
   display: none;
 }
 
 .twitter_post {
-  /*border: 2px solid aqua; */
   box-shadow: 5px 5px rgba(64,153,255,0.8);
 }
 
 .nFuse_post {
   overflow: hidden;
-  /*border: 2px solid black; */
   box-shadow: 5px 5px rgba(200,200,200,0.8);
 }
 
@@ -551,10 +568,12 @@ top: 84px;
   overflow: hidden;
   box-shadow: 5px 5px rgba(59,89,152,0.8);
 }
+
 #content-box-profile {
  height: 100vh;
  top: 0;
 }
+
 .post_main{
   margin: 0;
   padding: 0;
@@ -562,6 +581,7 @@ top: 84px;
   text-decoration: none;
   height: auto;
 }
+
 .post_header{
   margin:0;
   padding: 0;
@@ -570,38 +590,46 @@ top: 84px;
   display: inline;
   list-style-type: none;
 }
+
 .post_header li{
   display: inline;
   color: green;
   padding: 0;
 }
+
 .provider_logo{
   float: right;
   margin: 0;
   padding: 0;
 }
+
 .user_profile_picture{
   margin: 0;
   padding: 0;
   border-radius: 7.5px;
 }
+
 .user_name{
   margin: 0;
   padding: 5px 0px 0px 0px;
   margin: auto;
 }
+
 .post_content{
   margin: 0;
   border: 2px dotted pink;
   padding: 25px;
 }
+
 .post_footer{
   margin: 0;
   padding: 0;
 }
+
 .post_footer .right{
   font-size: .6em;
 }
+
 .post_footer_li{
   margin-top: 0px;
   padding: 0;
@@ -610,6 +638,7 @@ top: 84px;
   display: inline;
   list-style-type: none;
 }
+
 .right{
   float: right;
   margin: 0;
@@ -617,12 +646,7 @@ top: 84px;
   top:0;
   padding: 0;
 }
-.masonJar {
-  
-}
-.item {
 
-}
 .yt_link {
 float: right;
 }
@@ -637,11 +661,12 @@ float: right;
   z-index: 0;
   margin: 0px 0 10px 0;
 }
+
 .subNavList {
   width: 75%;
   margin: 0 12.5% 0 12.5%;
-
 }
+
 .subNavList li {
   margin: .5vh 2vw 0 2vw;
 }
@@ -660,11 +685,11 @@ float: right;
   margin-left: auto;
   margin-right: auto;
  }
+
 .yt_link img {
     cursor: pointer;
     width: 100%;
     height: auto;
- 
 }
 
 
@@ -672,13 +697,13 @@ float: right;
 @media only screen and (max-width: 966px) {
   .individual_post {
   border-radius: 15px;
-  width:50%;
-}
+  width:50px;
+  }
 }
 
 @media only screen and (max-width: 720px) {
   .individual_post {
   border-radius: 15px;
   width:100%;
-}
+  }
 }
