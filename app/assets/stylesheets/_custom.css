@@ -53,7 +53,6 @@ img {
 }
 
 .item{
-  width: 19%;
   height: auto;
   margin: 0 0 20px 0;
 }
@@ -542,8 +541,7 @@ td {
 ================================================= */
 .individual_post {
   border-radius: 15px;
-  width:20%;
-  min-width: 220px;
+  width: 275px;
 }
 
 #player-wrapper {
