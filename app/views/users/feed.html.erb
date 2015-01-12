@@ -7,7 +7,7 @@
 <% unless @unauthed_accounts.empty? %>
   <%= render partial: "unauthed_accounts" %>
 <% end %>
-<div class="clearfix mosaicflow">
+<div id="masonJar" class="masonJar js-masonry">
   <% if @timeline.present? %>
     <% @timeline.each do |post| %>
       <% if post.provider == 'twitter' %>
