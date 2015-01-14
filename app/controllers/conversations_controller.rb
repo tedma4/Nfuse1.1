@@ -5,15 +5,11 @@ class ConversationsController < ApplicationController
   layout false
 
   def create
-    #binding.pry
-    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
-    else
-      @conversation = Conversation.create!(conversation_params)
-    end
+    # look in Conversation model.
+    @conversation = Converastion.find_or_start_convo(params)
     render json: { conversation_id: @conversation.id }
   end
- 
+
   def show
     #shows the chatbox
     #user = User.find(params[:id])
