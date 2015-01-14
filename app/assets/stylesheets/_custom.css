@@ -55,6 +55,8 @@ img {
 .item{
   height: auto;
   margin: 0 0 20px 0;
+  position: relative;
+  z-index: 1;
 }
 
 .containerMain{
@@ -226,6 +228,7 @@ ul li a:hover + .hidden, .hidden:hover {
   margin: 0;
   margin-bottom: -50px;
   position: fixed;
+  z-index: 5;
   top: 0;
 }
 
@@ -453,7 +456,9 @@ td {
 }
 
 #masonJar {
-  width:100%;
+  width:auto;
+  margin-right: auto;
+  margin-left: auto;
 
 }
 .userFeedBox {
@@ -695,7 +700,7 @@ float: right;
 @media only screen and (max-width: 966px) {
   .individual_post {
   border-radius: 15px;
-  width:50px;
+  width:45%;
   }
 }
 
