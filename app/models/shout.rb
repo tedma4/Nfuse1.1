@@ -6,8 +6,8 @@ class Shout < ActiveRecord::Base
   acts_as_votable
  
   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
-  validates :link, allow_blank: true, format: YT_LINK_FORMAT
   before_create :set_content_type
+  validates :link, allow_blank: true, format: YT_LINK_FORMAT
 
   attr_accessor :content, :pic, :photo_delete, :snip, :video_delete#, dependent: :destroy
   has_destroyable_file :pic, :snip
