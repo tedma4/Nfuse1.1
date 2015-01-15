@@ -620,8 +620,8 @@ td {
 
 .post_content{
   margin: 0;
-  border: 2px dotted pink;
-  padding: 25px;
+  //border: 2px dotted pink;
+  padding: 0px;
 }
 
 .post_footer{
