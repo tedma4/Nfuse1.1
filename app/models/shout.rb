@@ -7,7 +7,7 @@ class Shout < ActiveRecord::Base
  
   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
   before_create :set_content_type
-  validates :link, allow_blank: true, format: YT_LINK_FORMAT
+  validates :link, format: YT_LINK_FORMAT, allow_blank: true
 
   attr_accessor :content, :pic, :photo_delete, :snip, :video_delete#, dependent: :destroy
   has_destroyable_file :pic, :snip
@@ -20,10 +20,12 @@ class Shout < ActiveRecord::Base
                                         }, :processors => [:ffmpeg, :qtfaststart]
  
   def set_content_type
-    self.is_video = !self.snip_file_name.nil?
-    self.is_link = !self.link.nil?
+    update_attribute(:is_video, true) if !self.snip_file_name.nil?
+    update_attribute(:is_link, true) if self.snip_file_name.nil? || self.pic_file_name.nil?
+    #self.is_video = !self.snip_file_name.nil?
+    #self.is_link = !self.link.nil?
     # parse link
-    if self.is_link
+    if is_link = true
       uid = link.match(YT_LINK_FORMAT)
       self.uid = uid[2] if uid && uid[2]
       if self.uid.to_s.length != 11
