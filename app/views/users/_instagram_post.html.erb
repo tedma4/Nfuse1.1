@@ -10,7 +10,7 @@
     <div class="post_content">
       <% if post.type == "image" %>
         <ul>
-          <li><%= image_tag(post.low_resolution_image_url) %></li>
+          <li><%= image_tag(post.low_resolution_image_url, :class => "image_post") %></li>
           <% if post.caption.present? %>
             <li><%= post.caption_text %></li>
           <% end %>

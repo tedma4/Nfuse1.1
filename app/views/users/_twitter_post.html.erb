@@ -9,7 +9,7 @@
   </div>
   <div class="post_content">
     <% if post.tweet_image.present? %>
-      <%= image_tag(post.tweet_image) %>
+      <%= image_tag(post.tweet_image, :class => "image_post") %>
     <% end %>
       <%= post.tweet_text %> 
   </div><br>
