@@ -18,7 +18,7 @@
       <% elsif post.type == "video" %>
         <ul>
           <li>
-            <video width="200" height="200" controls>
+            <video width="258" height="258" class="image_post" controls>
               <source src="<%= post.video %>" type="video/mp4">
             </video>
           </li>
@@ -27,8 +27,7 @@
     </div>
   <div class="<%= post.class %>-<%= post.id %> post_footer">
     <ul class="post_footer_li">
-      <li><%= link_to "Like", like_shout_path(post.id, key: :instagram), method: :put, remote: true %> | 
-        <%=link_to "Dislike", dislike_shout_path(post.id, key: :instagram), method: :put,  remote: true  %></li>
+      <li><%= link_to "Like", like_shout_path(post.id, key: :instagram), method: :put, remote: true %></li>
       <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
     </ul>
   </div>

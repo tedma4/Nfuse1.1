@@ -233,8 +233,8 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 
 .navSpacing {
-  height:100px;
-  width: 100vw;
+  height:70px;
+  width: 70vw;
 }
 
 .navbarInput {
@@ -624,6 +624,7 @@ td {
   //border: 2px dotted pink;
   padding: 0px;
 }
+
 .image_post{
   border-radius: 5px;
 }
