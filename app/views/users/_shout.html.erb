@@ -32,8 +32,8 @@
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
     <ul class="post_footer_li">
       <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %></li>
-      <li><%= image_tag("double7.png", size: "20x20") %></li>
-      <li><%= image_tag("favourite2.png", size: "20x20") %></li>
+      <li><%= image_tag("double7.png", size: "20x20") %>440</li>
+      <li><%= image_tag("favourite2.png", size: "20x20") %>250</li>
       <li class="right"><%= time_ago_in_words(shout.created_time) %> ago</li>
     <ul>
     <%#= pluralize shout.comments_count, "comment" %>
