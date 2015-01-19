@@ -491,12 +491,19 @@ td {
 
 .profile_bar .stats {
   margin-left: 40%;
-  padding-top: 15px;
+  padding-top: 25px;
+}
+.profile_nav_links li {
+  margin-right: 10px;
 }
 
-.profile_nav_links{
+.profile_nav_links li a{
   text-decoration: none;
   color: black;
+}
+.profile_nav_links li a:hover {
+  text-decoration: none;
+  color: #87CEEB;
 }
 
 /* #Hub
