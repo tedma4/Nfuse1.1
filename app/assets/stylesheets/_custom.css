@@ -747,6 +747,28 @@ float: right;
 
 
 /* ========== media query ==========  */
+/*=
+1900 - 6
+1575 -5
+=*/
+@media only screen and (max-width: 1899px){
+   .individual_post {
+  border-radius: 15px;
+  width:17%;
+  }
+}
+@media only screen and (max-width: 1574px){
+   .individual_post {
+  border-radius: 15px;
+  width:22%;
+  }
+}
+@media only screen and (max-width: 1249px){
+   .individual_post {
+  border-radius: 15px;
+  width:30%;
+  }
+}
 @media only screen and (max-width: 966px) {
   .individual_post {
   border-radius: 15px;
