@@ -449,6 +449,16 @@ td {
 
 /* #Users
 ================================================== */
+.follow-btn li h4 a{
+  text-decoration: none;
+  color: black;
+}
+.follow-btn li h4 a:hover {
+  text-decoration: none;
+  color: #87CEEB;
+}
+
+
 .box-main {
   background-color: white;
   padding: 25px;
@@ -547,6 +557,10 @@ td {
 
 .explore_container{
   margin: 50px 0 0 0;
+}
+.search_container {
+  margin: 50px 0 0 0;
+  padding: 0 12.5vw 0 12.5vw;
 }
 
 /* #Posts
