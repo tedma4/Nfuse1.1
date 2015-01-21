@@ -9,7 +9,7 @@
     </ul>
   </div><br>
 
-  <% if shout.link? %>
+  <% if !shout.link.blank? %>
     <div class="yt-video">
       <div class="yt-player-wrapper"></div>
       <div class="yt_link thumbnail" id="player-wrapper">
@@ -23,9 +23,9 @@
       <h4><%= shout.title %></h4>
       <p><%= shout.content %></p>
     </div>
-  <% else shout.pic? %>
+  <% else shout.is_pic? %>
     <p class="timeline-user-box">
-      <%= image_tag shout.pic.url if shout.pic.exists? %>
+      <%= image_tag shout.pic_url %>
       <%= shout.content %>
     </p>
   <% end %>

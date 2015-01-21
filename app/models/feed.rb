@@ -159,6 +159,14 @@ class Nfuse
       @shout.link
     end
 
+    def is_link?
+      @shout.is_link
+    end
+
+    def is_link
+      @shout.is_link
+    end
+
     def uid
       @shout.uid
     end
@@ -175,8 +183,12 @@ class Nfuse
       @shout.duration
     end
 
-    def pic?
-      @shout.pic
+    def is_pic?
+      @shout.is_pic
+    end
+
+    def pic_url
+      @shout.pic.url
     end
 
     def user_url
