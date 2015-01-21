@@ -34,6 +34,7 @@ class ShoutsController < ApplicationController
     @shout = Shout.create(shout_params) do |shout|
       shout.is_video = true if params[:shout][:snip]
       shout.is_link = true if params[:shout][:link]
+      shout.is_pic = true if params[:shout][:pic]
     end
     @shout.user = current_user
 

@@ -20,12 +20,14 @@ class Shout < ActiveRecord::Base
                                         }, :processors => [:ffmpeg, :qtfaststart]
  
   def set_content_type
-    update_attribute(:is_video, true) if !self.snip_file_name.nil?
-    update_attribute(:is_link, true) if self.snip_file_name.nil? || self.pic_file_name.nil?
-    #self.is_video = !self.snip_file_name.nil?
-    #self.is_link = !self.link.nil?
+    #update_attribute(:is_video, true) if !self.snip_file_name.nil?
+    #update_attribute(:is_pic, true) if !self.pic_file_name.nil?
+    #update_attribute(:is_link, true) if !self.link.nil? #if self.snip_file_name.nil? || self.pic_file_name.nil?
+    self.is_video = !self.snip_file_name.nil?
+    self.is_pic = !self.pic_file_name.nil?
+    self.is_link = !self.link.blank?
     # parse link
-    if is_link = true
+    if self.is_link = !self.link.blank?
       uid = link.match(YT_LINK_FORMAT)
       self.uid = uid[2] if uid && uid[2]
       if self.uid.to_s.length != 11
