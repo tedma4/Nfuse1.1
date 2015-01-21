@@ -188,7 +188,7 @@ class Nfuse
     end
 
     def pic_url
-      @shout.pic.url
+      @shout.pic.url(:medium)
     end
 
     def user_url
