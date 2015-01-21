@@ -40,7 +40,7 @@ class ShoutsController < ApplicationController
 
     respond_to do |format|
       if @shout.save
-          format.html { redirect_to @shout, notice: 'Shout was successfully created.' }
+          format.html { redirect_to @shout}
           format.json { render json: @shout, status: :created, location: @shout }
       else
           format.html { render action: "new" }
@@ -52,7 +52,7 @@ class ShoutsController < ApplicationController
   def update
     @shout = Shout.find(params[:id])
     if @shout.update_attributes(shout_params)
-      redirect_to @shout, notice: "Shout was successfully updated."
+      redirect_to @shout
     else
       render :edit
     end
@@ -117,7 +117,7 @@ class ShoutsController < ApplicationController
   end
 
   def shout_params
-      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link )
+      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link, :is_pic )
     end
 
     def correct_user
