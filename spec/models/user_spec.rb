@@ -37,21 +37,20 @@ context '#basic user' do
         expect(user.errors[:email]).not_to be_blank
       end
 
-      it '#should not allow duplicate emails and they should be downcase' do
+      it '#should not allow duplicate emails' do
         user1 = FactoryGirl.create(:user, email: 'TestUserEmail@gmail.com')
-        expect(User.count).not_to eq 0
-
-        expect(user1.email).to eq('testuseremail@gmail.com')
-
         user2 = FactoryGirl.build(:user,
                                   first_name: 'User 2',
                                   last_name: 'Last', 
                                   email: 'TestUserEmail@gmail.com')
-
         user2.valid?
         expect(user2.errors[:email]).not_to be_blank
       end
 
+      it 'all emails should be saved as downcase' do
+        user = FactoryGirl.create(:user, email: 'TestUserEmail@gmail.com')
+        expect(user.email).to eq('testuseremail@gmail.com')
+      end
     end
   end
 end
