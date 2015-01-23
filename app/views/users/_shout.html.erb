@@ -9,31 +9,27 @@
     </ul>
   </div><br>
 
-  <% if shout.link? %>
-    <div class="yt-video">
-      <h4><%= shout.title %></h4>
-      <div class="yt-player-wrapper"></div>
-      <div class="yt_link thumbnail" id="player-wrapper">
+  <% if !shout.link.blank? %>
         <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
-        <%= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %> 
+        <object width="258" height="194" data='https://www.youtube.com/v/<%= shout.uid %>'></object>
+        <%#= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %> 
         <div class="caption">
                     
           <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
         </div>
-      </div>
-      <p>Author: <b><%= shout.author %></b></p>
+      <h4><%= shout.title %></h4>
       <p><%= shout.content %></p>
-    </div>
-  <% else shout.pic? %>
+  <% else shout.is_pic? %>
     <p class="timeline-user-box">
-      <%= image_tag shout.pic.url if shout.pic.exists? %>
+      <%= image_tag shout.pic_url %>
       <%= shout.content %>
     </p>
   <% end %>
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
     <ul class="post_footer_li">
-      <li><%= link_to "Like", like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %> |
-        <%= link_to "Dislike", dislike_shout_path(shout.id), method: :put, remote: true  %><%= shout.dislike_score %></li>
+      <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(shout.id), method: :put, remote: true %><%= shout.like_score %></li>
+      <li><%= image_tag("double7.png", size: "20x20") %>440</li>
+      <li><%= image_tag("favourite2.png", size: "20x20") %>250</li>
       <li class="right"><%= time_ago_in_words(shout.created_time) %> ago</li>
     <ul>
     <%#= pluralize shout.comments_count, "comment" %>

@@ -1,114 +1,106 @@
 <!-- *START* Views/users/show_bio.html.erb  -->
 
-
 <% provide(:title, @title) %>
 <div class="container_profile">
   <div><%= image_tag @user.banner(:larger), class: "banner" %> </div>
-  <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
-  <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%></h1>
-    <ul class="inLineRight">
-      <li><%= render 'follow_form' if signed_in? %></li>
-      <li><% unless !current_user?(@user) %> 
-        <%= link_to edit_user_path(session[:user_id]) do %>
-        <%= image_tag('settings48.png', size: "32x32") %>
-        <% end %>
+    <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
+      <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%></h1>
+        <ul class="inLineRight">
+          <li><%= render 'follow_form' if signed_in? %></li>
+          <li><% unless !current_user?(@user) %> 
+            <%= link_to edit_user_path(session[:user_id]) do %>
+            <%= image_tag('settings48.png', size: "32x32") %>
+            <% end %>
         <!--<%# else %>
           <%#= link_to "#", class: "start-conversation", "data-sid" => current_user.id, "data-rip" => @user.id do %>
             <%#= image_tag('chat56.fw.png', size: "30x30") %>
           <%# end %>-->
-        <% end %> 
-      </li>
-    </ul>
-  </div>
-
- 
+            <% end %> 
+          </li>
+        </ul>
       <%= render 'shared/stats' %>
+      </div>
+      <div class="box-main">
+        <h1><%= @title %></h1>
+        <div id="content-box-bio">
+          <h2 class="bio-header"><strong> Basic Info </strong></h2>
+          <p class="bio-qt"><strong>Gender</strong><p/>
+          <p class="bio-ans"><%= @user.gender_txt %></p>
+          <P class="bio-qt"><strong>Date of Birth</strong></p>
+          <p class="bio-ans"><%= @user.birthdate %></p>
+          <p class="bio-qt"><strong> Hometown </strong></p>
+          <p class="bio-ans"><%= @user.hometown %></p>
+          <p class="bio-qt"><strong> Relationship Status </strong></p>
+          <P class="bio-ans"><%= @user.rel_stat %></p>
+          <p class="bio-qt"><strong>Interested in... </strong></p>
+          <p class="bio-ans"><%= @user.int_in %></p>
+          <p class="bio-qt"><strong> Looking for... </strong></p>
+          <p class="bio-ans"><%= @user.look %></p>
+          <p class="bio-qt"><strong> Religious Views </strong></p>
+          <p class="bio-ans"><%= @user.religious_views %></p>
+          <p class="bio-qt"><strong> Political Views </strong></p>
+          <p class="bio-ans"><%= @user.political_views %></p>
+        </div>  
 
-  <div class="box-main">
-    <h1><%= @title %></h1>
-    
-    <div id="content-box-bio">
-      <h2 class="bio-header"><strong> Basic Info </strong></h2>
-      <p class="bio-qt"><strong>Gender</strong><p/>
-      <p class="bio-ans"><%= @user.gender_txt %></p>
-      <P class="bio-qt"><strong>Date of Birth</strong></p>
-      <p class="bio-ans"><%= @user.birthdate %></p>
-      <p class="bio-qt"><strong> Hometown </strong></p>
-      <p class="bio-ans"><%= @user.hometown %></p>
-      <p class="bio-qt"><strong> Relationship Status </strong></p>
-      <P class="bio-ans"><%= @user.rel_stat %></p>
-      <p class="bio-qt"><strong>Interested in... </strong></p>
-      <p class="bio-ans"><%= @user.int_in %></p>
-      <p class="bio-qt"><strong> Looking for... </strong></p>
-      <p class="bio-ans"><%= @user.look %></p>
-      <p class="bio-qt"><strong> Religious Views </strong></p>
-      <p class="bio-ans"><%= @user.religious_views %></p>
-      <p class="bio-qt"><strong> Political Views </strong></p>
-      <p class="bio-ans"><%= @user.political_views %></p>
-    </div>  
+        <div id="content-box-bio">
+          <h2 class="bio-header"><strong> Work Info </strong></h2>
+          <p class="bio-qt"><strong> Occupation </strong></p>
+          <p class="bio-ans"><%= @user.occupation %></p>
+          <p class="bio-qt"><strong> Skills </strong></p>
+          <p class="bio-ans"><%= @user.skills %></p>
+        </div>
 
-    <div id="content-box-bio">
-      <h2 class="bio-header"><strong> Work Info </strong></h2>
-      <p class="bio-qt"><strong> Occupation </strong></p>
-      <p class="bio-ans"><%= @user.occupation %></p>
-      <p class="bio-qt"><strong> Skills </strong></p>
-      <p class="bio-ans"><%= @user.skills %></p>
-    </div>
+          
+        <div id="content-box-bio">
+          <h2 class="bio-header"><strong> Contact Info </strong></h2>
+          <p class="bio-qt"><strong> Phone Number </strong></p>
+          <p class="bio-ans"><%= @user.phone_number %></p>
+          <p class="bio-qt"><strong> Email</strong></p>
+          <p class="bio-ans"><%= @user.email %></p>
+        </div>
 
-      
-    <div id="content-box-bio">
-      <h2 class="bio-header"><strong> Contact Info </strong></h2>
-      <p class="bio-qt"><strong> Phone Number </strong></p>
-      <p class="bio-ans"><%= @user.phone_number %></p>
-      <p class="bio-qt"><strong> Email</strong></p>
-      <p class="bio-ans"><%= @user.email %></p>
-    </div>
+          
+        <div id="content-box-bio">
+          <h2 class="bio-header"><strong> Favorites </strong></h2>
+          <p class="bio-qt"><strong> What is your favorite movie?</strong></p>
+          <p class="bio-ans"><%= @user.fav_movie %></p>
+          <p class="bio-qt"><strong> What is your favorite book?</strong></p>
+          <p class="bio-ans"><%= @user.fav_book %></p>
+          <p class="bio-qt"><strong> What is your favorite type of music?</strong></p>
+          <p class="bio-ans"><%= @user.fav_music %></p>
+          <p class="bio-qt"><strong> What is your favorite type of food? </strong></p>
+          <p class="bio-ans"><%= @user.fav_food %></p>
+          <p class="bio-qt"><strong> What is your favorite quote?</strong></p>
+          <p class="bio-ans"><%= @user.fav_quote %></p>
+        </div>
 
-      
-    <div id="content-box-bio">
-      <h2 class="bio-header"><strong> Favorites </strong></h2>
-      <p class="bio-qt"><strong> What is your favorite movie?</strong></p>
-      <p class="bio-ans"><%= @user.fav_movie %></p>
-      <p class="bio-qt"><strong> What is your favorite book?</strong></p>
-      <p class="bio-ans"><%= @user.fav_book %></p>
-      <p class="bio-qt"><strong> What is your favorite type of music?</strong></p>
-      <p class="bio-ans"><%= @user.fav_music %></p>
-      <p class="bio-qt"><strong> What is your favorite type of food? </strong></p>
-      <p class="bio-ans"><%= @user.fav_food %></p>
-      <p class="bio-qt"><strong> What is your favorite quote?</strong></p>
-      <p class="bio-ans"><%= @user.fav_quote %></p>
-    </div>
+        <div id="content-box-bio">
+          <h2 class="bio-header"><strong> Would you rather...</strong></h2>
+          <p class="bio-qt"><strong> Go to a movie or a play?</strong></p>
+          <p class="bio-ans"><%= @user.movie_or_play %></p>
+          <p class="bio-qt"><strong> Have 3 wishes in 10 years or 1 wish today?</strong></p>
+          <p class="bio-ans"><%= @user.wishes %></p>
+          <p class="bio-qt"><strong> Watch TV or read a book?</strong></p>
+          <p class="bio-ans"><%= @user.tv_or_book %></p>
+          <p class="bio-qt"><strong>Be invisible or be able to read minds? </strong></p>
+          <p class="bio-ans"><%= @user.invisible_or_read_minds %></p>
+          <p class="bio-qt"><strong> Win the lottery or have the perfect job? </strong></p>
+          <p class="bio-ans"><%= @user.lottery_or_perfect_job %></p>
+        </div>
 
-
-
-    <div id="content-box-bio">
-      <h2 class="bio-header"><strong> Would you rather...</strong></h2>
-      <p class="bio-qt"><strong> Go to a movie or a play?</strong></p>
-      <p class="bio-ans"><%= @user.movie_or_play %></p>
-      <p class="bio-qt"><strong> Have 3 wishes in 10 years or 1 wish today?</strong></p>
-      <p class="bio-ans"><%= @user.wishes %></p>
-      <p class="bio-qt"><strong> Watch TV or read a book?</strong></p>
-      <p class="bio-ans"><%= @user.tv_or_book %></p>
-      <p class="bio-qt"><strong>Be invisible or be able to read minds? </strong></p>
-      <p class="bio-ans"><%= @user.invisible_or_read_minds %></p>
-      <p class="bio-qt"><strong> Win the lottery or have the perfect job? </strong></p>
-      <p class="bio-ans"><%= @user.lottery_or_perfect_job %></p>
-    </div>
-
-
-    <div id="content-box-bio">
-      <h2 class="bio-header"><strong> Additional Info</strong></h2>
-      <p class="bio-qt"><strong>If you could visit any country in the world, where would you go? </strong></p>
-      <p class="bio-ans"><%= @user.visit_any_country %></p>
-      <p class="bio-qt"><strong>Which is worse, failing or never trying?</strong></p>
-      <p class="bio-ans"><%= @user.fail_or_never_try %></p>
-      <p class="bio-qt"><strong>If you could go back in history, who would you like to meet?</strong></p>
-      <p class="bio-ans"><%= @user.meet_in_history %></p>
-      <p class="bio-qt"><strong>What would you do differently if you knew nobody would judge you? </strong></p>
-      <p class="bio-ans"><%= @user.nobody_judges_you %></p>
-      <p class="bio-qt"><strong>What is the one thing you’d most like to change about the world?</strong></p>
-      <p class="bio-ans"><%= @user.change_about_the_world %></p>
-    </div>
+        <div id="content-box-bio">
+          <h2 class="bio-header"><strong> Additional Info</strong></h2>
+          <p class="bio-qt"><strong>If you could visit any country in the world, where would you go? </strong></p>
+          <p class="bio-ans"><%= @user.visit_any_country %></p>
+          <p class="bio-qt"><strong>Which is worse, failing or never trying?</strong></p>
+          <p class="bio-ans"><%= @user.fail_or_never_try %></p>
+          <p class="bio-qt"><strong>If you could go back in history, who would you like to meet?</strong></p>
+          <p class="bio-ans"><%= @user.meet_in_history %></p>
+          <p class="bio-qt"><strong>What would you do differently if you knew nobody would judge you? </strong></p>
+          <p class="bio-ans"><%= @user.nobody_judges_you %></p>
+          <p class="bio-qt"><strong>What is the one thing you’d most like to change about the world?</strong></p>
+          <p class="bio-ans"><%= @user.change_about_the_world %></p>
+        </div>
 
   </div>
 </div>

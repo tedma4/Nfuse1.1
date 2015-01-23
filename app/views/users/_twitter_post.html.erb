@@ -9,14 +9,15 @@
   </div>
   <div class="post_content">
     <% if post.tweet_image.present? %>
-      <%= image_tag(post.tweet_image) %>
+      <%= image_tag(post.tweet_image, :class => "image_post") %>
     <% end %>
       <%= post.tweet_text %> 
   </div><br>
   <div class="<%= post.class %>-<%= post.tweet_id %> post_footer">
     <ul class="post_footer_li">
-      <li><%= link_to "Like", like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %> |
-        <%=link_to "Dislike", dislike_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true  %></li>
+      <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.tweet_id, key: :twitter), method: :put, remote: true %><%#= post.like_score %>0</li>
+      <li><%= image_tag("double7.png", size: "20x20") %>0</li>
+      <li><%= image_tag("favourite2.png", size: "20x20") %>0s</li>
       <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
     </ul>
   </div>

@@ -55,15 +55,12 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'twitter_registration#create'
   get '/auth/failure', to: 'twitter_registration#failure'
   get '/auth/facebook/callback', to: 'facebook_registration#create'
+  #get '/oauth2/callback', to: 'google_plus_registration#create'
 
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
   post '/instagram/like/:media_id', to: 'likes#instagram'
   post '/facebook/like/:post_id', to: 'likes#facebook'
-
-  match "/auth/identity/callback", to: "sessions#create", via: 'post'
-  match "/auth/identity/register", to: "users#new", via: 'get'
-
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

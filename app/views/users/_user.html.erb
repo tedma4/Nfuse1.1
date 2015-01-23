@@ -1,7 +1,7 @@
 <!-- *START* Views/users/_user.html.erb  -->
-<li>
-	<div class="col-sm-6 col-md-4">
-		<div class="thumbnail span3">
+
+	<div class="item user_link">
+		<div class="thumbnail">
 		  <%= image_tag user.avatar.url(:followp), class: "followers-pic" %>
 		  <ul class="inline follow-btn">
 			  <li><h4><%= link_to user.full_name, feed_user_path(user), :class => "follow-color" %></h4></li>
@@ -17,5 +17,5 @@
 			</ul>
 		</div>
 	</div>
-</li>
+
 <!-- *END* Views/users/_user.html.erb  -->
