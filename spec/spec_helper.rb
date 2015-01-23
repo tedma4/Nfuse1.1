@@ -7,6 +7,7 @@ require 'rspec/mocks'
 require 'json'
 require 'capybara/rspec'
 require 'factory_girl'
+require 'database_cleaner'
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,

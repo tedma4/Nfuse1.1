@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   private
 
   def downcase_email
-    email.downcase
+    self.email = email.downcase
   end
 
   def create_remember_token

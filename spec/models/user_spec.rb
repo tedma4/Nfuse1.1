@@ -2,7 +2,7 @@ require 'spec_helper'
 
 context '#basic user' do
   let(:user) {
-    FactoryGirl.build(:user, first_name: 'First', last_name: 'Last')
+    FactoryGirl.create(:user, first_name: 'First', last_name: 'Last')
   }
 
   let(:invalid_user) {
@@ -10,6 +10,7 @@ context '#basic user' do
   }
 
   describe User do
+
     it '#has a first name and last name # as fullname' do
       expect(user.full_name).to eq 'First Last'
     end
@@ -26,6 +27,31 @@ context '#basic user' do
       user.password = 'one'
       user.valid?
       expect(user.errors[:password]).not_to be_blank
+    end
+
+    context '#Email' do
+
+      it '#maintains validity' do
+        user = FactoryGirl.build(:user, email: 'TestUserEmail@gmail')
+        user.valid?
+        expect(user.errors[:email]).not_to be_blank
+      end
+
+      it '#should not allow duplicate emails and they should be downcase' do
+        user1 = FactoryGirl.create(:user, email: 'TestUserEmail@gmail.com')
+        expect(User.count).not_to eq 0
+
+        expect(user1.email).to eq('testuseremail@gmail.com')
+
+        user2 = FactoryGirl.build(:user,
+                                  first_name: 'User 2',
+                                  last_name: 'Last', 
+                                  email: 'TestUserEmail@gmail.com')
+
+        user2.valid?
+        expect(user2.errors[:email]).not_to be_blank
+      end
+
     end
   end
 end
