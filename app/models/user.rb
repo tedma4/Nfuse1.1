@@ -25,14 +25,9 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
                                 default_url: "default.png"
-                                #:url  => "/assets/images/:id/:style/:basename.:extension",
-                                #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
 
   has_attached_file :banner, styles: { larger: "851x315#", medium: "300x300#" }, 
                                 default_url: "default2.png"
-                                #:url  => "/assets/images/:id/:style/:basename.:extension",
-                                #:path => ":rails_root/assets/images/:id/:style/:basename.:extension"
-
   # 
   # Validations
   # 
@@ -48,8 +43,12 @@ class User < ActiveRecord::Base
 
   validates :password, length: {minimum: 6}, allow_blank: true
 
+  # returns a relationship object not a User object.
+  # belongs in Relationship model.
+  # ? methods are meant to return a boolean
+
   def following?(other_user)
-    relationships.find_by(followed_id: other_user.id)
+    !!(relationships.find_by(followed_id: other_user.id))
   end
 
   def follow!(other_user)

@@ -15,20 +15,25 @@ context '#basic user' do
     describe 'Following / Followers' do 
       
       before(:each) do
-        @other_user = create(:user)
+        user.save
       end
       
       it 'is able to find followers' do
-        user.save
         expect { 
           @relationship = create(:relationship, follower: user)
         }.to change(Relationship, :count)
-
         expect(@relationship).to be_a Relationship
       end
 
+      it '#following?' do
+        relationship = create(:relationship, follower: user)
+        other_user = relationship.followed
+
+        expect( user.following?(other_user) ).to be true
+        expect( user.following? create(:user) ).not_to be_truthy
+      end
+
       it 'changes followed_users count' do
-        user.save
         puts user.followed_users.count
         expect { 
           create(:relationship, follower: user) 

@@ -24,7 +24,6 @@ describe Relationship do
   end
 
   describe 'user connected to other' do
-    
   end
 
   describe 'Constraints to the Relationships' do
