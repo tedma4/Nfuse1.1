@@ -2,8 +2,8 @@ require 'spec_helper'
 
 context '#basic user' do
 
-  let(:user) { FactoryGirl.build(:user, first_name: 'First', last_name: 'Last', email: 'TestUserEmail@gmail.com') }
-  let(:invalid_user) { FactoryGirl.build(:user, first_name: nil, email: nil)}
+  let(:user) { build(:user, first_name: 'First', last_name: 'Last', email: 'TestUserEmail@gmail.com') }
+  let(:invalid_user) { build(:user, first_name: nil, email: nil)}
 
   describe User do
 
@@ -46,14 +46,14 @@ context '#basic user' do
     context '#Email' do
 
       it '#maintains validity' do
-        _user = FactoryGirl.build(:user, email: 'TestUserEmail@gmail')
+        _user = build(:user, email: 'TestUserEmail@gmail')
         _user.valid?
         expect(_user.errors[:email]).not_to be_blank
       end
 
       it '#should not allow duplicate emails' do
-        user1 = FactoryGirl.create(:user, email: 'TestUserEmail@gmail.com')
-        user2 = FactoryGirl.build(:user,
+        user1 = create(:user, email: 'TestUserEmail@gmail.com')
+        user2 = build(:user,
                                   first_name: 'User 2',
                                   last_name: 'Last', 
                                   email: 'TestUserEmail@gmail.com')
@@ -63,7 +63,7 @@ context '#basic user' do
       end
 
       it 'all emails should be saved as downcase' do
-        user = FactoryGirl.create(:user, email: 'TestUserEmail@gmail.com')
+        user = create(:user, email: 'TestUserEmail@gmail.com')
         expect(user.email).to eq('testuseremail@gmail.com')
       end
     end
@@ -71,7 +71,7 @@ context '#basic user' do
     context '#Status Options' do
       # Moved methods to UserOptions module
       it 'maintain original method connection and naming' do
-        user = FactoryGirl.build(:user)
+        user = build(:user)
         [:rel_stat, :int_in, :look, :gender_txt, :full_name].each do |_method|
           expect(user).to respond_to(_method)
         end
@@ -91,11 +91,11 @@ context '#basic user' do
       context 'Authentication internals' do
 
         it '#digest' do
-          @user = FactoryGirl.build(:user)
+          # @user = build(:user)
           expect(SecureRandom).to receive(:urlsafe_base64)
           expect(Digest::SHA1).to receive(:hexdigest)
-          token = @user.new_remember_token
-          @user.digest(token)
+          token = user.new_remember_token
+          user.digest(token)
         end
 
       end
