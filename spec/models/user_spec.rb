@@ -33,6 +33,24 @@ context '#basic user' do
         expect( user.following? create(:user) ).not_to be_truthy
       end
 
+      it '#follow!' do
+        expect {
+          user.follow!(create(:user))
+        }.to change(Relationship, :count)
+      end
+
+      it '#unfollow' do
+
+        relationship = create(:relationship)
+
+        user = relationship.followed
+        other_user = relationship.follower
+
+        expect {
+          other_user.unfollow!(user)
+        }.to change(Relationship, :count).by(-1)
+      end
+
       it 'changes followed_users count' do
         puts user.followed_users.count
         expect { 
