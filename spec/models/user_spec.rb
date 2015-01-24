@@ -25,6 +25,22 @@ context '#basic user' do
         expect(@relationship).to be_a Relationship
       end
 
+      describe 'follow multiple people' do 
+        let(:user_num) {rand(10)+1} # to make sure its not 0
+        let(:this_user) { create(:user) }
+        let(:multiple_follows) { user_num.times do this_user.follow! create(:user); end }
+
+        it 'followed_users and relationships count are the same' do
+          expect { multiple_follows }.to change( this_user.followed_users, :count).by( user_num )
+        end
+
+        it 'checks reverse follow' do
+          multiple_follows
+          random_user = this_user.followed_users.sample
+          expect(random_user.followers).to include(this_user)
+        end
+      end
+
       it '#following?' do
         relationship = create(:relationship, follower: user)
         other_user = relationship.followed
@@ -36,13 +52,11 @@ context '#basic user' do
       it '#follow!' do
         expect {
           user.follow!(create(:user))
-        }.to change(Relationship, :count)
+        }.to change(Relationship, :count).by(1)
       end
 
       it '#unfollow' do
-
         relationship = create(:relationship)
-
         user = relationship.followed
         other_user = relationship.follower
 
@@ -52,10 +66,8 @@ context '#basic user' do
       end
 
       it 'changes followed_users count' do
-        puts user.followed_users.count
         expect { 
-          create(:relationship, follower: user) 
-          puts user.followed_users.count
+          create(:relationship, follower: user)
         }.to change(user.followed_users, :count)
       end
     end
