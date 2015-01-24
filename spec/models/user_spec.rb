@@ -53,5 +53,17 @@ context '#basic user' do
         expect(user.email).to eq('testuseremail@gmail.com')
       end
     end
+
+    context '#Status Options' do
+      
+      # Moved methods to UserOptions module
+      it 'maintain original method connection and naming' do
+        user = FactoryGirl.build(:user)
+        [:rel_stat, :int_in, :look, :gender_txt].each do |_method|
+          expect(user).to respond_to(_method)
+        end
+      end
+
+    end
   end
 end

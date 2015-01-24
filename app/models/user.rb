@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include UserOptions
   # 
   # Relationships
   # 
@@ -35,12 +36,12 @@ class User < ActiveRecord::Base
   # 
   # Validations
   # 
+  # *images
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
-  validates :first_name, :last_name, presence: true
-  
+  # *names
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  
+  validates :first_name, :last_name, presence: true
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
@@ -63,24 +64,7 @@ class User < ActiveRecord::Base
   def validate_tokens!
     tokens.each(&:validate_token!)
   end
-#These are the relationship status options a user can choose from
-  def rel_stat
-    ["I don’t want to say", "Single", "In a relationship", "Engaged", "Married", "It’s complicated", "In an open relationship", "Widowed", "In a domestic partnership", "In a civil union"][self.relationship_status - 1]
-  end
-#These are the interested in options a user can choose from
-  def int_in
-    ["Women", "Men", "Women and Men"][self.interested_in - 1]
-  end
 
-#These are the looking for options a user can choose from
-  def look
-    ["Friends", "Dating", "A relationship", "Networking", "Fun"][self.looking_for - 1]
-  end
-
-#These are the gender options a user can choose from
-  def gender_txt
-    ["Not Telling", "Male", "Female"][self.gender - 1]
-  end
 #This generates a cookie for a user when they log in
   def User.new_remember_token
     SecureRandom.urlsafe_base64
