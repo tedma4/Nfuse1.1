@@ -1,17 +1,30 @@
 require 'spec_helper'
 
 context '#basic user' do
-  let(:user) {
-    FactoryGirl.create(:user, first_name: 'First', last_name: 'Last')
-  }
 
-  let(:invalid_user) {
-    FactoryGirl.build(:user, first_name: nil, email: nil)
-  }
+  let(:user) { FactoryGirl.build(:user, first_name: 'First', last_name: 'Last', email: 'TestUserEmail@gmail.com') }
+  let(:invalid_user) { FactoryGirl.build(:user, first_name: nil, email: nil)}
 
   describe User do
 
+    context '#callbacks (before_create)' do
+      it '#downcase_email' do
+        expect(user).to receive(:downcase_email)
+        user.save
+      end
+
+      it '#create_remember_token' do
+        expect(user).to receive(:create_remember_token)
+        user.save
+      end
+    end
+
     context '#Base attributes' do
+
+      before(:each) do
+        user.valid?
+      end
+
       it '#has a first name and last name # as fullname' do
         expect(user.full_name).to eq 'First Last'
       end
@@ -23,7 +36,6 @@ context '#basic user' do
       end
 
       it '#not need a password but if so must be 6 chars' do
-        user.valid?
         expect(user.errors[:password]).to be_blank
         user.password = 'one'
         user.valid?
@@ -34,9 +46,9 @@ context '#basic user' do
     context '#Email' do
 
       it '#maintains validity' do
-        user = FactoryGirl.build(:user, email: 'TestUserEmail@gmail')
-        user.valid?
-        expect(user.errors[:email]).not_to be_blank
+        _user = FactoryGirl.build(:user, email: 'TestUserEmail@gmail')
+        _user.valid?
+        expect(_user.errors[:email]).not_to be_blank
       end
 
       it '#should not allow duplicate emails' do
@@ -69,6 +81,7 @@ context '#basic user' do
     describe  '#Passwords & tokens' do
 
       it '#responds to password methods' do
+        user.save
         expect(user).not_to be_new_record
         expect(user.new_remember_token).to be_a(String)
         expect(user.remember_token).to be_a(String)
@@ -77,11 +90,8 @@ context '#basic user' do
 
       context 'Authentication internals' do
 
-        before(:each) do
-          @user = FactoryGirl.build(:user)
-        end
-
         it '#digest' do
+          @user = FactoryGirl.build(:user)
           expect(SecureRandom).to receive(:urlsafe_base64)
           expect(Digest::SHA1).to receive(:hexdigest)
           token = @user.new_remember_token

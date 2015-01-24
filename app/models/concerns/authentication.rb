@@ -32,16 +32,4 @@ module Authentication
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  module ClassMethods
-
-    def new_remember_token
-      SecureRandom.urlsafe_base64
-    end
-
-    def digest(token)
-      Digest::SHA1.hexdigest(token.to_s)
-    end
-
-  end
-
 end
