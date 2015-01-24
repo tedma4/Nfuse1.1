@@ -23,4 +23,15 @@ describe Relationship do
     expect(rel_2.macro).to eq(:belongs_to)
   end
 
+  describe 'user connected to other' do
+    
+  end
+
+  describe 'Constraints to the Relationships' do
+    context 'who can follow who?' do
+    end
+
+    context 'blocking?'
+  end
 end
+

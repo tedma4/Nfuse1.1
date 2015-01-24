@@ -7,6 +7,36 @@ context '#basic user' do
 
   describe User do
 
+    describe 'Associations' do
+      it 'has_many followers'
+      it 'follows many others'
+    end
+
+    describe 'Following / Followers' do 
+      
+      before(:each) do
+        @other_user = create(:user)
+      end
+      
+      it 'is able to find followers' do
+        user.save
+        expect { 
+          @relationship = create(:relationship, follower: user)
+        }.to change(Relationship, :count)
+
+        expect(@relationship).to be_a Relationship
+      end
+
+      it 'changes followed_users count' do
+        user.save
+        puts user.followed_users.count
+        expect { 
+          create(:relationship, follower: user) 
+          puts user.followed_users.count
+        }.to change(user.followed_users, :count)
+      end
+    end
+
     context '#callbacks (before_create)' do
       it '#downcase_email' do
         expect(user).to receive(:downcase_email)
