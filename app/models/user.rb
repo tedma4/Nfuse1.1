@@ -85,14 +85,6 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
-#This concatinates the user's first and last names
-  def full_name
-  first_name + " " + last_name
-  end
-#This turns a user first name entry into a string
-  def to_s
-    first_name
-  end
 
 #This allows a user to search by first name, last name or both  
   def self.search(search)

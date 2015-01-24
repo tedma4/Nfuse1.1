@@ -1,5 +1,10 @@
 module UserOptions
   extend ActiveSupport::Concern
+
+  #This concatinates the user's first and last names
+  def full_name
+  first_name + " " + last_name
+  end
   #These are the relationship status options a user can choose from
   def rel_stat
     ["I don’t want to say",
