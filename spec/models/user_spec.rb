@@ -2,7 +2,7 @@ require 'spec_helper'
 
 context '#basic user' do
 
-  let(:user) { build(:user, first_name: 'First', last_name: 'Last', email: 'TestUserEmail@gmail.com') }
+  let(:user) { build(:user) }
   let(:invalid_user) { build(:user, first_name: nil, email: nil)}
 
   describe User do
@@ -26,7 +26,7 @@ context '#basic user' do
       end
 
       it '#has a first name and last name # as fullname' do
-        expect(user.full_name).to eq 'First Last'
+        expect(user.full_name).to eq "#{user.first_name} #{user.last_name}"
       end
 
       it '#needs name and email' do
@@ -91,7 +91,6 @@ context '#basic user' do
       context 'Authentication internals' do
 
         it '#digest' do
-          # @user = build(:user)
           expect(SecureRandom).to receive(:urlsafe_base64)
           expect(Digest::SHA1).to receive(:hexdigest)
           token = user.new_remember_token
