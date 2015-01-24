@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include UserOptions
+  include Authentication
   # 
   # Relationships
   # 
@@ -17,7 +18,6 @@ class User < ActiveRecord::Base
   # 
   # Callbacks & Macros
   # 
-  has_secure_password
   acts_as_voter
 
   before_create :downcase_email
@@ -48,32 +48,6 @@ class User < ActiveRecord::Base
 
   validates :password, length: {minimum: 6}, allow_blank: true
 
-  def send_password_reset
-    generate_token(:password_reset_token)
-    self.password_reset_sent_at = Time.zone.now
-    save!
-    UserMailer.password_reset(self).deliver
-  end
-#This generates a password reset token
-  def generate_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
-  end
-#This validates the password reset token sent to a user
-  def validate_tokens!
-    tokens.each(&:validate_token!)
-  end
-
-#This generates a cookie for a user when they log in
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def User.digest(token)
-    Digest::SHA1.hexdigest(token.to_s)
-  end
-
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end
@@ -86,7 +60,7 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
-#This allows a user to search by first name, last name or both  
+  #This allows a user to search by first name, last name or both  
   def self.search(search)
       where("first_name like :s or last_name like :s or first_name || ' ' || last_name like :s", :s => "%#{search}") 
   end
@@ -98,7 +72,7 @@ class User < ActiveRecord::Base
   end
 
   def create_remember_token
-    self.remember_token = User.digest(User.new_remember_token)
+    self.remember_token = digest(new_remember_token)
   end
 
 end

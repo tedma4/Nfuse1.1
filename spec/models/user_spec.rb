@@ -11,22 +11,24 @@ context '#basic user' do
 
   describe User do
 
-    it '#has a first name and last name # as fullname' do
-      expect(user.full_name).to eq 'First Last'
-    end
+    context '#Base attributes' do
+      it '#has a first name and last name # as fullname' do
+        expect(user.full_name).to eq 'First Last'
+      end
 
-    it '#needs name and email' do
-      invalid_user.valid?
-      expect(invalid_user.errors[:first_name]).to include("can't be blank")
-      expect(invalid_user.errors[:email]).to include("can't be blank")
-    end
+      it '#needs name and email' do
+        invalid_user.valid?
+        expect(invalid_user.errors[:first_name]).to include("can't be blank")
+        expect(invalid_user.errors[:email]).to include("can't be blank")
+      end
 
-    it '#not need a password but if so must be 6 chars' do
-      user.valid?
-      expect(user.errors[:password]).to be_blank
-      user.password = 'one'
-      user.valid?
-      expect(user.errors[:password]).not_to be_blank
+      it '#not need a password but if so must be 6 chars' do
+        user.valid?
+        expect(user.errors[:password]).to be_blank
+        user.password = 'one'
+        user.valid?
+        expect(user.errors[:password]).not_to be_blank
+      end
     end
 
     context '#Email' do
@@ -55,7 +57,6 @@ context '#basic user' do
     end
 
     context '#Status Options' do
-      
       # Moved methods to UserOptions module
       it 'maintain original method connection and naming' do
         user = FactoryGirl.build(:user)
@@ -63,7 +64,32 @@ context '#basic user' do
           expect(user).to respond_to(_method)
         end
       end
-
     end
+
+    describe  '#Passwords & tokens' do
+
+      it '#responds to password methods' do
+        expect(user).not_to be_new_record
+        expect(user.new_remember_token).to be_a(String)
+        expect(user.remember_token).to be_a(String)
+        expect(user.persisted?).to be_truthy
+      end
+
+      context 'Authentication internals' do
+
+        before(:each) do
+          @user = FactoryGirl.build(:user)
+        end
+
+        it '#digest' do
+          expect(SecureRandom).to receive(:urlsafe_base64)
+          expect(Digest::SHA1).to receive(:hexdigest)
+          token = @user.new_remember_token
+          @user.digest(token)
+        end
+
+      end
+    end
+
   end
 end
