@@ -44,6 +44,7 @@ context '#basic user' do
                                   last_name: 'Last', 
                                   email: 'TestUserEmail@gmail.com')
         user2.valid?
+        expect(user2).not_to be_valid
         expect(user2.errors[:email]).not_to be_blank
       end
 
