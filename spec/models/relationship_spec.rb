@@ -15,4 +15,12 @@ describe Relationship do
     expect(Relationship.count).not_to be 0
   end
 
+  it 'demonstrates associations' do
+    rel_  = Relationship.reflect_on_association(:followed)
+    expect(rel_.macro).to eq(:belongs_to)
+
+    rel_2 = Relationship.reflect_on_association(:follower)
+    expect(rel_2.macro).to eq(:belongs_to)
+  end
+
 end
