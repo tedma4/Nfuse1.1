@@ -38,10 +38,10 @@ Rails.application.routes.draw do
   resources :password_resets
 
   # Authentication and Settings
-  get    '/signup',   to: 'users#new', as: :sign_up
-  get    '/signin',   to: 'sessions#new', as: :sign_in
-  delete '/signout',  to: 'sessions#destroy', as: :sign_out
-  get    '/settings', to: 'users#settings', as: :user_settings
+  get    '/signup',   to: 'users#new'
+  get    '/signin',   to: 'sessions#new'
+  delete '/signout',  to: 'sessions#destroy'
+  get    '/settings', to: 'users#settings'
   
   # Static pages
   get '/help',     to: 'pages#help'
