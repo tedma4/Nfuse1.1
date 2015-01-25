@@ -22,6 +22,9 @@
             <source src="<%= post.video %>" type="video/mp4">
           </video>
         </li>
+        <% if post.caption.present? %>
+          <li><%= post.caption_text %></li>
+        <% end %>
       </ul>
     <% end %>
   </div>
