@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   include UsersHelper
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
-                only: [:index, :edit, :update, :destroy, :following, :followers]
+                only: [:show, :index, :edit, :update, :destroy, :following, :followers]
   #This ensures that a user is the correct user for a particilar profile
-  before_action :correct_user,   only: [:edit, :update, :show]
+  before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
   def index
@@ -15,12 +15,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    #This shows a specific user's profile
     @user = User.find(params[:id])
   end
 
   def new
-    #This starts th new user process
     @user = User.new
   end
 
