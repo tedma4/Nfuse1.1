@@ -1,4 +1,4 @@
-class GooglePlusRegistrationController < ApplicationController
+class YoutubeRegistrationController < ApplicationController
 
   def create
   	#The omniauth used to authorize an instagram user's posts

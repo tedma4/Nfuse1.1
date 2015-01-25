@@ -20,8 +20,8 @@ class Providers
     @user.tokens.where(provider: 'instagram').count > 0
   end
 
-  #def google_plus?
-  #  @user.tokens.where(provider: 'google_plus').count > 0
+  #def youtube?
+  #  @user.tokens.where(provider: 'youtube').count > 0
   #end
 
   def nfuse?
@@ -29,7 +29,7 @@ class Providers
   end
 
   def none?
-    !(facebook? || twitter? || instagram? || google_plus? || nfuse?)
+    !(facebook? || twitter? || instagram? || youtube? || nfuse?)
   end
 
 end

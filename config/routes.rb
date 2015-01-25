@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'twitter_registration#create'
   get '/auth/failure', to: 'twitter_registration#failure'
   get '/auth/facebook/callback', to: 'facebook_registration#create'
-  #get '/oauth2/callback', to: 'google_plus_registration#create'
+  get '/oauth2/callback', to: 'youtube_registration#create'
 
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'

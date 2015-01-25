@@ -7,18 +7,18 @@ class Feed
               :twitter_pagination_id,
               :facebook_pagination_id,
               :instagram_max_id,
-              :google_plus_pagination_id
+              :youtube_pagination_id
 
   def initialize(user)
     @user = user
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#google_plus_pagination_id, 
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#youtube_pagination_id, 
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
-#                                   google_plus_posts(google_plus_pagination_id),
+#                                   youtube_posts(youtube_pagination_id),
                                    users_posts(user_id)
     )
   #
@@ -87,21 +87,21 @@ class Feed
     end
   end
 
-  #def google_plus_posts(google_plus_pagination_id)
-  #  if user_has_provider?('google_plus', @user)
-  #    google_plus_timeline = Google_plus::Timeline.new(@user)
-  #    google_plus_posts = google_plus_timeline.posts(google_plus_pagination_id).map { |post| Google_plus::Post.from(post) }
-  #    auth_google_plus(google_plus_timeline)
-  #    @google_plus_pagination_id = google_plus_timeline.pagination_id
-  #    google_plus_posts
+  #def youtube_posts(youtube_pagination_id)
+  #  if user_has_provider?('youtube', @user)
+  #    youtube_timeline = youtube::Timeline.new(@user)
+  #    youtube_posts = youtube_timeline.posts(youtube_pagination_id).map { |post| Youtube::Post.from(post) }
+  #    auth_youtube(youtube_timeline)
+  #    @youtube_pagination_id = youtube_timeline.pagination_id
+  #    youtube_posts
   #  else
   #    []
   #  end
   #end
 
-  #def auth_google_plus(google_plus_posts)
-  #  unless google_plus_posts.authed
-  #    @unauthed_accounts << "google_plus"
+  #def auth_youtube(youtube_posts)
+  #  unless youtube_posts.authed
+  #    @unauthed_accounts << "youtube"
   #  end
   #end
 end

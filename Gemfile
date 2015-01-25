@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 #This is the rails version we are using
 gem 'rails', '4.1.2'
@@ -37,7 +37,7 @@ gem 'youtube_it', '~> 2.4.0'
 gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth 
 gem 'omniauth-instagram', '~> 1.0.1'
-gem 'google_plus'
+gem 'omniauth-google-oauth2'
 gem 'faraday', '~> 0.9.0'
 gem 'oj', '~> 2.9.3'
 gem 'oj_mimic_json', '~> 1.0.0'
