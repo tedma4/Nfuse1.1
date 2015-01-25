@@ -73,6 +73,11 @@ class User < ActiveRecord::Base
     where("first_name like :s or last_name like :s or first_name || ' ' || last_name like :s", :s => "%#{search}") 
   end
 
+  def self.all_except(other_user)
+    result = where.not("id = ?",other_user.id).order("created_at DESC")
+    result.nil? ? [] : result
+  end
+
   private
 
   def downcase_email

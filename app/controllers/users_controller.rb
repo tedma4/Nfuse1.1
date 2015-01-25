@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def index
     #user = User.find(params[:id])
     #This shows all the users a user has a conversation with
-    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
+    @users = User.all_except(current_user)
     @conversations = Conversation.involving(current_user).order("created_at DESC")
   end
 
