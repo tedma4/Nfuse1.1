@@ -12,12 +12,22 @@ context '#basic user' do
       it 'follows many others'
     end
 
+    describe '#Search' do
+
+      it '#search' do
+        user = create(:user)
+        expect( User.search(user.first_name) ).to be_a ActiveRecord::Relation
+        expect( User.search(user.first_name).first ).to eq user
+      end
+
+    end
+
     describe 'Following / Followers' do 
       
       before(:each) do
         user.save
       end
-      
+
       it 'is able to find followers' do
         expect { 
           @relationship = create(:relationship, follower: user)
@@ -29,6 +39,14 @@ context '#basic user' do
         let(:user_num) {rand(10)+1} # to make sure its not 0
         let(:this_user) { create(:user) }
         let(:multiple_follows) { user_num.times do this_user.follow! create(:user); end }
+
+        it '#total_followers' do
+          followers=double('followers')
+          expect(followers).to receive(:count).and_return(user_num)
+          allow(this_user).to receive(:followers).and_return(followers)
+          expect(this_user.total_followers).to eq(user_num)
+        end
+
 
         it 'followed_users and relationships count are the same' do
           expect { multiple_follows }.to change( this_user.followed_users, :count).by( user_num )
