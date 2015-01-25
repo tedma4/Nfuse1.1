@@ -36,21 +36,26 @@ Rails.application.routes.draw do
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
-  root to: 'pages#home'
-  match '/signup',   to: 'users#new',       via: 'get'
-  match '/signin',   to: 'sessions#new',         via: 'get'
-  match '/signout',  to: 'sessions#destroy',     via: 'delete'
-  match '/help',     to: 'pages#help',           via: 'get'
-  match '/about',    to: 'pages#about',          via: 'get'
-  match '/feedback', to: 'pages#feedback',       via: 'get'
-  match '/terms',    to: 'pages#terms',          via: 'get'
-  match '/privacy',  to: 'pages#privacy',        via: 'get'
-  match '/qanda',    to: 'pages#qanda',          via: 'get'
-  match '/contacts', to: 'contacts#new',         via: 'get'
-  match '/settings', to: 'users#settings',       via: 'get'
-   get '/feed_content', to: 'users#feed', as: :feed_content
-   get "search" => "searches#index"
+
+  # Authentication and Settings
+  get    '/signup',   to: 'users#new', as: :sign_up
+  get    '/signin',   to: 'sessions#new', as: :sign_in
+  delete '/signout',  to: 'sessions#destroy', as: :sign_out
+  get    '/settings', to: 'users#settings', as: :user_settings
   
+  # Static pages
+  get '/help',     to: 'pages#help'
+  get '/about',    to: 'pages#about'
+  get '/feedback', to: 'pages#feedback'
+  get '/terms',    to: 'pages#terms'
+  get '/privacy',  to: 'pages#privacy'
+  get '/qanda',    to: 'pages#qanda'
+
+  get '/contacts', to: 'contacts#new'
+
+  get '/feed_content', to: 'users#feed', as: :feed_content
+  get "search" => "searches#index"
+
   get '/auth/instagram/callback', to: 'instagram_registration#create'
   get '/auth/twitter/callback', to: 'twitter_registration#create'
   get '/auth/failure', to: 'twitter_registration#failure'
@@ -61,6 +66,8 @@ Rails.application.routes.draw do
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
   post '/instagram/like/:media_id', to: 'likes#instagram'
   post '/facebook/like/:post_id', to: 'likes#facebook'
+
+  root to: 'pages#home'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
