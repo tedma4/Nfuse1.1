@@ -12,6 +12,16 @@ context '#basic user' do
       it 'follows many others'
     end
 
+    describe '#Search' do
+
+      it '#search' do
+        user = create(:user)
+        expect( User.search(user.first_name) ).to be_a ActiveRecord::Relation
+        expect( User.search(user.first_name).first ).to eq user
+      end
+
+    end
+
     describe 'Following / Followers' do 
       
       before(:each) do
