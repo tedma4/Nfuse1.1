@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
+  def total_followers
+    followers.count
+  end
+
   #This allows a user to search by first name, last name or both  
   def self.search(search)
     where("first_name like :s or last_name like :s or first_name || ' ' || last_name like :s", :s => "%#{search}") 
