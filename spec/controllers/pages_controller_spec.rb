@@ -1,33 +1,31 @@
 require 'spec_helper'
 
-describe PagesController do
+describe PagesController, type: :controller do
 
   describe "GET 'home'" do
-    it "returns http success" do
-      get 'home'
-      response.should be_success
+    let(:me) { create(:user) }
+    before(:each) do
+      request.host = 'nfuse.com'
+      login me
     end
-  end
 
-  describe "GET 'help'" do
-    it "returns http success" do
-      get 'help'
-      response.should be_success
+    context 'logged in' do
+      it 'should maintain all instance vars' do
+        get 'home'
+        # be(me) fails because it looks for exact * User object _id
+        expect(assigns[:user]).to eql(me)
+        expect(response).to be_success
+      end
     end
-  end
 
-  describe "GET 'about'" do
-    it "returns http success" do
-      get 'about'
-      response.should be_success
+    context 'logged out' do
+      it "returns http success" do
+        log_out
+        get 'home'
+        expect(response).to redirect_to signin_url
+        end
     end
-  end
 
-  describe "GET 'contact'" do
-    it "returns http success" do
-      get 'contact'
-      response.should be_success
-    end
   end
 
 end

@@ -1,5 +1,6 @@
 class Feed
   include ApplicationHelper
+  attr_accessor :params
 
   attr_reader :poster_recipient_profile_hash,
               :commenter_profile_hash,
@@ -9,7 +10,8 @@ class Feed
               :instagram_max_id,
               :youtube_pagination_id
 
-  def initialize(user)
+
+  def initialize(user=current_user)
     @user = user
     @unauthed_accounts = []
   end
@@ -20,11 +22,24 @@ class Feed
                                    facebook_posts(facebook_pagination_id),
 #                                   youtube_posts(youtube_pagination_id),
                                    users_posts(user_id)
-    )
-  #
+                                   )
+  end
+
+  def construct(params)
+    self.params = params
+              # :twitter_pagination_id,
+              # :facebook_pagination_id,
+              # :instagram_max_id,
+              # ^ these attrs are set in the methos below.
+    tw = twitter_posts(params[:twitter_pagination])
+    fb = facebook_posts(params[:facebook_pagination_id])
+    ig = instagram_posts(params[:instagram_max_id])
+    up = users_posts(@user.id)
+    TimelineConcatenator.new.merge(tw, ig, fb, up )
   end
 
   private
+
   def users_posts(user_id)
     user = User.find(user_id)
     user.shouts.map {|shout|

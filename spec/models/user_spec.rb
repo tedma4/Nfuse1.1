@@ -4,6 +4,7 @@ context '#basic user' do
 
   let(:user) { build(:user) }
   let(:invalid_user) { build(:user, first_name: nil, email: nil)}
+  let(:multiple_users) { 5.times do create(:user); end }
 
   describe User do
 
@@ -12,7 +13,7 @@ context '#basic user' do
       it 'follows many others'
     end
 
-    describe '#Search' do
+    describe '#custom queries' do
 
       it '#search' do
         user = create(:user)
@@ -20,7 +21,23 @@ context '#basic user' do
         expect( User.search(user.first_name).first ).to eq user
       end
 
+      it '#all_except' do
+        multiple_users
+        user.save
+        expect(User.all_except(user)).not_to include(user)
+      end
+
+      xit '#total_followers' do
+          followers=double('followers')
+          expect(followers).to receive(:count).and_return(user_num)
+          allow(this_user).to receive(:followers).and_return(followers)
+          expect(this_user.total_followers).to eq(user_num)
+      end
+
+
     end
+
+
 
     describe 'Following / Followers' do 
       
