@@ -97,18 +97,4 @@ describe UsersController, type: :controller do
     end
   end
 
-  describe "GET 'new'" do
-    xit "returns http success" do
-      get 'new'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'show'" do
-    xit "returns http success" do
-      get 'show'
-      response.should be_success
-    end
-  end
-
 end
