@@ -22,28 +22,23 @@ class Feed
                                    facebook_posts(facebook_pagination_id),
 #                                   youtube_posts(youtube_pagination_id),
                                    users_posts(user_id)
-    )
+                                   )
   end
 
   def construct(params)
     self.params = params
-    set_pagination_ids
+              # :twitter_pagination_id,
+              # :facebook_pagination_id,
+              # :instagram_max_id,
+              # ^ these attrs are set in the methos below.
     tw = twitter_posts(params[:twitter_pagination])
     fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
     up = users_posts(@user.id)
-
     TimelineConcatenator.new.merge(tw, ig, fb, up )
   end
 
   private
-
-  def set_pagination_ids
-    # consistency. twitter_pagination_id
-    self.twitter_pagination_id =params[:twitter_pagination]
-    self.facebook_pagination_id=params[:facebook_pagination_id]
-    self.instagram_max_id      =params[:instagram_max_id]
-  end
 
   def users_posts(user_id)
     user = User.find(user_id)
