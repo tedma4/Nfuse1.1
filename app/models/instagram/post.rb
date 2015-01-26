@@ -66,7 +66,5 @@ module Instagram
     def video
       @post["videos"]["standard_resolution"]["url"]
     end
-
   end
-
 end

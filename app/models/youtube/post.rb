@@ -1,5 +1,5 @@
 #module Youtube
-#	
+#
 #	class Post < TimelineEntry
 #
 #    def self.from(video)
@@ -31,10 +31,6 @@
 #      "http://www.instagram.com/#{full_name}"
 #    end
 #
-#    def low_resolution_image_url
-#      @video["images"]["low_resolution"]["url"]
-#    end
-#
 #    def caption
 #      @video["caption"]
 #    end
@@ -62,5 +58,5 @@
 #    def type
 #      @video["type"]
 #    end
-#	end
+#	 end
 #end

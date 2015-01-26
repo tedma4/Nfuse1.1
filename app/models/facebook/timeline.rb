@@ -27,6 +27,5 @@ module Facebook
     def user_tokens
       @user.tokens.find_by(provider: 'facebook')
     end
-
   end
 end
