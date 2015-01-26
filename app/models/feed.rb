@@ -11,7 +11,7 @@ class Feed
               :youtube_pagination_id
 
 
-  def initialize(user)
+  def initialize(user=current_user)
     @user = user
     @unauthed_accounts = []
   end
