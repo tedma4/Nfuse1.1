@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include UsersHelper
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
-                only: [:show, :index, :edit, :update, :destroy, :following, :followers]
+                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers]
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
@@ -77,9 +77,9 @@ class UsersController < ApplicationController
     @commenter_profile_hash        = feed.commenter_profile_hash
 
     @load_more_url = feed_content_path(
-      :twitter_pagination => feed.twitter_pagination_id,
-      :facebook_pagination_id => feed.facebook_pagination_id,
-      :instagram_max_id => feed.instagram_max_id
+      twitter_pagination:     feed.twitter_pagination_id,
+      facebook_pagination_id: feed.facebook_pagination_id,
+      instagram_max_id:       feed.instagram_max_id
     )
 
     render 'show_feed'

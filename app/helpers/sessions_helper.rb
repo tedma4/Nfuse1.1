@@ -7,11 +7,10 @@ module SessionsHelper
   def signed_in?
     !!current_user
   end
- 
-  #  I dont see where in the app this is being used.
+
   def current_user=(user)
     @current_user=user
-    session[:user_id] = user.nil? ? 999999999999 : user.id
+    session[:user_id] = user.id
   end
 
   def current_user?(user) # get current user
