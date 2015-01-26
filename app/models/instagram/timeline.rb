@@ -22,7 +22,5 @@ module Instagram
       end
       posts
     end
-
   end
-
 end
