@@ -85,6 +85,18 @@ describe UsersController, type: :controller do
     end
   end
 
+  describe '#feed' do
+    let(:user) { create :user }
+
+    it 'maintains all old instance vars' do
+      login user
+      get 'feed', id: user.id
+      expect(assigns[:timeline]).to be_a Array
+      expect(assigns[:providers]).to be_a Providers
+      expect(assigns[:unauthed_accounts]).to be_a Array
+    end
+  end
+
   describe "GET 'new'" do
     xit "returns http success" do
       get 'new'
