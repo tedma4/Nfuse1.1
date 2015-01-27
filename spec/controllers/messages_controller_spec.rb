@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessagesController do
+describe MessagesController, type: :controller do
 
   describe "GET 'create'" do
     it "returns http success" do

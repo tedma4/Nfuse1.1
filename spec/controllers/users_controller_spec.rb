@@ -33,7 +33,7 @@ describe UsersController, type: :controller do
         log_out
         get 'index'
         expect(response).not_to be_success
-        expect(response).to redirect_to signin_url
+        expect(response).to redirect_to require_signin
       end
     end
 
