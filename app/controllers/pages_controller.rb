@@ -1,8 +1,9 @@
 class PagesController < ApplicationController
   
-  before_filter :signed_in_user, only: [:home]
+  #before_filter :signed_in_user, only: [:home]
 
   def home
+    if signed_in?
       @user = User.find(session[:user_id])
       @providers = Providers.for(@user)
       timeline = []
@@ -16,6 +17,7 @@ class PagesController < ApplicationController
       end
 
       @timeline=timeline.flatten.sort {|a, b|  b.created_time <=> a.created_time }
+    end
       render "home"
   end
 

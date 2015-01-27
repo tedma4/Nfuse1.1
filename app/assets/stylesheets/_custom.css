@@ -45,6 +45,8 @@ img {
   background-color: green;
 }
 
+
+
 /* #Grid =========================================
 ================================================== */
 .center {
@@ -242,6 +244,10 @@ ul li a:hover + .hidden, .hidden:hover {
   float: right;
   width: 100px;
   height: 30px;
+}
+
+.navbarInput span input {
+  background-color: white;
 }
 
 .navbar {
@@ -528,10 +534,12 @@ td {
   padding-top: 25px;
 }
 .profile_nav_links li {
-  margin-right: 10px;
+  margin-right: 25px;
 }
 
 .profile_nav_links li a{
+  font-weight: bold;
+  font-size: 1.2em;
   text-decoration: none;
   color: black;
 }
