@@ -33,11 +33,7 @@ context '#basic user' do
           allow(this_user).to receive(:followers).and_return(followers)
           expect(this_user.total_followers).to eq(user_num)
       end
-
-
     end
-
-
 
     describe 'Following / Followers' do 
       

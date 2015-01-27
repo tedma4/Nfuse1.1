@@ -5,9 +5,9 @@ class ConversationsController < ApplicationController
   layout false
 
   def create
-    # look in Conversation model.
-    @conversation = Converastion.find_or_start_convo(params)
+    @conversation = Conversation.find_or_start_convo(params)
     render json: { conversation_id: @conversation.id }
+    render :text => 'test'
   end
 
   def show

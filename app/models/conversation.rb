@@ -18,7 +18,7 @@ class Conversation < ActiveRecord::Base
     result = between(params[:sender_id], params[:recipient_id])
     return result.first if result.present?
     # below never gets fired if one if found.
-    create!(params[:sender_id], params[:recipient_id])
+    create!(sender_id: params[:sender_id], recipient_id: params[:recipient_id])
   end
 
 end
