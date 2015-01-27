@@ -30,6 +30,7 @@ describe PagesController, type: :controller do
       it "should render correct partial timeline" do
         get 'home'
         expect(response).to render_template(partial: '_timeline')
+        expect(response).not_to render_template(partial: '_landing')
       end
     end
 
@@ -45,6 +46,7 @@ describe PagesController, type: :controller do
         log_out
         get 'home'
         expect(response).not_to render_template(partial: '_timeline')
+        expect(response).to render_template(partial: '_landing')
       end
     end
 
