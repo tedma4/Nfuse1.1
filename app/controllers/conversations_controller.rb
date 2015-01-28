@@ -5,21 +5,23 @@ class ConversationsController < ApplicationController
   layout false
 
   def create
-    # look in Conversation model.
-    @conversation = Converastion.find_or_start_convo(params)
+    @conversation = Conversation.find_or_start_convo(params)
     render json: { conversation_id: @conversation.id }
   end
 
   def show
-    #shows the chatbox
-    #user = User.find(params[:id])
-    @conversation = Conversation.find(params[:id])
-    @reciever = interlocutor(@conversation)
-    @messages = @conversation.messages
-    @message = Message.new
+    begin
+      @conversation = current_user.conversations.find(params[:id])
+      @reciever = interlocutor(@conversation)
+      @messages = @conversation.messages
+      @message = Message.new  
+     rescue ActiveRecord::RecordNotFound => e
+        redirect_to root_url , notice: 'Not your conversation'
+     end 
   end
  
   private
+
   def conversation_params
     #the parameters used when a conversation is created
     params.permit(:sender_id, :recipient_id)

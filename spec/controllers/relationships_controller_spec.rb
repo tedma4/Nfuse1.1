@@ -1,16 +1,20 @@
 require 'spec_helper'
 
-describe RelationshipsController do
+describe RelationshipsController, type: :controller do
+
+  before(:each) do
+    login create(:user)
+  end
 
   describe "GET 'create'" do
-    it "returns http success" do
+    xit "returns http success" do
       get 'create'
       response.should be_success
     end
   end
 
   describe "GET 'destroy'" do
-    it "returns http success" do
+    xit "returns http success" do
       get 'destroy'
       response.should be_success
     end

@@ -1,12 +1,13 @@
 class Conversation < ActiveRecord::Base
-  belongs_to :sender, :foreign_key => :sender_id, class_name: 'User'
+
+  belongs_to :sender,    :foreign_key => :sender_id,    class_name: 'User'
   belongs_to :recipient, :foreign_key => :recipient_id, class_name: 'User'
 
   has_many :messages, dependent: :destroy
   validates_uniqueness_of :sender_id, :scope => :recipient_id
- 
+
   scope :involving, -> (user) do
-    where("conversations.sender_id =? OR conversations.recipient_id =?",user.id,user.id)
+    where("conversations.sender_id =? OR conversations.recipient_id =?", user.id, user.id)
   end
  
   scope :between, -> (sender_id,recipient_id) do
@@ -18,7 +19,7 @@ class Conversation < ActiveRecord::Base
     result = between(params[:sender_id], params[:recipient_id])
     return result.first if result.present?
     # below never gets fired if one if found.
-    create!(params[:sender_id], params[:recipient_id])
+    create!(sender_id: params[:sender_id], recipient_id: params[:recipient_id])
   end
 
 end

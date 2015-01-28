@@ -1,13 +1,40 @@
 require 'spec_helper'
 
-context '#basic user' do
+describe User, type: :model do
+
+  it { is_expected.to have_many(:relationships)
+                      .with_foreign_key(:follower_id)
+                      .dependent(:destroy) }
+
+  it { is_expected.to have_many(:followed_users)
+                      .through(:relationships)
+                      .source(:followed) }
+
+  it { is_expected.to have_many(:reverse_relationships)
+                      .with_foreign_key('followed_id')
+                      .class_name('Relationship')
+                      .dependent(:destroy)}
+
+  it { is_expected.to have_many(:followers)
+                      .through(:reverse_relationships)
+                      .source(:follower) }
+
+  it { is_expected.to have_many(:tokens).dependent(:destroy) }
+
+  it { is_expected.to have_many(:conversations)
+                      .with_foreign_key(:sender_id) }
+
+  it { is_expected.to have_many(:shouts) }
+  it { is_expected.to have_many(:comments) }
+
 
   let(:user) { build(:user) }
   let(:invalid_user) { build(:user, first_name: nil, email: nil)}
   let(:multiple_users) { 5.times do create(:user); end }
 
-  describe User do
+  describe 'Associations' do
 
+    # Associations *(do not put in describe block)
     describe 'Associations' do
       it 'has_many followers'
       it 'follows many others'
@@ -33,11 +60,7 @@ context '#basic user' do
           allow(this_user).to receive(:followers).and_return(followers)
           expect(this_user.total_followers).to eq(user_num)
       end
-
-
     end
-
-
 
     describe 'Following / Followers' do 
       

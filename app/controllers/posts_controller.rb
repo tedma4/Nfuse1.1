@@ -1,28 +1,61 @@
 class PostsController < ApplicationController
-  #This controlls the post process for facebook and twitter
+  # This controlls the post process for facebook and twitter
+  before_action :signed_in_user 
 
   def create
-    tweet = nil
-    if params[:twitter] == "true"
-      post = params[:post]
-      twitter_timeline = Twitter::Timeline.new(@user)
-      tweet = twitter_timeline.create_tweet(post)
+    set_user
+    if twitter?
+      twitter[:tweet] = Twitter::Timeline.new(@user).create_tweet(params[:post])
     end
-    facebook_post = nil
-    facebook_profile_picture = nil
-    full_facebook_post = nil
-    if params[:facebook] == "true"
-      post = params[:post]
-      token = current_user.tokens.find_by(provider: 'facebook')
-      facebook_api = Facebook::Api.new(token.access_token, nil)
-      post_id = facebook_api.create_post(post)
-      facebook_api.get_post(post_id)
-      facebook_response = facebook_api.facebook_response
-      facebook_post = facebook_response.post
-      facebook_profile_picture = facebook_response.poster_profile_picture
-      full_facebook_post = facebook_post.merge(facebook_profile_picture)
+
+    if facebook?
+      facebook[:post]         = facebook_response.post
+      facebook[:picture]      = facebook_response.poster_profile_picture
+      facebook[:full_post]    = facebook[:post].merge(facebook[:picture])
     end
-    render json: {tweet: tweet, facebook_post: full_facebook_post}
+    
+    render json: {tweet: twitter[:tweet], facebook_post: facebook[:full_post]}
+  end
+
+  # Exercise in the power of Hash.
+  private
+
+  def set_user
+    @user ||= ( User.find_by(id: params[:user_id]) || current_user)
+  end
+
+  def facebook_response
+    @facebook_response ||= call_facebook_api
+  end
+
+  def call_facebook_api
+    post_id = facebook_api.create_post(params[:post])
+    facebook_api.get_post(post_id)
+    facebook_api.facebook_response
+  end
+
+  def facebook_api
+    @fb_api ||= Facebook::Api.new(fb_token.access_token, nil)
+  end
+
+  def fb_token
+    current_user.tokens.find_by(provider: 'facebook')
+  end
+
+  def twitter?
+    params[:twitter] == 'true'
+  end
+
+  def facebook?
+    params[:facebook] == 'true'
+  end
+
+  def facebook
+    {}
+  end
+
+  def twitter
+    {}
   end
 
 end

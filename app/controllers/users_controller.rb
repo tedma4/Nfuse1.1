@@ -92,10 +92,12 @@ class UsersController < ApplicationController
     @users.each do |user|
       feed=Feed.new(user)
       timeline << feed.construct(params)
-    @unauthed_accounts = feed.unauthed_accounts
-    @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
-    @commenter_profile_hash = feed.commenter_profile_hash
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
     end
+
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
     render "explore"
   end
@@ -105,14 +107,12 @@ class UsersController < ApplicationController
   end
 
   def following
-    #This shows all the users a user is following
     @title = "Following"
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
-    #This shows all the users following the current user
     @title = "Followers"
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'

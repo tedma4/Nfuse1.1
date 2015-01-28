@@ -4,7 +4,7 @@ module Twitter
     attr_reader :authed,
                 :last_post_id
 
-    def initialize(user)
+    def initialize(user=current_user)
       @user = user
       @authed = true
     end

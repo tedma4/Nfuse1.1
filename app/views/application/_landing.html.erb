@@ -1,0 +1,30 @@
+<div class="center">
+  <div class="center containerHome">
+  <%= image_tag "Banner-logo.png", id: "banner"%>
+    <h2 class="hero-text">
+      "A Simpler Way To Connect"
+    </h2>
+    <div class="button" id="signupButton">
+    <%= button_to "Join Nfuse", signup_path,
+                              :class => "button", :method => :get %>
+    </div>
+    <div class="button" id="aboutButton">
+    <%= button_to "Learn More", about_path,
+                             :class => 'button', :method => :get %>
+    </div>
+</div>
+<div class="containerContent">
+  <div class="span_1_of_3 col">
+    <h3 class="about">About</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas.</p>
+  </div>
+  <div class="col span_1_of_3">
+    <h3 class="about">Features</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
+  </div> 
+  <div class="col span_1_of_3">
+      <h3 class="about">NFusers</h3>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
+    </div>  
+    </div>
+</div> 
