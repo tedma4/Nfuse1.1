@@ -69,13 +69,13 @@
   <div class="inLineRight">
     <%= form_for(:session, url: sessions_path, html: { class: "loginForm" }) do |f| %>
       <span>
-        <%= f.submit "Log in", class: "button", id: "loginButton" %>
+       <%= f.text_field :email, placeholder: "Email", class: "navbarInput" %>
       </span>
       <span>
         <%= f.password_field :password, placeholder: "Password", class: "navbarInput" %>
       </span>
       <span>
-        <%= f.text_field :email, placeholder: "Email", class: "navbarInput" %>
+         <%= f.submit "Log in", class: "button", id: "loginButton" %>
       </span>
      <% end %>
   </div>
