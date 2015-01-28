@@ -39,9 +39,9 @@ module Instagram
 
     def create_url
       if @max_id.nil?
-        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=60"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=5"
       else
-        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=120"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=25"
       end
     end
 

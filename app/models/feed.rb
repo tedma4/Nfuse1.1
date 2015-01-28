@@ -16,11 +16,12 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#youtube_pagination_id, 
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#youtube_pagination_id, vimeo_pagination_id
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
 #                                   youtube_posts(youtube_pagination_id),
+#                                   vimeo_posts(vimeo_pagination_id),
                                    users_posts(user_id)
                                    )
   end
@@ -104,7 +105,7 @@ class Feed
 
   #def youtube_posts(youtube_pagination_id)
   #  if user_has_provider?('youtube', @user)
-  #    youtube_timeline = youtube::Timeline.new(@user)
+  #    youtube_timeline = Youtube::Timeline.new(@user)
   #    youtube_posts = youtube_timeline.posts(youtube_pagination_id).map { |post| Youtube::Post.from(post) }
   #    auth_youtube(youtube_timeline)
   #    @youtube_pagination_id = youtube_timeline.pagination_id
@@ -117,6 +118,24 @@ class Feed
   #def auth_youtube(youtube_posts)
   #  unless youtube_posts.authed
   #    @unauthed_accounts << "youtube"
+  #  end
+  #end
+
+  #def vimeo_posts(vimeo_pagination_id)
+  #  if user_has_provider?('vimeo', @user)
+  #    vimeo_timeline = Vimeo::Timeline.new(@user)
+  #    vimeo_posts = vimeo_timeline.posts(vimeo_pagination_id).map { |post| Vimeo::Post.from(post) }
+  #    auth_vimeo(vimeo_timeline)
+  #    @vimeo_pagination_id = vimeo_timeline.pagination_id
+  #    vimeo_posts
+  #  else
+  #    []
+  #  end
+  #end
+
+  #def auth_vimeo(vimeo_posts)
+  #  unless vimeo_posts.authed
+  #    @unauthed_accounts << "vimeo"
   #  end
   #end
 end
