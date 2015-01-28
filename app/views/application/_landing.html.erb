@@ -1,30 +1,22 @@
-<div class="center">
-  <div class="center containerHome">
-  <%= image_tag "Banner-logo.png", id: "banner"%>
-    <h2 class="hero-text">
-      "A Simpler Way To Connect"
-    </h2>
-    <div class="button" id="signupButton">
-    <%= button_to "Join Nfuse", signup_path,
-                              :class => "button", :method => :get %>
-    </div>
-    <div class="button" id="aboutButton">
-    <%= button_to "Learn More", about_path,
-                             :class => 'button', :method => :get %>
-    </div>
+<% content_for :for_head do %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+  <title>Untitled</title>
+  <%= javascript_include_tag 'edge_includes/edge.5.0.1.min.js'%>
+  <%= javascript_include_tag 'edge_includes/SuperStretchConcept_edge.js'%>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<% end %>
+
+<script>
+   AdobeEdge.loadComposition('SuperStretchConcept', 'EDGE-1058737', {
+    scaleToFit: "none",
+    centerStage: "horizontal",
+    minW: "1000px",
+    maxW: "undefined",
+    width: "100%",
+    height: "100%"
+}, {"dom":{}}, {"dom":{}});
+</script>
+
+<div id="Stage" class="EDGE-1058737">
 </div>
-<div class="containerContent">
-  <div class="span_1_of_3 col">
-    <h3 class="about">About</h3>
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas.</p>
-  </div>
-  <div class="col span_1_of_3">
-    <h3 class="about">Features</h3>
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
-  </div> 
-  <div class="col span_1_of_3">
-      <h3 class="about">NFusers</h3>
-      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor quam in turpis pretium finibus. Vivamus ex libero, pretium ut diam eu, lacinia dapibus risus. Aenean varius fermentum egestas. </p>
-    </div>  
-    </div>
-</div> 

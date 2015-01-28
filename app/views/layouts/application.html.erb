@@ -2,6 +2,9 @@
 <!-- *Start* Views/layouts/application.html -->
 <html>
   <head>
+    <% if content_for? :for_head %>
+    <%= yield :for_head %>
+  <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
