@@ -1,13 +1,24 @@
 require 'spec_helper'
 
-context '#basic user' do
+describe User, type: :model do
+
+  it { is_expected.to have_many(:relationships) }
+  it { is_expected.to have_many(:followed_users) }
+  it { is_expected.to have_many(:reverse_relationships) }
+  it { is_expected.to have_many(:followers) }
+  it { is_expected.to have_many(:tokens) }
+  it { is_expected.to have_many(:conversations) }
+  it { is_expected.to have_many(:shouts) }
+  it { is_expected.to have_many(:comments) }
+
 
   let(:user) { build(:user) }
   let(:invalid_user) { build(:user, first_name: nil, email: nil)}
   let(:multiple_users) { 5.times do create(:user); end }
 
-  describe User do
+  describe 'Associations' do
 
+    # Associations *(do not put in describe block)
     describe 'Associations' do
       it 'has_many followers'
       it 'follows many others'

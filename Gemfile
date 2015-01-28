@@ -66,6 +66,8 @@ group :test do
   # gem 'rb-notifu', '0.0.4'
   # gem 'win32console', '1.3.2'
   # gem 'wdm', '0.1.0'
+  gem 'rspec-collection_matchers'
+  gem 'shoulda-matchers', '~> 2.6.0', require: false
   gem "faker", "~> 1.4.3"
   gem "capybara", "~> 2.4.3"
   gem "database_cleaner", "~> 1.3.0"

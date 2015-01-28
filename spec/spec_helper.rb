@@ -4,6 +4,8 @@ require File.expand_path("../../config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'rspec/mocks'
+require 'rspec/collection_matchers'
+require 'shoulda/matchers'
 require 'json'
 require 'capybara/rspec'
 require 'factory_girl'
