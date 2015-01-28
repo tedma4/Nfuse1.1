@@ -23,7 +23,8 @@ class PagesController < ApplicationController
       timeline: [],
       unauthed_accounts: [],
       poster_recipient_profile_hash: [],
-      commenter_profile_hash: []
+      commenter_profile_hash: [],
+      feed_unauthed_accounts: []
     }
     current_user.followed_users.each do |user|
       feed=Feed.new(user)
