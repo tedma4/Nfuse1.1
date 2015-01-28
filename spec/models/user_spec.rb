@@ -2,12 +2,28 @@ require 'spec_helper'
 
 describe User, type: :model do
 
-  it { is_expected.to have_many(:relationships) }
-  it { is_expected.to have_many(:followed_users) }
-  it { is_expected.to have_many(:reverse_relationships) }
-  it { is_expected.to have_many(:followers) }
-  it { is_expected.to have_many(:tokens) }
-  it { is_expected.to have_many(:conversations) }
+  it { is_expected.to have_many(:relationships)
+                      .with_foreign_key(:follower_id)
+                      .dependent(:destroy) }
+
+  it { is_expected.to have_many(:followed_users)
+                      .through(:relationships)
+                      .source(:followed) }
+
+  it { is_expected.to have_many(:reverse_relationships)
+                      .with_foreign_key('followed_id')
+                      .class_name('Relationship')
+                      .dependent(:destroy)}
+
+  it { is_expected.to have_many(:followers)
+                      .through(:reverse_relationships)
+                      .source(:follower) }
+
+  it { is_expected.to have_many(:tokens).dependent(:destroy) }
+
+  it { is_expected.to have_many(:conversations)
+                      .with_foreign_key(:sender_id) }
+
   it { is_expected.to have_many(:shouts) }
   it { is_expected.to have_many(:comments) }
 
