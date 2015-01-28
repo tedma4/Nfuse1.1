@@ -158,3 +158,7 @@
 #
 #  puts
 #end
+#
+#
+#"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
+#"https://gdata.youtube.com/feeds/api/users/userId/uploads"
