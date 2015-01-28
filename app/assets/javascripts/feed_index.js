@@ -2,8 +2,8 @@ FeedIndex = {
 
   initialize: function () {
     var reloadOk = false;
-
-    $.get("/feed_content").success(function (response) {
+    var user_id  = $('#masonJar').data('user-id');
+    $.get("/feed_content?id=" + user_id ).success(function (response) {
       var loadingMessage = $(".loading_message");
       loadingMessage.before(response);
       loadingMessage.hide();
