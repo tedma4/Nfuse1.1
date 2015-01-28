@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
-  #This controlls the post process for facebook and twitter
+  # This controlls the post process for facebook and twitter
+  before_action :signed_in_user 
 
   def create
+    set_user
     if twitter?
       twitter[:tweet] = Twitter::Timeline.new(@user).create_tweet(params[:post])
     end
@@ -17,6 +19,10 @@ class PostsController < ApplicationController
 
   # Exercise in the power of Hash.
   private
+
+  def set_user
+    @user ||= ( User.find_by(id: params[:user_id]) || current_user)
+  end
 
   def facebook_response
     @facebook_response ||= call_facebook_api
