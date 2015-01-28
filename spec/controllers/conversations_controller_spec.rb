@@ -20,8 +20,17 @@ describe ConversationsController, type: :controller do
   end
 
   describe "GET 'show'" do
+    let(:user) { create :user }
+    let(:second_user) { create :user }
+    let(:convo) { Conversation.create( sender_id: user.id, recipient_id: second_user.id) }
+
+    before(:each) do
+      @conversation = convo
+    end
+
     it "returns http success" do
-      get 'show'
+      login user
+      get 'show', id: @conversation.id
       response.should be_success
     end
   end
