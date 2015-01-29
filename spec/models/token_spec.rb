@@ -24,16 +24,27 @@ describe Token do
           SecureRandom.hex(20)
         end
       end
-      
+    provider  = ['twitter', 'instagram', 'facebook', 'youtube'].sample
     mock_hash = {
-        'provider' => 'twitter',
+        'provider' => provider,
          'uid' => SecureRandom.hex(10),
          'extra' => { 'access_token' =>  AToken.new },
          'credentials' => {'token' => AToken.new.token }
       }
       other_user = create(:user)
+      
+      token = Token.update_or_create_with_twitter_omniauth(other_user.id, mock_hash)
+      expect(token).to be_a Token
+      # After the call - object
+      # provder method
+      expect(token.provider).to eq(provider)
+      expect(Token.provider).to eq(provider)
+
+      # provder method
+
       expect(Token.update_or_create_with_twitter_omniauth(other_user.id, mock_hash)).to be_a Token
       expect(Token.update_or_create_with_other_omniauth(other_user.id, mock_hash)).to be_a Token
+
     end
   end
 end

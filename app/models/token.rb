@@ -9,6 +9,8 @@ class Token < ActiveRecord::Base
     where(provider: name)
   end
 
+  cattr_accessor :auth
+
   def self.update_or_create_with_twitter_omniauth(id, auth)
     build_token(id, auth)
     @token.access_token        = auth["extra"]["access_token"].token
@@ -25,11 +27,16 @@ class Token < ActiveRecord::Base
   end
 
   def self.build_token(id, auth)
+    self.auth = auth
     @token ||= where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
-    @token.provider = auth["provider"]
+    @token.provider = provider
     @token.uid = auth["uid"]
     @token.user_id = id
     @token
+  end
+
+  def self.provider
+    auth['provider']
   end
 
   def configure_twitter(access_token, access_token_secret)
