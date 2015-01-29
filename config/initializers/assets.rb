@@ -4,6 +4,8 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( masonry.pkgd.js )
 Rails.application.config.assets.precompile += %w( imagesloaded.pkgd.js )
+Rails.application.config.assets.precompile += %w( edge_includes/edge.5.0.1.min.js )
+Rails.application.config.assets.precompile += %w( edge_includes/SuperStretchConcept_edge.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.

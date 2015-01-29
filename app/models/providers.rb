@@ -24,12 +24,16 @@ class Providers
   #  @user.tokens.where(provider: 'youtube').count > 0
   #end
 
+  #def vimeo?
+  #  @user.tokens.where(provider: 'vimeo').count > 0
+  #end
+
   def nfuse?
     @user.posts.where(provider: 'nfuse').count > 0 
   end
 
   def none?
-    !(facebook? || twitter? || instagram? || youtube? || nfuse?)
+    !(facebook? || twitter? || instagram? || youtube? || vimeo? || nfuse?)
   end
 
 end

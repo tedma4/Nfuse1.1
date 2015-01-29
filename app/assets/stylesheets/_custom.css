@@ -303,6 +303,9 @@ ul li a:hover + .hidden, .hidden:hover {
   float: right;
   margin: 15px;
 }
+.inLineRight span {
+  float: left;
+}
 
 #menu li {
   display:block;  
@@ -680,6 +683,8 @@ td {
 
 .image_post{
   border-radius: 5px;
+  margin: auto;
+  max-width: 200%;
 }
 
 .post_footer{
