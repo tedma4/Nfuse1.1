@@ -4,39 +4,86 @@ class Token < ActiveRecord::Base
   validates :uid, presence: true
 
   belongs_to :user
+  
+  cattr_accessor :auth, :token
 
-  def self.by_name(name)
-    where(provider: name)
-  end
+  # Still all Class methods
+  class << self
 
-  cattr_accessor :auth
+    def by_name(name)
+      where(provider: name)
+    end
+    # For extendabililty - down the road you might want 
+    # * facebook token * youtube * next new social media *
+    # * e.g.
+    # update_or_create_token(id, auth, provider='twitter')
+    # update_or_create_token(id, auth, provider='facebook')
 
-  def self.update_or_create_with_twitter_omniauth(id, auth)
-    build_token(id, auth)
-    @token.access_token        = auth["extra"]["access_token"].token
-    @token.access_token_secret = auth["extra"]["access_token"].secret
-    @token.save!
-    @token
-  end
+    def update_or_create_token(id, auth, provider='basic')
+      build_token(id, auth)
+      self.send("#{provider}_token")
+      save_and_return
+    end
 
-  def self.update_or_create_with_other_omniauth(id, auth)
-    build_token(id, auth)
-    @token.access_token       = auth["credentials"]["token"]
-    @token.save!
-    @token
-  end
+    def update_or_create_with_twitter_omniauth(id, auth)
+      build_token(id, auth)
+      twitter_token
+      save_and_return
+    end
 
-  def self.build_token(id, auth)
-    self.auth = auth
-    @token ||= where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
-    @token.provider = provider
-    @token.uid = auth["uid"]
-    @token.user_id = id
-    @token
-  end
+    def update_or_create_with_other_omniauth(id, auth)
+      # defaults to basic.
+      update_or_create_token(id, auth)
+    end
 
-  def self.provider
-    auth['provider']
+    # Utility Methods
+    private 
+
+    def build_token(id, auth)
+      self.auth = auth
+      @token = where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
+      @token.provider = provider
+      @token.uid      = auth_uid
+      @token.user_id  = id
+      self.token = @token
+    end
+
+    # A bit of over engineering.. I know....
+    def extra_access_token
+      auth["extra"]["access_token"]
+    end
+
+    def credentantials_token
+      auth["credentials"]["token"]
+    end
+
+    def provider
+      auth['provider']
+    end
+
+    def auth_uid
+      auth['uid']
+    end
+
+    # Social Media Specific
+
+    def twitter_token
+      @token.access_token        = extra_access_token.token
+      @token.access_token_secret = extra_access_token.secret
+    end
+
+    def basic_token
+      @token.access_token       = credentantials_token
+    end
+
+    # def self.facebook_token; end
+    # def self.instagram_token; end
+
+    def save_and_return
+      @token.save!
+      @token
+    end
+  
   end
 
   def configure_twitter(access_token, access_token_secret)
