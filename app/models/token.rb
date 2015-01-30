@@ -76,8 +76,8 @@ class Token < ActiveRecord::Base
       @token.access_token       = credentantials_token
     end
 
-    # def self.facebook_token; end
-    # def self.instagram_token; end
+    # def facebook_token; end
+    # def instagram_token; end
 
     def save_and_return
       @token.save!
