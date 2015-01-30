@@ -4,49 +4,85 @@ class Token < ActiveRecord::Base
   validates :uid, presence: true
 
   belongs_to :user
+  
+  cattr_accessor :auth, :token
 
-  def self.by_name(name)
-    where(provider: name)
+  # Still all Class methods
+  class << self
+
+    def by_name(name)
+      where(provider: name)
+    end
+    # For extendabililty - down the road you might want 
+    # * facebook token * youtube * next new social media *
+    # * e.g.
+    # update_or_create_token(id, auth, provider='twitter')
+    # update_or_create_token(id, auth, provider='facebook')
+
+    def update_or_create_token(id, auth, provider='basic')
+      build_token(id, auth)
+      self.send("#{provider}_token")
+      save_and_return
+    end
+
+    def update_or_create_with_twitter_omniauth(id, auth)
+      update_or_create_token(id, auth, 'twitter')
+    end
+
+    def update_or_create_with_other_omniauth(id, auth)
+      # defaults to basic.
+      update_or_create_token(id, auth)
+    end
+
+    # Utility Methods
+    private 
+
+    def build_token(id, auth)
+      self.auth = auth
+      @token = where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
+      @token.provider = provider
+      @token.uid      = auth_uid
+      @token.user_id  = id
+      self.token = @token
+    end
+
+    # A bit of over engineering.. I know....
+    def extra_access_token
+      auth["extra"]["access_token"]
+    end
+
+    def credentantials_token
+      auth["credentials"]["token"]
+    end
+
+    def provider
+      auth['provider']
+    end
+
+    def auth_uid
+      auth['uid']
+    end
+
+    # Social Media Specific
+
+    def twitter_token
+      @token.access_token        = extra_access_token.token
+      @token.access_token_secret = extra_access_token.secret
+    end
+
+    def basic_token
+      @token.access_token       = credentantials_token
+    end
+
+    # def facebook_token; end
+    # def instagram_token; end
+
+    def save_and_return
+      @token.save!
+      @token
+    end
+  
   end
-
-  def self.update_or_create_with_twitter_omniauth(id, auth)
-    token = where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
-    token.provider = auth["provider"]
-    token.uid = auth["uid"]
-    token.access_token = auth["extra"]["access_token"].token
-    token.access_token_secret = auth["extra"]["access_token"].secret
-    token.user_id = id
-    token.save!
-    token
-  end
-
-  def self.update_or_create_with_other_omniauth(id, auth)
-    token = where(provider: auth["provider"], uid: auth["uid"]).first_or_initialize
-    token.provider = auth["provider"]
-    token.uid = auth["uid"]
-    token.access_token = auth["credentials"]["token"]
-    token.user_id = id
-    token.save!
-    token
-  end
-
-  #def self.find_with_omniauth(auth)
-  #  find_by_provider_and_uid(auth['provider'], auth['uid'])
-  #end
-
-  #def self.create_with_omniauth(auth)
-  #  create(uid: auth['uid'], provider: auth['provider']) # and other data you might want from the auth hash
-  #end
-
-  #def self.update_or_create_with_omniauth(user, auth)
-  #  token = where(provider: auth["provider"], uid: auth['uid']).first_or_initialize
-  #  token.provider = auth["provider"]
-  #  token.uid = auth["uid"]
-  #  token.access_token = auth["credentials"]["token"]
-  #  token.user_id = user.id
-  #  token.save!
-  #  token
-  #end
 
   def configure_twitter(access_token, access_token_secret)
     client = Twitter::REST::Client.new do |config|
