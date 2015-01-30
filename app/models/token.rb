@@ -26,9 +26,7 @@ class Token < ActiveRecord::Base
     end
 
     def update_or_create_with_twitter_omniauth(id, auth)
-      build_token(id, auth)
-      twitter_token
-      save_and_return
+      update_or_create_token(id, auth, 'twitter')
     end
 
     def update_or_create_with_other_omniauth(id, auth)
