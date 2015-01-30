@@ -16,26 +16,54 @@
     <%#= f.label :content %>
     <%#= f.text_field :content %>
   </div>-->
+  <H1>Step 1 Choose The Type Of Post You Want To Make</H1>
+
   <div class="uploads">
-    <h3>Upload Photo</h3>
-  <div class="visible-xs">
-  <%= f.file_field :pic %>
-  </div>
-    <h3>Upload Video</h3>
-  <div class="visible-xs">
-  <%= f.file_field :snip %>
-  </div>
-    <h3>YouTube Link</h3>
-  <div class="visible-xs">
-    <%= f.label :link %>
-    <%= f.text_field :link %>
-  </div>
-  <!-- f.file_field :photo %> !-->
-  <div class="center">
-    <%= f.submit "Create Post", :class => "btn btn-info" %>
+  <ul>
+    <li>
+      <h3>Upload Photo</h3>
+      <div class="visible-xs">
+        <%= f.file_field :pic %>
+      </div>
+    </li>
+    <li>
+      <h3>Upload Video</h3>
+      <div class="visible-xs">
+        <%= f.file_field :snip %>
+      </div>
+    </li>
+    <li>
+      <h3>YouTube Link</h3>
+      <div class="visible-xs">
+        <%= f.label :link %>
+        <%= f.text_field :link %>
+      </div>
+    </li>
+  </ul><br>
+
+
+
+<!--This is where the preview of the post is going to be 
+-->
+
+
+
+  <H1>Step 2 Write A Discription</H1>
+  <ul>
+    <li>
+      <div class="visible-xs">
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+      </div>
+    </li>
+  </ul>
   </div>
 
-  </div>
+    <!-- f.file_field :photo %> !-->
+    <div class="center">
+      <%= f.submit "Create Post", :class => "btn btn-info" %>
+    </div>
+
 
 <% end %>
 <!-- *End* Views/shouts/_shout.html -->
