@@ -44,6 +44,8 @@ class Shout < ActiveRecord::Base
     youtube(:width => 195, :height => 200, :autoplay => false)
     vimeo(:width => 195, :height => 200, :autoplay => false)
     soundcloud(:width => 195, :height => 200, :autoplay => false)
+    flickr(:width => 195, :height => 200, :autoplay => false)
+    ted(:width => 195, :height => 200, :autoplay => false)
     link :target => "_blank", :rel => "nofollow"
     simple_format
    end
