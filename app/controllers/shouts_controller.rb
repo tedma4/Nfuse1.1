@@ -40,7 +40,7 @@ class ShoutsController < ApplicationController
 
     respond_to do |format|
       if @shout.save
-          format.html { redirect_to @shout}
+          format.html { redirect_to feed_user_path(@shout.user)}
           format.json { render json: @shout, status: :created, location: @shout }
       else
           format.html { render action: "new" }
