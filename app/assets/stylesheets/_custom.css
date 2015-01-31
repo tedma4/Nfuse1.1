@@ -602,7 +602,7 @@ td {
 ================================================= */
 .individual_post {
   border-radius: 15px;
-  width: 275px;
+  max-width: 400px;
 }
 
 #player-wrapper {
@@ -764,7 +764,7 @@ float: right;
 1900 - 6
 1575 -5
 =*/
-@media only screen and (max-width: 1899px){
+/*@media only screen and (max-width: 1899px){
    .individual_post {
   border-radius: 15px;
   width:17%;
@@ -795,3 +795,4 @@ float: right;
   width:100%;
   }
 }
+*/

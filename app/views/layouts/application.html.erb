@@ -40,7 +40,31 @@
       <% end %>
     </div>
    <script>
+    var box = $('#masonJar').width();
+    $( document ).ready(function() {
+    //alert(box);
+    //Keeps masonry sized correctly. Use this instead of css media querries
+    // media querries won't work because profile page is at 75% width and explore/hub are 100%
+    if(box < 420){
+      $('.individual_post').css("width", "100%");
+     
+    }
+    else if(box > 420 && 900 > box){
+      $('.individual_post').css("width", "47%");
+      al
+    }
+    else if(box > 900 && 1200 > box){
+      $('.individual_post').css("width", "29%");
+    }
+    else if(box > 1200 && 1800 > box){
+      $('.individual_post').css("width", "21.7%");
+    }
+    else{
+      $('.individual_post').css("width", "10%");
 
+    }
+
+  });
 
 var $container = $('#masonJar');
 // initialize Masonry after all images have loaded  
@@ -50,6 +74,8 @@ $container.imagesLoaded( function() {
       isAnimated: true,
       isResizable: true,
       gutter: 50
+     
+      
     });
 
 });
