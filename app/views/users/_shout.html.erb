@@ -12,8 +12,6 @@
   <% if !shout.url.blank? %>
         <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
        <p> <%= shout.url_html %></p>
-        <!--<iframe width="258" height="194" src='https://www.youtube.com/v/<%#= shout.uid %>' ></iframe>-->
-        <%#= image_tag "https://img.youtube.com/vi/#{shout.uid}/mqdefault.jpg", alt: shout.title, class: 'yt_preview img-rounded', :"data-uid" => shout.uid %> 
         <div class="caption">
                     
           <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
