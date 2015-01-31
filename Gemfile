@@ -50,6 +50,7 @@ gem 'seed-fu', '~> 2.3'
 #This allows the use of the faye websocket server
 gem 'private_pub'
 gem 'thin'
+gem 'auto_html'
 #These are the gems used in the development enviornment
 group :development, :test do
   # Use sqlite3 as the database for Active Record

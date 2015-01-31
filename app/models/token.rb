@@ -5,7 +5,7 @@ class Token < ActiveRecord::Base
 
   belongs_to :user
   
-  attr_accessor :auth, :token
+  cattr_accessor :auth, :token
 
   # Still all Class methods
   class << self

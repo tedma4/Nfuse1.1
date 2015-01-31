@@ -33,7 +33,7 @@ class ShoutsController < ApplicationController
   def create
     @shout = Shout.create(shout_params) do |shout|
       shout.is_video = true if params[:shout][:snip]
-      shout.is_link = true if params[:shout][:link]
+      shout.is_link = true if params[:shout][:url]
       shout.is_pic = true if params[:shout][:pic]
     end
     @shout.user = current_user
@@ -81,6 +81,10 @@ class ShoutsController < ApplicationController
     render 'dislike'
   end
 
+  def preview
+    @shout = Shout.new(params[:link])
+    render :text => shout.link_html
+  end
   private
 
   def like_shout_type
@@ -117,7 +121,7 @@ class ShoutsController < ApplicationController
   end
 
   def shout_params
-      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link, :is_pic )
+      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link, :is_pic, :url, :url_html )
     end
 
     def correct_user

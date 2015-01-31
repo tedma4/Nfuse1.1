@@ -9,19 +9,9 @@
 		</ul>
 	</div><br>
 
-	<% if @shout.link? %>
-		<div class="yt-video">
-			<div class="yt-player-wrapper"></div>
-	    <div class="yt_link thumbnail">
-	      <%= image_tag "https://img.youtube.com/vi/#{@shout.uid}/mqdefault.jpg", alt: @shout.title, class: 'yt_preview img-rounded', :"data-uid" => @shout.uid %>
-	      <div class="caption">
-	        <h5><%= @shout.title %></h5>
-	        <p>Author: <b><%= @shout.author %></b></p>
-	        <p>Duration: <b><%= @shout.duration %></b></p>
-		  		<p><%= @shout.content %></p>
-	      </div>
-	    </div>
-	  </div>
+	<% if @shout.url.blank? %>
+		<p><%= @shout.url_html %></p>
+
 	<% else @shout.pic? %>
 		<p class="user-box">
 		  <%= image_tag @shout.pic.url if @shout.pic.exists? %>

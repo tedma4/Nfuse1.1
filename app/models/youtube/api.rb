@@ -9,13 +9,13 @@
 #  		user.google_image = auth["info"]["image"]										#urls is a hash of links
 #  		user.google_plus_profile = auth["info"]["urls"]["Google"] #look into possibly saving more than url for ppl with more links
 #  		user.google_token = auth["credentials"]["token"]
-#      user.google_refresh_token = auth["credentials"]["refresh_token"]
-#      user.google_expires_at = auth["credentials"]["expires_at"]
-#      user.google_expires = auth["credentials"]["expires"]
-#      user.google_id = auth["extra"]["raw_info"]["id"]
-#      user.google_email = auth["extra"]["raw_info"]["email"]
-#      user.google_verified_email = auth["extra"]["raw_info"]["verified_email"]
-#      user.google_fullname = auth["extra"]["raw_info"]["fullname"]
+#     user.google_refresh_token = auth["credentials"]["refresh_token"]
+#     user.google_expires_at = auth["credentials"]["expires_at"]
+#     user.google_expires = auth["credentials"]["expires"]
+#     user.google_id = auth["extra"]["raw_info"]["id"]
+#     user.google_email = auth["extra"]["raw_info"]["email"]
+#     user.google_verified_email = auth["extra"]["raw_info"]["verified_email"]
+#     user.google_fullname = auth["extra"]["raw_info"]["fullname"]
 #  		user.google_given_name = auth["extra"]["raw_info"]["given_name"] #repeat of first name
 #  		user.google_family_name = auth["extra"]["raw_info"]["family_name"] #repeat of last name
 #  		user.google_link = auth["extra"]["raw_info"]["link"]
@@ -77,7 +77,7 @@
 #    # reduce the amount of barewords. (strings)
 #
 #    def api_https_url
-#      'https://api.instagram.com/v1'
+#      'https://www.googleapis.com/youtube/v3'
 #    end
 #
 #    def media_api
@@ -99,30 +99,33 @@
 #end
 #
 
-#!/usr/bin/ruby
+#"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
+#"https://gdata.youtube.com/feeds/api/users/userId/uploads"
+#GET https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true&key={YOUR_API_KEY}
+#GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&id={ID}&key={YOUR_API_KEY}
 
+
+
+
+#The code sample below calls the API's playlistItems.list method to retrieve a list of videos uploaded 
+#to the channel associated with the request. The code also calls the channels.list method with the mine 
+#parameter set to true to retrieve the playlist ID that identifies the channel's uploaded videos.
+
+#!/usr/bin/ruby
+#
 #require 'rubygems'
 #require 'google/api_client'
-## The oauth/oauth_util code is not part of the official Ruby client library. 
-## Download it from:
-## http://samples.google-api-ruby-client.googlecode.com/git/oauth/oauth_util.rb
 #require 'oauth/oauth_util'
 #
-#
-## This OAuth 2.0 access scope allows for read-only access to the authenticated
-## user's account, but not other types of account access.
-#YOUTUBE_READONLY_SCOPE = 'https://www.googleapis.com/auth/youtube.readonly'
+#YOUTUBE_SCOPE = 'https://www.googleapis.com/auth/youtube'
 #YOUTUBE_API_SERVICE_NAME = 'youtube'
 #YOUTUBE_API_VERSION = 'v3'
 #
 #client = Google::APIClient.new
 #youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
 #
-#auth_util = CommandLineOAuthHelper.new(YOUTUBE_READONLY_SCOPE)
+#auth_util = CommandLineOAuthHelper.new(YOUTUBE_SCOPE)
 #client.authorization = auth_util.authorize()
-#
-## Retrieve the "contentDetails" part of the channel resource for the
-## authenticated user's channel.
 #channels_response = client.execute!(
 #  :api_method => youtube.channels.list,
 #  :parameters => {
@@ -132,11 +135,8 @@
 #)
 #
 #channels_response.data.items.each do |channel|
-#  # From the API response, extract the playlist ID that identifies the list
-#  # of videos uploaded to the authenticated user's channel.
 #  uploads_list_id = channel['contentDetails']['relatedPlaylists']['uploads']
 #
-#  # Retrieve the list of videos uploaded to the authenticated user's channel.
 #  playlistitems_response = client.execute!(
 #    :api_method => youtube.playlist_items.list,
 #    :parameters => {
@@ -148,7 +148,6 @@
 #
 #  puts "Videos in list #{uploads_list_id}"
 #
-#  # Print information about each video.
 #  playlistitems_response.data.items.each do |playlist_item|
 #    title = playlist_item['snippet']['title']
 #    video_id = playlist_item['snippet']['resourceId']['videoId']
@@ -158,7 +157,4 @@
 #
 #  puts
 #end
-#
-#
-#"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
-#"https://gdata.youtube.com/feeds/api/users/userId/uploads"
+

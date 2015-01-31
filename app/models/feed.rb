@@ -225,6 +225,14 @@ class Nfuse
       @shout.pic.url(:medium)
     end
 
+    def is_snip?
+      @shout.is_snip
+    end
+
+    def snip
+      @shout.snip.url(:original)
+    end
+
     def user_url
       feed_user_path(@shout.user)
     end
@@ -235,6 +243,14 @@ class Nfuse
 
     def comment
       @shout.comment
+    end
+
+    def url_html
+      @shout.url_html
+    end
+
+    def url
+      @shout.url
     end
   end
 

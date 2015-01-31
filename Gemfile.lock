@@ -51,6 +51,9 @@ GEM
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
     attr_required (1.0.0)
+    auto_html (1.6.4)
+      redcarpet (~> 3.1)
+      rinku (~> 1.5.0)
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
     bootstrap-sass (2.3.2.2)
@@ -283,8 +286,10 @@ GEM
       polyamorous (~> 1.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    redcarpet (3.2.2)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rinku (1.5.1)
     rmagick (2.13.3)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
@@ -406,6 +411,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts_as_votable (~> 0.10.0)
+  auto_html
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 2.3.2.0)
   bootstrap-will_paginate (~> 0.0.9)
