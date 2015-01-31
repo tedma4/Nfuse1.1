@@ -47,6 +47,5 @@ class Shout < ActiveRecord::Base
     link :target => "_blank", :rel => "nofollow"
     simple_format
    end
- 
-   private
+
  end

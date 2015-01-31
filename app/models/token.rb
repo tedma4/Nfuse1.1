@@ -2,11 +2,8 @@ class Token < ActiveRecord::Base
 
   validates :provider, presence: true
   validates :uid, presence: true
-
   belongs_to :user
-  
   cattr_accessor :auth, :token
-
   # Still all Class methods
   class << self
 
