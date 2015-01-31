@@ -56,12 +56,16 @@ Rails.application.routes.draw do
   get '/feed_content', to: 'users#feed', as: :feed_content
   get "search" => "searches#index"
 
-  get '/auth/instagram/callback', to: 'instagram_registration#create'
-  get '/auth/twitter/callback', to: 'twitter_registration#create'
-  get '/auth/failure', to: 'twitter_registration#failure'
-  get '/auth/facebook/callback', to: 'facebook_registration#create'
+  #  OmniAuth * Registrations
+  scope '/auth' do
+    get '/instagram/callback', to: 'registrations/instagram#create'
+    get '/twitter/callback',   to: 'registrations/twitter#create'
+    get '/failure',            to: 'registrations/twitter#failure'
+    get '/facebook/callback',  to: 'registrations/facebook#create'
+  end
   get '/oauth2/callback', to: 'youtube_registration#create'
 
+  # Likes
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
   post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
   post '/instagram/like/:media_id', to: 'likes#instagram'
