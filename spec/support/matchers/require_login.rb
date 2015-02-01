@@ -15,3 +15,9 @@ RSpec::Matchers.define :require_signin do  |expected|
     'redirect to login form'
   end
 end
+
+RSpec::Matchers.define :have_constant do |constant|
+  match do |owner|
+    owner.const_defined?(constant)
+  end
+end
