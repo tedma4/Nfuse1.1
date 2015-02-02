@@ -6,7 +6,7 @@ class Shouts::LikesController < ApplicationController
   def create
     @shout = Shout.find(params[:id])
     unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
-      like_shout_type
+      send(params.fetch(:key, :basic).to_sym) # Object.send
     end
     render js: 'alert("like")' and return
   end
@@ -20,22 +20,25 @@ class Shouts::LikesController < ApplicationController
 
   private
 
-  def like_shout_type
-    twitter if params[:key] == 'twitter'
-    facebook if params[:key] == 'facebook'
-    instagram if params[:key] == 'instagram'
-  end
+  def basic
+    ActsAsVotable::Vote.create(vote_params)
+  end# Ruby magick
+
 
   def twitter
-    Twitter::Vote.create(votable_id: params[:id], voter_id: current_user.id) 
+    Twitter::Vote.create(vote_params) 
   end
 
   def facebook
-    Facebook::Vote.create(votable_id: params[:id], voter_id: current_user.id)
+    Facebook::Vote.create(vote_params)
   end
 
   def instagram
-    Instagram::Vote.create(votable_id: params[:id], voter_id: current_user.id) 
+    Instagram::Vote.create(vote_params) 
+  end
+
+  def vote_params
+   {votable_id: params[:id], voter_id: current_user.id}
   end
 
 end
