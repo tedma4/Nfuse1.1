@@ -15,7 +15,7 @@ class ShoutsController < ApplicationController
     @comment = Comment.new
 
     respond_to do |format|
-       format.html # show.html.erb
+       format.html
        format.json { render json: @shout }
     end
 
@@ -29,15 +29,8 @@ class ShoutsController < ApplicationController
     @shout = Shout.find(params[:id])
   end
 
-
   def create
-    @shout = Shout.create(shout_params) do |shout|
-      shout.is_video = true if params[:shout][:snip]
-      shout.is_link = true if params[:shout][:url]
-      shout.is_pic = true if params[:shout][:pic]
-    end
-    @shout.user = current_user
-
+    @shout = current_user.shouts.create(shout_params)
     respond_to do |format|
       if @shout.save
           format.html { redirect_to feed_user_path(@shout.user)}
