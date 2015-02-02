@@ -3,7 +3,7 @@ module Facebook
     self.inheritance_column = 'votable_type'
 
     before_create {|record|
-      record.social_flag = 'instagram'
+      record.social_flag = 'facebook'
       record.vote_flag = true
     }
   end
