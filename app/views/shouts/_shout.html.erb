@@ -1,6 +1,36 @@
 <!-- *Start* Views/shouts/_shout.html -->
+
+<script type='text/javascript'>
+function load(request) {
+  $('#code').text(request);
+  $('#preview').html(request);
+}
+
+function preview(value) {
+  $.getJSON("http://auto_html.rors.org/comments/preview?callback=?", value, function(data){
+    load(data);
+  });
+}
+
+function previewComment() {
+  preview({'t':$('#comment_body').val()});
+}
+
+$('#examples a').click(function() {
+  $('#comment_body').focus(); 
+  $('#comment_body').val( $(this).attr('href'));
+  previewComment();
+});
+
+$(function () { 
+  $("#comment_body").focus();
+  previewComment();
+});
+
+$('#comment_form').delayedObserver(1, function(element, value) { previewComment() })
+</script>
 <!-- Defined Embedded Ruby post rules -->
-<%= form_for @shout, :html => { :multipart => true } do |f| %>
+<%= form_for @shout, :html => { :multipart => true, id: "comment_form" } do |f| %>
   <% if @shout.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shout.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -31,12 +61,16 @@
         <h3>YouTube Link</h3>
         <div class="visible-xs">
           <%= f.label :url %>
-          <%= f.text_field :url %>
+          <%= f.text_field :url, id: "comment_body" %>
         </div>
       </li>
     </ul></br>
+    <h3>Preview</h3>
+
     <div id="target"></div>
     <div id="target2"></div>
+    <div id="code"></div>
+    <div id="preview"></div>
 
   <!--This is where the preview of the post is going to be 
   -->
@@ -94,4 +128,12 @@
       });
     });
   </script>
+
+
+
+
+
+
+
+
 <!-- *End* Views/shouts/_shout.html -->

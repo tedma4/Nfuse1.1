@@ -49,6 +49,11 @@ class ShoutsController < ApplicationController
     end
   end
 
+  def preview
+    shout = Shout.new(params[:url])
+    render :text => shout.url_html
+  end
+
   def update
     @shout = Shout.find(params[:id])
     if @shout.update_attributes(shout_params)
@@ -79,11 +84,6 @@ class ShoutsController < ApplicationController
       @shout.dislike_by current_user
     end
     render 'dislike'
-  end
-
-  def preview
-    @shout = Shout.new(params[:link])
-    render :text => shout.link_html
   end
   private
 
