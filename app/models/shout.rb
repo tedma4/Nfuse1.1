@@ -52,9 +52,11 @@ class Shout < ActiveRecord::Base
    auto_html_for :url do
     html_escape
     image
-    youtube(:width => 195, :height => 200, :autoplay => false)
-    vimeo(:width => 195, :height => 200, :autoplay => false)
-    soundcloud(:width => 195, :height => 200, :autoplay => false)
+    youtube(:width => 262, :height => 225, :autoplay => false)
+    vimeo(:width => 262, :height => 225, :autoplay => false)
+    soundcloud
+    flickr(:width => 262, :height => 225, :autoplay => false)
+    ted(:width => 262, :height => 225, :autoplay => false)
     link :target => "_blank", :rel => "nofollow"
     simple_format
    end
