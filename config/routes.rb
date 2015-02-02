@@ -17,13 +17,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shouts do
-    resources :comments
-    member do
-      put "like", to: "shouts#like"
-      put "dislike", to: "shouts#dislike"
+  scope module: :shouts do
+    scope '/shouts' do
+      post "like", to: "likes#create", as: :like_shout
+      post "dislike", to: "likes#destroy", as: :dislike_shout
     end
   end
+
+  resources :shouts do
+    resources :comments
+  end
+
   resources :events do
     resources :comments
     member do

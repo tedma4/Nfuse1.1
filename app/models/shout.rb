@@ -26,11 +26,12 @@ class Shout < ActiveRecord::Base
                            :mobile => {:geometry => "400x300", :format => 'flv', :streaming => true}
                            }, :processors => [:ffmpeg, :qtfaststart]
 
-  # 
+  # This was my bad.
+  # * http://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
   check_file_types = ->(record) {
-                  record.is_pic   = !!(record.pic_content_type)
-                  record.is_video = !!(record.snip_file_name)
-                  record.is_link  = !!(record.url)
+                  true if (record.is_pic   = !!(record.pic_content_type))
+                  true if (record.is_video = !!(record.snip_file_name))
+                  true if (record.is_link  = !!(record.url))
   }
 
   before_create { |record|
