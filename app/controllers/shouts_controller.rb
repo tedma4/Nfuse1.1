@@ -1,7 +1,6 @@
 class ShoutsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
-  before_action :like_shout_type, only: [:like, :dislike]
   respond_to :json, :js, :html
 
   def index
@@ -57,61 +56,12 @@ class ShoutsController < ApplicationController
     redirect_to root_path
   end
 
-  def like
-    @shout = Shout.find(params[:id])
-    # like_or_dislike(current_user)
-    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
-      @shout.like_by current_user
-    end
-    redirect_to @shout
-  end
-
-  def dislike
-    @shout = Shout.find(params[:id])
-    if ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
-      @shout.dislike_by current_user
-    end
-    render 'dislike'
-  end
-
   def preview
     @shout = Shout.new(params[:link])
     render :text => shout.link_html
   end
+
   private
-
-  def like_shout_type
-
-    if params[:key] == 'twitter'
-      ActsAsVotable::Vote.create do |vote|
-        vote.social_flag = "twitter"
-        vote.votable_id = params[:id]
-        vote.voter_id = current_user.id
-        vote.votable_type = 'Twitter::Vote'
-        vote.vote_flag = true
-      end
-    elsif
-      params[:key] == 'instagram'
-      ActsAsVotable::Vote.create do |vote|
-        vote.social_flag = "instagram"
-        vote.votable_id = params[:id]
-        vote.voter_id = current_user.id
-        vote.votable_type = 'Instagram::Vote'
-        vote.vote_flag = true
-      end
-    elsif
-      params[:key] == 'facebook'
-      ActsAsVotable::Vote.create do |vote|
-        vote.social_flag = "facebook"
-        vote.votable_id = params[:id]
-        vote.voter_id = current_user.id
-        vote.votable_type = 'Facebook::Vote'
-        vote.vote_flag = true
-      end
-    end
-
-    render js: 'alert("like")' and return
-  end
 
   def shout_params
       params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link, :is_pic, :url, :url_html )

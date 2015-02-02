@@ -23,7 +23,4 @@ describe ShoutsController, type: :controller do
     end
 
   end
-
-  context 'Liking' do
-  end
 end

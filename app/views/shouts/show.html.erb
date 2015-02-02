@@ -20,8 +20,8 @@
 	<% end %>
 
   <div class="<%= @shout.class %>-<%= @shout.id %>">
-	  <%= link_to "Like", like_shout_path(@shout), method: :put %><%= @shout.like_score %> | 
-	  <%= link_to "Dislike", dislike_shout_path(@shout), method: :put %><%= @shout.dislike_score %>
+	  <%= link_to "Like", like_shout_path(@shout), method: :post %><%= @shout.like_score %> | 
+	  <%= link_to "Dislike", dislike_shout_path(@shout), method: :delete %><%= @shout.dislike_score %>
 	  <%#= link_to pluralize(@comments.count, 'comment'), @shout, class: 'comments' %>
 	</div>
 	<!--<div>
