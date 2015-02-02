@@ -41,6 +41,11 @@ class ShoutsController < ApplicationController
     end
   end
 
+  def preview
+    shout = Shout.new(params[:url])
+    render :text => shout.url_html
+  end
+
   def update
     @shout = Shout.find(params[:id])
     if @shout.update_attributes(shout_params)
