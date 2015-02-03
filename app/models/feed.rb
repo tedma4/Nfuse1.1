@@ -143,7 +143,7 @@ end
 class Nfuse
 
   class Post
-    delegate :created_at, :user, :pic, :id, :commentable_type, to: :shout
+    delegate :created_at, :user, :pic, :id, :content, to: :shout
 
     attr_reader :provider
     attr_accessor :shout
@@ -159,6 +159,10 @@ class Nfuse
 
     def content
       @shout.content
+    end
+
+    def id
+      @shout.id
     end
 
     def comments_count

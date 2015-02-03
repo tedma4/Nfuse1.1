@@ -27,7 +27,7 @@ $(function () {
   previewComment();
 });
 
-$('#comment_form').delayedObserver(1, function(element, value) { previewComment() })
+$('#comment_form').delayedObserver(1, function(element, value) { previewComment() });
 </script>
 <!-- Defined Embedded Ruby post rules -->
 <%= form_for @shout, :html => { :multipart => true, id: "comment_form" } do |f| %>
@@ -48,20 +48,20 @@ $('#comment_form').delayedObserver(1, function(element, value) { previewComment(
       <li>
         <h3>Upload Photo</h3>
         <div class="visible-xs">
-          <%= f.file_field :pic, id: "pictureInput"  %>
+          <%= f.file_field :pic, id: 'pictureInput'  %>
         </div>
       </li>
       <li>
         <h3>Upload Video</h3>
         <div class="visible-xs">
-          <%= f.file_field :snip, id: "pictureInput2" %>
+          <%= f.file_field :snip, id: 'pictureInput2' %>
         </div>
       </li>
       <li>
         <h3>YouTube Link</h3>
         <div class="visible-xs">
           <%= f.label :url %>
-          <%= f.text_field :url, id: "comment_body" %>
+          <%= f.text_field :url, id: 'comment_body' %>
         </div>
       </li>
     </ul></br>

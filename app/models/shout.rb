@@ -2,7 +2,7 @@
 class Shout < ActiveRecord::Base
   #include AutoHtml
   belongs_to :user  
-  validates :user_id, presence: true
+  validates :user_id, :content, presence: true
   has_many :comments, :as => :commentable
   acts_as_votable
 
@@ -53,11 +53,11 @@ class Shout < ActiveRecord::Base
    auto_html_for :url do
     html_escape
     image
-    youtube(:width => 262, :height => 225, :autoplay => false)
-    vimeo(:width => 262, :height => 225, :autoplay => false)
+    youtube(:width => 302, :height => 225, :autoplay => false)
+    vimeo(:width => 302, :height => 225, :autoplay => false)
     soundcloud
-    flickr(:width => 262, :height => 225, :autoplay => false)
-    ted(:width => 262, :height => 225, :autoplay => false)
+    flickr(:width => 302, :height => 225, :autoplay => false)
+    ted(:width => 302, :height => 225, :autoplay => false)
     link :target => "_blank", :rel => "nofollow"
     simple_format
    end
