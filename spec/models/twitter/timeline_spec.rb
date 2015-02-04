@@ -11,5 +11,4 @@ describe Twitter::Post do
     expect(Twitter::Post.ancestors).to include(TimelineEntry)
   end
 
-
 end
