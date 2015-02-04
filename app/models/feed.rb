@@ -242,7 +242,7 @@ class Nfuse
     end
 
     def snip
-      @shout.snip.url(:original)
+      @shout.snip.url(:medium)
     end
 
     def user_url

@@ -1,6 +1,4 @@
-# require 'paperclip-ffmpeg'
 class Shout < ActiveRecord::Base
-  #include AutoHtml
   belongs_to :user  
   validates :user_id, :content, presence: true
   has_many :comments, :as => :commentable
@@ -21,9 +19,9 @@ class Shout < ActiveRecord::Base
                                     :content_type => ["image/jpg", "image/jpeg", "image/png" ]
 
   has_attached_file :snip, :styles => {
-                           :mobile => {:geometry => "400x300", :format => 'flv', :streaming => true}
-                           }, :processors => [:ffmpeg, :qtfaststart]
-
+                            :medium => { :geometry => "302x226", :format => 'flv' },
+                            :thumb => { :geometry => "100x100#", :format => 'jpg' }
+  }, :processors => [:transcoder]
   # This was my bad.
   # * http://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
   check_file_types = ->(record) {
@@ -55,10 +53,27 @@ class Shout < ActiveRecord::Base
     youtube(:width => 302, :height => 225, :autoplay => false)
     vimeo(:width => 302, :height => 225, :autoplay => false)
     soundcloud
-    flickr(:width => 302, :height => 225, :autoplay => false)
+    flickr(:width => 302, :height => 225)
     ted(:width => 302, :height => 225, :autoplay => false)
     link :target => "_blank", :rel => "nofollow"
     simple_format
    end
 
+  #validate :only_upload_or_url
+#
+  #private
+  #  def only_upload_or_url
+  #    if clip.present? and url.present?
+  #      errors.add(:clip, "Can not have bot clip and url")
+  #      errors.add(:url, "Can not have bot clip and url")
+  #      return false
+  #    elsif !clip.present? and !url.present?
+  #      errors.add(:clip, "Clip and url can not be empty")
+  #      errors.add(:url, "Clip and url can not be empty")
+  #      return false
+  #    else
+  #      return true
+  #    end
+  #  end
+#
  end
