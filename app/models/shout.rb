@@ -21,7 +21,7 @@ class Shout < ActiveRecord::Base
   has_attached_file :snip, :styles => {
                             :medium => { :geometry => "302x226", :format => 'flv' },
                             :thumb => { :geometry => "100x100#", :format => 'jpg' }
-  }, :processors => [:transcoder]
+                         }, :processors => [:transcoder]
   # This was my bad.
   # * http://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
   check_file_types = ->(record) {
