@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   scope module: :shouts do
     scope '/shouts' do
       post "like", to: "likes#create", as: :like_shout
-      post "dislike", to: "likes#destroy", as: :dislike_shout
+      delete "dislike", to: "likes#destroy", as: :dislike_shout
     end
   end
 
