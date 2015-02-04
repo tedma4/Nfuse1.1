@@ -26,7 +26,7 @@ module Twitter
     end
 
     def tweet_user
-      @user ||= @tweet['user']
+      @tweet['user']
     end
 
     def profile_picture
