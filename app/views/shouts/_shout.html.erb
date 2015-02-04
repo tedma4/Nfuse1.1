@@ -61,7 +61,7 @@ $('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
         <h3>YouTube Link</h3>
         <div class="visible-xs">
           <%= f.label :url %>
-          <%= f.text_field :url, id: 'url_body' %>
+          <%= f.text_area :url, id: 'url_body', placeholder: "Url post" %>
         </div>
       </li>
     </ul></br>
@@ -79,7 +79,7 @@ $('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
     <ul>
       <li>
         <div class="visible-xs">
-          <%= f.text_area :content, placeholder: "Say What You Gotta Say... Or Not Its Up To You" %>
+          <%= f.text_area :content, placeholder: "Description" %>
         </div>
       </li>
     </ul>
