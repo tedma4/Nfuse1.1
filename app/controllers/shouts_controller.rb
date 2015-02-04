@@ -58,7 +58,7 @@ class ShoutsController < ApplicationController
   def destroy
     @shout = Shout.find(params[:id])
     @shout.destroy
-    redirect_to root_path
+    redirect_to feed_user_path(@shout.user)
   end
 
   def preview

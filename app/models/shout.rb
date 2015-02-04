@@ -6,8 +6,6 @@ class Shout < ActiveRecord::Base
   has_many :comments, :as => :commentable
   acts_as_votable
 
-  YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
-
   attr_accessor :content, :photo_delete, :video_delete
 
   has_destroyable_file :pic, :snip
@@ -29,9 +27,10 @@ class Shout < ActiveRecord::Base
   # This was my bad.
   # * http://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
   check_file_types = ->(record) {
-                  true if (record.is_pic   = !!(record.pic_content_type))
-                  true if (record.is_video = !!(record.snip_file_name))
-                  true if (record.is_link  = !!(record.url))
+                  true if (record.is_pic       = !!(record.pic_content_type))
+                  true if (record.is_video     = !!(record.snip_file_name))
+                  true if (record.is_link      = !!(record.url))
+                  true if (record.has_content  = !!(record.content))
   }
 
   before_create { |record|

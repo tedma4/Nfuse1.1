@@ -205,6 +205,14 @@ class Nfuse
       @shout.is_link
     end
 
+    def has_content?
+      @shout.has_content
+    end
+
+    def has_content
+      @shout.has_content
+    end
+
     def uid
       @shout.uid
     end
