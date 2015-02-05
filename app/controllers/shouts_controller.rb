@@ -42,8 +42,8 @@ class ShoutsController < ApplicationController
   end
 
   def preview
-    shout = Shout.new(params[:url])
-    render :text => shout.url_html
+    @shout = Shout.new(url: params['url'])
+    render :text => @shout.url_html
   end
 
   def update
@@ -59,11 +59,6 @@ class ShoutsController < ApplicationController
     @shout = Shout.find(params[:id])
     @shout.destroy
     redirect_to feed_user_path(@shout.user)
-  end
-
-  def preview
-    @shout = Shout.new(params[:url])
-    render :text => shout.url_html
   end
 
   private

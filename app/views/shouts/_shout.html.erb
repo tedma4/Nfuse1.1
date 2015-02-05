@@ -1,19 +1,33 @@
 <!-- *Start* Views/shouts/_shout.html -->
 
-<script>
+<script type='text/javascript'>
 function load(request) {
   $('#code').text(request);
   $('#preview').html(request);
 }
 
 function preview(value) {
-  $.getJSON("http://auto_html.rors.org/comments/preview?callback=?", value, function(data){
+  console.log("preview; value = " + value);
+
+  /*
+  $.getJSON("/preview?callback=?", value, function(data){
     load(data);
+    console.log("preview callback\n" + data);
+  });
+  */
+
+  $.ajax({
+    dataType: "html",
+    url: "/preview?url=" + value['url']
+  })
+  .done( function(data){
+    load(data);
+    console.log("preview callback\n" + data);
   });
 }
 
 function previewUrl() {
-  preview({'t':$('#url_body').val()});
+  preview({'url':$('#url_body').val()});
 }
 
 $('#examples a').click(function() {
@@ -27,7 +41,11 @@ $(function () {
   previewUrl();
 });
 
-$('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
+//$('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
+//$('#url_body').keydown(function() { alert("hi"); previewUrl() });
+//$('#url_body').bind('input propertychange', function() { alert("hi"); previewUrl() });  
+
+
 </script>
 <!-- Defined Embedded Ruby post rules -->
 <%= form_for @shout, :html => { :multipart => true, id: "upload_form" } do |f| %>
@@ -61,7 +79,8 @@ $('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
         <h3>YouTube Link</h3>
         <div class="visible-xs">
           <%= f.label :url %>
-          <%= f.text_area :url, id: 'url_body', placeholder: "Url post" %>
+
+          <%= f.text_area :url, id: 'url_body', placeholder: "Url post", onChange: 'previewUrl()' %>
         </div>
       </li>
     </ul></br>
@@ -69,7 +88,6 @@ $('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
 
     <div id="target"></div>
     <div id="target2"></div>
-    <div id="code"></div>
     <div id="preview"></div>
 
   <!--This is where the preview of the post is going to be 
