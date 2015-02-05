@@ -60,6 +60,19 @@ $(function () {
     </div>
   <% end %>
   <H1>Step 1 Choose The Type Of Post You Want To Make</H1>
+  <div>
+    <ul>
+      <li>
+        <%= image_tag("camera3.png", :size => "100x100") %>
+      </li>
+      <li>
+        <%= image_tag( "movie36.png", :size => "100x100") %>
+      </li>
+      <li>
+        <%= image_tag("internet17.png",:size => "100x100") %>
+      </li>
+    </ul>
+  </div>
 
   <div class="uploads">
     <ul>
@@ -76,11 +89,11 @@ $(function () {
         </div>
       </li>
       <li>
-        <h3>YouTube Link</h3>
+        <h3>Url Link<s/h3>
         <div class="visible-xs">
           <%= f.label :url %>
 
-          <%= f.text_area :url, id: 'url_body', placeholder: "Url post", onChange: 'previewUrl()' %>
+          <%= f.text_area :url, id: 'url_body', placeholder: "Youtube, Vimeo, Soundcloud", onChange: 'previewUrl()' %>
         </div>
       </li>
     </ul></br>
