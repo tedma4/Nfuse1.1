@@ -28,7 +28,7 @@
       <% end %>
     </div>
   <% end %>
-     <div class="timeStamp"> <%= image_tag "Beaker_new.png", size: "20x20" %> <%= time_ago_in_words(shout.created_time) %> ago </div>
+     <div class="right"> <%= image_tag "Beaker_new.png", size: "20x20" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
   <br>
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
   </div>
