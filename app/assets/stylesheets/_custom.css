@@ -601,7 +601,7 @@ td {
 /* #Posts
 ================================================= */
 .individual_post {
-  border-radius: 15px;
+  
   max-width: 400px;
 }
 
@@ -658,21 +658,24 @@ td {
 }
 
 .provider_logo{
-  float: right;
   margin: 0;
   padding: 0;
   border-radius: 7.5px;
 }
 
 .user_profile_picture{
-  margin: 0;
+  margin: 0 10px 0 0;
   padding: 0;
-  border-radius: 7.5px;
+  border-radius: 0px;
 }
+.user_name :hover{
+  color: black;
 
+}
 .user_name{
-  margin: 0;
-  padding: 5px 0px 0px 0px;
+  margin: 20px 0 0 0;
+  font-size: 1.8em;
+  padding: 20px 0px 0px 20px;
   margin: auto;
 }
 
@@ -689,21 +692,33 @@ td {
 }
 
 .post_footer{
-  margin: 0;
-  padding: 0;
+  height: 20px;
+  padding-bottom: 30px;
 }
 
-.post_footer .right{
+.vr{
+  border-right: 1px solid black;
+  height: 20px;
+}
+
+.timeStamp{
   font-size: .6em;
+  display: inline;
+  padding: 0 0 50px 0;
 }
 
-.post_footer_li{
-  margin-top: 0px;
-  padding: 0;
-  text-decoration: none;
-  height: auto;
-  display: inline;
-  list-style-type: none;
+.post_actions{
+  bottom: 0px;
+  height: 20px;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  padding: 20px 0 5px 0;
+  position: absolute;
+  display: block;
+}
+
+.post_actions li{
+  padding-left: 5%;
 }
 
 .right{

@@ -4,7 +4,7 @@
     <ul class="post_header">
       <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url %></li>
         <li class="user_name"><%= link_to "#{post.full_name}", post.user_url, :target => "_blank" %></li>
-      <li class="right"><%= link_to image_tag("Instagram_Icon_Large.png", :class => "provider_logo"), post.link_to_post, :target => "_blank" %></li>
+      <li class="right"></li>
     </ul>
   </div>
   <div class="post_content">
@@ -27,14 +27,22 @@
         <% end %>
       </ul>
     <% end %>
-  </div>
-  <div class="<%= post.class %>-<%= post.id %> post_footer right">
-    <ul class="post_footer_li">
+</div><br>
+
+
+    <div class="right"><%= link_to image_tag("Instagram_Icon_Large.png", size: "20x20", :class => "provider_logo"), post.link_to_post, :target => "_blank" %><p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p></div>
+    <br>
+    <div class="<%= post.class %>-<%= post.id %> post_footer right">
+    </div>
+
+  
+    <ul class="post_actions">
       <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.id, key: :instagram), method: :post, remote: true %>0</li>
+      <li class="vr"></li>
       <li><%= image_tag("double7.png", size: "20x20") %>0</li>
-	  <li><%= image_tag("favourite2.png", size: "20x20") %>0</li><br>
-      <li class="right"><%= time_ago_in_words(post.created_time) %> ago</li>
+      <li class="vr"></li>
+	  <li><%= image_tag("favourite2.png", size: "20x20") %>0</li>
     </ul>
-  </div>
+  
 </div>
 <!-- *End* Views/users/_instagram_post.html -->

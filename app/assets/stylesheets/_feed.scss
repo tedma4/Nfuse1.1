@@ -23,12 +23,12 @@
   }
 
   .provider_logo {
-    height: 35px;
+    height: 20px;
   }
 
   @include media($large-screen) {
     .provider_logo {
-      height: 50px;
+      height: 20px;
     }
   }
 

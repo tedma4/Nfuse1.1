@@ -5,7 +5,7 @@
     <ul class="post_header">
       <li><%= link_to image_tag(shout.user.avatar(:thumb), :class => "user_profile_picture"), feed_user_path(shout.user) %></li>
       <li class="user_name"><%= link_to shout.user.full_name, feed_user_path(shout.user) %></li>
-      <li class="right"><%= image_tag "Beaker_new.png", size: "50x50" %></li>
+      
     </ul>
   </div><br>
 
@@ -28,12 +28,18 @@
       <% end %>
     </div>
   <% end %>
+     <div class="right"> <%= image_tag "Beaker_new.png", size: "20x20" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
+  <br>
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
-    <ul class="post_footer_li">
+  </div>
+
+    <ul class="post_actions">
       <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(shout.id), method: :post, remote: true %><%= shout.like_score %></li>
+      <li class="vr"></li>
       <li><%= image_tag("double7.png", size: "20x20") %>440</li>
+      <li class="vr"></li>
       <li><%= image_tag("favourite2.png", size: "20x20") %>250</li>
-      <li class="right"><%= time_ago_in_words(shout.created_time) %> ago</li>
+      <li class="vr"></li>
       <li><% unless !current_user?(shout.user) %>
         <%= link_to 'Destroy', shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
         <% end %>
@@ -59,4 +65,4 @@
       </div>
     <%# end %>  
   </div>-->
-</div>
+
