@@ -691,10 +691,12 @@ td {
   height: 20px;
   padding-bottom: 30px;
 }
+
 .vr{
   border-right: 1px solid black;
   height: 20px;
 }
+
 .timeStamp{
   font-size: .6em;
   display: inline;
@@ -713,7 +715,6 @@ td {
 
 .post_actions li{
   padding-left: 10%;
-
 }
 
 .right{
