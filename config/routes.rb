@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   get '/terms',    to: 'pages#terms'
   get '/privacy',  to: 'pages#privacy'
   get '/qanda',    to: 'pages#qanda'
+  get '/preview',  to: 'shouts#preview'
 
   get '/contacts', to: 'contacts#new'
 

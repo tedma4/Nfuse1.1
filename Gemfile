@@ -18,7 +18,7 @@ gem 'simple_form'
 gem "paperclip", "~> 4.2"
 #gem 'panda'
 # Handles video upload
-gem "paperclip-ffmpeg", "~> 1.0.0"
+gem 'paperclip-av-transcoder'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'

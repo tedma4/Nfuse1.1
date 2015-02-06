@@ -42,8 +42,8 @@ class ShoutsController < ApplicationController
   end
 
   def preview
-    shout = Shout.new(params[:url])
-    render :text => shout.url_html
+    @shout = Shout.new(url: params['url'])
+    render :text => @shout.url_html
   end
 
   def update
@@ -58,18 +58,13 @@ class ShoutsController < ApplicationController
   def destroy
     @shout = Shout.find(params[:id])
     @shout.destroy
-    redirect_to root_path
-  end
-
-  def preview
-    @shout = Shout.new(params[:link])
-    render :text => shout.link_html
+    redirect_to feed_user_path(@shout.user)
   end
 
   private
 
   def shout_params
-      params.require(:shout).permit(:content, :pic, :snip, :user_id, :is_video, :link, :is_link, :is_pic, :url, :url_html )
+      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html )
     end
 
     def correct_user

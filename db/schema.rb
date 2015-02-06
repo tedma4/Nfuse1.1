@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131031537) do
+ActiveRecord::Schema.define(version: 20150204203107) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -122,16 +122,17 @@ ActiveRecord::Schema.define(version: 20150131031537) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_video",          default: false
+    t.boolean  "is_video",                      default: false
     t.string   "title"
     t.string   "link"
     t.string   "uid"
     t.string   "author"
     t.string   "duration"
-    t.boolean  "is_link",           default: false
-    t.boolean  "is_pic",            default: false
-    t.string   "url_html"
-    t.string   "url"
+    t.boolean  "is_link",                       default: false
+    t.boolean  "is_pic",                        default: false
+    t.text     "url_html",          limit: 255
+    t.text     "url",               limit: 255
+    t.boolean  "has_content",                   default: false
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"

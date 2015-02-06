@@ -13,15 +13,20 @@
         <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
        <p> <%= shout.url_html %></p>
         <div class="caption">
-                    
+        <% if shout.has_content? %>
+          <li><%= shout.content %></li>
+        <% end %>
           <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
         </div>
-      <p><%= shout.content %></p>
   <% else shout.is_pic? %>
     <p class="timeline-user-box">
       <%= image_tag shout.pic_url %>
-      <%= shout.content %>
     </p>
+    <div class="caption">
+      <% if shout.has_content? %>
+        <li><%= shout.content %></li>
+      <% end %>
+    </div>
   <% end %>
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
     <ul class="post_footer_li">
@@ -29,7 +34,11 @@
       <li><%= image_tag("double7.png", size: "20x20") %>440</li>
       <li><%= image_tag("favourite2.png", size: "20x20") %>250</li>
       <li class="right"><%= time_ago_in_words(shout.created_time) %> ago</li>
-    <ul>
+      <li><% unless !current_user?(shout.user) %>
+        <%= link_to 'Destroy', shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
+        <% end %>
+      </li>
+    </ul>
     <%#= pluralize shout.comments_count, "comment" %>
   </div>
   <!--<div class="post_comments">

@@ -7,30 +7,48 @@ function load(request) {
 }
 
 function preview(value) {
-  $.getJSON("http://auto_html.rors.org/comments/preview?callback=?", value, function(data){
+  console.log("preview; value = " + value);
+
+  /*
+  $.getJSON("/preview?callback=?", value, function(data){
     load(data);
+    console.log("preview callback\n" + data);
+  });
+  */
+
+  $.ajax({
+    dataType: "html",
+    url: "/preview?url=" + value['url']
+  })
+  .done( function(data){
+    load(data);
+    console.log("preview callback\n" + data);
   });
 }
 
-function previewComment() {
-  preview({'t':$('#comment_body').val()});
+function previewUrl() {
+  preview({'url':$('#url_body').val()});
 }
 
 $('#examples a').click(function() {
-  $('#comment_body').focus(); 
-  $('#comment_body').val( $(this).attr('href'));
-  previewComment();
+  $('#url_body').focus(); 
+  $('#url_body').val( $(this).attr('href'));
+  previewUrl();
 });
 
 $(function () { 
-  $("#comment_body").focus();
-  previewComment();
+  $("#url_body").focus();
+  previewUrl();
 });
 
-$('#comment_form').delayedObserver(1, function(element, value) { previewComment() })
+//$('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
+//$('#url_body').keydown(function() { alert("hi"); previewUrl() });
+//$('#url_body').bind('input propertychange', function() { alert("hi"); previewUrl() });  
+
+
 </script>
 <!-- Defined Embedded Ruby post rules -->
-<%= form_for @shout, :html => { :multipart => true, id: "comment_form" } do |f| %>
+<%= form_for @shout, :html => { :multipart => true, id: "upload_form" } do |f| %>
   <% if @shout.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shout.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -42,26 +60,40 @@ $('#comment_form').delayedObserver(1, function(element, value) { previewComment(
     </div>
   <% end %>
   <H1>Step 1 Choose The Type Of Post You Want To Make</H1>
+  <div>
+    <ul>
+      <li>
+        <%= image_tag("camera3.png", :size => "100x100") %>
+      </li>
+      <li>
+        <%= image_tag( "movie36.png", :size => "100x100") %>
+      </li>
+      <li>
+        <%= image_tag("internet17.png",:size => "100x100") %>
+      </li>
+    </ul>
+  </div>
 
   <div class="uploads">
     <ul>
       <li>
         <h3>Upload Photo</h3>
         <div class="visible-xs">
-          <%= f.file_field :pic, id: "pictureInput"  %>
+          <%= f.file_field :pic, id: 'pictureInput'  %>
         </div>
       </li>
       <li>
         <h3>Upload Video</h3>
         <div class="visible-xs">
-          <%= f.file_field :snip, id: "pictureInput2" %>
+          <%= f.file_field :snip, id: 'pictureInput2' %>
         </div>
       </li>
       <li>
-        <h3>YouTube Link</h3>
+        <h3>Url Link<s/h3>
         <div class="visible-xs">
           <%= f.label :url %>
-          <%= f.text_field :url, id: "comment_body" %>
+
+          <%= f.text_area :url, id: 'url_body', placeholder: "Youtube, Vimeo, Soundcloud", onChange: 'previewUrl()' %>
         </div>
       </li>
     </ul></br>
@@ -69,17 +101,16 @@ $('#comment_form').delayedObserver(1, function(element, value) { previewComment(
 
     <div id="target"></div>
     <div id="target2"></div>
-    <div id="code"></div>
     <div id="preview"></div>
 
   <!--This is where the preview of the post is going to be 
   -->
 
-    <H1>Step 2 Write A Discription</H1>
+    <H1>Step 2 Write A Description</H1>
     <ul>
       <li>
         <div class="visible-xs">
-          <%= f.text_area :content, placeholder: "Say What You Gotta Say... Or Not Its Up To You" %>
+          <%= f.text_area :content, placeholder: "Description" %>
         </div>
       </li>
     </ul>

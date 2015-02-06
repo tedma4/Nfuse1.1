@@ -54,6 +54,8 @@ GEM
     auto_html (1.6.4)
       redcarpet (~> 3.1)
       rinku (~> 1.5.0)
+    av (0.8.0)
+      cocaine
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
     bootstrap-sass (2.3.2.2)
@@ -239,7 +241,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    paperclip-ffmpeg (1.0.1)
+    paperclip-av-transcoder (0.6.2)
+      av (>= 0.7.1)
       paperclip (>= 2.5.2)
     pg (0.15.1)
     pg (0.15.1-x86-mingw32)
@@ -439,7 +442,7 @@ DEPENDENCIES
   omniauth-instagram (~> 1.0.1)
   omniauth-twitter (~> 1.0.1)
   paperclip (~> 4.2)
-  paperclip-ffmpeg (~> 1.0.0)
+  paperclip-av-transcoder
   pg (~> 0.15.1)
   private_pub
   rails (= 4.1.2)
