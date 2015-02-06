@@ -109,6 +109,14 @@ module Nfuse
     def url
       @shout.url
     end
+
+    def has_content?
+      @shout.has_content
+    end
+
+    def has_content
+      @shout.has_content
+    end
   end
 
   class Comment

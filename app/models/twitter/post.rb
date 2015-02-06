@@ -53,8 +53,16 @@ module Twitter
       @tweet["favorite_count"].to_i
     end
 
+    #def tweet_image
+    #  @tweet['media'][0]['media_url'] if @tweet.fetch('media', nil)
+    #end
+
     def tweet_image
-      @tweet['media'][0]['media_url'] if @tweet.fetch('media', nil)
+      if @tweet["media"].present?
+        @tweet["media"][0]["media_url"]
+      else
+        nil
+      end
     end
   end
 end
