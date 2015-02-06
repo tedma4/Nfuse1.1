@@ -13,7 +13,8 @@ module Facebook
     end
 
     def timeline
-      create_feed_request.on_complete do |response|
+      feed_request = create_feed_request
+      feed_request.on_complete do |response|
         # block
         @facebook_response = Response.new(response)
         if @facebook_response.success?
@@ -25,7 +26,7 @@ module Facebook
         end
       end
 
-      hydra.queue
+      hydra.queue feed_request
       hydra.run
     end
 
