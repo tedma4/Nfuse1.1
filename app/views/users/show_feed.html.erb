@@ -9,7 +9,7 @@
             <li><%= render 'follow_form' if signed_in? %></li>
             <li><% unless !current_user?(@user) %>
               <%= link_to edit_user_path(session[:user_id]) do %>
-              <%= image_tag('settings48.png', size: "32x32", class: "edit_profile_link") %>
+              <%= image_tag('settings48.png', size: "32x32", class: "tilt edit_profile_link") %>
               <% end %>
               <% end %> 
             </li>
