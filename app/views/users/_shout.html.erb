@@ -28,7 +28,7 @@
       <% end %>
     </div>
   <% end %>
-     <div class="right"> <%= image_tag "Beaker_new.png", size: "20x20" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
+     <div class="right"> <%#= image_tag "Beaker_new.png", size: "20x20" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
   <br>
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
   </div>
@@ -38,10 +38,10 @@
       <li class="vr"></li>
       <li><%= image_tag("double7.png", size: "20x20") %>440</li>
       <li class="vr"></li>
-      <li><%= image_tag("favourite2.png", size: "20x20") %>250</li>
+      <li><%= image_tag("testbeaker.fw.png", size: "20x20") %>250</li>
       <li class="vr"></li>
       <li><% unless !current_user?(shout.user) %>
-        <%= link_to 'Destroy', shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
+        <%= link_to image_tag("show8.png", size: "20x20"), shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
         <% end %>
       </li>
     </ul>
