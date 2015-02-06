@@ -693,6 +693,12 @@ td {
   margin: auto;
 }
 
+.user_link {
+  background-color: white;
+  padding: 10px;
+
+}
+
 .post_content{
   margin: 0;
   //border: 2px dotted pink;
