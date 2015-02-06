@@ -1,5 +1,9 @@
+require_relative 'api'
+
 module Twitter
   class Post < TimelineEntry
+  
+  include Api
 
     def self.from(tweet)
       new(tweet)
@@ -21,20 +25,20 @@ module Twitter
       @tweet["id"]
     end
 
+    def tweet_user
+      @tweet['user']
+    end
+
     def profile_picture
-      @tweet["user"]["profile_image_url_https"]
+      tweet_user["profile_image_url_https"]
     end
 
     def user_name
-      @tweet["user"]["name"]
-    end
-
-    def user_url
-      "https://twitter.com/#{@tweet["user"]["screen_name"]}"
+      tweet_user["name"]
     end
 
     def screen_name
-      @tweet["user"]["screen_name"]
+      tweet_user["screen_name"]
     end
 
     def tweet_text
@@ -49,9 +53,9 @@ module Twitter
       @tweet["favorite_count"].to_i
     end
 
-    def link_to_tweet
-      "https://twitter.com/#{@tweet["user"]["screen_name"]}/status/#{@tweet["id"]}"
-    end
+    #def tweet_image
+    #  @tweet['media'][0]['media_url'] if @tweet.fetch('media', nil)
+    #end
 
     def tweet_image
       if @tweet["media"].present?
