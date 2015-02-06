@@ -30,7 +30,7 @@
 </div><br>
 
 
-    <div class="right"><%= link_to image_tag("Instagram_Icon_Large.png", size: "20x20", :class => "provider_logo"), post.link_to_post, :target => "_blank" %><%= time_ago_in_words(post.created_time) %> ago</div>
+    <div class="timeStamp"><%= link_to image_tag("Instagram_Icon_Large.png", size: "20x20", :class => "provider_logo"), post.link_to_post, :target => "_blank" %><%= time_ago_in_words(post.created_time) %> ago</div>
     <br>
     <div class="<%= post.class %>-<%= post.id %> post_footer right">
     </div>
