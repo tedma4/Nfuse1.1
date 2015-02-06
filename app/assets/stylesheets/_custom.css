@@ -680,7 +680,7 @@ td {
 .user_profile_picture{
   margin: 0 10px 0 0;
   padding: 0;
-  border-radius: 0px;
+  border-radius: 50px;
 }
 .user_name :hover{
   color: black;
