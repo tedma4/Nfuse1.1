@@ -601,7 +601,7 @@ td {
 /* #Posts
 ================================================= */
 .individual_post {
-  border-radius: 15px;
+  
   max-width: 400px;
 }
 
@@ -658,7 +658,8 @@ td {
 }
 
 .provider_logo{
-  float: right;
+
+  
   margin: 0;
   padding: 0;
   border-radius: 7.5px;
