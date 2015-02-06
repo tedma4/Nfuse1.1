@@ -601,10 +601,24 @@ td {
 /* #Posts
 ================================================= */
 .individual_post {
-  
   max-width: 400px;
 }
-
+.uploads{
+  height: 200px;
+}
+.upload_medium{
+  display: inline;
+  height: 200px;
+  width: 30%;
+  background-color: white;
+}
+.upload_medium ul{
+  background-color: white;
+}
+.upload_medium ul li{
+  display:block;
+  background-color: white;
+}
 
 #player-wrapper {
   display: none;
