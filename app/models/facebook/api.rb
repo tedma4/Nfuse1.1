@@ -25,7 +25,7 @@ module Facebook
         end
       end
 
-      hydra.queue create_feed_request
+      hydra.queue
       hydra.run
     end
 
