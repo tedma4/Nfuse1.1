@@ -121,4 +121,7 @@ class UsersController < ApplicationController
   def user_from_params
     @user = User.find(params[:id])
   end
+
+  def nfuse_page
+  end
 end

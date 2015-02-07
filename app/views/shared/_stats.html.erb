@@ -3,7 +3,7 @@
 <div class="stats">
   <ul class="profile_nav_links">
     <li><%= link_to "feed", feed_user_path(@user) %></li>
-    <li><%= link_to "bio", bio_user_path(@user) %></li>
+    <li><%= link_to "nfused", nfuse_page_path(@user) %></li>
     <li><%= link_to "following: #{@user.followed_users.count}", following_user_path(@user) %></li>
     <li><%= link_to "followers: #{@user.followers.count}", followers_user_path(@user) %></li>
   </ul>

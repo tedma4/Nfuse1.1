@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get    '/signin',   to: 'sessions#new'
   delete '/signout',  to: 'sessions#destroy'
   get    '/settings', to: 'users#settings'
+  get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages
   get '/help',     to: 'pages#help'
