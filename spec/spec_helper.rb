@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 
+require 'rack/test'
 require 'rspec/rails'
 require 'rspec/mocks'
 require 'rspec/collection_matchers'
