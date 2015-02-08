@@ -47,7 +47,7 @@ class Shout < ActiveRecord::Base
    self.get_dislikes.size
   end
 
-   auto_html_for :url do
+  auto_html_for :url do
     html_escape
     image
     youtube(:width => '100%', :height => 225, :autoplay => false)
@@ -57,7 +57,7 @@ class Shout < ActiveRecord::Base
     ted
     link :target => "_blank", :rel => "nofollow"
     simple_format
-   end
+  end
 
   #validate :only_upload_or_url
 #
