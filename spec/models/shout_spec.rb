@@ -33,8 +33,8 @@ describe Shout do
           }.to raise_error
       end
       it 'No image' do
-        expect(shout).not_to be_valid
-        expect(shout).not_to be_valid
+        expect(shout).to be_valid
+        expect(shout).to be_valid
       end
 
       it 'needs a user' do
