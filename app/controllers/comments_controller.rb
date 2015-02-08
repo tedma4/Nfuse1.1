@@ -28,8 +28,7 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.new(comment_params)
-    @comment.user_id = current_user.id
-    if @comment.save
+    if @comment.update(:user_id, current_user.id)
       redirect_to @commentable, notice: "Comment created."
     else
       render :new
@@ -76,7 +75,6 @@ class CommentsController < ApplicationController
         if name =~ /(.+)_id$/
             return $1.classify.constantize.find(value)
         end
-    end
-    raise ActiveRecord:NoRecord.new("Couldn\'t find it captain!")
+    end || raise ActiveRecord:NoRecord.new("Couldn\'t find it captain!")
   end
 end

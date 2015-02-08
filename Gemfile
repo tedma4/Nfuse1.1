@@ -52,6 +52,9 @@ gem 'private_pub'
 gem 'thin'
 gem 'auto_html'
 #These are the gems used in the development enviornment
+gem 'rack-mini-profiler', group: :development
+gem 'bullet', group: :development
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
