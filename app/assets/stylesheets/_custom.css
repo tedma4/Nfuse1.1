@@ -605,11 +605,15 @@ td {
 }
 .uploads{
   height: 200px;
+  width: 100%;
+}
+.upload_list{
+  width: 30%;
+
 }
 .upload_medium{
   display: inline;
   height: 200px;
-  width: 30%;
   background-color: white;
 }
 .upload_medium ul{
