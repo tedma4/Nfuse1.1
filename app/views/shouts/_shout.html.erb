@@ -59,48 +59,48 @@ $(function () {
       </ul>
     </div>
   <% end %>
-  <h3>Preview</h3>
- 
-
-    <div id="target"></div>
-    <div id="target2"></div>
-    <div id="preview"></div>
   <H1>Step 1 Choose The Type Of Post You Want To Make</H1>
   
 
 
   <div class="uploads">
     <ul>
-      <li>
-        <h3>Upload Photo</h3>
+      <li class="upload_list">
         <div class="upload_medium">
           <ul>
             <li><%= image_tag("camera3.png", :class => "shout_img", :size => "100x100") %></li>
+            <li><h3>Upload Photo</h3></li>
             <li><%= f.file_field :pic, id: 'pictureInput'  %></li>
           </ul>
         </div>
       </li>
-      <li>
-        <h3>Upload Video</h3>
+      <li class="upload_list">
         <div class="upload_medium">
           <ul>
             <li><%= image_tag( "movie36.png", :class => "shout_img", :size => "100x100") %></li>
+            <li><h3>Upload Video</h3></li>
             <li><%= f.file_field :snip, id: 'pictureInput2' %></li>
           </ul>
         </div>
       </li>
-      <li>
-        <h3>Url Link</h3>
+      <li class="upload_list">
         <div class="upload_medium">
           <ul>
-            <li><%= image_tag("internet17.png", :class => "shout_img", :size => "100x100") %></li>
+            <li><%= image_tag("internet54.fw.png", :class => "shout_img", :size => "100x100") %></li>
+            <li><h3>Url Link</h3></li>
             <li><%= f.label :url %>
             <%= f.text_area :url, id: 'url_body', placeholder: "Youtube, Vimeo, Soundcloud", onChange: 'previewUrl()' %></li>
           </ul>
         </div>
       </li>
     </ul></br>
-     </div>
+  </div>
+  <h3>Preview</h3>
+ 
+
+    <div id="target"></div>
+    <div id="target2"></div>
+    <div id="preview"></div>
     
 
   <!--This is where the preview of the post is going to be 

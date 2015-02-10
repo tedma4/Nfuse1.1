@@ -5,6 +5,7 @@ class ShoutsController < ApplicationController
 
   def index
     @shouts = Shout.order('created_at DESC')
+    #@shouts = Shout.includes(:user, :comments).order('created_at DESC')
   end
 
   def show
