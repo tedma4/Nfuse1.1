@@ -2,11 +2,13 @@
 <% provide(:title, "Edit user") %>
 
 
-<div class="container">
-  <div class="containerMain">
+
+
     <h1 class="center">Settings</h1>
     <%= simple_form_for(@user, :multipart => true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
+<div class="masonJar" id="masonJar">
+      <div class="item whiteBox">
         <table>
           <tr>
             <td><%= f.label :first_name, "First Name" %></td>
@@ -28,23 +30,30 @@
             <td><%= f.label :password_confirmation, "Confirm Password" %></td>
             <td><%= f.password_field :password_confirmation %></td>
           </tr>
+        </table>
+      </div>
+
+      <div class="item whiteBox">
+        <table>
           <tr>
             <td><p>Your profile pic</p></td>
             <td><%= f.file_field :avatar, id: "pictureInput" %></td>
-            <td><%= image_tag @user.avatar(:medium) %></td>
-            <div id="target"></div>
+            <td><div id="target" class="thumb"><%= image_tag @user.avatar(:medium) %></div></td>
           </tr>
           <tr>
             <td><p>Your profile banner</p></td>
             <td><%= f.file_field :banner, id: "pictureInput2" %></td>
-            <td><%= image_tag @user.banner(:medium) %></td>
-            <div id="target2"></div>
+            <td><div id="target2" class="thumb"><%= image_tag @user.banner(:medium) %></div></td>
           </tr>
+        </table>
+      </div>
+
+      <div class="item whiteBox">
+        <table>
           <tr>
             <td><%= render "link_networks" %></td>
             <td><%= f.submit "Save changes", class: "btn btn-large btn-info" %></td>
           </tr>
-
         <% end %>
       </table>
     </div>
