@@ -38,7 +38,7 @@
       <li class="vr"></li>
       <li><%= image_tag("double7.png", size: "20x20") %>440</li>
       <li class="vr"></li>
-      <li><%= link_to image_tag("testbeaker.fw.png", size: "20x20"), nfuse_page_path(@user) %>250</li>
+      <li><%= link_to image_tag("testbeaker.fw.png", size: "20x20"), nfuse_page_path(shout.user) %>250</li>
       <li class="vr"></li>
       <li><% unless !current_user?(shout.user) %>
         <%= link_to image_tag("show8.png", size: "20x20"), shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>

@@ -26,10 +26,6 @@ module Nfuse
       @shout.get_likes.size
     end
 
-    def dislike_score
-      @shout.get_dislikes.size
-    end
-
     def comments
       @shout.comments { |comment| Comment.from(comment) }
     end
