@@ -629,7 +629,8 @@ td {
 }
 
 .twitter_post {
-  box-shadow: 5px 5px rgba(64,153,255,0.8);
+  border-bottom: 5px solid rgba(64,153,255,0.8);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
 
 .nFuse_post {
