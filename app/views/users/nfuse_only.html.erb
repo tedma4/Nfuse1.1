@@ -1,0 +1,26 @@
+<div>
+  <ul>
+    <li>
+      <%= link_to "Nfuse only", nfuse_only_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Twitter only", twitter_only_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Instagram only", instagram_only_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Facebook only", facebook_only_user_path(session[:user_id]) %>
+    </li>
+  </ul>
+</div><br>
+<div id="masonJar" class="center explore_container clearfix masonJar">
+
+<% @timeline.each do |post| %>
+  <% if post.provider == "nfuse" %>
+    <%=  render partial: "users/shout", locals: {shout: post} %>
+  <% end %>
+<% end %>
+
+
+</div>
