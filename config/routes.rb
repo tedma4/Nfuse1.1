@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :shouts
     resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_only, :twitter_only, :instagram_only, :facebook_only
+      get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :explore_nfuse_only, :explore_twitter_only, :explore_instagram_only, :explore_facebook_only
     end
   end
 

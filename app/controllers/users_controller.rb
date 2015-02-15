@@ -169,6 +169,74 @@ class UsersController < ApplicationController
     @commenter_profile_hash         = timeline[:commenter_profile_hash].first
   end
 
+  def explore_nfuse_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_nfuse_only"
+  end
+
+  def explore_twitter_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_twitter_only"
+  end
+
+  def explore_instagram_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_instagram_only"
+  end
+
+  def explore_facebook_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_facebook_only"
+  end
+
   private
 
   def timeline(user=current_user)

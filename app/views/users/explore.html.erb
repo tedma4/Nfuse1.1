@@ -1,3 +1,22 @@
+<div>
+  <ul>
+    <li>
+      <%= link_to "All Posts", explore_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Nfuse only", explore_nfuse_only_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Twitter only", explore_twitter_only_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Instagram only", explore_instagram_only_user_path(session[:user_id]) %>
+    </li>
+    <li>
+      <%= link_to "Facebook only", explore_facebook_only_user_path(session[:user_id]) %>
+    </li>
+  </ul>
+</div><br>
 <div id="masonJar" class="center explore_container clearfix masonJar">
   <% @timeline.each do |post| %>
     <% if post.provider == "twitter" %>
