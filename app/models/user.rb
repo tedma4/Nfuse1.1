@@ -41,7 +41,11 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
   # *names
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :first_name, :last_name, presence: true
+  validates :first_name, :last_name, :user_name, presence: true
+  validates :user_name, 
+  uniqueness: {
+    case_sensitive: false
+  }
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
