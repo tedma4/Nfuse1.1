@@ -261,19 +261,19 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 
 .tilt {
-  -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
-      -ms-transition: all 0.5s ease;
-          transition: all 0.5s ease;
+  -webkit-transition: all 0.2s ease;
+     -moz-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
 }
  
 .tilt:hover {
-  -webkit-transform: rotate(-10deg);
-     -moz-transform: rotate(-10deg);
-       -o-transform: rotate(-10deg);
-      -ms-transform: rotate(-10deg);
-          transform: rotate(-10deg);
+ -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+   box-shadow: 0 10px 10px -10px rgba(255, 255, 255, 0.8);
+
+
 }
 .activeNavIcon{
   -webkit-transition: all 1s ease;
@@ -515,8 +515,10 @@ td {
   margin-top: -225px;
   margin-left: 35px;
   width: 200px;
-  border: 2px solid black;
+  border: 2px solid grey;
   border-radius: 5px;
+  padding: 2px;
+  background-color: white;
 }
 
 .profile_bar{
