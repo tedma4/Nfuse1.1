@@ -501,7 +501,6 @@ td {
 }
 
 #masonJar {
-  width:auto;
   margin-right: auto;
   margin-left: auto;
 
@@ -607,13 +606,15 @@ td {
 .individual_post {
   max-width: 400px;
 }
+.item .right {
+  margin: auto;
+}
 .uploads{
   height: 200px;
   width: 100%;
 }
 .upload_list{
   width: 30%;
-
 }
 .upload_medium{
   display: inline;
@@ -627,36 +628,33 @@ td {
   display:block;
   background-color: white;
 }
-
 #player-wrapper {
   display: none;
 }
-
 .twitter_post {
+  overflow: hidden;
   border-bottom: 5px solid rgba(64,153,255,0.8);
   box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
-
 .nFuse_post {
   overflow: hidden;
-  box-shadow: 5px 5px rgba(200,200,200,0.8);
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
-
 .instagram_post {
   overflow: hidden;
-  box-shadow: 5px 5px rgba(205,179,139,0.8);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(205,179,139,0.8);
 }
-
 .facebook_post {
   overflow: hidden;
-  box-shadow: 5px 5px rgba(59,89,152,0.8);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(59,89,152,0.8);
 }
-
 #content-box-profile {
  height: 100vh;
  top: 0;
 }
-
 .post_main{
   margin: 0;
   padding: 0;
@@ -664,7 +662,6 @@ td {
   text-decoration: none;
   height: auto;
 }
-
 .post_header{
   margin:0;
   padding: 0;
@@ -673,19 +670,16 @@ td {
   display: inline;
   list-style-type: none;
 }
-
 .post_header li{
   display: inline;
   color: green;
   padding: 0;
 }
-
 .provider_logo{
   margin: 0;
   padding: 0;
   border-radius: 7.5px;
 }
-
 .user_profile_picture{
   margin: 0 10px 0 0;
   padding: 0;
@@ -693,7 +687,6 @@ td {
 }
 .user_name :hover{
   color: black;
-
 }
 .user_name{
   margin: 20px 0 0 0;
@@ -701,41 +694,34 @@ td {
   padding: 20px 0px 0px 20px;
   margin: auto;
 }
-
 .user_link {
   background-color: white;
   padding: 10px;
-
 }
-
 .post_content{
   margin: 0;
   //border: 2px dotted pink;
   padding: 0px;
+  margin: auto;
 }
-
 .image_post{
   border-radius: 0px;
   margin: auto;
   max-width: 200%;
 }
-
 .post_footer{
   height: 20px;
   padding-bottom: 30px;
 }
-
 .vr{
   border-right: 1px solid black;
   height: 20px;
 }
-
 .timeStamp{
   font-size: .6em;
   display: inline;
   padding: 0 0 50px 0;
 }
-
 .post_actions{
   bottom: 0px;
   height: 20px;
@@ -745,19 +731,16 @@ td {
   position: absolute;
   display: block;
 }
-
 .post_actions li{
   padding-left: 7%;
 }
-
 .right{
-  float: right;
-  margin: 0;
-  right:0;
+  //float: right;
+  //margin: 0;
+  //right:0;
   top:0;
   padding: 0;
 }
-
 .yt_link {
 float: right;
 }
@@ -805,7 +788,7 @@ float: right;
 
 .whiteBox{
   background-color: white;
-  max-width: 600px;
+  max-width: 400px;
 
 }
 /* ========== media query ==========  */
