@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   include UsersHelper
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
-                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers]
+                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page]
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_only, :twitter_only, :instagram_only, :facebook_only]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only]
 
   def index
     #user = User.find(params[:id])
@@ -123,6 +123,7 @@ class UsersController < ApplicationController
   end
 
   def nfuse_page
+    render 'nfuse_page'
   end
 
   def nfuse_only

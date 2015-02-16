@@ -1,0 +1,14 @@
+<div><%= image_tag @user.banner.url(:larger), class: "banner" %> </div>
+  <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
+    <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%>@<%= link_to @user.user_name, feed_user_path(@user)%></h1>
+      <ul class="inLineRight">
+        <li><%= render 'follow_form' if signed_in? %></li>
+        <li><% unless !current_user?(@user) %>
+          <%= link_to edit_user_path(session[:user_id]) do %>
+          <%= image_tag('settings48.png', size: "32x32", class: "tilt edit_profile_link") %>
+          <% end %>
+          <% end %> 
+        </li>
+      </ul>
+  <%= render 'shared/stats' %>
+</div>

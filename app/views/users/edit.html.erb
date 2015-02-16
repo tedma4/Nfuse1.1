@@ -9,6 +9,7 @@
       <%= render 'shared/error_messages', object: f.object %>
 <div class="masonJar" id="masonJar">
       <div class="item whiteBox">
+        <h2>Account Info</h2>
         <table>
           <tr>
             <td><%= f.label :first_name, "First Name" %></td>
@@ -38,6 +39,7 @@
       </div>
 
       <div class="item whiteBox">
+        <h2>Profile Images</h2>
         <table>
           <tr>
             <td><p>Your profile pic</p></td>
@@ -53,6 +55,7 @@
       </div>
 
       <div class="item whiteBox">
+        <h2>Networks</h2>
         <table>
           <tr>
             <td><%= render "link_networks" %></td>

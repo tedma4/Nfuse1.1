@@ -2,10 +2,10 @@
 <% @user ||= current_user %>
 <div class="stats">
   <ul class="profile_nav_links">
-    <li><%= link_to "feed", feed_user_path(@user) %></li>
-    <li><%= link_to "nfused", nfuse_page_path(@user) %></li>
-    <li><%= link_to "following: #{@user.followed_users.count}", following_user_path(@user) %></li>
-    <li><%= link_to "followers: #{@user.followers.count}", followers_user_path(@user) %></li>
+    <li><%= link_to "Feed", feed_user_path(@user) %></li>
+    <li><%= link_to "Nfused", nfuse_page_user_path(@user) %></li>
+    <li><%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %></li>
+    <li><%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %></li>
   </ul>
 </div>
 <!-- *End* Views/shared/_stats.html -->

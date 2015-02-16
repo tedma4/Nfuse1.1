@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :shouts
     resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :explore_nfuse_only, :explore_twitter_only, :explore_instagram_only, :explore_facebook_only
+      get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :explore_nfuse_only, :explore_twitter_only, :explore_instagram_only, :explore_facebook_only
     end
   end
 
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get    '/signin',   to: 'sessions#new'
   delete '/signout',  to: 'sessions#destroy'
   get    '/settings', to: 'users#settings'
-  get    '/nfuse_page', to: 'users#nfuse_page'
+  #get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages
   get '/help',     to: 'pages#help'
