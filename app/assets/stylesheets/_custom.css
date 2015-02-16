@@ -292,6 +292,8 @@ ul li a:hover + .hidden, .hidden:hover {
 .inLineLeft ul li {
   margin-top: -12px;
   margin-right: 20px;
+  margin-left: -37px;
+
 }
 
 .inLineLeft {        /*---Logo in Here---*/
@@ -781,9 +783,9 @@ float: right;
 }
 
 .search-bar input{
-  height: 45px;
-  margin-top: -10px;
-  font-size: 2em;
+  height: 30px;
+  margin-top: 5px;
+  font-size: 1.2em;
 }
 
 /* #Youtube videos
