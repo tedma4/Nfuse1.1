@@ -707,7 +707,7 @@ td {
 .image_post{
   border-radius: 0px;
   margin: auto;
-  max-width: 200%;
+  max-width: 400px;
 }
 .post_footer{
   height: 20px;
