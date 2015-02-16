@@ -41,11 +41,12 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
   # *names
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/i
   validates :first_name, :last_name, :user_name, presence: true
-  validates :user_name, 
-  uniqueness: {
-    case_sensitive: false
-  }
+  validates :user_name, length: { maximum: 20 },
+            format: { with: VALID_USERNAME_REGEX },
+            uniqueness: {case_sensitive: false }
+
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
@@ -74,7 +75,12 @@ class User < ActiveRecord::Base
 
   #This allows a user to search by first name, last name or both  
   def self.search(search)
-    where("first_name like :s or last_name like :s or first_name || ' ' || last_name like :s", :s => "%#{search}") 
+    if search
+      q = "%#{search}%"
+      where("first_name like ? or last_name like ? or user_name like ? or (first_name || last_name) like ? or first_name || ' ' || last_name like ?", q, q, q, q, q)
+    else
+      all
+    end
   end
 
   def self.all_except(other_user)
