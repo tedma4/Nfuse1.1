@@ -3,6 +3,27 @@
   padding: 0;
   background-color: #D2DADD;  
 }
+h6 {
+  color: blue;
+}
+.atUserName{
+  margin-right: 0;
+  color:#87CEEB;
+  text-decoration: none;
+  padding-left: 30px;
+  font-size: .9em;
+  font-style: normal;
+  font-family: "Times New Roman", Georgia, Serif;
+  font-weight: lighter;
+}
+.atUserName :visited{
+  color:#87CEEB;
+  text-decoration: none;
+}
+.atUserName a {
+  text-decoration: none;
+
+}
 .container_app_html {
   margin:-10px 0 0 0;
   padding:0;
@@ -397,7 +418,7 @@ td {
 }
 .profile_bar{
   background-color: white;
-  height:70px;
+  height:100px;
   margin-top: -23px;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -405,6 +426,10 @@ td {
 .profile_bar .inLineLeft {
   margin-left:35px; 
   margin-top: 23px;
+}
+.profile_bar .inLineRight{
+  margin-right: 0;
+  padding-right: 0;
 }
 .profile_bar .stats {
   margin-left: 40%;
