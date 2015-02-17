@@ -1,6 +1,6 @@
 <div><%= image_tag @user.banner.url(:larger), class: "banner" %> </div>
   <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
-    <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%>@<%= link_to @user.user_name, feed_user_path(@user)%></h1>
+    <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%><br> <span class="atUserName">@<%= link_to @user.user_name, feed_user_path(@user)%></span></h1>
       <ul class="inLineRight">
         <li><%= render 'follow_form' if signed_in? %></li>
         <li><% unless !current_user?(@user) %>
