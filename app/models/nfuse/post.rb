@@ -113,6 +113,14 @@ module Nfuse
     def has_content
       @shout.has_content
     end
+
+    def current_user?
+      @shout.current_user
+    end
+
+    def current_user
+      @shout.current_user
+    end
   end
 
   class Comment
