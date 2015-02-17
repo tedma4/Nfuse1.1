@@ -7,9 +7,14 @@ h6 {
   color: blue;
 }
 .atUserName{
+  margin-right: 0;
   color:#87CEEB;
   text-decoration: none;
-  padding-left: 20px;
+  padding-left: 30px;
+  font-size: .9em;
+  font-style: normal;
+  font-family: "Times New Roman", Georgia, Serif;
+  font-weight: lighter;
 }
 .atUserName :visited{
   color:#87CEEB;
@@ -421,6 +426,10 @@ td {
 .profile_bar .inLineLeft {
   margin-left:35px; 
   margin-top: 23px;
+}
+.profile_bar .inLineRight{
+  margin-right: 0;
+  padding-right: 0;
 }
 .profile_bar .stats {
   margin-left: 40%;
