@@ -9,6 +9,7 @@ h6 {
 .atUserName{
   color:#87CEEB;
   text-decoration: none;
+  padding-left: 20px;
 }
 .atUserName :visited{
   color:#87CEEB;
