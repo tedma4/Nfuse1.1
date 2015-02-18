@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   #include UsersHelper
   #before_action :correct_user,
   #                only: [:create]
-  before_action :signed_in_user
+  before_filter :signed_in_user, except: [:create]
   #skip_before_filter :verify_authenticity_token
   
 	def create
@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(message_params)
     @message.user_id = current_user.id
     @message.save!
+
     @path = conversation_path(@conversation)
   end
  

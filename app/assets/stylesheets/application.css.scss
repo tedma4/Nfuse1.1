@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require chat
  */
 @import "bourbon";
 @import "grid_settings";
@@ -29,7 +30,6 @@ $footer-height: 4em;
 @import "posting";
 @import "custom";
 @import "foxycomplete";
-@import "chat";
 
 .loading_message {
   background-color: $white;

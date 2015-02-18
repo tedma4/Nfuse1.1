@@ -15,6 +15,10 @@ class Conversation < ActiveRecord::Base
     where(_sql, sender_id,recipient_id, recipient_id, sender_id)
   end
 
+  #scope :between, -> (sender_id,recipient_id) do
+  #  where("(conversations.sender_id = ? AND conversations.recipient_id =?) OR (conversations.sender_id = ? AND conversations.recipient_id =?)", sender_id,recipient_id, recipient_id, sender_id)
+  #end
+
   def self.find_or_start_convo(params)
     result = between(params[:sender_id], params[:recipient_id])
     return result.first if result.present?

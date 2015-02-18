@@ -37,16 +37,16 @@
           <%= image_tag('profile.fw.png', size: "32x32") %>
           <% end %>
         </li>
-        <li class="navIcon tilt" id="profile">
-          <%= link_to '#' do %>
-          <%= image_tag('chat94.fw.png', size: "32x32") %>
-          <% end %>
-        </li>
         <li class="navIcon tilt" id="shout">
           <%= link_to new_shout_path do %>
           <%= image_tag('add50.fw.png', size: "32x32") %>
           <% end %>
         </li> 
+        <li class="navIcon tilt" id="profile">
+          <%= link_to users_path(@user) do %>
+          <%= image_tag('chat94.fw.png', size: "32x32") %>
+          <% end %>
+        </li>
         <!--<li> 
           <%#= link_to users_path(session[:user_id]) do %>
           <%#= image_tag('chat56.fw.png', size: "32x32") %>

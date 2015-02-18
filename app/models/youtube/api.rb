@@ -111,7 +111,6 @@
 #to the channel associated with the request. The code also calls the channels.list method with the mine 
 #parameter set to true to retrieve the playlist ID that identifies the channel's uploaded videos.
 
-#!/usr/bin/ruby
 #
 #require 'rubygems'
 #require 'google/api_client'
