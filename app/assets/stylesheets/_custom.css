@@ -424,7 +424,7 @@ td {
 .profile_bar{
   background-color: white;
   height:66px;
-  margin-top: -16px;
+  margin-top: -20px;
   border-radius: 0px 0px 5px 5px;
   margin-bottom: 20px;
 }
@@ -437,8 +437,13 @@ td {
   padding: 0;
 }
 .profile_bar .stats {
-  margin-left: 40%;
-  padding-top: 25px;
+  text-align: center;
+  overflow: visible;
+  float: left;
+  display: inline-block;
+  height: 40px;
+  margin: 0 0;
+  padding: 26px 0 0 8%;
 }
 .profile_nav_links li {
   margin-right: 25px;
