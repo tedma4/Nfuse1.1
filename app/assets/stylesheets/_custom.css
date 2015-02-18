@@ -7,6 +7,7 @@ h6 {
   color: blue;
 }
 .atUserName{
+  margin-top: -10px;
   margin-right: 0;
   color:#87CEEB;
   text-decoration: none;
@@ -15,6 +16,10 @@ h6 {
   font-style: normal;
   font-family: "Times New Roman", Georgia, Serif;
   font-weight: lighter;
+  float: left;
+}
+.edit_profile_link{
+  float: left;
 }
 .atUserName :visited{
   color:#87CEEB;
@@ -418,18 +423,18 @@ td {
 }
 .profile_bar{
   background-color: white;
-  height:100px;
-  margin-top: -23px;
-  border-radius: 5px;
+  height:66px;
+  margin-top: -16px;
+  border-radius: 0px 0px 5px 5px;
   margin-bottom: 20px;
 }
 .profile_bar .inLineLeft {
   margin-left:35px; 
-  margin-top: 23px;
+  margin-top: -10px;
 }
 .profile_bar .inLineRight{
-  margin-right: 0;
-  padding-right: 0;
+  margin:0;
+  padding: 0;
 }
 .profile_bar .stats {
   margin-left: 40%;
