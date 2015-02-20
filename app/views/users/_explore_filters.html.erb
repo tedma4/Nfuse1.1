@@ -1,0 +1,27 @@
+<ul>
+  <li>
+   <%= link_to explore_user_path(session[:user_id]) do %>
+        <%= image_tag('FilterExplore2.png', size: "30x30") %>
+      <% end %>
+  </li>
+  <li>
+    <%= link_to explore_nfuse_only_user_path(session[:user_id]) do%>
+      <%= image_tag "filter-nfuse.fw.png", size: "30x30" %>
+      <%end%>
+  </li>
+  <li>
+    <%= link_to explore_twitter_only_user_path(session[:user_id]) do %>
+    <%= image_tag "32-twitter.png", size: "30x30"%>      
+    <%end%>
+  </li>
+  <li>
+    <%= link_to explore_instagram_only_user_path(session[:user_id]) do%>
+    <%= image_tag "32-instagram.png", size: "30x30" %>
+    <%end%>
+  </li>
+  <li>
+    <%= link_to explore_facebook_only_user_path(session[:user_id]) do%>
+    <%= image_tag "32-facebook.png", size: "30x30" %>
+    <%end%>
+  </li>
+</ul>

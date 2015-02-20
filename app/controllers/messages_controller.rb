@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
-  include UsersHelper
-  before_action :correct_user,
-                  only: [:create]
+  #include UsersHelper
+  #before_action :correct_user,
+  #                only: [:create]
   #before_filter :signed_in_user#, except: [:create]
   #skip_before_filter :verify_authenticity_token
 

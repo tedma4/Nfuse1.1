@@ -1,39 +1,10 @@
-  <div>
-    <ul>
-    <li>
-     <%= link_to explore_user_path(session[:user_id]) do %>
-          <%= image_tag('educational27.png', size: "30x30") %>
-        <% end %>
-    </li>
-    <li>
-      <%= link_to explore_nfuse_only_user_path(session[:user_id]) do%>
-        <%= image_tag "testbeaker.fw.png", size: "30x30" %>
-        <%end%>
-    </li>
-    <li>
-      <%= link_to explore_twitter_only_user_path(session[:user_id]) do %>
-      <%= image_tag "32-twitter.png", size: "30x30"%>      
-      <%end%>
-    </li>
-    <li>
-      <%= link_to explore_instagram_only_user_path(session[:user_id]) do%>
-      <%= image_tag "32-instagram.png", size: "30x30" %>
-      <%end%>
-    </li>
-    <li>
-      <%= link_to explore_facebook_only_user_path(session[:user_id]) do%>
-      <%= image_tag "32-facebook.png", size: "30x30" %>
-      <%end%>
-    </li>
-  </ul>
+<div>
+  <%= render partial: "users/hub_filters" %>
 </div><br>
 <div id="masonJar" class="center explore_container clearfix masonJar">
-
-<% @timeline.each do |post| %>
-  <% if post.provider == "twitter" %>
-    <%= render partial: "users/twitter_post", locals: {post: post} %>
+  <% @timeline.each do |post| %>
+    <% if post.provider == "twitter" %>
+      <%= render partial: "users/twitter_post", locals: {post: post} %>
+    <% end %>
   <% end %>
-<% end %>
-
-
 </div>

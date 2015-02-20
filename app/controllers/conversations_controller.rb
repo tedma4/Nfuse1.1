@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController 
   #This ensures that a user must be logged in to send a chat message
-  before_filter :signed_in_user
+  #before_filter :signed_in_user
   respond_to :json, :js, :html
   layout false
 
