@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :tokens, dependent: :destroy
   has_many :conversations, foreign_key: :sender_id
+  has_many :messages
   has_many :shouts 
   has_many :comments
 
@@ -48,6 +49,7 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false }
 
   validates :email, presence: true,
+            length: { maximum: 16 },
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
 

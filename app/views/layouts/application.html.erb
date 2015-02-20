@@ -5,12 +5,7 @@
     <% if content_for? :for_head %>
     <%= yield :for_head %>
   <% end %>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta content='<%= signed_in? ? current_user.id : "" %>' name='user-id'/>
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
@@ -20,10 +15,10 @@
     <%= javascript_include_tag 'masonry.pkgd.js'%>
     <%= javascript_include_tag 'resize_masonry.js'%>
     <%= javascript_include_tag 'imagesloaded.pkgd.js'%>
-    <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <%= favicon_link_tag 'favicon.fw.png' %>
     <%= render 'layouts/shim' %>
+    <%= csrf_meta_tags %>
   </head>
   <body><!--app.html body start-->
     
