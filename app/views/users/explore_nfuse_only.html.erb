@@ -1,19 +1,29 @@
 <div>
-  <ul>
+   <ul>
     <li>
-      <%= link_to "All Posts", explore_user_path(session[:user_id]) %>
+     <%= link_to explore_user_path(session[:user_id]) do %>
+          <%= image_tag('educational27.png', size: "30x30") %>
+        <% end %>
     </li>
     <li>
-      <%= link_to "Nfuse only", explore_nfuse_only_user_path(session[:user_id]) %>
+      <%= link_to explore_nfuse_only_user_path(session[:user_id]) do%>
+        <%= image_tag "testbeaker.fw.png", size: "30x30" %>
+        <%end%>
     </li>
     <li>
-      <%= link_to "Twitter only", explore_twitter_only_user_path(session[:user_id]) %>
+      <%= link_to explore_twitter_only_user_path(session[:user_id]) do %>
+      <%= image_tag "Twitter_logo_blue.png", size: "30x30"%>      
+      <%end%>
     </li>
     <li>
-      <%= link_to "Instagram only", explore_instagram_only_user_path(session[:user_id]) %>
+      <%= link_to explore_instagram_only_user_path(session[:user_id]) do%>
+      <%= image_tag "Instagram_Icon_Large.png", size: "30x30" %>
+      <%end%>
     </li>
     <li>
-      <%= link_to "Facebook only", explore_facebook_only_user_path(session[:user_id]) %>
+      <%= link_to explore_facebook_only_user_path(session[:user_id]) do%>
+      <%= image_tag "FB-f-Logo__blue_50.png", size: "30x30" %>
+      <%end%>
     </li>
   </ul>
 </div><br>
