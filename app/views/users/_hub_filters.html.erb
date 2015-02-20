@@ -6,7 +6,7 @@
   </li>
   <li>
     <%= link_to nfuse_only_user_path(session[:user_id]) do%>
-      <%= image_tag "filter-nfuse.fw.png", size: "30x30" %>
+      <%= image_tag "filter-nfuse2.png", size: "30x30" %>
       <%end%>
   </li>
   <li>
@@ -23,5 +23,10 @@
     <%= link_to facebook_only_user_path(session[:user_id]) do%>
     <%= image_tag "32-facebook.png", size: "30x30" %>
     <%end%>
+  </li>
+  <li>
+    <%= link_to "youtube", "#" %>
+    <%#= image_tag "", size: "30x30" %>
+    <%#end%>
   </li>
 </ul>
