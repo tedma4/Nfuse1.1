@@ -891,3 +891,7 @@ float: right;
 .chatboxtitle {
     float: left;
 }
+.explore_filters ul li a :active{
+  border-bottom: 5px solid black;
+
+};
