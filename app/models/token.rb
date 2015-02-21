@@ -26,6 +26,10 @@ class Token < ActiveRecord::Base
       update_or_create_token(id, auth, 'twitter')
     end
 
+    def update_or_create_with_youtube_omniauth(id, auth)
+      update_or_create_token(id, auth, 'youtube')
+    end
+
     def update_or_create_with_other_omniauth(id, auth)
       # defaults to basic.
       update_or_create_token(id, auth)
@@ -60,6 +64,14 @@ class Token < ActiveRecord::Base
       auth['uid']
     end
 
+    def refresh
+      auth['credentials']['refresh_token']
+    end
+
+    def expires
+      DateTime.now + auth['credentials']["expires_in"].to_i.seconds      
+    end
+
     # Social Media Specific
 
     def twitter_token
@@ -69,6 +81,12 @@ class Token < ActiveRecord::Base
 
     def basic_token
       @token.access_token       = credentantials_token
+    end
+
+    def youtube_token
+      @token.access_token   = credentantials_token
+      @token.refresh_token  = refresh
+      @token.expiresat      = expires
     end
 
     # def facebook_token; end

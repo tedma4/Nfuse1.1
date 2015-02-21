@@ -25,6 +25,7 @@ gem 'wicked'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'
+gem "httparty"
 #This allows the use of the facebook oauth 
 gem 'omniauth-facebook', '~> 1.6.0'
 #This allows the use of the twitter oauth
