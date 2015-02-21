@@ -1,0 +1,36 @@
+<!-- *Start* Views/users/_youtube_post.html -->
+<div class="individual_post item " data-id="<%= post.id %>" id="content-box-feed">
+  <div class="post_main">
+    <ul class="post_header">
+      <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), "#", :target => "_blank" %></li>
+      <li class="user_name"><%= link_to post.user_name, "#", :target => "_blank" %></li>
+      
+    </ul>
+  </div>
+  <div class="post_content">
+    <iframe id="ytplayer" type="text/html" width="700" height="350" 
+                          src="http://www.youtube.com/embed/<%= content.media_id %>" 
+                          frameborder="0">
+    </iframe>
+  </div>&nbsp;
+
+
+  <div class="right">
+    <%= link_to image_tag("32-youtube.png", :class => "provider_logo", size: "20x20"), post.link_to_video, :target => "_blank" %> 
+    <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
+  </div>
+  <div class="<%= post.class %>-<%= post.media_id %> post_footer">
+  </div>
+  
+
+  <ul class="post_actions">
+    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.media_id, key: :youtube), method: :post, remote: true %><%#= post.like_score %>0</li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
+  </ul>
+</div>
+<!-- *End* Views/users/_youtube_post.html -->
