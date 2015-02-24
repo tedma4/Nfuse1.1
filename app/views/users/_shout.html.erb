@@ -4,7 +4,7 @@
   <div class="post_main">
     <ul class="post_header">
       <li><%= link_to image_tag(shout.user.avatar(:thumb), :class => "user_profile_picture"), feed_user_path(shout.user) %></li>
-      <li class="user_name"><%= link_to shout.user.full_name, feed_user_path(shout.user) %></li>
+      <li class="user_name"><%= link_to shout.user.user_name, feed_user_path(shout.user) %></li>
     </ul>
   </div><br>
 
@@ -49,7 +49,7 @@
       <ul>
         <% shout.comments.each do |comment| %>
           <li><%= image_tag comment.user.avatar(:thumb) %>
-            <%= comment.user.full_name %>
+            <%= comment.user.user_name %>
             <%= comment.body %></li>
         <% end %>
       </ul>
