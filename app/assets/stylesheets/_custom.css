@@ -894,4 +894,14 @@ float: right;
 .explore_filters ul li a :active{
   border-bottom: 5px solid black;
 
-};
+}
+
+#search-picture {
+  margin-top: 2px;
+  margin-left: 2px;
+  width: 200px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 2px;
+  background-color: white;
+}

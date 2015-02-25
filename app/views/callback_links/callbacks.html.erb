@@ -28,6 +28,15 @@
           <td><%= link_to image_tag("Instagram_Icon_Large.png", size: "100x100"), "/auth/instagram", :class => "network_login_link" %></td>
         </tr>
         <tr>
+          <td><% if current_user && user_has_provider?('youtube') %>
+              <%= link_to "reNfuse YouTube", "/auth/google_oauth2" %>
+              <% else %>
+              <%= link_to "Nfuse YouTube", "/auth/google_oauth2" %>
+              <% end %></td>
+        
+          <td><%= link_to image_tag("32-youtube.png", size: "100x100"), "/auth/instagram", :class => "network_login_link" %></td>
+        </tr>
+        <tr>
           <td class="floatRight"> <%= link_to "Next", next_wizard_path %> </td>
         </tr>
       </table>

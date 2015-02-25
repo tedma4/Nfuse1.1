@@ -2,7 +2,7 @@
 
 	<div class="item user_link">
 		<div class="thumbnail">
-		  <%= image_tag user.avatar.url(:followp), class: "followers-pic" %>
+		  <%= image_tag user.avatar.url(:followp), class: "followers-pic", id: "search-picture" %>
 		  <ul class="inline follow-btn">
 			  <li><h4><%= link_to user.full_name, feed_user_path(user) %></h4><br></li><br>
 			  	<li><h4><span class="atUserName">@<%= link_to user.user_name, feed_user_path(user)%></span></h4></li>
