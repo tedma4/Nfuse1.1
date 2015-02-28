@@ -64,18 +64,19 @@ Rails.application.routes.draw do
 
   #  OmniAuth * Registrations
   scope '/auth' do
-    get '/instagram/callback', to: 'registrations/instagram#create'
-    get '/twitter/callback',   to: 'registrations/twitter#create'
-    get '/failure',            to: 'registrations/twitter#failure'
-    get '/facebook/callback',  to: 'registrations/facebook#create'
+    get '/instagram/callback',     to: 'registrations/instagram#create'
+    get '/twitter/callback',       to: 'registrations/twitter#create'
+    get '/failure',                to: 'registrations/twitter#failure'
+    get '/facebook/callback',      to: 'registrations/facebook#create'
+    get '/google_oauth2/callback', to: 'registrations/youtube#create'
+    get '/vimeo/callback',         to: 'registrations/vimeo#create'
   end
-  get '/oauth2/callback', to: 'youtube_registration#create'
 
   # Likes
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
-  post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
-  post '/instagram/like/:media_id', to: 'likes#instagram'
-  post '/facebook/like/:post_id', to: 'likes#facebook'
+  post '/twitter/retweet/:tweet_id',  to: 'shares#twitter'
+  post '/instagram/like/:media_id',   to: 'likes#instagram'
+  post '/facebook/like/:post_id',     to: 'likes#facebook'
 
   root to: 'pages#home'
 end

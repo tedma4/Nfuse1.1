@@ -30,8 +30,10 @@ gem "httparty"
 gem 'omniauth-facebook', '~> 1.6.0'
 #This allows the use of the twitter oauth
 gem 'omniauth-twitter', '~> 1.0.1'
+gem 'omniauth-vimeo'
 #This allows the use of the facebook graph api
 gem 'fb_graph'
+gem 'vimeo'
 #This allows the use of the twitter api
 gem 'twitter', '~> 5.8.0'
 gem 'youtube_it', '~> 2.4.0'

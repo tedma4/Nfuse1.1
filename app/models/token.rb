@@ -27,7 +27,7 @@ class Token < ActiveRecord::Base
     end
 
     def update_or_create_with_youtube_omniauth(id, auth)
-      update_or_create_token(id, auth, 'youtube')
+      update_or_create_token(id, auth, 'google_oauth2')
     end
 
     def update_or_create_with_other_omniauth(id, auth)
@@ -83,7 +83,7 @@ class Token < ActiveRecord::Base
       @token.access_token       = credentantials_token
     end
 
-    def youtube_token
+    def google_oauth2_token
       @token.access_token   = credentantials_token
       @token.refresh_token  = refresh
       @token.expiresat      = expires

@@ -239,6 +239,9 @@ GEM
     omniauth-twitter (1.0.1)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
+    omniauth-vimeo (1.0.2)
+      multi_json (~> 1.10)
+      omniauth-oauth (~> 1.0)
     paperclip (4.2.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -393,6 +396,12 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    vimeo (1.5.4)
+      httparty (>= 0.4.5)
+      httpclient (>= 2.1.5.2)
+      json (>= 1.1.9)
+      multipart-post (>= 1.0.1)
+      oauth (>= 0.4.3)
     websocket (1.2.1)
     websocket-driver (0.3.4)
     wicked (1.1.0)
@@ -445,6 +454,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-instagram (~> 1.0.1)
   omniauth-twitter (~> 1.0.1)
+  omniauth-vimeo
   paperclip (~> 4.2)
   paperclip-av-transcoder
   pg (~> 0.15.1)
@@ -468,6 +478,7 @@ DEPENDENCIES
   typhoeus (~> 0.6.8)
   tzinfo-data
   uglifier (>= 1.3.0)
+  vimeo
   wicked
   will_paginate (~> 3.0.4)
   youtube_it (~> 2.4.0)

@@ -3,38 +3,46 @@
     <div class="containerMain">
       <table>
         <tr>  
+          <td><%= link_to image_tag("Twitter-Icon.png", size: "100x100"), "/auth/twitter?origin=#{request.original_url}", :class => "network_login_link" %></td>
           <td><% if current_user && user_has_provider?('twitter') %>
-          <%= link_to "reNfuse Twitter", "/auth/twitter" %>
+          <%= link_to "reNfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
           <% else %>
-          <%= link_to "Nfuse Twitter", "/auth/twitter" %>
+          <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
           <% end %> </td>
-          <td><%= link_to image_tag("Twitter_logo_blue.png", size: "100x100"), "/auth/twitter", :class => "network_login_link" %></td>
         </tr>
         <tr>
+          <td><%= link_to image_tag("Facebook-Icon.png", size: "100x100"), "/auth/facebook?origin=#{request.original_url}", :class => "network_login_link" %></td>
           <td><% if current_user && user_has_provider?('facebook') %>
-              <%= link_to "reNfuse Facebook", "/auth/facebook" %>
+              <%= link_to "reNfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
               <% else %>
-              <%= link_to "Nfuse Facebook", "/auth/facebook" %>
+              <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
               <% end %></td>
-          <td><%= link_to image_tag("FB-f-Logo__blue_50.png", size: "100x100"), "/auth/facebook", :class => "network_login_link" %></td>
         </tr>
         <tr>
+          <td><%= link_to image_tag("Instagram-icon.png", size: "100x100"), "/auth/instagram?origin=#{request.original_url}", :class => "network_login_link" %></td>
           <td><% if current_user && user_has_provider?('instagram') %>
-              <%= link_to "reNfuse Instagram", "/auth/instagram" %>
+              <%= link_to "reNfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
               <% else %>
-              <%= link_to "Nfuse Instagram", "/auth/instagram" %>
+              <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
               <% end %></td>
-        
-          <td><%= link_to image_tag("Instagram_Icon_Large.png", size: "100x100"), "/auth/instagram", :class => "network_login_link" %></td>
         </tr>
         <tr>
-          <td><% if current_user && user_has_provider?('youtube') %>
-              <%= link_to "reNfuse YouTube", "/auth/google_oauth2" %>
+          <td><%= link_to image_tag("Youtube-Icon.png", size: "100x100"), "/auth/google_oauth2?origin=#{request.original_url}", :class => "network_login_link" %></td>
+          <td><% if current_user && user_has_provider?('google_oauth2') %>
+              <%= link_to "reNfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
               <% else %>
-              <%= link_to "Nfuse YouTube", "/auth/google_oauth2" %>
+              <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
               <% end %></td>
-        
-          <td><%= link_to image_tag("32-youtube.png", size: "100x100"), "/auth/instagram", :class => "network_login_link" %></td>
+        </tr>
+        <tr>
+          <td><%= link_to image_tag("Vimeo.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %></td>
+          <td><% if current_user && user_has_provider?('vimeo') %>
+              <%= link_to "reNfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+              <% else %>
+              <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+              <% end %></td>
+
+          <td><%= link_to image_tag("32-vimeo.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %></td>
         </tr>
         <tr>
           <td class="floatRight"> <%= link_to "Next", next_wizard_path %> </td>

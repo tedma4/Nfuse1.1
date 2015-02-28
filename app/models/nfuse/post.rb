@@ -38,6 +38,10 @@ module Nfuse
       @shout.user.full_name
     end
 
+    def user_name
+      @shout.user.user_name
+    end
+
     def link?
       @shout.link
     end

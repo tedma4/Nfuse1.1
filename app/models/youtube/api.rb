@@ -1,117 +1,107 @@
-#"google_oauth2"
-#      @authentication = Authentication.where(uid: auth["uid"])
-#      user = @authentication.last.user 
-#      user.google_uid = auth["uid"]
-#      user.google_fullname = auth["info"]["name"]
-#  		#user.google_email = auth["info"]["email"] #email repeat
-#  		#user.google_first_name = auth["info"]["first_name"] #same repeat 
-#  		user.google_last_name = auth["info"]["last_name"]
-#  		user.google_image = auth["info"]["image"]										#urls is a hash of links
-#  		user.google_plus_profile = auth["info"]["urls"]["Google"] #look into possibly saving more than url for ppl with more links
-#  		user.google_token = auth["credentials"]["token"]
-#     user.google_refresh_token = auth["credentials"]["refresh_token"]
-#     user.google_expires_at = auth["credentials"]["expires_at"]
-#     user.google_expires = auth["credentials"]["expires"]
-#     user.google_id = auth["extra"]["raw_info"]["id"]
-#     user.google_email = auth["extra"]["raw_info"]["email"]
-#     user.google_verified_email = auth["extra"]["raw_info"]["verified_email"]
-#     user.google_fullname = auth["extra"]["raw_info"]["fullname"]
-#  		user.google_given_name = auth["extra"]["raw_info"]["given_name"] #repeat of first name
-#  		user.google_family_name = auth["extra"]["raw_info"]["family_name"] #repeat of last name
-#  		user.google_link = auth["extra"]["raw_info"]["link"]
-#  		user.google_picture = auth["extra"]["raw_info"]["picture"]
-#  		user.google_gender = auth["extra"]["raw_info"]["gender"]
-#  		user.google_locale = auth["extra"]["raw_info"]["locale"]
-#  		user.save!
-#      user.save_videos
-#    end
-#  end
-#
-#  def youtube_client 
-#   YouTubeIt::OAuth2Client.new(
-#     client_access_token: google_token, client_refresh_token: google_refresh_token,
-#     client_id: ENV['GOOGLE_CLIENT_ID'], client_secret: ENV['GOOGLE_CLIENT_SECRET'], 
-#     dev_key: ENV['GOOGLE_DEV_KEY'], expires_at: google_expires_at)
-# end 
-#
-# def save_videos
-#  uploads = self.youtube_client.my_videos(:user => google_fullname)
-#  uploads.videos.each do |upload|
-#    video = Video.find_or_create_by(unique_id: upload.unique_id) 
-#    video.unique_id = upload.unique_id 
-#    video.description = upload.description
-#    video.author = upload.author.name
-#    video.thumbnail = upload.thumbnails[0].url
-#    video.embeddable = upload.embeddable?
-#    video.published_at = upload.published_at
-#    video.save_iframe
-#    self.videos << video
-#  end 
-#end
+module Youtube
+  class Unauthorized < StandardError; end
+  
+  class Api
 
-#module Youtube
-#  class Unauthorized < StandardError; end
-#
-#  class Api
-#
-#    def initialize(access_token, max_id)
-#      @access_token = access_token
-#      @max_id = max_id
-#    end
-#
-#    def get_timeline
-#      Response.new(Faraday.get("#{create_url}"))
-#    end
-#
-#    def like_post(media_id)
-#      Typhoeus.post("#{media_api}/#{media_id}/likes?access_token=#{@access_token}")
-#    end
-#
-#    def get_post(media_id)
-#      Response.new(
-#        Typhoeus.get("#{media_api}/#{media_id}/?access_token=#{@access_token}")
-#      )
-#    end
-#
-#    private
-#    # reduce the amount of barewords. (strings)
-#
-#    def api_https_url
-#      'https://www.googleapis.com/youtube/v3'
-#    end
-#
-#    def media_api
-#      api_https_url + '/media'
-#    end
-#
-#    def users_api
-#      api_https_url + '/users'
-#    end
-#
-#    def create_url
-#      if @max_id.nil?
-#        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=60"
-#      else
-#        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=120"
-#      end
-#    end
-#  end
-#end
-#
+    include HTTParty
 
-#"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
-#"https://gdata.youtube.com/feeds/api/users/userId/uploads"
-#GET https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true&key={YOUR_API_KEY}
-#GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&id={ID}&key={YOUR_API_KEY}
+    def initialize(access_token, max_id)
+      @access_token = access_token
+      @max_id = max_id
+      @key = 'AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI'
+    end
 
+  def refresh_token(token)
 
+    response = HTTParty.post('https://accounts.google.com/o/oauth2/token', 
+      :body => { 
+        :grant_type => 'refresh_token', 
+        :refresh_token => token.refresh_token, 
+        :client_id => '585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com', 
+        :client_secret => 'yQjPXajecmamPWswzrEtAkaA'}
+    )
+    refreshhash = JSON.parse(response.body)
+    token.token = refreshhash['access_token']
+    token.expiresat = DateTime.now + refreshhash["expires_in"].to_i.seconds
+    token.save!
+    token.token
 
+  end
 
-#The code sample below calls the API's playlistItems.list method to retrieve a list of videos uploaded 
-#to the channel associated with the request. The code also calls the channels.list method with the mine 
-#parameter set to true to retrieve the playlist ID that identifies the channel's uploaded videos.
+  def token_expired?(access_token)
+    if access_token.expiresat 
+      expiry = Time.at(access_token.expiresat)
+    else
+      expiry = Time.now + 2.days
+    end 
+      return true if expiry < Time.now ## expired token, so we should quickly return
+      access_token.expiresat = expiry
+      access_token.save if access_token.changed?
+      false # token not expired. 
+  end
 
+    def api_https_url
+      'https://www.googleapis.com/youtube/v3'
+    end
+
+    def get_channels_for_user
+      if token_expired?(access_token)
+        @access_token = access_token.refresh_token
+      end
+      channel = HTTParty.get("#{api_https_url}/channels?part=id&mine=true&access_token=#{@access_token}&key=#{@key}")
+    	channel['items'].first['id']
+    end
+
+    # get upload playlist from channel
+    def get_uploads_playlist_items(playlist_id)
+      playlists = HTTParty.get("#{api_https_url}/channels?part=id%2C+contentDetails&id=#{playlist_id}&access_token=#{@access_token}&key=#{@key}")
+    	@playlist_items = playlists['items'].first['contentDetails']['relatedPlaylists']['uploads']
+    end
+
+    # fetch videos from a playlist
+    def get_playlist_items(playlist_items, max_id)
+      playlist = HTTParty.get("#{create_url}")
+
+      #video_hash = []
+      #playlist['items'].each do |item|
 #
+      #  video_hash << { "title" => item["snippet"]["title"],
+      #  "video_id" => item["contentDetails"]["videoId"] }
+      #end
+      #video_hash
+    end
+
+    def create_url
+      if @max_id.nil?
+        "#{api_https_url}/playlistItems?part=id%2Csnippet%2CcontentDetails&playlistId=#{playlist_items}&access_token=#{@access_token}&maxResults=5&key=#{@key}"
+      else
+        "#{api_https_url}/playlistItems?part=id%2Csnippet%2CcontentDetails&playlistId=#{playlist_items}&access_token=#{@access_token}&max_id=#{@max_id}&maxResults=25&key=#{@key}"
+      end
+    end
+
+    def get_videos_for
+      playlist_id = get_channels_for_user
+      playlist_items = get_uploads_playlist_items(playlist_id)
+
+      get_playlist_items(playlist_items, max_id)
+    end
+  end
+end
+##
+#
+##"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
+##"https://gdata.youtube.com/feeds/api/users/userId/uploads"
+##GET https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true&key={YOUR_API_KEY}
+##GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&id={ID}&key={YOUR_API_KEY}
+#
+#
+#
+#
+##The code sample below calls the API's playlistItems.list method to retrieve a list of videos uploaded 
+##to the channel associated with the request. The code also calls the channels.list method with the mine 
+##parameter set to true to retrieve the playlist ID that identifies the channel's uploaded videos.
+#
+##
 #require 'rubygems'
 #require 'google/api_client'
 #require 'oauth/oauth_util'
@@ -156,4 +146,9 @@
 #
 #  puts
 #end
+#
+#
+
+
+
 
