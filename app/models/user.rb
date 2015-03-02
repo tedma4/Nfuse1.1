@@ -40,21 +40,25 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
   # *names
+  #
+  # VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/i
+  VALID_USERNAME_REGEX = %r{\A[a-zA-Z0-9]+.?+_?[a-zA-Z0-9]+\z}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/i
+
   validates :first_name, :last_name, :user_name, presence: true
   validates :user_name, length: { maximum: 20 },
             format: { with: VALID_USERNAME_REGEX },
             uniqueness: {case_sensitive: false }
 
   validates :email, presence: true,
-            length: { maximum: 16 },
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
   validates_format_of :phone_number,
-      :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this 
+     :with => /(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}/i,
+
+      # :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
       :message => "should be a phone number"
 
   # returns a relationship object not a User object.
