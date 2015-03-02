@@ -53,9 +53,9 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
-  #validates_format_of :phone_number,
-  #    :with => %r{(1)?(?:-)?(?:\(|-)?([\d]{3})(?:\.|\-|\))([\d]{3})(?:\.|\-)([\d]{4})(?: ?x([\d]{3,5}))?}, or this \b[\s()\d-]{6,}\d\b
-  #    :message => "should be a phone number"
+  validates_format_of :phone_number,
+      :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this 
+      :message => "should be a phone number"
 
   # returns a relationship object not a User object.
   # belongs in Relationship model.

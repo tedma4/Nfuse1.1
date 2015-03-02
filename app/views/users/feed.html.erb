@@ -21,6 +21,8 @@
         <%=  render partial: 'users/shout', locals: {shout: post} %>
       <%# elsif post.provider == "google_oauth2" %>
         <%#= render partial: "youtube_post", locals: {post: post} %>
+      <% elsif post.provider == "vimeo" %>
+        <%= render partial: "vimeo_post", locals: {post: post} %>
       <% end %>
     <% end %>
   <div class="load_posts_link">

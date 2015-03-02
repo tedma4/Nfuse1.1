@@ -21,7 +21,7 @@ class Feed
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
 #                                   youtube_posts(youtube_pagination_id),
-#                                   vimeo_posts(vimeo_pagination_id),
+                                   vimeo_posts(vimeo_pagination_id),
                                    users_posts(user_id)
                                    )
   end
@@ -36,8 +36,9 @@ class Feed
     fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
     #yt = youtube_posts(params[:youtube_pagination_id])
+    vp = vimeo_posts(params[:vimeo_pagination_id])
     up = users_posts(@user.id)
-    TimelineConcatenator.new.merge(tw, ig, fb, up )
+    TimelineConcatenator.new.merge(tw, ig, fb, up, vp )
   end
 
   private
@@ -62,6 +63,22 @@ class Feed
       twitter_posts
     else
       twitter_posts
+    end
+  end
+
+  def vimeo_posts(vimeo_pagination_id)
+    vimeo_posts = []
+    if user_has_provider?('vimeo', @user)
+      vimeo_timeline = Vimeo::Timeline.new(@user)
+      begin
+        vimeo_posts = vimeo_timeline.posts(vimeo_pagination_id).map { |post| Vimeo::Post.from(post) }
+        @vimeo_pagination_id = vimeo_timeline.last_post_id
+      rescue => e
+        @unauthed_accounts << "vimeo"
+      end
+      vimeo_posts
+    else
+      vimeo_posts
     end
   end
 
