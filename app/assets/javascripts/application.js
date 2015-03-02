@@ -14,6 +14,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require chat
-//= require private_pub
-//= require foxycomplete
+//= require turbolinks
 //= require_tree .

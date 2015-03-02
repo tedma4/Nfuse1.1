@@ -4,15 +4,15 @@ class Shouts::LikesController < ApplicationController
   respond_to :json, :js, :html
 
   def create
-    @shout = Shout.find(params[:id])
-    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
+    @shout = Shout.find_by_id(params[:id])
+    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout)
       send(params.fetch(:key, :basic).to_sym) # Object.send
     end
     render js: 'alert("like")' and return
   end
 
   def destroy
-    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout.id)
+    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout)
       @like.destroy
     end
     render js: 'alert("dislike")' and return

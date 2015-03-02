@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :shouts
     resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :explore
+      get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :explore_nfuse_only, :explore_twitter_only, :explore_instagram_only, :explore_facebook_only
     end
   end
 
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get    '/signin',   to: 'sessions#new'
   delete '/signout',  to: 'sessions#destroy'
   get    '/settings', to: 'users#settings'
-  get    '/nfuse_page', to: 'users#nfuse_page'
+  #get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages
   get '/help',     to: 'pages#help'
@@ -64,18 +64,19 @@ Rails.application.routes.draw do
 
   #  OmniAuth * Registrations
   scope '/auth' do
-    get '/instagram/callback', to: 'registrations/instagram#create'
-    get '/twitter/callback',   to: 'registrations/twitter#create'
-    get '/failure',            to: 'registrations/twitter#failure'
-    get '/facebook/callback',  to: 'registrations/facebook#create'
+    get '/instagram/callback',     to: 'registrations/instagram#create'
+    get '/twitter/callback',       to: 'registrations/twitter#create'
+    get '/failure',                to: 'registrations/twitter#failure'
+    get '/facebook/callback',      to: 'registrations/facebook#create'
+    get '/google_oauth2/callback', to: 'registrations/youtube#create'
+    get '/vimeo/callback',         to: 'registrations/vimeo#create'
   end
-  get '/oauth2/callback', to: 'youtube_registration#create'
 
   # Likes
   post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
-  post '/twitter/retweet/:tweet_id', to: 'shares#twitter'
-  post '/instagram/like/:media_id', to: 'likes#instagram'
-  post '/facebook/like/:post_id', to: 'likes#facebook'
+  post '/twitter/retweet/:tweet_id',  to: 'shares#twitter'
+  post '/instagram/like/:media_id',   to: 'likes#instagram'
+  post '/facebook/like/:post_id',     to: 'likes#facebook'
 
   root to: 'pages#home'
 end

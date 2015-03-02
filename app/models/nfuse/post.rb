@@ -26,10 +26,6 @@ module Nfuse
       @shout.get_likes.size
     end
 
-    def dislike_score
-      @shout.get_dislikes.size
-    end
-
     def comments
       @shout.comments { |comment| Comment.from(comment) }
     end
@@ -40,6 +36,10 @@ module Nfuse
 
     def full_name
       @shout.user.full_name
+    end
+
+    def user_name
+      @shout.user.user_name
     end
 
     def link?
@@ -116,6 +116,14 @@ module Nfuse
 
     def has_content
       @shout.has_content
+    end
+
+    def current_user?
+      @shout.current_user
+    end
+
+    def current_user
+      @shout.current_user
     end
   end
 

@@ -5,9 +5,9 @@
     accounts.
   </h4>
   <ul>
-    <% @unauthed_accounts.each do |account| %>
+    <% @unauthed_accounts.each do |provider| %>
       <li>
-        <%= account.capitalize %>: <%= link_to "Click here to re-Nfuse", "/auth/#{account}" %>
+        <%= provider.capitalize %>: <%= link_to "Click here to re-Nfuse", "/auth/#{provider}" %>
       </li>
     <% end %>
   </ul>

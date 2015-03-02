@@ -16,12 +16,12 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#youtube_pagination_id, vimeo_pagination_id
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#, youtube_pagination_id, vimeo_pagination_id
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
 #                                   youtube_posts(youtube_pagination_id),
-#                                   vimeo_posts(vimeo_pagination_id),
+                                   vimeo_posts(vimeo_pagination_id),
                                    users_posts(user_id)
                                    )
   end
@@ -35,8 +35,10 @@ class Feed
     tw = twitter_posts(params[:twitter_pagination])
     fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
+    #yt = youtube_posts(params[:youtube_pagination_id])
+    vp = vimeo_posts(params[:vimeo_pagination_id])
     up = users_posts(@user.id)
-    TimelineConcatenator.new.merge(tw, ig, fb, up )
+    TimelineConcatenator.new.merge(tw, ig, fb, up, vp )
   end
 
   private
@@ -63,6 +65,40 @@ class Feed
       twitter_posts
     end
   end
+
+  def vimeo_posts(vimeo_pagination_id)
+    vimeo_posts = []
+    if user_has_provider?('vimeo', @user)
+      vimeo_timeline = Vimeo::Timeline.new(@user)
+      begin
+        vimeo_posts = vimeo_timeline.posts(vimeo_pagination_id).map { |post| Vimeo::Post.from(post) }
+        @vimeo_pagination_id = vimeo_timeline.last_post_id
+      rescue => e
+        @unauthed_accounts << "vimeo"
+      end
+      vimeo_posts
+    else
+      vimeo_posts
+    end
+  end
+
+  #def youtube_posts(youtube_pagination_id)
+  #  if user_has_provider?('google_oauth2', @user)
+  #    youtube_timeline = Youtube::Timeline.new(@user)
+  #    youtube_posts = youtube_timeline.posts(youtube_pagination_id).map { |post| Youtube::Post.from(post) }
+  #    auth_youtube(youtube_timeline)
+  #    @youtube_pagination_id = youtube_timeline.last_vid_id
+  #    youtube_posts
+  #  else
+  #    []
+  #  end
+  #end
+#
+  #def auth_youtube(youtube_posts)
+  #  unless youtube_posts.authed
+  #    @unauthed_accounts << "google_oauth2"
+  #  end
+  #end
 
   def instagram_posts(instagram_max_id)
     if user_has_provider?('instagram', @user)

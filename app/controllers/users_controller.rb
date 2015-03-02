@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   include UsersHelper
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
-                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers]
+                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page]
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :bio, :following, :followers]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only]
 
   def index
     #user = User.find(params[:id])
     #This shows all the users a user has a conversation with
-    @users = User.all_except(current_user)
+    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     @conversations = Conversation.involving(current_user).order("created_at DESC")
   end
 
@@ -123,5 +123,139 @@ class UsersController < ApplicationController
   end
 
   def nfuse_page
+    render 'nfuse_page'
+  end
+
+  def nfuse_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+
+    @providers = Providers.for(current_user)
+    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
+    @unauthed_accounts              = timeline[:unauthed_accounts].first
+    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
+    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+  end
+
+  def twitter_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+
+    @providers = Providers.for(current_user)
+    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
+    @unauthed_accounts              = timeline[:unauthed_accounts].first
+    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
+    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+  end
+
+  def instagram_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+
+    @providers = Providers.for(current_user)
+    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
+    @unauthed_accounts              = timeline[:unauthed_accounts].first
+    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
+    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+  end
+
+  def facebook_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+
+    @providers = Providers.for(current_user)
+    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
+    @unauthed_accounts              = timeline[:unauthed_accounts].first
+    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
+    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+  end
+
+  def explore_nfuse_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_nfuse_only"
+  end
+
+  def explore_twitter_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_twitter_only"
+  end
+
+  def explore_instagram_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_instagram_only"
+  end
+
+  def explore_facebook_only
+    @providers = Providers.for(@user)
+    timeline = []
+    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users.each do |user|
+      feed=Feed.new(user)
+      timeline << feed.construct(params)
+
+    @unauthed_accounts              = feed.unauthed_accounts
+    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+    @commenter_profile_hash         = feed.commenter_profile_hash
+    end
+
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    render "explore_facebook_only"
+  end
+
+  private
+
+  def timeline(user=current_user)
+    stack = {
+      timeline: [],
+      unauthed_accounts: [],
+      poster_recipient_profile_hash: [],
+      commenter_profile_hash: [],
+      feed_unauthed_accounts: []
+    }
+    current_user.followed_users.each do |user|
+      feed=Feed.new(user)
+      stack[:timeline] << feed.construct(params)
+      # this is constantly getting over written for each user.
+      stack[:feed_unauthed_accounts] << feed.unauthed_accounts
+      stack[:poster_recipient_profile_hash] << feed.poster_recipient_profile_hash
+      stack[:commenter_profile_hash] << feed.commenter_profile_hash
+    end
+    stack
   end
 end
