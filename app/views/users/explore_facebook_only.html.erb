@@ -1,0 +1,12 @@
+<div class="explore_filters">
+  <%= render partial: "users/explore_filters" %>
+</div><br>
+<div id="masonJar" class="center explore_container clearfix masonJar">
+  <% @timeline.each do |post| %>
+    <% if post.provider == "facebook" %>
+      <%= render partial: "users/facebook_post", locals: {post: post, 
+                                                          poster_recipient_profile_hash: @poster_recipient_profile_hash, 
+                                                          commenter_profile_hash: @commenter_profile_hash} %>
+    <% end %>
+  <% end %>
+</div>

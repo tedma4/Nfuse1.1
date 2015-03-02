@@ -1,0 +1,42 @@
+<ul>
+  <li>
+   <%= link_to root_path(session[:user_id]) do %>
+        <%= image_tag('FilterHub2.png', size: "30x30") %>
+      <% end %>
+  </li>
+  <li>
+    <%= link_to nfuse_only_user_path(session[:user_id]) do%>
+      <%= image_tag "filter-nfuse2.png", size: "30x30" %>
+      <%end%>
+  </li>
+  <li>
+    <%= link_to twitter_only_user_path(session[:user_id]) do %>
+    <%= image_tag "Twitter-Icon.png", size: "30x30"%>      
+    <%end%>
+  </li>
+  <li>
+    <%= link_to instagram_only_user_path(session[:user_id]) do%>
+    <%= image_tag "Instagram-icon.png", size: "30x30" %>
+    <%end%>
+  </li>
+  <li>
+    <%= link_to facebook_only_user_path(session[:user_id]) do%>
+    <%= image_tag "Facebook-Icon.png", size: "30x30" %>
+    <%end%>
+  </li>
+  <li>
+    <%= link_to "#" do %>
+      <%= image_tag "Youtube-Icon.png", size: "30x30" %>
+    <%end%>
+  </li>
+  <li>
+    <%= link_to "#" do %>
+      <%= image_tag "Vimeo.png", size: "30x30" %>
+    <%end%>
+  </li>
+  <li>
+    <%= link_to "#" do %>
+      <%= image_tag "Pinterest-Icon.png", size: "30x30" %>
+    <%end%>
+  </li>
+</ul>

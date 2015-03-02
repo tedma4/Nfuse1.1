@@ -2,29 +2,15 @@
 <!-- Start of regular page Show_feed-->
 <% provide(:title, @title) %>
   <div class="container_profile">
-    <div><%= image_tag @user.banner.url(:larger), class: "banner" %> </div>
-      <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> </div>
-        <div class="profile_bar"><h1 class="inLineLeft"><%= @user.full_name%></h1>
-          <ul class="inLineRight">
-            <li><%= render 'follow_form' if signed_in? %></li>
-            <li><% unless !current_user?(@user) %>
-              <%= link_to edit_user_path(session[:user_id]) do %>
-              <%= image_tag('settings48.png', size: "32x32", class: "tilt edit_profile_link") %>
-              <% end %>
-              <% end %> 
-            </li>
-          </ul>
-      <%= render 'shared/stats' %>
-    </div>
-  
+    <%= render partial: "profile_info" %>
   <div class="center">   
     <%= render file: "users/feed" %>
   </div>
 </div>
-      <script type="text/javascript">
-        FeedIndex.providers = {facebook: <%= @providers.facebook? %>, twitter: <%= @providers.twitter? %>};
-        $(document).ready(function () {
-          FeedIndex.initialize();
-        });
-      </script>
+  <script type="text/javascript">
+    FeedIndex.providers = {facebook: <%= @providers.facebook? %>, twitter: <%= @providers.twitter? %>};
+    $(document).ready(function () {
+      FeedIndex.initialize();
+    });
+  </script>
 <!-- *End* Views/users/show_feed.html.erb  -->

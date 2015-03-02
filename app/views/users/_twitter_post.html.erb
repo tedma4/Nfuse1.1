@@ -4,7 +4,6 @@
     <ul class="post_header">
       <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url, :target => "_blank" %></li>
       <li class="user_name"><%= link_to post.user_name, post.user_url, :target => "_blank" %></li>
-      
     </ul>
   </div>
   <div class="post_content">
@@ -22,13 +21,13 @@
 
 
     <ul class="post_actions">
-      <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.tweet_id, key: :twitter), method: :post, remote: true %><%#= post.like_score %>0</li>
+      <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.tweet_id, key: :twitter), method: :post, remote: true %><%#= post.like_score %>0</li>
       <li class="vr"></li>
-      <li><%= image_tag("double7.png", size: "20x20") %>0</li>
+      <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
       <li class="vr"></li>
-      <li><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
+      <li class="tilt"><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
       <li class="vr"></li>
-      <li><%= image_tag("show8.png", size: "20x20") %></li>
+      <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
     </ul>
 </div>
 <!-- *End* Views/users/_twitter_post.html -->

@@ -1,13 +1,10 @@
- 
 function resizeMasonry() {
  var box = $('#masonJar').width();
-  
     //alert(box);
     //Keeps masonry sized correctly. Use this instead of css media querries
     // media querries won't work because profile page is at 75% width and explore/hub are 100%
     if(box < 400){
       $('.individual_post').css("width", "100%");
-     
     }
     else if(box > 400 && 825 > box){
       $('.individual_post').css("width", "46.8%");

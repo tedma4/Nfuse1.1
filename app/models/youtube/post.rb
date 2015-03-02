@@ -1,62 +1,42 @@
-#module Youtube
-#
-#	class Post < TimelineEntry
-#
-#    def self.from(video)
-#      new(youtube_api_hash)
-#    end
-#
-#    def initialize(video)
-#      @video = video
-#      @created_time = Time.at(@video["created_time"].to_i)
-#    end
-#
-#    def provider
-#      "youtube"
-#    end
-#
-#    def id
-#      @video["id"]
-#    end
-#
-#    def profile_picture
-#      @video["user"]["profile_picture"]
-#    end
-#
-#    def full_name
-#      @video["user"]["full_name"]
-#    end
-#
-#    def user_url
-#      "http://www.instagram.com/#{full_name}"
-#    end
-#
-#    def caption
-#      @video["caption"]
-#    end
-#
-#    def caption_text
-#      @video["caption"]["text"]
-#    end
-#
-#    def link_to_video
-#      @video["link"]
-#    end
-#
-#    def comments_count
-#      @video["comments"]["count"].to_i
-#    end
-#
-#    def comments
-#      @video["comments"]["data"].map { |comment| Comment.from(comment) }
-#    end
-#
-#    def likes_count
-#      @video["likes"]["count"].to_i
-#    end
-#
-#    def type
-#      @video["type"]
-#    end
-#  end
-#end
+module Youtube
+
+	class Post < TimelineEntry
+
+    def self.from(youtube_api)
+      new(youtube_api)
+    end
+
+    def initialize(post)
+      @post = post
+      @created_time = Time.at(@post["created_time"].to_i)
+    end
+
+    def provider
+      "google_oauth2"
+    end
+
+    def id
+      @post["id"]
+    end
+
+    def media_id
+      @post["media_id"]
+    end
+
+    def profile_picture
+      @post["user"]["profile_picture"]
+    end
+
+    def full_name
+      @post["user"]["full_name"]
+    end
+
+    def user_url
+      "http://www.instagram.com/#{full_name}"
+    end
+
+    def link_to_video
+      @post["link"]
+    end
+  end
+end

@@ -3,8 +3,7 @@
   <div class="post_main">
     <ul class="post_header">
       <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url %></li>
-        <li class="user_name"><%= link_to "#{post.full_name}", post.user_url, :target => "_blank" %></li>
-      <li class="right"></li>
+      <li class="user_name"><%= link_to "#{post.full_name}", post.user_url, :target => "_blank" %></li>
     </ul>
   </div>
   <div class="post_content">
@@ -27,24 +26,26 @@
         <% end %>
       </ul>
     <% end %>
-</div><br>
+  </div>&nbsp;
 
 
-    <div class="right"><%= link_to image_tag("Instagram_Icon_Large.png", size: "20x20", :class => "provider_logo"), post.link_to_post, :target => "_blank" %><p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p></div>
+  <div class="right">
+    <%= link_to image_tag("Instagram_Icon_Large.png", size: "20x20", :class => "provider_logo"), post.link_to_post, :target => "_blank" %><p class="timeStamp">
+    <%= time_ago_in_words(post.created_time) %> ago</p>
+  </div>
     <br>
-    <div class="<%= post.class %>-<%= post.id %> post_footer right">
-    </div>
+  <div class="<%= post.class %>-<%= post.id %> post_footer right"></div>
 
   
-    <ul class="post_actions">
-      <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.id, key: :instagram), method: :post, remote: true %>0</li>
-      <li class="vr"></li>
-      <li><%= image_tag("double7.png", size: "20x20") %>0</li>
-      <li class="vr"></li>
-      <li><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
-      <li class="vr"></li>
-      <li><%= image_tag("show8.png", size: "20x20") %></li>
-    </ul>
+  <ul class="post_actions">
+    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.id, key: :instagram), method: :post, remote: true %>0</li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
+  </ul>
   
 </div>
 <!-- *End* Views/users/_instagram_post.html -->

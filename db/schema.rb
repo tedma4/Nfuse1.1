@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204203107) do
+ActiveRecord::Schema.define(version: 20150220233125) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -161,6 +161,8 @@ ActiveRecord::Schema.define(version: 20150204203107) do
     t.string   "access_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "refresh_token"
+    t.datetime "expiresat"
   end
 
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"

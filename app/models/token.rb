@@ -26,6 +26,14 @@ class Token < ActiveRecord::Base
       update_or_create_token(id, auth, 'twitter')
     end
 
+    def update_or_create_with_vimeo_omniauth(id, auth)
+      update_or_create_token(id, auth, 'vimeo')
+    end
+
+    def update_or_create_with_youtube_omniauth(id, auth)
+      update_or_create_token(id, auth, 'google_oauth2')
+    end
+
     def update_or_create_with_other_omniauth(id, auth)
       # defaults to basic.
       update_or_create_token(id, auth)
@@ -60,6 +68,14 @@ class Token < ActiveRecord::Base
       auth['uid']
     end
 
+    def refresh
+      auth['credentials']['refresh_token']
+    end
+
+    def expires
+      DateTime.now + auth['credentials']["expires_in"].to_i.seconds      
+    end
+
     # Social Media Specific
 
     def twitter_token
@@ -69,6 +85,17 @@ class Token < ActiveRecord::Base
 
     def basic_token
       @token.access_token       = credentantials_token
+    end
+
+    def google_oauth2_token
+      @token.access_token   = credentantials_token
+      @token.refresh_token  = refresh
+      @token.expiresat      = expires
+    end
+
+    def vimeo_token
+      @token.access_token        = extra_access_token.token
+      @token.access_token_secret = extra_access_token.secret
     end
 
     # def facebook_token; end

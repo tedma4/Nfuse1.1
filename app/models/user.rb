@@ -41,12 +41,21 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
   # *names
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :first_name, :last_name, presence: true
+  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/i
+  validates :first_name, :last_name, :user_name, presence: true
+  validates :user_name, length: { maximum: 20 },
+            format: { with: VALID_USERNAME_REGEX },
+            uniqueness: {case_sensitive: false }
+
   validates :email, presence: true,
+            length: { maximum: 16 },
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
+  validates_format_of :phone_number,
+      :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this 
+      :message => "should be a phone number"
 
   # returns a relationship object not a User object.
   # belongs in Relationship model.
@@ -70,7 +79,12 @@ class User < ActiveRecord::Base
 
   #This allows a user to search by first name, last name or both  
   def self.search(search)
-    where("first_name like :s or last_name like :s or first_name || ' ' || last_name like :s", :s => "%#{search}") 
+    if search
+      q = "%#{search}%"
+      where("first_name like ? or last_name like ? or user_name like ? or (first_name || last_name) like ? or first_name || ' ' || last_name like ?", q, q, q, q, q)
+    else
+      all
+    end
   end
 
   def self.all_except(other_user)

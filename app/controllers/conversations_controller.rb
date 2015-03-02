@@ -1,23 +1,39 @@
 class ConversationsController < ApplicationController 
   #This ensures that a user must be logged in to send a chat message
-  before_action :signed_in_user
+  #before_filter :signed_in_user
   respond_to :json, :js, :html
   layout false
 
+  #def create
+  #  @conversation = Conversation.find_or_start_convo(params)
+  #  render json: { conversation_id: @conversation.id }
+  #end
+
   def create
-    @conversation = Conversation.find_or_start_convo(params)
+    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
+      @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
+    else
+      @conversation = Conversation.create!(conversation_params)
+    end
     render json: { conversation_id: @conversation.id }
   end
 
+  #def show
+  #  begin
+  #    @conversation = current_user.conversations.find(params[:id])
+  #    @reciever = interlocutor(@conversation)
+  #    @messages = @conversation.messages
+  #    @message = Message.new  
+  #   rescue ActiveRecord::RecordNotFound => e
+  #      redirect_to root_url , notice: 'Not your conversation'
+  #   end 
+  #end
+
   def show
-    begin
-      @conversation = current_user.conversations.find(params[:id])
-      @reciever = interlocutor(@conversation)
-      @messages = @conversation.messages
-      @message = Message.new  
-     rescue ActiveRecord::RecordNotFound => e
-        redirect_to root_url , notice: 'Not your conversation'
-     end 
+    @conversation = Conversation.find(params[:id])
+    @reciever = interlocutor(@conversation)
+    @messages = @conversation.messages
+    @message = Message.new
   end
  
   private

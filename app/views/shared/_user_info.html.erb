@@ -5,6 +5,7 @@
 <h1>
   <%= current_user.full_name %>
 </h1>
+<h6><%= link_to user.user_name, feed_user_path(user) %></h6>
 <span>
   <%= link_to "view my profile", feed_user_path(params[:id]) %>
 </span>
