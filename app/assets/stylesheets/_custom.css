@@ -177,7 +177,6 @@ ul li a:hover + .hidden, .hidden:hover {
   height: 60px;
   width: 100vw;
   margin: 0;
-  margin-bottom: -80px;
   position: fixed;
   z-index: 5;
   top: 0;
@@ -262,6 +261,7 @@ ul li a:hover + .hidden, .hidden:hover {
   position: fixed;
   right: 12.5vw;
   top: -12px;
+  margin-bottom: 0;
 }
 /*  #Footer 
 ================================================ */
@@ -496,7 +496,7 @@ td {
   margin: 50px 0 0 0;
 }
 .explore_container{
-  margin: 50px 0 0 0;
+  margin: 0;
 }
 .search_container {
   margin: 50px 0 0 0;
@@ -882,7 +882,7 @@ float: right;
     float: right;
 }
 
-.chatboxoptions a {
+.echatboxoptions a {
     text-decoration: none;
     color: white;
     font-weight: bold;
@@ -890,6 +890,17 @@ float: right;
 
 .chatboxtitle {
     float: left;
+}
+.explore_filters {
+  margin: 20px;  
+  padding: 0;
+  height:30px;
+  width: auto;
+}
+.explore_filters ul {
+  margin: 0;
+  padding: 0;
+
 }
 .explore_filters ul li a :active{
   border-bottom: 5px solid black;
