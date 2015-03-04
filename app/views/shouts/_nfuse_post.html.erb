@@ -1,0 +1,5 @@
+<%= form_tag(nfuse_post_path(shout.id), :remote=>true) do %>
+   <% NfusePage.my_nfuse_page(current_user) %>
+
+  <%= submit_tag 'Save', :class => "btn btn-primary" %>
+<%end%>
