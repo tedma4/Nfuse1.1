@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :tokens, dependent: :destroy
   has_many :conversations, foreign_key: :sender_id
   has_many :shouts 
+  has_one  :nfuse_page
   has_many :comments
 
   # 

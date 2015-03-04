@@ -1,6 +1,7 @@
 class Shout < ActiveRecord::Base
-  belongs_to :user  
-  validates :user_id, :content, presence: true
+  belongs_to :user 
+  belongs_to :nfuse_page 
+  validates :user_id, presence: true
   has_many :comments, :as => :commentable
   acts_as_votable
 
@@ -57,6 +58,24 @@ class Shout < ActiveRecord::Base
     ted
     link :target => "_blank", :rel => "nofollow"
     simple_format
+  end
+
+  def self.my_nfuses(nfuse_page_id)
+    self.where(nfuse_page_id: nfuse_page_id)
+  end
+  
+  def self.nfuse_page_owner(nfuse_page_user_id)
+    User.find_by id: nfuse_page_user_id
+  end
+
+  def reshout_post(nfuse_page_id, user_id)
+    shout               = Shout.new
+    shout.nfuse_page_id = nfuse_page_id
+    shout.user_id       = user_id
+    shout.snip          = self.snip
+    shout.link          = self.link
+    shout.pic           = self.pic
+    shout.save
   end
 
   #validate :only_upload_or_url

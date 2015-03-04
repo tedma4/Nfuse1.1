@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :callback_links
 
   resources :users do
+    resources :nfuse_pages
     resources :conversations
     resources :shouts
     resources :comments
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
       get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :explore_nfuse_only, :explore_twitter_only, :explore_instagram_only, :explore_facebook_only
     end
   end
+
+  post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
+
 
   scope module: :shouts do
     scope '/shouts' do
@@ -26,6 +30,10 @@ Rails.application.routes.draw do
 
   resources :shouts do
     resources :comments
+  end
+
+  resources :nfuse_pages do
+    resources :shouts
   end
 
   resources :events do

@@ -125,6 +125,10 @@ module Nfuse
     def current_user
       @shout.current_user
     end
+
+    def nfuse_post
+      @shout.nfuse_post
+    end
   end
 
   class Comment

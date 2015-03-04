@@ -1,6 +1,7 @@
 class ShoutsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  before_action :set_shout, only: [:show, :edit, :update, :destroy]
   respond_to :json, :js, :html
 
   def index
@@ -9,8 +10,7 @@ class ShoutsController < ApplicationController
   end
 
   def show
-    @shout = Shout.find(params[:id])
-    @commentable = @shout
+    @commentable = set_shout
     @comments = @commentable.comments
     @comment = Comment.new
 
@@ -26,7 +26,6 @@ class ShoutsController < ApplicationController
   end
 
   def edit
-    @shout = Shout.find(params[:id])
   end
 
   def create
@@ -48,7 +47,6 @@ class ShoutsController < ApplicationController
   end
 
   def update
-    @shout = Shout.find(params[:id])
     if @shout.update_attributes(shout_params)
       redirect_to @shout
     else
@@ -57,15 +55,37 @@ class ShoutsController < ApplicationController
   end
 
   def destroy
-    @shout = Shout.find(params[:id])
     @shout.destroy
     redirect_to feed_user_path(@shout.user)
   end
 
+  def nfuse_post
+    @current_shout = set_shout
+    @shout = @current_shout.reshout_post(params[:nfuse_page_id], params[:user_id])
+      
+    respond_to do |format|
+       if shout.save
+   format.js {render :layout => false} 
+       else
+   format.js
+       end
+     end
+    end
+ 
+  def my_nfuses
+    @nfuses = current_user.nfuse_post
+    @nfuses.each do |b|
+      @shouts = Shout.my_nfuses(b.id)
+    end
+  end
+
   private
+    def set_shout
+      @shout = Shout.find(params[:id])
+    end
 
   def shout_params
-      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html )
+      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html, :has_content )
     end
 
     def correct_user

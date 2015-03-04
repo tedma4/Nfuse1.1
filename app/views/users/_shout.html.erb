@@ -39,8 +39,14 @@
       <li class="vr"></li>
       <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"), nfuse_page_user_path(shout.user) %></li>
       <li class="vr"></li>
-      <li class="tilt"><% unless !current_user?(shout.user) %>
-        <%= link_to image_tag("show8.png", size: "20x20"), shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
+      <li class="tilt">
+        <% unless !current_user?(shout.user) %>
+          <%= link_to image_tag("show8.png", size: "20x20"), shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
+        <% else %>
+          <%= link_to image_tag("show8.png", size: "20x20"), nfuse_post_path(shout.id), method: :post, remote: true %>
+          <div id="info" style="display:none;">
+            <%#= render partial: "shouts/nfuse_post", locals: {shout: shout} %>
+          </div>
         <% end %>
       </li>
     </ul>
