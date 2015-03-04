@@ -1,7 +1,7 @@
 class Shout < ActiveRecord::Base
   belongs_to :user 
   belongs_to :nfuse_page 
-  validates :user_id, presence: true
+  #validates :user_id, presence: true
   has_many :comments, :as => :commentable
   acts_as_votable
 
@@ -69,13 +69,14 @@ class Shout < ActiveRecord::Base
   end
 
   def reshout_post(nfuse_page_id, user_id)
-    shout               = Shout.new
-    shout.nfuse_page_id = nfuse_page_id
-    shout.user_id       = user_id
-    shout.snip          = self.snip
-    shout.link          = self.link
-    shout.pic           = self.pic
-    shout.save
+    Shout.create! content: self.content, nfuse_page_id: nfuse_page_id, url: self.url, user_id: user_id, snip: self.snip, pic: self.pic
+    #shout               = Shout.new
+    #shout.nfuse_page_id = nfuse_page_id
+    #shout.user_id       = user_id
+    #shout.snip          = self.snip
+    #shout.link          = self.link
+    #shout.pic           = self.pic
+    #shout.save
   end
 
   #validate :only_upload_or_url

@@ -64,8 +64,8 @@ class ShoutsController < ApplicationController
     @shout = @current_shout.reshout_post(params[:nfuse_page_id], params[:user_id])
       
     respond_to do |format|
-       if shout.save
-   format.js {render :layout => false} 
+       if @shout.save
+   format.js {render partial: "shouts/nfuse_post"} 
        else
    format.js
        end

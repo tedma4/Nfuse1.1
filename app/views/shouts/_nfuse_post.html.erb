@@ -1,5 +1,25 @@
-<%= form_tag(nfuse_post_path(shout.id), :remote=>true) do %>
-   <% NfusePage.my_nfuse_page(current_user) %>
+<!-- *Start* Views/users/_@shout.html -->
+<div class="visible-md visible-lg individual_post item nfuse_post ">
+	<% @shouts.each do |shout| %>
+	  <% if !shout.url.blank? %>
+	        <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
+	       <p> <%= shout.url_html %></p>
+	        <div class="caption">
+	        <% if shout.has_content? %>
+	          <li><%= shout.content %></li>
+	        <% end %>
+	          <!-- <p>Duration: <b><%#= @shout.duration %></b></p> -->
+	        </div>
+	  <% else shout.is_pic? %>
+	    <p class="timeline-user-box">
+	      <%= image_tag shout.pic.url(:medium) %>
+	    </p>
+	    <div class="caption">
+	      <% if shout.has_content? %>
+	        <li><%= shout.content %></li>
+	      <% end %>
+	    </div>
+	  <% end %>
+	  <% end %>
+  </div>
 
-  <%= submit_tag 'Save', :class => "btn btn-primary" %>
-<%end%>

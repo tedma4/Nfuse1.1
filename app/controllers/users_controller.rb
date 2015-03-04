@@ -122,11 +122,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  #def nfuse_page
-  #  @current_shout = Shout.find(params[:id])
-  #  @shout = @current_shout.reshout_post(params[:nfuse_page_id])
-  #  redirect_to nfuse_page_path(@user)
-  #end
+  def nfuse_page
+    @shout = Shout.find(params[:id])
+    @shouts = Shout.order('created_at DESC')
+  end
 
   def nfuse_only
     #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
