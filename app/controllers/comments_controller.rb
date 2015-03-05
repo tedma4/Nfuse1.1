@@ -56,9 +56,9 @@ class CommentsController < ApplicationController
   end
  
   private
-    def comment_params
-      params.require(:comment).permit(:body, :user_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:body, :user_id)
+  end
 
   def correct_user
     @event = current_user.events.find_by(id: params[:id])

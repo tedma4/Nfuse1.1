@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220233125) do
+ActiveRecord::Schema.define(version: 20150303031736) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(version: 20150220233125) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
+  create_table "nfuse_pages", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "shout_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pics", force: true do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -133,6 +140,7 @@ ActiveRecord::Schema.define(version: 20150220233125) do
     t.text     "url_html",          limit: 255
     t.text     "url",               limit: 255
     t.boolean  "has_content",                   default: false
+    t.integer  "nfuse_page_id"
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"

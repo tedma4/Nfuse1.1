@@ -123,7 +123,8 @@ class UsersController < ApplicationController
   end
 
   def nfuse_page
-    render 'nfuse_page'
+    @shout = Shout.find(params[:id])
+    @shouts = Shout.order('created_at DESC')
   end
 
   def nfuse_only

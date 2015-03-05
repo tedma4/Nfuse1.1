@@ -1,6 +1,6 @@
 module Nfuse
   class Post
-    delegate :created_at, :user, :pic, :id, :commentable_type, to: :shout
+    delegate :created_at, :user, :pic, :id, :commentable, to: :shout
 
     attr_reader :provider
     attr_accessor :shout
@@ -95,7 +95,7 @@ module Nfuse
     end
 
     def commentable
-      @shout.commentable
+      @shout.comment.commentable
     end
 
     def comment
@@ -125,37 +125,10 @@ module Nfuse
     def current_user
       @shout.current_user
     end
-  end
 
-  class Comment
-    delegate :created_at, :user, :body, :id, to: :comment
-
-    attr_reader :provider
-    attr_accessor :comment
-
-    def initialize(comment)
-      @comment = comment
-      @provider = "nfuse"
-    end
-
-    def created_time
-      @comment.created_at
-    end
-    
-    def avatar
-      @comment.user.avatar
-    end
-
-    def profile
-      @comment.user
-    end
-
-    def full_name
-      @comment.user.full_name
-    end
-
-    def body
-      @comment.body
+    def nfuse_post
+      @shout.nfuse_post
     end
   end
+
 end

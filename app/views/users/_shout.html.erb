@@ -37,10 +37,14 @@
       <li class="vr"></li>
       <li class="tilt"><%= image_tag("double7.png", size: "20x20") %></li>
       <li class="vr"></li>
-      <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"), nfuse_page_user_path(shout.user) %></li>
+      <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"), nfuse_post_path(shout.id), method: :post, remote: true %>
+          <div id="info" style="display:none;">
+            <%#= render partial: "shouts/nfuse_post", locals: {shout: shout} %>
+          </div></li>
       <li class="vr"></li>
-      <li class="tilt"><% unless !current_user?(shout.user) %>
-        <%= link_to image_tag("show8.png", size: "20x20"), shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
+      <li class="tilt">
+        <% unless !current_user?(shout.user) %>
+          <%= link_to image_tag("show8.png", size: "20x20"), shout_path(shout.id), :method => :delete, :confirm => "Are you sure?" %>
         <% end %>
       </li>
     </ul>
@@ -53,7 +57,7 @@
             <%= comment.body %></li>
         <% end %>
       </ul>
-      <%#= form_for([shout, Comment.new]) do |f| %>
+      <%#= form_for([shout.commentable, shout.comment]) do |f| %>
 
         <div class="field">
           <%#= f.text_area :body, rows: 8 %>

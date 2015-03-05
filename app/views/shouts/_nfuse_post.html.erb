@@ -1,0 +1,11 @@
+<% @shouts.each do |shout| %>
+	<div class="visible-md visible-lg individual_post item nfuse_post ">
+	  <% if !shout.url.blank? %>
+	    <p> <%= shout.url_html %></p>
+	  <% else shout.is_pic? %>
+	    <p class="timeline-user-box">
+	      <%= image_tag shout.pic.url(:medium) %>
+	    </p>
+	  <% end %>
+  </div>
+<% end %>
