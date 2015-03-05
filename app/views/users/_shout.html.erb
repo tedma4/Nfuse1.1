@@ -57,7 +57,7 @@
             <%= comment.body %></li>
         <% end %>
       </ul>
-      <%#= form_for([shout, Comment.new]) do |f| %>
+      <%#= form_for([shout.commentable, shout.comment]) do |f| %>
 
         <div class="field">
           <%#= f.text_area :body, rows: 8 %>

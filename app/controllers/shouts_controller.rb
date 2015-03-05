@@ -64,13 +64,11 @@ class ShoutsController < ApplicationController
     @shout = @current_shout.reshout_post(params[:nfuse_page_id], params[:user_id])
       
     respond_to do |format|
-       if @shout.save
-   format.js {render partial: "shouts/nfuse_post"} 
-       else
-   format.js
-       end
-     end
+      if @shout.save
+       format.js {render partial: "shouts/nfuse_post"} 
+      end
     end
+  end
  
   def my_nfuses
     @nfuses = current_user.nfuse_post

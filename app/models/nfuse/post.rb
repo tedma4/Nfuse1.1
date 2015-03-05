@@ -1,6 +1,6 @@
 module Nfuse
   class Post
-    delegate :created_at, :user, :pic, :id, :commentable_type, to: :shout
+    delegate :created_at, :user, :pic, :id, :commentable, to: :shout
 
     attr_reader :provider
     attr_accessor :shout
@@ -95,7 +95,7 @@ module Nfuse
     end
 
     def commentable
-      @shout.commentable
+      @shout.comment.commentable
     end
 
     def comment
