@@ -25,7 +25,7 @@ module Twitter
     # User Object * because delegate is not working.
 
     def avatar
-      @user.avatar.url
+      @user.avatar(:thumb)
     end
 
     def username

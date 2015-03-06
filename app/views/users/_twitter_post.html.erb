@@ -3,8 +3,9 @@
   <div class="post_main">
     <ul class="post_header">
       <li>
-        <%= link_to(image_tag(post.avatar, :class=> 'user_profile_picture'), feed_user_path(post.user) , target: '_blank') %>
-      <li class="user_name"><%= link_to post.username, feed_user_path(post.user), :target => "_blank" %></li>
+        <%= link_to image_tag(post.avatar, :class=> 'user_profile_picture'), feed_user_path(post.user), target: '_blank' %>
+      </li>
+      <li class="user_name"><%= link_to "#{post.username}", feed_user_path(post.user), :target => "_blank" %></li>
     </ul>
   </div>
 
@@ -15,24 +16,25 @@
       <%= post.tweet_text %> 
   </div><br>
 
+  <div class="right">
+    <%= link_to image_tag("Twitter_logo_blue.png", :class => "provider_logo", size: "20x20"), post.link_to_tweet, :target => "_blank" %> 
+    <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
+  </div>
 
-  <div class="right"><%= link_to image_tag("Twitter_logo_blue.png", :class => "provider_logo", size: "20x20"), post.link_to_tweet, :target => "_blank" %> <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p></div>
-  <br>
   <div class="<%= post.class %>-<%= post.tweet_id %> post_footer">
-</div>   
+  </div>
 
-
-    <ul class="post_actions">
-      <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), 
-        like_shout_path(id: post.tweet_id, key: :twitter), method: :post, remote: true %> 
-        <%= post.like_score(post.tweet_id) %>
-      </li>
-      <li class="vr"></li>
-      <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
-      <li class="vr"></li>
-      <li class="tilt"><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
-      <li class="vr"></li>
-      <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
-    </ul>
+  <ul class="post_actions">
+    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), 
+      like_shout_path(id: post.tweet_id, key: :twitter), method: :post, remote: true %> 
+      <%= post.like_score(post.tweet_id) %>
+    </li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
+  </ul>
 </div>
 <!-- *End* Views/users/_twitter_post.html -->

@@ -2,8 +2,11 @@
 <div class="individual_post instagram_post item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
-      <li><%= link_to image_tag(post.profile_picture, :class => "user_profile_picture"), post.user_url %></li>
-      <li class="user_name"><%= link_to "#{post.full_name}", post.user_url, :target => "_blank" %></li>
+      <li>
+        <%= link_to image_tag(post.avatar, :class => "user_profile_picture"), feed_user_path(post.user) %>
+      </li>
+      <li class="user_name">
+        <%= link_to "#{post.username}", feed_user_path(post.user), :target => "_blank" %></li>
     </ul>
   </div>
   <div class="post_content">
@@ -38,7 +41,10 @@
 
   
   <ul class="post_actions">
-    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.id, key: :instagram), method: :post, remote: true %>0</li>
+    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"),
+     like_shout_path(id: post.id, key: :instagram), method: :post, remote: true %>
+     <%= post.like_score(post.id) %>
+    </li>
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
     <li class="vr"></li>
@@ -46,6 +52,6 @@
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
   </ul>
-  
+
 </div>
 <!-- *End* Views/users/_instagram_post.html -->

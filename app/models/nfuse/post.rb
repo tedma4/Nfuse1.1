@@ -22,8 +22,8 @@ module Nfuse
       @shout.comments.count
     end
 
-    def like_score
-      @shout.get_likes.size
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
     end
 
     def comments
@@ -79,7 +79,7 @@ module Nfuse
     end
 
     def pic_url
-      @shout.pic.url(:medium)
+      @shout.pic(:medium)
     end
 
     def is_snip?

@@ -9,7 +9,6 @@
   </div><br>
 
   <% if !shout.url.blank? %>
-        <!-- ####### No idea why but I have to remove the player wrapper id In css. If I remove the HTML the video doesn't show up. ######### -->
        <p> <%= shout.url_html %></p>
         <div class="caption">
         <% if shout.has_content? %>
@@ -18,9 +17,9 @@
           <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
         </div>
   <% else shout.is_pic? %>
-    <p class="timeline-user-box">
+    <div class="timeline-user-box">
       <%= image_tag shout.pic_url %>
-    </p>
+    </div>
     <div class="caption">
       <% if shout.has_content? %>
         <li><%= shout.content %></li>
@@ -34,7 +33,7 @@
 
     <ul class="post_actions">
       <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"),
-       like_shout_path(id: shout.id), method: :post, remote: true %><%= shout.like_score %>
+       like_shout_path(id: shout.id), method: :post, remote: true %><%= shout.like_score(shout.id) %>
       </li>
       <li class="vr"></li>
       <li class="tilt"><%= image_tag("double7.png", size: "20x20") %></li>

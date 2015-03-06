@@ -2,8 +2,15 @@
 <div class="individual_post facebook_post item " data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
-      <li class="user_name"><%= link_to post.from.name, post.from.link_to_profile, :target => "_blank" %></li>
-      <li class="right"><%= link_to image_tag("FB-f-Logo__blue_50.png", :class => "provider_logo"), post.link_to_post, target: "_blank" %></li>
+      <li>
+        <%= link_to image_tag(post.avatar, :class=> 'user_profile_picture'), feed_user_path(post.user), target: '_blank' %>
+      </li>
+      <li class="user_name">
+        <%= link_to "#{post.username}", feed_user_path(post.user), :target => "_blank" %>
+      </li>
+      <li class="right">
+        <%= link_to image_tag("FB-f-Logo__blue_50.png", :class => "provider_logo"), post.link_to_post, target: "_blank" %>
+      </li>
     </ul>
   </div>
   <div class="post_content">
@@ -38,14 +45,17 @@
       </ul>
     <% end %>
   </div><br>
-  <div class="<%= post.class %>-<%= post.id %> post_footer" >
-    <ul class="post_footer_li">
-      <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(post.id, key: :facebook), method: :post, remote: true %>0</li>
-      <li><%= image_tag("double7.png", size: "20x20") %>0</li>
-      <li><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
-      <li><%= image_tag("show8.png", size: "20x20") %></li>
-      <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
-    </ul>
-  </div>
+  <div class="<%= post.class %>-<%= post.id %> post_footer" >  </div>
+
+  <ul class="post_footer_li">
+    <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(id: post.id, key: :facebook), method: :post, remote: true %>
+
+      <%= post.like_score(post.id) %>
+    </li>
+    <li><%= image_tag("double7.png", size: "20x20") %>0</li>
+    <li><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
+    <li><%= image_tag("show8.png", size: "20x20") %></li>
+    <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
+  </ul>
 </div>
 <!-- *End* Views/users/_facebook_post.html -->

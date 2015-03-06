@@ -103,7 +103,7 @@ class Feed
   def instagram_posts(instagram_max_id)
     if user_has_provider?('instagram', @user)
       instagram_timeline = Instagram::Timeline.new(@user)
-      instagram_posts = instagram_timeline.posts(instagram_max_id).map { |post| Instagram::Post.from(post) }
+      instagram_posts = instagram_timeline.posts(instagram_max_id).map { |post| Instagram::Post.from(post, @user) }
       auth_instagram(instagram_timeline)
       @instagram_max_id = instagram_timeline.pagination_max_id
       instagram_posts
@@ -121,7 +121,7 @@ class Feed
   def facebook_posts(facebook_pagination_id)
     if user_has_provider?('facebook', @user)
       facebook_timeline = Facebook::Timeline.new(@user)
-      facebook_posts = facebook_timeline.posts(facebook_pagination_id).map { |post| Facebook::Post.from(post) }
+      facebook_posts = facebook_timeline.posts(facebook_pagination_id).map { |post| Facebook::Post.from(post, @user) }
 
       auth_facebook(facebook_timeline)
       @poster_recipient_profile_hash = facebook_timeline.poster_recipient_profile_hash

@@ -2,13 +2,28 @@ module Instagram
 
   class Post < TimelineEntry
 
-    def self.from(instagram_api_hash)
-      new(instagram_api_hash)
+    attr_reader :user
+
+    def self.from(instagram_api_hash, user)
+      new(instagram_api_hash, user)
     end
 
-    def initialize(post)
+    def initialize(post, user)
       @post = post
       @created_time = Time.at(@post["created_time"].to_i)
+      @user = user
+    end
+
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def avatar
+      @user.avatar(:thumb)
+    end
+
+    def username
+      @user.user_name
     end
 
     def provider

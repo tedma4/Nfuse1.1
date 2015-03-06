@@ -1,13 +1,28 @@
 module Facebook
   class DefaultPost < TimelineEntry
 
-    def self.from(post)
-      new(post)
+    attr_reader :user
+
+    def self.from(post, user)
+      new(post, user)
     end
 
-    def initialize(post)
+    def initialize(post, user)
       @post = post
       @created_time = Time.parse(post["created_time"])
+      @user = user
+    end
+
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def avatar
+      @user.avatar(:thumb)
+    end
+
+    def username
+      @user.user_name
     end
 
     def provider
