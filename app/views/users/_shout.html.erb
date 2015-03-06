@@ -33,7 +33,9 @@
   </div>
 
     <ul class="post_actions">
-      <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(shout.id), method: :post, remote: true %><%= shout.like_score %></li>
+      <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"),
+       like_shout_path(id: shout.id), method: :post, remote: true %><%= shout.like_score %>
+      </li>
       <li class="vr"></li>
       <li class="tilt"><%= image_tag("double7.png", size: "20x20") %></li>
       <li class="vr"></li>
