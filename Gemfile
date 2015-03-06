@@ -55,6 +55,9 @@ gem 'private_pub'
 gem 'thin'
 gem 'auto_html'
 #These are the gems used in the development enviornment
+gem 'rack-mini-profiler', group: :development
+gem 'bullet', group: :development
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -77,8 +80,8 @@ group :test do
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
   gem "selenium-webdriver", "~> 2.43.0"
-  # gem 'pry'
-  # gem 'pry-rails'
+  gem 'pry'
+  gem 'pry-rails'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

@@ -55,7 +55,7 @@ class Feed
     if user_has_provider?('twitter', @user)
       twitter_timeline = Twitter::Timeline.new(@user)
       begin
-        twitter_posts = twitter_timeline.posts(twitter_pagination_id).map { |post| Twitter::Post.from(post) }
+        twitter_posts = twitter_timeline.posts(twitter_pagination_id).map { |post| Twitter::Post.from(post, @user) }
         @twitter_pagination_id = twitter_timeline.last_post_id
       rescue => e
         @unauthed_accounts << "twitter"

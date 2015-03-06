@@ -2,15 +2,34 @@ require_relative 'api'
 
 module Twitter
   class Post < TimelineEntry
+
+  attr_reader :user  
   
   include Api
 
-    def self.from(tweet)
-      new(tweet)
+    def self.from(tweet, user)
+      new(tweet, user)
     end
 
-    def initialize(tweet)
+    def initialize(tweet, user)
       @tweet = tweet
+      @user = user
+    end
+
+    # 
+    def like_score(id)
+      # Implement counter cache per / Records
+      ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    # User Object * because delegate is not working.
+
+    def avatar
+      @user.avatar.url
+    end
+
+    def username
+      @user.user_name
     end
 
     def created_time
