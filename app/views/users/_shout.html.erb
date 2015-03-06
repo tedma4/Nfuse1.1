@@ -52,11 +52,11 @@
     <%#= pluralize shout.comments_count, "comment" %>
     <div class="post_comments">
       <ul>
-        <% shout.comments.each do |comment| %>
-          <li><%= image_tag comment.user.avatar(:thumb) %>
-            <%= comment.user.user_name %>
-            <%= comment.body %></li>
-        <% end %>
+        <%# shout.comments.each do |comment| %>
+          <li><%#= image_tag comment.user.avatar(:thumb) %>
+            <%#= comment.user.user_name %>
+            <%#= comment.body %></li>
+        <%# end %>
       </ul>
       <%#= form_for([shout.commentable, shout.comment]) do |f| %>
 
