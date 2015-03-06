@@ -393,6 +393,28 @@ td {
   text-decoration: none;
   color: black;
 }
+.follow-btn li h4 {
+  margin: 0;
+  padding: 0;
+}
+.follow-btn li {
+  margin: 0;
+  padding:0;
+  height:25px;
+  font-size: 1.2em;
+  display: block;
+}
+.chatButton {
+  margin:0;
+  right: 5px;
+  bottom: 10px;
+  position: absolute;
+}
+.follow-btn{
+  margin: 0;
+  padding:0;
+  height: 50px;
+}
 .follow-btn li h4 a:hover {
   text-decoration: none;
   color: #87CEEB;
@@ -411,6 +433,11 @@ td {
   height: 400px;
   margin-bottom: 0px;
   display: inline-block;
+}
+.thumbnail{
+  margin: 0;
+  padding: 0;
+
 }
 #profile-picture {
   margin-top: -225px;
@@ -911,8 +938,8 @@ float: right;
   margin-top: 2px;
   margin-left: 2px;
   width: 200px;
-  border: 2px solid grey;
-  border-radius: 5px;
-  padding: 2px;
+  border: 1px solid black;
+  border-radius: 0px;
+  padding: 1px;
   background-color: white;
 }
