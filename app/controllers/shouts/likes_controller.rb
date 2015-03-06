@@ -4,9 +4,8 @@ class Shouts::LikesController < ApplicationController
   respond_to :json, :js, :html
 
   def create
-    @shout = Shout.find_by_id(params[:id])
-    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout)
-      send(params.fetch(:key, :basic).to_sym) # Object.send
+    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
+      send( params.fetch(:key, :basic).to_sym ) # Object.send
     end
     render js: 'alert("like")' and return
   end
