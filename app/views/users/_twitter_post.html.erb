@@ -4,7 +4,7 @@
     <ul class="post_header">
       <li>
         <%= link_to(image_tag(post.avatar, :class=> 'user_profile_picture'), feed_user_path(post.user) , target: '_blank') %>
-      <li class="user_name"><%= link_to post.user_name, post.user_url, :target => "_blank" %></li>
+      <li class="user_name"><%= link_to post.username, feed_user_path(post.user), :target => "_blank" %></li>
     </ul>
   </div>
 
