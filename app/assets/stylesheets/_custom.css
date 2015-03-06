@@ -918,16 +918,18 @@ float: right;
 .chatboxtitle {
     float: left;
 }
+
 .explore_filters {
   margin: 20px;  
   padding: 0;
   height:30px;
-  width: auto;
+  width: 100%;
+  
 }
 .explore_filters ul {
-  margin: 0;
-  padding: 0;
-
+  margin: 0 32%;
+  display: block;
+  height: 30px;
 }
 .explore_filters ul li a :active{
   border-bottom: 5px solid black;
