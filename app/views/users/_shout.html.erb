@@ -30,10 +30,9 @@
   <br>
   <div class="<%= shout.class %>-<%= shout.id %> post_footer">
   </div>
-
     <ul class="post_actions">
       <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"),
-       like_shout_path(id: shout.id), method: :post, remote: true %><%= shout.like_score(shout.id) %>
+       like_shout_path(id: shout.id, owner_id: @user.id), method: :post, remote: true %><%= shout.like_score(shout.id) %>
       </li>
       <li class="vr"></li>
       <li class="tilt"><%= image_tag("double7.png", size: "20x20") %></li>
