@@ -71,7 +71,7 @@ class Feed
     if user_has_provider?('vimeo', @user)
       vimeo_timeline = Vimeo::Timeline.new(@user)
       begin
-        vimeo_posts = vimeo_timeline.posts(vimeo_pagination_id).map { |post| Vimeo::Post.from(post) }
+        vimeo_posts = vimeo_timeline.posts(vimeo_pagination_id).map { |post| Vimeo::Post.from(post, @user) }
         @vimeo_pagination_id = vimeo_timeline.last_post_id
       rescue => e
         @unauthed_accounts << "vimeo"

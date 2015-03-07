@@ -1,7 +1,7 @@
 class Shout < ActiveRecord::Base
   belongs_to :user 
   belongs_to :nfuse_page 
-  #validates :user_id, presence: true
+  validates :user_id, :content, presence: true
   has_many :comments, :as => :commentable
   acts_as_votable
 
@@ -40,22 +40,12 @@ class Shout < ActiveRecord::Base
    ActsAsVotable::Vote.where(votable_id: self.id)
   end
 
-  def like_score
-   self.get_likes.size
-  end
-
-  def dislike_score
-   self.get_dislikes.size
-  end
-
   auto_html_for :url do
     html_escape
     image
     youtube(:width => '100%', :height => 225, :autoplay => false)
     vimeo(:width => '100%', :height => 225, :autoplay => false)
     soundcloud
-    flickr(:width => '100%', :height => 302)
-    ted
     link :target => "_blank", :rel => "nofollow"
     simple_format
   end

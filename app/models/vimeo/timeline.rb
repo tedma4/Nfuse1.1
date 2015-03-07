@@ -9,19 +9,19 @@ module Vimeo
     end
 
     def posts
-      timeline = get_timeline(client)
+      timeline = get_timeline(video)
       store_last_post_id(timeline)
       timeline
     end
 
     def get_video(video_id)
-      client.video(video_id)
+      video.get_info(video_id)
     end
 
     private
 
-    def client
-      @client ||= configure_vimeo(user_tokens)
+    def video
+      @video ||= configure_vimeo(user_tokens)
     end
 
     def user_tokens
@@ -32,12 +32,8 @@ module Vimeo
       @config ||= tokens.configure_vimeo(tokens.access_token, tokens.access_token_secret)
     end
 
-
-    def get_timeline(client)
-      clientv = Vimeo::Advanced::Video.new('3a0aa8929985db9ab9e13b8af905fb557c88a3bf', '1d803443422e5eeb806756fd49eb2831240ff387',
-        :token => user_tokens.token,
-        :secret => user_tokens.secret)
-      @videos = client.clientv.get_all(user_tokens.uid)
+    def get_timeline(video)
+      vimeo_timeline = video.get_all(user_tokens.uid)
     end
 
     def store_last_post_id(timeline)

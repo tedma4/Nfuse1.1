@@ -117,4 +117,14 @@ class Token < ActiveRecord::Base
     end
     client
   end
+
+  def configure_vimeo(access_token, access_token_secret)
+    video = Vimeo::Advanced::Video.new do |config|
+      video.consumer_key = '3a0aa8929985db9ab9e13b8af905fb557c88a3bf'
+      video.consumer_secret = '1d803443422e5eeb806756fd49eb2831240ff387'
+      video.access_token = access_token
+      video.access_token_secret = access_token_secret
+    end
+    video
+  end
 end

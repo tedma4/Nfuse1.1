@@ -1,16 +1,31 @@
 module Vimeo
 	class Post < TimelineEntry
 
+    attr_reader :user
+
 	  #def self.get_client
 	  #   Vimeo.new(:access_token => user.tokens.find_by(provider: "vimeo").token)
 	  #end
 
-    def self.from(post)
-      new(post)
+    def self.from(post, user)
+      new(post, user)
     end
 
-    def initialize(post)
+    def initialize(post, user)
       @post = post
+      @user = user
+    end
+
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def avatar
+      @user.avatar(:thumb)
+    end
+
+    def username
+      @user.user_name
     end
 
     def created_time
@@ -18,7 +33,7 @@ module Vimeo
     end
 
     def provider
-      "twitter"
+      "vimeo"
     end
 
     def post_id
@@ -31,26 +46,6 @@ module Vimeo
 
     def profile_picture
       post_user["profile_image_url_https"]
-    end
-
-    def user_name
-      post_user["name"]
-    end
-
-    def screen_name
-      post_user["screen_name"]
-    end
-
-    def post_text
-      @post["text"]
-    end
-
-    def repost_count
-      @post["repost_count"].to_i
-    end
-
-    def favorite_count
-      @post["favorite_count"].to_i
     end
 
     #def post_image

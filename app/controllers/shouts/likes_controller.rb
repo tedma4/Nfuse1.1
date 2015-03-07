@@ -36,6 +36,14 @@ class Shouts::LikesController < ApplicationController
     Instagram::Vote.create(vote_params) 
   end
 
+  def youtube
+    Youtube::Vote.create(vote_params)
+  end
+
+  def vimeo
+    Vimeo::Vote.create(vote_params) 
+  end
+
   def vote_params
    {votable_id: params[:id], voter_id: current_user.id}
   end

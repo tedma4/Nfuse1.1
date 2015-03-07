@@ -79,7 +79,7 @@ module Nfuse
     end
 
     def pic_url
-      @shout.pic(:medium)
+      @shout.pic.url(:medium)
     end
 
     def is_snip?
