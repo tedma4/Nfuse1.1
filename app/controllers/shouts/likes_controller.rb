@@ -4,7 +4,7 @@ class Shouts::LikesController < ApplicationController
   respond_to :json, :js, :html
 
   def create
-    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
+    unless ActsAsVotable::Vote.find_by(voter_id: current_user.id, owner_id: params[:owner_id], votable_id: params[:id])
       send( params.fetch(:key, :basic).to_sym ) # Object.send
     end
     render js: 'alert("like")' and return
@@ -45,7 +45,7 @@ class Shouts::LikesController < ApplicationController
   end
 
   def vote_params
-   {votable_id: params[:id], voter_id: current_user.id}
+   {votable_id: params[:id], voter_id: current_user.id, owner_id: params[:owner_id]}
   end
 
 end

@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     followers.count
   end
 
+  def total_likes
+    ActsAsVotable::Vote.where(:owner_id => self.id).count 
+  end
+
   #This allows a user to search by first name, last name or both  
   def self.search(search)
     if search
