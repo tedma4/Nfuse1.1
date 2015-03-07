@@ -28,10 +28,6 @@ class Feed
 
   def construct(params)
     self.params = params
-              # :twitter_pagination_id,
-              # :facebook_pagination_id,
-              # :instagram_max_id,
-              # ^ these attrs are set in the methos below.
     tw = twitter_posts(params[:twitter_pagination])
     fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
@@ -81,24 +77,6 @@ class Feed
       vimeo_posts
     end
   end
-
-  #def youtube_posts(youtube_pagination_id)
-  #  if user_has_provider?('google_oauth2', @user)
-  #    youtube_timeline = Youtube::Timeline.new(@user)
-  #    youtube_posts = youtube_timeline.posts(youtube_pagination_id).map { |post| Youtube::Post.from(post) }
-  #    auth_youtube(youtube_timeline)
-  #    @youtube_pagination_id = youtube_timeline.last_vid_id
-  #    youtube_posts
-  #  else
-  #    []
-  #  end
-  #end
-#
-  #def auth_youtube(youtube_posts)
-  #  unless youtube_posts.authed
-  #    @unauthed_accounts << "google_oauth2"
-  #  end
-  #end
 
   def instagram_posts(instagram_max_id)
     if user_has_provider?('instagram', @user)
