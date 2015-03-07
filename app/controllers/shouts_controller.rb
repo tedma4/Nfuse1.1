@@ -61,8 +61,9 @@ class ShoutsController < ApplicationController
 
   def nfuse_post
     @current_shout = set_shout
-    @shout = @current_shout.reshout_post(params[:nfuse_page_id], params[:user_id])
-      
+    @shout = @current_shout.reshout_post( params[:user_id], params[:owner_id])
+    @shouts = Shout.order('created_at DESC')
+    
     respond_to do |format|
       if @shout.save
        format.js {render partial: "shouts/nfuse_post"} 
