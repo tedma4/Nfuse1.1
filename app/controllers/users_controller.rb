@@ -124,7 +124,8 @@ class UsersController < ApplicationController
 
   def nfuse_page
     @shout = Shout.find(params[:id])
-    @shouts = Shout.order('created_at DESC')
+    @shouts = NfusePage.where(user_id: @user.id).order('created_at DESC')
+
   end
 
   def nfuse_only
