@@ -58,9 +58,9 @@ class Shout < ActiveRecord::Base
     User.find_by id: nfuse_page_user_id
   end
 
-  def reshout_post( user_id, owner_id)
-   nf_page = NfusePage.new shout_id: self.id, user_id: user_id, owner_id: owner_id
-    nf_page.save  
+  def reshout_post(shout_id, user_id, owner_id)
+   nf_page = NfusePage.new shout_id: shout_id, user_id: user_id, owner_id: owner_id
+   nf_page.save
   end
 
   #validate :only_upload_or_url
