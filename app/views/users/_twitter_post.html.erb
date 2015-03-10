@@ -26,7 +26,10 @@
 
   <ul class="post_actions">
     <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), 
-      like_shout_path(id: post.tweet_id, owner_id: @user.id ,key: :twitter), method: :post, remote: true %> 
+      like_shout_path(id: post.tweet_id,
+                owner_id: post.user.id,
+                key: :twitter),
+                method: :post, remote: true %> 
       <%= post.like_score(post.tweet_id) %>
     </li>
     <li class="vr"></li>
