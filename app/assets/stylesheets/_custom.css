@@ -64,6 +64,12 @@ img {
 }
 /* #Grid =========================================
 ================================================== */
+.containertotalSignup {
+  width: 100vw;
+  margin:0;
+  padding:0;
+  display: center;
+}
 .center {
   margin:auto;
   text-align: center;
@@ -83,6 +89,99 @@ img {
   padding: 25px;
   border-radius: 15px;
 }
+.containerSignup{
+  max-width: 480px;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.containerLogin{
+  max-width: 480px;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.containerhelp{
+  max-width: 40vw;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.containerprivacy{
+  max-width: 40vw;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.containerabout{
+  max-width: 40vw;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.containercallbacks{
+  max-width: 33vw;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.container_avatar_wizard{
+  max-width: 33vw;
+  min-width: 480px;
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vh;
+  background-color: white;
+  padding: 25px;
+  border-radius: 0px;
+  border-bottom: 5px solid rgba(135,206,235,0.9);
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+
+
 /* ========== sections ========== */
 .section {
   clear: both;
@@ -326,7 +425,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 /* #Buttons
 ================================================== */
-#signupButton, #aboutButton {
+#Button, #aboutButton {
   display: inline-block;
   width:50px;
   margin-left:0px;
@@ -358,6 +457,68 @@ ul li a:hover + .hidden, .hidden:hover {
   display: inline;
   float: right; 
 }
+.signupBtn {
+position: relative;
+width: 240px;
+height: 40px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
+.loginBtn {
+position: relative;
+width: 100px;
+height: 40px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
+.contactBtn {
+position: relative;
+width: 100px;
+height: 40px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-right: auto;
+margin-left: auto;
+margin-top: -20px;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
+.feedbackBtn {
+position: relative;
+width: 200px;
+height: 40px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-top: 10px;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
 /* #Settings
 ================================================== */
 #settingsTable {
@@ -380,6 +541,13 @@ td {
 .signupTable {
   margin: 0;
   padding:0;
+  font-weight: bold;
+}
+
+.loginTABLE {
+  margin: 0;
+  padding:0;
+  font-weight: bold;
 }
 .floatRight {
   float:right;

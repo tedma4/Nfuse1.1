@@ -1,7 +1,9 @@
 <!-- *Start* Views/callback_links/callbacks.html -->
-  <div class="container">
-    <div class="containerMain">
-      <table>
+  <div class="containertotalSignup">
+    <div class="containercallbacks">
+      <h1 class="center"> Network Nfusion</h1>
+      <p class="center"> Share your social life with Nfuse</p>
+      <table class="inLineLeft">
         <tr>  
           <td><%= link_to image_tag("Twitter-Icon.png", size: "100x100"), "/auth/twitter?origin=#{request.original_url}", :class => "network_login_link" %>
           </td>
@@ -32,6 +34,8 @@
               <% end %>
           </td>
         </tr>
+      </table>
+      <table>
         <tr>
           <td><%= link_to image_tag("Youtube-Icon.png", size: "100x100"), "/auth/google_oauth2?origin=#{request.original_url}", :class => "network_login_link" %>
           </td>
@@ -52,6 +56,7 @@
               <% end %>
           </td>
         </tr>
+        <tr>
           <td><%= link_to image_tag("Pinterest-Icon.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
           </td>
           <td><% if current_user && user_has_provider?('vimeo') %>
@@ -61,10 +66,8 @@
               <% end %>
           </td>
         </tr>
-        <tr>
-          <td class="floatRight"> <%= link_to "Next", next_wizard_path %> </td>
-        </tr>
       </table>
+      <div class="floatRight"> <%= link_to "Next", next_wizard_path %> </div>
     </div>
   </div>
 <!-- *End* Views/callback_links/callbacks.html -->

@@ -54,12 +54,16 @@ GEM
     auto_html (1.6.4)
       redcarpet (~> 3.1)
       rinku (~> 1.5.0)
+    autoprefixer-rails (5.1.7)
+      execjs
+      json
     av (0.8.0)
       cocaine
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
-    bootstrap-sass (2.3.2.2)
-      sass (~> 3.2)
+    bootstrap-sass (3.3.3)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     bootstrap-will_paginate (0.0.10)
       will_paginate
     bourbon (3.2.3)
@@ -266,6 +270,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry (0.10.1-x86-mingw32)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     rack (1.5.2)
@@ -422,6 +431,7 @@ GEM
     wicked (1.1.0)
       rails (>= 3.0.7)
     will_paginate (3.0.7)
+    win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     youtube_it (2.4.2)
@@ -443,7 +453,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   auto_html
   bcrypt (~> 3.1.7)
-  bootstrap-sass (~> 2.3.2.0)
+  bootstrap-sass (~> 3.3.3)
   bootstrap-will_paginate (~> 0.0.9)
   bourbon (~> 3.2.3)
   brakeman
@@ -483,7 +493,7 @@ DEPENDENCIES
   rmagick (~> 2.13.2)
   rspec-collection_matchers
   rspec-rails (~> 3.1.0)
-  sass-rails (~> 4.0.3)
+  sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   seed-fu (~> 2.3)
   selenium-webdriver (~> 2.43.0)

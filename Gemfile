@@ -3,7 +3,8 @@ source 'http://rubygems.org'
 #This is the rails version we are using
 gem 'rails', '4.1.2'
 #This allows us to use bootstrap css file
-gem 'bootstrap-sass', '~> 2.3.2.0'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'sass-rails', '>= 3.2'
 gem 'sprockets', '~> 2.11.0'
 #This is used to encrypt a user's password
 gem 'bcrypt', '~> 3.1.7'
@@ -84,7 +85,6 @@ group :test do
   gem 'pry-rails'
 end
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
