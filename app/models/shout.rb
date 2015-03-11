@@ -5,7 +5,7 @@ class Shout < ActiveRecord::Base
   has_many :comments, :as => :commentable
   acts_as_votable
 
-  attr_accessor :content, :photo_delete, :video_delete
+  attr_accessor :photo_delete, :video_delete
 
   has_destroyable_file :pic, :snip
 
@@ -29,7 +29,7 @@ class Shout < ActiveRecord::Base
                   true if (record.is_pic       = !!(record.pic_content_type))
                   true if (record.is_video     = !!(record.snip_file_name))
                   true if (record.is_link      = !!(record.url))
-                  true if (record.has_content  = !!(record.content))
+                  !!(record.content    = record.content)
   }
 
   before_create { |record|

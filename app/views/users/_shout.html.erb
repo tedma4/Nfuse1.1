@@ -11,9 +11,7 @@
   <% if !shout.url.blank? %>
        <p> <%= shout.url_html %></p>
         <div class="caption">
-        <% if shout.has_content? %>
           <li><%= shout.content %></li>
-        <% end %>
           <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
         </div>
   <% else shout.is_pic? %>
@@ -21,9 +19,7 @@
       <%= image_tag shout.pic_url %>
     </div>
     <div class="caption">
-      <% if shout.has_content? %>
         <li><%= shout.content %></li>
-      <% end %>
     </div>
   <% end %>
      <div class="right"> <%= image_tag "Beaker_new.png", size: "20x20" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
