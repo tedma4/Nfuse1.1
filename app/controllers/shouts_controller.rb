@@ -60,8 +60,8 @@ class ShoutsController < ApplicationController
   end
 
   def nfuse_post
-    @current_shout = set_shout
-    result = @current_shout.reshout_post(params[:shout_id], params[:owner_id], params[:user_id])
+    @current_shout = Shout.find(params[:id])
+    result = @current_shout.reshout_post(params[:id], params[:user_id], params[:owner_id])
     @shouts = NfusePage.all
     respond_to do |format|
       if result

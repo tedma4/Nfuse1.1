@@ -41,13 +41,11 @@
       <li class="tilt"><%= image_tag("double7.png", size: "20x20") %></li>
       <li class="vr"></li>
       <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"),
-                        nfuse_post_path(shout_id: shout.id,
+                        nfuse_post_path(id: shout.id, 
                                         owner_id: shout.user.id,
-                                        user_id:  shout.user.id), 
+                                        user_id:  current_user.id), 
                                         method: :post, remote: true %>
-          <div id="info" style="display:none;">
-            <%#= render partial: "shouts/nfuse_post", locals: {shout: shout} %>
-          </div></li>
+      </li>
       <li class="vr"></li>
       <li class="tilt">
         <% unless !current_user?(shout.user) %>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'nfuse_post/:user_id', to: 'shouts#nfuse_post', as: 'nfuse_post'
+  post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
 
 
   scope module: :shouts do

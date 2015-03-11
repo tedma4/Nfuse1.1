@@ -58,8 +58,8 @@ class Shout < ActiveRecord::Base
     User.find_by id: nfuse_page_user_id
   end
 
-  def reshout_post(shout_id, user_id, owner_id)
-   nf_page = NfusePage.new shout_id: shout_id, user_id: user_id, owner_id: owner_id
+  def reshout_post(sid, uid, oid)
+   nf_page = NfusePage.new(shout_id: sid, user_id: uid, owner_id: oid)
    nf_page.save
   end
 

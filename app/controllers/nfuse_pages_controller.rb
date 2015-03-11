@@ -21,6 +21,6 @@ class NfusePagesController < ApplicationController
     end
 
     def nfuse_page_params
-      params.require(:nfuse_page).permit(:user_id, :shout_id)
+      params.require(:nfuse_page).permit(:user_id, :shout_id, :owner_id)
     end
 end
