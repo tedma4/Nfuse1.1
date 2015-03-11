@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307225427) do
+ActiveRecord::Schema.define(version: 20150311215339) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150307225427) do
     t.datetime "updated_at"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.integer  "owner_id"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
@@ -232,7 +233,7 @@ ActiveRecord::Schema.define(version: 20150307225427) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "votes", force: true do |t|
-    t.integer  "votable_id"
+    t.string   "votable_id"
     t.string   "votable_type"
     t.integer  "voter_id"
     t.string   "voter_type"
