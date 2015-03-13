@@ -1,5 +1,6 @@
 class NfusePage < ActiveRecord::Base
-  has_many :shouts
+  #has_and_belongs_to_many :shouts
+  #has_many :shouts, through: :users
   belongs_to :user
 
   delegate :url, :is_pic?, :pic, :url_html , to: :other_shout

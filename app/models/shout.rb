@@ -1,8 +1,9 @@
 class Shout < ActiveRecord::Base
   belongs_to :user 
-  belongs_to :nfuse_page 
+  #has_and_belongs_to_many :nfuse_pages
+  has_many :nfuse_pages, dependent: :destroy
   validates :user_id, :content, presence: true
-  has_many :comments, :as => :commentable
+  has_many :comments, :as => :commentable, dependent: :destroy
   acts_as_votable
 
   attr_accessor :photo_delete, :video_delete
