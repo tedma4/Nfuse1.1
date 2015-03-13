@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311215339) do
+ActiveRecord::Schema.define(version: 20150311224117) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20150311215339) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "votes", force: true do |t|
-    t.string   "votable_id"
+    t.integer  "votable_id"
     t.string   "votable_type"
     t.integer  "voter_id"
     t.string   "voter_type"
