@@ -88,7 +88,14 @@ ActiveRecord::Schema.define(version: 20150314001601) do
     t.datetime "updated_at"
     t.integer  "owner_id"
     t.string   "social_flag"
+    t.string   "social_key"
+    t.string   "social_id"
+    t.text     "url"
+    t.integer  "nfuse_id"
   end
+
+  add_index "nfuse_pages", ["nfuse_id"], name: "index_nfuse_pages_on_nfuse_id", unique: true
+  add_index "nfuse_pages", ["social_id"], name: "index_nfuse_pages_on_social_id", unique: true
 
   create_table "pics", force: true do |t|
     t.string   "image_file_name"
@@ -144,12 +151,9 @@ ActiveRecord::Schema.define(version: 20150314001601) do
     t.text     "url",               limit: 255
     t.boolean  "has_content",                   default: false
     t.integer  "nfuse_page_id"
-    t.string   "social_key"
-    t.string   "social_id"
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"
-  add_index "shouts", ["social_id"], name: "index_shouts_on_social_id", unique: true
   add_index "shouts", ["uid"], name: "index_shouts_on_uid", unique: true
   add_index "shouts", ["user_id", "created_at"], name: "index_shouts_on_user_id_and_created_at"
 

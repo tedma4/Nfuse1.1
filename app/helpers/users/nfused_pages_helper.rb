@@ -1,0 +1,2 @@
+module Users::NfusedPagesHelper
+end
