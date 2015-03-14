@@ -148,6 +148,19 @@ describe User, type: :model do
         user.valid?
       end
 
+      context '#phone_number' do
+        it 'should be present - errors not empty' do
+          user = build(:user, phone_number: nil)
+          expect(user).to_not be_valid
+          expect(user.errors).to_not be_empty
+        end
+
+        it 'should be right format' do
+          user = build(:user)
+          expect(user).to be_valid
+        end
+      end
+
       it '#has a first name and last name # as fullname' do
         expect(user.full_name).to eq "#{user.first_name} #{user.last_name}"
       end

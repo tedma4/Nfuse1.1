@@ -6,7 +6,7 @@ FactoryGirl.define do
     user_name  { Faker::Internet.user_name( (10..15) ) }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    phone_number { Faker::PhoneNumber.phone_number }
+    phone_number { Faker::PhoneNumber.phone_number.gsub(' ', '-') }
     sequence(:email) { |n| "#{email.call}"}
     password 'password'
     password_confirmation 'password'
