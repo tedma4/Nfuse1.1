@@ -60,7 +60,7 @@ class ShoutsController < ApplicationController
   end
 
   def nfuse_post
-    @current_shout = Shout.find(params[:id])
+    @current_shout = send( params.fetch(:key, :internal_shout) )
     result = @current_shout.reshout_post(params[:id], params[:user_id], params[:owner_id])
     @shouts = NfusePage.all
     respond_to do |format|
@@ -69,7 +69,27 @@ class ShoutsController < ApplicationController
       end
     end
   end
- 
+
+  def internal_shout
+    Shout.find(params[:id])
+  end
+
+  def twitter
+    Shout.find_by(social_id: params[:id])
+  end
+
+  def youtube
+    Shout.find_by(social_id: params[:id])
+  end
+
+  def facebook
+    Shout.find_by(social_id: params[:id])
+  end
+
+  def instagram
+    Shout.find_by(social_id: params[:id])
+  end
+
   def my_nfuses
     @nfuses = current_user.nfuse_post
     @nfuses.each do |b|
