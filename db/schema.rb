@@ -145,10 +145,11 @@ ActiveRecord::Schema.define(version: 20150314001601) do
     t.boolean  "has_content",                   default: false
     t.integer  "nfuse_page_id"
     t.string   "social_key"
-    t.decimal  "social_id"
+    t.string   "social_id"
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"
+  add_index "shouts", ["social_id"], name: "index_shouts_on_social_id", unique: true
   add_index "shouts", ["uid"], name: "index_shouts_on_uid", unique: true
   add_index "shouts", ["user_id", "created_at"], name: "index_shouts_on_user_id_and_created_at"
 
