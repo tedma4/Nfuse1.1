@@ -1,6 +1,5 @@
 class Shouts::LikesController < ApplicationController
 
-  # before_action :like_shout_type
   respond_to :json, :js, :html
 
   def create
@@ -11,7 +10,7 @@ class Shouts::LikesController < ApplicationController
   end
 
   def destroy
-    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: @shout)
+    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
       @like.destroy
     end
     render js: 'alert("dislike")' and return
