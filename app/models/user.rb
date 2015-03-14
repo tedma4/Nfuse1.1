@@ -56,10 +56,9 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
+  validates :phone_number, presence: true
   validates_format_of :phone_number,
-     #:with => /(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}/i, <- This one takes a wierd format for phone number the other one is more simple
-
-    :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
+      :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
       :message => "should be a phone number"
 
   # returns a relationship object not a User object.
