@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311224117) do
+ActiveRecord::Schema.define(version: 20150314001601) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -144,6 +144,8 @@ ActiveRecord::Schema.define(version: 20150311224117) do
     t.text     "url",               limit: 255
     t.boolean  "has_content",                   default: false
     t.integer  "nfuse_page_id"
+    t.string   "social_key"
+    t.decimal  "social_id"
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"
