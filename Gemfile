@@ -65,6 +65,7 @@ group :development, :test do
   # v-- Used in both dev and testing.
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'rails-erd'
   # ^-- Used in both dev and testing.
 end
 #These are the gems used in the test enviornment
