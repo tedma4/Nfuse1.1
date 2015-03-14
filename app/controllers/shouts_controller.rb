@@ -60,35 +60,14 @@ class ShoutsController < ApplicationController
   end
 
   def nfuse_post
-    @current_shout = send( params.fetch(:key, :internal_shout) )
-    result = @current_shout.reshout_post(params[:id], params[:user_id], params[:owner_id])
-    @shouts = NfusePage.all
-    respond_to do |format|
-      if result
-       format.js { render partial: "shouts/nfuse_post" } 
-      end
+    if @nfuse_page = NfusePage.find_by(social_id: params[:id], social_key: params[:key])
+      render json: { nfuse_page: @nfuse_page }
+    else
+      @nfuse_page = NfusePage.build(params)
+      render json: { nfuse_page: @nfuse_page }
     end
   end
 
-  def internal_shout
-    Shout.find(params[:id])
-  end
-
-  def twitter
-    Shout.find_by(social_id: params[:id])
-  end
-
-  def youtube
-    Shout.find_by(social_id: params[:id])
-  end
-
-  def facebook
-    Shout.find_by(social_id: params[:id])
-  end
-
-  def instagram
-    Shout.find_by(social_id: params[:id])
-  end
 
   def my_nfuses
     @nfuses = current_user.nfuse_post

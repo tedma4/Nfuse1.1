@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :callback_links
 
   resources :users do
+    scope module: :users do
+      resource :nfused_page, only: [:create, :destroy, :show]
+    end
+    # post to this new controller.
     resources :nfuse_pages
     resources :conversations
     resources :shouts
@@ -19,7 +23,6 @@ Rails.application.routes.draw do
   end
 
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
-
 
   scope module: :shouts do
     scope '/shouts' do

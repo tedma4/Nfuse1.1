@@ -36,10 +36,10 @@
     <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
     <li class="vr"></li>
     <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"),
-                                 nfuse_post_path(id: post.tweet_id,
+                                 user_nfused_page_path(id: post.tweet_id,
                                                  owner_id: post.user.id,
-                                                 user_id:  current_user.id, key: :twitter),
-                                 method: :post, remote: true %>
+                                                 user_id:  current_user.id, key: :twitter, url: ( post.tweet_image || '') ),
+                                                 method: :post, remote: true %>
     </li>
 
     <li class="vr"></li>
