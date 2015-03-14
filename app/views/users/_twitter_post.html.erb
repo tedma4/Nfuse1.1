@@ -37,7 +37,7 @@
     <li class="vr"></li>
     <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"),
                                  nfuse_post_path(id: post.tweet_id,
-                                                 owner_id: shout.user.id,
+                                                 owner_id: post.user.id,
                                                  user_id:  current_user.id, key: :twitter),
                                  method: :post, remote: true %>
     </li>
