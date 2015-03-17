@@ -12,6 +12,10 @@ module UsersHelper
     conversation.recipient == current_user ? conversation.sender : conversation.recipient
   end
 
+  def shout_url_html(shout)
+    shout.pic.blank? ? shout.url  : URI.join(request.url, shout.pic.url)
+  end
+
   private
 
   def user_params
