@@ -64,21 +64,4 @@ class Shout < ActiveRecord::Base
    nf_page.save
   end
 
-  #validate :only_upload_or_url
-#
-  #private
-  #  def only_upload_or_url
-  #    if clip.present? and url.present?
-  #      errors.add(:clip, "Can not have bot clip and url")
-  #      errors.add(:url, "Can not have bot clip and url")
-  #      return false
-  #    elsif !clip.present? and !url.present?
-  #      errors.add(:clip, "Clip and url can not be empty")
-  #      errors.add(:url, "Clip and url can not be empty")
-  #      return false
-  #    else
-  #      return true
-  #    end
-  #  end
-#
  end
