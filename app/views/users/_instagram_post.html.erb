@@ -51,7 +51,12 @@
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
+    <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"),
+                                 user_nfused_page_path(id: post.id,
+                                                 owner_id: post.user.id,
+                                                 user_id:  current_user.id, key: :instagram, url: ( post.low_resolution_image_url || '') ),
+                                                 method: :post, remote: true %>
+    </li>
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
   </ul>

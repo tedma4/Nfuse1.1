@@ -48,13 +48,21 @@
   <div class="<%= post.class %>-<%= post.id %> post_footer" >  </div>
 
   <ul class="post_footer_li">
-    <li><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(id: post.id, owner_id: @user.id, key: :facebook), method: :post, remote: true %>
+    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), like_shout_path(id: post.id, owner_id: post.user.id, key: :facebook), method: :post, remote: true %>
 
       <%= post.like_score(post.id) %>
     </li>
-    <li><%= image_tag("double7.png", size: "20x20") %>0</li>
-    <li><%= image_tag("testbeaker.fw.png", size: "20x20") %></li>
-    <li><%= image_tag("show8.png", size: "20x20") %></li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
+    <li class="vr"></li>
+    <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"),
+                                 user_nfused_page_path(id: post.id,
+                                                 owner_id: post.user.id,
+                                                 user_id:  current_user.id, key: :facebook, url: ( post.image || '') ),
+                                                 method: :post, remote: true %>
+    </li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
     <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
   </ul>
 </div>
