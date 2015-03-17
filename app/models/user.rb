@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   before_create :downcase_email
   before_create :create_remember_token
 
-  has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#" }, 
+  has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "208x208#", small: "32x32#" }, 
                                 default_url: "default.png"
 
   has_attached_file :banner, styles: { larger: "851x315#", medium: "300x300#" }, 
