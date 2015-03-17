@@ -27,10 +27,13 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.action_controller.asset_host = 'http://localhost:3000'
+
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
   Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.8.9-Q16/convert.exe"
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
