@@ -11,6 +11,18 @@ module Youtube
       @created_time = Time.at(@post["created_time"].to_i)
     end
 
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def avatar
+      @user.avatar(:thumb)
+    end
+
+    def username
+      @user.user_name
+    end
+
     def provider
       "google_oauth2"
     end

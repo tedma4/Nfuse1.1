@@ -18,17 +18,17 @@ module Twitter
       client.status(tweet_id)
     end
 
-    def create_tweet(tweet)
-      client.update(tweet)
-    end
-
-    def favorite_tweet(tweet_id)
-      client.favorite(tweet_id)
-    end
-
-    def retweet_tweet(tweet_id)
-      client.retweet(tweet_id)
-    end
+    #def create_tweet(tweet)
+    #  client.update(tweet)
+    #end
+#
+    #def favorite_tweet(tweet_id)
+    #  client.favorite(tweet_id)
+    #end
+#
+    #def retweet_tweet(tweet_id)
+    #  client.retweet(tweet_id)
+    #end
 
     private
 

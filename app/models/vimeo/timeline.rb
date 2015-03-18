@@ -8,13 +8,17 @@ module Vimeo
       @authed = true
     end
 
-    def posts
-      timeline = get_timeline(video)
+    def posts(per_page = nil)
+      timeline = get_timeline(video, per_page)
       store_last_post_id(timeline)
       timeline
     end
 
     def get_video(video_id)
+      video.get_uploaded(video_id)
+    end
+
+    def get_info(video_id)
       video.get_info(video_id)
     end
 
@@ -32,8 +36,18 @@ module Vimeo
       @config ||= tokens.configure_vimeo(tokens.access_token, tokens.access_token_secret)
     end
 
-    def get_timeline(video)
-      vimeo_timeline = video.get_all(user_tokens.uid)
+    #def get_timeline(video)
+    #  vimeo_timeline = video.get_all(user_tokens.uid)
+    #end
+
+    def get_timeline(video, per_page)
+      if per_page.nil?
+        video.get_all(user_tokens.uid, :count =>50)
+      else
+        vimeo_timeline = video.get_all(user_tokens.uid, :per_page => per_page, :count => 100)
+        vimeo_timeline.delete_at(0)
+        vimeo_timeline
+      end
     end
 
     def store_last_post_id(timeline)

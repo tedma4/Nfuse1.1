@@ -3,10 +3,6 @@ module Vimeo
 
     attr_reader :user
 
-	  #def self.get_client
-	  #   Vimeo.new(:access_token => user.tokens.find_by(provider: "vimeo").token)
-	  #end
-
     def self.from(post, user)
       new(post, user)
     end
@@ -52,12 +48,12 @@ module Vimeo
     #  @post['media'][0]['media_url'] if @post.fetch('media', nil)
     #end
 
-    def post_image
-      if @post["media"].present?
-        @post["media"][0]["media_url"]
-      else
-        nil
-      end
-    end
+    #def post_image
+    #  if @post["media"].present?
+    #    @post["media"][0]["media_url"]
+    #  else
+    #    nil
+    #  end
+    #end
   end
 end

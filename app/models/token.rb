@@ -120,11 +120,23 @@ class Token < ActiveRecord::Base
 
   def configure_vimeo(access_token, access_token_secret)
     video = Vimeo::Advanced::Video.new do |config|
-      video.consumer_key = '3a0aa8929985db9ab9e13b8af905fb557c88a3bf'
-      video.consumer_secret = '1d803443422e5eeb806756fd49eb2831240ff387'
-      video.access_token = access_token
-      video.access_token_secret = access_token_secret
+      config.consumer_key = '3a0aa8929985db9ab9e13b8af905fb557c88a3bf'
+      config.consumer_secret = '1d803443422e5eeb806756fd49eb2831240ff387'
+      config.access_token = access_token
+      config.access_token_secret = access_token_secret
     end
     video
+  end
+
+  def configure_youtube(access_token, refresh_token)
+    client = YouTubeIt::OAuth2Client.new do |config|
+      config.client_access_token = access_token 
+      config.client_refresh_token = refresh_token
+      config.client_id = "585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com"
+      config.client_secret = "yQjPXajecmamPWswzrEtAkaA"
+      config.dev_key = "AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI"
+      #config.expires_at = "expiration time"
+    end
+    client
   end
 end
