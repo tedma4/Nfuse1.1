@@ -40,10 +40,6 @@ module Vimeo
       @post['user']
     end
 
-    def profile_picture
-      post_user["profile_image_url_https"]
-    end
-
     #def post_image
     #  @post['media'][0]['media_url'] if @post.fetch('media', nil)
     #end

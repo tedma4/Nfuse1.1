@@ -25,7 +25,7 @@
   </div>
 
   <ul class="post_actions">
-    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "20x20"), 
+    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "24x24"), 
       like_shout_path(id: post.tweet_id,
                 owner_id: post.user.id,
                 key: :twitter),
@@ -33,9 +33,9 @@
       <%= post.like_score(post.tweet_id) %>
     </li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("double7.png", size: "20x20") %>0</li>
+    <li class="tilt"><%= image_tag("double7.png", size: "24x24") %>4</li>
     <li class="vr"></li>
-    <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "20x20"),
+    <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "24x24"),
                                  user_nfused_page_path(id: post.tweet_id,
                                                  owner_id: post.user.id,
                                                  user_id:  current_user.id, key: :twitter, url: ( post.tweet_image || '') ),
@@ -43,7 +43,11 @@
     </li>
 
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("show8.png", size: "20x20") %></li>
+      <% unless !current_user?(post.user) %>
+        <li class="tilt"><%= image_tag("delete3.fw.png", size: "24x24") %></li>
+      <% else %>
+        <li class="tilt"><%= image_tag("share1.fw.png", size: "24x24") %></li>
+      <% end %>
   </ul>
 </div>
 <!-- *End* Views/users/_twitter_post.html -->

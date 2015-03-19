@@ -1,26 +1,8 @@
 <!-- *START* Views/users/index.html.erb  -->
-<% provide(:title, 'Chat') %>
+<% provide(:title, 'Notifications') %>
 
 <div id="content-box">
-  <h1>Chat</h1>
-    <div>
-      <% if @conversations.any? %>
-        <ul class="media-list current-chat-list">
-          <% @conversations.each do |conversation| %>
-            <li>
-                <%= image_tag conversation_interlocutor(conversation).avatar(:thumb), class: "media-object pull-left img-rounded" %>
-              <div class="media-body">
-                <%= link_to conversation_path(conversation), class: "conversation", "data-cid" => conversation.id do %>
-                <h4 class="media-heading-custom"><%= conversation_interlocutor(conversation).full_name %></h4>
-                <p class="conversation-custom"> "<%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %>"</p>
-                  <% end %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>You have no conversations. Click the chat button on an users profile page to start a chat</p>
-      <% end %>
-      </div>
-  </div>
+  <h1>Notification</h1>
+  <p>Orion. This is the page notifiations' is gonna go into</p>
+</div>
 <!-- *End* Views/users/index.html.erb  -->
