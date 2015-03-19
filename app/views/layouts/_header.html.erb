@@ -37,8 +37,8 @@
         <%= image_tag(current_user.avatar(:small), class: "user_profile_picture") %>
         <% end %>
       </li>
-      <li class="navIcon tilt" id="profile">
-        <%= link_to users_path(session[:user_id]) do %>
+      <li class="navIcon tilt" id="notifications">
+        <%= link_to notifications_path do %>
         <%= image_tag('notifications.fw.png', size: "32x32") %>
         <% end %>
       </li>
@@ -92,9 +92,18 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/feed')!== -1){
       $('#profile').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/nfuse_page')!== -1){
+      $('#profile').addClass("activeNavIcon");
     } 
-    else if(urlPath.indexOf('/shouts/')!== -1){
-      $('#shout').addClass("activeNavIcon");
+    else if(urlPath.indexOf('/following')!== -1){
+      $('#profile').addClass("activeNavIcon");
+    } 
+    else if(urlPath.indexOf('/followers')!== -1){
+      $('#profile').addClass("activeNavIcon");
+    } 
+    else if(urlPath.indexOf('/notifications')!== -1){
+      $('#notifications').addClass("activeNavIcon");
     } 
   $('.menuDropdown').hide();
   //alert("header.js");
