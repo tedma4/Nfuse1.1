@@ -42,7 +42,7 @@
         <%= image_tag('notifications.fw.png', size: "32x32") %>
         <% end %>
       </li>
-      <li class="navIcon">
+      <li class="navIcon edit feedback" id="help">
         <a href="#" class="dropdown-toggle">
           <%= image_tag('menu24.fw.png', size: "32x32") %> <b class="caret"></b>
         </a>
@@ -95,16 +95,25 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/nfuse_page')!== -1){
       $('#profile').addClass("activeNavIcon");
-    } 
+    }
     else if(urlPath.indexOf('/following')!== -1){
       $('#profile').addClass("activeNavIcon");
-    } 
+    }
     else if(urlPath.indexOf('/followers')!== -1){
       $('#profile').addClass("activeNavIcon");
-    } 
+    }
     else if(urlPath.indexOf('/notifications')!== -1){
       $('#notifications').addClass("activeNavIcon");
-    } 
+    }
+    else if(urlPath.indexOf('/edit')!== -1){
+      $('.edit').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/help')!== -1){
+      $('#help').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/contacts')!== -1){
+      $('.feedback').addClass("activeNavIcon");
+    }
   $('.menuDropdown').hide();
   //alert("header.js");
   $('.dropdown-toggle').click(function () {
