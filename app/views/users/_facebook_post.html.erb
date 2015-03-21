@@ -48,14 +48,14 @@
   <div class="<%= post.class %>-<%= post.id %> post_footer" >  </div>
 
   <ul class="post_footer_li">
-    <li class="tilt"><%= link_to image_tag("smiling42.png", size: "24x24"), like_shout_path(id: post.id, owner_id: post.user.id, key: :facebook), method: :post, remote: true %>
+    <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"), like_shout_path(id: post.id, owner_id: post.user.id, key: :facebook), method: :post, remote: true %>
 
       <%= post.like_score(post.id) %>
     </li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("double7.png", size: "24x24") %>4</li>
+    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
     <li class="vr"></li>
-    <li class="tilt"><%= link_to image_tag("testbeaker.fw.png", size: "24x24"),
+    <li class="tilt"><%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
                                  user_nfused_page_path(id: post.id,
                                                  owner_id: post.user.id,
                                                  user_id:  current_user.id, key: :facebook, url: ( post.image || '') ),
@@ -63,9 +63,9 @@
     </li>
     <li class="vr"></li>
       <% unless !current_user?(post.user) %>
-        <li class="tilt"><%= image_tag("delete3.fw.png", size: "24x24") %></li>
+        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
       <% else %>
-        <li class="tilt"><%= image_tag("share1.fw.png", size: "24x24") %></li>
+        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
       <% end %>
     <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
   </ul>

@@ -12,9 +12,9 @@ module Twitter::Api
       base_uri << "#{@tweet["user"]["screen_name"]}/status/#{@tweet["id"]}"
     end
 
-    def user_url
-      base_uri << "#{@tweet["user"]["screen_name"]}"
-    end
+    #def user_url
+    #  base_uri << "#{@tweet["user"]["screen_name"]}"
+    #end
 
   end
   

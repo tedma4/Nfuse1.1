@@ -68,13 +68,13 @@ class Token < ActiveRecord::Base
       auth['uid']
     end
 
-    def refresh
-      auth['credentials']['refresh_token']
-    end
-
-    def expires
-      DateTime.now + auth['credentials']["expires_in"].to_i.seconds      
-    end
+    #def refresh
+    #  auth['credentials']['refresh_token']
+    #end
+#
+    #def expires
+    #  DateTime.now + auth['credentials']["expires_in"].to_i.seconds      
+    #end
 
     # Social Media Specific
 
@@ -123,7 +123,7 @@ class Token < ActiveRecord::Base
       config.consumer_key = '3a0aa8929985db9ab9e13b8af905fb557c88a3bf'
       config.consumer_secret = '1d803443422e5eeb806756fd49eb2831240ff387'
       config.access_token = access_token
-      config.access_token_secret = access_token_secret
+      config.access_token_secret =  access_token_secret
     end
     video
   end
