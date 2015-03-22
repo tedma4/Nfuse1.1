@@ -54,23 +54,18 @@
       </li>
     </ul>
     <%#= pluralize shout.comments_count, "comment" %>
-    <div class="post_comments">
+    <div class="post_comments" id="comment_list_<%= shout.id %>">
       <ul>
-        <%# shout.comments.each do |comment| %>
-          <li><%#= image_tag comment.user.avatar(:thumb) %>
-            <%#= comment.user.user_name %>
-            <%#= comment.body %></li>
-        <%# end %>
+        <% shout.comments.each do |comment| %>
+          <%= render partial: 'shared/comment', locals: {comment: comment} %>
+        <% end %>
       </ul>
-      <%#= form_for([shout.commentable, shout.comment]) do |f| %>
 
-        <div class="field">
-          <%#= f.text_area :body, rows: 8 %>
-        </div>
-        <div class="actions">
-          <%#= f.submit %>
-        </div>
-      <%# end %>  
+      <%= form_tag("/shouts/#{shout.id}/comments", method: :post, remote: true) do %>
+        <%= text_field_tag 'comment[body]', 'leave comment' %>
+        <%= hidden_field_tag 'comment[user_id]', current_user.id  %>
+        <%= submit_tag %>
+      <% end %>
     </div>
   </div>
 
