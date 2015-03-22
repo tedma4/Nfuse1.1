@@ -88,13 +88,13 @@ class Token < ActiveRecord::Base
     end
 
     def basic_token
-      @token.access_token       = credentials_token
+      @token.access_token        = credentials_token
     end
 
     def google_oauth2_token
-      @token.access_token   = credentials_token
-      @token.refresh_token  = credentials_refresh
-      @token.expiresat      = credentials_expires
+      @token.access_token        = credentials_token
+      @token.refresh_token       = credentials_refresh
+      #@token.expiresat           = credentials_expires
     end
 
     def vimeo_token
@@ -109,7 +109,6 @@ class Token < ActiveRecord::Base
       @token.save!
       @token
     end
-  
   end
 
   def configure_twitter(access_token, access_token_secret)
@@ -124,6 +123,15 @@ class Token < ActiveRecord::Base
 
   # video = Vimeo::Advanced::Video.new("consumer_key", "consumer_secret", token: user.token, secret: user.secret)
 
+  #It says in the vimeo gem documents that the base class needs to get instantiated first to be able to use the advanced api. Or something like that.  
+
+  #base = Vimeo::Advanced::Base.new("consumer_key", "consumer_secret")
+  #access_token = base.get_access_token(params[:oauth_token], session[:oauth_secret], params[:oauth_verifier])
+  ## You'll want to hold on to the user's access token and secret. I'll save it to the database.
+  #user.token = access_token.token
+  #user.secret = access_token.secret
+  #user.save
+  
   def configure_vimeo(access_token, access_token_secret)
     video = Vimeo::Advanced::Video.new(
       '3a0aa8929985db9ab9e13b8af905fb557c88a3bf',
@@ -136,14 +144,14 @@ class Token < ActiveRecord::Base
   # client = YouTubeIt::OAuth2Client.new(client_access_token: "access_token", client_refresh_token: "refresh_token",
   # client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
 
-  def configure_youtube(access_token, refresh_token, expiresat)
+  def configure_youtube(access_token, refresh_token)#, expiresat)
     client = YouTubeIt::OAuth2Client.new(
       client_access_token: access_token,
       client_refresh_token: refresh_token,
       client_id: "585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com",
       client_secret: "yQjPXajecmamPWswzrEtAkaA",
       dev_key: "AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI",
-      expires_at: expiresat,
+      #expires_at: expiresat,
       )
   end
 end

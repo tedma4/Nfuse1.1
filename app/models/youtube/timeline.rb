@@ -34,7 +34,7 @@ module Youtube
     end
 
     def configure_youtube(tokens)
-      @config ||= tokens.configure_youtube(tokens.access_token, tokens.refresh_token, tokens.expiresat)
+      @config ||= tokens.configure_youtube(tokens.access_token, tokens.refresh_token)#, tokens.expiresat)
     end
 
     def get_timeline(client, max_id)
