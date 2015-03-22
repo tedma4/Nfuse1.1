@@ -120,8 +120,10 @@
 .post_comments {
   border-bottom: 1px solid $background-gray;
   margin: 1em 0;
+  clear:both;
   .commenter_profile_picture img {
     height: 50px;
+
   }
   .commenter_profile_picture {
     display: inline-block;
