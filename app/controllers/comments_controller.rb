@@ -28,8 +28,10 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.new(comment_params)
-    if @comment.update(:user_id, current_user.id)
-      redirect_to @commentable, notice: "Comment created."
+    if @comment.update_attribute(:user_id, current_user.id)
+      # redirecting to shout show action..should be a js response..
+      # but thats Brett lol *
+      # redirect_to @commentable, notice: "Comment created."
     else
       render :new
     end
@@ -72,8 +74,10 @@ class CommentsController < ApplicationController
 
   def find_commentable
     params.each do |name, value|
+      # params[:shout_id] = 1
       if name =~ /(.+)_id$/
           return $1.classify.constantize.find(value)
+          # @commenentable = Shout.find(1)
       end #|| raise ActiveRecord:NoRecord.new("Couldn\'t find it captain!")
     end 
   end
