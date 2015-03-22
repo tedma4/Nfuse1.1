@@ -56,8 +56,12 @@ class Token < ActiveRecord::Base
       auth["extra"]["access_token"]
     end
 
-    def credentantials_token
+    def credentials_token
       auth["credentials"]["token"]
+    end
+
+    def credentials_secret
+      auth["credentials"]["secret"]
     end
 
     def provider
@@ -68,13 +72,13 @@ class Token < ActiveRecord::Base
       auth['uid']
     end
 
-    #def refresh
-    #  auth['credentials']['refresh_token']
-    #end
-#
-    #def expires
-    #  DateTime.now + auth['credentials']["expires_in"].to_i.seconds      
-    #end
+    def credentials_refresh
+      auth['credentials']['refresh_token']
+    end
+
+    def credentials_expires
+      DateTime.now + auth['credentials']["expires_in"].to_i.seconds      
+    end
 
     # Social Media Specific
 
@@ -84,18 +88,18 @@ class Token < ActiveRecord::Base
     end
 
     def basic_token
-      @token.access_token       = credentantials_token
+      @token.access_token       = credentials_token
     end
 
     def google_oauth2_token
-      @token.access_token   = credentantials_token
-      @token.refresh_token  = refresh
-      @token.expiresat      = expires
+      @token.access_token   = credentials_token
+      @token.refresh_token  = credentials_refresh
+      @token.expiresat      = credentials_expires
     end
 
     def vimeo_token
-      @token.access_token        = extra_access_token.token
-      @token.access_token_secret = extra_access_token.secret
+      @token.access_token        = credentials_token
+      @token.access_token_secret = credentials_secret
     end
 
     # def facebook_token; end
@@ -118,25 +122,28 @@ class Token < ActiveRecord::Base
     client
   end
 
+  # video = Vimeo::Advanced::Video.new("consumer_key", "consumer_secret", token: user.token, secret: user.secret)
+
   def configure_vimeo(access_token, access_token_secret)
-    video = Vimeo::Advanced::Video.new do |config|
-      config.consumer_key = '3a0aa8929985db9ab9e13b8af905fb557c88a3bf'
-      config.consumer_secret = '1d803443422e5eeb806756fd49eb2831240ff387'
-      config.access_token = access_token
-      config.access_token_secret =  access_token_secret
-    end
-    video
+    video = Vimeo::Advanced::Video.new(
+      '3a0aa8929985db9ab9e13b8af905fb557c88a3bf',
+      '1d803443422e5eeb806756fd49eb2831240ff387',
+      token: access_token,
+      secret: access_token_secret
+      )
   end
 
-  def configure_youtube(access_token, refresh_token)
-    client = YouTubeIt::OAuth2Client.new do |config|
-      config.client_access_token = access_token 
-      config.client_refresh_token = refresh_token
-      config.client_id = "585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com"
-      config.client_secret = "yQjPXajecmamPWswzrEtAkaA"
-      config.dev_key = "AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI"
-      #config.expires_at = "expiration time"
-    end
-    client
+  # client = YouTubeIt::OAuth2Client.new(client_access_token: "access_token", client_refresh_token: "refresh_token",
+  # client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
+
+  def configure_youtube(access_token, refresh_token, expiresat)
+    client = YouTubeIt::OAuth2Client.new(
+      client_access_token: access_token,
+      client_refresh_token: refresh_token,
+      client_id: "585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com",
+      client_secret: "yQjPXajecmamPWswzrEtAkaA",
+      dev_key: "AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI",
+      expires_at: expiresat,
+      )
   end
 end

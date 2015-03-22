@@ -35,6 +35,8 @@ module Vimeo
     def uid(user_tokens)
       user_tokens.uid
     end
+    #  video = Vimeo::Advanced::Video.new("consumer_key", "consumer_secret", :token => user.token, :secret => user.secret)
+    #  video.get_uploaded("user_id", { :page => "1", :per_page => "25", :full_response => "0", :sort => "newest" }) user_id is the vimeo's user_id
 
     #def get_timeline(video)
     #  vimeo_timeline = video.get_uploaded(uid, { :page => "1", :per_page => "25", :full_response => "0", :sort => "newest" })
@@ -42,9 +44,9 @@ module Vimeo
 
     def get_timeline(video, max_id, uid)
       if max_id.nil?
-        video.get_uploaded(uid, :count =>25)
+        video.get_uploaded(uid, count: 25)
       else
-        vimeo_timeline = video.get_uploaded(uid, :max_id => max_id, :count => 50)
+        vimeo_timeline = video.get_uploaded(uid, max_id: max_id, count: 50)
         vimeo_timeline.delete_at(0)
         vimeo_timeline
       end

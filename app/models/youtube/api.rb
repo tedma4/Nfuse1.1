@@ -1,98 +1,34 @@
-module Youtube
-  class Unauthorized < StandardError; end
+module Youtube::Api
+
+  module ClassMethods; end
   
-  class Api
+  module InstanceMethods
 
-    include HTTParty
-
-    def initialize(access_token, max_id)
-      @access_token = access_token
-      @max_id = max_id
-      @key = 'AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI'
+    def base_uri
+      "https://youtube.com/"
     end
 
-  def refresh_token(token)
+    def link_to_video
+      base_uri << "#{@client["user"]["screen_name"]}/status/#{@video["id"]}"
+    end
 
-    response = HTTParty.post('https://accounts.google.com/o/oauth2/token', 
-      :body => { 
-        :grant_type => 'refresh_token', 
-        :refresh_token => token.refresh_token, 
-        :client_id => '585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com', 
-        :client_secret => 'yQjPXajecmamPWswzrEtAkaA'}
-    )
-    refreshhash = JSON.parse(response.body)
-    token.token = refreshhash['access_token']
-    token.expiresat = DateTime.now + refreshhash["expires_in"].to_i.seconds
-    token.save!
-    token.token
+    #def user_url
+    #  base_uri << "#{@tweet["user"]["screen_name"]}"
+    #end
 
   end
-
-  def token_expired?(access_token)
-    if access_token.expiresat 
-      expiry = Time.at(access_token.expiresat)
-    else
-      expiry = Time.now + 2.days
-    end 
-      return true if expiry < Time.now ## expired token, so we should quickly return
-      access_token.expiresat = expiry
-      access_token.save if access_token.changed?
-      false # token not expired. 
-  end
-
-    def api_https_url
-      'https://www.googleapis.com/youtube/v3'
-    end
-
-    def get_channels_for_user
-      if token_expired?(access_token)
-        @access_token = access_token.refresh_token
-      end
-      channel = HTTParty.get("#{api_https_url}/channels?part=id&mine=true&access_token=#{@access_token}&key=#{@key}")
-    	channel['items'].first['id']
-    end
-
-    # get upload playlist from channel
-    def get_uploads_playlist_items(playlist_id)
-      playlists = HTTParty.get("#{api_https_url}/channels?part=id%2C+contentDetails&id=#{playlist_id}&access_token=#{@access_token}&key=#{@key}")
-    	@playlist_items = playlists['items'].first['contentDetails']['relatedPlaylists']['uploads']
-    end
-
-    # fetch videos from a playlist
-    def get_playlist_items(playlist_items, max_id)
-      playlist = HTTParty.get("#{create_url}")
-
-      #video_hash = []
-      #playlist['items'].each do |item|
-#
-      #  video_hash << { "title" => item["snippet"]["title"],
-      #  "video_id" => item["contentDetails"]["videoId"] }
-      #end
-      #video_hash
-    end
-
-    def create_url
-      if @max_id.nil?
-        "#{api_https_url}/playlistItems?part=id%2Csnippet%2CcontentDetails&playlistId=#{playlist_items}&access_token=#{@access_token}&maxResults=5&key=#{@key}"
-      else
-        "#{api_https_url}/playlistItems?part=id%2Csnippet%2CcontentDetails&playlistId=#{playlist_items}&access_token=#{@access_token}&max_id=#{@max_id}&maxResults=25&key=#{@key}"
-      end
-    end
-
-    def get_videos_for
-      playlist_id = get_channels_for_user
-      playlist_items = get_uploads_playlist_items(playlist_id)
-
-      get_playlist_items(playlist_items, max_id)
-    end
+  
+  def self.included(receiver)
+    receiver.extend         ClassMethods
+    receiver.send :include, InstanceMethods
   end
 end
-##
+
 #
-##"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
-##"https://gdata.youtube.com/feeds/api/users/userId/uploads"
-##GET https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true&key={YOUR_API_KEY}
-##GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&id={ID}&key={YOUR_API_KEY}
+#"https://gdata.youtube.com/feeds/api/users/userId/uploads?max-results=1"
+#"https://gdata.youtube.com/feeds/api/users/userId/uploads"
+#GET https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true&key={YOUR_API_KEY}
+#GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&id={ID}&key={YOUR_API_KEY}
 #
 #
 #

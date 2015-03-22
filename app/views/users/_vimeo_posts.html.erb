@@ -9,7 +9,7 @@
   </div>
   <div class="post_content">
     <iframe 
-      src="//player.vimeo.com/video/<%= video.media_id %>" 
+      src="//player.vimeo.com/video/<%= video.video_id %>" 
       width="100%" 
       height="225" 
       frameborder="0" 
@@ -24,21 +24,27 @@
     <%= link_to image_tag("Vimeo.png", :class => "provider_logo", size: "20x20"), post.link_to_video, :target => "_blank" %> 
     <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
   </div>
-  <div class="<%= post.class %>-<%= post.media_id %> post_footer">
+  <div class="<%= post.class %>-<%= post.id %> post_footer">
   </div>
   
 
   <ul class="post_actions">
-    <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"), like_shout_path(post.media_id, key: :vimeo), method: :post, remote: true %>
+    <li class="tilt">
+      <%= link_to image_tag("smilinggray.fw.png", size: "24x24"), 
+        like_shout_path(id:       post.id,
+                        owner_id: post.user.id,
+                        key: :youtube), 
+                        method: :post, remote: true %>
       <%= post.like_score(post.id) %></li>
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
     <li class="vr"></li>
-    <li class="tilt"><%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
-                                 user_nfused_page_path(id: post.id,
-                                                 owner_id: post.user.id,
-                                                 user_id:  current_user.id, key: :vimeo, url: ( video.media_id || '') ),
-                                                 method: :post, remote: true %>
+    <li class="tilt">
+      <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+        user_nfused_page_path(id: post.id,
+                        owner_id: post.user.id,
+                        user_id:  current_user.id, key: :vimeo, url: ( post.id || '') ),
+                        method: :post, remote: true %>
     </li>
     <li class="vr"></li>
       <% unless !current_user?(post.user) %>

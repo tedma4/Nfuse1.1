@@ -9,6 +9,7 @@ class Feed
               :facebook_pagination_id,
               :instagram_max_id,
               :youtube_pagination_id
+              :vimeo_pagination_id
 
 
   def initialize(user=current_user)
@@ -16,11 +17,11 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id)#, youtube_pagination_id, vimeo_pagination_id
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id, youtube_pagination_id, vimeo_pagination_id)#, youtube_pagination_id, vimeo_pagination_id
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
-#                                   youtube_posts(youtube_pagination_id),
+                                   youtube_posts(youtube_pagination_id),
                                    vimeo_posts(vimeo_pagination_id),
                                    users_posts(user_id)
                                    )
@@ -31,10 +32,10 @@ class Feed
     tw = twitter_posts(params[:twitter_pagination])
     fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
-    #yt = youtube_posts(params[:youtube_pagination_id])
+    yt = youtube_posts(params[:youtube_pagination_id])
     vp = vimeo_posts(params[:vimeo_pagination_id])
     up = users_posts(@user.id)
-    TimelineConcatenator.new.merge(tw, ig, fb, up, vp )
+    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt )
   end
 
   private
@@ -75,6 +76,22 @@ class Feed
       vimeo_posts
     else
       vimeo_posts
+    end
+  end
+
+  def youtube_posts(youtube_pagination_id)
+    youtube_posts = []
+    if user_has_provider?('google_oauth2', @user)
+      youtube_timeline = Youtube::Timeline.new(@user)
+      begin
+        youtube_posts = youtube_timeline.posts(youtube_pagination_id).map { |post| Youtube::Post.from(post, @user) }
+        @youtube_pagination_id = youtube_timeline.last_vid_id
+      rescue => e
+        @unauthed_accounts << "google_oauth2"
+      end
+      youtube_posts
+    else
+      youtube_posts
     end
   end
 

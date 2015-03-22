@@ -1,7 +1,11 @@
+require_relative "api"
+
 module Vimeo
 	class Post < TimelineEntry
 
     attr_reader :user
+
+    include Api
 
     def self.from(post, user)
       new(post, user)
@@ -32,8 +36,12 @@ module Vimeo
       "vimeo"
     end
 
-    def post_id
+    def id
       @post["id"]
+    end
+
+    def video_id
+      @post["video_id"]
     end
 
     def post_user
