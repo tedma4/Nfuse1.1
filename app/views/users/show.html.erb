@@ -1,20 +1,6 @@
 <!-- *START* Views/users/show.html.erb  -->
 <% provide(:title, @user.full_name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <div class="main-avatar"><%= image_tag @user.avatar, size: "210x210" %> </div>
-        <div>
-          <ul class="pull-left inline follow-btn">
-            <li><h1><%= @user.full_name %></h1></li>
-            <li><%= render 'follow_form' if signed_in? %></li>
-          </ul>
-        </div>
-    </section>
-    <section>
-      <%= render 'shared/stats' %>
-    </section>
-  </aside>
-
+<p>Delete this page</p>
 </div>
 <!-- *End* Views/users/show.html.erb  -->

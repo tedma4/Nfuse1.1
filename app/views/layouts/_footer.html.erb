@@ -1,26 +1,14 @@
 <!-- *Start* Views/layouts/_footer.html -->
-<footer class="footer">
-  <small>
-    <p> &#169; 2014 Nfuse LLC. All rights reserved     by T n' T </p>
-  </small>
-  <nav>
-    <ul>
-      
-      <li class="footer-link"><%= link_to "About", about_path %></li>
-      <li class="footer-link"><%= link_to "Privacy", privacy_path %></li>
-      <li class="footer-link"><%= link_to "Contact", contacts_path %></li>
-      <li class="footer-link"><%= link_to "Sign up", signup_path %></li>
-      <li class="footer-link"><%= link_to "Log in", signin_path %></li>
-      <li><%= link_to root_path do %>
-                  <%= image_tag('facebook23.fw.png', size: "12x12") %>
-                  <% end %></li>
-      <li><%= link_to root_path do %>
-                  <%= image_tag('twitter13.fw.png', size: "12x12") %>
-                  <% end %></li>
-      <li><%= link_to root_path do %>
-                  <%= image_tag('youtube10.fw.png', size: "12x12") %>
-                  <% end %></li>
-    </ul>
-  </nav>
-</footer>
+<div class="footer center">
+  <ul>
+    <li class="footer-link"><%= link_to "About", about_path %></li>
+    <li class="footer-link"><%= link_to "Privacy", privacy_path %></li>
+    <li class="footer-link"><%= link_to "Contact", contacts_path %></li>
+    <li class="footer-link"><%= link_to "Sign up", signup_path %></li>
+    <li class="footer-link"><%= link_to "Log in", signin_path %></li>
+    <li>
+      <p> &#169; 2014 Nfuse LLC. All rights reserved     by T n' T </p>
+    </li>
+  </ul>
+</div>
 <!-- *End* Views/layouts/_footer.html -->

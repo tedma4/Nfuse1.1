@@ -34,17 +34,17 @@ module Instagram
       @post["id"]
     end
 
-    def profile_picture
-      @post["user"]["profile_picture"]
-    end
-
-    def full_name
-      @post["user"]["full_name"]
-    end
-
-    def user_url
-      "http://www.instagram.com/#{full_name}"
-    end
+    #def profile_picture
+    #  @post["user"]["profile_picture"]
+    #end
+#
+    #def full_name
+    #  @post["user"]["full_name"]
+    #end
+#
+    #def user_url
+    #  "http://www.instagram.com/#{full_name}"
+    #end
 
     def low_resolution_image_url
       @post["images"]["low_resolution"]["url"]
@@ -62,17 +62,17 @@ module Instagram
       @post["link"]
     end
 
-    def comments_count
-      @post["comments"]["count"].to_i
-    end
+    #def comments_count
+    #  @post["comments"]["count"].to_i
+    #end
+#
+    #def comments
+    #  @post["comments"]["data"].map { |comment| Comment.from(comment) }
+    #end
 
-    def comments
-      @post["comments"]["data"].map { |comment| Comment.from(comment) }
-    end
-
-    def likes_count
-      @post["likes"]["count"].to_i
-    end
+    #def likes_count
+    #  @post["likes"]["count"].to_i
+    #end
 
     def type
       @post["type"]

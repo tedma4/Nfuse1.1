@@ -1,15 +1,12 @@
 <!-- *START* Views/users/edit.html.erb  -->
 <% provide(:title, "Edit user") %>
 
-
-
-
     <h1 class="center">Settings</h1>
     <%= simple_form_for(@user, :multipart => true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 <div class="masonJar" id="masonJar">
       <div class="item whiteBox">
-        <h2>Account Info</h2>
+        <h2 class="center">Account Info</h2>
         <table>
           <tr>
             <td><%= f.label :first_name, "First Name" %></td>
@@ -43,7 +40,7 @@
       </div>
 
       <div class="item whiteBox">
-        <h2>Profile Images</h2>
+        <h2 class="center">Profile Images</h2>
         <table>
           <tr>
             <td><p>Your profile pic</p></td>
@@ -59,11 +56,11 @@
       </div>
 
       <div class="item whiteBox">
-        <h2>Networks</h2>
+        <h2 class="center">Networks</h2>
         <table>
           <tr>
             <td><%= render "link_networks" %></td>
-            <td><%= f.submit "Save changes", class: "btn btn-large btn-info" %></td>
+            <td><%= f.submit "Save changes", class: "settingsaveBtn" %></td>
           </tr>
         <% end %>
       </table>

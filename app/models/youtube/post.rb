@@ -1,38 +1,51 @@
-module Youtube
+require_relative "api"
 
+module Youtube
 	class Post < TimelineEntry
 
-    def self.from(youtube_api)
-      new(youtube_api)
+  attr_reader :user
+
+  include Api
+
+    def self.from(post, user)
+      new(post, user)
     end
 
-    def initialize(post)
+    def initialize(post, user)
       @post = post
-      @created_time = Time.at(@post["created_time"].to_i)
+      @user = user
+    end
+
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def avatar
+      @user.avatar(:thumb)
+    end
+
+    def username
+      @user.user_name
     end
 
     def provider
       "google_oauth2"
     end
 
+    def created_time
+      @post.created_at
+    end
+
     def id
       @post["id"]
     end
 
-    def media_id
-      @post["media_id"]
-    end
-
-    def profile_picture
-      @post["user"]["profile_picture"]
+    def video_id
+      @post["video_id"]
     end
 
     def full_name
       @post["user"]["full_name"]
-    end
-
-    def user_url
-      "http://www.instagram.com/#{full_name}"
     end
 
     def link_to_video

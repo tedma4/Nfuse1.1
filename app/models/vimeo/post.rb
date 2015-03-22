@@ -1,11 +1,11 @@
+require_relative "api"
+
 module Vimeo
 	class Post < TimelineEntry
 
     attr_reader :user
 
-	  #def self.get_client
-	  #   Vimeo.new(:access_token => user.tokens.find_by(provider: "vimeo").token)
-	  #end
+    include Api
 
     def self.from(post, user)
       new(post, user)
@@ -36,28 +36,28 @@ module Vimeo
       "vimeo"
     end
 
-    def post_id
+    def id
       @post["id"]
+    end
+
+    def video_id
+      @post["video_id"]
     end
 
     def post_user
       @post['user']
     end
 
-    def profile_picture
-      post_user["profile_image_url_https"]
-    end
-
     #def post_image
     #  @post['media'][0]['media_url'] if @post.fetch('media', nil)
     #end
 
-    def post_image
-      if @post["media"].present?
-        @post["media"][0]["media_url"]
-      else
-        nil
-      end
-    end
+    #def post_image
+    #  if @post["media"].present?
+    #    @post["media"][0]["media_url"]
+    #  else
+    #    nil
+    #  end
+    #end
   end
 end

@@ -3,6 +3,23 @@
   padding: 0;
   background-color: #D2DADD;  
 }
+
+.footer{
+  background-color: #777;
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  z-index: 1;
+}
+
+.footer-link{
+text-decoration: none;
+text-decoration: underline;
+color: #87ceeb;
+
+}
+
 h6 {
   color: blue;
 }
@@ -29,6 +46,7 @@ h6 {
 .atUserName a {
   text-decoration: none;
 }
+
 .container_app_html {
   margin:-10px 0 0 0;
   padding:0;
@@ -362,37 +380,6 @@ ul li a:hover + .hidden, .hidden:hover {
   top: -12px;
   margin-bottom: 0;
 }
-/*  #Footer 
-================================================ */
-.footer{
-  width: 75%;
-  margin-right: 12.5%;
-  margin-left: 12.5%;
-  margin-top: 20px;
-}
-.footer p {
-  float:right;
-  display: inline;
-  padding-left: 53vw;
-}
-.footer-link{
-  margin:8px;
-  padding: 10px;
-  display: inline;
-}
-.footerLinks{
-  display: inline;
-  margin:0px;
-  width:0;  
-}
-.footerLinks a:hover {
-  color: #87CEEB;
-  background-color: #D2DADD; 
-}
-.footerLinks a{
-  background-color: #D2DADD;  
-  color: black;
-}
 /* #Home
 =============================================== */
 .banner {
@@ -519,6 +506,70 @@ background: #87ceeb;
 border: 0;
 cursor: pointer;
 }
+.settingsaveBtn {
+position: relative;
+width: 180px;
+height: 40px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-top: 10px;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
+.followBtn {
+position: relative;
+width: 100px;
+height: 30px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-top: 0px;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
+.unfollowBtn {
+position: relative;
+width: 110px;
+height: 30px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-top: 0px;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #D2DADD;
+border: 0;
+cursor: pointer;
+}
+.createpostBtn {
+position: relative;
+width: 160px;
+height: 34px;
+padding: 0;
+font-size: 1.6em;
+color: white;
+margin-top: 10px;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #87ceeb;
+border: 0;
+cursor: pointer;
+}
 /* #Settings
 ================================================== */
 #settingsTable {
@@ -566,10 +617,10 @@ td {
   padding: 0;
 }
 .follow-btn li {
-  margin: 0;
-  padding:0;
+  margin: 2px;
+  padding: 0px 0px 2px 0px;
   height:25px;
-  font-size: 1.2em;
+  font-size: 1.6em;
   display: block;
 }
 .chatButton {
@@ -777,7 +828,7 @@ td {
   border-radius: 7.5px;
 }
 .user_profile_picture{
-  margin: 0 10px 0 0;
+  margin: 0 5px 0 0;
   padding: 0;
   border-radius: 50px;
 }
