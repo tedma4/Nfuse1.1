@@ -23,8 +23,15 @@
     <%= link_to image_tag("32-youtube.png", :class => "provider_logo", size: "20x20"), post.link_to_video, :target => "_blank" %> 
     <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
   </div>
-  <div class="<%= post.class %>-<%= post.id %> post_footer">
+  <div class="<%= post.class %>-<%= post.id %> post_footer" id="comment_list_<%= post.id %>">
+    <!-- Refactor this. -->
+    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
+      <%= render partial: 'shared/comment', locals: {comment: comment } %>
+    <% end %>
+    <!-- Refactor this. -->
   </div>
+
+  <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
   
   <ul class="post_actions">
     <li class="tilt">
