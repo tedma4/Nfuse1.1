@@ -22,6 +22,11 @@
   </div>
 
   <div class="<%= post.class %>-<%= post.tweet_id %>  post_footer" id="comment_list_<%= post.tweet_id %>">
+    <!-- Refactor this. -->
+    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
+      <%= render partial: 'shared/comment', locals: {comment: comment } %>
+    <% end %>
+    <!-- Refactor this. -->
   </div>
 
   <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
