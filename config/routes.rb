@@ -39,6 +39,15 @@ Rails.application.routes.draw do
     resources :shouts
   end
 
+  scope '/comments' do
+    post '/twitter/:twitter_post_id', to: 'comments#create'
+    post '/instagram/:instagram_post_id', to: 'comments#create'
+    post '/facebook/:facebook_post_id', to: 'comments#create'
+
+    # Add others follow convention
+
+  end
+
   resources :events do
     resources :comments
     member do

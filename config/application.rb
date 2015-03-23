@@ -14,6 +14,10 @@ Bundler.require(*Rails.groups)
 module Nfuse11
   class Application < Rails::Application
     config.serve_static_assets = true
+
+    config.after_initialize do |app|
+      app.config.paths.add 'app/presenters', eager_load: true
+    end
     #config.assets.initialize_on_precompile = false
 
     # Settings in config/environments/* take precedence over those specified here.
