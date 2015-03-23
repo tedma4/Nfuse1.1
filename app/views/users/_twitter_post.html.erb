@@ -21,8 +21,10 @@
     <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
   </div>
 
-  <div class="<%= post.class %>-<%= post.tweet_id %> post_footer">
+  <div class="<%= post.class %>-<%= post.tweet_id %>  post_footer" id="comment_list_<%= post.tweet_id %>">
   </div>
+
+  <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
 
   <ul class="post_actions">
     <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"), 

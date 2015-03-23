@@ -55,19 +55,16 @@
         <% end %>
       </li>
     </ul>
-    <%#= pluralize shout.comments_count, "comment" %>
+
     <div class="post_comments" id="comment_list_<%= shout.id %>">
       <ul>
         <% shout.comments.each do |comment| %>
-          <%= render partial: 'shared/comment', locals: {comment: comment} %>
+          <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
         <% end %>
       </ul>
 
-      <%= form_tag("/shouts/#{shout.id}/comments", method: :post, remote: true) do %>
-        <%= text_field_tag 'comment[body]', 'leave comment' %>
-        <%= hidden_field_tag 'comment[user_id]', current_user.id  %>
-        <%= submit_tag %>
-      <% end %>
+      <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+
     </div>
   </div>
 
