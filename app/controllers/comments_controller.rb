@@ -27,13 +27,13 @@ class CommentsController < ApplicationController
 
   def create
     @commentable = find_commentable
-    @comment = @commentable.comments.new(comment_params)
-    if @comment.update_attribute(:user_id, current_user.id)
-      # redirecting to shout show action..should be a js response..
-      # but thats Brett lol *
-      # redirect_to @commentable, notice: "Comment created."
+
+    if @commentable.is_a? Shout
+      @comment = @commentable.comments.new(comment_params)
+      @comment.update_attribute(:user_id, current_user.id)
     else
-      render :new
+      @comment = @commentable.build(comment_params.merge(@commentable.extras))
+      @comment.update_attribute(:user_id, current_user.id)
     end
   end
 
@@ -58,8 +58,9 @@ class CommentsController < ApplicationController
   end
  
   private
+
   def comment_params
-    params.require(:comment).permit(:body, :user_id)
+    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id )
   end
 
   def correct_user
@@ -67,16 +68,14 @@ class CommentsController < ApplicationController
     redirect_to feed_user_path(@user) if @event.nil?
   end
 
-  #def load_commentable
-  #  resource, id = request.path.split('/')[1, 2]
-  #  @commentable = resource.singularize.classify.constantize.find(id)
-  #end
 
   def find_commentable
     params.each do |name, value|
       # params[:shout_id] = 1
       if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
+          _rs = $1.split('_')
+          return $1.classify.constantize.find(value) if (_rs.length == 1)
+          return Commented.set(_rs[0..1].map(&:capitalize).join('::').classify.constantize, value)
           # @commenentable = Shout.find(1)
       end #|| raise ActiveRecord:NoRecord.new("Couldn\'t find it captain!")
     end 
