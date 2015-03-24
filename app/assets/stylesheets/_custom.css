@@ -6,18 +6,23 @@
 
 .footer{
   background-color: #777;
-  position: fixed;
   bottom: 0;
   height: 50px;
   width: 100%;
   z-index: 1;
 }
-
-.footer-link{
-text-decoration: none;
-text-decoration: underline;
-color: #87ceeb;
-
+.footer_links li {
+  margin-right: 25px;
+}
+.footer_links li a{
+  font-weight: bold;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: black;
+}
+.footer_links li a:hover {
+  text-decoration: none;
+  color: #87CEEB;
 }
 
 h6 {
