@@ -7,12 +7,16 @@
 .footer{
   background-color: #777;
   bottom: 0;
-  height: 50px;
+  height: 40px;
   width: 100%;
   z-index: 1;
 }
 .footer_links li {
-  margin-right: 25px;
+  margin-left: 40px;
+  padding-top: 12px;
+  padding-bottom: 5px;
+  text-align: center;
+
 }
 .footer_links li a{
   font-weight: bold;

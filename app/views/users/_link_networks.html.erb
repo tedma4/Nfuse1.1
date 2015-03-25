@@ -63,5 +63,25 @@
       <% end %>
     </div>
   </div>
+  <div class="network_container">
+    <div class="network_login">
+      <%= link_to image_tag("Flickr-icon.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
+      <% if current_user && user_has_provider?('vimeo') %>
+        <%= link_to "reNfuse Flickr", "/auth/vimeo?origin=#{request.original_url}" %>
+      <% else %>
+        <%= link_to "Nfuse Flickr", "/auth/vimeo?origin=#{request.original_url}" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="network_container">
+    <div class="network_login">
+      <%= link_to image_tag("Vine-Icon.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
+      <% if current_user && user_has_provider?('vimeo') %>
+        <%= link_to "reNfuse Vine", "/auth/vimeo?origin=#{request.original_url}" %>
+      <% else %>
+        <%= link_to "Nfuse Vine", "/auth/vimeo?origin=#{request.original_url}" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 <!-- *End* Views/users/_link_networks.html -->
