@@ -832,7 +832,12 @@ td {
 .provider_logo{
   margin: 0;
   padding: 0;
-  border-radius: 7.5px;
+  border-radius: 10px;
+}
+.instagram_provider_logo{
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
 }
 .user_profile_picture{
   margin: 0 5px 0 0;
