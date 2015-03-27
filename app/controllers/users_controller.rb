@@ -82,7 +82,10 @@ class UsersController < ApplicationController
       instagram_max_id:       feed.instagram_max_id
     )
 
-    render 'show_feed'
+    respond_to do |format|
+      format.json {  render json: @load_more_url }
+      format.html  { render 'show_feed' }
+    end
   end
 
   def explore
