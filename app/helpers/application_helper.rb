@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def available_user
+    current_user
+  end
+
   # Returns the full title on a per-page basis.
   def full_title(page_title)
     page_title.empty? ? 'Nfuse' : ('Nfuse ' << page_title)
