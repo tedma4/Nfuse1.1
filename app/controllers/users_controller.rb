@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include UsersHelper
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
-                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page]
+                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page, :feed]
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     )
 
     respond_to do |format|
-      format.json {  render json: @load_more_url }
+      format.json {  render json: {data: @load_more_url }.to_json  }
       format.html  { render 'show_feed' }
     end
   end
