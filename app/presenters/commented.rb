@@ -16,7 +16,8 @@ class Commented
           'Twitter::Post' => "/comments/twitter/#{id}",
           'Facebook::Post' => "/comments/facebook/#{id}",
           'Instagram::Post' => "/comments/instagram/#{id}",
-          'Youtube::Post' => "/comments/youtube/#{id}"
+          'Youtube::Post' => "/comments/youtube/#{id}",
+          'Vimeo::Post' => "/comments/vimeo/#{id}"
     }
     routes.fetch(obj.class.to_s, "/shouts/#{id}/comments")
   end

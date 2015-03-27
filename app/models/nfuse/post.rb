@@ -82,10 +82,14 @@ module Nfuse
       @shout.pic.url(:medium)
     end
 
-    def is_snip?
-      @shout.is_snip
+    def is_video?
+      @shout.is_video
     end
 
+    def video_url
+      @shout.snip.url(:medium)
+    end
+    
     def snip
       @shout.snip.url(:original)
     end

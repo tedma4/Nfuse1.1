@@ -40,9 +40,11 @@ Rails.application.routes.draw do
   end
 
   scope '/comments' do
-    post '/twitter/:twitter_post_id', to: 'comments#create'
+    post '/twitter/:twitter_post_id',     to: 'comments#create'
     post '/instagram/:instagram_post_id', to: 'comments#create'
-    post '/facebook/:facebook_post_id', to: 'comments#create'
+    post '/facebook/:facebook_post_id',   to: 'comments#create'
+    post '/youtube/:youtube_post_id',     to: 'comments#create'
+    post '/vimeo/:vimeo_post_id',         to: 'comments#create'
 
     # Add others follow convention
 

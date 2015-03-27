@@ -82,7 +82,7 @@ class ShoutsController < ApplicationController
     end
 
   def shout_params
-      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html, :has_content )
+      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html )
     end
 
     def correct_user

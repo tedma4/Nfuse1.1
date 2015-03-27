@@ -19,7 +19,7 @@ gem 'simple_form'
 gem "paperclip", "~> 4.2"
 #gem 'panda'
 # Handles video upload
-gem 'paperclip-av-transcoder'
+gem 'paperclip-ffmpeg', '1.0.0'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'
@@ -27,6 +27,7 @@ gem 'wicked'
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'
 gem "httparty"
+gem 'cocaine', '0.5.3'
 #This allows the use of the facebook oauth 
 gem 'omniauth-facebook', '~> 1.6.0'
 #This allows the use of the twitter oauth
@@ -98,6 +99,7 @@ gem 'ejs', '~> 1.1.1'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+gem 'videojs_rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0', require: false

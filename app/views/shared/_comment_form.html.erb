@@ -1,5 +1,5 @@
 <%= form_tag(shout.form_path , method: :post, remote: true) do %>
-    <%= text_field_tag 'comment[body]', 'leave comment' %>
+    <%= text_area_tag 'comment[body]', 'leave comment' %>
     <%= hidden_field_tag 'comment[user_id]', current_user.id  %>
     <%= submit_tag %>
 <% end %>

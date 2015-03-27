@@ -5,19 +5,26 @@
 }
 
 .footer{
+  margin-top: 100px;
   background-color: #777;
-  position: fixed;
-  bottom: 0;
-  height: 50px;
+  height: 40px;
   width: 100%;
   z-index: 1;
 }
+.footer_links li {
+  margin-left: 40px;
+  text-align: center;
 
-.footer-link{
-text-decoration: none;
-text-decoration: underline;
-color: #87ceeb;
-
+}
+.footer_links li a{
+  font-weight: bold;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: black;
+}
+.footer_links li a:hover {
+  text-decoration: none;
+  color: #87CEEB;
 }
 
 h6 {
@@ -825,7 +832,12 @@ td {
 .provider_logo{
   margin: 0;
   padding: 0;
-  border-radius: 7.5px;
+  border-radius: 10px;
+}
+.instagram_provider_logo{
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
 }
 .user_profile_picture{
   margin: 0 5px 0 0;

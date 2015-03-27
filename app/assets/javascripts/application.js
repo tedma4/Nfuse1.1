@@ -13,6 +13,6 @@
 //***************
 //= require jquery
 //= require jquery_ujs
-//= require chat
 //= require turbolinks
+//= require video
 //= require_tree .
