@@ -9,14 +9,24 @@
   </div><br>
 
   <% if !shout.url.blank? %>
-       <p> <%= shout.url_html %></p>
-        <div class="caption">
-          <li><%= shout.content %></li>
-          <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
-        </div>
-  <% else shout.is_pic? %>
+    <p> <%= shout.url_html %></p>
+    <div class="caption">
+      <li><%= shout.content %></li>
+      <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
+    </div>
+  <% elsif shout.is_pic? %>
     <div class="timeline-user-box">
       <%= image_tag shout.pic_url %>
+    </div>
+    <div class="caption">
+        <li><%= shout.content %></li>
+    </div>
+  <% elsif shout.is_video? %>
+    <div class="timeline-user-box">
+      <video align="center" preload controls style="margin-left: 20%; margin-right: 20%; width:60%; height:226px;">
+      <source src="<%= shout.video_url %>" type="video/ogg">
+      </video>
+      <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
     </div>
     <div class="caption">
         <li><%= shout.content %></li>

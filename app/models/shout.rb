@@ -20,17 +20,17 @@ class Shout < ActiveRecord::Base
   validates_attachment_content_type :pic,
                                     :content_type => ["image/jpg", "image/jpeg", "image/png" ]
 
-  has_attached_file :snip, :styles => {
-                            :medium => { :geometry => "302x226", :format => 'flv' },
-                            :thumb => { :geometry => "100x100#", :format => 'jpg' }
-                         }, :processors => [:transcoder]
+  has_attached_file :snip,  styles: {
+                            medium: { :geometry => "640x480", :format => 'flv' },
+                             thumb: { :geometry => "100x100#", :format => 'jpg' }
+                         }, processors: [:ffmpeg]
   # This was my bad.
   # * http://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
   check_file_types = ->(record) {
                   true if (record.is_pic       = !!(record.pic_content_type))
                   true if (record.is_video     = !!(record.snip_file_name))
                   true if (record.is_link      = !!(record.url))
-                  !!(record.content    = record.content)
+                  !!(record.content            = record.content)
   }
 
   before_create { |record|
