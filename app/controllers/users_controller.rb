@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   def feed_content
     @user = User.find(params[:id])
     feed_builder
-    render 'feed_content', layout: false
+    render 'feed'
   end
 
   def feed
