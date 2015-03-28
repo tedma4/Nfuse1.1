@@ -33,8 +33,10 @@
 
 
   <div class="right">
-    <%= link_to image_tag("Instagram-icon.png", size: "20x20", :class => "instagram_provider_logo"), post.link_to_post, :target => "_blank" %><p class="timeStamp">
-    <%= time_ago_in_words(post.created_time) %> ago</p>
+    <%= link_to image_tag("Instagram-icon.png", size: "20x20", :class => "instagram_provider_logo"), post.link_to_post, :target => "_blank" %>
+    <p class="timeStamp">
+      <%= time_ago_in_words(post.created_time) %> ago
+    </p>
   </div>
     <br>
   <div class="<%= post.class %>-<%= post.id %> post_footer right" id="comment_list_<%= post.id %>">
@@ -58,11 +60,12 @@
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
     <li class="vr"></li>
-    <li class="tilt"><%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
-                                 user_nfused_page_path(id: post.id,
-                                                 owner_id: post.user.id,
-                                                 user_id:  current_user.id, key: :instagram, url: ( post.low_resolution_image_url || '') ),
-                                                 method: :post, remote: true %>
+    <li class="tilt">
+      <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+        user_nfused_page_path(id: post.id,
+                        owner_id: post.user.id,
+                        user_id:  current_user.id, key: :instagram, url: ( post.low_resolution_image_url || '') ),
+                        method: :post, remote: true %>
     </li>
     <li class="vr"></li>
       <% unless !current_user?(post.user) %>

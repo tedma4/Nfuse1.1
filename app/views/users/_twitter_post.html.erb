@@ -18,7 +18,9 @@
 
   <div class="right">
     <%= link_to image_tag("Twitter-Icon.png", :class => "provider_logo", size: "20x20"), post.link_to_tweet, :target => "_blank" %> 
-    <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
+    <p class="timeStamp">
+      <%= time_ago_in_words(post.created_time) %> ago
+    </p>
   </div>
 
   <div class="<%= post.class %>-<%= post.tweet_id %>  post_footer" id="comment_list_<%= post.tweet_id %>">
