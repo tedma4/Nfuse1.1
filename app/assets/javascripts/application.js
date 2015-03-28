@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require video
 //= require_tree .
+//= stub active_admin
