@@ -66,9 +66,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def feed_content
+    @user = User.find(params[:id])
+    feed_builder
+    render 'feed_content', layout: false
+  end
+
   def feed
-    # @user = Find
-    #This controlls a users feed
+    feed_builder
+    render 'show_feed'
+  end
+
+  def feed_builder
     feed                = Feed.new(@user)
     @providers          = Providers.for(@user)
     @timeline           = feed.construct(params)
@@ -78,16 +87,10 @@ class UsersController < ApplicationController
     @commenter_profile_hash        = feed.commenter_profile_hash
 
     @load_more_url = feed_content_path(
-      twitter_pagination:     feed.twitter_pagination_id,
-      facebook_pagination_id: feed.facebook_pagination_id,
-      instagram_max_id:       feed.instagram_max_id,
-      id: @user.id 
-    )
-
-    respond_to do |format|
-      format.json {  render json: {data: @load_more_url }.to_json  }
-      format.html  { render 'show_feed' }
-    end
+        twitter_pagination:     feed.twitter_pagination_id,
+        facebook_pagination_id: feed.facebook_pagination_id,
+        instagram_max_id:       feed.instagram_max_id,
+        id: @user.id)
   end
 
   def explore
