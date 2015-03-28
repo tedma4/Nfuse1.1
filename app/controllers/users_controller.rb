@@ -67,6 +67,7 @@ class UsersController < ApplicationController
   end
 
   def feed
+    # @user = Find
     #This controlls a users feed
     feed                = Feed.new(@user)
     @providers          = Providers.for(@user)
@@ -79,7 +80,8 @@ class UsersController < ApplicationController
     @load_more_url = feed_content_path(
       twitter_pagination:     feed.twitter_pagination_id,
       facebook_pagination_id: feed.facebook_pagination_id,
-      instagram_max_id:       feed.instagram_max_id
+      instagram_max_id:       feed.instagram_max_id,
+      id: @user.id 
     )
 
     respond_to do |format|
