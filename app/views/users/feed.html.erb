@@ -19,7 +19,7 @@
         <%= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
       <% elsif post.provider == "nfuse" %>
         <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-        <%  render partial: 'users/shout', locals: {shout: post} %>
+        <%=  render partial: 'users/shout', locals: {shout: post} %>
       <% elsif post.provider == "google_oauth2" %>
         <%= render partial: "users/youtube_post", locals: {post: post} %>
       <% elsif post.provider == "vimeo" %>
