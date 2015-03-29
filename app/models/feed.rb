@@ -8,8 +8,9 @@ class Feed
               :twitter_pagination_id,
               :facebook_pagination_id,
               :instagram_max_id,
-              :youtube_pagination_id
-              :vimeo_pagination_id
+              :youtube_pagination_id,
+              :vimeo_pagination_id,
+              :nfuse_pagination_id
 
 
   def initialize(user=current_user)
@@ -34,17 +35,33 @@ class Feed
     ig = instagram_posts(params[:instagram_max_id])
     yt = youtube_posts(params[:youtube_pagination_id])
     vp = vimeo_posts(params[:vimeo_pagination_id])
-    up = users_posts(@user.id)
+    up = users_posts(params[:nfuse_post_last_id])
     TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt )
   end
 
   private
 
-  def users_posts(user_id)
-    user = User.find(user_id)
-    user.shouts.map {|shout|
+  def users_posts(shout_id)
+
+    if shout_id.nil?
+      @_shouts = @user.shouts #.limit(50)
+      @nfuse_pagination_id = @_shouts.last.id
+    else
+      shout = Shout.find(shout_id)
+      @_shouts = @user.shouts.where(['created_at > ?', shout.created_at ])
+      @nfuse_pagination_id = @_shouts.last.id
+
+      # require 'pry'
+      # binding.pry
+
+      if @_shouts.count == 1 && @_shouts.first.id == shout_id.to_i
+        @_shouts = []
+      end
+    end
+    @nfuse_shouts = @_shouts.map { |shout|
       Nfuse::Post.new(shout)
     }
+    @nfuse_shouts
   end
 
   def twitter_posts(twitter_pagination_id)
