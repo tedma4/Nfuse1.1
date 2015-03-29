@@ -75,6 +75,7 @@ class UsersController < ApplicationController
   def feed
     feed_builder
     render 'show_feed'
+
   end
 
   def feed_builder
@@ -90,6 +91,7 @@ class UsersController < ApplicationController
         twitter_pagination:     feed.twitter_pagination_id,
         facebook_pagination_id: feed.facebook_pagination_id,
         instagram_max_id:       feed.instagram_max_id,
+        nfuse_post_last_id:     feed.nfuse_pagination_id,
         id: @user.id)
   end
 
