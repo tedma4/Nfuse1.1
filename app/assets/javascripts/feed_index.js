@@ -24,10 +24,13 @@ FeedIndex = {
           reloadOk = true;
           $(".load_posts_link").replaceWith(response);
           $(".loading_message").hide();
+          msnry.destroy();
+          initMasonry();
+          resizeMasonry();
         });
       }
     });
-
+/*
     $(document).on('click', '.create_post_link', function (event) {
       event.preventDefault();
       var div = JST['templates/create_post'](FeedIndex.providers);
@@ -95,7 +98,7 @@ FeedIndex = {
       $.post(endpoint).success(function (response) {
         target.find('.js-facebook-like-count').html(response.likes.data.length);
       });
-    });
+    });*/
   }
 
 };

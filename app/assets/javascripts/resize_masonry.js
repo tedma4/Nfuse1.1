@@ -19,5 +19,4 @@ function resizeMasonry() {
     else if(box > 1700){
       $('.individual_post').css("width", "18.8%");
     }
-    //alert('t');
 }
