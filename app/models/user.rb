@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
   #Because We're paranoid about the ppl who keep signing up. This is our cheap version of security
   validates :intro, presence: true, 
-            inclusion: %w(4081)
+            inclusion: %w(4081), message: "Wrong code, Please try again : )"
 
   # returns a relationship object not a User object.
   # belongs in Relationship model.
