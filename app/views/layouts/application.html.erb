@@ -7,9 +7,9 @@
   <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><%= full_title(yield(:title)) %></title>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <%= javascript_include_tag 'masonry.pkgd.js'%>
@@ -43,6 +43,7 @@
       <% end %>
     </div>
    <script>
+   
      $( document ).ready(function() {
         resizeMasonry();
       });
@@ -50,6 +51,34 @@
         resizeMasonry();
       });
 
+var msnry;
+
+function triggerMasonry() {
+  // don't proceed if masonry has not been initialized
+  if ( !msnry ) {
+    return;
+  }
+  msnry.layout();
+}
+
+function initMasonry() {
+  var container = document.querySelector('#masonJar');
+  msnry = new Masonry( container, {
+      itemSelector: '.item',
+      isAnimated: true,
+      isResizable: true,
+      gutter: 25
+     
+      
+    });
+}
+
+// initialize masonry on document ready
+docReady( function() {
+  initMasonry();
+});
+
+/*
 var $container = $('#masonJar');
 // initialize Masonry after all images have loaded  
 $container.imagesLoaded( function() {
@@ -62,7 +91,7 @@ $container.imagesLoaded( function() {
       
     });
 
-});
+});*/
     
     </script>
   </body>
