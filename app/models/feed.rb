@@ -44,17 +44,18 @@ class Feed
   def users_posts(shout_id)
 
     if shout_id.nil?
-      @_shouts = @user.shouts #.limit(50)
+      @_shouts = @user.shouts# .limit(50)
       @nfuse_pagination_id = @_shouts.last.id
     else
       shout = Shout.find(shout_id)
       @_shouts = @user.shouts.where(['created_at > ?', shout.created_at ])
-      @nfuse_pagination_id = @_shouts.last.id
 
       # require 'pry'
       # binding.pry
 
-      if @_shouts.count == 1 && @_shouts.first.id == shout_id.to_i
+      if @_shouts.count == 1 && @_shouts.first.id == shout_id.to_i 
+        @nfuse_pagination_id = @_shouts.last.id
+
         @_shouts = []
       end
     end
