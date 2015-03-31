@@ -40,9 +40,11 @@ class User < ActiveRecord::Base
   # *images
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :banner, :content_type => ["image/jpg", "image/jpeg", "image/png" ]
+
   # *names
   #
   # VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/i
+  USER_CODE = /\A(?:(4081))\Z/
   VALID_USERNAME_REGEX = %r{\A[a-zA-Z0-9]+.?+_?[a-zA-Z0-9]+\z}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
@@ -60,6 +62,10 @@ class User < ActiveRecord::Base
   validates_format_of :phone_number,
       :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
       :message => "should be a phone number"
+
+  #Because We're paranoid about the ppl who keep signing up. This is our cheap version of security
+  validates :intro, presence: true, 
+            inclusion: %w(4081)
 
   # returns a relationship object not a User object.
   # belongs in Relationship model.
