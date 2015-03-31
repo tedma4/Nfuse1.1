@@ -19,12 +19,12 @@
         <% unless !current_user?(@user) %>
         <li>
           <%= link_to new_shout_path do %>
-            <%= image_tag('add50blk.fw.png', size: "32x32", class: "tilt edit_profile_link") %>
+            <%= image_tag('add50gray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
           <% end %>
         </li>
         <li>
           <%= link_to edit_user_path(session[:user_id]) do %>
-            <%= image_tag('settings48.png', size: "32x32", class: "tilt edit_profile_link") %>
+            <%= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
           <% end %>
         </li>
         <% end %>
