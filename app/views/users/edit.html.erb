@@ -37,6 +37,10 @@
             <td><%= f.password_field :password_confirmation %></td>
           </tr>
           <tr>
+            <td><%= f.label :intro %></td>
+            <td><%= f.text_field :intro %></td>
+          </tr>
+          <tr>
             <td><%= link_to "Log out", signout_path, method: "delete" %></td>
           </tr>
         </table>
