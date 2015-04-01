@@ -2,7 +2,7 @@
 <% provide(:title, "Edit user") %>
 
     <h1 class="center">Settings</h1>
-    <%= simple_form_for(@user, :multipart => true) do |f| %>
+    <%= form_for @user, :html => { :multipart => true } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 <div class="masonJar" id="masonJar">
       <div class="item whiteBox">
