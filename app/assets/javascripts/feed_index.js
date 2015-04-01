@@ -13,10 +13,13 @@ FeedIndex = {
     });
 
     $(document).scroll(function () {
-      var scrollbarPosition = $(this).scrollTop();
-      var documentHeight = $(this).height();
+      //var scrollbarPosition = $(this).scrollTop();
+      //var documentHeight = $(this).height();
 
-      if (documentHeight - scrollbarPosition < 7500 && reloadOk === true) {
+        //Delete this line if it doesn't work
+        if ($(this).height() - $(this).scrollTop() < 7500 && reloadOk === true) {
+
+//      if (documentHeight - scrollbarPosition < 7500 && reloadOk === true) {
         $(".loading_message").show();
         var nextPageUrl = $(".load_posts_link a").attr("href");
         reloadOk = false;
