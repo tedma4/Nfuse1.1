@@ -8,7 +8,7 @@
   <%= render partial: "unauthed_accounts" %>
 <% end %>
 
-<div id="masonJar" class="masonJar js-masonry" data-user-id=<%= @user.id %> >
+<div id="masonJar" class="masonJar js-masonry" data-user-id="<%= @user.id %>" >
   <% if @timeline.present? %>
     <% @timeline.each do |post| %>
       <% if post.provider == 'twitter' %>
