@@ -42,18 +42,19 @@
                         like_shout_path(id: shout.id,
                         owner_id: shout.user.id), 
                          method: :post, remote: true %>
-                        <%= shout.like_score(shout.id) %>
+        <%= shout.like_score(shout.id) %>
       </li>
       <li class="vr"></li>
       <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %></li>
       <li class="vr"></li>
 
-      <li class="tilt"><%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
-                        user_nfused_page_path(id: shout.id,
-                                        owner_id: shout.user.id,
-                                        url: shout_url_html(shout),
-                                        user_id:  available_user.id), 
-                                        method: :post, remote: true %>
+      <li class="tilt">
+        <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+          user_nfused_page_path(id: shout.id,
+                          owner_id: shout.user.id,
+                          url:      shout_url_html(shout),
+                          user_id:  available_user.id), 
+                          method: :post, remote: true %>
       </li>
 
       <li class="vr"></li>
