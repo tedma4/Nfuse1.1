@@ -24,8 +24,11 @@ Rails.application.routes.draw do
 
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
 
+  # on line 27 of routes file replace that block with this.
   scope module: :shouts do
-    scope '/shouts' do
+    # This was breaking the * routes 
+    #  Any character after shout/<c> it thinks is an id.
+    scope '/nfuse_shouts' do
       post "like", to: "likes#create", as: :like_shout
       delete "dislike", to: "likes#destroy", as: :dislike_shout
     end
