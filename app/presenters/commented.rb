@@ -17,9 +17,9 @@ class Commented
           'Facebook::Post' => "/comments/facebook/#{id}",
           'Instagram::Post' => "/comments/instagram/#{id}",
           'Youtube::Post' => "/comments/youtube/#{id}",
-          'Vimeo::Post' => "/comments/vimeo/#{id}"
-          # 'Pinterest::Post' => "/comments/pinterest/#{id}",
-          # 'Flickr::Post' => "/comments/flickr/#{id}"
+          'Vimeo::Post' => "/comments/vimeo/#{id}",
+          'Pinterest::Post' => "/comments/pinterest/#{id}",
+          'Flickr::Post' => "/comments/flickr/#{id}"
     }
     routes.fetch(obj.class.to_s, "/shouts/#{id}/comments")
   end
