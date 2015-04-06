@@ -1,0 +1,79 @@
+<!-- *Start* Views/users/_pinterest_post.html -->
+<div class="individual_post pinterest_post item" data-id="<%= post.id %>" id="content-box-feed">
+  <div class="post_main">
+    <ul class="post_header">
+      <li>
+        <%= link_to image_tag(post.avatar, :class => "user_profile_picture"), feed_user_path(post.user) %>
+      </li>
+      <li class="user_name">
+        <%= link_to "#{post.username}", feed_user_path(post.user) %></li>
+    </ul>
+  </div>
+  <div class="post_content">
+    <% if post.type == "image" %>
+      <ul>
+        <li><%= image_tag(post.low_resolution_image_url, :class => "image_post") %></li>
+        <% if post.caption.present? %>
+          <li><%= post.caption_text %></li>
+        <% end %>
+      </ul><br>
+    <% elsif post.type == "video" %>
+      <ul>
+        <li>
+          <video width="100%" height="258" class="image_post" controls>
+            <source src="<%= post.video %>" type="video/mp4">
+          </video>
+        </li>
+        <% if post.caption.present? %>
+          <li><%= post.caption_text %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>&nbsp;
+
+
+  <div class="right">
+    <%= link_to image_tag("Pinterest-Icon.png", size: "20x20", :class => "pinterest_provider_logo"), post.link_to_post, :target => "_blank" %>
+    <p class="timeStamp">
+      <%= time_ago_in_words(post.created_time) %> ago
+    </p>
+  </div>
+    <br>
+  <div class="<%= post.class %>-<%= post.id %> post_footer right" id="comment_list_<%= post.id %>">
+    <!-- Refactor this. -->
+    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
+      <%= render partial: 'shared/comment', locals: {comment: comment } %>
+    <% end %>
+    <!-- Refactor this. -->
+  </div>
+
+  <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
+  
+  <ul class="post_actions">
+    <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+     like_shout_path(id: post.id, 
+               owner_id: post.user.id, 
+               key: :pinterest), 
+               method: :post, remote: true %>
+     <%= post.like_score(post.id) %>
+    </li>
+    <li class="vr"></li>
+    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
+    <li class="vr"></li>
+    <li class="tilt">
+      <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+        user_nfused_page_path(id: post.id,
+                        owner_id: post.user.id,
+                        user_id:  current_user.id, key: :pinterest, url: ( post.low_resolution_image_url || '') ),
+                        method: :post, remote: true %>
+    </li>
+    <li class="vr"></li>
+      <% unless !current_user?(post.user) %>
+        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <% else %>
+        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <% end %>
+  </ul>
+
+</div>
+<!-- *End* Views/users/_pinterest_post.html -->
