@@ -34,6 +34,10 @@ class Token < ActiveRecord::Base
       update_or_create_token(id, auth, 'google_oauth2')
     end
 
+    def update_or_create_with_flickr_omniauth(id, auth)
+      update_or_create_token(id, auth, 'flickr')
+    end
+
     def update_or_create_with_other_omniauth(id, auth)
       # defaults to basic.
       update_or_create_token(id, auth)
@@ -102,6 +106,11 @@ class Token < ActiveRecord::Base
       @token.access_token_secret = credentials_secret
     end
 
+    def flickr_token
+      @token.access_token        = credentials_token
+      @token.access_token_secret = credentials_secret
+    end
+
     # def facebook_token; end
     # def instagram_token; end
 
@@ -154,4 +163,31 @@ class Token < ActiveRecord::Base
       #expires_at: expiresat,
       )
   end
+
+  def configure_flickr(access_token, access_token_secret)
+    client = FlickRaw::Flickr.new(
+      api_key: "ec04c20311cc5a72e44ab79d78120e05",
+      shared_secret: "139707d9a2d0a8a0",
+      client_access_token: access_token,
+      client_refresh_token: access_token_secret
+      )
+  end
 end
+
+# FlickRaw.api_key="... Your API key ..."
+# FlickRaw.shared_secret="... Your shared secret ..."
+
+# token = flickr.get_request_token
+# auth_url = flickr.get_authorize_url(token['oauth_token'], :perms => 'delete')
+
+# puts "Open this url in your process to complete the authication process : #{auth_url}"
+# puts "Copy here the number given when you complete the process."
+# verify = gets.strip
+
+# begin
+#   flickr.get_access_token(token['oauth_token'], token['oauth_token_secret'], verify)
+#   login = flickr.test.login
+#   puts "You are now authenticated as #{login.username} with token #{flickr.access_token} and secret #{flickr.access_secret}"
+# rescue FlickRaw::FailedResponse => e
+#   puts "Authentication failed : #{e.msg}"
+# end
