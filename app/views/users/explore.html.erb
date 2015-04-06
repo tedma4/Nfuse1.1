@@ -13,6 +13,14 @@
                                                           commenter_profile_hash: @commenter_profile_hash} %>
     <% elsif post.provider == "nfuse" %>
       <%=  render partial: "users/shout", locals: {shout: post} %>
+      <% elsif post.provider == "google_oauth2" %>
+        <%= render partial: "users/youtube_post", locals: {post: post} %>
+      <% elsif post.provider == "vimeo" %>
+        <%= render partial: "users/vimeo_posts", locals: {post: post} %>
+      <% elsif post.provider == "pinterest" %>
+        <%= render partial: "users/pinterest_post", locals: {post: post} %>
+      <% elsif post.provider == "flickr" %>
+        <%= render partial: "users/flickr_post", locals: {post: post} %>
     <% end %>
   <% end %>
 </div>
