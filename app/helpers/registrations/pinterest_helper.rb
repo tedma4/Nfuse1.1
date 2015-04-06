@@ -1,0 +1,2 @@
+module Registrations::PinterestHelper
+end
