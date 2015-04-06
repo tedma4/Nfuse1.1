@@ -1,4 +1,4 @@
-<!-- *Start* Views/callback_links/callbacks.html -->
+*Start* Views/callback_links/callbacks.html -->
   <div class="containertotalSignup">
     <div class="containercallbacks">
       <h1 class="center"> Network Nfusion</h1>
@@ -57,22 +57,22 @@
           </td>
         </tr>
         <tr>
-          <td><%= link_to image_tag("Pinterest-Icon.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
+          <td><%= link_to image_tag("Pinterest-Icon.png", size: "100x100"), "/auth/pinterest?origin=#{request.original_url}", :class => "network_login_link" %>
           </td>
-          <td><% if current_user && user_has_provider?('vimeo') %>
-              <%= link_to "reNfuse Pinterest", "/auth/vimeo?origin=#{request.original_url}" %>
+          <td><% if current_user && user_has_provider?('pinterest') %>
+              <%= link_to "reNfuse Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
               <% else %>
-              <%= link_to "Nfuse Pinterest", "/auth/vimeo?origin=#{request.original_url}" %>
+              <%= link_to "Nfuse Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
               <% end %>
           </td>
         </tr>
         <tr>
-          <td><%= link_to image_tag("Flickr-icon.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
+          <td><%= link_to image_tag("Flickr-icon.png", size: "100x100"), "/auth/flickr?origin=#{request.original_url}", :class => "network_login_link" %>
           </td>
-          <td><% if current_user && user_has_provider?('vimeo') %>
-              <%= link_to "reNfuse Flickr", "/auth/vimeo?origin=#{request.original_url}" %>
+          <td><% if current_user && user_has_provider?('flickr') %>
+              <%= link_to "reNfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
               <% else %>
-              <%= link_to "Nfuse Flickr", "/auth/vimeo?origin=#{request.original_url}" %>
+              <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
               <% end %>
           </td>
         </tr>
@@ -90,4 +90,4 @@
       <div class="floatRight"> <%= link_to "Next", next_wizard_path %> </div>
     </div>
   </div>
-<!-- *End* Views/callback_links/callbacks.html -->
+<!-- *End* Views/callback_links/callbacks.html
