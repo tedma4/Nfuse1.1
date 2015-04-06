@@ -32,8 +32,16 @@ class Providers
     @user.posts.where(provider: 'nfuse').count > 0 
   end
 
+  def pinterest?
+    @user.tokens.where(provider: 'pinterest').count > 0
+  end
+
+  def flickr?
+    @user.posts.where(provider: 'flickr').count > 0 
+  end
+
   def none?
-    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse?)
+    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse?)# || pinterest? || flickr?
   end
 
 end

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     # This was breaking the * routes 
     #  Any character after shout/<c> it thinks is an id.
     scope '/nfuse_shouts' do
-      post "like", to: "likes#create", as: :like_shout
+      post "like", to: "likes#create",       as: :like_shout
       delete "dislike", to: "likes#destroy", as: :dislike_shout
     end
   end
@@ -56,12 +56,12 @@ Rails.application.routes.draw do
   resources :events do
     resources :comments
     member do
-      put "like", to: "events#like"
+      put "like",    to: "events#like"
       put "dislike", to: "events#dislike"
     end
   end
   
-  resources :contacts, only: [:new, :create]
+  resources :contacts,      only: [:new, :create]
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
@@ -69,19 +69,19 @@ Rails.application.routes.draw do
   # Authentication and Settings
   get    '/signup',   to: 'users#new'
   get    '/signin',   to: 'sessions#new'
-  get '/signout',  to: 'sessions#destroy'
+  get '/signout',     to: 'sessions#destroy'
   get    '/settings', to: 'users#settings'
   #get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages
-  get '/help',     to: 'pages#help'
+  get '/help',              to: 'pages#help'
   get '/notifications',     to: 'pages#notifications'
-  get '/about',    to: 'pages#about'
-  get '/feedback', to: 'pages#feedback'
-  get '/terms',    to: 'pages#terms'
-  get '/privacy',  to: 'pages#privacy'
-  get '/qanda',    to: 'pages#qanda'
-  get '/preview',  to: 'shouts#preview'
+  get '/about',             to: 'pages#about'
+  get '/feedback',          to: 'pages#feedback'
+  get '/terms',             to: 'pages#terms'
+  get '/privacy',           to: 'pages#privacy'
+  get '/qanda',             to: 'pages#qanda'
+  get '/preview',           to: 'shouts#preview'
 
   get '/contacts', to: 'contacts#new'
 
@@ -96,6 +96,8 @@ Rails.application.routes.draw do
     get '/facebook/callback',      to: 'registrations/facebook#create'
     get '/google_oauth2/callback', to: 'registrations/youtube#create'
     get '/vimeo/callback',         to: 'registrations/vimeo#create'
+    get '/pinterest/callback',     to: 'registrations/pinterest#create'
+    get '/flickr/callback',        to: 'registrations/flickr#create'
   end
 
   # Likes

@@ -43,6 +43,14 @@ class Shouts::LikesController < ApplicationController
     Vimeo::Vote.create(vote_params) 
   end
 
+  def pinterest
+    Pinterest::Vote.create(vote_params)
+  end
+
+  def flickr
+    Flickr::Vote.create(vote_params) 
+  end
+
   def vote_params
    {votable_id: params[:id], voter_id: current_user.id, owner_id: params[:owner_id]}
   end
