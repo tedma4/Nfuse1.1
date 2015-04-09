@@ -1,51 +1,51 @@
-require_relative "api"
+# require_relative "api"
 
-module FLickr
-	class Post < TimelineEntry
+# module FLickr
+# 	class Post < TimelineEntry
 
-  attr_reader :user
+#   attr_reader :user
 
-  include Api
+#   #include Api
 
-    def self.from(post, user)
-      new(post, user)
-    end
+#     def self.from(post, user)
+#       new(post, user)
+#     end
 
-    def initialize(post, user)
-      @post = post
-      @user = user
-    end
+#     def initialize(post, user)
+#       @post = post
+#       @user = user
+#     end
 
-    def like_score(id)
-      ActsAsVotable::Vote.where(votable_id: id).count
-    end
+#     def like_score(id)
+#       ActsAsVotable::Vote.where(votable_id: id).count
+#     end
 
-    def avatar
-      @user.avatar(:thumb)
-    end
+#     def avatar
+#       @user.avatar(:thumb)
+#     end
 
-    def username
-      @user.user_name
-    end
+#     def username
+#       @user.user_name
+#     end
 
-    def provider
-      "flickr"
-    end
+#     def provider
+#       "flickr"
+#     end
 
-    def created_time
-      @post.created_at
-    end
+#     def created_time
+#       @post.created_at
+#     end
 
-    def id
-      @post["id"]
-    end
+#     def id
+#       @post["id"]
+#     end
 
-    def full_name
-      @post["user"]["full_name"]
-    end
+#     def full_name
+#       @post["user"]["full_name"]
+#     end
 
-    def link_to_video
-      @post["link"]
-    end
-  end
-end
+#     def link_to_video
+#       @post["link"]
+#     end
+#   end
+# end

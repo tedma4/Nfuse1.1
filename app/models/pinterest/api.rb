@@ -1,25 +1,25 @@
-module Pinterest::Api
+# module Pinterest::Api
 
-  module ClassMethods; end
+#   module ClassMethods; end
   
-  module InstanceMethods
+#   module InstanceMethods
 
-    def base_uri
-      "https://pinterest.com/"
-    end
+#     def base_uri
+#       "https://pinterest.com/"
+#     end
 
-    def link_to_video
-      base_uri << "#{@post["user"]["screen_name"]}/status/#{@post["id"]}"
-    end
+#     def link_to_video
+#       base_uri << "#{@post["user"]["screen_name"]}/status/#{@post["id"]}"
+#     end
 
-    #def user_url
-    #  base_uri << "#{@post["user"]["screen_name"]}"
-    #end
+#     #def user_url
+#     #  base_uri << "#{@post["user"]["screen_name"]}"
+#     #end
 
-  end
+#   end
   
-  def self.included(receiver)
-    receiver.extend         ClassMethods
-    receiver.send :include, InstanceMethods
-  end
-end
+#   def self.included(receiver)
+#     receiver.extend         ClassMethods
+#     receiver.send :include, InstanceMethods
+#   end
+# end
