@@ -439,7 +439,6 @@ GEM
     wicked (1.1.1)
       rails (>= 3.0.7)
     will_paginate (3.0.7)
-    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -503,7 +502,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 4.1.2)
   rails-erd
-  rails_12factor (~> 0.0.2)
+  rails_12factor (~> 0.0.3)
   rmagick (~> 2.13.2)
   rspec-collection_matchers
   rspec-rails (~> 3.1.0)
