@@ -1,28 +1,38 @@
 <!-- *Start* Views/callback_links/avatar_pic.html -->
 <% provide(:title, "Step 3") %>
 
-
-<div class="container">
-  <div class="container_avatar_wizard">
-    <h1 class="center">Almost There!</h1>
-    <%= form_for(@user, :multipart => true) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-        <h2>Upload a Profile Picture</h2>
-
-        <%= f.file_field :avatar, id: "pictureInput"  %>
-       
-        <div id="target"> <%= image_tag @user.avatar(:medium) %> </div>
-        
-        <h2>Upload a Profile Banner</h2>
-      
-        <%= f.file_field :banner, id: "pictureInput2"  %>
-        
-        <div id="target2"> <%= image_tag @user.banner(:medium) %></div>
-              
-       <%= f.submit "Save changes", class: "btn btn-large btn-info" %>
-        <% end %><br><br>
-      <%= link_to "Skip step", next_wizard_path %>
+<div class="Alignthisorelse">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3 form-box wow fadeInUp">
+        <div class="form-top">
+          <div class="form-top-left">
+            <h3><strong>Choose you profile images</strong></h3>
+              <p>Almost there!!! Last step to create your profile.</p>
+          </div>
+          <div class="form-top-right">
+            <span aria-hidden="true" class="typcn typcn-image-outline"></span>
+          </div>
+        </div>
+        <div class="form-bottom">
+          <div class="Alignthisorelse">
+            <%= form_for(@user, :multipart => true, html:{role: "form"}) do |f| %>
+              <h3>Upload a Profile Picture</h3>
+              <%= f.file_field :avatar, id: "pictureInput"  %>
+              <div id="target"> <%= image_tag @user.avatar(:medium) %> </div>
+              <h3>Upload a Profile Banner</h3>
+              <%= f.file_field :banner, id: "pictureInput2"  %>
+              <div id="target2"> <%= image_tag @user.banner(:medium) %></div>
+              <%= f.submit "Save changes", class: "btn btn-link-1", type: "submit" %>
+              <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
   <script>
     $(function() {
       $('#pictureInput').on('change', function(event) {
@@ -57,5 +67,4 @@
       });
     });
   </script>
-  </div>
 <!-- *End* Views/callback_links/avatar_pic.html -->

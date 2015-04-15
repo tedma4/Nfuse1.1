@@ -1,14 +1,12 @@
 <div><%= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
-
 <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
 </div>
-
 <div class="profile_bar">
   <div class="inLineLeft">
-    <h1><%= @user.full_name%><br> 
+    <h2 class="user-full-name"><%= @user.full_name%><br> 
       <span class="atUserName">@<%= link_to @user.user_name, feed_user_path(@user)%></span>
-    </h1>
+    </h2>
   </div>
   <div class="inLineRight">
     <ul>
@@ -31,5 +29,5 @@
       </li>
     </ul>
   </div>
-  <%= render 'shared/stats' %>
+      <%= render 'shared/stats' %>
 </div>

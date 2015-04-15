@@ -1,29 +1,42 @@
 <!-- *Start* Views/sessions/new.html -->
 <% provide(:title, "Log in") %>
-
-<div class="container" id="content-box-signup">
-	<div class="containerLogin">
-    <%= form_for(:session, url: sessions_path) do |f| %>
-    <h1 class="center">Log In</h1>
-		<table class="center loginTABLE">
-			<tr>
-				<td><%= f.label :email %></td>
-				<td><%= f.text_field :email %></td>
-			</tr>
-			<tr>
-				<td><%= f.label :password %></td>
-				<td><%= f.password_field :password %></td>
-			</tr>
-			<tr>
-				<td><%= f.submit "Log In", class: "loginBtn center" %></td>
-  		<% end %>
-				<td><%= link_to "Forgot password?", new_password_reset_path %></td>
-			</tr>
-			<tr>
-				<td>New user?</td>
-				<td><%= link_to "Sign up now!", signup_path %></td>
-			</tr>
-		</table>
+<style type="text/css">
+	.login-padding{
+		margin-top: 20vh;
+	}
+</style>
+<div class="Alignthisorelse">
+  <div class="container login-padding">
+    <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
+      <div class="form-top">
+        <div class="form-top-left">
+          <h3><strong>Log In Right Now!!!<strong></h3>
+            <p>Discover what you've missed since last time.</p>
+        </div>
+        <div class="form-top-right">
+          <span aria-hidden="true" class="typcn typcn-lock-closed-outline"></span>
+        </div>
+      </div>
+      <div class="form-bottom">
+      		<%= form_for(:session, url: sessions_path, html: { role: "form"}) do |f| %>
+            <div class="form-group">
+              <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :password, :placeholder => "Password", class: "form-password form-control", id:"form-password", type: "password" %>
+            </div>
+              <button
+              <%= f.submit "Create my account", class: "btn" %>> Log in!
+              </button>
+            <div class="form-links">
+             	  <%= link_to "Forgot password?", new_password_reset_path %>
+  							|
+  							<%= link_to "Sign up now!", signup_path %>
+            </div>
+          <% end %>
+      </div>
+    </div>
   </div>
 </div>
+
 <!-- *End* Views/sessions/new.html -->

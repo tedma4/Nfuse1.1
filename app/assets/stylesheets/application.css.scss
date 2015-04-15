@@ -11,6 +11,14 @@
  * file per style scope.
  *
  *= require video-js
+ *= require bootstrap
+ *= require bootstrap.min
+ *= require bootstrap-theme
+ *= require form-elements
+ *= require animate
+ *= require magnific-popup
+ *= require media-queries
+ *= require typicons
  */
 @import "bourbon";
 @import "grid_settings";
@@ -27,6 +35,13 @@ $box-shadow-gray: #737373;
 $footer-height: 4em;
 
 @import "feed";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-theme";
+@import "animate";
+@import "magnific-popup";
+@import "media-queries";
+@import "form-elements";
 @import "posting";
 @import "custom";
 @import "foxycomplete";

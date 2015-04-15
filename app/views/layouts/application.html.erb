@@ -30,17 +30,9 @@
           <%= value %>
         </div>
       <% end %>
-
-        <div class="content_container_app_html">
-          <%= yield %>
-        </div>
-          <% if signed_in? %>
-            <%= debug(params) if Rails.env.development? %>
-          <% else %>
-            <div class="footer">
-              <%= render 'layouts/footer' %>
-            </div>
-      <% end %>
+      <div class="content_container_app_html">
+        <%= yield %>
+      </div>
     </div>
    <script>
    

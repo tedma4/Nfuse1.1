@@ -1,8 +1,13 @@
 <!-- *Start* Views/layouts/_header.html -->
-<div class="navSpacing"></div>
-<div class="navbarBack">
-<nav class="navbar" role="navigation">
-  <div class="inLineLeft">
+<style type="text/css">
+  .input-bg {
+    background-color: #fff;
+  }
+</style>
+<div class="Ourfuckinthing"></div>
+<div class="headerBack">
+<nav class="header" role="navigation">
+  <div class="header_inLineLeft">
     <ul>
       <li><%= link_to root_path do %>
           <%= image_tag('Full-Logo.png', size: "151x47") %>
@@ -11,11 +16,11 @@
     </ul>
   </div>
 
- <% if signed_in? %> <!-- if signed in _header-->
-  <ul class="navbar-left">
+<% if signed_in? %> <!-- if signed in _header-->
+  <ul class="header_inlineleft">
     <li>
       <%= form_tag search_path, method: "get", class: "search-bar" do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search"%>
       <% end %>
     </li>
   </ul>
@@ -59,22 +64,23 @@
   </div>
 
 
- <% else %> <!-- else _header-->
+<% else %> <!-- else _header-->
 
-  <div class="inLineRight">
-    <%= form_for(:session, url: sessions_path, html: { class: "loginForm" }) do |f| %>
-      <span>
-       <%= f.text_field :email, placeholder: "Email", class: "navbarInput" %>
-      </span>
-      <span>
-        <%= f.password_field :password, placeholder: "Password", class: "navbarInput" %>
-      </span>
-      <span>
-         <%= f.submit "Log in", class: "button", id: "loginButton" %>
-      </span>
-     <% end %>
+  <div class="login_form_position">
+      <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="typcn typcn-beer"></i></span>
+          <%= f.text_field :email, placeholder: "Email", class: "form-control input-bg", id: "email", type: "email" %>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="typcn typcn-lock-closed-outline"></i></span>
+          <%= f.text_field :password, placeholder: "Password", class: "form-control input-bg", id: "password", type: "password" %>
+      </div>
+      <button         
+        <%= f.submit "Create my account", class: "btn btn-link-login ", type: "submit" %>> Log in!
+      </button>
+    <% end %>
   </div>
-
 <% end %>
 
 </nav>

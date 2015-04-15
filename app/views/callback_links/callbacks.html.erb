@@ -1,93 +1,130 @@
-*Start* Views/callback_links/callbacks.html -->
-  <div class="containertotalSignup">
-    <div class="containercallbacks">
-      <h1 class="center"> Network Nfusion</h1>
-      <p class="center"> Share your social life with Nfuse</p>
-      <table class="inLineLeft">
-        <tr>  
-          <td><%= link_to image_tag("Twitter-Icon.png", size: "100x100"), "/auth/twitter?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('twitter') %>
-            <%= link_to "reNfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
-            <% else %>
-            <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= link_to image_tag("Facebook-Icon.png", size: "100x100"), "/auth/facebook?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('facebook') %>
-              <%= link_to "reNfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= link_to image_tag("Instagram-icon.png", size: "100x100"), "/auth/instagram?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('instagram') %>
-              <%= link_to "reNfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-      </table>
-      <table>
-        <tr>
-          <td><%= link_to image_tag("Youtube-Icon.png", size: "100x100"), "/auth/google_oauth2?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('google_oauth2') %>
-              <%= link_to "reNfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= link_to image_tag("Vimeo.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('vimeo') %>
-              <%= link_to "reNfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= link_to image_tag("Pinterest-Icon.png", size: "100x100"), "/auth/pinterest?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('pinterest') %>
-              <%= link_to "reNfuse Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= link_to image_tag("Flickr-icon.png", size: "100x100"), "/auth/flickr?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('flickr') %>
-              <%= link_to "reNfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= link_to image_tag("Vine-Icon.png", size: "100x100"), "/auth/vimeo?origin=#{request.original_url}", :class => "network_login_link" %>
-          </td>
-          <td><% if current_user && user_has_provider?('vimeo') %>
-              <%= link_to "reNfuse Vine", "/auth/vimeo?origin=#{request.original_url}" %>
-              <% else %>
-              <%= link_to "Nfuse Vine", "/auth/vimeo?origin=#{request.original_url}" %>
-              <% end %>
-          </td>
-        </tr>
-      </table>
-      <div class="floatRight"> <%= link_to "Next", next_wizard_path %> </div>
-    </div>
-  </div>
+<!-- *Start* Views/callback_links/callbacks.html -->
+
+<style type="text/css">
+  .sup-padding{
+    margin-top: 26px;
+  }
+</style>
+
+<div class="Alignthisorelse sup-padding">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-10 col-sm-offset-1 form-box wow fadeInUp">
+                <div class="form-top">
+                  <div class="form-top-left">
+                    <h2><strong>Network Nfusion.</strong></h2>
+                      <p>Share your social life with Everyone.</p>
+                  </div>
+                  <div class="form-top-right">
+                    <span aria-hidden="true" class="typcn typcn-point-of-interest-outline"></span>
+                  </div>
+                  </div>
+                  <div class="form-bottom-sup-nfusion">
+                <form role="form">
+                  <div class="Alignthisorelse">
+                    <div class="features-container section-container">
+                      <div class="container">
+                          <div class="row">
+                            <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-facebook"></span>
+                              </div>
+                                <h3><strong>Facebook<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('facebook') %>
+                                  <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+                                  <% else %>
+                                  <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+                                  <% end %>
+                            </div>
+                            <div class="col-sm-3 features-box wow fadeInDown">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-twitter"></span>
+                              </div>
+                                <h3><strong>Twitter<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('twitter') %>
+                                <%= link_to "You've Nfused Twitter", "/auth/twitter?origin=#{request.original_url}" %>
+                                <% else %>
+                                <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
+                                <% end %>
+                            </div>
+                            <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-instagram"></span>
+                              </div>
+                                <h3><strong>Instagram<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('instagram') %>
+                                  <%= link_to "You've Nfused Instagram", "/auth/instagram?origin=#{request.original_url}" %>
+                                  <% else %>
+                                  <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
+                                  <% end %>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-3 features-box wow fadeInUp">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-youtube"></span>
+                              </div>
+                                <h3><strong>Youtube<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('google_oauth2') %>
+                                  <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+                                  <% else %>
+                                  <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+                                  <% end %>
+                              </div>
+                              <div class="col-sm-3 features-box features-box-gray wow fadeInDown">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-vimeo"></span>
+                              </div>
+                                <h3><strong>Vimeo<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('vimeo') %>
+                                  <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+                                  <% else %>
+                                  <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+                                  <% end %>
+                              </div>
+                              <div class="col-sm-3 features-box wow fadeInUp">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-pinterest"></span>
+                              </div>
+                                <h3><strong>Pinterest<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('pinterest') %>
+                                  <%= link_to "You've Nfused Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
+                                  <% else %>
+                                  <%= link_to "Nfuse Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
+                                  <% end %>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                              <div class="features-box-icon">
+                                <span aria-hidden="true" class="typcn typcn-social-flickr"></span>
+                              </div>
+                                <h3><strong>Flickr<strong></h3>
+                                <p>This is for catchy slogan.</p>
+                              <% if current_user && user_has_provider?('flickr') %>
+                                  <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+                                  <% else %>
+                                  <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+                                  <% end %>
+                            </div>
+                              <div class="col-sm-3 features-box wow fadeInDown">
+                                <h3><strong>Done Nfusing?<strong></h3>
+                                <%= link_to "Next", next_wizard_path, class: "btn btn-link-1" %>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              </div>
+          </div>
+      </div>
+</div>
 <!-- *End* Views/callback_links/callbacks.html

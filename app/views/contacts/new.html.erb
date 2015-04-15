@@ -1,65 +1,75 @@
 <!-- *Start* Views/contacts/new.html -->
 <% provide(:title, 'Contact') %>
 
-<div class="containertotalSignup">
-  <div class="containerSignup">
+<style type="text/css">
+  .message-padding{
+    margin-top: 20vh;
+  }
+</style>
+<div class="Alignthisorelse">
+<div class="container message-padding">
+  <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
     <% if signed_in? %> <!-- if signed in contacts/new-->
-      <h1 class=" center fb-hd">Nprove Nfuse</h1>
-      <p class="center fb-par"> We work hard to make Nfuse an easy and pleasant experience, that’s why we need your help to keep getting better. Any advice you could give us about Nfuse will be awesome, we look forward to hearing from you. Thanks! </p>
-
-      <%= form_for @contact do |f| %>
-        <table class="signupTable">
-        <tr>
-          <td><%= f.label :full_name %></td>
-          <td><%= f.text_field :full_name, :required => true %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :email %></td>
-          <td><%= f.text_field :email, :required => true %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :message %></td>
-          <td><%= f.text_area :message, :required => true %></td>
-        </tr>
-        <tr> 
-          <td>
-            <div style="display: none;">
-              <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
-            </div>
-          </td>
-        </tr>
-        </table>
+      <div class="form-top">
+        <div class="form-top-left">
+          <h3><strong>Nprove Nfuse<strong></h3>
+          <p> Any advice you could give us about Nfuse will be awesome, Thanks! </p>
+        </div>
+        <div class="form-top-right">
+          <span aria-hidden="true" class="typcn typcn-mail"></span>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for @contact, html: {role: "form"} do |f| %>
+          <div class="form-group">
+            <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-full-name form-control", id:"form-full-name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :message, :placeholder => "Message", class: "form-message form-control", id:"form-message" %>
+          </div>
+          <div style="display: none;">
+            <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
+          </div>
           <p class ="center fb-par-btm"> If you need to contact us about anything besides feedback just fill out the form and we will get back to you as soon as possible. Nothing on your mind right now? Don’t worry, this form will be available for you to leave us your thoughts whenever you feel like it. </p>
-        <%= f.submit 'Send Feedback', :class=> "feedbackBtn" %>
-      <% end %>
-
+          <button
+          <%= f.submit "Send", class: "btn" %>> Send!
+          </button>
+        <% end %>            
+      </div>
     <% else %> <!-- else contacts/new-->
-      <%= form_for @contact do |f| %>
-        <h1 class="center">Send A Message</h1>
-        <table class="signupTable">
-          <tr>
-            <td><%= f.label :full_name %></td>
-            <td><%= f.text_field :full_name, :required => true %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :email %></td>
-            <td><%= f.text_field :email, :required => true %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :message %></td>
-            <td><%= f.text_area :message, :required => true %></td>
-          </tr>
-          <tr>
-            <td>
-              <div style="display: none;">
-                <%= f.text_field :nickname %>
-              </div>
-            </td>
-          </tr>
-        </table>
-        <%= f.submit 'Send', class: "contactBtn" %>
-      <% end %>
+      <div class="form-top">
+        <div class="form-top-left">
+          <h3><strong>Send A Message<strong></h3>
+          <p>Contact Nfuse for anything you need help with.</p>
+        </div>
+        <div class="form-top-right">
+          <span aria-hidden="true" class="typcn typcn-mail"></span>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for @contact, html: {role: "form"} do |f| %>
+          <div class="form-group">
+            <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-full-name form-control", id:"form-full-name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :message, :placeholder => "Message", class: "form-message form-control", id:"form-message" %>
+          </div>
+          <div style="display: none;">
+            <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
+          </div>
+          <button
+          <%= f.submit "Send", class: "btn" %>> Send!
+          </button>
+        <% end %>
+      </div>
     <% end %>
   </div>
+</div>
 </div>
 <!-- *End* Views/contacts/new.html -->

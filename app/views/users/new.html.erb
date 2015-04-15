@@ -1,51 +1,57 @@
 <!-- *START* Views/users/new.html.erb  -->
 <% provide(:title, 'Sign up') %>
-
-<div class="containertotalSignup">
-  <div class="containerSignup">
-    <%= form_for(@user) do |f| %>
-    <div class="error_messages">
-      <ul>
-        <%= render 'shared/error_messages', object: f.object %>
-      </ul>
+<style type="text/css">
+  .signup-padding {
+    margin-top: 8vh;
+}
+</style>
+<div class="Alignthisorelse">
+<div class="container signup-padding">
+  <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3><strong>Sign up right now!!!<strong></h3>
+          <p>Nfuse is free as long as the infinite exists.</p>
+      </div>
+      <div class="form-top-right">
+        <span aria-hidden="true" class="typcn typcn-pencil"></span>
+      </div>
     </div>
-    <h1 class="center">Sign up</h1>
-    <table class="signupTable">
-    <tr>
-      <td><%= f.label :first_name %></td>
-      <td><%= f.text_field :first_name %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :last_name %></td>
-      <td><%= f.text_field :last_name %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :user_name %></td>
-      <td><%= f.text_field :user_name %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :phone_number %></td>
-      <td><%= f.text_field :phone_number %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :email %></td>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :password %></td>
-      <td><%= f.password_field :password %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :password_confirmation, "Password Confirmation" %></td>
-      <td><%= f.password_field :password_confirmation %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :intro, "Code" %></td>
-      <td><%= f.password_field :intro %></td>
-    </tr>
-    </table>
-        <%= f.submit "Create my account", class: "signupBtn center" %>
-    <% end %>
+    <div class="form-bottom">
+        <%= form_for(:user, url: new_user_path, html: { role: "form"}) do |f| %>
+          <div class="form-group">
+            <%= f.text_field :first_name, :placeholder => "First Name", class: "form-fi-name form-control", id:"form-first-name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-la-name form-control", id:"form-last-name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :user_name, :placeholder => "User Name", class: "form-user-name form-control", id:"form-user-name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :password, :placeholder => "Password", class: "form-password form-control", id:"form-password" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-password form-control", id:"form-password" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :intro, :placeholder => "Code", class: "form-password form-control", id:"form-password" %>
+          </div>
+            <button
+            <%= f.submit "Create my account", class: "btn" %>> Sign up!
+            </button>
+        <% end %>
+           <div class="form-links">
+            <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
+          </div>
+    </div>
   </div>
 </div>
+</div>
 <!-- *End* Views/users/new.html.erb  -->
+
+
+

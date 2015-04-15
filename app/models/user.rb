@@ -58,10 +58,10 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
-  validates :phone_number, presence: true
-  validates_format_of :phone_number,
-      :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
-      :message => "should be a phone number"
+  # validates :phone_number, presence: true
+  # validates_format_of :phone_number,
+  #     :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
+  #     :message => "should be a phone number"
 
   #Because We're paranoid about the ppl who keep signing up. This is our cheap version of security
   validates :intro, presence: true, 
