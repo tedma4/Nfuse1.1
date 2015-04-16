@@ -67,7 +67,7 @@
 <% else %> <!-- else _header-->
 
   <div class="login_form_position">
-      <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
+    <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
       <div class="input-group">
         <span class="input-group-addon"><i class="typcn typcn-beer"></i></span>
           <%= f.text_field :email, placeholder: "Email", class: "form-control input-bg", id: "email", type: "email" %>
