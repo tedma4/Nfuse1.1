@@ -12,7 +12,6 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 module Nfuse11
   class Application < Rails::Application
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     config.after_initialize do |app|
       app.config.paths.add 'app/presenters', eager_load: true
