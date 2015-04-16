@@ -5,11 +5,11 @@
   font-family: 'typicons';
   font-weight: normal;
   font-style: normal;
-  src: url('typicons.eot');
-  src: url('typicons.eot?#iefix') format('embedded-opentype'),
-       url('typicons.woff') format('woff'),
-       url('typicons.ttf') format('truetype'),
-       url('typicons.svg#typicons') format('svg');
+  src: url('/assets/typicons.eot');
+  src: url('/assets/typicons.eot?#iefix') format('embedded-opentype'),
+       url('/assets/typicons.woff') format('woff'),
+       url('/assets/typicons.ttf') format('truetype'),
+       url('/assets/typicons.svg#typicons') format('svg');
 }
  
 /* :before psuedo-selector inserts and styles icon */
