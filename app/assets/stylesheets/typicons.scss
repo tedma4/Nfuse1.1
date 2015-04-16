@@ -3,15 +3,26 @@
 /* @FONT-FACE loads font into browser */
 @font-face {
   font-family: 'typicons';
+  src: font-url('typicons.eot');
+  src: font-url('typicons.eot?#iefix') format('embedded-opentype'),
+       font-url('typicons.woff') format('woff'),
+       font-url('typicons.ttf') format('truetype'),
+       font-url('typicons.svg#typicons') format('svg');
   font-weight: normal;
   font-style: normal;
-  src: url('/assets/typicons.eot');
-  src: url('/assets/typicons.eot?#iefix') format('embedded-opentype'),
-       url('/assets/typicons.woff') format('woff'),
-       url('/assets/typicons.ttf') format('truetype'),
-       url('/assets/typicons.svg#typicons') format('svg');
 }
- 
+
+/*@font-face {
+  font-family: 'Icomoon';
+  src: font-url("/assets/icomoon.eot");
+  src: font-url("/assets/icomoon.eot?#iefix") format("embedded-opentype"),
+       font-url("/assets/icomoon.svg#icomoon") format("svg"),
+       font-url("/assets/icomoon.woff") format("woff"), 
+       font-url("/assets/icomoon.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}*/
+
 /* :before psuedo-selector inserts and styles icon */
 .typcn:before {
   font-family: 'typicons';
