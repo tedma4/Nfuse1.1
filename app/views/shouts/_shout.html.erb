@@ -70,7 +70,7 @@ $(function () {
           <ul>
             <li><%= image_tag("camera3.png", :class => "shout_img", :size => "100x100") %></li>
             <li><h3>Upload Photo</h3></li>
-            <li><%= f.file_field :pic, id: 'pictureInput'  %></li>
+            <li><%= f.file_field :pic, id: 'pictureInput', placeholder: "Pic"  %></li>
           </ul>
         </div>
       </li>
@@ -78,18 +78,27 @@ $(function () {
         <div class="upload_medium">
           <ul>
             <li><%= image_tag( "movie36.png", :class => "shout_img", :size => "100x100") %></li>
-            <li><h3>Upload Video</h3></li>
-            <li><%= f.file_field :snip, id: 'pictureInput2' %></li>
+            <li><h3>A 6 Sec Video</h3></li>
+            <li><%= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip" %></li>
+          </ul>
+        </div>
+      </li><br>
+      <li class="upload_list">
+        <div class="upload_medium">
+          <ul>
+            <li><%= image_tag("internet54.fw.png", :class => "shout_img", :size => "100x100") %></li>
+            <li><h3>Something you are In2</h3></li>
+            <li><%= f.label :url %>
+            <%= f.text_area :url, id: 'url_body', placeholder: "Youtube, Vimeo, Soundcloud", onChange: 'previewUrl()' %></li>
           </ul>
         </div>
       </li>
       <li class="upload_list">
         <div class="upload_medium">
           <ul>
-            <li><%= image_tag("internet54.fw.png", :class => "shout_img", :size => "100x100") %></li>
-            <li><h3>Url Link</h3></li>
-            <li><%= f.label :url %>
-            <%= f.text_area :url, id: 'url_body', placeholder: "Youtube, Vimeo, Soundcloud", onChange: 'previewUrl()' %></li>
+            <li><%= image_tag( "movie36.png", :class => "shout_img", :size => "100x100") %></li>
+            <li><h3>However long a video you want</h3></li>
+            <li><%= f.file_field :snip, id: 'pictureInput2', placeholder: "Vid"%></li>
           </ul>
         </div>
       </li>
