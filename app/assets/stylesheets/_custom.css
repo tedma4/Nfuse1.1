@@ -1768,3 +1768,26 @@ footer {
 .footer-copyright {
   margin-top: 25px;
 }
+
+@font-face {
+  font-family: 'typicons';
+  src: url(font_path('typicons.eot'));
+  src: url(font_path('typicons.eot?#iefix')) format('embedded-opentype'),
+       url(font_path('typicons.woff')) format('woff'),
+       url(font_path('typicons.ttf')) format('truetype'),
+       url(font_path('typicons.svg#typicons')) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+
+@font-face {
+  font-family: 'MyFont';
+  src: url(font-path('myfont-webfont.eot') + "?#iefix") format('embedded-opentype'),
+       url(font-path('myfont-webfont.woff')) format('woff'), 
+       url(font-path('myfont-webfont.ttf'))  format('truetype'),
+       url(font-path('myfont-webfont.svg') + "#MyFont") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}*/
