@@ -3,7 +3,7 @@
 
 <style type="text/css">
   .message-padding{
-    margin-top: 20vh;
+    margin-top: 8vh;
   }
 </style>
 <div class="Alignthisorelse">
@@ -16,19 +16,19 @@
           <p> Any advice you could give us about Nfuse will be awesome, Thanks! </p>
         </div>
         <div class="form-top-right">
-          <span aria-hidden="true" class="typcn typcn-mail"></span>
+          <a href="#"><%= image_tag("contactfeedbackgray.fw.png", size: "65x65") %></a>
         </div>
       </div>
       <div class="form-bottom">
         <%= form_for @contact, html: {role: "form"} do |f| %>
           <div class="form-group">
-            <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-full-name form-control", id:"form-full-name" %>
+            <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-control input-lg", id:"form-full-name", type: "email" %>
           </div>
           <div class="form-group">
-            <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+            <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
           </div>
           <div class="form-group">
-            <%= f.text_area :message, :placeholder => "Message", class: "form-message form-control", id:"form-message" %>
+            <%= f.text_area :message, :placeholder => "Message", class: "form-control input-lg", id:"form-message", type: "email" %>
           </div>
           <div style="display: none;">
             <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
@@ -46,22 +46,19 @@
           <p>Contact Nfuse for anything you need help with.</p>
         </div>
         <div class="form-top-right">
-          <span aria-hidden="true" class="typcn typcn-mail"></span>
+          <a href="#"><%= image_tag("contactfeedbackgray.fw.png", size: "65x65") %></a>
         </div>
       </div>
       <div class="form-bottom">
         <%= form_for @contact, html: {role: "form"} do |f| %>
           <div class="form-group">
-            <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-full-name form-control", id:"form-full-name" %>
+            <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-control input-lg", id:"form-full-name", type: "email" %>
           </div>
           <div class="form-group">
-            <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+            <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
           </div>
           <div class="form-group">
-            <%= f.text_area :message, :placeholder => "Message", class: "form-message form-control", id:"form-message" %>
-          </div>
-          <div style="display: none;">
-            <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
+            <%= f.text_area :message, :placeholder => "Message", class: "form-control input-lg", id:"form-message", type: "message" %>
           </div>
           <button
           <%= f.submit "Send", class: "btn" %>> Send!

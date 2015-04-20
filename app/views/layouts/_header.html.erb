@@ -69,11 +69,11 @@
   <div class="login_form_position">
     <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
       <div class="input-group">
-        <span class="input-group-addon"><i class="typcn typcn-beer"></i></span>
+        <span class="input-group-addon"><%= image_tag("male80.png", size: "15x15") %></span>
           <%= f.text_field :email, placeholder: "Email", class: "form-control input-bg", id: "email", type: "email" %>
       </div>
       <div class="input-group">
-        <span class="input-group-addon"><i class="typcn typcn-lock-closed-outline"></i></span>
+        <span class="input-group-addon"><%= image_tag("lock27.png", size: "15x15") %></span>
           <%= f.text_field :password, placeholder: "Password", class: "form-control input-bg", id: "password", type: "password" %>
       </div>
       <button         

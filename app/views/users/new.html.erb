@@ -14,7 +14,7 @@
           <p>Nfuse is free as long as the infinite exists.</p>
       </div>
       <div class="form-top-right">
-        <span aria-hidden="true" class="typcn typcn-pencil"></span>
+        <a href="#"><%= image_tag("pencilgray.fw.png", size: "65x65") %></a>
       </div>
     </div>
     <div class="form-bottom">
@@ -24,34 +24,35 @@
               <%= render 'shared/error_messages', object: f.object %>
             </div>
             <div class="form-group">
-              <%= f.text_field :first_name, :placeholder => "First Name", class: "form-fi-name form-control", id:"form-first-name" %>
+              <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "email" %>
             </div>
             <div class="form-group">
-              <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-la-name form-control", id:"form-last-name" %>
+              <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "email"  %>
             </div>
             <div class="form-group">
-              <%= f.text_field :user_name, :placeholder => "User Name", class: "form-user-name form-control", id:"form-user-name" %>
+              <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "email"  %>
             </div>
             <div class="form-group">
-              <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+              <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password, :placeholder => "Password", class: "form-password form-control", id:"form-password" %>
+              <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-password form-control", id:"form-password" %>
+              <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
             </div>
             <div class="form-group">
-              <%= f.password_field :intro, :placeholder => "Code", class: "form-password form-control", id:"form-password" %>
+              <%= f.text_field :intro, :placeholder => "Code", class: "form-control input-lg", id:"form-password", type: "password" %>
             </div>
             <button
             <%= f.submit "Create my account", class: "btn" %>> Sign up!
             </button>
           </div>
         <% end %>
-           <div class="form-links">
-            <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
-          </div>
+          <div class="form-links">
+            <%= link_to 'Privacy', privacy_path %>
+<!--             <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
+ -->          </div>
     </div>
   </div>
 </div>
