@@ -4,6 +4,23 @@
   .pro-pics-padding {
     margin-top: 8vh;
 }
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
 </style>
 
 <div class="Alignthisorelse">
@@ -23,13 +40,21 @@
           <div class="Alignthisorelse">
             <%= form_for(@user, :multipart => true, html:{role: "form"}) do |f| %>
               <h3>Upload a Profile Picture</h3>
-              <%= f.file_field :avatar, id: "pictureInput"  %>
               <div id="target"> <%= image_tag @user.avatar(:medium) %> </div>
+              <div class="fileUpload btn-link-1">
+                <span>Upload Avatar</span>
+              <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
+              </div>
               <h3>Upload a Profile Banner</h3>
-              <%= f.file_field :banner, id: "pictureInput2"  %>
               <div id="target2"> <%= image_tag @user.banner(:medium) %></div>
-              <%= f.submit "Save changes", class: "btn btn-link-1", type: "submit" %>
-              <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+              <div class="fileUpload btn-link-1">
+                <span>Upload Banner</span>
+              <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
+              </div> &nbsp;
+              <div>
+                <%= f.submit "Save changes", class: "btn btn-link-1", type: "submit" %>
+                <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+              </div>
             <% end %>
           </div>
         </div>
