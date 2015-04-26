@@ -25,3 +25,6 @@ public/system
 # Ignore hidden files
 **.DS_Store
 **.swp
+
+# Ignore application configuration
+/config/application.yml
