@@ -90,8 +90,19 @@ config.assets.precompile += %w( video-js.swf vjs.eot vjs.svg vjs.ttf vjs.woff )
       :address         => 'smtp.gmail.com',
       :port            =>  587,
       :authentication  => :plain,
-      :user_name       => 'tedma4@gmail.com',
-      :password        => 'tm671216'
+      :user_name       => ENV["gmail_email"],
+      :password        => ENV["gmail_password"]
 
   }
+ 
+  # Sets Paperclip to upload images to Amazon S3
+  # config.paperclip_defaults = {
+  #   :storage => :s3,
+  #   :s3_credentials => {
+  #     :bucket => ENV['AWS_BUCKET'],
+  #     :access_key_id => ENV['AKIAI6ERDQ3V5CZTKVSA'],
+  #     :secret_access_key => ENV['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']
+  #   }
+  # }
+
 end
