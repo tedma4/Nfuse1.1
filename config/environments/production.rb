@@ -100,8 +100,8 @@ config.assets.precompile += %w( video-js.swf vjs.eot vjs.svg vjs.ttf vjs.woff )
   #   :storage => :s3,
   #   :s3_credentials => {
   #     :bucket => ENV['AWS_BUCKET'],
-  #     :access_key_id => ENV['AKIAI6ERDQ3V5CZTKVSA'],
-  #     :secret_access_key => ENV['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']
+  #     :access_key_id => ENV['aws_key_id'],
+  #     :secret_access_key => ENV['aws_access_key']
   #   }
   # }
 
