@@ -17,7 +17,7 @@ GIT
       sass-rails
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.1.2)
       actionpack (= 4.1.2)
@@ -273,8 +273,6 @@ GEM
       mime-types
     paperclip-ffmpeg (1.0.0)
       paperclip (>= 2.5.2)
-    pg (0.15.1)
-    pg (0.15.1-x86-mingw32)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -509,7 +507,6 @@ DEPENDENCIES
   omniauth-vimeo
   paperclip (~> 4.2)
   paperclip-ffmpeg (= 1.0.0)
-  pg (~> 0.15.1)
   private_pub
   pry
   pry-rails

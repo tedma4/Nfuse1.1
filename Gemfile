@@ -112,7 +112,7 @@ group :doc do
 end
 #These are the gems used in the production enviornment
 group :production do
-  gem 'pg', '~> 0.15.1'
+  gem 'sqlite3'
   gem 'rails_12factor', '~> 0.0.3'
 end
 
