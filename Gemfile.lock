@@ -218,6 +218,7 @@ GEM
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.3.18-x86-mingw32)
     naught (1.0.0)
     neat (1.5.1)
       bourbon (>= 3.1)
@@ -494,6 +495,7 @@ DEPENDENCIES
   jquery-rails
   launchy (~> 2.4.2)
   mail_form
+  mysql2
   neat (~> 1.5.1)
   newrelic_rpm (~> 3.8.1.221)
   oj (~> 2.9.3)

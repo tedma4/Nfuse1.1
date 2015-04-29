@@ -112,7 +112,7 @@ group :doc do
 end
 #These are the gems used in the production enviornment
 group :production do
-  gem 'sqlite3'
+  gem 'mysql2'
   gem 'rails_12factor', '~> 0.0.3'
 end
 
