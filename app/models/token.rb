@@ -122,8 +122,8 @@ class Token < ActiveRecord::Base
 
   def configure_twitter(access_token, access_token_secret)
     client = Twitter::REST::Client.new do |config|
-  	  config.consumer_key = 'n6107y4oqyomedLDZsMUytEoO'
-  	  config.consumer_secret = 'jTndXRNGkw6eTI77TJixAxiCuD5D9eKE10GjrzL4WIDwaMquU9'
+  	  config.consumer_key = ENV["twitter_api_key"]
+  	  config.consumer_secret = ENV["twitter_api_secret"]
       config.access_token = access_token
       config.access_token_secret = access_token_secret
     end
@@ -143,8 +143,8 @@ class Token < ActiveRecord::Base
   
   def configure_vimeo(access_token, access_token_secret)
     video = Vimeo::Advanced::Video.new(
-      '3a0aa8929985db9ab9e13b8af905fb557c88a3bf',
-      '1d803443422e5eeb806756fd49eb2831240ff387',
+      ENV["vimeo_client_id"],
+      ENV["vimeo_client_secret"],
       token: access_token,
       secret: access_token_secret
       )
@@ -157,17 +157,17 @@ class Token < ActiveRecord::Base
     client = YouTubeIt::OAuth2Client.new(
       client_access_token: access_token,
       client_refresh_token: refresh_token,
-      client_id: "585499897487-s0rj3prs5c56ui8vjqnr0l8e66fmco59.apps.googleusercontent.com",
-      client_secret: "yQjPXajecmamPWswzrEtAkaA",
-      dev_key: "AIzaSyDURKK2l5VPmwaj3b3DtXaNg9HDB79syrI",
+      client_id:     ENV["google_client_secret"],
+      client_secret: ENV["google_client_id"],
+      dev_key:       ENV["youtube_dev_key"],
       #expires_at: expiresat,
       )
   end
 
   def configure_flickr(access_token, access_token_secret)
     client = FlickRaw::Flickr.new(
-      api_key: "ec04c20311cc5a72e44ab79d78120e05",
-      shared_secret: "139707d9a2d0a8a0",
+      api_key:       ENV["flickr_key"],
+      shared_secret: ENV["flickr_secret"],
       client_access_token: access_token,
       client_refresh_token: access_token_secret
       )
