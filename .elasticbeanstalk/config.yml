@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: Nfuse11-env
+    environment: Nfuse
 global:
   application_name: Nfuse1.1
   default_ec2_keyname: Ted's Key Pair
