@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
-  # validates :phone_number, presence: true
+  validates :phone_number, presence: true
   # validates_format_of :phone_number,
   #     :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
   #     :message => "should be a phone number"

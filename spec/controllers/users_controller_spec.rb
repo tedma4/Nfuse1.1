@@ -29,11 +29,12 @@ describe UsersController, type: :controller do
     end
 
     context '#logged out' do
-      it 'redirects to login page' do
+      it 'redirects to signin page' do
         log_out
         get 'index'
         expect(response).not_to be_success
-        expect(response).to redirect_to require_signin
+        # expect(response).to redirect_to root_path
+        expect(response).to redirect_to require_signin #will break since no current dedicated signin route
       end
     end
 
@@ -86,7 +87,8 @@ describe UsersController, type: :controller do
   end
 
   describe '#feed' do
-    let(:user) { create :user }
+    let(:shout) { create :shout }
+    let(:user) { create :user, shouts: [shout] }
 
     it 'maintains all old instance vars' do
       login user

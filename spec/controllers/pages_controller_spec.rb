@@ -28,7 +28,7 @@ describe PagesController, type: :controller do
       end
 
       it "should render correct partial timeline" do
-        get 'home'
+        get 'home' #this is giving a template error
         expect(response).to render_template(partial: '_timeline')
         expect(response).not_to render_template(partial: '_landing')
       end
