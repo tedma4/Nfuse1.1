@@ -1,15 +1,29 @@
 <!-- *START* Views/users/_user.html.erb  -->
-<div class="item user_link">
-	<div class="thumbnail">
-	  <%= image_tag user.avatar.url(:followp), class: "followers-pic", id: "search-picture" %>
-	  <ul class="follow-btn">
-		  <li><h4><%= link_to user.full_name, feed_user_path(user) %></h4><br></li><br>
-		  	<li class="inline"><h4><span class="atUserName">@<%= link_to user.user_name, feed_user_path(user)%></span></h4></li>
-		  <% if current_user.admin? && !current_user?(user) %>
-		    | <%= link_to "delete", user, method: :delete,
-		                                  data: { confirm: "You sure?" } %>
-		  <% end %>
-		</ul>
+
+
+<div class="item user_link col-lg-2 col-md-3">
+	<div>
+		<div class="Alignthisorelse">
+	    <%= image_tag user.avatar.url(:followp), class: "followers-pic", id: "search-picture" %>
+ 		</div>
+ 		<div>
+			<div class="inLineLeft">
+		  	<h2 class="user-full-name"><%= user.full_name	%><br> 
+		  		<span class="atUserName">@<%= link_to user.user_name, feed_user_path(user)%></span>
+		  	</h2>
+	 		</div>
+		  <div class="col-xs-12 text-center">
+		    <div class="col-xs-4 col-sm-4">
+		      <p class"search-box-counter">Followers:<%= user.followers.count %></p>                    
+		    </div>
+		    <div class="col-xs-4 col-sm-4">
+		      <p class"search-box-counter">Following:<%= user.followed_users.count %></p>                    
+		    </div>
+		    <div class="col-xs-4 col-sm-4">
+		      <p class"search-box-counter">Likes:<%= user.total_likes %></p>       
+		    </div>
+		  </div>
+		</div>
 	</div>
 </div>
 

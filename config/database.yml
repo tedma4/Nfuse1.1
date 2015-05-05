@@ -22,4 +22,10 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: db/production.mysql2
+  adapter: mysql
+  encoding: utf8
+  port: 3306
+  username: Nfuseuser
+  password: tm671216
+  host: aapf3x6rnkvw8q.c97qscmi7euu.us-west-1.rds.amazonaws.com

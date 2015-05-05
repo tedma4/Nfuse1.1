@@ -1,7 +1,8 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 #This is the rails version we are using
 gem 'rails', '4.1.2'
+gem 'mysql', '2.9.1'
 #This allows us to use bootstrap css file
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails', '>= 3.2'
@@ -105,39 +106,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'videojs_rails'
 
+gem 'aws-sdk', '~> 2'
+gem 'figaro'
 group :doc do
   gem 'sdoc', '~> 0.4.0', require: false
 end
 #These are the gems used in the production enviornment
 group :production do
-  gem 'pg', '~> 0.15.1'
+  gem 'mysql2'
   gem 'rails_12factor', '~> 0.0.3'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
-
-
-# rails g model User first_name:string last_name:string email:string password_digest:string
-#
-# rails g controller Sessions new 
-#
-# rails g migration add_index_to_users_email
-#
-# rails g migration add_remember_token_to_users
-#
-# rails g migration add_admin_to_users admin:boolean
-#
-# Below this is optional (for now)
-#
-# rails g controller Microposts 
-#
-# rails g model Micropost content:string image:string
-#
-# rails g controller Relationships create destroy
-#
-# rails g model Relationship follower_id:integer followed_id:integer
-#
-#
-#
-#
-#

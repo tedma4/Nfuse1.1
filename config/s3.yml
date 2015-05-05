@@ -1,0 +1,13 @@
+# development:
+#   bucket: 
+#   access_key_id: AKIAI6ERDQ3V5CZTKVSA
+#   secret_access_key: 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
+#   host: 
+# test:
+#   bucket: 
+#   access_key_id: AKIAI6ERDQ3V5CZTKVSA
+#   secret_access_key: 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
+# production:
+#   bucket: 
+#   access_key_id: AKIAI6ERDQ3V5CZTKVSA
+#   secret_access_key: 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
