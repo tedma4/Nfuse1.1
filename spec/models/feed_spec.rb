@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe Feed do
   describe '#construct' do
-    let(:feed) { Feed.new(create(:user)) }
-
+    let(:shout) { create(:shout) }
+    let(:user) { create(:user) }
+    let(:feed) { Feed.new(user) }
+    before { user.shouts << shout }
     it 'should accept params hash in initialize' do
       expect(feed).to respond_to(:construct)
       expect(feed.construct({})).to be_a Array
