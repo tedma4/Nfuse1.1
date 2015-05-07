@@ -86,6 +86,24 @@ describe UsersController, type: :controller do
     end
   end
 
+  describe '#settings' do
+    let(:user) { create :user }
+    before {login user}
+    it 'should assign user variable as blank new user' do
+      get 'settings'
+      expect(assigns[:display_network]).to be_falsey
+    end
+  end
+
+  describe '#new' do
+    let(:user) { create :user }
+    before {login user}
+    it 'should assign user variable as blank new user' do
+      get 'new'
+      expect(assigns[:user]).not_to be_nil
+    end
+  end
+
   describe '#feed' do
     let(:shout) { create :shout }
     let(:user) { create :user, shouts: [shout] }
@@ -128,4 +146,61 @@ describe UsersController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    let(:user) { create :user }
+    before do
+      login user
+    end
+    it 'should update the users attributes with good input' do
+      expect do
+        put 'update', {id: user.id, user: {email: 'new@email.com'}}
+        user.reload
+      end.to change(user, :email)
+    end
+    it 'should redirect to feed_user_path on successful update' do
+      put 'update', {id: user.id, user: {email: 'new@email.com'}}
+      expect(response).to redirect_to feed_user_path(user)
+    end
+    it 'should fail updating with bad input' do
+      expect do
+        put 'update', {id: user.id, user: {email: 'b.x'}}
+        user.reload
+      end.not_to change(user, :email)
+    end
+    it "should render 'new' on failed update" do
+      put 'update', {id: user.id, user: {email: 'b.x'}}
+      expect(response).to render_template 'edit'
+    end
+  end
+
+  describe 'delete #destroy' do
+    describe 'non admins cant delete' do
+      let(:user) { create :user }
+      before do
+        request.host = 'nfuse.com'
+        login user
+      end
+      it 'should not lower the user count' do
+        expect{delete 'destroy', {id: user.id}}.to change(User, :count).by(0)
+      end
+      it 'should redirect to home page' do
+        delete 'destroy', {id: user.id}
+        expect(response).to redirect_to root_url
+      end
+    end
+    describe 'can delete sucessfully as admin' do
+      let(:user) { create :user, admin: true }
+      before do
+        request.host = 'nfuse.com'
+        login user
+      end
+      it 'should lower the user count' do
+        expect{delete 'destroy', {id: user.id}}.to change(User, :count).by(-1)
+      end
+      it 'should redirect to users index' do
+        delete 'destroy', {id: user.id}
+        expect(response).to redirect_to users_url
+      end
+    end
+  end
 end
