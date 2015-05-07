@@ -4,7 +4,7 @@ describe UsersController, type: :controller do
 
   describe "GET 'index'" do
     let(:user)  { create(:user) }
-    
+
     before(:each) do
       request.host = 'nfuse.com'
       login user
@@ -96,6 +96,35 @@ describe UsersController, type: :controller do
       expect(assigns[:timeline]).to be_a Array
       expect(assigns[:providers]).to be_a Providers
       expect(assigns[:unauthed_accounts]).to be_a Array
+    end
+  end
+
+  describe 'POST #create' do
+
+    before  do
+      @user_params = {user: {
+          email: 'user@example.com',
+          first_name: 'boo',
+          last_name: 'radley',
+          user_name: 'uname',
+          password: 'Qwerty1!',
+          password_confirmation: 'Qwerty1!',
+          phone_number: '123-456-7788',
+          intro: 4081
+      }}
+    end
+
+    it 'should successfully create a user with good params' do
+      expect{post 'create', @user_params}.to change(User, :count).by(1)
+    end
+    it 'should set the sessions[:user_id], signing in the user' do
+      post 'create', @user_params
+      expect(session[:user_id]).not_to be_nil
+      expect(session[:user_id]).to eq User.last.id
+    end
+    it 'should not create a user with bad params' do
+      bad_params = {user: {email: 'boo@radley.com'}}
+      expect{post 'create', bad_params}.to change(User, :count).by(0)
     end
   end
 
