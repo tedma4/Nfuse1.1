@@ -61,7 +61,7 @@ gem 'private_pub'
 gem 'thin'
 gem 'auto_html'
 #These are the gems used in the development enviornment
-gem 'rack-mini-profiler', group: :development
+# gem 'rack-mini-profiler', group: :development #causing errors each request
 gem 'bullet', group: :development
 
 group :development, :test do
@@ -87,6 +87,7 @@ group :test do
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
   gem "selenium-webdriver", "~> 2.43.0"
+  gem 'simplecov'
   gem 'pry'
   gem 'pry-rails'
 end

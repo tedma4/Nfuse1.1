@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def index
     #user = User.find(params[:id])
     #This shows all the users a user has a conversation with
+    #TODO what is the @users query for. What is the purpose of loading EVERY user but current
     @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     @conversations = Conversation.involving(current_user).order("created_at DESC")
   end
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
 
   def destroy
     #This allows an admin user to destroy a user
+    #TODO shouldnt a user be able to delete themself?
     @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
