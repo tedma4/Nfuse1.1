@@ -115,6 +115,7 @@ GEM
     daemons (1.2.2)
     database_cleaner (1.3.0)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     ejs (1.1.1)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
@@ -218,6 +219,7 @@ GEM
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.3.18)
     mysql2 (0.3.18-x86-mingw32)
     naught (1.0.0)
     neat (1.5.1)
@@ -390,6 +392,11 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simple_oauth (0.2.0)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     sprockets (2.11.3)
       hike (~> 1.2)
@@ -525,6 +532,7 @@ DEPENDENCIES
   selenium-webdriver (~> 2.43.0)
   shoulda-matchers (~> 2.6.0)
   simple_form
+  simplecov
   sprockets (~> 2.11.0)
   sqlite3
   thin
