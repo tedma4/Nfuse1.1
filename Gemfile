@@ -1,7 +1,8 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 #This is the rails version we are using
 gem 'rails', '4.1.2'
+gem 'mysql2'
 #This allows us to use bootstrap css file
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails', '>= 3.2'
