@@ -28,4 +28,4 @@ production:
   port: 3306
   username: Nfuseuser
   password: tm671216
-  host: Nfuse.elasticbeanstalk.com
+  host: nfuse.elasticbeanstalk.com/
