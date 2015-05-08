@@ -22,7 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.mysql2
+  database: ebdb
   adapter: mysql2
   encoding: utf8
   port: 3306
