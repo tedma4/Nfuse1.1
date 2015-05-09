@@ -538,6 +538,7 @@ DEPENDENCIES
   private_pub
   pry
   pry-rails
+  rack (= 1.5.2)
   rails (= 4.1.2)
   rails-erd
   rails_12factor (~> 0.0.3)
