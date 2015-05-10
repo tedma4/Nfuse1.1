@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   validates :password, length: {minimum: 6}, allow_blank: true
-  validates :phone_number, presence: true
+  #validates :phone_number, presence: true
   # validates_format_of :phone_number,
   #     :with =>/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, #or this
   #     :message => "should be a phone number"
@@ -67,7 +67,6 @@ class User < ActiveRecord::Base
   validates :intro, presence: true, 
   inclusion: { in: %w(4081),
     message: 'Wrong code, Please try again : )' }
-
   # returns a relationship object not a User object.
   # belongs in Relationship model.
   # ? methods are meant to return a boolean
