@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   # Authentication and Settings
   get    '/signup',   to: 'users#new'
   get    '/login',    to: 'sessions#new', as: :signin
-  delete '/signout',  to: 'sessions#destroy', as: :signout
+  get '/signout',  to: 'sessions#destroy'
   get    '/settings', to: 'users#settings'
   #get    '/nfuse_page', to: 'users#nfuse_page'
   
