@@ -1,49 +1,20 @@
 <!-- *START* Views/users/_user.html.erb  -->
 
-                    <li class="list-group-item">
-                        <div class="col-xs-12 col-sm-3">
-	    												<%= image_tag user.avatar.url(:followp), class: "img-responsive img-circle" %>
-                        </div>
-                        <div class="col-xs-12 col-sm-9">
-                            <span class="name"><%= user.full_name	%></span><br/>
-                            <h2>
-  	                        	<span class="atUserName">@<%= link_to user.user_name, feed_user_path(user)%></span>
-  	                      	</h2><br>
-	                          <span class="text-muted c-info">Followers:<%= user.followers.count %></span>
-	                          <span class="text-muted c-info">Following:<%= user.followed_users.count %></span>
-	                          <span class="text-muted c-info">Likes:<%= user.total_likes %></span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </li>
-
-<!-- 
-<div class="item user_link col-lg-2 col-md-3">
-	<div>
-		<div class="Alignthisorelse">
-	    <%#= image_tag user.avatar.url(:followp), class: "followers-pic", id: "search-picture" %>
- 		</div>
- 		<div>
-			<div class="inLineLeft">
-		  	<h2 class="user-full-name"><%= user.full_name	%><br> 
-		  		<span class="atUserName">@<%#= link_to user.user_name, feed_user_path(user)%></span>
-		  	</h2>
-	 		</div>
-		  <div class="col-xs-12 text-center">
-		    <div class="col-xs-4 col-sm-4">
-		      <p class"search-box-counter">Followers:<%#= user.followers.count %></p>                    
-		    </div>
-		    <div class="col-xs-4 col-sm-4">
-		      <p class"search-box-counter">Following:<%#= user.followed_users.count %></p>                    
-		    </div>
-		    <div class="col-xs-4 col-sm-4">
-		      <p class"search-box-counter">Likes:<%#= user.total_likes %></p>       
-		    </div>
-		  </div>
-		</div>
+<li class="list-group-item">
+  <div class="col-xs-12 col-sm-3">
+		<%= image_tag user.avatar.url(:followp), class: "img-responsive img-circle" %>
 	</div>
-</div>
- -->
-
+	<div class="col-xs-12 col-sm-9">
+    <span class="name"><%= user.full_name	%></span><br/>
+    <h2>
+   	<span class="atUserName">@<%= link_to user.user_name, feed_user_path(user)%></span>
+ 		</h2><br>
+    <span class="text-muted c-info">Followers:<%= user.followers.count %></span>
+    <span class="text-muted c-info">Following:<%= user.followed_users.count %></span>
+    <span class="text-muted c-info">Likes:<%= user.total_likes %></span>
+	</div>
+	<div class="clearfix"></div>
+</li>
 
 
 
