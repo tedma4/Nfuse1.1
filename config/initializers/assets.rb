@@ -18,7 +18,6 @@ Rails.application.config.assets.precompile += %w( wow.min.js )
 # Rails.application.config.assets.precompile += %w( retina-1.1.0.min.js )
 Rails.application.config.assets.precompile += %w( jquery.magnific-popup.min.js )
 Rails.application.config.assets.precompile += %w( scripts.js )
-
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
