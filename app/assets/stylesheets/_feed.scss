@@ -26,20 +26,8 @@
     height: 20px;
   }
 
-  @include media($large-screen) {
-    .provider_logo {
-      height: 20px;
-    }
-  }
-
   .user_profile_picture {
     height: 35px;
-  }
-
-  @include media($large-screen) {
-    .user_profile_picture {
-      height: 50px;
-    }
   }
 }
 

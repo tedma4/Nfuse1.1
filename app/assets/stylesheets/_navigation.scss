@@ -26,12 +26,6 @@
     margin: 0;
     padding: 0;
   }
-  @include media($large-screen) {
-    float: right;
-    li {
-      display: inline-block;
-    }
-  }
 }
 
 #secondary_nav {
@@ -55,10 +49,4 @@
   }
   position: relative;
   z-index: 11;
-  @include media($large-screen) {
-    display: inline-block;
-    #menu_button {
-      display: none;
-    }
-  }
 }
