@@ -11,12 +11,6 @@
  * file per style scope.
  *
  *= require video-js
- *= require bootstrap.min
- *= require bootstrap-theme
- *= require form-elements
- *= require animate
- *= require magnific-popup
- *= require media-queries
  */
 @import "grid_settings";
 @import "normalize";
@@ -31,8 +25,7 @@ $box-shadow-gray: #737373;
 $footer-height: 4em;
 
 @import "feed";
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "bootstrap-sprockets", "bootstrap";
 @import "bootstrap-theme";
 @import "animate";
 @import "magnific-popup";
