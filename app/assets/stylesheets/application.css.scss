@@ -12,6 +12,9 @@
  *
  *= require video-js
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 @import "grid_settings";
 @import "normalize";
 
@@ -25,7 +28,6 @@ $box-shadow-gray: #737373;
 $footer-height: 4em;
 
 @import "feed";
-@import "bootstrap-sprockets", "bootstrap";
 @import "bootstrap-theme";
 @import "animate";
 @import "magnific-popup";
