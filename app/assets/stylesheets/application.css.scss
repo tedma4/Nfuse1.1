@@ -13,17 +13,6 @@
  */
 @import "grid_settings";
 @import "normalize";
-
-
-/* universal */
-$white: #fff;
-$background-gray: #E6E6E6;
-$logo-green: #00b80c;
-$error_message_red: #FF0000;
-$box-shadow-gray: #737373;
-$footer-height: 4em;
-
-@import "feed";
 @import "bootstrap-sprockets", "bootstrap";
 @import "bootstrap/theme";
 @import "animate";
@@ -34,6 +23,16 @@ $footer-height: 4em;
 @import "custom";
 @import "foxycomplete";
 @import "video-js";
+@import "feed";
+
+
+/* universal */
+$white: #fff;
+$background-gray: #E6E6E6;
+$logo-green: #00b80c;
+$error_message_red: #FF0000;
+$box-shadow-gray: #737373;
+$footer-height: 4em;
 
 .loading_message {
   background-color: $white;
