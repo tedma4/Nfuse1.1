@@ -34,6 +34,7 @@ describe PagesController, type: :controller do
       end
     end
 
+    #TODO if someone wants of figure out why "get 'home'" after log_out breaks test your my hero
     context 'logged out' do
       it "STILL * returns http success" do
         log_out

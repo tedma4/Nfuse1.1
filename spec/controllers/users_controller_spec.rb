@@ -203,4 +203,34 @@ describe UsersController, type: :controller do
       end
     end
   end
+
+  # describe '#indexed' do
+  #   let(:user) { create :user, admin: true }
+  #   before do
+  #     request.host = 'nfuse.com'
+  #     login user
+  #   end
+  #   it 'should render users/settings if user has no providers' do
+  #     get 'indexed'
+  #     expect(response).to render_template('users/settings')
+  #   end
+  #   describe 'If the user has a provider' do
+  #     before do
+  #       @provider = create(:provider)
+  #       Providers.for(user) << @provider
+  #     end
+  #     it 'should render indexed when user has a provider' do
+  #       get 'indexed'
+  #       expect(response).to render_template('users/indexed')
+  #     end
+  #   end
+
+  describe '#feed_content' do
+    let(:user) { create :user }
+    before do
+      request.host = 'nfuse.com'
+      login user
+    end
+
+  end
 end
