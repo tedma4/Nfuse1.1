@@ -53,12 +53,13 @@ class UsersController < ApplicationController
 
   def destroy
     #This allows an admin user to destroy a user
-    #TODO shouldnt a user be able to delete themself?
+    #TODO shouldnt a user be able to delete themself? Why can only admins delete?
     @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
 
+  #TODO Is this deprecated?  It does not correspond to any set route
   def indexed
     #This displays all the networks available that a user can allow access for
     @providers = Providers.for(@user)
