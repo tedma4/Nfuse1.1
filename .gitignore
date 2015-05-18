@@ -15,7 +15,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/assets
+/public/assets
 .ruby
 .secret
 /.idea
