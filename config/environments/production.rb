@@ -28,8 +28,9 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  config.assets.precompile =  %w(*.css.erb application.css.scss *.js *.js.erb)
-  # config.assets.precompile << /\A(?!active_admin).*\.(js|css)\z/
+  config.assets.precompile +=  %w(*.js, *.css, *.js.erb *.css.erb )
+  # config.assets.precompile << /\A(?!(active_admin)).*\.(js|css)\z/
+  # config.assets.precompile << /\A(?!(active_admin)|(bourbon)).*\.(js|css)\z/
   # Generate digests for assets URLs.
   config.assets.digest = true
 

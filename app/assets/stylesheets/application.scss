@@ -10,13 +10,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require video-js
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
+@import "bourbon";
 @import "grid_settings";
 @import "normalize";
+@import "bootstrap-sprockets", "bootstrap";
+@import "bootstrap/theme";
+@import "animate";
+@import "magnific-popup";
+@import "media-queries";
+@import "form-elements";
+@import "posting";
+@import "custom";
+@import "foxycomplete";
+@import "video-js";
+@import "feed";
 
 
 /* universal */
@@ -26,16 +34,6 @@ $logo-green: #00b80c;
 $error_message_red: #FF0000;
 $box-shadow-gray: #737373;
 $footer-height: 4em;
-
-@import "feed";
-@import "bootstrap-theme";
-@import "animate";
-@import "magnific-popup";
-@import "media-queries";
-@import "form-elements";
-@import "posting";
-@import "custom";
-@import "foxycomplete";
 
 .loading_message {
   background-color: $white;
