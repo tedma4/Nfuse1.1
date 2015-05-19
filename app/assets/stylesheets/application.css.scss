@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+@import "grid_settings";
+@import "normalize";
+@import "bootstrap-sprockets", "bootstrap";
+@import "bootstrap/theme";
+@import "animate";
+@import "magnific-popup";
+@import "media-queries";
+@import "form-elements";
+@import "posting";
+@import "custom";
+@import "foxycomplete";
+@import "video-js";
+@import "feed";
+
+
+/* universal */
+$white: #fff;
+$background-gray: #E6E6E6;
+$logo-green: #00b80c;
+$error_message_red: #FF0000;
+$box-shadow-gray: #737373;
+$footer-height: 4em;
+
+.loading_message {
+  background-color: $white;
+  padding: 1.5em;
+  text-align: center;
+}
+
+.loading_text {
+  color: $logo-green
+}
+
+.centered_text {
+  text-align: center;
+}
+/*
+.four_oh_four {
+  text-align: center;
+  @include outer-container;
+  margin-top: 2em;
+  background-color: $white;
+  padding: 1.5em;
+  h1 {
+    margin-top: 0;
+  }
+}*/
+.jumbotronwidth {
+  max-width:100%;
+}
+/*
+#privacy_policy_container {
+  @include outer-container;
+    margin: .5em;
+  @include media($large-screen) {
+    margin: 2em 0 0 0;
+  }
+}*/
+
+.user-box {
+  img {
+   max-width: 150px;
+  }
+}
