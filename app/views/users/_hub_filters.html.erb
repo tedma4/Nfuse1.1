@@ -86,27 +86,27 @@ a {
 
 <ul class="social-network social-circle Alignthisorelse">
   <li>
-    <%= link_to root_path(session[:user_id]), {class: "icoRss", title: "All"} do %>
+    <%= link_to root_path(session[:user_id]), {class: "icoRss", title: "All", id: "all"} do %>
       <%= image_tag "hubwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to nfuse_only_user_path(session[:user_id]), {class: "icoRss", title: "Nfuse"} do %>
+    <%= link_to nfuse_only_user_path(session[:user_id]), {class: "icoRss", title: "Nfuse", id: ""} do %>
       <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
       <%end%>
   </li>
   <li>
-    <%= link_to twitter_only_user_path(session[:user_id]), {class: "icoRss", title: "Twitter"} do %>
+    <%= link_to twitter_only_user_path(session[:user_id]), {class: "icoRss", title: "Twitter", id: ""} do %>
     <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
     <%end%>
   </li>
   <li>
-    <%= link_to instagram_only_user_path(session[:user_id]), {class: "icoRss", title: "Instagram"} do%>
+    <%= link_to instagram_only_user_path(session[:user_id]), {class: "icoRss", title: "Instagram", id: ""} do%>
     <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to facebook_only_user_path(session[:user_id]), {class: "icoRss", title: "Facebook"} do%>
+    <%= link_to facebook_only_user_path(session[:user_id]), {class: "icoRss", title: "Facebook", id: ""} do%>
     <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
@@ -131,3 +131,27 @@ a {
     <%end%>
   </li>
 </ul>
+
+
+<script>
+$(document).ready(function(){
+    $(".navIcon").removeClass("activeNavIcon");
+    var urlPath = window.location.pathname;
+    //alert(urlPath);
+    if(urlPath == "/"){
+      $('#all').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/nfuse_only')!== -1){
+      $('#nfuse').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/twitter_only')!== -1){
+      $('#twitter').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/instagram_only')!== -1){
+      $('#instagram').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/facebook_only')!== -1){
+      $('#facebook').addClass("activeNavIcon");
+    }
+});
+</script>
