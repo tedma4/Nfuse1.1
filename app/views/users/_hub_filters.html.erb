@@ -9,7 +9,7 @@
 ul.social-network {
   list-style: none;
   display: inline;
-  margin-left:0 !important;
+  margin-left: 20vw;
   padding: 0;
 }
 ul.social-network li {
@@ -23,23 +23,9 @@ ul.social-network li a img{
 
 /* footer social icons */
 .social-network a.icoRss:hover {
-  background-color: #F56505;
+  background-color: #87ceeb;
 }
-.social-network a.icoFacebook:hover {
-  background-color:#3B5998;
-}
-.social-network a.icoTwitter:hover {
-  background-color:#33ccff;
-}
-.social-network a.icoGoogle:hover {
-  background-color:#BD3518;
-}
-.social-network a.icoVimeo:hover {
-  background-color:#0590B8;
-}
-.social-network a.icoLinkedin:hover {
-  background-color:#007bb7;
-}
+
 .social-network a.icoRss:hover img, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
 .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
   color:#fff;
@@ -98,49 +84,49 @@ a {
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-<ul class="social-network social-circle">
+<ul class="social-network social-circle Alignthisorelse">
   <li>
-    <%= link_to root_path(session[:user_id]), {class: "icoRss", title: "Rss"} do %>
+    <%= link_to root_path(session[:user_id]), {class: "icoRss", title: "All"} do %>
       <%= image_tag "hubwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to nfuse_only_user_path(session[:user_id]), {class: "icoRss", title: "Rss"} do %>
+    <%= link_to nfuse_only_user_path(session[:user_id]), {class: "icoRss", title: "Nfuse"} do %>
       <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
       <%end%>
   </li>
   <li>
-    <%= link_to twitter_only_user_path(session[:user_id]), {class: "icoRss", title: "Rss"} do %>
+    <%= link_to twitter_only_user_path(session[:user_id]), {class: "icoRss", title: "Twitter"} do %>
     <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
     <%end%>
   </li>
   <li>
-    <%= link_to instagram_only_user_path(session[:user_id]), {class: "icoRss", title: "Rss"} do%>
+    <%= link_to instagram_only_user_path(session[:user_id]), {class: "icoRss", title: "Instagram"} do%>
     <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to facebook_only_user_path(session[:user_id]), {class: "icoRss", title: "Rss"} do%>
+    <%= link_to facebook_only_user_path(session[:user_id]), {class: "icoRss", title: "Facebook"} do%>
     <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Rss"} do %>
+    <%= link_to "#", {class: "icoRss", title: "Youtube"} do %>
       <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Rss"} do %>
+    <%= link_to "#", {class: "icoRss", title: "Vimeo"} do %>
       <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Rss"} do %>
+    <%= link_to "#", {class: "icoRss", title: "Pinterest"} do %>
       <%= image_tag "pinterestwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Rss"} do %>
+    <%= link_to "#", {class: "icoRss", title: "Flickr"} do %>
       <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
