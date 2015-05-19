@@ -28,6 +28,7 @@ class Providers
     @user.tokens.where(provider: 'vimeo').count > 0
   end
 
+  #TODO Broken since user has no post association
   def nfuse?
     @user.posts.where(provider: 'nfuse').count > 0 
   end
@@ -36,6 +37,7 @@ class Providers
     @user.tokens.where(provider: 'pinterest').count > 0
   end
 
+  #TODO Broken since user has no post association
   def flickr?
     @user.posts.where(provider: 'flickr').count > 0 
   end
