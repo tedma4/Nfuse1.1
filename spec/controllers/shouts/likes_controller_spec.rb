@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Shouts::LikesController, type: :controller do
 
   before(:each) do
-    # binding.pry
     @shout = create :shout
     login @shout.user
   end
