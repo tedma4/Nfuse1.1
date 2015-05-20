@@ -33,15 +33,15 @@ module Youtube
     end
 
     def created_time
-      @post.created_at
+      @post.uploaded_at
     end
 
     def id
-      @post["id"]
+      @post.video_id
     end
 
     def video_id
-      @post["video_id"]
+      @post.video_id
     end
 
     def full_name
