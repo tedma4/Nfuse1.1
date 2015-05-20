@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: 9941609e040df391264de5b50eed08d5391a79f5
+  revision: cef68b7be82699f9abdc46c98e4fa6a471cb1761
   specs:
     activeadmin (1.0.0.pre1)
       arbre (~> 1.0, >= 1.0.2)
@@ -58,14 +58,14 @@ GEM
       execjs
       json
     awesome_print (1.6.1)
-    aws-sdk (2.0.43)
-      aws-sdk-resources (= 2.0.43)
-    aws-sdk-core (2.0.43)
+    aws-sdk (2.0.44)
+      aws-sdk-resources (= 2.0.44)
+    aws-sdk-core (2.0.44)
       builder (~> 3.0)
       jmespath (~> 1.0)
       multi_json (~> 1.0)
-    aws-sdk-resources (2.0.43)
-      aws-sdk-core (= 2.0.43)
+    aws-sdk-resources (2.0.44)
+      aws-sdk-core (= 2.0.44)
     aws-sdk-v1 (1.64.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -193,7 +193,7 @@ GEM
     http (0.5.1)
       http_parser.rb
     http_parser.rb (0.6.0)
-    httparty (0.13.4)
+    httparty (0.13.5)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     httpclient (2.6.0.1)
@@ -203,7 +203,7 @@ GEM
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
-    jbuilder (2.2.14)
+    jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jmespath (1.0.2)
@@ -493,7 +493,7 @@ DEPENDENCIES
   auto_html
   aws-sdk (~> 2)
   bcrypt (~> 3.1.7)
-  bootstrap-sass (~> 3.3.4.1)
+  bootstrap-sass (~> 3.3.4)
   bootstrap-will_paginate (~> 0.0.9)
   brakeman
   bullet
@@ -538,7 +538,7 @@ DEPENDENCIES
   rmagick (~> 2.13.2)
   rspec-collection_matchers
   rspec-rails (~> 3.1.0)
-  sass-rails (>= 3.2.19)
+  sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   seed-fu (~> 2.3)
   selenium-webdriver (~> 2.43.0)

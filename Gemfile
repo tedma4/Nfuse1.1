@@ -6,8 +6,8 @@ gem 'elastic-beanstalk', '~> 1.1.3'
 gem 'rack', '1.5.2'
 gem 'sqlite3'
 #This allows us to use bootstrap css file
-gem 'bootstrap-sass', '~> 3.3.4.1'
-gem 'sass-rails', '>= 3.2.19'
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'sass-rails', '>= 3.2'
 gem 'sprockets', '~> 2.8'
 #This is used to encrypt a user's password
 gem 'bcrypt', '~> 3.1.7'

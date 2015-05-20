@@ -217,7 +217,6 @@ describe User, type: :model do
     describe  '#Passwords & tokens' do
 
       it '#responds to password methods' do
-        # binding.pry
         user.save
         expect(user).not_to be_new_record
         expect(user.new_remember_token).to be_a(String)

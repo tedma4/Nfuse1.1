@@ -1190,7 +1190,7 @@ float: right;
 }
 
 .explore_filters {
-  margin: 20px;  
+  margin: 4px 0 0 30vw;  
   padding: 0;
   height:30px;
   width: 100%;
@@ -1200,10 +1200,6 @@ float: right;
   margin: 0 32%;
   display: block;
   height: 30px;
-}
-.explore_filters ul li a :active{
-  border-bottom: 5px solid black;
-
 }
 
 #search-picture {

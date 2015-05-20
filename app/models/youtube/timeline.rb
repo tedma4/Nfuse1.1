@@ -48,8 +48,8 @@ module Youtube
     end
 
     def store_last_post_id(timeline)
-      if last = timeline.last
-        @last_vid_id = last.id
+      if last = timeline.videos.last
+        @last_vid_id = timeline.videos.last.video_id
       else
         @last_vid_id = nil
       end
