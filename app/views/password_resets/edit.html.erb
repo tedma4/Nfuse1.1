@@ -25,3 +25,51 @@
   <% end %>
 </div>
 <!-- *End* Views/password_resets/edit.html -->
+
+
+<!-- *Start* Views/sessions/new.html -->
+<% provide(:title, "Log in") %>
+<style type="text/css">
+  .reset-your-password-padding{
+    margin-top: 8vh;
+  }
+</style>
+<div class="Alignthisorelse">
+  <div class="container reset-your-password-padding">
+    <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
+      <div class="form-top">
+        <div class="form-top-left">
+          <h3><strong>Reset Password<strong></h3>
+            <p>Please enter your new password below</p>
+        </div>
+        <div class="form-top-right">
+          <a href="#"><%= image_tag("lock27lightgray.fw.png", size: "65x65") %></a>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+          <% if @user.errors.any? %>
+            <div class="error_messages">
+              <h2>Form is invalid</h2>
+              <ul>
+                <% for message in @user.errors.full_messages %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+          </div>
+          <button
+          <%= f.submit "Create my account", class: "btn" %>> Log in!
+          </button>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- *End* Views/sessions/new.html -->
