@@ -24,4 +24,5 @@
 //= require scripts
 //= require turbolinks
 //= require video
+//= require feed_index
 //= require_tree .

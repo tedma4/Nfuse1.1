@@ -37,7 +37,7 @@ class Providers
   end
 
   def flickr?
-    @user.posts.where(provider: 'flickr').count > 0 
+    @user.tokens.where(provider: 'flickr').count > 0 
   end
 
   def none?

@@ -109,7 +109,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'videojs_rails'
 
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk', '< 2'
 gem 'figaro'
 group :doc do
   gem 'sdoc', '~> 0.4.0', require: false
