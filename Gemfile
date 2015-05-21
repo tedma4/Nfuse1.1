@@ -45,7 +45,7 @@ gem 'vimeo'
 gem 'flickraw'
 #This allows the use of the twitter api
 gem 'twitter', '~> 5.8.0'
-gem 'youtube_it', '~> 2.4.0'
+gem 'yt', :git => 'https://github.com/ermacaz/yt.git'
 gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth 
 gem 'omniauth-instagram', '~> 1.0.1'

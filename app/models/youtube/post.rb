@@ -33,23 +33,26 @@ module Youtube
     end
 
     def created_time
-      @post.created_at
+      @post.published_at
     end
 
     def id
-      @post["id"]
+      @post.id
     end
+    alias_method :video_id, :id
+    # def video_id
+    #   @post.id
+    # end
 
-    def video_id
-      @post["video_id"]
-    end
-
+    #TODO youtube api has no easy way to get video author username
+    #https://developers.google.com/youtube/v3/docs/videos
     def full_name
-      @post["user"]["full_name"]
+      # @post["user"]["full_name"]
+      'boo radley'
     end
 
     def link_to_video
-      @post["link"]
+      "https://www.youtube.com/watch?v=#{@post.id}"
     end
   end
 end

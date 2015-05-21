@@ -1,7 +1,7 @@
 module Youtube
   class Timeline
 
-    attr_reader :authed, :last_vid_id
+    attr_reader :authed, :current_page
     
   #  client = YouTubeIt::OAuth2Client.new(client_access_token: "access_token", client_refresh_token: "refresh_token", client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
   #  client.get_all_videos(:user, :time => :today)
@@ -13,14 +13,14 @@ module Youtube
       @authed = true
     end
 
-    def posts(max_id = nil)
-      timeline = get_timeline(client, max_id)
-      store_last_post_id(timeline)
+    def posts(page = nil)
+      timeline = get_timeline(client, page)
+      store_page(page)
       timeline
     end
 
     def get_video(video_id)
-      client.my_video(video_id)
+      Yt::Video.new id: video_id, auth: client
     end
 
     private
@@ -37,22 +37,22 @@ module Youtube
       @config ||= tokens.configure_youtube(tokens.access_token, tokens.refresh_token)#, tokens.expiresat)
     end
 
-    def get_timeline(client, max_id)
-      if max_id.nil?
-        client.my_videos( count: 25)
+    def get_timeline(client, page)
+      if page.nil?
+        client.videos
       else
-        youtube_timeline = client.my_videos( max_id: max_id, count: 50)
-        youtube_timeline.delete_at(0)
-        youtube_timeline
+        youtube_timeline = client.videos( page: page, count: 50)
+        # youtube_timeline.delete_at(0)
+        # youtube_timeline
       end
     end
 
-    def store_last_post_id(timeline)
-      if last = timeline.last
-        @last_vid_id = last.id
-      else
-        @last_vid_id = nil
-      end
+    def store_page(page)
+      @current_page = page
+      # if last = timeline.to_a.last.id
+      #   @last_vid_id = timeline.last.id
+      # else
+      #   @last_vid_id = nil
     end
   end
 end
