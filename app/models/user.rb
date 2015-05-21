@@ -30,7 +30,10 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "512x512#", small: "32x32#" }, 
-                                default_url: "default.png"
+                                default_url: "default.png"#,
+                                # storage: :s3,
+                                # s3_host_name: 'aa1cee2z3awja3v.c97qscmi7euu.us-west-1.rds.amazonaws.com',
+                                # s3_credentials: 'config/s3.yml'
 
   has_attached_file :banner, styles: { larger: "851x315#", medium: "300x300#" }, 
                                 default_url: "default2.png"
