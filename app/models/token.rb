@@ -154,14 +154,20 @@ class Token < ActiveRecord::Base
   # client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
 
   def configure_youtube(access_token, refresh_token)#, expiresat)
-    client = YouTubeIt::OAuth2Client.new(
-      client_access_token: access_token,
-      client_refresh_token: refresh_token,
-      client_id:     ENV["google_client_secret"],
-      client_secret: ENV["google_client_id"],
-      dev_key:       ENV["youtube_dev_key"],
-      #expires_at: expiresat,
-      )
+    Yt.configure do |config|
+      config.client_id = ENV["google_client_id"]
+      config.client_secret = ENV["google_client_secret"]
+    end
+    client =  Yt::Account.new access_token: access_token, refresh_token: refresh_token
+    client
+    # client = YouTubeIt::OAuth2Client.new(
+    #   client_access_token: access_token,
+    #   client_refresh_token: refresh_token,
+    #   client_id:     ENV["google_client_secret"],
+    #   client_secret: ENV["google_client_id"],
+    #   dev_key:       ENV["youtube_dev_key"],
+    #   #expires_at: expiresat,
+    #   )
   end
 
   def configure_flickr(access_token, access_token_secret)

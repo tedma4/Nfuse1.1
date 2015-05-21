@@ -11,11 +11,6 @@ module Youtube::Api
     def link_to_video
       base_uri << "#{@client["user"]["screen_name"]}/status/#{@video["id"]}"
     end
-
-    #def user_url
-    #  base_uri << "#{@tweet["user"]["screen_name"]}"
-    #end
-
   end
   
   def self.included(receiver)

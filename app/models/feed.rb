@@ -48,7 +48,6 @@ class Feed
   private
 
   def users_posts(shout_id)
-
     if shout_id.nil?
       @_shouts = @user.shouts.limit(10)
       @nfuse_pagination_id = @_shouts.last.id unless @_shouts.empty?
@@ -103,8 +102,8 @@ class Feed
     if user_has_provider?('google_oauth2', @user)
       youtube_timeline = Youtube::Timeline.new(@user)
       begin
-        youtube_posts = youtube_timeline.posts(youtube_pagination_id).videos.map { |post| Youtube::Post.from(post, @user) }
-        @youtube_pagination_id = youtube_timeline.last_vid_id
+        youtube_posts = youtube_timeline.posts(youtube_pagination_id).map { |post| Youtube::Post.from(post, @user) }
+        @youtube_pagination_id = youtube_timeline.current_page
       rescue => e
         @unauthed_accounts << "google_oauth2"
       end
