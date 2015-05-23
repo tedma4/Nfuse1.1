@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314001601) do
+ActiveRecord::Schema.define(version: 20150523222004) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -139,18 +139,23 @@ ActiveRecord::Schema.define(version: 20150314001601) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_video",                      default: false
+    t.boolean  "is_video",                       default: false
     t.string   "title"
     t.string   "link"
     t.string   "uid"
     t.string   "author"
     t.string   "duration"
-    t.boolean  "is_link",                       default: false
-    t.boolean  "is_pic",                        default: false
-    t.text     "url_html",          limit: 255
-    t.text     "url",               limit: 255
-    t.boolean  "has_content",                   default: false
+    t.boolean  "is_link",                        default: false
+    t.boolean  "is_pic",                         default: false
+    t.text     "url_html",           limit: 255
+    t.text     "url",                limit: 255
+    t.boolean  "has_content",                    default: false
     t.integer  "nfuse_page_id"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+    t.boolean  "is_full_video",                  default: false
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"
@@ -238,6 +243,20 @@ ActiveRecord::Schema.define(version: 20150314001601) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "videos", force: true do |t|
+    t.string   "full_video_file_name"
+    t.string   "full_video_content_type"
+    t.integer  "full_video_file_size"
+    t.datetime "full_video_updated_at"
+    t.string   "caption"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "videos", ["user_id"], name: "index_videos_on_user_id"
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"
