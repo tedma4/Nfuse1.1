@@ -8,7 +8,7 @@ class Shout < ActiveRecord::Base
 
   attr_accessor :photo_delete, :video_delete
 
-  has_destroyable_file :pic, :snip
+  has_destroyable_file :pic, :snip, :video
 
   has_attached_file :pic, 
                     :styles => { 
@@ -24,13 +24,19 @@ class Shout < ActiveRecord::Base
                             medium: { :geometry => "640x480", :format => 'flv' },
                              thumb: { :geometry => "100x100#", :format => 'jpg' }
                          }, processors: [:ffmpeg]
+
+  has_attached_file :video,  styles: {
+                            medium: { :geometry => "640x480", :format => 'flv' },
+                             thumb: { :geometry => "100x100#", :format => 'jpg' }
+                         }, processors: [:ffmpeg]
   # This was my bad.
   # * http://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
   check_file_types = ->(record) {
-                  true if (record.is_pic       = !!(record.pic_content_type))
-                  true if (record.is_video     = !!(record.snip_file_name))
-                  true if (record.is_link      = !!(record.url))
-                  !!(record.content            = record.content)
+                  true if (record.is_pic            = !!(record.pic_content_type))
+                  true if (record.is_video          = !!(record.snip_file_name))
+                  true if (record.is_full_video     = !!(record.video_file_name))
+                  true if (record.is_link           = !!(record.url))
+                  !!(record.content                 = record.content)
   }
 
   before_create { |record|
