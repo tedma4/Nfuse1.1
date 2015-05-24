@@ -39,7 +39,9 @@ module Youtube
     def id
       @post.id
     end
+
     alias_method :video_id, :id
+    
     # def video_id
     #   @post.id
     # end
