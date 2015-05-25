@@ -28,4 +28,4 @@ production:
   port: 3306
   username: Nfuseuser
   password: tm671216
-  host: aa1cee2z3awja3v.c97qscmi7euu.us-west-1.rds.amazonaws.com
+  host: aakbl8vbkp8q3i.c97qscmi7euu.us-west-1.rds.amazonaws.com
