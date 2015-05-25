@@ -67,14 +67,14 @@
       </li>
     </ul>
 
-    <div class="post_comments" id="comment_list_<%= shout.id %>">
+    <div class="post_comments" id="comment_list_<%#= shout.id %>">
       <ul>
-        <% shout.comments.each do |comment| %>
-          <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
-        <% end %>
+        <%# shout.comments.each do |comment| %>
+          <%#= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
+        <%# end %>
       </ul>
 
-      <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+      <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
 
     </div>
   </div>

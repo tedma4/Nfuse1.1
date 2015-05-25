@@ -1,4 +1,10 @@
 <!-- *Start* Views/users/_twitter_post.html -->
+<style>
+  .tweeter_image{
+    width: 300px;
+    height: 300px;
+  }
+</style>
 <div class="individual_post item twitter_post" data-id="<%= post.tweet_id %>" width="275" height="auto">
   <div class="post_main">
     <ul class="post_header">
@@ -11,7 +17,9 @@
 
   <div class="post_content">
     <% if post.tweet_image.present? %>
-      <%= image_tag(post.tweet_image, :class => "image_post") %>
+    <div class="timeline-user-box">
+      <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
+    </div>
     <% end %>
       <%= post.tweet_text %> 
   </div><br>
@@ -22,16 +30,6 @@
       <%= time_ago_in_words(post.created_time) %> ago
     </p>
   </div>
-
-  <div class="<%= post.class %>-<%= post.tweet_id %>  post_footer" id="comment_list_<%= post.tweet_id %>">
-    <!-- Refactor this. -->
-    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
-      <%= render partial: 'shared/comment', locals: {comment: comment } %>
-    <% end %>
-    <!-- Refactor this. -->
-  </div>
-
-  <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
 
   <ul class="post_actions">
     <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"), 
@@ -60,5 +58,15 @@
         <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
       <% end %>
   </ul>
+
+  <div class="<%#= post.class %>-<%#= post.tweet_id %>  post_footer" id="comment_list_<%#= post.tweet_id %>">
+    <!-- Refactor this. -->
+    <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
+      <%#= render partial: 'shared/comment', locals: {comment: comment } %>
+    <%# end %>
+    <!-- Refactor this. -->
+  </div>
+
+  <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
 </div>
 <!-- *End* Views/users/_twitter_post.html -->
