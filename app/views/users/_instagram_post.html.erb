@@ -3,7 +3,7 @@
   <div class="post_main">
     <ul class="post_header">
       <li>
-        <%= link_to image_tag(post.avatar, :class => "user_profile_picture"), feed_user_path(post.user) %>
+        <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size:"50x50"), feed_user_path(post.user) %>
       </li>
       <li class="user_name">
         <%= link_to "#{post.username}", feed_user_path(post.user) %></li>
@@ -11,12 +11,15 @@
   </div>
   <div class="post_content">
     <% if post.type == "image" %>
-      <ul>
-        <li><%= image_tag(post.low_resolution_image_url, :class => "image_post") %></li>
+        <div class="timeline-user-box">
+          <%= image_tag(post.low_resolution_image_url, :class => "image_post") %>
+        </div>
         <% if post.caption.present? %>
-          <li><%= post.caption_text %></li>
+        <div class="center">
+          <%= post.caption_text %>
+        </div>
         <% end %>
-      </ul><br>
+      <br>
     <% elsif post.type == "video" %>
       <ul>
         <li>
@@ -25,11 +28,13 @@
           </video>
         </li>
         <% if post.caption.present? %>
+        <div class="center">
           <li><%= post.caption_text %></li>
+        </div>
         <% end %>
       </ul>
     <% end %>
-  </div>&nbsp;
+  </div><br>
 
 
   <div class="right">

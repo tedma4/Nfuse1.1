@@ -3,7 +3,7 @@
   <!--<p id="notice"><%#= notice %></p>-->
   <div class="post_main">
     <ul class="post_header">
-      <li><%= link_to image_tag(shout.user.avatar(:thumb), :class => "user_profile_picture"), feed_user_path(shout.user) %></li>
+      <li><%= link_to image_tag(shout.user.avatar(:thumb), :class => "user_profile_picture", size:"50x50"), feed_user_path(shout.user) %></li>
       <li class="user_name"><%= link_to shout.user.user_name, feed_user_path(shout.user) %></li>
     </ul>
   </div><br>
@@ -11,7 +11,7 @@
   <% if !shout.url.blank? %>
     <p> <%= shout.url_html %></p>
     <div class="caption">
-      <li><%= shout.content %></li>
+      <%= shout.content %>
       <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
     </div>
   <% elsif shout.is_pic? %>
@@ -19,7 +19,7 @@
       <%= image_tag shout.pic_url %>
     </div>
     <div class="caption">
-        <li><%= shout.content %></li>
+        <%= shout.content %>
     </div>
   <% elsif shout.is_video? %>
     <div class="timeline-user-box">
