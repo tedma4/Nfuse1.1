@@ -95,6 +95,7 @@ class UsersController < ApplicationController
         facebook_pagination_id: feed.facebook_pagination_id,
         instagram_max_id:       feed.instagram_max_id,
         nfuse_post_last_id:     feed.nfuse_pagination_id,
+        youtube_pagination:     feed.youtube_pagination_id,
         id: @user.id)
   end
 
