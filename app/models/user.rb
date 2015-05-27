@@ -94,6 +94,10 @@ class User < ActiveRecord::Base
     ActsAsVotable::Vote.where(:owner_id => self.id).count 
   end
 
+  def to_param
+    user_name
+  end
+
   #This allows a user to search by first name, last name or both  
   def self.search(search)
     if search
