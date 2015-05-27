@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe CallbackLinksController do
+describe CallbackLinksController, type: :controller do
 
 end

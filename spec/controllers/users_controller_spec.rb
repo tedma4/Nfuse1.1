@@ -6,7 +6,6 @@ describe UsersController, type: :controller do
     let(:user)  { create(:user) }
 
     before(:each) do
-      request.host = 'nfuse.com'
       login user
     end
 
@@ -34,7 +33,7 @@ describe UsersController, type: :controller do
         get 'index'
         expect(response).not_to be_success
         # expect(response).to redirect_to root_path
-        expect(response).to redirect_to require_signin #will break since no current dedicated signin route
+        expect(response).to redirect_to signin_path
       end
     end
 
@@ -45,7 +44,6 @@ describe UsersController, type: :controller do
     let(:user)  { create(:user) }
 
     before(:each) do
-      request.host = 'nfuse.com'
       login user
     end
 
@@ -76,6 +74,7 @@ describe UsersController, type: :controller do
     end
 
     context 'not logged in' do
+      before { request.host = 'nfuse.com' }
       it 'issues redirect' do
         log_out
         other_user = create(:user)
@@ -228,7 +227,6 @@ describe UsersController, type: :controller do
   describe '#feed_content' do
     let(:user) { create :user }
     before do
-      request.host = 'nfuse.com'
       login user
     end
 
