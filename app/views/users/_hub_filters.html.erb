@@ -83,27 +83,27 @@ a {
 
 <ul class="social-network social-circle Alignthisorelse">
   <li>
-    <%= link_to root_path(session[:user_id]), {class: "icoRss", title: "All", id: "all"} do %>
+    <%= link_to root_path(current_user), {class: "icoRss", title: "All", id: "all"} do %>
       <%= image_tag "hubwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to nfuse_only_user_path(session[:user_id]), {class: "icoRss", title: "Nfuse", id: ""} do %>
+    <%= link_to nfuse_only_user_path(current_user), {class: "icoRss", title: "Nfuse", id: ""} do %>
       <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
       <%end%>
   </li>
   <li>
-    <%= link_to twitter_only_user_path(session[:user_id]), {class: "icoRss", title: "Twitter", id: ""} do %>
+    <%= link_to twitter_only_user_path(current_user), {class: "icoRss", title: "Twitter", id: ""} do %>
     <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
     <%end%>
   </li>
   <li>
-    <%= link_to instagram_only_user_path(session[:user_id]), {class: "icoRss", title: "Instagram", id: ""} do%>
+    <%= link_to instagram_only_user_path(current_user), {class: "icoRss", title: "Instagram", id: ""} do%>
     <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to facebook_only_user_path(session[:user_id]), {class: "icoRss", title: "Facebook", id: ""} do%>
+    <%= link_to facebook_only_user_path(current_user), {class: "icoRss", title: "Facebook", id: ""} do%>
     <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>

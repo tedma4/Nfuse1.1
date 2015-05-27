@@ -83,27 +83,27 @@ a {
 
   <ul class="social-network social-circle">
     <li>
-     <%= link_to explore_user_path(session[:user_id]), {class: "icoRss", title: "All", id: "explore_only"} do %>
+     <%= link_to explore_user_path(current_user), {class: "icoRss", title: "All", id: "explore_only"} do %>
           <%= image_tag('educationalwhite.fw.png', size: "28x28") %>
         <% end %>
     </li>
     <li>
-      <%= link_to explore_nfuse_only_user_path(session[:user_id]), {class: "icoRss", title: "Nfuse", id: "explore_nfuse"} do%>
+      <%= link_to explore_nfuse_only_user_path(current_user), {class: "icoRss", title: "Nfuse", id: "explore_nfuse"} do%>
         <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
         <%end%>
     </li>
     <li>
-      <%= link_to explore_twitter_only_user_path(session[:user_id]), {class: "icoRss", title: "Twitter", id: "explore_twitter"} do %>
+      <%= link_to explore_twitter_only_user_path(current_user), {class: "icoRss", title: "Twitter", id: "explore_twitter"} do %>
       <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
       <%end%>
     </li>
     <li>
-      <%= link_to explore_instagram_only_user_path(session[:user_id]), {class: "icoRss", title: "Instagram", id: "explore_instagram"} do%>
+      <%= link_to explore_instagram_only_user_path(current_user), {class: "icoRss", title: "Instagram", id: "explore_instagram"} do%>
       <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
     <li>
-      <%= link_to explore_facebook_only_user_path(session[:user_id]), {class: "icoRss", title: "Facebook", id: "explore_facebook"} do%>
+      <%= link_to explore_facebook_only_user_path(current_user), {class: "icoRss", title: "Facebook", id: "explore_facebook"} do%>
       <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>

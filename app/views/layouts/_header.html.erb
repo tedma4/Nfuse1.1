@@ -33,12 +33,12 @@
         <% end %>
       </li>
       <li class="navIcon tilt" id="explore">        
-      <%= link_to explore_user_path(session[:user_id]) do %>
+      <%= link_to explore_user_path(current_user) do %>
         <%= image_tag('educational27.png', size: "32x32", title: "Explore") %>
       <% end %>
       </li>
       <li class="navIcon tilt" id="profile">
-        <%= link_to feed_user_path(session[:user_id]) do %>
+        <%= link_to feed_user_path(current_user) do %>
         <%= image_tag(current_user.avatar(:small), class: "user_profile_picture", size: "32x32", title: "#{ current_user.full_name}") %>
         <% end %>
       </li>
@@ -52,7 +52,7 @@
           <%= image_tag('menu24.fw.png', size: "32x32", title: "Menu") %> <b class="caret"></b>
         </a>
         <ul class="menuDropdown">
-          <li class="doubleDrop"><%= link_to "Settings", edit_user_path(session[:user_id]) %></li>
+          <li class="doubleDrop"><%= link_to "Settings", edit_user_path(current_user) %></li>
           <li class="doubleDrop"><%= link_to "Help", help_path %></li>
           <li class="doubleDrop"><%= link_to "Feedback", contacts_path %></li>
           <li class="divider"></li>

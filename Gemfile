@@ -63,6 +63,8 @@ gem 'seed-fu', '~> 2.3'
 gem 'private_pub'
 gem 'thin'
 gem 'auto_html'
+gem "faker", "~> 1.4.3"
+
 #These are the gems used in the development enviornment
 # gem 'rack-mini-profiler', group: :development #causing errors each request
 gem 'bullet', group: :development
@@ -74,6 +76,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rails-erd'
+  gem 'simplecov'
+
   # ^-- Used in both dev and testing.
 end
 #These are the gems used in the test enviornment
@@ -85,12 +89,10 @@ group :test do
   # gem 'wdm', '0.1.0'
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers', '~> 2.6.0', require: false
-  gem "faker", "~> 1.4.3"
   gem "capybara", "~> 2.4.3"
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
   gem "selenium-webdriver", "~> 2.43.0"
-  gem 'simplecov'
   gem 'pry'
   gem 'pry-rails'
 end

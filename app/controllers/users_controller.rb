@@ -133,7 +133,7 @@ class UsersController < ApplicationController
   end
 
   def user_from_params
-    @user = User.find(params[:id])
+    @user = User.find_by_user_name(params[:id])
   end
 
   def nfuse_page
