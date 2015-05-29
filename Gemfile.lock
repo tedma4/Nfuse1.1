@@ -64,6 +64,8 @@ GEM
     autoprefixer-rails (5.1.11)
       execjs
       json
+    av (0.8.1)
+      cocaine (~> 0.5.3)
     awesome_print (1.6.1)
     aws-sdk (1.64.0)
       aws-sdk-v1 (= 1.64.0)
@@ -284,7 +286,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    paperclip-ffmpeg (1.0.0)
+    paperclip-av-transcoder (0.6.3)
+      av (~> 0.8.1)
       paperclip (>= 2.5.2)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
@@ -517,7 +520,7 @@ DEPENDENCIES
   omniauth-twitter (~> 1.0.1)
   omniauth-vimeo
   paperclip (~> 4.2)
-  paperclip-ffmpeg (= 1.0.0)
+  paperclip-av-transcoder
   private_pub
   pry
   pry-rails
