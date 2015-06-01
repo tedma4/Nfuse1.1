@@ -4,6 +4,15 @@
     <%#= shout.inspect %>
     <% if !shout.url.blank? %>
       <p> <%= shout.url_html %></p>
+    <% elsif shout.from_youtube? %>
+    <iframe 
+      id="ytplayer" 
+      type="text/html" 
+      width="100%" 
+      height="225" 
+      src="http://www.youtube.com/embed/<%= shout.url %>" 
+      frameborder="0">
+    </iframe>
     <% else shout.is_pic? %>
       <p class="timeline-user-box">
         <%= image_tag shout.url %>

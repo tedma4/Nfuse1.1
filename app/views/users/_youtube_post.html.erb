@@ -48,7 +48,8 @@
       <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
         user_nfused_page_path(id: post.id,
                         owner_id: post.user.id,
-                        user_id:  current_user.id, key: :youtube, url: ( post.id || '') ),
+                        user_id:  current_user.id,
+                        key: :youtube, url: ( post.id || '') ),
                         method: :post, remote: true %>
     </li>
     <li class="vr"></li>
