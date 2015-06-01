@@ -22,13 +22,13 @@ class Shout < ActiveRecord::Base
 
   has_attached_file :snip,  
                     styles: {
-                            medium: { :geometry => "640x480", :format => 'flv' },
+                            medium: { :geometry => "640x480#", :format => 'mov' },
                              thumb: { :geometry => "100x100#", :format => 'jpg' }
                          }
                 
   has_attached_file :video,
                     styles: {
-                            medium: { :geometry => "640x480", :format => 'flv' },
+                            medium: { :geometry => "640x480#", :format => 'mov' },
                              thumb: { :geometry => "100x100#", :format => 'jpg' }
                          }
                   

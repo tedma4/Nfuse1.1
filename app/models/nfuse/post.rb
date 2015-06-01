@@ -89,9 +89,13 @@ module Nfuse
     def video_url
       @shout.snip.url(:medium)
     end
-    
-    def snip
-      @shout.snip.url(:original)
+
+    def is_full_video?
+      @shout.is_full_video
+    end
+
+    def full_video_url
+      @shout.video.url(:medium)
     end
 
     def user_url

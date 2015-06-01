@@ -28,9 +28,9 @@ class NfusePage < ActiveRecord::Base
     !url.blank? || !from_youtube?
   end
 
-  def from_youtube?
-    key: 'youtube'
-  end
+  # def from_youtube?
+  #   key: 'youtube'
+  # end
 
   auto_html_for :url do
     html_escape
