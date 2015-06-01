@@ -8,6 +8,7 @@ module Vimeo
       @authed = true
     end
 
+
     def posts(max_id = nil)
       timeline = get_timeline(video, max_id, uid)
       store_last_post_id(timeline)
@@ -30,6 +31,16 @@ module Vimeo
 
     def configure_vimeo(tokens)
       @config ||= tokens.configure_vimeo(tokens.access_token, tokens.access_token_secret)
+    end
+
+    def config_video_base
+      tokens = @config.get_access_token
+      Vimeo::Advanced::Video.new(
+        ENV["vimeo_client_id"],
+        ENV["vimeo_client_secret"],
+        token: tokens.token,
+        secret: tokens.secret
+      )
     end
 
     def uid(user_tokens)

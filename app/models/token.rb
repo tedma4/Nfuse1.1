@@ -68,6 +68,10 @@ class Token < ActiveRecord::Base
       auth["credentials"]["secret"]
     end
 
+    def credentials_uid
+      auth["uid"]
+    end
+
     def provider
       auth['provider']
     end
@@ -104,6 +108,7 @@ class Token < ActiveRecord::Base
     def vimeo_token
       @token.access_token        = credentials_token
       @token.access_token_secret = credentials_secret
+      @token.uid                 = credentials_uid
     end
 
     def flickr_token
@@ -142,13 +147,14 @@ class Token < ActiveRecord::Base
   #user.save
   
   def configure_vimeo(access_token, access_token_secret)
-    video = Vimeo::Advanced::Video.new(
+    video = Vimeo::Advanced::Base.new(
       ENV["vimeo_client_id"],
       ENV["vimeo_client_secret"],
       token: access_token,
       secret: access_token_secret
       )
   end
+
 
   # client = YouTubeIt::OAuth2Client.new(client_access_token: "access_token", client_refresh_token: "refresh_token",
   # client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
