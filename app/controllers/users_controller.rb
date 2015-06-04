@@ -200,7 +200,7 @@ class UsersController < ApplicationController
 
   def explore_youtube_only
     explore_only_pages
-    render "explore_facebook_only"
+    render "explore_youtube_only"
   end
 
   def explore_only_pages

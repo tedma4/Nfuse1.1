@@ -88,27 +88,27 @@ a {
     <%end%>
   </li>
   <li>
-    <%= link_to nfuse_only_user_path(current_user), {class: "icoRss", title: "Nfuse", id: ""} do %>
+    <%= link_to nfuse_only_user_path(current_user), {class: "icoRss", title: "Nfuse", id: "nfuse"} do %>
       <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
       <%end%>
   </li>
   <li>
-    <%= link_to twitter_only_user_path(current_user), {class: "icoRss", title: "Twitter", id: ""} do %>
+    <%= link_to twitter_only_user_path(current_user), {class: "icoRss", title: "Twitter", id: "twitter"} do %>
     <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
     <%end%>
   </li>
   <li>
-    <%= link_to instagram_only_user_path(current_user), {class: "icoRss", title: "Instagram", id: ""} do%>
+    <%= link_to instagram_only_user_path(current_user), {class: "icoRss", title: "Instagram", id: "instagram"} do%>
     <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to facebook_only_user_path(current_user), {class: "icoRss", title: "Facebook", id: ""} do%>
+    <%= link_to facebook_only_user_path(current_user), {class: "icoRss", title: "Facebook", id: "facebook"} do%>
     <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Youtube"} do %>
+    <%= link_to facebook_only_user_path(current_user), {class: "icoRss", title: "Youtube", id: "youtube"} do %>
       <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
@@ -149,6 +149,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/facebook_only')!== -1){
       $('#facebook').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/youtube_only')!== -1){
+      $('#youtube').addClass("activeNavIcon");
     }
 });
 </script>

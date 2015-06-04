@@ -108,7 +108,7 @@ a {
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss", title: "Youtube"} do %>
+      <%= link_to explore_youtube_only_user_path(current_user), {class: "icoRss", title: "Youtube", id: "explore_youtube"} do %>
         <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
@@ -135,7 +135,7 @@ $(document).ready(function(){
     var urlPath = window.location.pathname;
     //alert(urlPath);
     if(urlPath == "/explore"){
-      $('#eplore_only').addClass("activeNavIcon");
+      $('#explore_only').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/explore_nfuse_only')!== -1){
       $('#explore_nfuse').addClass("activeNavIcon");
@@ -148,6 +148,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/explore_facebook_only')!== -1){
       $('#explore_facebook').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_youtube_only')!== -1){
+      $('#explore_youtube').addClass("activeNavIcon");
     }
 });
 </script>
