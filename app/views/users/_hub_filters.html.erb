@@ -83,37 +83,37 @@ a {
 
 <ul class="social-network social-circle Alignthisorelse">
   <li>
-    <%= link_to root_path(current_user), {class: "icoRss", title: "All", id: "all"} do %>
+    <%= link_to root_path(current_user), {class: "icoRss hubIcon", title: "All", id: "all"} do %>
       <%= image_tag "hubwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to nfuse_only_user_path(current_user), {class: "icoRss", title: "Nfuse", id: "nfuse"} do %>
+    <%= link_to nfuse_only_user_path(current_user), {class: "icoRss hubIcon", title: "Nfuse", id: "nfuse"} do %>
       <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
       <%end%>
   </li>
   <li>
-    <%= link_to twitter_only_user_path(current_user), {class: "icoRss", title: "Twitter", id: "twitter"} do %>
+    <%= link_to twitter_only_user_path(current_user), {class: "icoRss hubIcon", title: "Twitter", id: "twitter"} do %>
     <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
     <%end%>
   </li>
   <li>
-    <%= link_to instagram_only_user_path(current_user), {class: "icoRss", title: "Instagram", id: "instagram"} do%>
+    <%= link_to instagram_only_user_path(current_user), {class: "icoRss hubIcon", title: "Instagram", id: "instagram"} do%>
     <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to facebook_only_user_path(current_user), {class: "icoRss", title: "Facebook", id: "facebook"} do%>
+    <%= link_to facebook_only_user_path(current_user), {class: "icoRss hubIcon", title: "Facebook", id: "facebook"} do%>
     <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to facebook_only_user_path(current_user), {class: "icoRss", title: "Youtube", id: "youtube"} do %>
+    <%= link_to youtube_only_user_path(current_user), {class: "icoRss hubIcon", title: "Youtube", id: "youtube"} do %>
       <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Vimeo"} do %>
+    <%= link_to "#", {class: "icoRss hubIcon", title: "Vimeo"} do %>
       <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
@@ -132,7 +132,7 @@ a {
 
 <script>
 $(document).ready(function(){
-    $(".navIcon").removeClass("activeNavIcon");
+    $(".hubIcon").removeClass("activeNavIcon");
     var urlPath = window.location.pathname;
     //alert(urlPath);
     if(urlPath == "/"){
