@@ -853,6 +853,11 @@ td {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
   border-bottom: 5px solid rgba(59,89,152,0.8);
 }
+.faved_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(205,179,139,0.8);
+}
 #content-box-profile {
  height: 100vh;
  top: 0;
