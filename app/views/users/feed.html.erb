@@ -5,9 +5,11 @@
   }
 </style>
 <!-- *START* Views/users/feed.html.erb  -->
-<% unless @unauthed_accounts.empty? %>
-  <%= render partial: "unauthed_accounts" %>
-<% end %>
+<div>
+  <% unless @unauthed_accounts.empty? %>
+    <%= render partial: "unauthed_accounts" %>
+  <% end %>
+</div>
 
 <div id="masonJar" class="masonJar js-masonry" data-user-id="<%= @user.id %>" >
   <% if @timeline.present? %>

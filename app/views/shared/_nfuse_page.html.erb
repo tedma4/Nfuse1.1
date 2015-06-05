@@ -1,22 +1,21 @@
-<% @nfuse_pages.each do |shout| %>
-
-  <div class="visible-md visible-lg individual_post item nfuse_post ">
-    <%#= shout.inspect %>
-    <% if !shout.url.blank? %>
-      <p> <%= shout.url_html %></p>
-    <% elsif shout.from_youtube? %>
-    <iframe 
-      id="ytplayer" 
-      type="text/html" 
-      width="100%" 
-      height="225" 
-      src="http://www.youtube.com/embed/<%= shout.url %>" 
-      frameborder="0">
-    </iframe>
-    <% else shout.is_pic? %>
-      <p class="timeline-user-box">
-        <%= image_tag shout.url %>
-      </p>
-    <% end %>
-  </div>
-<% end %>
+<div id="masonJar" class="center hub_container clearfix masonJar">
+  <% @nfuse_pages.each do |shout| %>
+      <%#= shout.inspect %>
+      <% if !shout.url.blank? %>
+        <p> <%= shout.url_html %></p>
+      <% elsif shout.from_youtube? %>
+        <iframe 
+          id="ytplayer" 
+          type="text/html" 
+          width="100%" 
+          height="225" 
+          src="http://www.youtube.com/embed/<%= shout.url %>" 
+          frameborder="0">
+        </iframe>
+      <% else shout.is_pic? %>
+        <p class="timeline-user-box">
+          <%= image_tag shout.url %>
+        </p>
+      <% end %>
+  <% end %>
+</div>
