@@ -201,14 +201,14 @@ div.setting-tab div.setting-tab-content:not(.active){
                                                 </div>
                                                 <div class="col-sm-3 features-box wow fadeInUp">
                                                 <div class="features-box-icon">
-                                                  <a href="#"><%= image_tag("pinterestblue.fw.png", size: "60x60") %></a>
+                                                  <a href="#"><%= image_tag("googleplusblue.fw.png", size: "60x60") %></a>
                                                 </div>
-                                                  <h3>Pinterest</h3>
+                                                  <h3>Google +</h3>
                                                   <p>This is for catchy slogan.</p>
                                                 <% if current_user && user_has_provider?('pinterest') %>
-                                                    <%= link_to "You've Nfused Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
+                                                    <%= link_to "You've Nfused Google +", "/auth/pinterest?origin=#{request.original_url}" %>
                                                     <% else %>
-                                                    <%= link_to "Nfuse Pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
+                                                    <%= link_to "Nfuse Google +", "/auth/pinterest?origin=#{request.original_url}" %>
                                                     <% end %>
                                                 </div>
                                             </div>
