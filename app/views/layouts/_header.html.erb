@@ -93,7 +93,43 @@ $(document).ready(function(){
     if(urlPath == "/"){
       $('#home').addClass("activeNavIcon");
     }
+    else if(urlPath.indexOf('/nfuse_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/twitter_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/instagram_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/facebook_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/youtube_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/vimeo_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/googleplus_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
     else if(urlPath.indexOf('/explore')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_nfuse_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_twitter_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_instagram_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_facebook_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_youtube_only')!== -1){
       $('#explore').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/feed')!== -1){
