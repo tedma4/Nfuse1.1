@@ -7,23 +7,25 @@
             <%= shout.url_html %>
           </p>
         </div>
-      <% elsif shout.from_youtube? %>
+      <% else shout.is_pic? %>
+        <% if params[:social_key] == "youtube" %>
         <div class="individual_post faved_post item" id="content-box-feed">
-          <iframe 
+          <video 
             id="ytplayer" 
             type="text/html" 
             width="100%" 
             height="225" 
             src="http://www.youtube.com/embed/<%= shout.url %>" 
             frameborder="0">
-          </iframe>
+          </video>
         </div>
-      <% else shout.is_pic? %>
+        <% else %>
         <div class="individual_post faved_post item" id="content-box-feed">
           <p class="timeline-user-box">
             <%= image_tag shout.url %>
           </p>
         </div>
+        <% end %>
       <% end %>
   <% end %>
 </div>
