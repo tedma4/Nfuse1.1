@@ -8,57 +8,66 @@
     </ul>
   </div><br>
 
-  <% if !shout.url.blank? %>
-    <p> <%= shout.url_html %></p>
-    <div class="caption">
-      <%= shout.content %>
-      <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
-    </div>
-  <% elsif shout.is_pic? %>
-    <div class="timeline-user-box">
-      <%= image_tag shout.pic_url %>
-    </div>
-    <div class="caption">
+  <div class="post_content">
+    <% if !shout.url.blank? %>
+      <p> <%= shout.url_html %></p>
+      <div class="caption">
         <%= shout.content %>
-    </div>
-  <% elsif shout.is_video? %>
-    <div class="timeline-user-box">
-      <video 
-        id="ytplayer" 
-        type="video/mp4" 
-        width="100%" 
-        height="225" 
-        src="<%= shout.video_url %>" 
-        frameborder="0"
-        allowfullscreen
-        controls>
-      </video>
-      <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
-    </div>
-    <div class="caption">
-        <li><%= shout.content %></li>
-    </div>
-  <% elsif shout.is_full_video? %>
-    <div class="timeline-user-box">
-      <video 
-        id="ytplayer" 
-        type="video/flv" 
-        width="100%" 
-        height="225" 
-        src="<%= shout.full_video_url %>" 
-        frameborder="0"
-        allowfullscreen
-        controls>
-      </video>
-      <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
-    </div>
-    <div class="caption">
-        <li><%= shout.content %></li>
-    </div>
-  <% end %>
-     <div class="right"> <%= image_tag "Nfuselogoblue.fw.png", class: "provider_logo", size: "18x18" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
-  <br>
-  <div class="<%= shout.class %>-<%= shout.id %> post_footer">
+        <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
+      </div>
+    <% elsif shout.is_pic? %>
+      <div class="timeline-user-box">
+        <%= image_tag shout.pic_url %>
+      </div>
+      <div class="caption">
+          <%= shout.content %>
+      </div>
+    <% elsif shout.is_video? %>
+      <div class="timeline-user-box">
+        <video 
+          id="ytplayer" 
+          type="video/mp4" 
+          width="100%" 
+          height="225" 
+          src="<%= shout.video_url %>" 
+          frameborder="0"
+          allowfullscreen
+          controls>
+        </video>
+        <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+      </div>
+      <div class="caption">
+          <%= shout.content %>
+      </div>
+    <% elsif shout.is_full_video? %>
+      <div class="timeline-user-box">
+        <video 
+          id="ytplayer" 
+          type="video/flv" 
+          width="100%" 
+          height="225" 
+          src="<%= shout.full_video_url %>" 
+          frameborder="0"
+          allowfullscreen
+          controls>
+        </video>
+        <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+      </div>
+      <div class="caption">
+          <%= shout.content %>
+      </div>
+    <% end %>
+  </div><br>
+
+   <div class="right"> 
+      <%= image_tag "Nfuselogoblue.fw.png", class: "provider_logo", size: "18x18" %> 
+      <p class="timeStamp">
+        <%= time_ago_in_words(shout.created_time) %> ago 
+      </p> 
+  </div>
+
+  <div class="<%= shout.class %>-<%= shout.id %>">
+
   </div>
     <ul class="post_actions">
       <li class="tilt">

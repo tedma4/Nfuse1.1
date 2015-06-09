@@ -4,11 +4,6 @@ class ShoutsController < ApplicationController
   before_action :set_shout, only: [:show, :edit, :update, :destroy]
   respond_to :json, :js, :html
 
-  def index
-    @shouts = Shout.order('created_at DESC')
-    #@shouts = Shout.includes(:user, :comments).order('created_at DESC')
-  end
-
   def show
     @commentable = set_shout
     @comments = @commentable.comments
@@ -35,7 +30,7 @@ class ShoutsController < ApplicationController
           format.html { redirect_to feed_user_path(@shout.user)}
           format.json { render json: @shout, status: :created, location: @shout }
       else
-          format.html { render action: "new" }
+          format.html { redirect_to new_shout_path }
           format.json { render json: @shout.errors, status: :unprocessable_entity }
       end
     end
