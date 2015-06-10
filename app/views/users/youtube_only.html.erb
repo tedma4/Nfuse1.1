@@ -3,7 +3,7 @@
 </div><br>
 <div id="masonJar" class="center explore_container clearfix masonJar">
   <% @timeline.each do |post| %>
-    <% if post.provider == "youtube" %>
+    <% if post.provider == "google_oauth2" %>
       <%= render partial: "users/youtube_post", locals: {post: post} %>
     <% end %>
   <% end %>

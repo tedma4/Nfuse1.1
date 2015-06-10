@@ -58,12 +58,13 @@
                         user_id:  current_user.id, key: :instagram, url: ( post.low_resolution_image_url || '') ),
                         method: :post, remote: true %>
     </li>
+
     <li class="vr"></li> -->
-      <% unless !current_user?(post.user) %>
-        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <% else %>
-        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <% end %>
+<!--       <%# unless !current_user?(post.user) %>
+        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <%# else %>
+        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <%# end %> -->
   </ul>
   <div class="<%#= post.class %>-<%#= post.id %> post_footer right" id="comment_list_<%#= post.id %>">
     <!-- Refactor this. -->

@@ -70,12 +70,13 @@
                                                  user_id:  current_user.id, key: :facebook, url: ( post.image || '') ),
                                                  method: :post, remote: true %>
     </li>
+
     <li class="vr"></li> -->
-      <% unless !current_user?(post.user) %>
-        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <% else %>
-        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <% end %>
+<!--       <%# unless !current_user?(post.user) %>
+        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <%# else %>
+        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <%# end %> -->
     <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
   </ul>
 </div>
