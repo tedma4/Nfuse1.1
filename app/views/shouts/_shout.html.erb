@@ -101,23 +101,18 @@ $(function () {
               <div class="row">
                 <div class="col-sm-3 how-it-works-box wow fadeInUp">
                   <div class="how-it-works-box-icon">
-                    <a href="#"><%= image_tag("Newpostsnip.fw.png", size: "65x65") %></a>
+                    <%= image_tag("circlesnipdarkgray.fw.png", size: "200x200") %>
                   </div>
-                    <h2>Snip</h2>
-                    <p class="ready-par">15 Sec Clip</p>
                     <div class="fileUpload btn-link-1">
                       <span>Upload Snip</span>
-                      <%= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                        <%= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
                     </div>
                 </div>
 
                 <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
                   <div class="how-it-works-box-icon">
-                    <a href="#"><%= image_tag("Newpostpic.fw.png", size: "65x65") %></a>
+                    <a href="#"><%= image_tag("circlephoto.fw.png", size: "200x200") %></a>
                   </div>
-                    <h2>Pic</h2>
-                    <p class="ready-par">HD Picture/Selfie</p>
-
                     <div class="fileUpload btn-link-1">
                       <span>Upload Pic</span>
                        <%= f.file_field :pic, id: 'pictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
@@ -127,10 +122,8 @@ $(function () {
                 <div class="row">
                   <div class="col-sm-3 how-it-works-box wow fadeInUp">
                     <div class="how-it-works-box-icon">
-                      <a href="#"><%= image_tag("Newpostvideo.fw.png", size: "65x65") %></a>
+                      <a href="#"><%= image_tag("circlevideo.fw.png", size: "200x200") %></a>
                     </div>
-                    <h2>Video</h2>
-                    <p class="ready-par">Share Full Video</p>
                     <div class="fileUpload btn-link-1">
                       <span>Upload Video</span>
                       <%= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
@@ -139,12 +132,10 @@ $(function () {
 
                   <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
                     <div class="how-it-works-box-icon">
-                      <a href="#"><%= image_tag("Newpostin1.fw.png", size: "65x65") %></a>
+                      <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "200x200") %></a>
                     </div>
-                    <h2>In2</h3>
-                    <p class="ready-par">URL Of Anything</p>
                     <div class="form-grouP">
-                      <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "Youtube, Vimeo, Soundcloud", onChange: 'previewUrl()', type:"search" %>
+                      <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
                     </div>
                   </div>
               </div>

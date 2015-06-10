@@ -1,4 +1,4 @@
-<!-- *Start* Views/layouts/_header.html -->
+#<!-- *Start* Views/layouts/_header.html -->
 <style type="text/css">
   .input-bg {
     background-color: #fff;
@@ -42,11 +42,16 @@
         <%= image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{ current_user.full_name}") %>
         <% end %>
       </li>
-      <li class="navIcon tilt" id="notifications">
-        <%= link_to notifications_path do %>
-        <%= image_tag('notifications.fw.png', size: "32x32", title: "Notifications") %>
+      <li class="navIcon tilt" id="newpost">
+        <%= link_to new_shout_path do %>
+          <%= image_tag('add50blue.fw.png', size: "32x32", title: "New post") %>
         <% end %>
       </li>
+<!--       <li class="navIcon tilt" id="notifications">
+        <%#= link_to notifications_path do %>
+        <%#= image_tag('notifications.fw.png', size: "32x32", title: "Notifications") %>
+        <%# end %>
+      </li> -->
       <li class="navIcon edit feedback" id="help">
         <a href="#" class="dropdown-toggle">
           <%= image_tag('menu24.fw.png', size: "32x32", title: "Menu") %> <b class="caret"></b>
@@ -62,7 +67,6 @@
     </ul> 
   
   </div>
-
 
 <% else %> <!-- else _header-->
 
@@ -144,8 +148,8 @@ $(document).ready(function(){
     else if(urlPath.indexOf('/followers')!== -1){
       $('#profile').addClass("activeNavIcon");
     }
-    else if(urlPath.indexOf('/notifications')!== -1){
-      $('#notifications').addClass("activeNavIcon");
+    else if(urlPath.indexOf('/shouts/new')!== -1){
+      $('#newpost').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/edit')!== -1){
       $('.edit').addClass("activeNavIcon");
