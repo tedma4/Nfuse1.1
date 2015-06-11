@@ -147,6 +147,7 @@
       <li class="tilt">
         <div id="accordion">
           <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
+          <%= shout.comment_count %>
         </div>
       </li>
       <li class="vr"></li>
@@ -170,58 +171,19 @@
     </ul>
 
     <div class="post_comments" id="comment_list_<%= shout.id %>">
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="panel">
-
-            <div class="panel-collapse collapse" id="collapseOne">
-                <div class="panel-body">
-                    <ul class="comment">
-                        <li class="left clearfix"><span class="comment-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                        </span>
-                            <div class="comment-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-comment">
-                                Send</button>
-                        </span>
-                    </div>
-                </div>
+      <div class="panel">
+        <div class="panel-collapse collapse" id="collapseOne">
+          <div class="panel-body"> <!-- These are for the comment img and content -->
+            <ul class="comment">
+              <% shout.comments.each do |comment| %>
+                <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
+              <% end %>
+            </ul>
+            <div>
+              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
             </div>
-            </div>
+          </div>
         </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
     </div>
   </div>

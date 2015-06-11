@@ -18,12 +18,12 @@ module Nfuse
       @shout.content
     end
 
-    def comments_count
-      @shout.comments.count
-    end
-
     def like_score(id)
       ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def comment_count
+      Comment.where(commentable_id: id).count
     end
 
     def comments

@@ -20,6 +20,10 @@
 #       ActsAsVotable::Vote.where(votable_id: id).count
 #     end
 
+    # def comment_count
+    #   Comment.where(commentable_id: id).count
+    # end
+
 #     def avatar
 #       @user.avatar(:thumb)
 #     end

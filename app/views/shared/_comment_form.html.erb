@@ -1,5 +1,9 @@
 <%= form_tag(shout.form_path , method: :post, remote: true) do %>
-    <%= text_area_tag 'comment[body]', 'leave comment' %>
-    <%= hidden_field_tag 'comment[user_id]', current_user.id  %>
-    <%= submit_tag %>
+  <div class="input-group">
+  	<%= text_field_tag 'comment[body]', "Type your message here...", id: "btn-input", class: "form-control input-sm" %>
+  	<%= hidden_field_tag 'comment[user_id]', current_user.id  %>
+    <span class="input-group-btn">
+    	<%= submit_tag "Send", class: "btn btn-warning btn-sm", id: "btn-comment" %>
+    </span>
+  </div>
 <% end %>
