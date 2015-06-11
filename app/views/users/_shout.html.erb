@@ -1,3 +1,69 @@
+<style>
+
+.comment
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.comment li.left .comment-body
+{
+    margin-left: 60px;
+}
+
+.comment li.right .comment-body
+{
+    margin-right: 0px;
+}
+
+
+.comment li .comment-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .comment .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 200px;
+    width: 300px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+</style>
+
 <!-- *Start* Views/users/_shout.html -->
 <div class="visible-md visible-lg individual_post item nFuse_post " data-id="<%= shout.id %>" data-provider="<%= shout.provider %>">
   <!--<p id="notice"><%#= notice %></p>-->
@@ -78,7 +144,11 @@
         <%= shout.like_score(shout.id) %>
       </li>
       <li class="vr"></li>
-      <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %></li>
+      <li class="tilt">
+        <div id="accordion">
+          <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
+        </div>
+      </li>
       <li class="vr"></li>
 <!--       <li class="tilt">
         <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
@@ -99,15 +169,59 @@
       </li>
     </ul>
 
-    <div class="post_comments" id="comment_list_<%#= shout.id %>">
-      <ul>
-        <%# shout.comments.each do |comment| %>
-          <%#= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
-        <%# end %>
-      </ul>
+    <div class="post_comments" id="comment_list_<%= shout.id %>">
 
-      <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel">
+
+            <div class="panel-collapse collapse" id="collapseOne">
+                <div class="panel-body">
+                    <ul class="comment">
+                        <li class="left clearfix"><span class="comment-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="comment-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-comment">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
   </div>
-
