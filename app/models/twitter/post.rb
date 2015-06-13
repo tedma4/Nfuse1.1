@@ -22,7 +22,7 @@ module Twitter
       ActsAsVotable::Vote.where(votable_id: id).count
     end
 
-    def comment_count
+    def comment_count(id)
       Comment.where(commentable_id: id).count
     end
 

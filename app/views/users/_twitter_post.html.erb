@@ -40,7 +40,11 @@
       <%= post.like_score(post.tweet_id) %>
     </li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
+    <li class="tilt">
+      <div id="accordion">
+        <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
+      </div>
+    </li>
     <li class="vr"></li>
 <!--     <li class="tilt">
       <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
@@ -59,14 +63,31 @@
       <%# end %> -->
   </ul>
 
-  <div class="<%#= post.class %>-<%#= post.tweet_id %>  post_footer" id="comment_list_<%#= post.tweet_id %>">
-    <!-- Refactor this. -->
-    <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
-      <%#= render partial: 'shared/comment', locals: {comment: comment } %>
-    <%# end %>
-    <!-- Refactor this. -->
+  <div class="<%= post.class %>-<%= post.tweet_id %>" id="comment_list_<%= post.tweet_id %>">
+      <div class="panel">
+        <div class="panel-collapse collapse" id="collapseOne">
+          <div class="panel-body"> <!-- These are for the comment img and content -->
+            <ul class="comment">
+              <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
+                <%= render partial: 'shared/comment', locals: {comment: comment } %>
+              <% end %>
+            </ul>
+            <div>
+              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
-</div>
 <!-- *End* Views/users/_twitter_post.html -->
+
+
+
+
+
+
+
+
+
+

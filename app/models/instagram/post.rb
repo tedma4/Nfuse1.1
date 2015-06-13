@@ -19,7 +19,7 @@ module Instagram
     end
 
     def comment_count
-      Comment.where(commentable_id: id).count
+      @post.comments.count
     end
 
     def avatar

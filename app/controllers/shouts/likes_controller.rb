@@ -8,11 +8,14 @@ class Shouts::LikesController < ApplicationController
                                        votable_id: params[:id])
       send( params.fetch(:key, :basic).to_sym ) # Object.send
     end
-    render js: 'alert("like")' and return
+    respond_to do |format|
+      format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
+    end
   end
 
   def destroy
-    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
+    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id,
+                                         votable_id: params[:id])
       @like.destroy
     end
     render js: 'alert("dislike")' and return
@@ -54,7 +57,9 @@ class Shouts::LikesController < ApplicationController
   end
 
   def vote_params
-   {votable_id: params[:id], voter_id: current_user.id, owner_id: params[:owner_id]}
+   {votable_id: params[:id],
+      voter_id: current_user.id, 
+      owner_id: params[:owner_id]}
   end
 
 end

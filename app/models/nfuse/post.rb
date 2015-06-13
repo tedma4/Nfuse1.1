@@ -23,7 +23,7 @@ module Nfuse
     end
 
     def comment_count
-      Comment.where(commentable_id: id).count
+      @shout.comments.count
     end
 
     def comments

@@ -1,3 +1,20 @@
-$(document).ready(function() {
-  alert('Liked');
-})
+// $(document).ready(function() {
+//   alert('Liked');
+// })
+$(".shout-<%= shout.id %>").html('<%= escape_javascript @shout.like_score(@shout.id) %>');
+
+
+
+
+
+// First make a wrapper div for show.html.erb
+
+// <div class='shout-<%= shout.id %>' >
+//  <h3><%= shout.like_score %> votes</h3><br />
+//  <%= link_to "Vote Up", like_shout_path(@post), :remote => true %>
+// </div>
+
+// and in vote_up.js.erb
+
+// $("shout-<%=@shout.id%>").html('<%=escape_javascript @shout.like_score %>');
+// or something like this

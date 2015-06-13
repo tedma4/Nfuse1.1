@@ -133,8 +133,8 @@
   </div>
 
   <div class="<%= shout.class %>-<%= shout.id %>">
-
-  </div>
+ 
+  </div class="shout-<%= shout.id %>">
     <ul class="post_actions">
       <li class="tilt">
         <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
@@ -145,7 +145,7 @@
       </li>
       <li class="vr"></li>
       <li class="tilt">
-        <div id="accordion">
+        <div id="accordion shout-<%= shout.id %>">
           <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
           <%= shout.comment_count %>
         </div>
