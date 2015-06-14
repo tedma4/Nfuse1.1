@@ -1,13 +1,31 @@
-<% @nfuse_pages.each do |shout| %>
-
-  <div class="visible-md visible-lg individual_post item nfuse_post ">
-    <%#= shout.inspect %>
-    <% if !shout.url.blank? %>
-      <p> <%= shout.url_html %></p>
-    <% else shout.is_pic? %>
-      <p class="timeline-user-box">
-        <%= image_tag shout.url %>
-      </p>
-    <% end %>
-  </div>
-<% end %>
+<div id="masonJar" class="center hub_container clearfix masonJar">
+  <% @nfuse_pages.each do |shout| %>
+      <%#= shout.inspect %>
+      <% if !shout.url.blank? %>
+        <div class="individual_post faved_post item" id="content-box-feed">
+          <p> 
+            <%= shout.url_html %>
+          </p>
+        </div>
+      <% else shout.is_pic? %>
+        <% if params[:social_key] == "youtube" %>
+        <div class="individual_post faved_post item" id="content-box-feed">
+          <video 
+            id="ytplayer" 
+            type="text/html" 
+            width="100%" 
+            height="225" 
+            src="http://www.youtube.com/embed/<%= shout.url %>" 
+            frameborder="0">
+          </video>
+        </div>
+        <% else %>
+        <div class="individual_post faved_post item" id="content-box-feed">
+          <p class="timeline-user-box">
+            <%= image_tag shout.url %>
+          </p>
+        </div>
+        <% end %>
+      <% end %>
+  <% end %>
+</div>

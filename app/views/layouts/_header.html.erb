@@ -39,14 +39,19 @@
       </li>
       <li class="navIcon tilt" id="profile">
         <%= link_to feed_user_path(current_user) do %>
-        <%= image_tag(current_user.avatar(:small), class: "user_profile_picture", size: "32x32", title: "#{ current_user.full_name}") %>
+        <%= image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{ current_user.full_name}") %>
         <% end %>
       </li>
-      <li class="navIcon tilt" id="notifications">
-        <%= link_to notifications_path do %>
-        <%= image_tag('notifications.fw.png', size: "32x32", title: "Notifications") %>
+      <li class="navIcon tilt" id="newpost">
+        <%= link_to new_shout_path do %>
+          <%= image_tag('add50blue.fw.png', size: "32x32", title: "New post") %>
         <% end %>
       </li>
+<!--       <li class="navIcon tilt" id="notifications">
+        <%#= link_to notifications_path do %>
+        <%#= image_tag('notifications.fw.png', size: "32x32", title: "Notifications") %>
+        <%# end %>
+      </li> -->
       <li class="navIcon edit feedback" id="help">
         <a href="#" class="dropdown-toggle">
           <%= image_tag('menu24.fw.png', size: "32x32", title: "Menu") %> <b class="caret"></b>
@@ -63,7 +68,6 @@
   
   </div>
 
-
 <% else %> <!-- else _header-->
 
   <div class="login_form_position">
@@ -77,7 +81,7 @@
           <%= f.text_field :password, placeholder: "Password", class: "form-control input-bg", id: "password", type: "password" %>
       </div>
       <button         
-        <%= f.submit "Create my account", class: "btn btn-link-login ", type: "submit" %>> Log in!
+        <%= f.submit "Log in", class: "btn btn-link-login ", type: "submit" %>> Log in!
       </button>
     <% end %>
   </div>
@@ -93,7 +97,43 @@ $(document).ready(function(){
     if(urlPath == "/"){
       $('#home').addClass("activeNavIcon");
     }
+    else if(urlPath.indexOf('/nfuse_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/twitter_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/instagram_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/facebook_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/youtube_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/vimeo_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/googleplus_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
     else if(urlPath.indexOf('/explore')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_nfuse_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_twitter_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_instagram_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_facebook_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_youtube_only')!== -1){
       $('#explore').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/feed')!== -1){
@@ -108,8 +148,8 @@ $(document).ready(function(){
     else if(urlPath.indexOf('/followers')!== -1){
       $('#profile').addClass("activeNavIcon");
     }
-    else if(urlPath.indexOf('/notifications')!== -1){
-      $('#notifications').addClass("activeNavIcon");
+    else if(urlPath.indexOf('/shouts/new')!== -1){
+      $('#newpost').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/edit')!== -1){
       $('.edit').addClass("activeNavIcon");

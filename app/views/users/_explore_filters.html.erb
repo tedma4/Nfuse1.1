@@ -83,47 +83,47 @@ a {
 
   <ul class="social-network social-circle">
     <li>
-     <%= link_to explore_user_path(current_user), {class: "icoRss", title: "All", id: "explore_only"} do %>
+     <%= link_to explore_user_path(current_user), {class: "icoRss expIcon", title: "All", id: "explore_only"} do %>
           <%= image_tag('educationalwhite.fw.png', size: "28x28") %>
         <% end %>
     </li>
     <li>
-      <%= link_to explore_nfuse_only_user_path(current_user), {class: "icoRss", title: "Nfuse", id: "explore_nfuse"} do%>
+      <%= link_to explore_nfuse_only_user_path(current_user), {class: "icoRss expIcon", title: "Nfuse", id: "explore_nfuse"} do%>
         <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
         <%end%>
     </li>
     <li>
-      <%= link_to explore_twitter_only_user_path(current_user), {class: "icoRss", title: "Twitter", id: "explore_twitter"} do %>
+      <%= link_to explore_twitter_only_user_path(current_user), {class: "icoRss expIcon", title: "Twitter", id: "explore_twitter"} do %>
       <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
       <%end%>
     </li>
     <li>
-      <%= link_to explore_instagram_only_user_path(current_user), {class: "icoRss", title: "Instagram", id: "explore_instagram"} do%>
+      <%= link_to explore_instagram_only_user_path(current_user), {class: "icoRss expIcon", title: "Instagram", id: "explore_instagram"} do%>
       <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
     <li>
-      <%= link_to explore_facebook_only_user_path(current_user), {class: "icoRss", title: "Facebook", id: "explore_facebook"} do%>
+      <%= link_to explore_facebook_only_user_path(current_user), {class: "icoRss expIcon", title: "Facebook", id: "explore_facebook"} do%>
       <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss", title: "Youtube"} do %>
+      <%= link_to explore_youtube_only_user_path(current_user), {class: "icoRss expIcon", title: "Youtube", id: "explore_youtube"} do %>
         <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss", title: "Vimeo"} do %>
+      <%= link_to "#", {class: "icoRss expIcon", title: "Vimeo"} do %>
         <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss", title: "Pinterest"} do %>
-        <%= image_tag "pinterestwhite.fw.png", size: "28x28" %>
+      <%= link_to "#", {class: "icoRss expIcon", title: "Google +"} do %>
+        <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss", title: "Flickr"} do %>
+      <%= link_to "#", {class: "icoRss expIcon", title: "Flickr"} do %>
         <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
@@ -131,11 +131,11 @@ a {
 
 <script>
 $(document).ready(function(){
-    $(".navIcon").removeClass("activeNavIcon");
+    $(".expIcon").removeClass("activeNavIcon");
     var urlPath = window.location.pathname;
     //alert(urlPath);
     if(urlPath == "/explore"){
-      $('#eplore_only').addClass("activeNavIcon");
+      $('#explore_only').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/explore_nfuse_only')!== -1){
       $('#explore_nfuse').addClass("activeNavIcon");
@@ -148,6 +148,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/explore_facebook_only')!== -1){
       $('#explore_facebook').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_youtube_only')!== -1){
+      $('#explore_youtube').addClass("activeNavIcon");
     }
 });
 </script>

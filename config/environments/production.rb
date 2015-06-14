@@ -92,8 +92,8 @@ config.assets.precompile += %w( video-js.swf vjs.eot vjs.svg vjs.ttf vjs.woff )
       :address         => 'smtp.gmail.com',
       :port            =>  587,
       :authentication  => :plain,
-      :user_name       => ENV["gmail_email"],
-      :password        => ENV["gmail_password"]
+      :user_name       => ENV['gmail_email'],
+      :password        => ENV['gmail_password']
 
   }
  

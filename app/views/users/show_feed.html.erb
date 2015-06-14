@@ -3,10 +3,14 @@
 <% provide(:title, @title) %>
   <div class="container_profile">
     <%= render partial: "profile_info" %>
-  <div class="center">   
-    <%= render file: "users/feed" %>
+    <div class="center">   
+      <%= render file: "users/feed" %>
+    </div>
   </div>
-</div>
+
+
+
+
   <script type="text/javascript">
     FeedIndex.providers = {facebook: <%= @providers.facebook? %>, twitter: <%= @providers.twitter? %>, instagram: <%= @providers.instagram? %>};
     $(document).ready(function () {

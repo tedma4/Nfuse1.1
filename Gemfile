@@ -19,10 +19,10 @@ gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem "paperclip", "~> 4.2"
+gem "paperclip", "4.2.0"
 #gem 'panda'
 # Handles video upload
-gem 'paperclip-ffmpeg', '1.0.0'
+gem 'paperclip-av-transcoder', "0.6.4"
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'

@@ -1,4 +1,6 @@
 <!-- *Start* Views/pages/home.html -->
-<%= render partial: 'timeline', locals: { timeline: @timeline } if signed_in? %>
+<div class="center">
+	<%= render partial: 'timeline', locals: { timeline: @timeline } if signed_in? %>
+</div>
 <%= render partial: 'landing' unless signed_in? %>
 <!-- *End* Views/pages/home.html -->

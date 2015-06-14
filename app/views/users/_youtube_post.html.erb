@@ -1,5 +1,5 @@
 <!-- *Start* Views/users/_youtube_post.html -->
-<div class="individual_post item " data-id="<%= post.id %>" id="content-box-feed">
+<div class="individual_post youtube_post item " data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
       <li><%= link_to image_tag(post.avatar, :class => "user_profile_picture"), feed_user_path(post.user) %></li>
@@ -14,24 +14,16 @@
       width="100%" 
       height="225" 
       src="http://www.youtube.com/embed/<%= post.video_id %>" 
-      frameborder="0">
+      frameborder="0"
+      allowfullscreen>
     </iframe>
   </div>&nbsp;
 
 
   <div class="right">
-    <%= link_to image_tag("32-youtube.png", :class => "provider_logo", size: "20x20"), post.link_to_video, :target => "_blank" %> 
+    <%= link_to image_tag("youtubeblue.fw.png", :class => "provider_logo", size: "20x20"), post.link_to_video, :target => "_blank" %> 
     <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
   </div>
-  <div class="<%= post.class %>-<%= post.id %> post_footer" id="comment_list_<%= post.id %>">
-    <!-- Refactor this. -->
-    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
-      <%= render partial: 'shared/comment', locals: {comment: comment } %>
-    <% end %>
-    <!-- Refactor this. -->
-  </div>
-
-  <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
   
   <ul class="post_actions">
     <li class="tilt">
@@ -42,21 +34,30 @@
                         method: :post, remote: true %>
       <%= post.like_score(post.id) %></li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
+    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li><!-- 
     <li class="vr"></li>
     <li class="tilt">
-      <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+      <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
         user_nfused_page_path(id: post.id,
                         owner_id: post.user.id,
-                        user_id:  current_user.id, key: :youtube, url: ( post.id || '') ),
+                        user_id:  current_user.id,
+                        key: :youtube, url: ( post.id || '') ),
                         method: :post, remote: true %>
     </li>
-    <li class="vr"></li>
-      <% unless !current_user?(post.user) %>
-        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <% else %>
-        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <% end %>
+
+    <li class="vr"></li>  -->
+<!--       <%# unless !current_user?(post.user) %>
+        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <%# else %>
+        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <%# end %> -->
   </ul>
+  <div class="<%#= post.class %>-<%#= post.id %> post_footer" id="comment_list_<%#= post.id %>">
+    <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
+      <%#= render partial: 'shared/comment', locals: {comment: comment } %>
+    <%# end %>
+  </div>
+
+  <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
 </div>
 <!-- *End* Views/users/_youtube_post.html -->

@@ -25,9 +25,9 @@ class NfusePage < ActiveRecord::Base
   end
 
   def is_pic?
-    !url.blank?
+    !url.blank? #|| !from_youtube?
   end
-
+  
   auto_html_for :url do
     html_escape
     image

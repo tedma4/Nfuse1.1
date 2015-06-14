@@ -18,12 +18,12 @@ module Nfuse
       @shout.content
     end
 
-    def comments_count
-      @shout.comments.count
-    end
-
     def like_score(id)
       ActsAsVotable::Vote.where(votable_id: id).count
+    end
+
+    def comment_count
+      Comment.where(commentable_id: id).count
     end
 
     def comments
@@ -89,9 +89,13 @@ module Nfuse
     def video_url
       @shout.snip.url(:medium)
     end
-    
-    def snip
-      @shout.snip.url(:original)
+
+    def is_full_video?
+      @shout.is_full_video
+    end
+
+    def full_video_url
+      @shout.video.url(:medium)
     end
 
     def user_url

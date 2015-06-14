@@ -698,7 +698,7 @@ td {
 }
 #masonJar {
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 1vw;
 }
 .userFeedBox {
   background-color: blue;
@@ -853,6 +853,16 @@ td {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
   border-bottom: 5px solid rgba(59,89,152,0.8);
 }
+.youtube_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(59,89,152,0.8);
+}
+.faved_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(205,179,139,0.8);
+}
 #content-box-profile {
  height: 100vh;
  top: 0;
@@ -886,6 +896,11 @@ td {
   padding: 0;
 }
 .user_profile_picture{
+  margin: 0 5px 2px 0;
+  padding: 0;
+  border-radius: 50px;
+}
+.user_profile_picture_header{
   margin: 0 5px 0 0;
   padding: 0;
   border-radius: 50px;
@@ -924,7 +939,7 @@ td {
 .timeStamp{
   font-size: .6em;
   display: inline;
-  padding: 0 0 50px 0;
+  padding: 0 0 15px 0;
 }
 .post_actions{
 
@@ -1188,7 +1203,6 @@ float: right;
   margin: 4px 0 0 30vw;  
   padding: 0;
   height:30px;
-  width: 100%;
   
 }
 .explore_filters ul {

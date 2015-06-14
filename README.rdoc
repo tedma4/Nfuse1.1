@@ -1,28 +1,262 @@
-== README
+Section	Desc	Not Started	Development 	Design	Testing	Hosting
+Logged Out						
+Landing Page 	A1			98%		
+Sign up			A2			98%		
+SUP Network		A3			60%		
+SUP Profile		A4			60%		
+Privacy			A5			Modal?		
+Contact			A6			98%		
+Log In			A7			98%		
+Top Navigation	A8			90%		
+All Desktop View	A9			?		
+All Mobile View	A10			?		
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sign Up Process						
+Sign Up Form		B1			98%		
+Sign Up Networks 	B2			60%		
+Sign Up Profile Img	B3			60%		
+All Desktop View	B4			?		
+All Mobile View		B5			?		
 
-Things you may want to cover:
+Logged Out Navigation						
+Nav General Design 	C1			98%		
+Logo/Brand			C2			98%		
+Login Form			C3			90%		
+All Desktop View	C4			?		
+All Mobile View		C5			?		
 
-* Ruby version
+Logged In Navigation						
+Nav General Design 	D1			98%		
+Logo/Brand			D2			98%		
+Seach Form			D3			?		
+Hub Icon			D4			90%		
+Explore Icon		D5			90%		
+Profile Icon		D6			90%		
+Menu Icon			D7			90%		
+All Desktop View	D8			?		
+All Mobile View		D9			?	
 
-* System dependencies
+Profile						
+Picture			E1			98%		
+Banner			E2			98%		
+Like Counter	E3			5%		
+2nd Nav			E4			98%		
+Full Name		E5			80%		
+User Name		E6			80%		
+Feed			E7			50%		
+Nfused 			E8			5%		
+Following		E9			80%		
+Followers		E10			80%		
+Post Icon Link	E11			98%		
+Settings Icon Link	E12			98%		
+Feed Load More	E13		50%		
 
-* Configuration
+Feed						
+Top Profile Img	F1			98%		
+Top Profile Ban	F2			98%		
+Total Like Cntr	F3			5%		
+Profile 2nd Nav	F4			98%		
+Responsive Grid	F5			?		
+Desktop View	F6			?		
+Phone View		F7			?		
+Feed Empty		F8			?		
+Nfuse Post		F9			90%		
+Facebook Post	F10		80%			
+Twitter Post	F11			90%		
+Instagram Post	F12			90%		
+Youtube Post	F13		80%			
+Vimeo Post		F14		80%			
+Pinterest Post	F15		80%			
+Flickr Post		F16		80%			
 
-* Database creation
+Post Box/ Feed/ Hub/ Explore						
+Facebook		G1		80%			
+Twitter			G2			98%		
+Instagram		G3			98%		
+Youtube			G4		80%			
+Vimeo			G5		80%			
+Pinterest		G6		80%			
+Flickr			G7		80%			
+Youtube URL		G8			98%		
+Vimeo URL		G9			98%		
+Sound CLD URL	G10			98%		
+General URL		G11			80%		
+Avatar			G12			98%		
+User Name		G13			98%		
+Content			G14			90%		
+Description		G15			90%		
+Social Network Icon	G16			90%		
+Responsiveness	G17		?			
 
-* Database initialization
+Post Box Interaction						
+Like General		H1		60%			
+Like Counter		H2		60%			
+Like Nfuse Post		H3		80%			
+Like Facebook Post	H4		0%			
+Like Twitter Post	H5		90%			
+Like Instagram Post	H6		90%			
+Like Youtube Post	H7		0%			
+Like Vimeo Post		H8		0%			
+Like Pinterest Post	H9		0%			
+Like Flickr Posr	H10		0%			
+Comment General		H11		40%			
+Comment CNT			H12		0%			
+CMT Nfuse Post		H13		90%			
+CMT Facebook Post	H14		0%			
+CMT Twitter Post	H15		90%			
+CMT Instagram Post	H16		80%			
+CMT Youtube Post	H17		0%			
+CMT Vimeo Post		H18		0%			
+CMT Pinterest Post	H19		0%			
+CMT Flickr Post		H20		0%			
+Nfuse General		H21		60%			
+Nfuse Counter		H22		?			
+Nfuse Natiive Post	H23		90%			
+Nfuse Facebook Post	H24		0%			
+Nfuse Twitter Post	H25		90%			
+Nfuse Instagram Post	H26		90%			
+Nfuse Youtube Post	H27		0%			
+Nfuse Vimeo Post	H28		0%			
+Nfuse Pinterest Post	H29		0%			
+Nfuse Flickr Post	H30		0%			
+Delete/Hide Own Post	H31		0%			
+D/H/O/P Native Post	H32		90%			
+D/H/O/P Facebook	H33		0%			
+D/H/O/P Twitter		H34		0%			
+D/H/O/P Instagram 	H35		0%			
+D/H/O/P Youtube		H36		0%			
+D/H/O/P Vimeo		H37		0%			
+D/H/O/P Pinterest	H38		0%			
+D/H/O/P Flickr		H39		0%		
 
-* How to run the test suite
+Nfused						
+Top Profile Img	I1			98%		
+Top Profile Ban	I2			98%		
+Total Like Cntr	I3			5%		
+Profile 2nd Nav	I4			98%		
+Responsive Grid	I5		?			
+Desktop View	I6		?			
+Phone View	I7		?			
+Nfused Empty	I8		?			
+Nfused Native	I9		90%			
+Nfused Facebook	I10		0%			
+Nfused Twitter	I11		90%			
+Nfused Instagram	I12		90%			
+Nfused Youtube	I13		0%			
+Nfused Vimeo	I14		0%			
+Nfused Pinterest	I15		0%			
+Nfused Flickr	I16		0%	
 
-* Services (job queues, cache servers, search engines, etc.)
+Following						
+Top Profile Img	J1			98%		
+Top Profile Ban	J2			98%		
+Total Like Cntr	J3			5%		
+Profile 2nd Nav	J4			98%		
+Responsive Grid	J5		?			
+Desktop View	J6		?			
+Phone View	J7		?			
+Following Empty	J8		?			
+Following User Box	J9			75%		
+Followers						
+Top Profile Img	K1			98%		
+Top Profile Ban	K2			98%		
+Total Like Cntr	K3			5%		
+Profile 2nd Nav	K4			98%		
+Responsive Grid	K5		?			
+Desktop View	K6		?			
+Phone View	K7		?			
+Followers Empty	K8		?			
+Followers User Box	K9			75%		
+Search Results						
+Search Results Empty	L1		90%			
+User Search Box	L2			90%		
+User Search Image	L3			90%		
+User Search Full Name	L4			90%		
+User Search User Name	L5			90%		
+Responsive Grid	L6		90%			
+All Desktop View	L7		?			
+All Phone View	L8		?			
 
-* Deployment instructions
+Hub						
+Hub Page	M1			60%		
+Filters	M2			90%		
+Nfuse Post	M3			90%		
+Facebook Post	M4		90%			
+Twitter Post	M5			90%		
+Instagram Post	M6			90%		
+Youtube Post	M7		90%			
+Pinterest Post	M8		90%			
+Flickr Post	M9		90%			
+Load More	M10		0%			
+Responsive Grid	M11			10%		
+All Desktop View	M12		?			
+All Phone View	M13		?			
 
-* ...
+Explore						
+Explore Page	N1			60%		
+Filters	N2			90%		
+Nfuse Post	N3			90%		
+Facebook Post	N4		90%			
+Twitter Post	N5			90%		
+Instagram Post	N6			90%		
+Youtube Post 	N7		90%			
+Pinterest Post	N8		90%			
+Flickr Post	N9		90%			
+Load More	N10		0%			
+Responsive Grid	N11			10%		
+All Desktop View	N12		?			
+All Phone View	N13		?			
 
+Post Creation						
+Snip	O1		10%			
+Pic				90%		
+Video	O2		?			
+IN2			?			
+Youtube URL	O3			90%		
+Vimeo URL	O4			90%		
+Soundcloud URL	O5			90%		
+URL General	O6			80%		
+Description	O7			50%		
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Menu						
+Settings	Q1			40%		
+Help	Q2			Modal?		
+Feedback 	Q3			90%		
+Logout	Q4				100%?	
+
+Nfused Apis						
+Facebook	R1		80%			
+Twitter	R2			98%		
+Instagram	R3			98%		
+Youtube 	R4		80%			
+Vimeo	R5		80%			
+Pinterest	R6		80%			
+Flickr	R8		80%			
+
+Notification						
+Notifications 	S1	0% :(				
+NTF Like	S2	0% :(				
+NTF Comment	S3	0% :(				
+NTF Nfuse	S4	0% :(				
+NTF Follow	S5	0% :(				
+NTF Tag User	S6	0% :(				
+
+Extra 						
+Hosting	T3		X			
+Logo	T4		X			
+Tab Icon	T5			X		
+Hub Soc. Ads	T6	X				
+Hub Soc. Ads	T7	X				
+Feed Soc. Ads	T8	X				
+User Control Ads	T9	X				
+User Analytics 	T10	X				
+Albumns 	T11	X				
+Stream Live vid	T12	X				
+Picture editing 	T13	X				
+Vidoe Editing	T14	X				
+Url Doodle	T15	X				
+Post Search	T16	X				
+#tag event/!tag	T17	X				
+Tag user Comment	T18					
+Video Comment	T19	X				
+Share Post	T20					

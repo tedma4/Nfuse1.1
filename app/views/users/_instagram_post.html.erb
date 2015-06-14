@@ -21,18 +21,14 @@
         <% end %>
       <br>
     <% elsif post.type == "video" %>
-      <ul>
-        <li>
-          <video width="100%" height="258" class="image_post" controls>
-            <source src="<%= post.video %>" type="video/mp4">
-          </video>
-        </li>
+         <video width="100%" height="258" class="image_post" controls>
+           <source src="<%= post.video %>" type="video/mp4">
+         </video>
         <% if post.caption.present? %>
         <div class="center">
-          <li><%= post.caption_text %></li>
+          <%= post.caption_text %>
         </div>
         <% end %>
-      </ul>
     <% end %>
   </div><br>
 
@@ -43,7 +39,6 @@
       <%= time_ago_in_words(post.created_time) %> ago
     </p>
   </div>
-    <br>
   
   <ul class="post_actions">
     <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
@@ -56,19 +51,20 @@
     <li class="vr"></li>
     <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
     <li class="vr"></li>
-    <li class="tilt">
-      <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+<!--     <li class="tilt">
+      <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
         user_nfused_page_path(id: post.id,
                         owner_id: post.user.id,
                         user_id:  current_user.id, key: :instagram, url: ( post.low_resolution_image_url || '') ),
                         method: :post, remote: true %>
     </li>
-    <li class="vr"></li>
-      <% unless !current_user?(post.user) %>
-        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <% else %>
-        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <% end %>
+
+    <li class="vr"></li> -->
+<!--       <%# unless !current_user?(post.user) %>
+        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <%# else %>
+        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <%# end %> -->
   </ul>
   <div class="<%#= post.class %>-<%#= post.id %> post_footer right" id="comment_list_<%#= post.id %>">
     <!-- Refactor this. -->

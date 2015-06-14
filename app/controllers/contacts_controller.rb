@@ -10,6 +10,11 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.request = request
     if @contact.deliver
+      if signed_in?
+        redirect_to feed_user_path(current_user)
+      else
+        redirect_to root_path
+      end
     else
       flash.now[:error] = 'Cannot send message.'
       render :new

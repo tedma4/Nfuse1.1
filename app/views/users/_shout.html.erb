@@ -1,3 +1,69 @@
+<style>
+
+.comment
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.comment li.left .comment-body
+{
+    margin-left: 60px;
+}
+
+.comment li.right .comment-body
+{
+    margin-right: 0px;
+}
+
+
+.comment li .comment-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .comment .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 200px;
+    width: 300px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+</style>
+
 <!-- *Start* Views/users/_shout.html -->
 <div class="visible-md visible-lg individual_post item nFuse_post " data-id="<%= shout.id %>" data-provider="<%= shout.provider %>">
   <!--<p id="notice"><%#= notice %></p>-->
@@ -8,33 +74,66 @@
     </ul>
   </div><br>
 
-  <% if !shout.url.blank? %>
-    <p> <%= shout.url_html %></p>
-    <div class="caption">
-      <%= shout.content %>
-      <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
-    </div>
-  <% elsif shout.is_pic? %>
-    <div class="timeline-user-box">
-      <%= image_tag shout.pic_url %>
-    </div>
-    <div class="caption">
+  <div class="post_content">
+    <% if !shout.url.blank? %>
+      <p> <%= shout.url_html %></p>
+      <div class="caption">
         <%= shout.content %>
-    </div>
-  <% elsif shout.is_video? %>
-    <div class="timeline-user-box">
-      <video align="center" preload controls style="margin-left: 20%; margin-right: 20%; width:60%; height:226px;">
-      <source src="<%= shout.video_url %>" type="video/ogg">
-      </video>
-      <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
-    </div>
-    <div class="caption">
-        <li><%= shout.content %></li>
-    </div>
-  <% end %>
-     <div class="right"> <%= image_tag "Nfuselogoblue.fw.png", class: "provider_logo", size: "18x18" %> <p class="timeStamp"><%= time_ago_in_words(shout.created_time) %> ago </p> </div>
-  <br>
-  <div class="<%= shout.class %>-<%= shout.id %> post_footer">
+        <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
+      </div>
+    <% elsif shout.is_pic? %>
+      <div class="timeline-user-box">
+        <%= image_tag shout.pic_url %>
+      </div>
+      <div class="caption">
+          <%= shout.content %>
+      </div>
+    <% elsif shout.is_video? %>
+      <div class="timeline-user-box">
+        <video 
+          id="ytplayer" 
+          type="video/mp4" 
+          width="100%" 
+          height="225" 
+          src="<%= shout.video_url %>" 
+          frameborder="0"
+          allowfullscreen
+          controls>
+        </video>
+        <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+      </div>
+      <div class="caption">
+          <%= shout.content %>
+      </div>
+    <% elsif shout.is_full_video? %>
+      <div class="timeline-user-box">
+        <video 
+          id="ytplayer" 
+          type="video/flv" 
+          width="100%" 
+          height="225" 
+          src="<%= shout.full_video_url %>" 
+          frameborder="0"
+          allowfullscreen
+          controls>
+        </video>
+        <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+      </div>
+      <div class="caption">
+          <%= shout.content %>
+      </div>
+    <% end %>
+  </div><br>
+
+   <div class="right"> 
+      <%= image_tag "Nfuselogoblue.fw.png", class: "provider_logo", size: "18x18" %> 
+      <p class="timeStamp">
+        <%= time_ago_in_words(shout.created_time) %> ago 
+      </p> 
+  </div>
+
+  <div class="<%= shout.class %>-<%= shout.id %>">
+
   </div>
     <ul class="post_actions">
       <li class="tilt">
@@ -45,11 +144,15 @@
         <%= shout.like_score(shout.id) %>
       </li>
       <li class="vr"></li>
-      <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %></li>
-      <li class="vr"></li>
-
       <li class="tilt">
-        <%= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+        <div id="accordion">
+          <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
+          <%= shout.comment_count %>
+        </div>
+      </li>
+      <li class="vr"></li>
+<!--       <li class="tilt">
+        <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
           user_nfused_page_path(id: shout.id,
                           owner_id: shout.user.id,
                           url:      shout_url_html(shout),
@@ -57,25 +160,30 @@
                           method: :post, remote: true %>
       </li>
 
-      <li class="vr"></li>
+      <li class="vr"></li> -->
       <li class="tilt">
         <% unless !current_user?(shout.user) %>
           <%= link_to image_tag("delete3gray.fw.png", size: "24x24"), shout_path(shout.id), :method => :delete, data: { confirm: 'Are you sure?' } %>
-        <% else %>
-          <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-        <% end %>
+        <%# else %>
+<!--           <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+ -->        <% end %>
       </li>
     </ul>
 
-    <div class="post_comments" id="comment_list_<%#= shout.id %>">
-      <ul>
-        <%# shout.comments.each do |comment| %>
-          <%#= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
-        <%# end %>
-      </ul>
-
-      <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
-
+    <div class="post_comments" id="comment_list_<%= shout.id %>">
+      <div class="panel">
+        <div class="panel-collapse collapse" id="collapseOne">
+          <div class="panel-body"> <!-- These are for the comment img and content -->
+            <ul class="comment">
+              <% shout.comments.each do |comment| %>
+                <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
+              <% end %>
+            </ul>
+            <div>
+              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-

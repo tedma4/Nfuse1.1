@@ -35,7 +35,8 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.8.9-Q16/convert.exe"
-  Paperclip.options[:command_path] = "C:/ffmpeg/bin/"
+  Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.8.9-Q16/ffmpeg.exe"
+  # Paperclip.options[:command_path] = "C:/ffmpeg/bin/ffmpeg.exe"
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
@@ -45,8 +46,8 @@ Rails.application.configure do
       :address         => 'smtp.gmail.com',
       :port            =>  587,
       :authentication  => :plain,
-      :user_name       => 'tedma4@gmail.com',
-      :password        => 'tm671216'
+      :user_name       => ENV['gmail_email'],
+      :password        => ENV['gmail_password']
 
   }
 

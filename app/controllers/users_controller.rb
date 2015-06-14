@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :youtube_only]
 
   def index
     #user = User.find(params[:id])
@@ -95,6 +95,7 @@ class UsersController < ApplicationController
         facebook_pagination_id: feed.facebook_pagination_id,
         instagram_max_id:       feed.instagram_max_id,
         nfuse_post_last_id:     feed.nfuse_pagination_id,
+        youtube_pagination:     feed.youtube_pagination_id,
         id: @user.id)
   end
 
@@ -142,40 +143,34 @@ class UsersController < ApplicationController
   def nfuse_only
     #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
     #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-
-    @providers = Providers.for(current_user)
-    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
-    @unauthed_accounts              = timeline[:unauthed_accounts].first
-    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
-    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+    only_pages
   end
 
   def twitter_only
     #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
     #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-
-    @providers = Providers.for(current_user)
-    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
-    @unauthed_accounts              = timeline[:unauthed_accounts].first
-    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
-    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+    only_pages
   end
 
   def instagram_only
     #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
     #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-
-    @providers = Providers.for(current_user)
-    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
-    @unauthed_accounts              = timeline[:unauthed_accounts].first
-    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
-    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
+    only_pages
   end
 
   def facebook_only
     #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
     #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+    only_pages
+  end
 
+  def youtube_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+    only_pages
+  end
+
+  def only_pages
     @providers = Providers.for(current_user)
     @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
     @unauthed_accounts              = timeline[:unauthed_accounts].first
@@ -184,57 +179,31 @@ class UsersController < ApplicationController
   end
 
   def explore_nfuse_only
-    @providers = Providers.for(@user)
-    timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
-    @users.each do |user|
-      feed=Feed.new(user)
-      timeline << feed.construct(params)
-
-    @unauthed_accounts              = feed.unauthed_accounts
-    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-    @commenter_profile_hash         = feed.commenter_profile_hash
-    end
-
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    explore_only_pages
     render "explore_nfuse_only"
   end
 
   def explore_twitter_only
-    @providers = Providers.for(@user)
-    timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
-    @users.each do |user|
-      feed=Feed.new(user)
-      timeline << feed.construct(params)
-
-    @unauthed_accounts              = feed.unauthed_accounts
-    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-    @commenter_profile_hash         = feed.commenter_profile_hash
-    end
-
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    explore_only_pages
     render "explore_twitter_only"
   end
 
   def explore_instagram_only
-    @providers = Providers.for(@user)
-    timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
-    @users.each do |user|
-      feed=Feed.new(user)
-      timeline << feed.construct(params)
-
-    @unauthed_accounts              = feed.unauthed_accounts
-    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-    @commenter_profile_hash         = feed.commenter_profile_hash
-    end
-
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    explore_only_pages
     render "explore_instagram_only"
   end
 
   def explore_facebook_only
+    explore_only_pages
+    render "explore_facebook_only"
+  end
+
+  def explore_youtube_only
+    explore_only_pages
+    render "explore_youtube_only"
+  end
+
+  def explore_only_pages
     @providers = Providers.for(@user)
     timeline = []
     @users = User.where.not(id: current_user.followed_users && current_user.id)
@@ -248,7 +217,6 @@ class UsersController < ApplicationController
     end
 
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
-    render "explore_facebook_only"
   end
 
   private

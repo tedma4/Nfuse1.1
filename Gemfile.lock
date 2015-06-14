@@ -64,6 +64,8 @@ GEM
     autoprefixer-rails (5.1.11)
       execjs
       json
+    av (0.9.0)
+      cocaine (~> 0.5.3)
     awesome_print (1.6.1)
     aws-sdk (1.64.0)
       aws-sdk-v1 (= 1.64.0)
@@ -212,7 +214,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    json (1.8.2)
+    json (1.8.3)
     jwt (1.5.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -230,7 +232,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.2)
-    minitest (5.6.1)
+    minitest (5.7.0)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -279,12 +281,13 @@ GEM
       omniauth-oauth (~> 1.0)
     omniauth-vimeo (2.0.0)
       omniauth-oauth2
-    paperclip (4.2.1)
+    paperclip (4.2.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    paperclip-ffmpeg (1.0.0)
+    paperclip-av-transcoder (0.6.4)
+      av (~> 0.9.0)
       paperclip (>= 2.5.2)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
@@ -469,6 +472,7 @@ GEM
     wicked (1.1.1)
       rails (>= 3.0.7)
     will_paginate (3.0.7)
+    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -516,8 +520,8 @@ DEPENDENCIES
   omniauth-pinterest
   omniauth-twitter (~> 1.0.1)
   omniauth-vimeo
-  paperclip (~> 4.2)
-  paperclip-ffmpeg (= 1.0.0)
+  paperclip (= 4.2.0)
+  paperclip-av-transcoder (= 0.6.4)
   private_pub
   pry
   pry-rails
