@@ -56,6 +56,10 @@ class Shouts::LikesController < ApplicationController
     Flickr::Vote.create(vote_params) 
   end
 
+  def gplus
+    Gplus::Vote.create(vote_params) 
+  end
+
   def vote_params
    {votable_id: params[:id],
       voter_id: current_user.id, 

@@ -47,7 +47,9 @@ Rails.application.routes.draw do
     post '/instagram/:instagram_post_id', to: 'comments#create'
     post '/facebook/:facebook_post_id',   to: 'comments#create'
     post '/youtube/:youtube_post_id',     to: 'comments#create'
+    post '/gplus/:gplus_post_id',         to: 'comments#create'
     post '/vimeo/:vimeo_post_id',         to: 'comments#create'
+    post '/flickr/:flickr_post_id',       to: 'comments#create'
 
     # Add others follow convention
 
@@ -95,6 +97,7 @@ Rails.application.routes.draw do
     get '/failure',                to: 'registrations/twitter#failure'
     get '/facebook/callback',      to: 'registrations/facebook#create'
     get '/google_oauth2/callback', to: 'registrations/youtube#create'
+    get '/google_oauth2/callback', to: 'registrations/gplus#create'
     get '/vimeo/callback',         to: 'registrations/vimeo#create'
     get '/pinterest/callback',     to: 'registrations/pinterest#create'
     get '/flickr/callback',        to: 'registrations/flickr#create'

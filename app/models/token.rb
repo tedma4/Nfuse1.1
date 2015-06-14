@@ -158,7 +158,7 @@ class Token < ActiveRecord::Base
       config.client_id = ENV["google_client_id"]
       config.client_secret = ENV["google_client_secret"]
     end
-    client =  Yt::Account.new access_token: access_token, refresh_token: refresh_token
+    client = Yt::Account.new access_token: access_token, refresh_token: refresh_token
     client
     # client = YouTubeIt::OAuth2Client.new(
     #   client_access_token: access_token,
@@ -168,6 +168,15 @@ class Token < ActiveRecord::Base
     #   dev_key:       ENV["youtube_dev_key"],
     #   #expires_at: expiresat,
     #   )
+  end
+
+  def configure_gplus(access_token, refresh_token)
+    GooglePlus.api_key = ENV['youtube_dev_key']
+
+    gplus_access = Token.find_by_provider('google_oauth2')
+
+    person = GooglePlus::Person.get(gplus_access.uid, :access_token => gplus_access.access_token)
+    person
   end
 
   def configure_flickr(access_token, access_token_secret)
