@@ -1,4 +1,4 @@
-module FLickr
+module Flickr
   class Timeline
 
     # FlickRaw.api_key="... Your API key ..."

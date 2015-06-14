@@ -1,6 +1,6 @@
 require_relative "api"
 
-module FLickr
+module Flickr
 	class Post < TimelineEntry
 
   attr_reader :user
