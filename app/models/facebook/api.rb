@@ -47,19 +47,19 @@ module Facebook
     # URLS
 
     def post_url(post_content)
-      "https://graph.facebook.com/v2.0/me/feed?access_token=#{@access_token}&message=#{post_content}"
+      "https://graph.facebook.com/v2.3/me/feed?access_token=#{@access_token}&message=#{post_content}"
     end
 
     def like_url(post_id)
-      "https://graph.facebook.com/v2.0/#{post_id}/likes?access_token=#{@access_token}"
+      "https://graph.facebook.com/v2.3/#{post_id}/likes?access_token=#{@access_token}"
     end
 
     def create_post_url(post_id)
-      "https://graph.facebook.com/v2.0/#{post_id}?access_token=#{@access_token}"
+      "https://graph.facebook.com/v2.3/#{post_id}?access_token=#{@access_token}"
     end
 
     def create_feed_url
-      _url = "https://graph.facebook.com/v2.0/me/feed?limit=15&access_token=#{@access_token}"
+      _url = "https://graph.facebook.com/v2.3/me/feed?limit=15&access_token=#{@access_token}"
       _url << "&until=#{@pagination_id}" unless @pagination_id.nil?
       _url
     end

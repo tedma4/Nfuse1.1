@@ -151,8 +151,8 @@
         </div>
       </li>
       <li class="vr"></li>
-<!--       <li class="tilt">
-        <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+      <li class="tilt">
+        <%= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
           user_nfused_page_path(id: shout.id,
                           owner_id: shout.user.id,
                           url:      shout_url_html(shout),
@@ -160,13 +160,13 @@
                           method: :post, remote: true %>
       </li>
 
-      <li class="vr"></li> -->
+      <li class="vr"></li>
       <li class="tilt">
         <% unless !current_user?(shout.user) %>
           <%= link_to image_tag("delete3gray.fw.png", size: "24x24"), shout_path(shout.id), :method => :delete, data: { confirm: 'Are you sure?' } %>
-        <%# else %>
-<!--           <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
- -->        <% end %>
+        <% else %>
+           <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
+        <% end %>
       </li>
     </ul>
 

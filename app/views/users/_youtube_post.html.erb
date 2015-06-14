@@ -34,10 +34,10 @@
                         method: :post, remote: true %>
       <%= post.like_score(post.id) %></li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li><!-- 
+    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
     <li class="vr"></li>
     <li class="tilt">
-      <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+      <%= link_to image_tag("favoritedarkgray.fw.png", size: "24x24"),
         user_nfused_page_path(id: post.id,
                         owner_id: post.user.id,
                         user_id:  current_user.id,
@@ -45,12 +45,12 @@
                         method: :post, remote: true %>
     </li>
 
-    <li class="vr"></li>  -->
-<!--       <%# unless !current_user?(post.user) %>
-        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <%# else %>
-        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <%# end %> -->
+    <li class="vr"></li>
+      <% unless !current_user?(post.user) %>
+        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <% else %>
+        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <% end %>
   </ul>
   <div class="<%#= post.class %>-<%#= post.id %> post_footer" id="comment_list_<%#= post.id %>">
     <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
