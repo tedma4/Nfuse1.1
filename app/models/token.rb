@@ -179,9 +179,11 @@ class Token < ActiveRecord::Base
   def configure_gplus(access_token, refresh_token)
     GooglePlus.api_key = ENV['youtube_dev_key']
 
-    gplus_access = Token.find_by_provider('google_oauth2')
+    gplus_access = Token.find_by_provider('gplus')
 
-    person = GooglePlus::Person.get(gplus_access.uid, :access_token => gplus_access.access_token, refresh_token: gplus_access.refresh_token)
+    person = GooglePlus::Person.new(gplus_access.uid,
+                                    access_token: gplus_access.access_token,
+                                    refresh_token: gplus_access.refresh_token)
     person
   end
 

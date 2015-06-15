@@ -33,7 +33,7 @@ module Gplus
     end
 
     def provider
-      "google_oauth2"
+      "gplus"
     end
 
     def created_time
@@ -44,7 +44,7 @@ module Gplus
       @post.id
     end
 
-    alias_method :video_id, :id
+    alias_method :photo_id, :id
     
     # def video_id
     #   @post.id

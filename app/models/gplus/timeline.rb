@@ -14,8 +14,8 @@ module Gplus
       timeline
     end
 
-    def get_video(video_id)
-      Yt::Video.new id: video_id, auth: client
+    def get_video(photo_id)
+      GooglePlus::Person.new id: photo_id, auth: client
     end
 
     private
@@ -25,7 +25,7 @@ module Gplus
     end
 
     def user_tokens
-      @user_tokens ||= @user.tokens.find_by(provider: "google_oauth2")
+      @user_tokens ||= @user.tokens.find_by(provider: "gplus")
     end
 
     def configure_gplus(tokens)
@@ -34,9 +34,9 @@ module Gplus
 
     def get_timeline(client, page)
       if page.nil?
-        client.videos
+        client.photos
       else
-        gplus_timeline = client.videos( page: page, count: 50)
+        gplus_timeline = client.photos( page: page, count: 50)
         # gplus_timeline.delete_at(0)
         # gplus_timeline
       end
