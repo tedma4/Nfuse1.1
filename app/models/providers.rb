@@ -24,6 +24,10 @@ class Providers
     @user.tokens.where(provider: 'google_oauth2').count > 0
   end
 
+  def gplus?
+    @user.tokens.where(provider: 'gplus').count > 0
+  end
+
   def vimeo?
     @user.tokens.where(provider: 'vimeo').count > 0
   end
@@ -43,7 +47,7 @@ class Providers
   end
 
   def none?
-    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse?)# || pinterest? || flickr?
+    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse? || gplus?)# || pinterest? || flickr?
   end
 
 end

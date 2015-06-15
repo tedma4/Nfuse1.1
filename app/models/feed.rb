@@ -9,7 +9,7 @@ class Feed
               :facebook_pagination_id,
               :instagram_max_id,
               :youtube_pagination_id,
-              # :gplus_pagination_id,
+              :gplus_pagination_id,
               :vimeo_pagination_id,
               # :pinterest_pagination_id,
               :flickr_pagination_id,
@@ -21,12 +21,12 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id, youtube_pagination_id, vimeo_pagination_id, flickr_pagination_id)#, pinterest_pagination_id, flickr_pagination_id, gplus_pagination_id
+  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id, youtube_pagination_id, vimeo_pagination_id, flickr_pagination_id, gplus_pagination_id)#, pinterest_pagination_id, flickr_pagination_id, gplus_pagination_id
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
                                    youtube_posts(youtube_pagination_id),
-                                   # gplus_posts(gplus_pagination_id),
+                                   gplus_posts(gplus_pagination_id),
                                    vimeo_posts(vimeo_pagination_id),
                                    # pinterest_posts(pinterest_pagination_id),
                                    flickr_posts(flickr_pagination_id),
@@ -40,12 +40,12 @@ class Feed
     fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
     yt = youtube_posts(params[:youtube_pagination])
-    # gp = gplus_posts(params[:gplus_pagination])
+    gp = gplus_posts(params[:gplus_pagination])
     vp = vimeo_posts(params[:vimeo_pagination])
     up = users_posts(params[:nfuse_post_last_id])
     # pt = pinterest_posts(params[:pinterest_pagination])
     fl = flickr_posts(params[:flickr_pagination])
-    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt, fl ) #, pt, fl
+    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt, fl, gp ) #, pt, fl
   end
 
   private
@@ -116,21 +116,21 @@ class Feed
     end
   end
 
-  # def gplus_posts(gplus_pagination_id)
-  #   gplus_posts = []
-  #   if user_has_provider?('google_oauth2', @user)
-  #     gplus_timeline = Gplus::Timeline.new(@user)
-  #     begin
-  #       gplus_posts = gplus_timeline.posts(gplus_pagination_id).map { |post| Gplus::Post.from(post, @user) }
-  #       @gplus_pagination_id = gplus_timeline.current_page
-  #     rescue => e
-  #       @unauthed_accounts << "google_oauth2"
-  #     end
-  #     gplus_posts
-  #   else
-  #     gplus_posts
-  #   end
-  # end
+  def gplus_posts(gplus_pagination_id)
+    gplus_posts = []
+    if user_has_provider?('gplus', @user)
+      gplus_timeline = Gplus::Timeline.new(@user)
+      begin
+        gplus_posts = gplus_timeline.posts(gplus_pagination_id).map { |post| Gplus::Post.from(post, @user) }
+        @gplus_pagination_id = gplus_timeline.current_page
+      rescue => e
+        @unauthed_accounts << "gplus"
+      end
+      gplus_posts
+    else
+      gplus_posts
+    end
+  end
 
   # def pinterest_posts(pinterest_pagination_id)
   #   pinterest_posts = []

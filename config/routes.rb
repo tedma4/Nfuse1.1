@@ -97,7 +97,7 @@ Rails.application.routes.draw do
     get '/failure',                to: 'registrations/twitter#failure'
     get '/facebook/callback',      to: 'registrations/facebook#create'
     get '/google_oauth2/callback', to: 'registrations/youtube#create'
-    get '/google_oauth2/callback', to: 'registrations/gplus#create'
+    get '/gplus/callback',         to: 'registrations/gplus#create'
     get '/vimeo/callback',         to: 'registrations/vimeo#create'
     get '/pinterest/callback',     to: 'registrations/pinterest#create'
     get '/flickr/callback',        to: 'registrations/flickr#create'

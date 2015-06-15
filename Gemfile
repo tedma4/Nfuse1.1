@@ -50,6 +50,7 @@ gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth 
 gem 'omniauth-instagram', '~> 1.0.1'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-gplus'
 gem 'google_plus'
 gem 'faraday', '~> 0.9.0'
 gem 'oj', '~> 2.9.3'

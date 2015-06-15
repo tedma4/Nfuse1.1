@@ -181,7 +181,7 @@ class Token < ActiveRecord::Base
 
     gplus_access = Token.find_by_provider('google_oauth2')
 
-    person = GooglePlus::Person.get(gplus_access.uid, :access_token => gplus_access.access_token)
+    person = GooglePlus::Person.get(gplus_access.uid, :access_token => gplus_access.access_token, refresh_token: gplus_access.refresh_token)
     person
   end
 
