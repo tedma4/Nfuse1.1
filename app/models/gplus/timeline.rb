@@ -21,6 +21,7 @@ module Gplus
     private
     # Gem documents https://github.com/seejohnrun/google_plus
     # Google doc for gplus that says to use list.Activities for user posts https://developers.google.com/+/domains/posts/reading
+    # might need to use googleoauth2 for authentication
 
     def client
       @client ||= configure_gplus(user_tokens)
