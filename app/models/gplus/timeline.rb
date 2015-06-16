@@ -37,7 +37,7 @@ module Gplus
 
     def get_timeline(client, page)
       if page.nil?
-        client.list_activities
+          client.list_activities(user_tokens.access_token)
       else
         gplus_timeline = client.list_activities( page: page, count: 50)
         # gplus_timeline.delete_at(0)
