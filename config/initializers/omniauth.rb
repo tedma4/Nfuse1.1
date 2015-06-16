@@ -10,7 +10,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :vimeo,         ENV["vimeo_client_id"],          ENV["vimeo_client_secret"]
   provider :flickr,        ENV["flickr_client_id"],         ENV["flickr_client_secret"],    scope: 'read'
   provider :pinterest,     ENV["pinterest_client_secret"], ENV["pinterest_id"]
-  provider :gplus,         ENV["google_client_id"],         ENV["google_client_secret"], scope: "userinfo.email, userinfo.profile, plus.me"
+  provider :gplus,         ENV["google_client_id"],         ENV["google_client_secret"], 
+        scope: "plus.me,
+                plus.stream.read"
   provider :google_oauth2, ENV["google_client_id"],         ENV["google_client_secret"],
     {
       :provider_ignores_state => true,

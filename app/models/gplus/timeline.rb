@@ -14,11 +14,13 @@ module Gplus
       timeline
     end
 
-    def get_video(photo_id)
+    def get_pic(photo_id)
       GooglePlus::Person.new id: photo_id, auth: client
     end
 
     private
+    # Gem documents https://github.com/seejohnrun/google_plus
+    # Google doc for gplus that says to use list.Activities for user posts https://developers.google.com/+/domains/posts/reading
 
     def client
       @client ||= configure_gplus(user_tokens)
@@ -29,14 +31,14 @@ module Gplus
     end
 
     def configure_gplus(tokens)
-      @config ||= tokens.configure_gplus(tokens.access_token, tokens.refresh_token)#, tokens.expiresat)
+      @config ||= tokens.configure_gplus(tokens.uid.to_s, tokens.access_token)
     end
 
     def get_timeline(client, page)
       if page.nil?
-        client.photos
+        client.list_activities
       else
-        gplus_timeline = client.photos( page: page, count: 50)
+        gplus_timeline = client.list_activities( page: page, count: 50)
         # gplus_timeline.delete_at(0)
         # gplus_timeline
       end

@@ -34,6 +34,10 @@ class Token < ActiveRecord::Base
       update_or_create_token(id, auth, 'google_oauth2')
     end
 
+    def update_or_create_with_gplus_omniauth(id, auth)
+      update_or_create_token(id, auth, 'gplus')
+    end
+
     def update_or_create_with_flickr_omniauth(id, auth)
       update_or_create_token(id, auth, 'flickr')
     end
@@ -105,10 +109,16 @@ class Token < ActiveRecord::Base
       #@token.expiresat           = credentials_expires
     end
 
+    def gplus_token
+      @token.access_token        = credentials_token
+      # @token.refresh_token       = credentials_refresh
+      #@token.expiresat           = credentials_expires
+    end
+
     def vimeo_token
       @token.access_token        = credentials_token
       @token.access_token_secret = credentials_secret
-      @token.uid                 = credentials_uid
+      # @token.uid                 = credentials_uid
     end
 
     def flickr_token
@@ -176,15 +186,11 @@ class Token < ActiveRecord::Base
     #   )
   end
 
-  def configure_gplus(access_token, refresh_token)
-    GooglePlus.api_key = ENV['youtube_dev_key']
-
-    gplus_access = Token.find_by_provider('gplus')
-
-    person = GooglePlus::Person.new(gplus_access.uid,
-                                    access_token: gplus_access.access_token,
-                                    refresh_token: gplus_access.refresh_token)
-    person
+  def configure_gplus(uid, access_token)
+    # GooglePlus.api_key = ENV['youtube_dev_key']
+    # gplus_access = @user.tokens.find_by_provider('gplus')
+    client = GooglePlus::Person.new(uid, access_token: access_token)
+    client
   end
 
   def configure_flickr(access_token, access_token_secret)
