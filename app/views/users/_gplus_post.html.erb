@@ -11,7 +11,7 @@
 
 
   <div class="right">
-    <%= link_to image_tag("googleplusblue.fw.png", :class => "provider_logo", size: "20x20"), post.link_to_video, :target => "_blank" %> 
+    <%= link_to image_tag("googleplusblue.fw.png", :class => "provider_logo", size: "20x20"), post.link_to_post, :target => "_blank" %>
     <p class="timeStamp"><%= time_ago_in_words(post.created_time) %> ago</p>
   </div>
   

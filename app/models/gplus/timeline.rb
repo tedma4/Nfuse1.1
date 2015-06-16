@@ -28,7 +28,7 @@ module Gplus
     end
 
     def user_tokens
-      @user_tokens ||= @user.tokens.find_by(provider: "gplus")
+      @user_tokens ||= @user.tokens.find_by(provider: "google_oauth2")
     end
 
     def configure_gplus(tokens)
@@ -37,7 +37,7 @@ module Gplus
 
     def get_timeline(client, page)
       if page.nil?
-          client.list_activities(user_tokens.access_token)
+          client.list_activities
       else
         gplus_timeline = client.list_activities( page: page, count: 50)
         # gplus_timeline.delete_at(0)
