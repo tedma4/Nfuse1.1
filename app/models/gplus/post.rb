@@ -37,7 +37,7 @@ module Gplus
     end
 
     def created_time
-      @post.published_at
+      @post.published
     end
 
     def id
@@ -52,8 +52,7 @@ module Gplus
 
     #TODO gplus api has no easy way to get video author username
     def full_name
-      # @post["user"]["full_name"]
-      'boo radley'
+        @post.actor.display_name
     end
 
     def link_to_post
