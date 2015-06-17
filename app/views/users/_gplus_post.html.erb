@@ -7,7 +7,34 @@
     </ul>
   </div>
   <div class="post_content">
-  </div>&nbsp;
+    <% if post.type == "image" %>
+        <div class="timeline-user-box">
+          <%= image_tag(post.image_url, :class => "image_post") %>
+        </div>
+        <% if post.caption.present? %>
+        <div class="center">
+          <%= post.caption_text %>
+        </div>
+        <% end %>
+      <br>
+    <% elsif post.type == "video" %>
+        <div class="timeline-user-box">
+          <video width="100%" height="258" class="image_post" controls>
+            <source src="<%= post.video %>" type="video/mp4">
+          </video>
+        </div>
+        <% if post.caption.present? %>
+        <div class="center">
+          <%= post.caption_text %>
+        </div>
+        <% end %>
+      <br>
+    <% elsif post.type == "content" %>
+      <div class="center">
+        <%= post.caption_text %>
+      </div>
+    <% end %>
+  </div>
 
 
   <div class="right">

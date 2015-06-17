@@ -14,8 +14,9 @@ module Gplus
       timeline
     end
 
-    def get_pic(photo_id)
-      GooglePlus::Person.new id: photo_id, auth: client
+    def get_pic(post_id)
+      person = GooglePlus::Person.get(123)
+      activites = person.list_activities.items
     end
 
     private
@@ -28,7 +29,7 @@ module Gplus
     end
 
     def user_tokens
-      @user_tokens ||= @user.tokens.find_by(provider: "google_oauth2")
+      @user_tokens ||= @user.tokens.find_by(provider: "gplus")
     end
 
     def configure_gplus(tokens)
@@ -39,7 +40,7 @@ module Gplus
       if page.nil?
           client.list_activities
       else
-        gplus_timeline = client.list_activities( page: page, count: 50)
+        gplus_timeline = client.list_activities.items( page: page, count: 50)
         # gplus_timeline.delete_at(0)
         # gplus_timeline
       end

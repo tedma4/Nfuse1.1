@@ -44,19 +44,39 @@ module Gplus
       @post.id
     end
 
-    alias_method :photo_id, :id
     
     # def video_id
     #   @post.id
     # end
 
     #TODO gplus api has no easy way to get video author username
+
+    def image_url
+      @post["images"]
+    end
+
     def full_name
         @post.actor.display_name
     end
 
+    def caption
+      @post["caption"]
+    end
+
+    def caption_text
+      @post["caption"]["text"]
+    end
+
     def link_to_post
-      "https://www.plus.google.com/v=#{@post.id}"
+      @post["link"]
+    end
+
+    def type
+      @post["ObjectType"]
+    end
+
+    def video
+      @post["videos"]
     end
   end
 end
