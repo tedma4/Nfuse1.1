@@ -68,11 +68,28 @@ module Gplus
     end
 
     def photo
-      @post.object.attachments[0]["fullImage"]
+      @post.object.attachments[0]["image"]["url"]
     end
 
     def video
-      @post.object.attachments[0]["fullImage"]
+      if @post.object.attachments[0].has_key? "embed"
+        @post.object.attachments[0]["embed"]["url"]
+      else
+        @post.object.attachments[0]["image"]["url"]
+      end
+    end
+
+    def type
+      if @post.object.attributes.include? 'attachments'
+        @post.object.attachments[0]['objectType']
+      else
+        @post.object.object_type
+      end
+      # begin
+      #   @post.object.attachments[0]['objectType']
+      # rescue
+      #   @post.object.object_type
+      # end
     end
   end
 end
