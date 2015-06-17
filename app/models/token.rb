@@ -122,8 +122,8 @@ class Token < ActiveRecord::Base
     end
 
     def flickr_token
-      @token.access_token        = credentials_token
-      @token.access_token_secret = credentials_secret
+      @token.access_token  = credentials_token
+      @token.access_secret = credentials_secret
     end
 
     # def facebook_token; end
@@ -192,13 +192,16 @@ class Token < ActiveRecord::Base
     client = GooglePlus::Person.get(uid)
   end
 
-  def configure_flickr(access_token, access_token_secret)
-    client = FlickRaw::Flickr.new(
-      api_key:       ENV["flickr_key"],
-      shared_secret: ENV["flickr_secret"],
-      client_access_token: access_token,
-      client_refresh_token: access_token_secret
-      )
+  def configure_flickr(access_token, access_secret)
+    FlickRaw.api_key=ENV["flickr_client_id"],
+    FlickRaw.shared_secret=ENV["flickr_client_secret"],
+
+
+    client = FlickRaw::Flickr.new do |flickr|
+      flickr.access_token = access_token
+      flickr.access_secret = access_secret
+    end
+      
   end
 end
 

@@ -51,32 +51,28 @@ module Gplus
 
     #TODO gplus api has no easy way to get video author username
 
-    def image_url
-      @post["images"]
-    end
-
     def full_name
         @post.actor.display_name
     end
 
     def caption
-      @post["caption"]
+      @post.object.content
     end
 
     def caption_text
-      @post["caption"]["text"]
+      @post.object.content
     end
 
     def link_to_post
-      @post["link"]
+      @post.object.url
     end
 
-    def type
-      @post["ObjectType"]
+    def photo
+      @post.object.attachments[0]["fullImage"]
     end
 
     def video
-      @post["videos"]
+      @post.object.attachments[0]["fullImage"]
     end
   end
 end
