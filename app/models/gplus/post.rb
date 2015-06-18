@@ -81,7 +81,15 @@ module Gplus
 
     def type
       if @post.object.attributes.include? 'attachments'
-        @post.object.attachments[0]['objectType']
+        if @post.object.attachments[0]['objectType'] == 'video'
+          if @post.object.attachments[0].has_key? "embed"
+            'video'
+          else
+            'brokenVideo'
+          end
+        else
+          @post.object.attachments[0]['objectType']
+        end
       else
         @post.object.object_type
       end
