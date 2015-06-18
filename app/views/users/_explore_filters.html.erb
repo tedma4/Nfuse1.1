@@ -118,7 +118,7 @@ a {
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss expIcon", title: "Google +"} do %>
+      <%= link_to explore_gplus_only_user_path(current_user), {class: "icoRss expIcon", title: "Google Plus", id: "explore_gplus"} do %>
         <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
@@ -151,6 +151,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/explore_youtube_only')!== -1){
       $('#explore_youtube').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_gplus_only')!== -1){
+      $('#explore_gplus').addClass("activeNavIcon");
     }
 });
 </script>

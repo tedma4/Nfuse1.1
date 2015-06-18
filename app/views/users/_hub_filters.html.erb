@@ -118,7 +118,7 @@ a {
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Google +"} do %>
+    <%= link_to gplus_only_user_path(current_user), {class: "icoRss hubIcon", title: "Google Plus", id: "gplus"} do %>
       <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
@@ -152,6 +152,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/youtube_only')!== -1){
       $('#youtube').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/gplus_only')!== -1){
+      $('#gplus').addClass("activeNavIcon");
     }
 });
 </script>

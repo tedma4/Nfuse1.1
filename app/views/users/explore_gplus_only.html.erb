@@ -1,0 +1,10 @@
+<div class="explore_filters">
+  <%= render partial: "users/explore_filters" %>
+</div><br>
+<div id="masonJar" class="center explore_container clearfix masonJar">
+  <% @timeline.each do |post| %>
+    <% if post.provider == "gplus" %>
+      <%= render partial: "users/gplus_post", locals: {post: post} %>
+    <% end %>
+  <% end %>
+</div>
