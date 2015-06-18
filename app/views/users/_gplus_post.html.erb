@@ -1,4 +1,10 @@
-<div class="individual_post gplus_post item " data-id="<%= post.id %>" id="content-box-feed">
+<style>
+  .gplusplus_image{
+    width: 300px;
+    height: 300px;
+  }
+</style>
+  <div class="individual_post gplus_post item " data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
       <li><%= link_to image_tag(post.avatar, :class => "user_profile_picture"), feed_user_path(post.user) %></li>
@@ -9,7 +15,7 @@
   <div class="post_content">
     <% if post.type == 'photo'%>
         <div class="timeline-user-box">
-          <%= image_tag(post.photo, :class => "image_post") %>
+          <%= image_tag(post.photo, :class => "image_post gplusplus_image") %>
         </div>
         <% if post.caption.present? %>
         <div class="center">

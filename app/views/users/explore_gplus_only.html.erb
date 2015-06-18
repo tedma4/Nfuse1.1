@@ -4,7 +4,9 @@
 <div id="masonJar" class="center explore_container clearfix masonJar">
   <% @timeline.each do |post| %>
     <% if post.provider == "gplus" %>
-      <%= render partial: "users/gplus_post", locals: {post: post} %>
+        <% if post.type != 'brokenVideo' %>
+          <%= render partial: "users/gplus_post", locals: {post: post} %>
+        <% end %>
     <% end %>
   <% end %>
 </div>
