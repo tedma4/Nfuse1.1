@@ -112,6 +112,9 @@ $(document).ready(function(){
     else if(urlPath.indexOf('/youtube_only')!== -1){
       $('#home').addClass("activeNavIcon");
     }
+    else if(urlPath.indexOf('/gplus_only')!== -1){
+      $('#home').addClass("activeNavIcon");
+    }
     else if(urlPath.indexOf('/vimeo_only')!== -1){
       $('#home').addClass("activeNavIcon");
     }
@@ -134,6 +137,9 @@ $(document).ready(function(){
       $('#explore').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/explore_youtube_only')!== -1){
+      $('#explore').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_gplus_only')!== -1){
       $('#explore').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/feed')!== -1){

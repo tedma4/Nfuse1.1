@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :youtube_only]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :youtube_only, :gplus_only]
 
   def index
     #user = User.find(params[:id])
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
   def explore
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users = User.all.where.not(id: [current_user.followed_users.collect(&:id), current_user.id])
     @users.each do |user|
       feed=Feed.new(user)
       timeline << feed.construct(params)
@@ -170,6 +170,12 @@ class UsersController < ApplicationController
     only_pages
   end
 
+  def gplus_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+    only_pages
+  end
+
   def only_pages
     @providers = Providers.for(current_user)
     @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
@@ -203,10 +209,15 @@ class UsersController < ApplicationController
     render "explore_youtube_only"
   end
 
+  def explore_gplus_only
+    explore_only_pages
+    render "explore_gplus_only"
+  end
+
   def explore_only_pages
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users = User.where.not(id: [current_user.followed_users.collect(&:id), current_user.id])
     @users.each do |user|
       feed=Feed.new(user)
       timeline << feed.construct(params)

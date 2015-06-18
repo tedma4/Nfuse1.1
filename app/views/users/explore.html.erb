@@ -15,6 +15,7 @@
       <%=  render partial: "users/shout", locals: {shout: post} %>
       <% elsif post.provider == "google_oauth2" %>
         <%= render partial: "users/youtube_post", locals: {post: post} %>
+      <% elsif post.provider == "gplus" %>
       <% elsif post.provider == "vimeo" %>
         <%= render partial: "users/vimeo_posts", locals: {post: post} %>
       <% elsif post.provider == "pinterest" %>
