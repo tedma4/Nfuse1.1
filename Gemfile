@@ -42,6 +42,7 @@ gem 'omniauth-flickr'
 #This allows the use of the facebook graph api
 gem 'fb_graph'
 gem 'vimeo'
+gem 'vmo', :git => 'https://github.com/ermacaz/vmo.git'
 gem 'flickraw'
 #This allows the use of the twitter api
 gem 'twitter', '~> 5.8.0'

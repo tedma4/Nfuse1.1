@@ -33,7 +33,7 @@ module Vimeo
     end
 
     def created_time
-      @post.created_at
+      @post.created_time
     end
 
     def provider
@@ -41,7 +41,11 @@ module Vimeo
     end
 
     def id
-      @post["id"]
+      @post.id
+    end
+
+    def embedUrl
+      @post.embedUrl
     end
 
     def video_id

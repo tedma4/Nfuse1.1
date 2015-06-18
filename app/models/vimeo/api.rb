@@ -9,7 +9,7 @@ module Vimeo::Api
     end
 
     def link_to_video
-      base_uri << "#{@video["user"]["screen_name"]}/status/#{@video["id"]}"
+      @post.link
     end
 
     #def user_url

@@ -10,7 +10,7 @@ module Vimeo
 
 
     def posts(max_id = nil)
-      timeline = get_timeline(video, max_id, uid)
+      timeline = get_timeline(video, max_id)
       store_last_post_id(timeline)
       timeline
     end
@@ -35,6 +35,7 @@ module Vimeo
 
     def config_video_base
       tokens = @config.get_access_token
+
       Vimeo::Advanced::Video.new(
         ENV["vimeo_client_id"],
         ENV["vimeo_client_secret"],
@@ -53,14 +54,17 @@ module Vimeo
     #  vimeo_timeline = video.get_uploaded(uid, { :page => "1", :per_page => "25", :full_response => "0", :sort => "newest" })
     #end
 
-    def get_timeline(video, max_id, uid)
-      if max_id.nil?
-        video.get_uploaded(uid, count: 25)
-      else
-        vimeo_timeline = video.get_uploaded(uid, max_id: max_id, count: 50)
-        vimeo_timeline.delete_at(0)
-        vimeo_timeline
-      end
+    def get_timeline(video, max_id)
+      configure_vimeo(user_tokens)
+      user = Vmo::Request.get_user(user_tokens.access_token)
+      user.videos
+      # if max_id.nil?
+      #   video.get_uploaded(uid, count: 25)
+      # else
+      #   vimeo_timeline = video.get_uploaded(uid, max_id: max_id, count: 50)
+      #   vimeo_timeline.delete_at(0)
+      #   vimeo_timeline
+      # end
     end
 
     def store_last_post_id(timeline)

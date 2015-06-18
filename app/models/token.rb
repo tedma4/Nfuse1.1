@@ -157,12 +157,13 @@ class Token < ActiveRecord::Base
   #user.save
   
   def configure_vimeo(access_token, access_token_secret)
-    video = Vimeo::Advanced::Base.new(
-      ENV["vimeo_client_id"],
-      ENV["vimeo_client_secret"],
-      token: access_token,
-      secret: access_token_secret
-      )
+    cfg = Vmo::Base.new(access_token)
+    # video = Vimeo::Advanced::Base.new(
+    #   ENV["vimeo_client_id"],
+    #   ENV["vimeo_client_secret"],
+    #   token: access_token,
+    #   secret: access_token_secret
+    #   )
   end
 
 

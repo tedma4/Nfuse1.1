@@ -17,6 +17,12 @@ GIT
       sass-rails
 
 GIT
+  remote: https://github.com/ermacaz/vmo.git
+  revision: d610542d4a743873e322b54a039ae381a9e44c4a
+  specs:
+    vmo (0.1.4)
+
+GIT
   remote: https://github.com/ermacaz/yt.git
   revision: 3476fa75fa338275e4d5356876f478622a783dc7
   specs:
@@ -558,6 +564,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   videojs_rails
   vimeo
+  vmo!
   wicked
   will_paginate (~> 3.0.4)
   yt!
