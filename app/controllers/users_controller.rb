@@ -102,7 +102,7 @@ class UsersController < ApplicationController
   def explore
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users = User.all.where.not(id: [current_user.followed_users.collect(&:id), current_user.id])
     @users.each do |user|
       feed=Feed.new(user)
       timeline << feed.construct(params)
@@ -217,7 +217,7 @@ class UsersController < ApplicationController
   def explore_only_pages
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.where.not(id: current_user.followed_users && current_user.id)
+    @users = User.where.not(id: [current_user.followed_users.collect(&:id), current_user.id])
     @users.each do |user|
       feed=Feed.new(user)
       timeline << feed.construct(params)
