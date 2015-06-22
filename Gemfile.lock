@@ -123,7 +123,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.8.0)
     cookiejar (0.3.2)
     daemons (1.2.2)
     database_cleaner (1.3.0)
@@ -507,6 +507,7 @@ DEPENDENCIES
   capybara (~> 2.4.3)
   cocaine (= 0.5.3)
   coffee-rails (~> 4.0.0)
+  coffee-script-source (= 1.8.0)
   database_cleaner (~> 1.3.0)
   ejs (~> 1.1.1)
   elastic-beanstalk (~> 1.1.3)
@@ -568,3 +569,6 @@ DEPENDENCIES
   wicked
   will_paginate (~> 3.0.4)
   yt!
+
+BUNDLED WITH
+   1.10.4

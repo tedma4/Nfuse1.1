@@ -113,10 +113,10 @@ a {
       <%end%>
     </li>
     <li>
-      <%= link_to "#", {class: "icoRss expIcon", title: "Vimeo"} do %>
+      <%= link_to explore_vimeo_only_user_path(current_user), {class: "icoRss expIcon", title: "Vimeo", id: "explore_vimeo"} do %>
         <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
       <%end%>
-    </li>
+    </li>    
     <li>
       <%= link_to explore_gplus_only_user_path(current_user), {class: "icoRss expIcon", title: "Google Plus", id: "explore_gplus"} do %>
         <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
@@ -154,6 +154,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/explore_gplus_only')!== -1){
       $('#explore_gplus').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/explore_vimeo_only')!== -1){
+      $('#explore_vimeo').addClass("activeNavIcon");
     }
 });
 </script>

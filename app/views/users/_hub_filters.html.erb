@@ -113,7 +113,7 @@ a {
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss hubIcon", title: "Vimeo"} do %>
+    <%= link_to vimeo_only_user_path(current_user), {class: "icoRss hubIcon", title: "Vimeo", id: "vimeo"} do %>
       <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
@@ -155,6 +155,9 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/gplus_only')!== -1){
       $('#gplus').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/vimeo_only')!== -1){
+      $('#vimeo').addClass("activeNavIcon");
     }
 });
 </script>

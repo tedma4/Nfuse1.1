@@ -176,6 +176,12 @@ class UsersController < ApplicationController
     only_pages
   end
 
+  def vimeo_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+    only_pages
+  end
+
   def only_pages
     @providers = Providers.for(current_user)
     @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
@@ -212,6 +218,11 @@ class UsersController < ApplicationController
   def explore_gplus_only
     explore_only_pages
     render "explore_gplus_only"
+  end
+
+  def explore_vimeo_only
+    explore_only_pages
+    render "explore_vimeo_only"
   end
 
   def explore_only_pages

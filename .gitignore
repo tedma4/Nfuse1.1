@@ -39,3 +39,6 @@ public/system
 
 !.elasticbeanstalk/*.global.yml
 
+
+# Ignore application configuration
+/config/application.yml
