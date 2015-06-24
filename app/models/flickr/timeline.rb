@@ -48,9 +48,9 @@ module Flickr
 
     def get_timeline(client, max_id)
       if max_id.nil?
-        client.my_videos( count: 25)
+        client.getRecent( count: 25)
       else
-        flickr_timeline = client.my_videos( max_id: max_id, count: 50)
+        flickr_timeline = client.getRecent( max_id: max_id, count: 50)
         flickr_timeline.delete_at(0)
         flickr_timeline
       end

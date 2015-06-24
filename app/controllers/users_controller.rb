@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :youtube_only, :gplus_only]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers,
+                                          :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, 
+                                          :facebook_only, :youtube_only, :gplus_only, :flickr_only, :tumblr_only]
 
   def index
     #user = User.find(params[:id])
@@ -182,6 +184,18 @@ class UsersController < ApplicationController
     only_pages
   end
 
+  def flickr_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+    only_pages
+  end
+
+  def tumblr_only
+    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
+    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
+    only_pages
+  end
+
   def only_pages
     @providers = Providers.for(current_user)
     @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
@@ -223,6 +237,16 @@ class UsersController < ApplicationController
   def explore_vimeo_only
     explore_only_pages
     render "explore_vimeo_only"
+  end
+
+  def explore_flickr_only
+    explore_only_pages
+    render "explore_flickr_only"
+  end
+
+  def explore_tumblr_only
+    explore_only_pages
+    render "explore_tumblr_only"
   end
 
   def explore_only_pages

@@ -13,6 +13,7 @@ class Feed
               :vimeo_pagination_id,
               # :pinterest_pagination_id,
               :flickr_pagination_id,
+              :tumblr_pagination_id,
               :nfuse_pagination_id
 
 
@@ -21,7 +22,15 @@ class Feed
     @unauthed_accounts = []
   end
 
-  def posts(twitter_pagination_id, facebook_pagination_id, instagram_max_id, user_id, youtube_pagination_id, vimeo_pagination_id, flickr_pagination_id, gplus_pagination_id)#, pinterest_pagination_id, flickr_pagination_id, gplus_pagination_id
+  def posts(twitter_pagination_id, 
+            facebook_pagination_id,
+            instagram_max_id, 
+            user_id, 
+            youtube_pagination_id, 
+            vimeo_pagination_id, 
+            flickr_pagination_id, 
+            tumblr_pagination_id, 
+            gplus_pagination_id)
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
@@ -30,6 +39,7 @@ class Feed
                                    vimeo_posts(vimeo_pagination_id),
                                    # pinterest_posts(pinterest_pagination_id),
                                    flickr_posts(flickr_pagination_id),
+                                   tumblr_posts(tumblr_pagination_id),
                                    users_posts(user_id)
                                    )
   end
@@ -45,7 +55,8 @@ class Feed
     up = users_posts(params[:nfuse_post_last_id])
     # pt = pinterest_posts(params[:pinterest_pagination])
     fl = flickr_posts(params[:flickr_pagination])
-    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt, fl, gp ) #, pt, fl
+    tb = tumblr_posts(params[:tumblr_pagination])
+    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt, fl, gp, tb ) #, pt, fl
   end
 
   private
@@ -161,6 +172,22 @@ class Feed
       flickr_posts
     else
       flickr_posts
+    end
+  end
+
+  def tumblr_posts(tumblr_pagination_id)
+    tumblr_posts = []
+    if user_has_provider?('tumblr', @user)
+      tumblr_timeline = Tumblr::Timeline.new(@user)
+      begin
+        tumblr_posts = tumblr_timeline.posts(tumblr_pagination_id).map { |post| Tumblr::Post.from(post, @user) }
+        @tumblr_pagination_id = tumblr_timeline.last_post_id
+      rescue => e
+        @unauthed_accounts << "tumblr"
+      end
+      tumblr_posts
+    else
+      tumblr_posts
     end
   end
 

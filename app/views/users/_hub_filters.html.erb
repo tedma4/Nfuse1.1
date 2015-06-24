@@ -123,8 +123,13 @@ a {
     <%end%>
   </li>
   <li>
-    <%= link_to "#", {class: "icoRss", title: "Flickr"} do %>
+    <%= link_to flickr_only_user_path(current_user), {class: "icoRss hubIcon", title: "Flickr", id: "flickr"} do %>
       <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
+    <%end%>
+  </li>
+  <li>
+    <%= link_to tumblr_only_user_path(current_user), {class: "icoRss hubIcon", title: "Tumblr", id: "tumblr"} do %>
+      <%= image_tag "tumblrwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
 </ul>
@@ -158,6 +163,12 @@ $(document).ready(function(){
     }
     else if(urlPath.indexOf('/vimeo_only')!== -1){
       $('#vimeo').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/flickr_only')!== -1){
+      $('#flickr').addClass("activeNavIcon");
+    }
+    else if(urlPath.indexOf('/tumblr_only')!== -1){
+      $('#tumblr').addClass("activeNavIcon");
     }
 });
 </script>

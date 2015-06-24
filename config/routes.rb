@@ -20,9 +20,10 @@ Rails.application.routes.draw do
     member do
       get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_page,
        :nfuse_only, :twitter_only, :instagram_only, :facebook_only, :youtube_only,
-       :gplus_only, :vimeo_only,
+       :gplus_only, :vimeo_only, :flickr_only, :tumblr_only,
        :explore_nfuse_only, :explore_twitter_only, :explore_instagram_only,
-       :explore_facebook_only, :explore_youtube_only, :explore_gplus_only, :explore_vimeo_only
+       :explore_facebook_only, :explore_youtube_only, :explore_gplus_only,
+       :explore_vimeo_only, :explore_flickr_only, :explore_tumblr_only
     end
   end
 
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
     post '/gplus/:gplus_post_id',         to: 'comments#create'
     post '/vimeo/:vimeo_post_id',         to: 'comments#create'
     post '/flickr/:flickr_post_id',       to: 'comments#create'
+    post '/tumblr/:tumblr_post_id',       to: 'comments#create'
 
     # Add others follow convention
 
@@ -105,6 +107,7 @@ Rails.application.routes.draw do
     get '/vimeo/callback',         to: 'registrations/vimeo#create'
     get '/pinterest/callback',     to: 'registrations/pinterest#create'
     get '/flickr/callback',        to: 'registrations/flickr#create'
+    get '/tumblr/callback',        to: 'registrations/tumblr#create'
   end
 
   # Likes

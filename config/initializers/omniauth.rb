@@ -8,7 +8,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                user_tagged_places, 
                user_videos'
   provider :vimeo,         ENV["vimeo_client_id"],          ENV["vimeo_client_secret"]
-  provider :flickr,        ENV["flickr_client_id"],         ENV["flickr_client_secret"],    scope: 'read'
+  provider :flickr,        ENV["flickr_client_id"],         ENV["flickr_client_secret"],
+        scope: 'read'
+  provider :tumblr,        ENV["tumblr_consumer_key"],      ENV["tumblr_consumer_secret"]
   provider :pinterest,     ENV["pinterest_client_secret"], ENV["pinterest_id"]
   provider :gplus,         ENV["google_client_id"],         ENV["google_client_secret"],
         scope: "plus.me,

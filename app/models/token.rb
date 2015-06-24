@@ -42,6 +42,10 @@ class Token < ActiveRecord::Base
       update_or_create_token(id, auth, 'flickr')
     end
 
+    def update_or_create_with_tumblr_omniauth(id, auth)
+      update_or_create_token(id, auth, 'tumblr')
+    end
+
     def update_or_create_with_other_omniauth(id, auth)
       # defaults to basic.
       update_or_create_token(id, auth)
@@ -122,8 +126,12 @@ class Token < ActiveRecord::Base
     end
 
     def flickr_token
-      @token.access_token  = credentials_token
-      @token.access_secret = credentials_secret
+      @token.access_token        = credentials_token
+    end
+
+    def tumblr_token
+      @token.access_token        = extra_access_token.token
+      @token.access_token_secret = extra_access_token.secret
     end
 
     # def facebook_token; end
@@ -137,12 +145,22 @@ class Token < ActiveRecord::Base
 
   def configure_twitter(access_token, access_token_secret)
     client = Twitter::REST::Client.new do |config|
-  	  config.consumer_key = ENV["twitter_api_key"]
-  	  config.consumer_secret = ENV["twitter_api_secret"]
-      config.access_token = access_token
+      config.consumer_key        = ENV["twitter_api_key"]
+      config.consumer_secret     = ENV["twitter_api_secret"]
+      config.access_token        = access_token
       config.access_token_secret = access_token_secret
     end
     client
+  end
+
+  def configure_tumblr(access_token, access_token_secret)
+    Tumblr.configure do |config|
+      config.consumer_key        = ENV['tumblr_consumer_key']
+      config.consumer_secret     = ENV['tumblr_consumer_secret']
+      config.access_token        = access_token
+      config.access_token_secret = access_token_secret
+    end
+    client = Tumblr::Client.new(access_token, access_token_secret)
   end
 
   # video = Vimeo::Advanced::Video.new("consumer_key", "consumer_secret", token: user.token, secret: user.secret)
@@ -193,10 +211,9 @@ class Token < ActiveRecord::Base
     client = GooglePlus::Person.get(uid)
   end
 
-  def configure_flickr(access_token, access_secret)
+  def configure_flickr(access_token, access_token_secret)
     FlickRaw.api_key=ENV["flickr_client_id"],
     FlickRaw.shared_secret=ENV["flickr_client_secret"],
-
 
     client = FlickRaw::Flickr.new do |flickr|
       flickr.access_token = access_token

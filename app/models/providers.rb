@@ -46,8 +46,12 @@ class Providers
     @user.tokens.where(provider: 'flickr').count > 0 
   end
 
+  def tumblr?
+    @user.tokens.where(provider: 'tumblr').count > 0 
+  end
+
   def none?
-    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse? || gplus?)# || pinterest? || flickr?
+    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse? || gplus? || flickr? || tumblr?)# || pinterest? || flickr?
   end
 
 end
