@@ -114,10 +114,22 @@
                               <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
                               <% end %>
                         </div>
-                          <div class="col-sm-3 features-box wow fadeInDown">
-                            <h3><strong>Done Nfusing?<strong></h3>
-                            <%= link_to "Next", next_wizard_path, class: "btn btn-link-1" %>
+                        <div class="col-sm-3 features-box wow fadeInDown">
+                          <h3><strong>Done Nfusing?<strong></h3>
+                          <%= link_to "Next", next_wizard_path, class: "btn btn-link-1" %>
+                        </div>
+                        <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                          <div class="features-box-icon">
+                            <a href="#"><%= image_tag("tumblrblue.fw.png", size: "60x60") %></a>
                           </div>
+                            <h3><strong>Tumblr<strong></h3>
+                            <p>This is for catchy slogan.</p>
+                          <% if current_user && user_has_provider?('tumblr') %>
+                              <%= link_to "You've Nfused Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
+                              <% else %>
+                              <%= link_to "Nfuse Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
+                              <% end %>
+                        </div>
                       </div>
                   </div>
                 </div>
