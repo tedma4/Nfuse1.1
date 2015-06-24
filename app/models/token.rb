@@ -126,7 +126,8 @@ class Token < ActiveRecord::Base
     end
 
     def flickr_token
-      @token.access_token        = credentials_token
+      @token.access_token        = extra_access_token.token
+      @token.access_token_secret = extra_access_token.secret
     end
 
     def tumblr_token
@@ -157,8 +158,8 @@ class Token < ActiveRecord::Base
     Tumblr.configure do |config|
       config.consumer_key        = ENV['tumblr_consumer_key']
       config.consumer_secret     = ENV['tumblr_consumer_secret']
-      config.access_token        = access_token
-      config.access_token_secret = access_token_secret
+      config.oauth_token         = access_token
+      config.oauth_token_secret  = access_token_secret
     end
     client = Tumblr::Client.new(:client => :httpclient)
   end
