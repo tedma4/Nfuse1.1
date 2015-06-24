@@ -9,7 +9,7 @@ module Tumblr::Api
     end
 
     def link_to_post
-      base_uri << "#{@post["user"]["screen_name"]}/status/#{@post["id"]}"
+      base_uri << "#{@post["blog_name"]["screen_name"]}/status/#{@post["id"]}"
     end
 
     #def user_url

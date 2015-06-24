@@ -160,7 +160,7 @@ class Token < ActiveRecord::Base
       config.access_token        = access_token
       config.access_token_secret = access_token_secret
     end
-    client = Tumblr::Client.new(access_token, access_token_secret)
+    client = Tumblr::Client.new(:client => :httpclient)
   end
 
   # video = Vimeo::Advanced::Video.new("consumer_key", "consumer_secret", token: user.token, secret: user.secret)
