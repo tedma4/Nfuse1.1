@@ -161,33 +161,12 @@ class Token < ActiveRecord::Base
       config.oauth_token         = access_token
       config.oauth_token_secret  = access_token_secret
     end
-    client = Tumblr::Client.new(:client => :httpclient)
+    client = Tumblr::Client.new#(client: :httpclient)
   end
-
-  # video = Vimeo::Advanced::Video.new("consumer_key", "consumer_secret", token: user.token, secret: user.secret)
-
-  #It says in the vimeo gem documents that the base class needs to get instantiated first to be able to use the advanced api. Or something like that.  
-
-  #base = Vimeo::Advanced::Base.new("consumer_key", "consumer_secret")
-  #access_token = base.get_access_token(params[:oauth_token], session[:oauth_secret], params[:oauth_verifier])
-  ## You'll want to hold on to the user's access token and secret. I'll save it to the database.
-  #user.token = access_token.token
-  #user.secret = access_token.secret
-  #user.save
   
   def configure_vimeo(access_token, access_token_secret)
     cfg = Vmo::Base.new(access_token)
-    # video = Vimeo::Advanced::Base.new(
-    #   ENV["vimeo_client_id"],
-    #   ENV["vimeo_client_secret"],
-    #   token: access_token,
-    #   secret: access_token_secret
-    #   )
   end
-
-
-  # client = YouTubeIt::OAuth2Client.new(client_access_token: "access_token", client_refresh_token: "refresh_token",
-  # client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
 
   def configure_youtube(access_token, refresh_token)#, expiresat)
     Yt.configure do |config|
@@ -196,14 +175,6 @@ class Token < ActiveRecord::Base
     end
     client = Yt::Account.new access_token: access_token, refresh_token: refresh_token
     client
-    # client = YouTubeIt::OAuth2Client.new(
-    #   client_access_token: access_token,
-    #   client_refresh_token: refresh_token,
-    #   client_id:     ENV["google_client_secret"],
-    #   client_secret: ENV["google_client_id"],
-    #   dev_key:       ENV["youtube_dev_key"],
-    #   #expires_at: expiresat,
-    #   )
   end
 
   def configure_gplus(uid, access_token)

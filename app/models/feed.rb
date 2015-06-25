@@ -95,6 +95,22 @@ class Feed
     end
   end
 
+  def tumblr_posts(tumblr_pagination_id)
+    tumblr_posts = []
+    if user_has_provider?('tumblr', @user)
+      tumblr_timeline = Tumblr::Timeline.new(@user)
+      begin
+        tumblr_posts = tumblr_timeline.posts(tumblr_pagination_id).map { |post| Tumblr::Post.from(post, @user) }
+        @tumblr_pagination_id = tumblr_timeline.current_page
+      rescue => e
+        @unauthed_accounts << "tumblr"
+      end
+      tumblr_posts
+    else
+      tumblr_posts
+    end
+  end
+
   def vimeo_posts(vimeo_pagination_id)
     vimeo_posts = []
     if user_has_provider?('vimeo', @user)
@@ -172,22 +188,6 @@ class Feed
       flickr_posts
     else
       flickr_posts
-    end
-  end
-
-  def tumblr_posts(tumblr_pagination_id)
-    tumblr_posts = []
-    if user_has_provider?('tumblr', @user)
-      tumblr_timeline = Tumblr::Timeline.new(@user)
-      begin
-        tumblr_posts = tumblr_timeline.post(tumblr_pagination_id).map { |post| Tumblr::Post.from(post, @user) }
-        @tumblr_pagination_id = tumblr_timeline.last_post_id
-      rescue => e
-        @unauthed_accounts << "tumblr"
-      end
-      tumblr_posts
-    else
-      tumblr_posts
     end
   end
 
