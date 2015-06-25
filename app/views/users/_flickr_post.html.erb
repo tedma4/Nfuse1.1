@@ -10,25 +10,12 @@
     </ul>
   </div>
   <div class="post_content">
-    <% if post.type == "image" %>
       <ul>
         <li><%= image_tag(post.low_resolution_image_url, :class => "image_post") %></li>
         <% if post.caption.present? %>
-          <li><%= post.caption_text %></li>
+          <li><%= post.caption %></li>
         <% end %>
       </ul><br>
-    <% elsif post.type == "video" %>
-      <ul>
-        <li>
-          <video width="100%" height="258" class="image_post" controls>
-            <source src="<%= post.video %>" type="video/mp4">
-          </video>
-        </li>
-        <% if post.caption.present? %>
-          <li><%= post.caption_text %></li>
-        <% end %>
-      </ul>
-    <% end %>
   </div>&nbsp;
 
 

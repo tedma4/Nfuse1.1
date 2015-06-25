@@ -32,6 +32,10 @@ module Flickr
       client.my_video(video_id)
     end
 
+    def last_pic_id
+      @last_post_id
+    end
+
     private
 
     def client
@@ -47,22 +51,24 @@ module Flickr
     end
 
     def get_timeline(client, max_id)
-      if max_id.nil?
-        client.getRecent( count: 25)
-      else
-        flickr_timeline = client.getRecent( max_id: max_id, count: 50)
-        flickr_timeline.delete_at(0)
-        flickr_timeline
-      end
+      # if max_id.nil?
+        client.people.getPhotos('user_id' => @user.tokens.where('provider' => 'flickr').first.uid)
+      # else
+      #   flickr_timeline = client.getRecent( max_id: max_id, count: 50)
+      #   flickr_timeline.delete_at(0)
+      #   flickr_timeline
+      # end
     end
 
     def store_last_post_id(timeline)
-      if last = timeline.last
-        @last_vid_id = last.id
+      if last = timeline[timeline.count-1]
+        @last_post_id = last.id
       else
-        @last_vid_id = nil
+        @last_post_id = nil
       end
     end
+
+
   end
 end
 

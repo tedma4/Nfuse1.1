@@ -183,15 +183,13 @@ class Token < ActiveRecord::Base
     client = GooglePlus::Person.get(uid)
   end
 
-  def configure_flickr(access_token, access_token_secret)
-    FlickRaw.api_key=ENV["flickr_client_id"],
-    FlickRaw.shared_secret=ENV["flickr_client_secret"],
+  def configure_flickr(access_token, access_secret)
+    FlickRaw.api_key=ENV["flickr_key"]
+    FlickRaw.shared_secret=ENV["flickr_secret"]
 
-    client = FlickRaw::Flickr.new do |flickr|
-      flickr.access_token = access_token
-      flickr.access_secret = access_secret
-    end
-      
+    client = FlickRaw::Flickr.new
+    client.access_token = access_token
+    client
   end
 end
 
