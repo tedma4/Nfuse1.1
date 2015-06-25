@@ -37,7 +37,7 @@ module Flickr
     end
 
     def created_time
-      @post.created_at
+      flickr.photos.getInfo(photo_id: @post.id).dates.taken
     end
 
     def id
@@ -48,8 +48,17 @@ module Flickr
       @post["user"]["full_name"]
     end
 
-    def link_to_video
-      @post["link"]
+    def low_resolution_image_url
+      flickr.photos.getSizes(photo_id: @post.id)[3].source
     end
+
+    def link_to_post
+      flickr.photos.getInfo(photo_id: @post.id).urls[0]._content
+    end
+
+    def caption
+      @post.title
+    end
+
   end
 end

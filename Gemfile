@@ -45,6 +45,7 @@ gem 'fb_graph'
 gem 'vimeo'
 gem 'vmo', :git => 'https://github.com/ermacaz/vmo.git'
 gem 'flickr_fu'
+gem 'flickraw'
 gem 'tumblr_client'
 #This allows the use of the twitter api
 gem 'twitter', '~> 5.8.0'
