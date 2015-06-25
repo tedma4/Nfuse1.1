@@ -8,27 +8,11 @@ module Tumblr
       @authed = true
     end
 
-    def posts(max_id = nil)
+    def post(max_id = nil)
       timeline = get_timeline(client, max_id)
       store_last_post_id(timeline)
       timeline
     end
-
-    def get_post(post_id)
-      client.status(post_id)
-    end
-
-    #def create_post(post)
-    #  client.update(post)
-    #end
-#
-    #def favorite_post(post_id)
-    #  client.favorite(post_id)
-    #end
-#
-    #def repost_post(post_id)
-    #  client.repost(post_id)
-    #end
 
     private
 
@@ -41,14 +25,15 @@ module Tumblr
     end
 
     def configure_tumblr(tokens)
-      @config ||= tokens.configure_tumblr(tokens.access_token, tokens.access_token_secret)
+      @config ||= tokens.configure_tumblr(tokens.access_token, 
+                                         tokens.access_token_secret)
     end
 
     def get_timeline(client, max_id)
       if max_id.nil?
-        client.user_timeline(:count =>50)
+        client.posts
       else
-        tumblr_timeline = client.user_timeline(:max_id => max_id, :count => 100)
+        tumblr_timeline = client.posts(:max_id => max_id, :count => 100)
         tumblr_timeline.delete_at(0)
         tumblr_timeline
       end

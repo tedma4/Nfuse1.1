@@ -180,7 +180,7 @@ class Feed
     if user_has_provider?('tumblr', @user)
       tumblr_timeline = Tumblr::Timeline.new(@user)
       begin
-        tumblr_posts = tumblr_timeline.posts(tumblr_pagination_id).map { |post| Tumblr::Post.from(post, @user) }
+        tumblr_posts = tumblr_timeline.post(tumblr_pagination_id).map { |post| Tumblr::Post.from(post, @user) }
         @tumblr_pagination_id = tumblr_timeline.last_post_id
       rescue => e
         @unauthed_accounts << "tumblr"

@@ -44,7 +44,10 @@ gem 'omniauth-tumblr'
 gem 'fb_graph'
 gem 'vimeo'
 gem 'vmo', :git => 'https://github.com/ermacaz/vmo.git'
+<<<<<<< HEAD
 gem 'flickr_fu'
+=======
+>>>>>>> 00003095e57919a5852ef4da1cdcd279a6ee4bd8
 gem 'flickraw'
 gem 'tumblr_client'
 #This allows the use of the twitter api
