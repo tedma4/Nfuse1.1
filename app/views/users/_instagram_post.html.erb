@@ -1,3 +1,4 @@
+
 <!-- *Start* Views/users/_instagram_post.html -->
 <div class="individual_post instagram_post item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
@@ -21,9 +22,15 @@
         <% end %>
       <br>
     <% elsif post.type == "video" %>
-         <video width="100%" height="258" class="image_post" controls>
-           <source src="<%= post.video %>" type="video/mp4">
-         </video>
+         <iframe 
+           width="100%" 
+           height="258" 
+           class="image_post" 
+           controls
+           src="<%= post.video %>" 
+           type="video/mp4"
+           allowfullscreen>
+         </iframe>
         <% if post.caption.present? %>
         <div class="center">
           <%= post.caption_text %>
@@ -71,7 +78,7 @@
         <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
       <%# end %> -->
   </ul>
-  <div class="<%#= post.class %>-<%#= post.id %> post_footer right" id="comment_list_<%#= post.id %>">
+  <div class="<%#= post.class %>-<%#= post.id %> right" id="comment_list_<%#= post.id %>">
     <!-- Refactor this. -->
     <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
       <%#= render partial: 'shared/comment', locals: {comment: comment } %>

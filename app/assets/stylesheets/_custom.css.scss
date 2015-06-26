@@ -858,6 +858,26 @@ td {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
   border-bottom: 5px solid rgba(59,89,152,0.8);
 }
+.gplus_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(59,89,152,0.8);
+}
+.vimeo_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(59,89,152,0.8);
+}
+.flickr_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(59,89,152,0.8);
+}
+.tumblr_post {
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+  border-bottom: 5px solid rgba(59,89,152,0.8);
+}
 .faved_post {
   overflow: hidden;
   box-shadow: 5px 3px rgba(100,100,100,0.5);
@@ -945,7 +965,7 @@ td {
 
 }
 .post_actions li{
-  padding-left: 6%;
+  padding-left: 4%;
 }
 .right{
   //float: right;

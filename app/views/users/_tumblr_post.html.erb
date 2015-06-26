@@ -86,7 +86,7 @@
         <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
       <%# end %> -->
   </ul>
-  <div class="<%#= post.class %>-<%#= post.id %> post_footer" id="comment_list_<%#= post.id %>">
+  <div class="<%#= post.class %>-<%#= post.id %>" id="comment_list_<%#= post.id %>">
     <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
       <%#= render partial: 'shared/comment', locals: {comment: comment } %>
     <%# end %>

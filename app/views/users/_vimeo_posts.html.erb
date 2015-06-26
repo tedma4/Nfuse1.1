@@ -1,5 +1,5 @@
 <!-- *Start* Views/users/_youtube_post.html -->
-<div class="individual_post item " data-id="<%= post.id %>" id="content-box-feed">
+<div class="individual_post vimeo_post item " data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
       <li><%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %></li>
@@ -17,8 +17,8 @@
       mozallowfullscreen 
       allowfullscreen>
     </iframe>
-    <br>
   </div>
+    <br>
 
 
   <div class="right">
@@ -59,7 +59,7 @@
         <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
       <%# end %> -->
   </ul>
-  <div class="<%#= post.class %>-<%#= post.id %> post_footer" id="comment_list_<%#= post.id %>">
+  <div class="<%#= post.class %>-<%#= post.id %> " id="comment_list_<%#= post.id %>">
     <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
       <%#= render partial: 'shared/comment', locals: {comment: comment } %>
     <%# end %>
