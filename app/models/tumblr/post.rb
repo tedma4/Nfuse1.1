@@ -1,7 +1,7 @@
 require_relative 'api'
 
 module Tumblr
-  class Post < TimelineEntry
+  class Posting < TimelineEntry
 
   attr_reader :user  
   
