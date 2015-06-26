@@ -126,10 +126,6 @@
   </div><br>
 
    <div class="right"> 
-      <%= image_tag "Nfuselogoblue.fw.png", class: "provider_logo", size: "18x18" %> 
-      <p class="timeStamp">
-        <%= time_ago_in_words(shout.created_time) %> ago 
-      </p> 
   </div>
 
   <div class="<%= shout.class %>-<%= shout.id %>">
@@ -152,7 +148,13 @@
       </li>
       <li class="vr"></li>
       <li class="tilt">
-        <%= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
+        <%= image_tag "Nfuselogoblue.fw.png", 
+                        class: "provider_logo", 
+                          size: "24x24" %> 
+        <p class="timeStamp">
+          <%= time_ago_in_words(shout.created_time) %> ago 
+        </p>
+        <%#= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
           user_nfused_page_path(id: shout.id,
                           owner_id: shout.user.id,
                           url:      shout_url_html(shout),
@@ -160,14 +162,14 @@
                           method: :post, remote: true %>
       </li>
 
-      <li class="vr"></li>
+<!--       <li class="vr"></li>
       <li class="tilt">
-        <% unless !current_user?(shout.user) %>
-          <%= link_to image_tag("delete3gray.fw.png", size: "24x24"), shout_path(shout.id), :method => :delete, data: { confirm: 'Are you sure?' } %>
-        <% else %>
-           <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-        <% end %>
-      </li>
+        <%# unless !current_user?(shout.user) %>
+          <%#= link_to image_tag("delete3gray.fw.png", size: "24x24"), shout_path(shout.id), :method => :delete, data: { confirm: 'Are you sure?' } %>
+        <%# else %>
+           <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+        <%# end %>
+      </li> -->
     </ul>
 
     <div class="post_comments" id="comment_list_<%= shout.id %>">

@@ -100,45 +100,45 @@ $(function () {
 
               <div class="row">
                 <div class="col-sm-3 how-it-works-box wow fadeInUp">
-                  <div class="how-it-works-box-icon">
-                    <%= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
-                  </div>
-                    <div class="fileUpload btn-link-1">
-                      <span>Upload Snip</span>
-                        <%= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                    <div class="how-it-works-box-icon">
+                      <a href="#"><%= image_tag("circlephoto.fw.png", size: "160x160") %></a>
                     </div>
-                </div>
-
-                <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                  <div class="how-it-works-box-icon">
-                    <a href="#"><%= image_tag("circlephoto.fw.png", size: "160x160") %></a>
-                  </div>
                     <div class="fileUpload btn-link-1">
                       <span>Upload Pic</span>
                        <%= f.file_field :pic, id: 'pictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
                     </div>
                 </div>
-               </div>
-                <div class="row">
-                  <div class="col-sm-3 how-it-works-box wow fadeInUp">
-                    <div class="how-it-works-box-icon">
-                      <a href="#"><%= image_tag("circlevideo.fw.png", size: "160x160") %></a>
-                    </div>
-                    <div class="fileUpload btn-link-1">
-                      <span>Upload Video</span>
-                      <%= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
-                    </div>
-                  </div>
 
-                  <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                    <div class="how-it-works-box-icon">
-                      <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "160x160") %></a>
-                    </div>
-                    <div class="form-grouP">
-                      <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
-                    </div>
+                <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
+                  <div class="how-it-works-box-icon">
+                    <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "160x160") %></a>
                   </div>
-              </div>
+                  <div class="form-grouP">
+                    <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+                  </div>
+                </div>
+               </div>
+<!--                 <div class="row">
+                 <div class="col-sm-3 how-it-works-box wow fadeInUp">
+                   <div class="how-it-works-box-icon">
+                     <a href="#"><%#= image_tag("circlevideo.fw.png", size: "160x160") %></a>
+                   </div>
+                   <div class="fileUpload btn-link-1">
+                     <span>Upload Video</span>
+                     <%#= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                   </div>
+                 </div>
+
+                 <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
+                   <div class="how-it-works-box-icon">
+                     <%#= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
+                   </div>
+                   <div class="fileUpload btn-link-1">
+                     <span>Upload Snip</span>
+                       <%#= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                   </div>
+                 </div>
+              </div> -->
 
               <div class="row">
                 <div class="col-sm-5 col-sm-offset-1 section-bottom-button wow fadeInUp">

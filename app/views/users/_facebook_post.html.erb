@@ -9,7 +9,11 @@
         <%= link_to "#{post.username}", feed_user_path(post.user) %>
       </li>
       <li class="right">
-        <%= link_to image_tag("facebookblue.fw.png", :class => "provider_logo"), post.link_to_post, target: "_blank" %>
+        <%= link_to image_tag("facebookblue.fw.png", 
+                              size: "24x24,"
+                              :class => "provider_logo"), 
+                              post.link_to_post, 
+                              target: "_blank" %>
       </li>
     </ul>
   </div>

@@ -2,7 +2,6 @@
 <style>
   .tweeter_image{
     width: 300px;
-    height: 300px;
   }
 </style>
 <div class="individual_post item twitter_post" data-id="<%= post.tweet_id %>" width="275" height="auto">
@@ -25,10 +24,6 @@
   </div><br>
 
   <div class="right">
-    <%= link_to image_tag("twitterblue.fw.png", :class => "provider_logo", size: "20x20"), post.link_to_tweet, :target => "_blank" %> 
-    <p class="timeStamp">
-      <%= time_ago_in_words(post.created_time) %> ago
-    </p>
   </div>
 
   <ul class="post_actions">
@@ -47,7 +42,15 @@
     </li>
     <li class="vr"></li>
     <li class="tilt">
-      <%= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
+      <%= link_to image_tag("twitterblue.fw.png", 
+                            :class => "provider_logo", 
+                            size: "24x24"), 
+                            post.link_to_tweet, 
+                            :target => "_blank" %>
+      <p class="timeStamp">
+        <%= time_ago_in_words(post.created_time) %> ago
+      </p>
+      <%#= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
         user_nfused_page_path(id: post.tweet_id,
                         owner_id: post.user.id,
                         user_id:  current_user.id,
@@ -55,12 +58,12 @@
                         method: :post, remote: true %>
     </li>
 
-    <li class="vr"></li>
-      <% unless !current_user?(post.user) %>
-        <li class="tilt"><%= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <% else %>
-        <li class="tilt"><%= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <% end %>
+<!--     <li class="vr"></li>
+      <%# unless !current_user?(post.user) %>
+        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <%# else %>
+        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <%# end %> -->
   </ul>
 
   <div class="<%= post.class %>-<%= post.tweet_id %>" id="comment_list_<%= post.tweet_id %>">

@@ -127,7 +127,6 @@ class Token < ActiveRecord::Base
 
     def flickr_token
       @token.access_token        = extra_access_token.token
-      @token.access_token_secret = extra_access_token.secret
     end
 
     def tumblr_token
