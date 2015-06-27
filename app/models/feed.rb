@@ -181,7 +181,7 @@ class Feed
       flickr_timeline = Flickr::Timeline.new(@user)
       begin
         flickr_posts = flickr_timeline.posts(flickr_pagination_id).map { |post| Flickr::Post.from(post, @user) }
-        @flickr_pagination_id = flickr_timeline.last_vid_id
+        @flickr_pagination_id = flickr_timeline.last_pic_id
       rescue => e
         @unauthed_accounts << "flickr"
       end

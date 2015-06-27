@@ -82,56 +82,76 @@ a {
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <ul class="social-network social-circle Alignthisorelse">
+  <!-- hub -->
   <li>
     <%= link_to root_path(current_user), {class: "icoRss hubIcon", title: "All", id: "all"} do %>
       <%= image_tag "hubwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
+  <!-- hub -->
+  <!-- nfuse -->
   <li>
     <%= link_to nfuse_only_user_path(current_user), {class: "icoRss hubIcon", title: "Nfuse", id: "nfuse"} do %>
       <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
       <%end%>
   </li>
+  <!-- nfuse -->
+  <!-- twitter -->
   <li>
     <%= link_to twitter_only_user_path(current_user), {class: "icoRss hubIcon", title: "Twitter", id: "twitter"} do %>
     <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
     <%end%>
   </li>
+  <!-- twitter -->
+  <!-- instagram -->
   <li>
     <%= link_to instagram_only_user_path(current_user), {class: "icoRss hubIcon", title: "Instagram", id: "instagram"} do%>
     <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
-  <li>
-    <%= link_to facebook_only_user_path(current_user), {class: "icoRss hubIcon", title: "Facebook", id: "facebook"} do%>
-    <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
-    <%end%>
-  </li>
-  <li>
-    <%= link_to youtube_only_user_path(current_user), {class: "icoRss hubIcon", title: "Youtube", id: "youtube"} do %>
-      <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
-    <%end%>
-  </li>
-  <li>
-    <%= link_to vimeo_only_user_path(current_user), {class: "icoRss hubIcon", title: "Vimeo", id: "vimeo"} do %>
-      <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
-    <%end%>
-  </li>
-  <li>
-    <%= link_to gplus_only_user_path(current_user), {class: "icoRss hubIcon", title: "Google Plus", id: "gplus"} do %>
-      <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
-    <%end%>
-  </li>
-  <li>
-    <%= link_to flickr_only_user_path(current_user), {class: "icoRss hubIcon", title: "Flickr", id: "flickr"} do %>
-      <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
-    <%end%>
-  </li>
+  <!-- instagram -->
+  <!-- tumblr -->
   <li>
     <%= link_to tumblr_only_user_path(current_user), {class: "icoRss hubIcon", title: "Tumblr", id: "tumblr"} do %>
       <%= image_tag "tumblrwhite.fw.png", size: "28x28" %>
     <%end%>
   </li>
+  <!-- tumblr -->
+  <!-- youtube -->
+  <li>
+    <%= link_to youtube_only_user_path(current_user), {class: "icoRss hubIcon", title: "Youtube", id: "youtube"} do %>
+      <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
+    <%end%>
+  </li>
+  <!-- youtube -->
+  <!-- gplus -->
+  <li>
+    <%= link_to gplus_only_user_path(current_user), {class: "icoRss hubIcon", title: "Google Plus", id: "gplus"} do %>
+      <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
+    <%end%>
+  </li>
+  <!-- gplus -->
+  <!-- vimeo -->
+  <li>
+    <%= link_to vimeo_only_user_path(current_user), {class: "icoRss hubIcon", title: "Vimeo", id: "vimeo"} do %>
+      <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
+    <%end%>
+  </li>
+  <!-- vimeo -->
+  <!-- flickr -->
+  <li>
+    <%= link_to flickr_only_user_path(current_user), {class: "icoRss hubIcon", title: "Flickr", id: "flickr"} do %>
+      <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
+    <%end%>
+  </li>
+  <!-- flickr -->
+  <!-- facebook -->
+  <li>
+    <%= link_to facebook_only_user_path(current_user), {class: "icoRss hubIcon", title: "Facebook", id: "facebook"} do%>
+    <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
+    <%end%>
+  </li>
+  <!-- facebook -->
 </ul>
 
 

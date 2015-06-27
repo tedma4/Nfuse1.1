@@ -82,56 +82,76 @@ a {
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
   <ul class="social-network social-circle">
+    <!-- explore -->
     <li>
      <%= link_to explore_user_path(current_user), {class: "icoRss expIcon", title: "All", id: "explore_only"} do %>
           <%= image_tag('educationalwhite.fw.png', size: "28x28") %>
         <% end %>
     </li>
+    <!-- explore -->
+    <!-- nfuse -->
     <li>
       <%= link_to explore_nfuse_only_user_path(current_user), {class: "icoRss expIcon", title: "Nfuse", id: "explore_nfuse"} do%>
         <%= image_tag "Nfuselogowhite.fw.png", size: "28x28" %>
         <%end%>
     </li>
+    <!-- nfuse -->
+    <!-- twitter -->
     <li>
       <%= link_to explore_twitter_only_user_path(current_user), {class: "icoRss expIcon", title: "Twitter", id: "explore_twitter"} do %>
       <%= image_tag "twitterwhite.fw.png", size: "28x28"%>      
       <%end%>
     </li>
+    <!-- twitter -->
+    <!-- instagram -->
     <li>
       <%= link_to explore_instagram_only_user_path(current_user), {class: "icoRss expIcon", title: "Instagram", id: "explore_instagram"} do%>
       <%= image_tag "instagramwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
-    <li>
-      <%= link_to explore_facebook_only_user_path(current_user), {class: "icoRss expIcon", title: "Facebook", id: "explore_facebook"} do%>
-      <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
-      <%end%>
-    </li>
-    <li>
-      <%= link_to explore_youtube_only_user_path(current_user), {class: "icoRss expIcon", title: "Youtube", id: "explore_youtube"} do %>
-        <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
-      <%end%>
-    </li>
-    <li>
-      <%= link_to explore_vimeo_only_user_path(current_user), {class: "icoRss expIcon", title: "Vimeo", id: "explore_vimeo"} do %>
-        <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
-      <%end%>
-    </li>    
-    <li>
-      <%= link_to explore_gplus_only_user_path(current_user), {class: "icoRss expIcon", title: "Google Plus", id: "explore_gplus"} do %>
-        <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
-      <%end%>
-    </li>
-    <li>
-      <%= link_to explore_flickr_only_user_path(current_user), {class: "icoRss expIcon", title: "Flickr", id: "explore_flickr"} do %>
-        <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
-      <%end%>
-    </li>    
+    <!-- instagram -->
+      <!-- tumblr -->
     <li>
       <%= link_to explore_tumblr_only_user_path(current_user), {class: "icoRss expIcon", title: "Tumblr", id: "explore_tumblr"} do %>
         <%= image_tag "tumblrwhite.fw.png", size: "28x28" %>
       <%end%>
     </li>
+    <!-- tumblr -->
+    <!-- youtube -->
+    <li>
+      <%= link_to explore_youtube_only_user_path(current_user), {class: "icoRss expIcon", title: "Youtube", id: "explore_youtube"} do %>
+        <%= image_tag "youtubewhite.fw.png", size: "28x28" %>
+      <%end%>
+    </li>
+    <!-- youtube -->
+    <!-- gplus -->
+    <li>
+      <%= link_to explore_gplus_only_user_path(current_user), {class: "icoRss expIcon", title: "Google Plus", id: "explore_gplus"} do %>
+        <%= image_tag "googlepluswhite.fw.png", size: "28x28" %>
+      <%end%>
+    </li>
+    <!-- gplus -->
+    <!-- vimeo -->
+    <li>
+      <%= link_to explore_vimeo_only_user_path(current_user), {class: "icoRss expIcon", title: "Vimeo", id: "explore_vimeo"} do %>
+        <%= image_tag "vimeowhite.fw.png", size: "28x28" %>
+      <%end%>
+    </li>
+    <!-- vimeo  -->
+    <!-- flickr -->
+    <li>
+      <%= link_to explore_flickr_only_user_path(current_user), {class: "icoRss expIcon", title: "Flickr", id: "explore_flickr"} do %>
+        <%= image_tag "flickrwhite.fw.png", size: "28x28" %>
+      <%end%>
+    </li>
+      <!-- flickr -->
+    <!-- facebook -->
+    <li>
+      <%= link_to explore_facebook_only_user_path(current_user), {class: "icoRss expIcon", title: "Facebook", id: "explore_facebook"} do%>
+      <%= image_tag "facebookwhite.fw.png", size: "28x28" %>
+      <%end%>
+    </li>
+    <!-- facebook -->
   </ul>
 
 <script>

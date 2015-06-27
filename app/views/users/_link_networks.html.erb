@@ -27,20 +27,10 @@
                     
                       <div class="row">
                         <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+
+                          <!-- twitter -->
                           <div class="features-box-icon">
-                            <a href="#"><%= image_tag("facebookblue.fw.png", size: "60x60") %></a>
-                          </div>
-                            <h3><strong>Facebook<strong></h3>
-                            <p>This is for catchy slogan.</p>
-                          <% if current_user && user_has_provider?('facebook') %>
-                              <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-                              <% else %>
-                              <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-                              <% end %>
-                        </div>
-                        <div class="col-sm-3 features-box wow fadeInDown">
-                          <div class="features-box-icon">
-                            <a href="#"><%= image_tag("twitterblue.fw.png", size: "60x60") %></a>
+                            <%= link_to image_tag("twitterblue.fw.png", size: "60x60"), "/auth/twitter?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>Twitter<strong></h3>
                             <p>This is for catchy slogan.</p>
@@ -49,10 +39,12 @@
                             <% else %>
                             <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
                             <% end %>
+                            <!-- twitter -->
                         </div>
-                        <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                        <div class="col-sm-3 features-box wow fadeInDown">
+                          <!-- instagram -->
                           <div class="features-box-icon">
-                            <a href="#"><%= image_tag("instagramblue.fw.png", size: "60x60") %></a>
+                            <%= link_to image_tag("instagramblue.fw.png", size: "60x60"), "/auth/instagram?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>Instagram<strong></h3>
                             <p>This is for catchy slogan.</p>
@@ -61,68 +53,12 @@
                               <% else %>
                               <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
                               <% end %>
+                              <!-- instagram -->
                         </div>
-                      </div>
-
-
-
-                      <div class="row">
-                        <div class="col-sm-3 features-box wow fadeInUp">
-                          <div class="features-box-icon">
-                            <a href="#"><%= image_tag("youtubeblue.fw.png", size: "60x60") %></a>
-                          </div>
-                            <h3><strong>Youtube<strong></h3>
-                            <p>This is for catchy slogan.</p>
-                          <% if current_user && user_has_provider?('google_oauth2') %>
-                              <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
-                              <% else %>
-                              <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
-                              <% end %>
-                          </div>
-                          <div class="col-sm-3 features-box features-box-gray wow fadeInDown">
-                          <div class="features-box-icon">
-                            <a href="#"><%= image_tag("vimeoblue.fw.png", size: "60x60") %></a>
-                          </div>
-                            <h3><strong>Vimeo<strong></h3>
-                            <p>This is for catchy slogan.</p>
-                          <% if current_user && user_has_provider?('vimeo') %>
-                              <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-                              <% else %>
-                              <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-                              <% end %>
-                          </div>
-                          <div class="col-sm-3 features-box wow fadeInUp">
-                            <div class="features-box-icon">
-                              <a href="#"><%= link_to image_tag("googleplusblue.fw.png", size: "60x60"), "/auth/gplus?origin=#{request.original_url}" %></a>
-                            </div>
-                              <h3>Google Plus</h3>
-                              <p>This is for catchy slogan.</p>
-                            <% if current_user && user_has_provider?('gplus') %>
-                                <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
-                                <% else %>
-                                <%= link_to "Nfuse Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
-                                <% end %>
-                            </div>
-                          </div>
-
-
-
-                      <div class="row">
                         <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                          <!-- tumblr -->
                           <div class="features-box-icon">
-                            <a href="#"><%= image_tag("flickrblue.fw.png", size: "60x60") %></a>
-                          </div>
-                            <h3><strong>Flickr<strong></h3>
-                            <p>This is for catchy slogan.</p>
-                          <% if current_user && user_has_provider?('flickr') %>
-                              <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
-                              <% else %>
-                              <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
-                              <% end %>
-                        </div>
-                        <div class="col-sm-3 features-box wow fadeInDown">
-                          <div class="features-box-icon">
-                            <a href="#"><%= image_tag("tumblrblue.fw.png", size: "60x60") %></a>
+                            <%= link_to image_tag("tumblrblue.fw.png", size: "60x60"), "/auth/tumblr?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>tumblr<strong></h3>
                             <p>This is for catchy slogan.</p>
@@ -131,6 +67,81 @@
                             <% else %>
                               <%= link_to "Nfuse tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
                             <% end %>
+                          <!-- tumblr -->
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 features-box wow fadeInUp">
+                          <!-- youtube -->
+                          <div class="features-box-icon">
+                            <%= link_to image_tag("youtubeblue.fw.png", size: "60x60"), "/auth/google_oauth2?origin=#{request.original_url}" %>
+                          </div>
+                            <h3><strong>Youtube<strong></h3>
+                            <p>This is for catchy slogan.</p>
+                          <% if current_user && user_has_provider?('google_oauth2') %>
+                              <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+                              <% else %>
+                              <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+                              <% end %>
+                          <!-- youtube -->
+                          </div>
+                          <div class="col-sm-3 features-box features-box-gray wow fadeInDown">
+                            <!-- gplus -->
+                            <div class="features-box-icon">
+                              <%= link_to image_tag("googleplusblue.fw.png", size: "60x60"), "/auth/gplus?origin=#{request.original_url}" %>
+                            </div>
+                              <h3>Google Plus</h3>
+                              <p>This is for catchy slogan.</p>
+                            <% if current_user && user_has_provider?('gplus') %>
+                                <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
+                                <% else %>
+                                <%= link_to "Nfuse Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
+                                <% end %>
+                            <!-- gplus -->
+                          </div>
+                          <div class="col-sm-3 features-box wow fadeInUp">
+                            <!-- vimeo -->
+                            <div class="features-box-icon">
+                              <%= link_to image_tag("vimeoblue.fw.png", size: "60x60"), "/auth/vimeo?origin=#{request.original_url}" %>
+                            </div>
+                            <h3><strong>Vimeo<strong></h3>
+                            <p>This is for catchy slogan.</p>
+                          <% if current_user && user_has_provider?('vimeo') %>
+                              <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+                              <% else %>
+                              <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+                              <% end %>
+                            <!-- vimeo -->
+                            </div>
+                          </div>
+                      <div class="row">
+                        <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
+                          <!-- flickr -->
+                          <div class="features-box-icon">
+                            <%= link_to image_tag("flickrblue.fw.png", size: "60x60"), "/auth/flickr?origin=#{request.original_url}" %>
+                          </div>
+                            <h3><strong>Flickr<strong></h3>
+                            <p>This is for catchy slogan.</p>
+                          <% if current_user && user_has_provider?('flickr') %>
+                              <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+                              <% else %>
+                              <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+                              <% end %>
+                          <!-- flickr -->
+                        </div>
+                        <div class="col-sm-3 features-box wow fadeInDown">
+                          <!-- facebook -->
+                          <div class="features-box-icon">
+                            <%= link_to image_tag("facebookblue.fw.png", size: "60x60"), "/auth/facebook?origin=#{request.original_url}" %>
+                          </div>
+                            <h3><strong>Facebook<strong></h3>
+                            <p>This is for catchy slogan.</p>
+                          <% if current_user && user_has_provider?('facebook') %>
+                              <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+                              <% else %>
+                              <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+                              <% end %>
+                          <!-- facebook -->
                         </div>
                       </div>
 

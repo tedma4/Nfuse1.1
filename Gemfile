@@ -19,7 +19,7 @@ gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem "paperclip", "4.2.0"
+gem "paperclip", "4.3.0"
 #gem 'panda'
 # Handles video upload
 gem 'paperclip-av-transcoder', "0.6.4"
@@ -30,7 +30,7 @@ gem 'wicked'
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'
 gem "httparty"
-gem 'cocaine', '0.5.3'
+gem 'cocaine', '0.5.5'
 #This allows the use of the facebook oauth 
 gem 'omniauth-facebook', '~> 1.6.0'
 #This allows the use of the twitter oauth
