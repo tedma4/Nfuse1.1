@@ -14,7 +14,6 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require bootstrap.min
 //= require npm
 //= require wow
 //= require jquery.magnific-popup

@@ -19,7 +19,7 @@ gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem "paperclip", "4.3.0"
+gem "paperclip", "3.5.3"
 #gem 'panda'
 # Handles video upload
 gem 'paperclip-av-transcoder', "0.6.4"

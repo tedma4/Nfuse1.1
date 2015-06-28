@@ -1,4 +1,12 @@
 <style>
+body.modal-open .modal-backdrop.in {
+  opacity: 0;
+}
+
+.modal-backdrop {
+  z-index: 5;
+  position: absolute;
+}
 
 .comment
 {
@@ -148,7 +156,7 @@
       </li>
       <li class="vr"></li>
       <li class="tilt">
-        <a href="">
+        <a data-toggle="modal" data-target="#betaModal">
           <%= image_tag "Nfuselogoblue.fw.png", 
                         class: "provider_logo", 
                           size: "24x24" %> 
@@ -188,4 +196,103 @@
           </div>
         </div>
     </div>
+    
   </div>
+
+  <div id="betaModal" class="modal fade">
+    <div class="modal-fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+                  <button class="close" data-dismiss="modal">×</button>
+                  <h3>Join the Beta</h3>
+          </div>    
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span6">
+                          <div class="logowrapper">
+                            <div class="post_content">
+                              <% if !shout.url.blank? %>
+                                <p> <%= shout.url_html %></p>
+                                <div class="caption">
+                                  <%= shout.content %>
+                                  <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
+                                </div>
+                              <% elsif shout.is_pic? %>
+                                <div class="timeline-user-box">
+                                  <%= image_tag shout.pic_url %>
+                                </div>
+                                <div class="caption">
+                                    <%= shout.content %>
+                                </div>
+                              <% elsif shout.is_video? %>
+                                <div class="timeline-user-box">
+                                  <video 
+                                    id="ytplayer" 
+                                    type="video/mp4" 
+                                    width="100%" 
+                                    height="225" 
+                                    src="<%= shout.video_url %>" 
+                                    frameborder="0"
+                                    allowfullscreen
+                                    controls>
+                                  </video>
+                                  <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+                                </div>
+                                <div class="caption">
+                                    <%= shout.content %>
+                                </div>
+                              <% elsif shout.is_full_video? %>
+                                <div class="timeline-user-box">
+                                  <video 
+                                    id="ytplayer" 
+                                    type="video/flv" 
+                                    width="100%" 
+                                    height="225" 
+                                    src="<%= shout.full_video_url %>" 
+                                    frameborder="0"
+                                    allowfullscreen
+                                    controls>
+                                  </video>
+                                  <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+                                </div>
+                                <div class="caption">
+                                    <%= shout.content %>
+                                </div>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="span6">
+                            <form class="form-horizontal">
+                                <p class="help-block">Name</p>
+                                <div class="input-prepend">
+                                    <span class="add-on">*</span><input class="prependedInput" size="16" type="text">
+                                </div>
+                                <p class="help-block">Email</p>
+                                <div class="input-prepend">
+                                    <span class="add-on">@</span><input class="prependedInput" size="16" type="email">
+                                </div>
+                                  <hr>
+                                <div class="help-block">
+                                    <button type="submit" class="btn btn-large btn-info">Request an Invite</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="modal-footer">
+              <p><i>Lastest Update on October 2nd, 2012</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+     $('.modal-backdrop').css({
+         'position': 'relative'
+     });
+  </style>
