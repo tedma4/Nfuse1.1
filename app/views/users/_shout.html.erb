@@ -149,18 +149,18 @@ body.modal-open .modal-backdrop.in {
       </li>
       <li class="vr"></li>
       <li class="tilt">
-        <div id="accordion shout-<%= shout.id %>">
-          <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
+        <div id="shout-<%= shout.id %>">
+        <a data-toggle="modal" data-target="#betaModal">
+          <%= image_tag("commentgray.fw.png", size: "24x24") %>
+        </a>
           <%= shout.comment_count %>
         </div>
       </li>
       <li class="vr"></li>
       <li class="tilt">
-        <a data-toggle="modal" data-target="#betaModal">
-          <%= image_tag "Nfuselogoblue.fw.png", 
-                        class: "provider_logo", 
-                          size: "24x24" %> 
-        </a>
+        <%= image_tag "Nfuselogoblue.fw.png", 
+                      class: "provider_logo", 
+                        size: "24x24" %> 
         <p class="timeStamp">
           <%= time_ago_in_words(shout.created_time) %> ago 
         </p>
@@ -182,21 +182,6 @@ body.modal-open .modal-backdrop.in {
       </li> -->
     </ul>
 
-    <div class="post_comments" id="comment_list_<%= shout.id %>">
-        <div class="panel-collapse collapse" id="collapseOne">
-          <div class="panel-body"> <!-- These are for the comment img and content -->
-            <ul class="comment">
-              <% shout.comments.each do |comment| %>
-                <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
-              <% end %>
-            </ul>
-            <div>
-              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
-            </div>
-          </div>
-        </div>
-    </div>
-    
   </div>
 
   <div id="betaModal" class="modal fade">
@@ -205,7 +190,7 @@ body.modal-open .modal-backdrop.in {
         <div class="modal-content">
           <div class="modal-header">
                   <button class="close" data-dismiss="modal">×</button>
-                  <h3>Join the Beta</h3>
+                  <h3>Comment on <%= shout.user.user_name %>'s post</h3>
           </div>    
             <div class="modal-body">
                 <div class="row-fluid">
@@ -265,26 +250,23 @@ body.modal-open .modal-backdrop.in {
                           </div>
                         </div>
                         <div class="span6">
-                            <form class="form-horizontal">
-                                <p class="help-block">Name</p>
-                                <div class="input-prepend">
-                                    <span class="add-on">*</span><input class="prependedInput" size="16" type="text">
-                                </div>
-                                <p class="help-block">Email</p>
-                                <div class="input-prepend">
-                                    <span class="add-on">@</span><input class="prependedInput" size="16" type="email">
-                                </div>
-                                  <hr>
-                                <div class="help-block">
-                                    <button type="submit" class="btn btn-large btn-info">Request an Invite</button>
-                                </div>
-                            </form>
+                          <div class="comment_overflow">
+                            <div class="post_comments" id="comment_list_<%= shout.id %>">
+                              <ul class="comment">
+                                <% shout.comments.each do |comment| %>
+                                  <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
+                                <% end %>
+                              </ul><br>                            
+                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
             </div>
           <div class="modal-footer">
-              <p><i>Lastest Update on October 2nd, 2012</i></p>
+            <div>
+              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+            </div>
           </div>
         </div>
       </div>
