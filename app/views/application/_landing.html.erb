@@ -19,29 +19,115 @@
     .bs-example{
       margin-top: 20vh;
     }
+
+    .megajam {
+      font-size: 12em;
+      color: #87ceeb;
+    }
+
+    .megasmall {
+      font-size: 50px;
+    }
+
+    body {
+      background-color : #af9aee;
+    }
+
+    .landingbottompush {
+      padding-bottom: 10vh;
+    }
+
+  
+
 </style>
         <!-- Loader -->
 <div class="Alignthisorelse">
-<div class="loader">
-  <div class="loader-img"></div>
-</div>
+  <div class="loader">
+    <div class="loader-img"></div>
+  </div>
 <div class="top-content">
-  <div class="inner-bg">
+  <div>
       <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text">
+            <h1 class="wow fadeInLeftBig megajam"><strong> Nfuse</strong></h1>
+            <br>
+            <div class="description wow fadeInLeftBig">
+              <p class="intro-par megasmall"><strong>
+               Share All Your Social Media
+              </strong></p>
+            </div>
+             
+            </div>
+          </div>
+          <br>
           <div class="row">
-              <div class="col-sm-7 text">
-                  <h1 class="wow fadeInLeftBig"><strong> "I Nfuse therefore I am Social"</strong></h1>
-                  <div class="description wow fadeInLeftBig">
-                    <p class="intro-par"><strong>
-                      We want to bring together all the places that you have friends and make sharing as simple as it should be.
-                    </strong></p>
-                  </div>
-                  <div class="top-big-link wow fadeInUp">
-                    <%= link_to 'Log In', signin_path, class: "btn btn-link-1" %>
-                    <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
-                  </div>
-              </div>
-              <div class="col-sm-5 form-box wow fadeInUp">
+              <div class="col-sm-3 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("twitterblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Twitter<strong></h3>
+                </div>
+                <div class="col-sm-3 features-box wow fadeInDown">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("instagramblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Instagram<strong></h3>
+                </div>
+                <div class="col-sm-3 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("tumblrblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Tumblr<strong></h3>
+                </div>
+                <div class="col-sm-3 features-box wow fadeInDown">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("youtubeblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Youtube<strong></h3>
+                </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-3 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("googleplusblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Google+<strong></h3>
+                </div>
+                <div class="col-sm-3 features-box wow fadeInDown">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("vimeoblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Vimeo<strong></h3>
+                </div>
+                <div class="col-sm-3 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("flickrblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Flickr<strong></h3>
+                </div>
+                <div class="col-sm-3 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                  <a href="#"><%= image_tag("facebookblue.fw.png", size: "100x100") %></a>
+                </div>
+                  <h3><strong>Facebook<strong></h3>
+                </div>
+          </div>
+           <div class="top-big-link wow fadeInUp landingbottompush">
+                <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+                <%= link_to 'Learn More', about_path, class: "btn btn-link-2" %>
+<!--                 <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
+ -->           </div>
+
+
+
+
+
+
+
+
+
+<!--               <div class="col-sm-5 form-box wow fadeInUp">
                 <div class="form-top">
                   <div class="form-top-left">
                     <h3><strong>Sign up right now!!!</strong></h3>
@@ -81,10 +167,10 @@
                      <div class="form-links">
                       <%= link_to 'Privacy', privacy_path %>
                       <%#= link_to 'Privacy', "#", data: {toggle: "modal", target: "#modal-privacy"}, class: "launch-modal" %>
-<!--                       <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
- -->                  </div>
+                   <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
+ -->                  <!-- </div>
               </div>
-              </div>
+              </div> -->
           </div>
       </div>
   </div>
@@ -93,7 +179,7 @@
             
         
         <!-- Features -->
-<div class="features-container section-container">
+<!-- <div class="features-container section-container">
   <div class="container">
       <div class="row">
           <div class="col-sm-12 features section-description wow fadeIn">
@@ -104,21 +190,21 @@
       <div class="row">
           <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
             <div class="features-box-icon">
-              <a href="#"><%= image_tag("easytouseblue.fw.png", size: "60x60") %></a>
+              <a href="#"><%#= image_tag("easytouseblue.fw.png", size: "100x100") %></a>
             </div>
               <h3><strong>Easy To Use<strong></h3>
               <p>The site is so simply you can use it while checking your other 20 sites or just use our site becuase we made it that easy.</p>
             </div>
             <div class="col-sm-4 features-box wow fadeInDown">
             <div class="features-box-icon">
-              <a href="#"><%= image_tag("discoverblue.fw.png", size: "60x60") %></a>
+              <a href="#"><%#= image_tag("discoverblue.fw.png", size: "100x100") %></a>
             </div>
               <h3><strong>Discover Interest<strong></h3>
               <p> Nfuse allows you to find all the things that you might find cool or discover new worlds that your missing out on.</p>
             </div>
             <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
             <div class="features-box-icon">
-              <a href="#"><%= image_tag("Sharephotoblue.fw.png", size: "60x60") %></a>
+              <a href="#"><%#= image_tag("Sharephotoblue.fw.png", size: "100x100") %></a>
             </div>
               <h3><strong>Share Photos<strong></h3>
               <p>Share a photo to the world of what you like or just post as many selfies as you possibly can for the rest of your life.</p>
@@ -127,21 +213,21 @@
       <div class="row">
           <div class="col-sm-4 features-box wow fadeInUp">
             <div class="features-box-icon">
-              <a href="#"><%= image_tag("followblue.fw.png", size: "60x60") %></a>
+              <a href="#"><%#= image_tag("followblue.fw.png", size: "100x100") %></a>
             </div>
               <h3><strong>Follow Friends<strong></h3>
               <p>Remove the digital walls and view what everyone is posting on all social media, follow your friends or find new ones.</p>
             </div>
             <div class="col-sm-4 features-box features-box-gray wow fadeInDown">
             <div class="features-box-icon">
-              <a href="#"><%= image_tag("infinite10blue.fw.png", size: "60x60") %></a>
+              <a href="#"><%#= image_tag("infinite10blue.fw.png", size: "100x100") %></a>
             </div>
               <h3><strong>Infinite Possibilities<strong></h3>
               <p> Everyone has infinite possibilities and if you are kind enough to indulge us, we would like to change the world together.</p>
             </div>
             <div class="col-sm-4 features-box wow fadeInUp">
             <div class="features-box-icon">
-              <a href="#"><%= image_tag("streamvideoblue.fw.png", size: "60x60") %></a>
+              <a href="#"><%#= image_tag("streamvideoblue.fw.png", size: "100x100") %></a>
             </div>
               <h3><strong>Stream Videos<strong></h3>
               <p>Upload your favorite video, show it off to your friends or just stream everything your doing to the Nfuse community.</p>
@@ -153,11 +239,11 @@
         </div>
       </div>
   </div>
-</div>
+</div> -->
         
         
         <!-- Ready in 4 Steps-->
-<div class="how-it-works-container section-container section-container-image-bg">
+<!-- <div class="how-it-works-container section-container section-container-image-bg">
   <div class="container">
       <div class="row">
           <div class="col-sm-12 how-it-works section-description wow fadeIn">
@@ -168,7 +254,7 @@
       <div class="row">
         <div class="col-sm-4 col-sm-offset-1 how-it-works-box wow fadeInUp">
           <div class="how-it-works-box-icon">
-            <a href="#"><%= image_tag("pencilwhite.fw.png", size: "65x65") %></a>
+            <a href="#"><%#= image_tag("pencilwhite.fw.png", size: "65x65") %></a>
             <span aria-hidden="true" class="how-it-works-step">1</span>
           </div>
             <h2>Sign up</h2>
@@ -176,7 +262,7 @@
         </div>
         <div class="col-sm-4 col-sm-offset-2 how-it-works-box wow fadeInDown">
           <div class="how-it-works-box-icon">
-            <a href="#"><%= image_tag("Nfuselogowhite.fw.png", size: "65x65") %></a>
+            <a href="#"><%#= image_tag("Nfuselogowhite.fw.png", size: "65x65") %></a>
             <span aria-hidden="true" class="how-it-works-step">2</span>
           </div>
             <h2>Nfuse Your Networks</h2>
@@ -186,7 +272,7 @@
         <div class="row">
           <div class="col-sm-4 col-sm-offset-1 how-it-works-box wow fadeInUp">
           <div class="how-it-works-box-icon">
-            <a href="#"><%= image_tag("createprofilewhite.fw.png", size: "65x65") %></a>
+            <a href="#"><%#= image_tag("createprofilewhite.fw.png", size: "65x65") %></a>
             <span aria-hidden="true" class="how-it-works-step">3</span>
           </div>
             <h2>Create Profile</h2>
@@ -194,7 +280,7 @@
           </div>
           <div class="col-sm-4 col-sm-offset-2 how-it-works-box wow fadeInDown">
           <div class="how-it-works-box-icon">
-            <a href="#"><%= image_tag("Nfusesocialwhite.fw.png", size: "65x65") %></a>
+            <a href="#"><%#= image_tag("Nfusesocialwhite.fw.png", size: "65x65") %></a>
             <span aria-hidden="true" class="how-it-works-step">4</span>
           </div>
             <h2>Njoy</h3>
@@ -207,10 +293,10 @@
         </div>
       </div>
   </div>
-</div>
+</div> -->
         
-        <!-- About us -->
-<div class="about-us-container section-container">
+      <!-- About us -->
+<!-- <div class="about-us-container section-container">
   <div class="container">
       <div class="row">
           <div class="col-sm-12 about-us section-description wow fadeIn">
@@ -221,78 +307,78 @@
       <div class="row">
           <div class="col-sm-4 about-us-box wow fadeInUp">
             <div class="about-us-photo">
-              <%= image_tag('taylorpic.png') %>
+              <%#= image_tag('taylorpic.png') %>
               <div class="about-us-role">CEO</div>
             </div>
               <h3><strong>Taylor Owen</strong></h3>
               <p>Co-founder and a Visioneer of life. "Be the change you wish to see in the world"</p>
               <div class="about-us-social">
-                <a href="#"><%= image_tag("facebookblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("twitterblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("instagramblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("facebookblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("twitterblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("instagramblue.fw.png", size: "32x32") %></a>
             </div>
           </div>
           <div class="col-sm-4 about-us-box wow fadeInDown">
             <div class="about-us-photo">
-              <%= image_tag('tedpic.png') %>
+              <%#= image_tag('tedpic.png') %>
               <div class="about-us-role">Developer</div>
             </div>
               <h3><strong>Ted Martinez</strong></h3>
               <p>Co-founder and life long learner. "If you don't give up on getting there you're never on the wrong road"</p>
               <div class="about-us-social">
-                <a href="#"><%= image_tag("facebookblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("twitterblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("instagramblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("facebookblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("twitterblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("instagramblue.fw.png", size: "32x32") %></a>
             </div>
           </div>
           <div class="col-sm-4 about-us-box wow fadeInUp">
             <div class="about-us-photo">
-              <%= image_tag('orionpic.png') %>
+              <%#= image_tag('orionpic.png') %>
               <div class="about-us-role">Developer</div>
             </div>
               <h3><strong>Orion Engleton<strong></h3>
               <p>Programming enthusiast "Learning to dream in color and code"</p>
               <div class="about-us-social">
-                <a href="#"><%= image_tag("facebookblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("twitterblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("facebookblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("twitterblue.fw.png", size: "32x32") %></a>
             </div>
           </div>
       </div>
       <div class="row">
           <div class="col-sm-4 about-us-box wow fadeInUp">
             <div class="about-us-photo">
-              <%= image_tag('Landingphotomatt.png') %>
+              <%#= image_tag('Landingphotomatt.png') %>
               <div class="about-us-role">Developer</div>
             </div>
               <h3><strong>Matt Hamada<strong></h3>
               <p>Hack 4 life. "So it goes"</p>
               <div class="about-us-social">
-                <a href="#"><%= image_tag("facebookblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("twitterblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("facebookblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("twitterblue.fw.png", size: "32x32") %></a>
             </div>
           </div>
           <div class="col-sm-4 about-us-box wow fadeInDown">
             <div class="about-us-photo">
-              <%= image_tag('kenpic.png') %>
+              <%#= image_tag('kenpic.png') %>
               <div class="about-us-role">Developer</div>
             </div>
               <h3><strong>Ken Price<strong></h3>
               <p>A cool cat. "Don't hate, Procreate"</p>
               <div class="about-us-social">
-                <a href="#"><%= image_tag("facebookblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("twitterblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("facebookblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("twitterblue.fw.png", size: "32x32") %></a>
             </div>
           </div>
           <div class="col-sm-4 about-us-box wow fadeInUp">
             <div class="about-us-photo">
-              <%= image_tag('Landingphotojeff.png') %>
+              <%#= image_tag('Landingphotojeff.png') %>
               <div class="about-us-role">Designer</div>
             </div>
               <h3><strong>Jeff Yang<strong></h3>
               <p>Design is everything. "I live through Nfuse"</p>
               <div class="about-us-social">
-                <a href="#"><%= image_tag("facebookblue.fw.png", size: "32x32") %></a>
-                <a href="#"><%= image_tag("twitterblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("facebookblue.fw.png", size: "32x32") %></a>
+                <a href="#"><%#= image_tag("twitterblue.fw.png", size: "32x32") %></a>
             </div>
           </div>
       </div>
@@ -301,8 +387,8 @@
 
         
         
-        <!-- Call to action -->
-<div class="call-to-action-container section-container section-container-image-bg">
+        Call to action -->
+<!-- <div class="call-to-action-container section-container section-container-image-bg">
   <div class="container">
       <div class="row">
           <div class="col-sm-12 call-to-action section-description wow fadeInLeftBig">
@@ -319,20 +405,19 @@
         </div>
       </div>
   </div>
-</div>
-
+</div> -->
         <!-- Footer -->
-<footer>
+<!-- <footer>
   <div class="container">
     <div class="row">
        <div class="col-sm-12 footer-social">
-         <a href="#"><%= image_tag("facebookblue.fw.png", size: "37x37") %></a>
-         <a href="#"><%= image_tag("twitterblue.fw.png", size: "37x37") %></a>
-         <a href="#"><%= image_tag("instagramblue.fw.png", size: "37x37") %></a>
-         <a href="#"><%= image_tag("flickrblue.fw.png", size: "37x37") %></a>
-         <a href="#"><%= image_tag("youtubeblue.fw.png", size: "37x37") %></a>
-         <a href="#"><%= image_tag("vimeoblue.fw.png", size: "37x37") %></a>
-         <a href="#"><%= image_tag("googleplusblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("facebookblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("twitterblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("instagramblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("flickrblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("youtubeblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("vimeoblue.fw.png", size: "37x37") %></a>
+         <a href="#"><%#= image_tag("googleplusblue.fw.png", size: "37x37") %></a>
        </div>
     </div>
       <div class="row">
@@ -341,11 +426,11 @@
         </div>
       </div>
   </div>
-</footer>
+</footer> -->
         
         
         <!-- MODAL: Privacy policy -->
-<div class="modal fade" id="modal-privacy" tabindex="-1" role="dialog" aria-labelledby="modal-privacy-label" aria-hidden="true">
+<!-- <div class="modal fade" id="modal-privacy" tabindex="-1" role="dialog" aria-labelledby="modal-privacy-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -395,4 +480,4 @@
     </div>
   </div>
 </div>
-</div>
+</div> -->
