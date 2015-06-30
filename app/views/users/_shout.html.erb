@@ -142,7 +142,7 @@
       <li class="vr"></li>
       <li class="tilt">
         <div id="shout-<%= shout.id %>">
-        <a data-toggle="modal" data-target="#betaModal">
+        <a data-toggle="modal" data-target="#shout_modal_<%= shout.id %>">
           <%= image_tag("commentgray.fw.png", size: "24x24") %>
         </a>
           <%= shout.comment_count %>
@@ -176,7 +176,7 @@
 
   </div>
 
-  <div id="betaModal" class="modal fade">
+  <div id="shout_modal_<%= shout.id %>" class="modal fade <%= shout.class %>-<%= shout.id %>">
     <div class="modal-fade">
       <div class="modal-dialog">
         <div class="modal-content">
