@@ -1,12 +1,4 @@
 <style>
-body.modal-open .modal-backdrop.in {
-  opacity: 0;
-}
-
-.modal-backdrop {
-  z-index: 5;
-  position: absolute;
-}
 
 .comment
 {
@@ -138,7 +130,7 @@ body.modal-open .modal-backdrop.in {
 
   <div class="<%= shout.class %>-<%= shout.id %>">
  
-  </div class="shout-<%= shout.id %>">
+  </div>
     <ul class="post_actions">
       <li class="tilt">
         <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
@@ -189,8 +181,8 @@ body.modal-open .modal-backdrop.in {
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-                  <button class="close" data-dismiss="modal">×</button>
-                  <h3>Comment on <%= shout.user.user_name %>'s post</h3>
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Comment on <%= shout.user.user_name %>'s post</h3>
           </div>    
             <div class="modal-body">
                 <div class="row-fluid">
@@ -272,9 +264,3 @@ body.modal-open .modal-backdrop.in {
       </div>
     </div>
   </div>
-
-  <style>
-     $('.modal-backdrop').css({
-         'position': 'relative'
-     });
-  </style>
