@@ -16,7 +16,7 @@
         <div class="timeline-user-box">
           <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
         </div>
-        <% if post.caption.present? %>
+        <% if post.caption_text.present? %>
         <div class="center">
           <%= post.caption_text %>
         </div>
@@ -34,12 +34,16 @@
           allowfullscreen>
           </iframe>
         </div>
-        <% if post.caption.present? %>
+        <% if post.caption_text.present? %>
         <div class="center">
           <%= post.caption_text %>
         </div>
         <% end %>
       <br>
+    <% elsif post.type == 'text'  %>
+      <div class="center">
+        <%= post.body %>
+      </div>
     <% else %>
       <div class="center">
         <%= post.caption_text %>
