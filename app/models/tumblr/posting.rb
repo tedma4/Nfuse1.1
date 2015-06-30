@@ -37,38 +37,39 @@ module Tumblr
     end
 
     def created_time
-      @post.created_at
+      @post['date']
     end
 
     def provider
       "tumblr"
     end
 
-    def post_id
-      @post['posts'][0]['id']
+    def id
+      @post['id']
     end
 
     def link_to_post
-      @post['posts'][0]['post_url']
+      @post['post_url']
     end
 
-    def caption
-      @post['posts'][0]['caption']
+    def caption_text
+      @post['caption']
     end
 
     def photo
-      @post.object.attachments[0]["image"]["url"]
+      @post['photos'][0]['alt_sizes'][0]['url']
     end
 
     def video
-      if @post['posts'][0].has_key? "embed_code"
-        @post['posts'][0]["embed"]["url"]
-      else
-        @post['posts'][0]["photo"]["url"]
-      end
+      @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
     end
 
     def type
+      @post['type']
+    end
+
+    def body
+      @post['body'].html_safe
     end
   end
 end

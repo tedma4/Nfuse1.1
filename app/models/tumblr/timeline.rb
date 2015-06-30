@@ -92,13 +92,13 @@ module Tumblr
                                           tokens.access_token_secret)
     end
 
-    def username
+    def my_username
       client.info["user"]["name"]
     end
 
     def get_timeline(client, page)
       if page.nil?
-          client.posts("#{username}.tumblr.com")
+          client.posts("#{my_username}.tumblr.com")
       else
         username = client.info["user"]["name"]
         tumblr_timeline = client.posts("#{username}.tumblr.com", page: page, count: 50)
