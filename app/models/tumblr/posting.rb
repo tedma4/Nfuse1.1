@@ -70,6 +70,7 @@ module Tumblr
 
     def body
       @post['body'].html_safe
+
     end
   end
 end
