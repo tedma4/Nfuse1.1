@@ -53,7 +53,7 @@ module Tumblr
     end
 
     def caption_text
-      @post['caption']
+      @post['caption'].html_safe
     end
 
     def photo
@@ -64,6 +64,10 @@ module Tumblr
       @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
     end
 
+    def audio
+      @post['embed'].match(/src="(.*)\?/)[0]
+    end
+
     def type
       @post['type']
     end
@@ -71,247 +75,81 @@ module Tumblr
     def body
       @post['body'].html_safe
     end
+
+    def text
+      @post['text'].html_safe
+    end
+
+    def link_to_url
+      @post['url']
+    end
+
+    def description
+      @post['description'].html_safe
+    end
+    def excerpt
+      @post['excerpt'].html_safe
+    end
   end
 end
-
-# @post['posts'][0]['id']
-# @post['posts'][0]['post_url']
-# @post['posts'][0]['type'] video, photo, link, quote
-# @post['posts'][0]['caption']
-
-# => {
-# "posts"=>[
-# {
-
-# "blog_name"=>"tedma4", 
-# "id"=>122313500593, 
-# "post_url"=>"http://tedma4.tumblr.com/post/122313500593/my-awesome-caption", 
-# "slug"=>"my-awesome-caption", 
-# "type"=>"video", 
-# "date"=>"2015-06-24 05:07:24 GMT", 
-# "timestamp"=>1435122444, 
-# "state"=>"published", 
-# "format"=>"html", 
-# "reblog_key"=>"q8khzK2B", 
-# "tags"=>[], 
-# "short_url"=>"http://tmblr.co/ZTjFAk1nwS_Un", 
-# "recommended_source"=>nil, 
-# "highlighted"=>[], 
-# "note_count"=>0, 
-# "caption"=>"<p>My awesome caption </p>", 
-
-# "reblog"=>{
-# "tree_html"=>"", 
-# "comment"=>"<p>My awesome caption&nbsp;</p>"
-# }, 
-
-# "trail"=>[
-# {
-# "post"=>{
-# "id"=>"122313500593"
-# }, 
-# "content"=>"<p>My awesome caption </p>", 
-# "content_raw"=>"<p>My awesome caption&nbsp;</p>", 
-# "is_current_item"=>true, 
-# "is_root_item"=>true
-# }
-# ], 
-# "permalink_url"=>"https://www.youtube.com/watch?v=yZqmarGShxg", 
-# "html5_capable"=>true, 
-# "thumbnail_url"=>"https://i.ytimg.com/vi/yZqmarGShxg/hqdefault.jpg", 
-# "thumbnail_width"=>480, 
-# "thumbnail_height"=>360, 
-# "player"=>[
-# {
-# "width"=>250, 
-# "embed_code"=>"<iframe width=\"250\" height=\"140\" src=\"https://www.youtube.com/embed/yZqmarGShxg?feature=oembed\" frameborder=\"0\" allowfullscreen></iframe>"
-# }, 
-# {
-# "width"=>400, 
-# "embed_code"=>"<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/yZqmarGShxg?feature=oembed\" frameborder=\"0\" allowfullscreen></iframe>"
-# }, 
-# {
-# "width"=>500, 
-# "embed_code"=>"<iframe width=\"500\" height=\"281\" src=\"https://www.youtube.com/embed/yZqmarGShxg?feature=oembed\" frameborder=\"0\" allowfullscreen></iframe>"
-# }
-# ], 
-# "video_type"=>"youtube"
-# }, 
-# {
-# "blog_name"=>"tedma4", 
-# "id"=>122313369493, 
-# "post_url"=>"http://tedma4.tumblr.com/post/122313369493/if-you-dont-give-up-on-getting-there-your-never", 
-# "slug"=>"if-you-dont-give-up-on-getting-there-your-never", 
-# "type"=>"quote", 
-# "date"=>"2015-06-24 05:05:20 GMT", 
-# "timestamp"=>1435122320, 
-# "state"=>"published", 
-# "format"=>"html", 
-# "reblog_key"=>"rsofuVBl", 
-# "tags"=>[], 
-# "short_url"=>"http://tmblr.co/ZTjFAk1nwSUUL", 
-# "recommended_source"=>nil, 
-# "highlighted"=>[], 
-# "note_count"=>0, 
-# "text"=>"If you don&rsquo;t give up on getting there, your never on the wrong road", 
-# "source"=>"Soichiro Kurobayashi", 
-# "reblog"=>{
-# "tree_html"=>"", 
-# "comment"=>"<p>Soichiro Kurobayashi</p>"
-# }
-# }, 
-# {
-# "blog_name"=>"tedma4", 
-# "id"=>122313259708, 
-# "post_url"=>"http://tedma4.tumblr.com/post/122313259708/posting-tumblr", 
-# "slug"=>"posting-tumblr", 
-# "type"=>"link", 
-# "date"=>"2015-06-24 05:03:41 GMT", 
-# "timestamp"=>1435122221, 
-# "state"=>"published", 
-# "format"=>"html", 
-# "reblog_key"=>"yeIowVvX", 
-# "tags"=>[], 
-# "short_url"=>"http://tmblr.co/ZTjFAk1nwS3gy", 
-# "recommended_source"=>nil, 
-# "highlighted"=>[],
-# "note_count"=>0, 
-# "title"=>"Posting | Tumblr", 
-# "url"=>"https://www.tumblr.com/docs/en/posting", 
-# "link_author"=>nil, 
-# "excerpt"=>"Post anything (from anywhere!), 
-# customize everything, and find and follow what you love. Create your own Tumblr blog today.", 
-# "publisher"=>"tumblr.com", 
-# "description"=>"<p>Posting to tumblr</p>", 
-# "reblog"=>
-# {
-# "tree_html"=>"", 
-# "comment"=>"<p>Posting to tumblr</p>"
-# }, 
-# "trail"=>[
-# {
-# "blog"=>{
-# "name"=>"tedma4", 
-# "theme"=>{
-# "avatar_shape"=>"square", 
-# "background_color"=>"#FAFAFA", 
-# "body_font"=>"Helvetica Neue", 
-# "header_bounds"=>"", 
-# "header_image"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
-# "header_image_focused"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14_focused_v3.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", "header_image_scaled"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14_focused_v3.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", "he
-# ader_stretch"=>true, 
-# "link_color"=>"#529ECC", 
-# "show_avatar"=>true, 
-# "show_description"=>true, 
-# "show_header_image"=>true, 
-# "show_title"=>true, 
-# "title_color"=>"#444444", 
-# "title_font"=>"Gibson", 
-# "title_font_weight"=>"bold"
-# }
-# }, 
-# "post"=>{
-# "id"=>"122313259708"
-# }, 
-# "content"=>"<p>Posting to tumblr</p>", 
-# "content_raw"=>"<p>Posting to tumblr</p>", 
-# "is_current_item"=>true, 
-# "is_root_item"=>true
-# }
-# ]
-# }, 
-# {
-# "blog_name"=>"tedma4", 
-# "id"=>122304055118, 
-# "post_url"=>"http://tedma4.tumblr.com/post/122304055118/somethin-i-found", 
-# "slug"=>"somethin-i-found", 
-# "type"=>"photo", 
-# "date"=>"2015-06-24 02:55:20 GMT", 
-# "timestamp"=>1435114520, 
-# "state"=>"published", 
-# "format"=>"html", 
-# "reblog_key"=>"mmsAUyeL", 
-# "tags"=>[], 
-# "short_url"=>"http://tmblr.co/ZTjFAk1nvuyTE", 
-# "recommended_source"=>nil, 
-# "highlighted"=>[], 
-# "note_count"=>0, 
-# "caption"=>"<p>Somethin I found</p>", 
-# "reblog"=>{
-# "tree_html"=>"", 
-# "comment"=>"<p>Somethin I found</p>"
-# }, 
-# "trail"=>[
-# {
-# "blog"=>{
-# "name"=>"tedma4", 
-# "theme"=>{
-# "avatar_shape"=>"square", 
-# "background_color"=>"#FAFAFA", 
-# "body_font"=>"Helvetica Neue", 
-# "header_bounds"=>"", 
-# "header_image"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
-# "header_image_focused"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14_focused_v3.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
-# "header_image_scaled"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14_focused_v3.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
-# "header_stretch"=>true, 
-# "link_color"=>"#529ECC", 
-# "show_avatar"=>true, 
-# "show_description"=>true, 
-# "show_header_image"=>true, 
-# "show_title"=>true, 
-# "title_color"=>"#444444", 
-# "title_font"=>"Gibson", 
-# "title_font_weight"=>"bold"
-# }
-# }, 
-# "post"=>{
-# "id"=>"122304055118"
-# }, 
-# "content"=>"<p>Somethin I found</p>",
-# "content_raw"=>"<p>Somethin I found</p>", 
-# "is_current_item"=>true, 
-# "is_root_item"=>true
-# }
-# ], 
-# "image_permalink"=>"http://tedma4.tumblr.com/image/122304055118", 
-# "photos"=>[
-# {
-# "caption"=>"", 
-# "alt_sizes"=>[
-# {
-# "width"=>720, 
-# "height"=>720, 
-# "url"=>"https://41.media.tumblr.com/a7f35aee880e3ce36177452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_1280.jpg"
-# }, 
-# {
-# "width"=>500, 
-# "height"=>500, 
-# "url"=>"https://41.media.tumblr.com/a7f35aee880e3ce36177452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_500.jpg"
-# }, 
-# {
-# "width"=>400, 
-# "height"=>400, 
-# "url"=>"https://40.media.tumblr.com/a7f35aee880e3ce3617452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_400.jpg"
-# }, 
-# {
-# "width"=>250, "height"=>250,
-# "url"=>"https://36.media.tumblr.com/a7f35aee880e3ce36177452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_250.jpg"
-# }, 
-# {
-# "width"=>100, "height"=>100, 
-# "url"=>"https://41.media.tumblr.com/a7f35aee880e3ce36177452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_100.jpg"
-# }, 
-# {
-# "width"=>75, "height"=>75, 
-# "url"=>"https://40.media.tumblr.com/a7f35aee880e3ce36177452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_75sq.jpg"
-# }
-# ], 
-# "original_size"=>{
-# "width"=>720, "height"=>720, 
-# "url"=>"https://41.media.tumblr.com/a7f35aee880e3ce36177452c6e6edfb1/tumblr_nqfhg8SbDQ1uznod7o1_1280.jpg"
-# }
-# }
-# ]
-# }
-# ], 
-# "total_posts"=>4}
+# => {"blog_name"=>"tedma4", 
+#   "id"=>122896460043, 
+#   "post_url"=>"http://tedma4.tumblr.com/post/122896460043/description-for-audio-post-tumblr-sucks", 
+#   "slug"=>"description-for-audio-post-tumblr-sucks", 
+#   "type"=>"audio", 
+#   "date"=>"2015-07-01 00:22:04 GMT", 
+#   "timestamp"=>1435710124, 
+#   "state"=>"published", 
+#   "format"=>"html", 
+#   "reblog_key"=>"pM6MFqGD", 
+#   "tags"=>[], 
+#   "short_url"=>"http://tmblr.co/ZTjFAk1oTCoaB", 
+#   "recommended_source"=>nil, 
+#   "followed"=>false, 
+#   "highlighted"=>[], 
+#   "liked"=>false, 
+#   "note_count"=>0, 
+#   "source_url"=>"https://soundcloud.com/zedd/zedd-i-want-you-to-know-feat-selena-gomez-milo-otis-remix", 
+#   "source_title"=>"SoundCloud / Zedd", 
+#   "track_name"=>"Zedd - I Want You to Know (feat. Selena Gomez) Milo & Otis Remix", 
+#   "album_art"=>"https://31.media.tumblr.com/tumblr_nqs90swVqA1uznod7_1435710124_cover.jpg", 
+#   "caption"=>"<p>Description for audio post. Tumblr sucks</p>", 
+#   "reblog"=>{"tree_html"=>"", 
+#     "comment"=>"<p>Description for audio post. Tumblr sucks</p>"
+#     }, 
+#   "trail"=>[{
+#     "blog"=>{
+#             "name"=>"tedma4", 
+#             "theme"=>{
+#               "avatar_shape"=>"square", 
+#               "background_color"=>"#FAFAFA", 
+#               "body_font"=>"Helvetica Neue", 
+#               "header_bounds"=>"", 
+#               "header_image"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
+#               "header_image_focused"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14_focused_v3.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
+#               "header_image_scaled"=>"http://assets.tumblr.com/images/default_header/optica_pattern_14_focused_v3.png?_v=8c2d3b00544b7efbc4ac06dc3f80e374", 
+#               "header_stretch"=>true, 
+#               "link_color"=>"#529ECC", 
+#               "show_avatar"=>true, 
+#               "show_description"=>true, 
+#               "show_header_image"=>true, 
+#               "show_title"=>true, 
+#               "title_color"=>"#444444", 
+#               "title_font"=>"Gibson", 
+#               "title_font_weight"=>"bold"
+#               }
+#               }, 
+#     "post"=>{
+#       "id"=>122896460043
+#       },
+#       "content"=>"<p>Description for audio post. Tumblr sucks</p>", 
+#       "content_raw"=>"<p>Description for audio post. Tumblr sucks</p>", 
+#       "is_current_item"=>true, "is_root_item"=>true}], 
+#       "player"=>"<iframe src=\"https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F200059902&amp;visual=true&amp;liking=false&amp;sharing=false&amp;auto_play=false&amp;show_comments=false&amp;continuous_play=false&amp;origin=tumblr\" frameborder=\"0\" allowtransparency=\"true\" class=\"soundcloud_audio_player\" width=\"500\" height=\"500\"></iframe>", 
+#       "embed"=>"<iframe src=\"https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F200059902&amp;visual=true&amp;liking=false&amp;sharing=false&amp;auto_play=false&amp;show_comments=false&amp;continuous_play=false&amp;origin=tumblr\" frameborder=\"0\" allowtransparency=\"true\" class=\"soundcloud_audio_player\" width=\"500\" height=\"500\"></iframe>", 
+#       "plays"=>0, 
+#       "audio_url"=>"https://api.soundcloud.com/tracks/200059902/stream?client_id=3cQaPshpEeLqMsNFAUw1Q", 
+#       "audio_source_url"=>"https://soundcloud.com/zedd/zedd-i-want-you-to-know-feat-selena-gomez-milo-otis-remix", 
+#       "is_external"=>true, 
+#       "audio_type"=>"soundcloud", 
+#       "can_reply"=>false}
