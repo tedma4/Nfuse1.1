@@ -1,5 +1,4 @@
 
-<!-- *Start* Views/users/_instagram_post.html -->
 <div class="individual_post instagram_post item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
@@ -47,7 +46,11 @@
      <%= post.like_score(post.id) %>
     </li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %></li>
+    <li class="tilt">
+      <a data-toggle="modal" data-target="#instagram_modal_<%= post.id %>">
+        <%= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
+    </li>
     <li class="vr"></li>
     <li class="tilt">
       <%= link_to image_tag("instagramblue.fw.png", 
@@ -72,15 +75,67 @@
         <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
       <%# end %> -->
   </ul>
-  <div class="<%#= post.class %>-<%#= post.id %> right" id="comment_list_<%#= post.id %>">
-    <!-- Refactor this. -->
-    <%# Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
-      <%#= render partial: 'shared/comment', locals: {comment: comment } %>
-    <%# end %>
-    <!-- Refactor this. -->
-  </div>
-
-  <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
 
 </div>
-<!-- *End* Views/users/_instagram_post.html -->
+
+  <div id="instagram_modal_<%= post.id %>" class="modal fade">
+    <div class="modal-fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Comment on <%= post.user.user_name %>'s post</h3>
+          </div>    
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span6">
+                          <div class="logowrapper">
+                            <div class="post_content">
+                              <% if post.type == "image" %>
+                                  <div class="timeline-user-box">
+                                    <%= image_tag(post.low_resolution_image_url, :class => "image_post") %>
+                                  </div>
+                                  <% if post.caption.present? %>
+                                  <div class="center">
+                                    <%= post.caption_text %>
+                                  </div>
+                                  <% end %>
+                                <br>
+                              <% elsif post.type == "video" %>
+                                   <video width="100%" height="258" class="image_post" controls>
+                                     <source src="<%= post.video %>" type="video/mp4">
+                                   </video>
+                                  <% if post.caption.present? %>
+                                  <div class="center">
+                                    <%= post.caption_text %>
+                                  </div>
+                                  <% end %>
+                                <br>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="comment_overflow">
+                            <div class="post_comments" id="comment_list_<%= post.id %>">
+                              <ul class="comment">
+                                <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
+                                  <%= render partial: 'shared/comment', locals: {comment: comment } %>
+                                <% end %>
+                              </ul><br>                            
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="modal-footer">
+            <div>
+              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
