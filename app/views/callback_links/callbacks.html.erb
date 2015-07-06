@@ -139,15 +139,15 @@
                         <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
                           <!-- facebook -->
                           <div class="features-box-icon">
-                            <%= link_to image_tag("facebookblue.fw.png", size: "60x60"), "/auth/facebook?origin=#{request.original_url}" %>
+                            <%#= link_to image_tag("facebookblue.fw.png", size: "60x60"), "/auth/facebook?origin=#{request.original_url}" %>
+                            <%= image_tag("Newpostin1.fw.png", size: "60x60") %>
                           </div>
-                            <h3><strong>Facebook<strong></h3>
-                            <p>This is for catchy slogan.</p>
-                          <% if current_user && user_has_provider?('facebook') %>
-                              <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-                              <% else %>
-                              <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-                              <% end %>
+                            <h3><strong>More Soon<strong></h3>
+                          <%# if current_user && user_has_provider?('facebook') %>
+                              <%#= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+                              <%# else %>
+                              <%#= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+                              <%# end %>
                               <!-- facebook -->
                         </div>
                       </div>
