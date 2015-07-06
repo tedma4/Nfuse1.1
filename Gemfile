@@ -63,7 +63,6 @@ gem 'newrelic_rpm', '~> 3.8.1.221'
 # gem 'bourbon', '~> 3.2.3'
 # gem 'neat', '~> 1.5.1'
 gem 'seed-fu', '~> 2.3'
-gem 'byebug', '5.0.0'
 
 #This allows the use of the faye websocket server
 gem 'private_pub'

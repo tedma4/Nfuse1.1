@@ -42,12 +42,10 @@
         <br>
     <% elsif post.type == 'audio' %>
         <div class="timeline-user-box">
-          <iframe
-          id="ytplayer"
-          width="100%"
-          height="225"
-          src="<%= post.audio %>">
-          </iframe>
+          <Iframe
+          <%= post.audio %>>
+
+          </Iframe>
         </div>
         <% if post.caption_text.present? %>
             <div class="center">
@@ -165,11 +163,9 @@
                                   <br>
                               <% elsif post.type == 'audio' %>
                                   <div class="timeline-user-box">
-                                    <iframe
+                                    <iframe 
                                     id="ytplayer"
-                                    width="100%"
-                                    height="225"
-                                    src="<%= post.audio %>">
+                                    <%= post.audio %>>
                                     </iframe>
                                   </div>
                                   <% if post.caption_text.present? %>

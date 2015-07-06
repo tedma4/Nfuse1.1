@@ -65,7 +65,7 @@ module Tumblr
     end
 
     def audio
-      @post['embed'].match(/src="(.*)\?/)[0]
+      @post['player']
     end
 
     def type
@@ -74,7 +74,6 @@ module Tumblr
 
     def body
       @post['body'].html_safe
-
     end
 
     def text
@@ -93,6 +92,8 @@ module Tumblr
     end
   end
 end
+
+
 # => {"blog_name"=>"tedma4", 
 #   "id"=>122896460043, 
 #   "post_url"=>"http://tedma4.tumblr.com/post/122896460043/description-for-audio-post-tumblr-sucks", 
@@ -145,7 +146,10 @@ end
 #       },
 #       "content"=>"<p>Description for audio post. Tumblr sucks</p>", 
 #       "content_raw"=>"<p>Description for audio post. Tumblr sucks</p>", 
-#       "is_current_item"=>true, "is_root_item"=>true}], 
+#       "is_current_item"=>true, 
+#       "is_root_item"=>true
+#       }
+#       ], 
 #       "player"=>"<iframe src=\"https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F200059902&amp;visual=true&amp;liking=false&amp;sharing=false&amp;auto_play=false&amp;show_comments=false&amp;continuous_play=false&amp;origin=tumblr\" frameborder=\"0\" allowtransparency=\"true\" class=\"soundcloud_audio_player\" width=\"500\" height=\"500\"></iframe>", 
 #       "embed"=>"<iframe src=\"https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F200059902&amp;visual=true&amp;liking=false&amp;sharing=false&amp;auto_play=false&amp;show_comments=false&amp;continuous_play=false&amp;origin=tumblr\" frameborder=\"0\" allowtransparency=\"true\" class=\"soundcloud_audio_player\" width=\"500\" height=\"500\"></iframe>", 
 #       "plays"=>0, 
