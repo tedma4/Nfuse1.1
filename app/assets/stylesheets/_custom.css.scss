@@ -1509,7 +1509,7 @@ img { max-width: 100%; }
 }
 
 .top-content .text {
-  padding-top: 120px;
+  padding-top: 6vh;
   color: #fff;
 }
 
@@ -1533,13 +1533,69 @@ img { max-width: 100%; }
   text-align: left;
 }
 
+.form-top-signup {
+  overflow: hidden;
+  padding: 0 25px 15px 25px;
+  background: #af9aee;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  color: #fff;
+}
+
+ .form-top-sup {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
+ .form-top-pro-pic {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
+ .form-top-privacy {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
+ .form-top-home {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
+ .form-top-contacts {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
 .form-top-left {
   float: left;
   width: 75%;
   padding-top: 25px;
 }
 
-.form-top-left h3 { margin-top: 0; }
+.form-top-left h3 {
+  margin-top: 0;
+}
 
 .form-top-right {
   float: left;

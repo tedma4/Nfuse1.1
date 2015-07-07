@@ -21,13 +21,17 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+  h3 {
+      color: #fff;
+  }
 </style>
 
 <div class="Alignthisorelse">
   <div class="container pro-pics-padding">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3 form-box wow fadeInUp">
-        <div class="form-top">
+        <div class="form-top-pro-pic">
           <div class="form-top-left">
             <h3><strong>Choose you profile images</strong></h3>
               <p>Almost there!!! Last step to create your profile.</p>
@@ -39,13 +43,13 @@
         <div class="form-bottom">
           <div class="Alignthisorelse">
             <%= form_for(@user, :multipart => true, html:{role: "form"}) do |f| %>
-              <h3>Upload a Profile Picture</h3>
+              <h2>Upload a Profile Picture</h2>
               <div id="target"> <%= image_tag @user.avatar(:medium) %> </div>
               <div class="fileUpload btn-link-1">
                 <span>Upload Avatar</span>
               <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
               </div>
-              <h3>Upload a Profile Banner</h3>
+              <h2>Upload a Profile Banner</h2>
               <div id="target2"> <%= image_tag @user.banner(:medium) %></div>
               <div class="fileUpload btn-link-1">
                 <span>Upload Banner</span>

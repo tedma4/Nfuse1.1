@@ -1,4 +1,3 @@
-<!-- *Start* Views/users/_facebook_post.html -->
 <div class="individual_post facebook_post item " data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
@@ -49,15 +48,6 @@
       </ul>
     <% end %>
   </div><br>
-  <div class="<%= post.class %>-<%= post.id %> " id="comment_list_<%= post.id %>">
-    <!-- Refactor this. -->
-    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
-      <%= render partial: 'shared/comment', locals: {comment: comment } %>
-    <% end %>
-    <!-- Refactor this. -->
-  </div>
-
-  <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
 
   <ul class="post_footer_li">
     <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"), like_shout_path(id: post.id, owner_id: post.user.id, key: :facebook), method: :post, remote: true %>
@@ -65,7 +55,11 @@
       <%= post.like_score(post.id) %>
     </li>
     <li class="vr"></li>
-    <li class="tilt"><%= image_tag("commentgray.fw.png", size: "24x24") %>4</li>
+    <li class="tilt">
+      <a data-toggle="modal" data-target="#facebook_modal_<%= post.id %>">
+        <%= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
+    </li>
     <li class="vr"></li>
     <li class="tilt">
             <%= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
@@ -84,4 +78,74 @@
     <li class="right"><%= time_ago_in_words(post.created_time, :class => "time-ago") %> ago</li>
   </ul>
 </div>
-<!-- *End* Views/users/_facebook_post.html -->
+  <div id="facebook_modal_<%= post.id %>" class="modal fade">
+    <div class="modal-fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Comment on <%= post.user.user_name %>'s post</h3>
+          </div>    
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span6">
+                          <div class="logowrapper">
+                            <div class="post_content">
+                              <ul>
+                                <% if post.story %>
+                                  <li><%= post.story %></li>
+                                <% end %>
+                                <% if post.image %>
+                                  <li><%= image_tag(post.image) %></li>
+                                <% end %>
+                                <% if post.caption_text && post.status_type != "shared_story" %>
+                                  <li><%= post.caption_text %></li>
+                                <% end %>
+                                <% if post.article_link && post.type == "link" %>
+                                  <li><%= link_to "View the Link", post.article_link, :target => "_blank" %></li>
+                                <% end %>
+                              </ul>
+                              <% if post.story_tags %>
+                                <ul class="story_tags">
+                                  <% post.story_tags.each do |story_tag| %>
+                                    <% if story_tag.type == "user" %>
+                                      <li><%= link_to story_tag.name, story_tag.link_to_profile, :target => "_blank" %></li>
+                                    <% else %>
+                                      <li><%= story_tag.name %></li>
+                                    <% end %>
+                                  <% end %>
+                                  <% if post.story_tags.length > 1 %>
+                                    <li>were tagged in this post.</li>
+                                  <% else %>
+                                    <li>was tagged in this post.</li>
+                                  <% end %>
+                                </ul>
+                              <% end %>
+                            </div><br>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="comment_overflow">
+                            <div class="post_comments" id="comment_list_<%= post.id %>">
+                              <ul class="comment">
+                                <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
+                                  <%= render partial: 'shared/comment', locals: {comment: comment } %>
+                                <% end %>
+                              </ul><br>                            
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="modal-footer">
+            <div>
+              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

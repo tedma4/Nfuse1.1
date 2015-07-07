@@ -36,9 +36,9 @@
     </li>
     <li class="vr"></li>
     <li class="tilt">
-      <div id="accordion">
-        <%= link_to image_tag("commentgray.fw.png", size: "24x24"), "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#accordion" %>
-      </div>
+      <a data-toggle="modal" data-target="#tweet_modal_<%= post.tweet_id %>">
+        <%= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
     </li>
     <li class="vr"></li>
     <li class="tilt">
@@ -66,29 +66,51 @@
       <%# end %> -->
   </ul>
 
-  <div class="<%= post.class %>-<%= post.tweet_id %>" id="comment_list_<%= post.tweet_id %>">
-        <div class="panel-collapse collapse" id="collapseOne">
-          <div class="panel-body"> <!-- These are for the comment img and content -->
-            <ul class="comment">
-              <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
-                <%= render partial: 'shared/comment', locals: {comment: comment } %>
-              <% end %>
-            </ul>
+  </div>
+
+  <div id="tweet_modal_<%= post.tweet_id %>" class="modal fade">
+    <div class="modal-fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Comment on <%= post.user.user_name %>'s post</h3>
+          </div>    
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span6">
+                          <div class="logowrapper">
+                            <div class="post_content">
+                              <% if post.tweet_image.present? %>
+                              <div class="timeline-user-box">
+                                <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
+                              </div>
+                              <% end %>
+                                <%= post.tweet_text %> 
+                            </div><br>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="comment_overflow">
+                            <div class="post_comments" id="comment_list_<%= post.tweet_id %>">
+                              <ul class="comment">
+                                <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
+                                  <%= render partial: 'shared/comment', locals: {comment: comment } %>
+                                <% end %>
+                              </ul><br>                            
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="modal-footer">
             <div>
               <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
-<!-- *End* Views/users/_twitter_post.html -->
-
-
-
-
-
-
-
-
-
-

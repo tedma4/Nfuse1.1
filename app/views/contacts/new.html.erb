@@ -5,12 +5,16 @@
   .message-padding{
     margin-top: 2vh;
   }
+
+  h3 {
+    color: #fff;
+  }
 </style>
 <div class="Alignthisorelse">
 <div class="container message-padding">
   <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
     <% if signed_in? %> <!-- if signed in contacts/new-->
-      <div class="form-top">
+      <div class="form-top-contacts">
         <div class="form-top-left">
           <h3><strong>Nprove Nfuse<strong></h3>
           <p> Any advice you could give us about Nfuse will be awesome, Thanks! </p>
@@ -40,7 +44,7 @@
         <% end %>            
       </div>
     <% else %> <!-- else contacts/new-->
-      <div class="form-top">
+      <div class="form-top-contacts">
         <div class="form-top-left">
           <h3><strong>Send A Message<strong></h3>
           <p>Contact Nfuse for anything you need help with.</p>
