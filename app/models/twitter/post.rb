@@ -89,3 +89,33 @@ module Twitter
     end
   end
 end
+
+
+#     def type
+#       @tweet['media']
+#     end
+
+#     def tweet_image
+#       @tweet.media.collect(&:media_url)
+#     end
+#   end
+# end
+
+
+
+  # <div class="post_content">
+  #   <% if post.type == 'Twitter::Media::Photo' %>
+  #   <div class="timeline-user-box">
+  #     <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
+  #   </div><!-- 
+  #   <% #elsif post.type == Twitter::Media::Video %>
+  #   <div class="timeline-user-box">
+  #     <iframe 
+  #       border= '0' 
+  #       frameborder= '0' 
+  #       height= '225' 
+  #       width= '100%' 
+  #       src="<%#= post.tweet_image %>">
+  #     </iframe>      
+  #     <%#= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
+  #   </div> -->

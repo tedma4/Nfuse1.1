@@ -186,7 +186,7 @@ class Token < ActiveRecord::Base
   def configure_flickr(access_token, access_secret)
     FlickRaw.api_key=ENV["flickr_key"]
     FlickRaw.shared_secret=ENV["flickr_secret"]
-    FlickRaw.secure = false
+    # FlickRaw.secure = false
 
     client = FlickRaw::Flickr.new
     client.access_token = access_token

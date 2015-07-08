@@ -47,7 +47,7 @@ gem 'vmo', :git => 'https://github.com/ermacaz/vmo.git'
 gem 'flickraw'
 gem 'tumblr_client'
 #This allows the use of the twitter api
-gem 'twitter', '~> 5.8.0'
+gem 'twitter', '>= 5.14.0'
 gem 'yt', :git => 'https://github.com/ermacaz/yt.git'
 gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth 

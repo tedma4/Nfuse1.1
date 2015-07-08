@@ -1569,7 +1569,7 @@ img { max-width: 100%; }
    color: #fff;
  }
 
- .form-top-home {
+ .form-top-help {
    overflow: hidden;
    padding: 0 25px 15px 25px;
    background: #af9aee;
@@ -1579,6 +1579,15 @@ img { max-width: 100%; }
  }
 
  .form-top-contacts {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
+ .form-top-about {
    overflow: hidden;
    padding: 0 25px 15px 25px;
    background: #af9aee;
