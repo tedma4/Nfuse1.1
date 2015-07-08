@@ -40,6 +40,10 @@ module Youtube
       @post.published_at
     end
 
+    def description
+      @post.description
+    end
+
     def id
       @post.id
     end

@@ -64,8 +64,20 @@ module Twitter
     #  tweet_user["screen_name"]
     #end
 
+    def has_media?
+      @tweet.attrs.has_key? :extended_entities
+    end
+
     def tweet_text
       @tweet.text
+    end
+
+    def tweet_video
+      @tweet.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+    end
+
+    def type
+      @tweet.attrs[:extended_entities][:media][0][:type]
     end
 
     #def retweet_count
@@ -81,11 +93,7 @@ module Twitter
     #end
   
     def tweet_image
-      if @tweet.media.present?
-        @tweet.media[0]['media_url']
-      else
-        nil
-      end
+      @tweet.attrs[:extended_entities][:media][0][:media_url]
     end
   end
 end

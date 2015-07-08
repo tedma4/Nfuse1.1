@@ -12,7 +12,7 @@
 
 
   <script type="text/javascript">
-    FeedIndex.providers = {facebook: <%= @providers.facebook? %>, twitter: <%= @providers.twitter? %>, instagram: <%= @providers.instagram? %>};
+    FeedIndex.providers = {twitter: <%= @providers.twitter? %>, instagram: <%= @providers.instagram? %>};
     $(document).ready(function () {
       FeedIndex.initialize();
     });

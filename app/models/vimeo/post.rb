@@ -36,6 +36,10 @@ module Vimeo
       @post.created_time
     end
 
+    def description
+      @post.description
+    end
+
     def provider
       "vimeo"
     end
