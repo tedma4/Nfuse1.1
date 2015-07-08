@@ -88,7 +88,7 @@ module Tumblr
       @post['description'].html_safe
     end
     def excerpt
-      @post['excerpt'].html_safe
+      @post['excerpt']
     end
   end
 end

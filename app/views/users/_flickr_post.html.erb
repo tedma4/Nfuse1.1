@@ -1,3 +1,8 @@
+<style>
+  .flick_image{
+    width: 300px;
+  }
+</style>
 <div class="individual_post flickr_post item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
@@ -5,29 +10,31 @@
         <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
       </li>
       <li class="user_name">
-        <%= link_to "#{post.username}", feed_user_path(post.user) %></li>
+        <%= link_to "#{post.username}", feed_user_path(post.user) %>
+      </li>
     </ul>
   </div>
   <div class="post_content">
-      <ul>
-        <li><%= image_tag(post.low_resolution_image_url, :class => "image_post") %></li>
-        <% if post.caption.present? %>
-          <li><%= post.caption %></li>
-        <% end %>
-      </ul><br>
-  </div>&nbsp;
-
-
+    <div class="timeline-user-box">
+      <%= image_tag(post.low_resolution_image_url, :class => "image_post flickr_post") %>
+    </div>
+    <% if post.caption.present? %>
+      <div class="center">
+        <%= post.caption %>
+      </div>
+    <% end %>
+    <br>
+  </div>
   <div class="right">
   </div>
-    <br>
   
   <ul class="post_actions">
-    <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-     like_shout_path(id: post.id, 
-               owner_id: post.user.id, 
-               key: :flickr), 
-               method: :post, remote: true %>
+    <li class="tilt">
+      <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+       like_shout_path(id: post.id, 
+                 owner_id: post.user.id, 
+                 key: :flickr), 
+                 method: :post, remote: true %>
      <%= post.like_score(post.id) %>
     </li>
     <li class="vr"></li>
@@ -38,7 +45,7 @@
     </li>
     <li class="vr"></li>
     <li class="tilt">
-      <%= link_to image_tag("Flickr-icon.png", 
+      <%= link_to image_tag("flickrblue.fw.png", 
                             size: "24x24", 
                             :class => "flickr_provider_logo"), 
                             post.link_to_post, 
@@ -75,12 +82,15 @@
                         <div class="span6">
                           <div class="logowrapper">
                             <div class="post_content">
-                                <ul>
-                                  <li><%= image_tag(post.low_resolution_image_url, :class => "image_post") %></li>
-                                  <% if post.caption.present? %>
-                                    <li><%= post.caption %></li>
-                                  <% end %>
-                                </ul><br>
+                              <div class="timeline-user-box">
+                                <%= image_tag(post.low_resolution_image_url, :class => "image_post flickr_post") %>
+                              </div>
+                              <% if post.caption.present? %>
+                                <div class="center">
+                                  <%= post.caption %>
+                                </div>
+                              <% end %>
+                              <br>
                             </div>
                           </div>
                         </div>

@@ -3,12 +3,15 @@
     width: 300px;
   }
 </style>
-  <div class="individual_post gplus_post item " data-id="<%= post.id %>" id="content-box-feed">
+<div class="individual_post gplus_post item " data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
     <ul class="post_header">
-      <li><%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %></li>
-      <li class="user_name"><%= link_to "#{post.username}", feed_user_path(post.user) %></li>
-      
+      <li>
+        <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
+      </li>
+      <li class="user_name">
+        <%= link_to "#{post.username}", feed_user_path(post.user) %>
+      </li>      
     </ul>
   </div>
   <div class="post_content">
@@ -58,7 +61,8 @@
                         owner_id: post.user.id,
                         key: :gplus), 
                         method: :post, remote: true %>
-      <%= post.like_score(post.id) %></li>
+      <%= post.like_score(post.id) %>
+    </li>
     <li class="vr"></li>
     <li class="tilt">
       <a data-toggle="modal" data-target="#gplus_modal_<%= post.id %>">
