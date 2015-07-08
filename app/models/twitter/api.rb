@@ -9,7 +9,7 @@ module Twitter::Api
     end
 
     def link_to_tweet
-      base_uri << "#{@tweet["user"]["screen_name"]}/status/#{@tweet["id"]}"
+      base_uri << "#{@tweet.user.screen_name}/status/#{@tweet.id}"
     end
 
     #def user_url

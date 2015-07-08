@@ -8,9 +8,9 @@ class Providers
     @user = user
   end
 
-  def facebook?
-    @user.tokens.where(provider: 'facebook').count > 0
-  end
+  #def facebook?
+  #  @user.tokens.where(provider: 'facebook').count > 0
+  #end
 
   def twitter?
     @user.tokens.where(provider: 'twitter').count > 0
@@ -51,7 +51,7 @@ class Providers
   end
 
   def none?
-    !(facebook? || twitter? || instagram? || google_oauth2? || vimeo? || nfuse? || gplus? || flickr? || tumblr?)# || pinterest? || flickr?
+    !(twitter? || instagram? || google_oauth2? || vimeo? || nfuse? || gplus? || flickr? || tumblr?)# || pinterest? || facebook?
   end
 
 end
