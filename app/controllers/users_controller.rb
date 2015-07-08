@@ -104,16 +104,17 @@ class UsersController < ApplicationController
   def explore
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.all.where.not(id: [current_user.followed_users.collect(&:id), current_user.id])
-    @users.each do |user|
-      feed=Feed.new(user)
-      timeline << feed.construct(params)
-
-    @unauthed_accounts              = feed.unauthed_accounts
-    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-    @commenter_profile_hash         = feed.commenter_profile_hash
+    ids =  current_user.followed_users.collect(&:id)
+    unless ids.empty?
+      @users = User.where.not(id: [ids, current_user.id])
+      @users.each do |user|
+        feed=Feed.new(user)
+        timeline << feed.construct(params)
+        @unauthed_accounts              = feed.unauthed_accounts
+        @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+        @commenter_profile_hash         = feed.commenter_profile_hash
+      end
     end
-
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
     render "explore"
   end
