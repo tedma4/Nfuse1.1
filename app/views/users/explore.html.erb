@@ -26,7 +26,9 @@
       <% elsif post.provider == "flickr" %>
         <%= render partial: "users/flickr_post", locals: {post: post} %>
       <% elsif post.provider == "tumblr" %>
-        <%= render partial: "users/tumblr_post", locals: {post: post} %>
+        <% unless post.type == 'chat' || post.type == 'audio' %>
+          <%= render partial: "users/tumblr_post", locals: {post: post} %>
+        <% end %>
     <% end %>
   <% end %>
 </div>
