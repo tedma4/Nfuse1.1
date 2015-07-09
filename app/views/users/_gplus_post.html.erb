@@ -15,17 +15,17 @@
     </ul>
   </div>
   <div class="post_content">
-    <% if post.type == 'photo'%>
+    <% case post.type %>
+      <% when 'photo' %>
         <div class="timeline-user-box">
           <%= image_tag(post.photo, :class => "image_post gplusplus_image") %>
         </div>
         <% if post.caption.present? %>
-        <div class="center">
-          <%= post.caption_text %>
-        </div>
+          <div class="center">
+            <%= post.caption_text %>
+          </div>
         <% end %>
-      <br>
-    <% elsif post.type == 'video' %>
+      <% when 'video' %>
         <div class="timeline-user-box">
           <iframe
           id="ytplayer"
@@ -38,11 +38,10 @@
           </iframe>
         </div>
         <% if post.caption.present? %>
-        <div class="center">
-          <%= post.caption_text %>
-        </div>
+          <div class="center">
+            <%= post.caption_text %>
+          </div>
         <% end %>
-      <br>
     <% else %>
       <div class="center">
         <%= post.caption_text %>

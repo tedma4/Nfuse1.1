@@ -24,7 +24,7 @@
       <% elsif post.provider == "google_oauth2" %>
           <%= render partial: "users/youtube_post", locals: {post: post} %>
       <% elsif post.provider == "gplus" %>
-        <% if post.type != 'brokenVideo' %>
+        <% if post.type != 'hiddenType' %>
           <%= render partial: "users/gplus_post", locals: {post: post} %>
         <% end %>
       <% elsif post.provider == "vimeo" %>

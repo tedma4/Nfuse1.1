@@ -85,13 +85,18 @@ module Gplus
           if @post.object.attachments[0].has_key? "embed"
             'video'
           else
-            'brokenVideo'
+            'hiddenType'
           end
         else
           @post.object.attachments[0]['objectType']
         end
       else
-        @post.object.object_type
+        case @post.object.object_type
+          when 'note'
+            'hiddenType'
+          else
+            @post.object.object_type
+        end
       end
       # begin
       #   @post.object.attachments[0]['objectType']
