@@ -2,6 +2,9 @@
 <!-- Start of regular page Show_feed-->
 <% provide(:title, @title) %>
   <div class="container_profile">
+    <div class="loader">
+      <div class="loader-img"></div>
+    </div>
     <%= render partial: "profile_info" %>
     <div class="center">   
       <%= render file: "users/feed" %>

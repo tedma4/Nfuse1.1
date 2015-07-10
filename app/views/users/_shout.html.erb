@@ -1,37 +1,37 @@
 <style>
 
-.comment
+.chat
 {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.comment li
+.chat li
 {
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 1px dotted #B3A9A9;
 }
 
-.comment li.left .comment-body
+.chat li.left .chat-body
 {
     margin-left: 60px;
 }
 
-.comment li.right .comment-body
+.chat li.right .chat-body
 {
-    margin-right: 0px;
+    margin-right: 60px;
 }
 
 
-.comment li .comment-body p
+.chat li .chat-body p
 {
     margin: 0;
     color: #777777;
 }
 
-.panel .slidedown .glyphicon, .comment .glyphicon
+.panel .slidedown .glyphicon, .chat .glyphicon
 {
     margin-right: 5px;
 }
@@ -39,8 +39,7 @@
 .panel-body
 {
     overflow-y: scroll;
-    height: 200px;
-    width: 300px;
+    height: 250px;
 }
 
 ::-webkit-scrollbar-track
@@ -241,14 +240,18 @@
                             </div>
                           </div>
                         </div>
-                        <div class="span6">
-                          <div class="comment_overflow">
-                            <div class="post_comments" id="comment_list_<%= shout.id %>">
-                              <ul class="comment">
-                                <% shout.comments.each do |comment| %>
-                                  <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
-                                <% end %>
-                              </ul><br>                            
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="panel panel-primary">
+                                <div class="panel-body post_comments" id="comment_list_<%= shout.id %>">
+                                  <ul class="chat">
+                                    <% shout.comments.each do |comment| %>
+                                      <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
+                                    <% end %>
+                                  </ul>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -264,3 +267,10 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+

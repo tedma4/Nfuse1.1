@@ -2,6 +2,9 @@
   <%= render partial: "users/explore_filters" %>
 </div><br>
 <div id="masonJar" class="center explore_container clearfix masonJar">
+  <div class="loader">
+    <div class="loader-img"></div>
+  </div>
   <% @timeline.each do |post| %>
     <% if post.provider == "twitter" %>
       <%= render partial: "users/twitter_post", locals: {post: post} %>

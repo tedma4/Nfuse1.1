@@ -1,16 +1,18 @@
 <li class="left clearfix">
-	<span class="comment-img pull-left">
-  	<%= image_tag comment.user.avatar(:thumb) %>
-  	<%= comment.user.user_name %>
-	</span>
-  <div class="comment-body clearfix"><!-- 
-    <div class="header">
-      <strong class="primary-font"></strong> 
-      <small class="pull-right text-muted">
-        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-    </div> -->
-    <p>
-  		<%= comment.body %>
-    </p>
+  <span class="chat-img pull-left">
+    <%= image_tag comment.user.avatar(:thumb) %>
+  </span>
+  <div class="chat-body clearfix">
+    <div>
+      <strong class="primary-font">
+        <%= comment.user.user_name %>
+      </strong> 
+<!--       <small class="pull-right text-muted">
+        <span class="glyphicon glyphicon-time"></span>12 mins ago
+      </small> -->
+    </div>
+      <p>
+        <%= comment.body %>
+      </p>
   </div>
 </li>

@@ -18,16 +18,6 @@
     <% if post.has_media? %>
       <% if post.type == 'video' %>
         <video src="<%= post.tweet_video %>" width="100%" height="258" controls></video>
-        <!--<iframe-->
-        <!--id="ytplayer"-->
-        <!--type="text/html"-->
-        <!--autoplay=0-->
-        <!--width="100%"-->
-        <!--height="225"-->
-        <!--src="<%= post.tweet_video %>"-->
-        <!--frameborder="0"-->
-        <!--allowfullscreen>-->
-        <!--</iframe>-->
       <% elsif post.type == 'photo' %>
         <div class="timeline-user-box">
           <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
@@ -95,6 +85,18 @@
                     <div class="span12">
                         <div class="span6">
                           <div class="logowrapper">
+                            <div class="post_content">
+                              <% if post.has_media? %>
+                                <% if post.type == 'video' %>
+                                  <video src="<%= post.tweet_video %>" width="100%" height="258" controls></video>
+                                <% elsif post.type == 'photo' %>
+                                  <div class="timeline-user-box">
+                                    <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
+                                  </div>
+                                <% end %>
+                              <% end %>
+                                <%= post.tweet_text %> 
+                            </div>
                            <br>
                           </div>
                         </div>

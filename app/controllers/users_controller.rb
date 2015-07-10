@@ -105,8 +105,9 @@ class UsersController < ApplicationController
     @providers = Providers.for(@user)
     timeline = []
     ids =  current_user.followed_users.collect(&:id)
+    ids << current_user.id
     unless ids.empty?
-      @users = User.where.not(id: [ids, current_user.id])
+      @users = User.where.not(id: ids)
       @users.each do |user|
         feed=Feed.new(user)
         timeline << feed.construct(params)
