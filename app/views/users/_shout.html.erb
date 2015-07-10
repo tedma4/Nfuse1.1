@@ -1,5 +1,9 @@
 <style>
 
+li {
+  display: block;
+}
+
 .chat
 {
     list-style: none;
@@ -12,16 +16,13 @@
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 1px dotted #B3A9A9;
-}
+    float: none;
+/*    display: none;
+*/}
 
 .chat li.left .chat-body
 {
     margin-left: 60px;
-}
-
-.chat li.right .chat-body
-{
-    margin-right: 60px;
 }
 
 
@@ -29,11 +30,6 @@
 {
     margin: 0;
     color: #777777;
-}
-
-.panel .slidedown .glyphicon, .chat .glyphicon
-{
-    margin-right: 5px;
 }
 
 .panel-body
@@ -242,9 +238,9 @@
                         </div>
                         <div class="container">
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                               <div class="panel panel-primary">
-                                <div class="panel-body post_comments" id="comment_list_<%= shout.id %>">
+                                <div class="panel-body" id="comment_list_<%= shout.id %>">
                                   <ul class="chat">
                                     <% shout.comments.each do |comment| %>
                                       <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
