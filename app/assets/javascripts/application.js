@@ -17,9 +17,7 @@
 //= require npm
 //= require wow
 //= require jquery.magnific-popup
-//= require jquery.magnific-popup.min
 //= require placeholder
-//= require wow.min
 //= require scripts
 //= require turbolinks
 //= require video
