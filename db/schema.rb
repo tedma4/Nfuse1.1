@@ -83,10 +83,10 @@ ActiveRecord::Schema.define(version: 20150526031232) do
 
   create_table "nfuse_pages", force: true do |t|
     t.integer  "user_id"
-    t.string   "shout_id"
+    t.integer  "shout_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "owner_id"
+    t.integer  "owner_id"
     t.string   "social_flag"
     t.string   "social_key"
     t.string   "social_id"
@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 20150526031232) do
   add_index "videos", ["user_id"], name: "index_videos_on_user_id"
 
   create_table "votes", force: true do |t|
-    t.string   "votable_id"
+    t.integer  "votable_id"
     t.string   "votable_type"
     t.integer  "voter_id"
     t.string   "voter_type"

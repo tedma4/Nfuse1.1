@@ -8,6 +8,10 @@ class Shouts::LikesController < ApplicationController
                                        votable_id: params[:id])
       send( params.fetch(:key, :basic).to_sym ) # Object.send
     end
+    @shout = {
+        id: params[:id],
+        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).count
+    }
     respond_to do |format|
       format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
     end

@@ -35,8 +35,10 @@
       like_shout_path(id: post.tweet_id,
                 owner_id: post.user.id,
                 key: :twitter),
-                method: :post, remote: true %> 
-      <%= post.like_score(post.tweet_id) %>
+                method: :post, remote: true %>
+      <div id="shout-<%=post.id%>">
+        <%= post.like_score(post.id) %>
+      </div>
     </li>
     <li class="vr"></li>
     <li class="tilt">

@@ -60,7 +60,9 @@
                         owner_id: post.user.id,
                         key: :gplus), 
                         method: :post, remote: true %>
-      <%= post.like_score(post.id) %>
+      <div id="shout-<%=post.id%>">
+        <%= post.like_score(post.id) %>
+      </div>
     </li>
     <li class="vr"></li>
     <li class="tilt">
