@@ -112,7 +112,7 @@
                           <div class="logowrapper">
                             <div class="post_content">
                               <% if post.type == 'photo'%>
-                                  <div class="timeline-user-box">
+                                  <div class="modal-timeline-user-box center">
                                     <%= image_tag(post.photo, :class => "image_post gplusplus_image") %>
                                   </div>
                                   <% if post.caption.present? %>
@@ -122,7 +122,7 @@
                                   <% end %>
                                 <br>
                               <% elsif post.type == 'video' %>
-                                  <div class="timeline-user-box">
+                                  <div class="modal-timeline-user-box center">
                                     <iframe
                                     id="ytplayer"
                                     type="text/html"
@@ -148,25 +148,27 @@
                             </div>
                           </div>
                         </div>
-                        <div class="span6">
-                          <div class="comment_overflow">
-                            <div class="post_comments" id="comment_list_<%= post.id %>">
-                              <ul class="comment">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="panel">
+                                <div class="panel-body" id="comment_list_<%= post.id %>">
+                                  <ul class="chat">
                                 <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
                                   <%= render partial: 'shared/comment', locals: {comment: comment } %>
-                                <% end %>
-                              </ul><br>                            
+                                    <% end %>
+                                  </ul>
+                                </div>
+                              </div>
                             </div>
                           </div>
+                        </div>
+                        <div>
+                          <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
                         </div>
                     </div>
                 </div>
             </div>
-          <div class="modal-footer">
-            <div>
-              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
-            </div>
-          </div>
         </div>
       </div>
     </div>

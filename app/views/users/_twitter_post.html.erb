@@ -36,8 +36,8 @@
                 owner_id: post.user.id,
                 key: :twitter),
                 method: :post, remote: true %>
-      <div id="shout-<%=post.id%>">
-        <%= post.like_score(post.id) %>
+      <div id="shout-<%=post.tweet_id%>">
+        <%= post.like_score(post.tweet_id) %>
       </div>
     </li>
     <li class="vr"></li>
@@ -92,35 +92,39 @@
                                 <% if post.type == 'video' %>
                                   <video src="<%= post.tweet_video %>" width="100%" height="258" controls></video>
                                 <% elsif post.type == 'photo' %>
-                                  <div class="timeline-user-box">
+                                  <div class="modal-timeline-user-box center">
                                     <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
                                   </div>
                                 <% end %>
                               <% end %>
+                              <div class="center">
                                 <%= post.tweet_text %> 
+                              </div>
                             </div>
                            <br>
                           </div>
                         </div>
-                        <div class="span6">
-                          <div class="comment_overflow">
-                            <div class="post_comments" id="comment_list_<%= post.tweet_id %>">
-                              <ul class="comment">
-                                <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
-                                  <%= render partial: 'shared/comment', locals: {comment: comment } %>
-                                <% end %>
-                              </ul><br>                            
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="panel">
+                                <div class="panel-body" id="comment_list_<%= post.tweet_id %>">
+                                  <ul class="chat">
+                                    <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.tweet_id).each do |comment| %>
+                                      <%= render partial: 'shared/comment', locals: {comment: comment } %>
+                                    <% end %>
+                                  </ul>
+                                </div>
+                              </div>
                             </div>
                           </div>
+                        </div>
+                        <div>
+                          <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
                         </div>
                     </div>
                 </div>
             </div>
-          <div class="modal-footer">
-            <div>
-              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
-            </div>
-          </div>
         </div>
       </div>
     </div>
