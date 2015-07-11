@@ -132,7 +132,9 @@ li {
                         like_shout_path(id: shout.id,
                         owner_id: shout.user.id), 
                          method: :post, remote: true %>
-        <%= shout.like_score(shout.id) %>
+        <div id="shout-<%=shout.id%>">
+          <%= shout.like_score(shout.id) %>
+        </div>
       </li>
       <li class="vr"></li>
       <li class="tilt">

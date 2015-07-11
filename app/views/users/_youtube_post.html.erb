@@ -31,7 +31,10 @@
                         owner_id: post.user.id,
                         key: :youtube), 
                         method: :post, remote: true %>
-      <%= post.like_score(post.id) %></li>
+      <div id="shout-<%=post.id%>">
+        <%= post.like_score(post.id) %>
+      </div>
+    </li>
     <li class="vr"></li>
     <li class="tilt">
       <a data-toggle="modal" data-target="#youtube_modal_<%= post.id %>">

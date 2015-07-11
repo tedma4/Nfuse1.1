@@ -52,7 +52,9 @@
   <ul class="post_footer_li">
     <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"), like_shout_path(id: post.id, owner_id: post.user.id, key: :facebook), method: :post, remote: true %>
 
-      <%= post.like_score(post.id) %>
+      <div id="shout-<%=post.id%>">
+        <%= post.like_score(post.id) %>
+      </div>
     </li>
     <li class="vr"></li>
     <li class="tilt">
