@@ -29,13 +29,12 @@ li {
 .chat li .chat-body p
 {
     margin: 0;
-    color: #777777;
 }
 
 .panel-body
 {
     overflow-y: scroll;
-    height: 250px;
+    height: 180px;
 }
 
 ::-webkit-scrollbar-track
@@ -187,19 +186,19 @@ li {
                             <div class="post_content">
                               <% if !shout.url.blank? %>
                                 <p> <%= shout.url_html %></p>
-                                <div class="caption">
-                                  <%= shout.content %>
+                                <div class="caption Alignthisorelse">
+                                  <strong><%= shout.content %><strong>
                                   <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
                                 </div>
                               <% elsif shout.is_pic? %>
-                                <div class="timeline-user-box">
+                                <div class="modal-timeline-user-box center">
                                   <%= image_tag shout.pic_url %>
                                 </div>
-                                <div class="caption">
-                                    <%= shout.content %>
+                                <div class="caption Alignthisorelse">
+                                    <strong><%= shout.content %><strong>
                                 </div>
                               <% elsif shout.is_video? %>
-                                <div class="timeline-user-box">
+                                <div class="modal-timeline-user-box">
                                   <video 
                                     id="ytplayer" 
                                     type="video/mp4" 
@@ -212,8 +211,8 @@ li {
                                   </video>
                                   <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
                                 </div>
-                                <div class="caption">
-                                    <%= shout.content %>
+                                <div class="caption Alignthisorelse">
+                                    <strong><%= shout.content %><strong>
                                 </div>
                               <% elsif shout.is_full_video? %>
                                 <div class="timeline-user-box">
@@ -229,8 +228,8 @@ li {
                                   </video>
                                   <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
                                 </div>
-                                <div class="caption">
-                                    <%= shout.content %>
+                                <div class="caption Alignthisorelse">
+                                    <strong><%= shout.content %><strong>
                                 </div>
                               <% end %>
                             </div>
@@ -238,8 +237,8 @@ li {
                         </div>
                         <div class="container">
                           <div class="row">
-                            <div class="col-md-5">
-                              <div class="panel panel-primary">
+                            <div class="col-md-6">
+                              <div class="panel">
                                 <div class="panel-body" id="comment_list_<%= shout.id %>">
                                   <ul class="chat">
                                     <% shout.comments.each do |comment| %>
@@ -251,14 +250,12 @@ li {
                             </div>
                           </div>
                         </div>
+                        <div>
+                          <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+                        </div>
                     </div>
                 </div>
             </div>
-          <div class="modal-footer">
-            <div>
-              <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
-            </div>
-          </div>
         </div>
       </div>
     </div>

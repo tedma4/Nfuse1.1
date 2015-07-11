@@ -21,7 +21,7 @@ module Gplus
     end
 
     def comment_count
-      @post.comments.count
+      @post.commented.count
     end
 
     def avatar
