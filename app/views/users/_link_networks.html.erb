@@ -33,7 +33,7 @@
                             <%= link_to image_tag("twitterblue.fw.png", size: "60x60"), "/auth/twitter?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>Twitter<strong></h3>
-                            <p>This is for catchy slogan.</p>
+                            <p>Share your Twitter posts.</p>
                           <% if current_user && user_has_provider?('twitter') %>
                             <%= link_to "You've Nfused Twitter", "/auth/twitter?origin=#{request.original_url}" %>
                             <% else %>
@@ -47,7 +47,7 @@
                             <%= link_to image_tag("instagramblue.fw.png", size: "60x60"), "/auth/instagram?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>Instagram<strong></h3>
-                            <p>This is for catchy slogan.</p>
+                            <p>Share your Instagram posts.</p>
                           <% if current_user && user_has_provider?('instagram') %>
                               <%= link_to "You've Nfused Instagram", "/auth/instagram?origin=#{request.original_url}" %>
                               <% else %>
@@ -60,8 +60,8 @@
                           <div class="features-box-icon">
                             <%= link_to image_tag("tumblrblue.fw.png", size: "60x60"), "/auth/tumblr?origin=#{request.original_url}" %>
                           </div>
-                            <h3><strong>tumblr<strong></h3>
-                            <p>This is for catchy slogan.</p>
+                            <h3><strong>Tumblr<strong></h3>
+                            <p>Share your Tumblr posts.</p>
                             <% if current_user && user_has_provider?('tumblr') %>
                               <%= link_to "You've Nfused tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
                             <% else %>
@@ -77,7 +77,7 @@
                             <%= link_to image_tag("youtubeblue.fw.png", size: "60x60"), "/auth/google_oauth2?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>Youtube<strong></h3>
-                            <p>This is for catchy slogan.</p>
+                            <p>Share your Youtube posts.</p>
                           <% if current_user && user_has_provider?('google_oauth2') %>
                               <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
                               <% else %>
@@ -91,7 +91,7 @@
                               <%= link_to image_tag("googleplusblue.fw.png", size: "60x60"), "/auth/gplus?origin=#{request.original_url}" %>
                             </div>
                               <h3>Google Plus</h3>
-                              <p>This is for catchy slogan.</p>
+                              <p>Share your Google+ posts.</p>
                             <% if current_user && user_has_provider?('gplus') %>
                                 <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
                                 <% else %>
@@ -105,7 +105,7 @@
                               <%= link_to image_tag("vimeoblue.fw.png", size: "60x60"), "/auth/vimeo?origin=#{request.original_url}" %>
                             </div>
                             <h3><strong>Vimeo<strong></h3>
-                            <p>This is for catchy slogan.</p>
+                            <p>Share your Vimeo posts.</p>
                           <% if current_user && user_has_provider?('vimeo') %>
                               <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
                               <% else %>
@@ -121,7 +121,7 @@
                             <%= link_to image_tag("flickrblue.fw.png", size: "60x60"), "/auth/flickr?origin=#{request.original_url}" %>
                           </div>
                             <h3><strong>Flickr<strong></h3>
-                            <p>This is for catchy slogan.</p>
+                            <p>Share your Flickr posts.</p>
                           <% if current_user && user_has_provider?('flickr') %>
                               <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
                               <% else %>
