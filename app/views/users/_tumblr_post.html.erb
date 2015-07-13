@@ -89,14 +89,17 @@
                         owner_id: post.user.id,
                         key: :tumblr), 
                         method: :post, remote: true %>
-      <div id="shout-<%=post.id%>">
+      <a id="shout-<%=post.id%>">
         <%= post.like_score(post.id) %>
-      </div>
+      </a>
     </li>
     <li class="vr"></li>
     <li class="tilt">
       <a data-toggle="modal" data-target="#tumblr_modal_<%= post.id %>">
         <%= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
+      <a>
+        <%= post.comment_count(post.id) %>
       </a>
     </li>
     <li class="vr"></li>

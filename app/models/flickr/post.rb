@@ -21,7 +21,7 @@ module Flickr
     end
 
     def comment_count
-      @post.comments.count
+      Comment.where(commentable_id: id).count
     end
 
     def avatar

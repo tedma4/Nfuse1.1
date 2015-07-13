@@ -131,9 +131,9 @@ li {
                         like_shout_path(id: shout.id,
                         owner_id: shout.user.id), 
                          method: :post, remote: true %>
-        <div id="shout-<%=shout.id%>">
+        <a id="shout-<%=shout.id%>">
           <%= shout.like_score(shout.id) %>
-        </div>
+        </a>
       </li>
       <li class="vr"></li>
       <li class="tilt">
@@ -141,7 +141,9 @@ li {
         <a data-toggle="modal" data-target="#shout_modal_<%= shout.id %>">
           <%= image_tag("commentgray.fw.png", size: "24x24") %>
         </a>
+        <a>
           <%= shout.comment_count %>
+        </a>
         </div>
       </li>
       <li class="vr"></li>

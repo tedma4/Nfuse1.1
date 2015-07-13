@@ -16,9 +16,7 @@ module Twitter
       @user = user
     end
 
-    # 
     def like_score(id)
-      # Implement counter cache per / Records
       ActsAsVotable::Vote.where(votable_id: id).count
     end
 

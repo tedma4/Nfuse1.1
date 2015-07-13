@@ -36,14 +36,17 @@
                 owner_id: post.user.id,
                 key: :twitter),
                 method: :post, remote: true %>
-      <div id="shout-<%=post.tweet_id%>">
+      <a id="shout-<%=post.tweet_id%>">
         <%= post.like_score(post.tweet_id) %>
-      </div>
+      </a>
     </li>
     <li class="vr"></li>
     <li class="tilt">
       <a data-toggle="modal" data-target="#tweet_modal_<%= post.tweet_id %>">
         <%= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
+      <a>
+       <%= post.comment_count( post.tweet_id) %>
       </a>
     </li>
     <li class="vr"></li>

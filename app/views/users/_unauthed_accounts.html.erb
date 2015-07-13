@@ -1,17 +1,17 @@
 <!-- *Start* Views/users/_unauthed_accounts.html -->
-<% unless !current_user?(@user) %>
-  <div =class="unauthed_accounts">
+<%# unless !current_user?(@user) %>
+<!--   <div =class="unauthed_accounts">
     <h4>
       The access tokens for the following accounts have expired. Please click the below links to reauthorize the
       accounts.
     </h4>
     <ul>
-      <% @unauthed_accounts.each do |provider| %>
+      <%# @unauthed_accounts.each do |provider| %>
         <li>
-          <%= provider.capitalize %>: <%= link_to "Click here to re-Nfuse", "/auth/#{provider}" %>
+          <%#= provider.capitalize %>: <%#= link_to "Click here to re-Nfuse", "/auth/#{provider}" %>
         </li>
-      <% end %>
+      <%# end %>
     </ul>
-  </div>
-<% end %>
+  </div> -->
+<%# end %>
 <!-- *End* Views/users/_unauthed_accounts.html -->

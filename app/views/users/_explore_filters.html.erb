@@ -81,12 +81,12 @@ a {
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <ul class="social-network social-circle">
+  <ul class="social-network social-circle Alignthisorelse">
     <!-- explore -->
-    <li>
-     <%= link_to explore_user_path(current_user), {class: "icoRss expIcon", title: "All", id: "explore_only"} do %>
+    <li id="explore_all">
+      <%= link_to explore_user_path(current_user), {class: "icoRss expIcon", title: "Explore"} do %>
           <%= image_tag('educationalwhite.fw.png', size: "28x28") %>
-        <% end %>
+      <%end%>
     </li>
     <!-- explore -->
     <!-- nfuse -->
@@ -160,7 +160,7 @@ $(document).ready(function(){
     var urlPath = window.location.pathname;
     //alert(urlPath);
     if(urlPath == "/explore"){
-      $('#explore_only').addClass("activeNavIcon");
+      $('#explore_all').addClass("activeNavIcon");
     }
     else if(urlPath.indexOf('/explore_nfuse_only')!== -1){
       $('#explore_nfuse').addClass("activeNavIcon");
