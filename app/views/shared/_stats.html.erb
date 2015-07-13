@@ -6,7 +6,7 @@
     <!-- <li><%#= link_to "Nfused", nfuse_page_user_path(@user) %></li> -->
     <li><%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %></li>
     <li><%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %></li>
-    <li><a href='#'> Likes: <%= @user.total_likes %></a></li>
+    <li><a> Likes: <%= @user.total_likes %></a></li>
   </ul>
 </div>
 <!-- *End* Views/shared/_stats.html -->

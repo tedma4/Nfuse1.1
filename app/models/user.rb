@@ -67,9 +67,10 @@ class User < ActiveRecord::Base
   #     :message => "should be a phone number"
 
   #Because We're paranoid about the ppl who keep signing up. This is our cheap version of security
-  validates :intro, presence: true, 
-  inclusion: { in: %w(4081),
-    message: 'Wrong code, Please try again : )' }
+  # validates :intro, presence: true, 
+  # inclusion: { in: %w(4081),
+  #   message: 'Wrong code, Please try again : )' }
+
   # returns a relationship object not a User object.
   # belongs in Relationship model.
   # ? methods are meant to return a boolean

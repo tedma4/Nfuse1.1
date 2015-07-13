@@ -1,6 +1,6 @@
 <%= form_tag(shout.form_path , method: :post, remote: true) do %>
   <div class="input-group">
-  	<%= text_field_tag 'comment[body]', "Comment here...", id: "btn-input", class: "form-control input-sm", placeholder: "Comment here..." %>
+  	<%= text_field_tag 'comment[body]', nil, id: "btn-input", class: "form-control input-sm", placeholder: "Comment here..." %>
   	<%= hidden_field_tag 'comment[user_id]', current_user.id  %>
     <span class="input-group-btn">
     	<%= submit_tag "Comment", class: "btn btn-info btn-sm", id: "btn-comment" %>

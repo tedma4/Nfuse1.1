@@ -45,12 +45,10 @@
 <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
   <div id="empty_feed_container">
     <% unless !current_user?(@user) %>
-    <p>
-      Click one of the below links or visit "Settings" to link an account and get started.
-    </p>
-    <%= render partial: "link_networks" %>
+      <%= render partial: "link_networks" %>
     <% else %>
     <p> This user has not Nfused their networks. </p>
+    <!-- The sad face goes here -->
     <% end %>
   </div>
 <% end %>
