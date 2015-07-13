@@ -16,14 +16,14 @@
   </div>
   <div class="post_content">
     <% if post.type == 'photo'%>
-        <div class="timeline-user-box">
-          <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
-        </div>
-        <% if post.caption_text.present? %>
+      <div class="timeline-user-box">
+        <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
+      </div>
+      <% if post.caption_text.present? %>
         <div class="center">
           <%= post.caption_text %>
         </div>
-        <% end %>
+      <% end %>
       <br>
     <% elsif post.type == 'video' %>
         <div class="timeline-user-box">
@@ -64,6 +64,7 @@
         <div class="center">
           <%= post.text %>
         </div>
+        <br>
     <% elsif post.type == 'link'  %>
         <div class="center">
           <a href="#{ post.link_to_url}">
@@ -71,10 +72,12 @@
           </a>
           <%= post.description %>
         </div>
+        <br>
     <% else %>
       <div class="center">
         <%= post.caption_text %>
       </div>
+      <br>
     <% end %>
   </div>
 
