@@ -1,5 +1,3 @@
-<!-- *START* Views/users/show_feed.html.erb  -->
-<!-- Start of regular page Show_feed-->
 <% provide(:title, @title) %>
   <div class="container_profile">
 <!--     <div class="loader">
@@ -11,13 +9,9 @@
     </div>
   </div>
 
-
-
-
   <script type="text/javascript">
     FeedIndex.providers = {twitter: <%= @providers.twitter? %>, instagram: <%= @providers.instagram? %>};
     $(document).ready(function () {
       FeedIndex.initialize();
     });
   </script>
-<!-- *End* Views/users/show_feed.html.erb  -->

@@ -1,10 +1,19 @@
 <div class="explore_filters">
   <%= render partial: "users/hub_filters" %>
 </div><br>
-<div id="masonJar" class="center explore_container clearfix masonJar">
-  <% @timeline.each do |post| %>
-    <% if post.provider == "nfuse" %>
-      <%=  render partial: "users/shout", locals: {shout: post} %>
-    <% end %>
-  <% end %>
-</div>
+<% if current_user.followed_users.empty? %>
+  <div class="center">
+    <p> Can't display posts beacuse you aren't following anyone... </p>
+    <p> Why aren't you following someone yet? </p>
+    <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
+    <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
+  </div>
+<% else %>
+	<div id="masonJar" class="center explore_container clearfix masonJar">
+	  <% @timeline.each do |post| %>
+	    <% if post.provider == "nfuse" %>
+	      <%=  render partial: "users/shout", locals: {shout: post} %>
+	    <% end %>
+	  <% end %>
+	</div>
+<%end%>

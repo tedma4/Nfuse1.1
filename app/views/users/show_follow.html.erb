@@ -147,6 +147,27 @@ ul.c-controls li a:hover {
 </div>
     </div>
     <%= will_paginate %>
+  <% else %>
+    <% if @title == 'Following' %>
+      <% if current_user?(@user) %>
+        <div class="center">
+          <p> Why aren't you following someone yet? </p>
+          <%= image_tag("sadface.fw.png", size:"100x100") %>
+          <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
+        </div>
+      <% else %>
+        <P class="center"> <%= @user.user_name %> isn't following any one yet.</P>
+      <%end%>
+    <% elsif @title == 'Followers' %>
+      <% if current_user?(@user) %>
+        <div class="center">
+          <p> Sorry. No one is following you yet.</p>
+          <%= image_tag("sadface.fw.png", size:"100x100") %>
+        </div>
+      <%else%>
+        <P class="center">No one is following <%= @user.user_name %> yet. Why not be the first? </P>
+      <%end%>
+    <%end%>
   <% end %>
 </div>
 
