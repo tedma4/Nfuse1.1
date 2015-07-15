@@ -1613,6 +1613,24 @@ img { max-width: 100%; }
    color: #fff;
  }
 
+ .form-top-reset {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
+ .form-top-reset-edit {
+   overflow: hidden;
+   padding: 0 25px 15px 25px;
+   background: #af9aee;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   color: #fff;
+ }
+
 .form-top-left {
   float: left;
   width: 75%;

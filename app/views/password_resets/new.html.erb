@@ -5,11 +5,15 @@
 	.forgot-password-padding{
 		margin-top: 8vh;
 	}
+
+  h3 {
+    color: #fff;
+  }
 </style>
 <div class="Alignthisorelse">
   <div class="container forgot-password-padding">
     <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
-      <div class="form-top">
+      <div class="form-top-reset">
         <div class="form-top-left">
           <h3><strong>Forgot Password?<strong></h3>
             <p>Please enter your email below.</p>
@@ -23,8 +27,8 @@
 				  <div class="form-group">
 				    <%= text_field_tag :email, params[:email], :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
 				  </div>
-              <button
-              <%= submit_tag "Reset Password!", class: "btn" %>> Submit
+              <button type="submit" class="btn">
+                Submit
               </button>
         <% end %>
       </div>
