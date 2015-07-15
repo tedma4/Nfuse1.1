@@ -1,6 +1,9 @@
 <style>
-
-
+@media only screen and (max-width: 1125px) {
+    #fadeshow6 {
+        display: none;
+    }
+}
 /*=========================
   Icons
  ================= */
@@ -81,7 +84,7 @@ a {
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <ul class="social-network social-circle Alignthisorelse">
+  <ul class="social-network social-circle Alignthisorelse" id="fadeshow6">
     <!-- explore -->
     <li id="explore_all">
       <%= link_to explore_user_path(current_user), {class: "icoRss expIcon", title: "Explore"} do %>

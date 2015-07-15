@@ -3,22 +3,25 @@
   .input-bg {
     background-color: #fff;
   }
+@media only screen and (max-width: 900px) {
+    #fadeshow4 {
+        display: none;
+    }
+}
 </style>
 <div class="Ourfuckinthing"></div>
 <div class="headerBack">
 <nav class="header" role="navigation">
   <div class="header_inLineLeft">
     <ul>
-      <li><%= link_to root_path do %>
-          <%= image_tag('Full-Logo.png', size: "151x47") %>
-          <% end %>
+      <li><%= link_to image_tag('Full-Logo.png', size: "151x47"), root_path %>
       </li>
     </ul>
   </div>
 
 <% if signed_in? %> <!-- if signed in _header-->
   <ul class="header_inlineleft">
-    <li>
+    <li id="fadeshow4">
       <%= form_tag search_path, method: "get", class: "search-bar" do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search"%>
       <% end %>
@@ -28,24 +31,16 @@
   <div class="inLineRight iconBar">
     <ul id="menu">
       <li class="navIcon tilt" id="home">
-        <%= link_to root_path do %>
-        <%= image_tag('home1.fw.png', size: "32x32", title: "Hub") %>
-        <% end %>
+        <%= link_to image_tag('home1.fw.png', size: "32x32", title: "Hub"), root_path %>
       </li>
       <li class="navIcon tilt" id="explore">        
-      <%= link_to explore_user_path(current_user) do %>
-        <%= image_tag('educational27.png', size: "32x32", title: "Explore") %>
-      <% end %>
+      <%= link_to image_tag('educational27.png', size: "32x32", title: "Explore"), explore_user_path(current_user) %>
       </li>
       <li class="navIcon tilt" id="profile">
-        <%= link_to feed_user_path(current_user) do %>
-        <%= image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{ current_user.full_name}") %>
-        <% end %>
+        <%= link_to image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{ current_user.full_name}"), feed_user_path(current_user) %>
       </li>
       <li class="navIcon tilt" id="newpost">
-        <%= link_to new_shout_path do %>
-          <%= image_tag('add50blue.fw.png', size: "32x32", title: "New post") %>
-        <% end %>
+        <%= link_to image_tag('add50blue.fw.png', size: "32x32", title: "New post"), new_shout_path %>
       </li>
 <!--       <li class="navIcon tilt" id="notifications">
         <%#= link_to notifications_path do %>
@@ -189,4 +184,3 @@ $(document).ready(function(){
 });
 </script>
 </div>
-<!-- *End* Views/layouts/_header.html -->

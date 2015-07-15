@@ -323,6 +323,7 @@ ul li a:hover + .hidden, .hidden:hover {
 .drop{
   margin-top: 50px;
 }
+
 .headerBack {
   background-color: rgba(47,48,54,0.8); //#2f3036; 
   height: 60px;
@@ -385,7 +386,7 @@ ul li a:hover + .hidden, .hidden:hover {
   margin-right: 20px;
   margin-left: -37px;
 }
-.header_inLineLeft {        /*---Logo in Here---*/
+.header_inLineLeft {      
   float: left;
   margin: 1px 0 0 0;
 }
@@ -433,8 +434,7 @@ ul li a:hover + .hidden, .hidden:hover {
    padding: 7px 5px 5px 2px; 
    line-height: 28px; 
  }
-/* #Home
-=============================================== */
+/* #Home           =============================================== */
 .banner {
   margin-top: 0px;
   display: block;

@@ -1,9 +1,26 @@
+<style>
+@media only screen and (max-width: 900px) {
+    #fadeshow1 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 900px) {
+    #fadeshow2 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 900px) {
+    #fadeshow3 {
+        display: none;
+    }
+}
+</style>
 <div><%= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
 <div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
 </div>
 <div class="profile_bar">
-  <div class="inLineLeft">
+  <div class="inLineLeft" id="fadeshow1">
     <h2 class="user-full-name"><%= @user.full_name%><br> 
       <span class="atUserName">@<%= link_to @user.user_name, feed_user_path(@user)%></span>
     </h2>
@@ -15,12 +32,12 @@
       </li>
       <li>
         <% unless !current_user?(@user) %>
-        <li>
+        <li id="fadeshow2">
           <%= link_to new_shout_path do %>
             <%= image_tag('add50gray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
           <% end %>
         </li>
-        <li>
+        <li id="fadeshow3">
           <%= link_to edit_user_path(session[:user_id]) do %>
             <%= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
           <% end %>
@@ -29,5 +46,5 @@
       </li>
     </ul>
   </div>
-      <%= render 'shared/stats' %>
+    <%= render 'shared/stats' %>
 </div>

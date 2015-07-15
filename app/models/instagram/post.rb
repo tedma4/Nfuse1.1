@@ -18,9 +18,9 @@ module Instagram
       ActsAsVotable::Vote.where(votable_id: id).count
     end
 
-    def comment_count(id)
-      Comment.where(commentable_id: id).count
-    end
+    def comment_count(klass, id)
+      Comment.increment_counter(commentable_type: klass.to_s, commentable_id: id)
+    end     
 
     def avatar
       @user.avatar(:thumb)
