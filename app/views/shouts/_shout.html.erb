@@ -12,6 +12,7 @@
 .fileUpload input.upload {
     position: absolute;
     top: 0;
+    bottom: 0;
     right: 0;
     margin: 0;
     padding: 0;
@@ -159,8 +160,8 @@ $(function () {
 
               <div class="row">
                 <div class="col-sm-4 section-bottom-button wow fadeInUp">
-                  <button
-                  <%= f.submit "Submit", class: "btn" %>> Post!
+                  <button type="submit" class="btn">
+                   Post!
                   </button>
                 </div>
               </div>

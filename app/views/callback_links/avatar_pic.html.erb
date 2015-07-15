@@ -13,6 +13,7 @@
 .fileUpload input.upload {
     position: absolute;
     top: 0;
+    bottom: 0;
     right: 0;
     margin: 0;
     padding: 0;
@@ -44,19 +45,25 @@
           <div class="Alignthisorelse">
             <%= form_for(@user, :multipart => true, html:{role: "form"}) do |f| %>
               <h2>Upload a Profile Picture</h2>
-              <div id="target"> <%= image_tag @user.avatar(:medium) %> </div>
+              <div id="target"> 
+                <%= image_tag @user.avatar(:medium) %> 
+              </div>
               <div class="fileUpload btn-link-1">
                 <span>Upload Avatar</span>
               <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
               </div>
               <h2>Upload a Profile Banner</h2>
-              <div id="target2"> <%= image_tag @user.banner(:medium) %></div>
+              <div id="target2"> 
+                <%= image_tag @user.banner(:medium) %>
+              </div>
               <div class="fileUpload btn-link-1">
                 <span>Upload Banner</span>
-              <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
+                <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
               </div> &nbsp;
               <div>
-                <%= f.submit "Save changes", class: "btn btn-link-1", type: "submit" %>
+                <button type="submit" class="btn btn-link-1">
+                  Save Changes
+                </button>
                 <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
               </div>
             <% end %>
