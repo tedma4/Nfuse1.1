@@ -58,7 +58,7 @@ gem 'google_plus'
 gem 'faraday', '~> 0.9.0'
 gem 'oj', '~> 2.9.3'
 gem 'oj_mimic_json', '~> 1.0.0'
-gem 'newrelic_rpm', '~> 3.8.1.221'
+gem 'newrelic_rpm'
 # #This allows us to use burbon css file
 # gem 'bourbon', '~> 3.2.3'
 # gem 'neat', '~> 1.5.1'
