@@ -52,7 +52,7 @@
         <%= image_tag("commentgray.fw.png", size: "24x24") %>
       </a>
       <a>
-        <%#= post.comment_count %>
+        <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
       </a>
     </li>
     <li class="vr"></li>
