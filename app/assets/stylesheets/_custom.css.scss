@@ -82,7 +82,7 @@ h6 {
   display: inline-block;
 }
 .container_profile {
-  width:75vw;
+  width:75%;
   margin:0 12.5% 0 12.5%;
 }
 .hub {
@@ -107,7 +107,7 @@ img {
 /* #Grid =========================================
 ================================================== */
 .containertotalSignup {
-  width: 100vw;
+  width: 100%;
   margin:0;
   padding:0;
   display: center;
@@ -123,10 +123,10 @@ img {
   z-index: 1;
 }
 .containerMain{
-  width: 75vw;
-  margin-left: 12.5vw;
-  margin-right: 12.5vw;
-  margin-top: 8vh;
+  width: 75%;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 15px;
@@ -137,7 +137,7 @@ img {
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0;
@@ -150,7 +150,7 @@ img {
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0px;
@@ -158,12 +158,12 @@ img {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
 .containerhelp{
-  max-width: 40vw;
+  max-width: 40%;
   min-width: 480px;
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0px;
@@ -171,12 +171,12 @@ img {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
 .containerprivacy{
-  max-width: 40vw;
+  max-width: 40%;
   min-width: 480px;
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0px;
@@ -184,12 +184,12 @@ img {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
 .containerabout{
-  max-width: 40vw;
+  max-width: 40%;
   min-width: 480px;
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0px;
@@ -197,12 +197,12 @@ img {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
 .containercallbacks{
-  max-width: 33vw;
+  max-width: 33%;
   min-width: 480px;
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0px;
@@ -210,12 +210,12 @@ img {
   box-shadow: 5px 3px rgba(100,100,100,0.5);
 }
 .container_avatar_wizard{
-  max-width: 33vw;
+  max-width: 33%;
   min-width: 480px;
   position: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8vh;
+  margin-top: 8%;
   background-color: white;
   padding: 25px;
   border-radius: 0px;
@@ -327,7 +327,7 @@ ul li a:hover + .hidden, .hidden:hover {
 .headerBack {
   background-color: rgba(47,48,54,0.8); //#2f3036; 
   height: 60px;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   position: fixed;
   z-index: 5;
@@ -335,7 +335,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 .Ourfuckinthing {
   height:70px;
-  width: 70vw;
+  width: 70%;
 }
 .headerInput {
   display: inline;
@@ -397,6 +397,7 @@ ul li a:hover + .hidden, .hidden:hover {
 .inLineRight span {
   float: left;
 }
+
 #menu li {
   display:block;  
   margin:0 5px 0 0;
@@ -406,14 +407,14 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 .menuDropdown {
   position: fixed;
-  right: 13vw;
+  right: 13%;
   overflow:show;
   top: 42px;
   z-index: 3;
 }
 .iconBar {
   position: fixed;
-  right: 12.5vw;
+  right: 12.5%;
   top: -2px;
   margin-bottom: 0;
 }
@@ -461,7 +462,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 .hero-text {
   margin:auto;
-  margin-left:33.5vw;
+  margin-left:33.5%;
 }
 /* #Buttons
 ================================================== */
@@ -472,11 +473,11 @@ ul li a:hover + .hidden, .hidden:hover {
   margin-right:0;
 }
 #signupButton {
-  margin-left:40vw;
+  margin-left:40%;
   height:30px;
 }
 #aboutButton {
-  margin-left:3.5vw;
+  margin-left:3.5%;
 }
 .button:hover{
   background-color: #87CEEB;
@@ -698,7 +699,7 @@ td {
 }
 #masonJar {
   margin-right: auto;
-  margin-left: 1vw;
+  margin-left: 1%;
 }
 .userFeedBox {
   background-color: blue;
@@ -789,7 +790,7 @@ td {
 .hubTabs {
   background-color: rgba(47,48,54,0.8);
   position:absolute;
-  right: 22.4vw;
+  right: 22.4%;
   top: 84px;
 }
 .hub_container {
@@ -803,7 +804,7 @@ td {
 }
 .search_container {
   margin: 30px 0 0 0;
-  padding: 0 12.5vw 0 12.5vw;
+  padding: 0 12.5% 0 12.5%;
 }
 /* #Posts
 ================================================= */
@@ -886,7 +887,7 @@ td {
   border-bottom: 5px solid rgba(205,179,139,0.8);
 }
 #content-box-profile {
- height: 100vh;
+ height: 100%;
  top: 0;
 }
 .post_main{
@@ -994,7 +995,7 @@ float: right;
   margin: 0 12.5% 0 12.5%;
 }
 .subNavList li {
-  margin: .5vh 2vw 0 2vw;
+  margin: .5% 2% 0 2%;
 }
 /* #Youtube videos
 =================================================== */
@@ -1222,7 +1223,7 @@ float: right;
 }
 
 .explore_filters {
-  margin: 4px 0 0 30vw;  
+  margin: 4px 0 0 30%;  
   padding: 0;
   height:30px;
   
@@ -1508,7 +1509,7 @@ img { max-width: 100%; }
 }
 
 .top-content .text {
-  padding-top: 6vh;
+  padding-top: 6%;
   color: #fff;
 }
 
@@ -1658,7 +1659,7 @@ img { max-width: 100%; }
 }
 
 .form-bottom-sup-nfusion {
-  padding: 1vw 3vw 1vw 3.6vw;
+  padding: 1% 3% 1% 3.6%;
   background: #eee;
   text-align: left;
 }

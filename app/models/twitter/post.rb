@@ -20,10 +20,6 @@ module Twitter
       ActsAsVotable::Vote.where(votable_id: id).count
     end
 
-    def comment_count(id)
-      Comment.where(commentable_id: id).count
-    end
-
     # User Object * because delegate is not working.
 
     def avatar
