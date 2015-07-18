@@ -1,1 +1,2 @@
 $('#comment_list_<%= @commentable.id %>').append("<%= j render partial: 'shared/comment', locals: { comment: @comment } %>");
+$('#comments-count').html('<%= j Comment.where(commentable_type: obj.class.to_s, commentable_id: obj.id).count %>');
