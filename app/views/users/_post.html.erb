@@ -73,7 +73,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="panel">
-                      <div class="panel-body" id="comment_list_<%= post.id %>">
+                      <div class="panel-body" id="comment_list_<%=post.id%>">
                         <ul class="chat">
                           <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
                             <%= render partial: 'shared/comment', locals: {comment: comment } %>
