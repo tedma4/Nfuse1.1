@@ -11,6 +11,10 @@ class Commented
     return obj.id
   end
 
+  def type
+    obj.type.to_s
+  end
+
   def form_path
     routes = {
           'Twitter::Post' => "/comments/twitter/#{id}",
@@ -34,13 +38,17 @@ class Commented
     { commentable_type: obj.klass.to_s, commentable_id: obj.id }
   end
 
-  def self.set(_klass, value)
-    new(BaseComment.new(_klass, value))
+  def self.set(klass, value)
+    new(BaseComment.new(klass, value))
   end
 
   BaseComment= Struct.new("BaseComment", :klass, :value) do
     def id
       value
+    end
+
+    def type
+      klass.to_s
     end
   end
 

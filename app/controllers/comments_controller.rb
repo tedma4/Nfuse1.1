@@ -35,6 +35,7 @@ class CommentsController < ApplicationController
       @comment = @commentable.build(comment_params.merge(@commentable.extras))
       @comment.update_attribute(:user_id, current_user.id)
     end
+
   end
 
   def update

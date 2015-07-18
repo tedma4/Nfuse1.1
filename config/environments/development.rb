@@ -27,7 +27,7 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_controller.asset_host = 'http://localhost:3000'
+  # config.action_controller.asset_host = 'http://localhost:3000'
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

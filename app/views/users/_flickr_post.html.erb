@@ -44,7 +44,7 @@
       <a data-toggle="modal" data-target="#flickr_modal_<%= post.id %>">
         <%= image_tag("commentgray.fw.png", size: "24x24") %>
       </a>
-      <a>
+      <a id="post_<%=post.id%>_comment_count">
         <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
       </a>
     </li>
@@ -80,7 +80,7 @@
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
             <h3>Comment on <%= post.user.user_name %>'s post</h3>
-          </div>    
+          </div>
             <div class="modal-body">
                 <div class="row-fluid">
                     <div class="span12">
