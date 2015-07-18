@@ -1,30 +1,39 @@
 <style>
-  .<%=post.provider%>_image {
+  .flick_image{
     width: 300px;
   }
 </style>
-<div class="individual_post <%=post.provider%>_post item" data-id="<%=post.id%>" id="content-box-feed">
+<div class="individual_post flickr_post item" data-id="<%= post.id %>" id="content-box-feed">
   <div class="post_main">
-   <ul class="post_header">
-     <li>
-       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
-     </li>
-     <li class="user_name">
-       <%= link_to "#{post.username}", feed_user_path(post.user) %>
-     </li>
-   </ul>
+    <ul class="post_header">
+      <li>
+        <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
+      </li>
+      <li class="user_name">
+        <%= link_to "#{post.username}", feed_user_path(post.user) %>
+      </li>
+    </ul>
   </div>
   <div class="post_content">
-    <%= render partial: "#{post.provider}_post", locals: {post: post} %>
+    <div class="timeline-user-box">
+      <%= image_tag(post.low_resolution_image_url, :class => "image_post flick_image") %>
+    </div>
+    <% if post.caption.present? %>
+      <div class="center">
+        <%= post.caption %>
+      </div>
+    <% end %>
+    <br>
   </div>
   <div class="right">
   </div>
+
   <ul class="post_actions">
     <li class="tilt">
       <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
                   like_shout_path(id: post.id,
                                   owner_id: post.user.id,
-                                  key: post.provider),
+                                  key: :flickr),
                   method: :post, remote: true %>
       <a id="shout-<%=post.id%>">
         <%= post.like_score(post.id) %>
@@ -32,26 +41,39 @@
     </li>
     <li class="vr"></li>
     <li class="tilt">
-      <a data-toggle="modal" data-target="#<%=post.provider%>_modal_<%= post.id %>">
+      <a data-toggle="modal" data-target="#flickr_modal_<%= post.id %>">
         <%= image_tag("commentgray.fw.png", size: "24x24") %>
       </a>
       <a id="post_<%=post.id%>_comment_count">
         <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
       </a>
     </li>
+    <li class="vr"></li>
     <li class="tilt">
-      <%= link_to image_tag("#{post.provider}blue.fw.png",
+      <%= link_to image_tag("flickrblue.fw.png",
                             size: "24x24",
-                            :class => "#{post.provider}_provider_logo"),
+                            :class => "flickr_provider_logo"),
                   post.link_to_post,
                   :target => "_blank" %>
       <p class="timeStamp">
         <%= time_ago_in_words(post.created_time) %> ago
       </p>
+      <%#= link_to image_tag("testbeakergray.fw.png", size: "24x24"),
+        user_nfused_page_path(id: post.id,
+                        owner_id: post.user.id,
+                        user_id:  current_user.id, key: :flickr, url: ( post.low_resolution_image_url || '') ),
+                        method: :post, remote: true %>
     </li>
+    <!--     <li class="vr"></li>
+      <%# unless !current_user?(post.user) %>
+        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
+      <%# else %>
+        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
+      <%# end %> -->
   </ul>
+
 </div>
-<div id="<%=post.provider%>_modal_<%=post.id%>" class="modal fade">
+<div id="flickr_modal_<%= post.id %>" class="modal fade">
   <div class="modal-fade">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -65,7 +87,15 @@
               <div class="span6">
                 <div class="logowrapper">
                   <div class="post_content">
-                    <%= render partial: "#{post.provider}_comments", locals: {post: post}%>
+                    <div class="modal-timeline-user-box center">
+                      <%= image_tag(post.low_resolution_image_url, :class => "image_post flickr_post") %>
+                    </div>
+                    <% if post.caption.present? %>
+                      <div class="center">
+                        <%= post.caption %>
+                      </div>
+                    <% end %>
+                    <br>
                   </div>
                 </div>
               </div>
@@ -94,4 +124,3 @@
     </div>
   </div>
 </div>
-

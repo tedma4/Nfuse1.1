@@ -12,45 +12,35 @@
 <div id="masonJar" class="feed_container clearfix masonJar" data-user-id="<%= @user.id %>" >
   <% if @timeline.present? %>
     <% @timeline.each do |post| %>
-      <% if post.provider == 'twitter' %>
-        <%= render partial: "twitter_post", locals: {post: post} %>
-      <% elsif post.provider == "instagram" %>
-        <%= render partial: "instagram_post", locals: {post: post} %>
-      <%# elsif post.provider == "facebook" %>
-        <%#= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
-      <% elsif post.provider == "nfuse" %>
+      <% case post.provider %>
+      <% when "nfuse" %>
         <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
         <%=  render partial: 'users/shout', locals: {shout: post} %>
-      <% elsif post.provider == "youtube" %>
-          <%= render partial: "users/youtube_post", locals: {post: post} %>
-      <% elsif post.provider == "gplus" %>
+      <% when "gplus" %>
         <% if post.type != 'hiddenType' %>
-          <%= render partial: "users/gplus_post", locals: {post: post} %>
+          <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
-      <% elsif post.provider == "vimeo" %>
-        <%= render partial: "users/vimeo_posts", locals: {post: post} %>
-      <% elsif post.provider == "pinterest" %>
-        <%= render partial: "users/pinterest_post", locals: {post: post} %>
-      <% elsif post.provider == "flickr" %>
-        <%= render partial: "users/flickr_post", locals: {post: post} %>
-      <% elsif post.provider == "tumblr" %>
+      <% when "tumblr" %>
         <% unless post.type == 'chat' || post.type == 'audio' %>
           <%= render partial: "users/tumblr_post", locals: {post: post} %>
         <% end %>
+      <% else %>
+        <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
+
     <% end %>
   <div class="load_posts_link">
     <%= link_to "Load more posts", @load_more_url, id: "load-more" %>
   </div>
-<% elsif @timeline.blank? && @unauthed_accounts.empty? %>
-  <div id="empty_feed_container">
-    <% unless !current_user?(@user) %>
-      <%= render partial: "link_networks" %>
-    <% else %>
-    <p> This user has not Nfused their networks. </p>
-    <%= image_tag("sadface.fw.png", size:"100x100") %>
-    <% end %>
+  <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
+    <div id="empty_feed_container">
+      <% unless !current_user?(@user) %>
+        <%= render partial: "link_networks" %>
+      <% else %>
+      <p> This user has not Nfused their networks. </p>
+      <%= image_tag("sadface.fw.png", size:"100x100") %>
+      <% end %>
+    </div>
+  <% end %>
   </div>
-<% end %>
-</div>
-<!-- *End* Views/users/feed.html.erb  -->
+  <!-- *End* Views/users/feed.html.erb  -->
