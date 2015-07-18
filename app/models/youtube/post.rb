@@ -29,7 +29,7 @@ module Youtube
     end
 
     def provider
-      "google_oauth2"
+      "youtube"
     end
 
     def created_time

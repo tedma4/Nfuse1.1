@@ -8,7 +8,7 @@
       <%= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
     <% elsif post.provider == "nfuse" %>
       <%  render partial: 'users/shout', locals: {shout: post} %>
-      <% elsif post.provider == "google_oauth2" %>
+      <% elsif post.provider == "youtube" %>
         <%= render partial: "users/youtube_post", locals: {post: post} %>
       <% elsif post.provider == "vimeo" %>
         <%= render partial: "users/vimeo_posts", locals: {post: post} %>

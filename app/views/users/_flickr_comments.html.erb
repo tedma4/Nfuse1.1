@@ -1,0 +1,9 @@
+<div class="modal-timeline-user-box center">
+  <%= image_tag(post.low_resolution_image_url, :class => "image_post flickr_post") %>
+</div>
+<% if post.caption.present? %>
+  <div class="center">
+    <%= post.caption %>
+  </div>
+<% end %>
+<br>

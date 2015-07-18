@@ -21,7 +21,7 @@
       <% elsif post.provider == "nfuse" %>
         <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
         <%=  render partial: 'users/shout', locals: {shout: post} %>
-      <% elsif post.provider == "google_oauth2" %>
+      <% elsif post.provider == "youtube" %>
           <%= render partial: "users/youtube_post", locals: {post: post} %>
       <% elsif post.provider == "gplus" %>
         <% if post.type != 'hiddenType' %>

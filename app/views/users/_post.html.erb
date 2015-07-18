@@ -1,0 +1,97 @@
+<style>
+  .<%=post.provider%>_image {
+    width: 300px;
+  }
+</style>
+<div class="individual_post <%=post.provider%>_post item" data-id="<%=post.id%>" id="content-box-feed">
+  <div class="post_main">
+   <ul class="post_header">
+     <li>
+       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
+     </li>
+     <li class="user_name">
+       <%= link_to "#{post.username}", feed_user_path(post.user) %>
+     </li>
+   </ul>
+  </div>
+  <div class="post_content">
+    <%= render partial: "#{post.provider}_post", locals: {post: post} %>
+  </div>
+  <div class="right">
+  </div>
+  <ul class="post_actions">
+    <li class="tilt">
+      <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+                  like_shout_path(id: post.id,
+                                  owner_id: post.user.id,
+                                  key: post.provider),
+                  method: :post, remote: true %>
+      <a id="shout-<%=post.id%>">
+        <%= post.like_score(post.id) %>
+      </a>
+    </li>
+    <li class="vr"></li>
+    <li class="tilt">
+      <a data-toggle="modal" data-target="#<%=post.provider%>_modal_<%= post.id %>">
+        <%= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
+      <a id="post_<%=post.id%>_comment_count">
+        <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
+      </a>
+    </li>
+    <li class="tilt">
+      <%= link_to image_tag("#{post.provider}{blue.fw.png",
+                            size: "24x24",
+                            :class => "#{post.provider}_provider_logo"),
+                  post.link_to_post,
+                  :target => "_blank" %>
+      <p class="timeStamp">
+        <%= time_ago_in_words(post.created_time) %> ago
+      </p>
+    </li>
+  </ul>
+</div>
+<div id="<%=post.provider%>_modal_<%=post.id%>" class="modal fade">
+  <div class="modal-fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">×</button>
+          <h3>Comment on <%= post.user.user_name %>'s post</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="span6">
+                <div class="logowrapper">
+                  <div class="post_content">
+                    <%= render partial: "#{post.provider}_comments", locals: {post: post}%>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="panel">
+                      <div class="panel-body" id="comment_list_<%= post.id %>">
+                        <ul class="chat">
+                          <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
+                            <%= render partial: 'shared/comment', locals: {comment: comment } %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

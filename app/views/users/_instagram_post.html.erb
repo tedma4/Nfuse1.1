@@ -1,149 +1,21 @@
-
-<div class="individual_post instagram_post item" data-id="<%= post.id %>" id="content-box-feed">
-  <div class="post_main">
-    <ul class="post_header">
-      <li>
-        <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size:"50x50"), feed_user_path(post.user) %>
-      </li>
-      <li class="user_name">
-        <%= link_to "#{post.username}", feed_user_path(post.user) %></li>
-    </ul>
-  </div>
-  <div class="post_content">
-    <% if post.type == "image" %>
-        <div class="timeline-user-box">
-          <%= image_tag(post.low_resolution_image_url, :class => "image_post") %>
-        </div>
-        <% if post.caption.present? %>
-        <div class="center">
-          <%= post.caption_text %>
-        </div>
-        <% end %>
-      <br>
-    <% elsif post.type == "video" %>
-         <video width="100%" height="258" class="image_post" controls>
-           <source src="<%= post.video %>" type="video/mp4">
-         </video>
-        <% if post.caption.present? %>
-        <div class="center">
-          <%= post.caption_text %>
-        </div>
-        <% end %>
-      <br>
-    <% end %>
-  </div>
-
-  <div class="right">
-  </div>
-  
-  <ul class="post_actions">
-    <li class="tilt"><%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-     like_shout_path(id: post.id, 
-               owner_id: post.user.id, 
-               key: :instagram), 
-               method: :post, remote: true %>
-     <a id="shout-<%=post.id%>">
-       <%= post.like_score(post.id) %>
-     </a>
-    </li>
-    <li class="vr"></li>
-    <li class="tilt">
-      <a data-toggle="modal" data-target="#instagram_modal_<%= post.id %>">
-        <%= image_tag("commentgray.fw.png", size: "24x24") %>
-      </a>
-      <a>
-        <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
-      </a>
-    </li>
-    <li class="vr"></li>
-    <li class="tilt">
-      <%= link_to image_tag("instagramblue.fw.png", 
-                            size: "24x24", 
-                            :class => "instagram_provider_logo"), 
-                            post.link_to_post, 
-                            :target => "_blank" %>
-      <p class="timeStamp">
-        <%= time_ago_in_words(post.created_time) %> ago
-      </p>
-      <%#= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
-        user_nfused_page_path(id: post.id,
-                        owner_id: post.user.id,
-                        user_id:  current_user.id, key: :instagram, url: ( post.low_resolution_image_url || '') ),
-                        method: :post, remote: true %>
-    </li>
-
-<!--     <li class="vr"></li>
-      <%# unless !current_user?(post.user) %>
-        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <%# else %>
-        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <%# end %> -->
-  </ul>
-
-</div>
-
-  <div id="instagram_modal_<%= post.id %>" class="modal fade">
-    booo
-    <div class="modal-fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Comment on <%= post.user.user_name %>'s post</h3>
-          </div>
-            <div class="modal-body">
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="span6">
-                          <div class="logowrapper">
-                            <div class="post_content">
-                              <% if post.type == "image" %>
-                                  <div class="modal-timeline-user-box center">
-                                    <%= image_tag(post.low_resolution_image_url, :class => "image_post") %>
-                                  </div>
-                                  <% if post.caption.present? %>
-                                  <div class="center">
-                                    <%= post.caption_text %>
-                                  </div>
-                                  <% end %>
-                                <br>
-                              <% elsif post.type == "video" %>
-                                   <video width="100%" height="258" class="image_post" controls>
-                                     <source src="<%= post.video %>" type="video/mp4">
-                                   </video>
-                                  <% if post.caption.present? %>
-                                  <div class="center">
-                                    <%= post.caption_text %>
-                                  </div>
-                                  <% end %>
-                                <br>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="panel">
-                                <div class="panel-body" id="comment_list_<%= post.id %>">
-                                  <ul class="chat">
-                                <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
-                                  <%= render partial: 'shared/comment', locals: {comment: comment } %>
-                                    <% end %>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
+<% if post.type == "image" %>
+    <div class="timeline-user-box">
+      <%= image_tag(post.low_resolution_image_url, :class => "image_post") %>
     </div>
-  </div>
-
+    <% if post.caption.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+    <% end %>
+  <br>
+<% elsif post.type == "video" %>
+     <video width="100%" height="258" class="image_post" controls>
+       <source src="<%= post.video %>" type="video/mp4">
+     </video>
+    <% if post.caption.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+    <% end %>
+  <br>
+<% end %>
