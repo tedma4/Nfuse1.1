@@ -20,6 +20,10 @@ module Twitter
       ActsAsVotable::Vote.where(votable_id: id).count
     end
 
+    def id
+      @tweet.id
+    end
+
     # User Object * because delegate is not working.
 
     def avatar
@@ -28,6 +32,10 @@ module Twitter
 
     def username
       @user.user_name
+    end
+
+    def link_to_post
+      "https://twitter.com/#{username}/status/#{id}"
     end
 
     def created_time

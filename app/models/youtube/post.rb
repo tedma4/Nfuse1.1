@@ -29,7 +29,7 @@ module Youtube
     end
 
     def provider
-      "google_oauth2"
+      "youtube"
     end
 
     def created_time
@@ -60,5 +60,8 @@ module Youtube
     def link_to_video
       "https://www.youtube.com/watch?v=#{@post.id}"
     end
+
+    alias_method :link_to_post, :link_to_video
+
   end
 end

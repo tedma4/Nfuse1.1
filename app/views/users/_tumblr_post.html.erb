@@ -1,236 +1,66 @@
-<style>
-  .tumblr_image{
-    width: 300px;
-  }
-</style>
-  <div class="individual_post tumblr_post item " data-id="<%= post.id %>" id="content-box-feed">
-  <div class="post_main">
-    <ul class="post_header">
-      <li>
-        <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
-      </li>
-      <li class="user_name">
-        <%= link_to "#{post.username}", feed_user_path(post.user) %>
-      </li>     
-    </ul>
+<div class="post_content">
+<% if post.type == 'photo'%>
+  <div class="timeline-user-box">
+    <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
   </div>
-  <div class="post_content">
-    <% if post.type == 'photo'%>
-      <div class="timeline-user-box">
-        <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
-      </div>
-      <% if post.caption_text.present? %>
+  <% if post.caption_text.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+  <% end %>
+  <br>
+<% elsif post.type == 'video' %>
+    <div class="timeline-user-box">
+      <iframe
+      id="ytplayer"
+      type="text/html"
+      width="100%"
+      height="225"
+      src="<%= post.video %>"
+      frameborder="0"
+      allowfullscreen>
+      </iframe>
+    </div>
+    <% if post.caption_text.present? %>
         <div class="center">
           <%= post.caption_text %>
         </div>
-      <% end %>
-      <br>
-    <% elsif post.type == 'video' %>
-        <div class="timeline-user-box">
-          <iframe
-          id="ytplayer"
-          type="text/html"
-          width="100%"
-          height="225"
-          src="<%= post.video %>"
-          frameborder="0"
-          allowfullscreen>
-          </iframe>
-        </div>
-        <% if post.caption_text.present? %>
-            <div class="center">
-              <%= post.caption_text %>
-            </div>
-        <% end %>
-        <br>
-    <% elsif post.type == 'audio' %>
-        <div class="timeline-user-box">
-          <Iframe
-          <%= post.audio %>>
-
-          </Iframe>
-        </div>
-        <% if post.caption_text.present? %>
-            <div class="center">
-              <%= post.caption_text %>
-            </div>
-        <% end %>
-        <br>
-    <% elsif post.type == 'text'  %>
-        <div class="center">
-          <%= post.body %>
-        </div>
-    <% elsif post.type == 'quote'  %>
-        <div class="center">
-          <%= post.text %>
-        </div>
-        <br>
-    <% elsif post.type == 'link'  %>
-        <div class="center">
-          <a href="#{ post.link_to_url}">
-            <%= post.excerpt %>
-          </a>
-          <%= post.description %>
-        </div>
-        <br>
-    <% else %>
-      <div class="center">
-        <%= post.caption_text %>
-      </div>
-      <br>
     <% end %>
-  </div>
+    <br>
+<% elsif post.type == 'audio' %>
+    <div class="timeline-user-box">
+      <Iframe
+      <%= post.audio %>>
 
-
-  <div class="right">
-  </div>
-  
-  <ul class="post_actions">
-    <li class="tilt">
-      <%= link_to image_tag("smilinggray.fw.png", size: "24x24"), 
-        like_shout_path(id:       post.id,
-                        owner_id: post.user.id,
-                        key: :tumblr), 
-                        method: :post, remote: true %>
-      <a id="shout-<%=post.id%>">
-        <%= post.like_score(post.id) %>
-      </a>
-    </li>
-    <li class="vr"></li>
-    <li class="tilt">
-      <a data-toggle="modal" data-target="#tumblr_modal_<%= post.id %>">
-        <%= image_tag("commentgray.fw.png", size: "24x24") %>
-      </a>
-      <a>
-        <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
-      </a>
-    </li>
-    <li class="vr"></li>
-    <li class="tilt">
-      <%= link_to image_tag("tumblrblue.fw.png", 
-                            :class => "provider_logo", 
-                            size: "24x24"), 
-                            post.link_to_post, 
-                            :target => "_blank" %>
-      <p class="timeStamp">
-        <%= time_ago_in_words(post.created_time) %> ago
-      </p>
-      <%#= link_to image_tag("favouritedarkgray.fw.png", size: "24x24"),
-        user_nfused_page_path(id: post.id,
-                        owner_id: post.user.id,
-                        user_id:  current_user.id,
-                        key: :tumblr, url: ( post.id || '') ),
-                        method: :post, remote: true %>
-    </li>
-
-<!--     <li class="vr"></li>
-      <%# unless !current_user?(post.user) %>
-        <li class="tilt"><%#= image_tag("delete3gray.fw.png", size: "24x24") %></li>
-      <%# else %>
-        <li class="tilt"><%#= image_tag("share1gray.fw.png", size: "24x24") %></li>
-      <%# end %> -->
-  </ul>
-</div>
-  <div id="tumblr_modal_<%= post.id %>" class="modal fade">
-    <div class="modal-fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Comment on <%= post.user.user_name %>'s post</h3>
-          </div>    
-            <div class="modal-body">
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="span6">
-                          <div class="logowrapper">
-                            <div class="post_content">
-                              <% if post.type == 'photo'%>
-                                  <div class="modal-timeline-user-box center">
-                                    <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
-                                  </div>
-                                  <% if post.caption_text.present? %>
-                                  <div class="center">
-                                    <%= post.caption_text %>
-                                  </div>
-                                  <% end %>
-                                <br>
-                              <% elsif post.type == 'video' %>
-                                  <div class="modal-timeline-user-box center">
-                                    <iframe
-                                    id="ytplayer"
-                                    type="text/html"
-                                    width="100%"
-                                    height="225"
-                                    src="<%= post.video %>"
-                                    frameborder="0"
-                                    allowfullscreen>
-                                    </iframe>
-                                  </div>
-                                  <% if post.caption_text.present? %>
-                                      <div class="center">
-                                        <%= post.caption_text %>
-                                      </div>
-                                  <% end %>
-                                  <br>
-                              <% elsif post.type == 'audio' %>
-                                  <div class="modal-timeline-user-box center">
-                                    <iframe 
-                                    id="ytplayer"
-                                    <%= post.audio %>>
-                                    </iframe>
-                                  </div>
-                                  <% if post.caption_text.present? %>
-                                      <div class="center">
-                                        <%= post.caption_text %>
-                                      </div>
-                                  <% end %>
-                                  <br>
-                              <% elsif post.type == 'text'  %>
-                                  <div class="center">
-                                    <%= post.body %>
-                                  </div>
-                              <% elsif post.type == 'quote'  %>
-                                  <div class="center">
-                                    <%= post.text %>
-                                  </div>
-                              <% elsif post.type == 'link'  %>
-                                  <div class="center">
-                                    <a href="#{ post.link_to_url}">
-                                      <%= post.excerpt %>
-                                    </a>
-                                    <%= post.description %>
-                                  </div>
-                              <% else %>
-                                <div class="center">
-                                  <%= post.caption_text %>
-                                </div>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="panel">
-                                <div class="panel-body" id="comment_list_<%= post.id %>">
-                                  <ul class="chat">
-                                <% Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).each do |comment| %>
-                                  <%= render partial: 'shared/comment', locals: {comment: comment } %>
-                                    <% end %>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(post) } %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
+      </Iframe>
     </div>
+    <% if post.caption_text.present? %>
+        <div class="center">
+          <%= post.caption_text %>
+        </div>
+    <% end %>
+    <br>
+<% elsif post.type == 'text'  %>
+    <div class="center">
+      <%= post.body %>
+    </div>
+<% elsif post.type == 'quote'  %>
+    <div class="center">
+      <%= post.text %>
+    </div>
+    <br>
+<% elsif post.type == 'link'  %>
+    <div class="center">
+      <a href="#{ post.link_to_url}">
+        <%= post.excerpt %>
+      </a>
+      <%= post.description %>
+    </div>
+    <br>
+<% else %>
+  <div class="center">
+    <%= post.caption_text %>
   </div>
+  <br>
+<% end %>
+</div>

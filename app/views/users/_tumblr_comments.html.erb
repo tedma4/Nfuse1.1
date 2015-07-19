@@ -1,0 +1,63 @@
+<div class="post_content">
+<% if post.type == 'photo'%>
+  <div class="modal-timeline-user-box center">
+    <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
+  </div>
+  <% if post.caption_text.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+  <% end %>
+  <br>
+<% elsif post.type == 'video' %>
+  <div class="modal-timeline-user-box center">
+    <iframe
+    id="ytplayer"
+    type="text/html"
+    width="100%"
+    height="225"
+    src="<%= post.video %>"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+  </div>
+  <% if post.caption_text.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+  <% end %>
+  <br>
+<% elsif post.type == 'audio' %>
+  <div class="modal-timeline-user-box center">
+    <iframe
+    id="ytplayer"
+    <%= post.audio %>>
+    </iframe>
+  </div>
+  <% if post.caption_text.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+  <% end %>
+  <br>
+<% elsif post.type == 'text'  %>
+  <div class="center">
+    <%= post.body %>
+  </div>
+<% elsif post.type == 'quote'  %>
+  <div class="center">
+    <%= post.text %>
+  </div>
+<% elsif post.type == 'link'  %>
+  <div class="center">
+    <a href="#{ post.link_to_url}">
+      <%= post.excerpt %>
+    </a>
+    <%= post.description %>
+  </div>
+<% else %>
+  <div class="center">
+    <%= post.caption_text %>
+  </div>
+<% end %>
+</div>

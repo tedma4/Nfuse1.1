@@ -94,36 +94,7 @@
                         <div class="span6">
                           <div class="logowrapper">
                             <div class="post_content">
-                              <ul>
-                                <% if post.story %>
-                                  <li><%= post.story %></li>
-                                <% end %>
-                                <% if post.image %>
-                                  <li><%= image_tag(post.image) %></li>
-                                <% end %>
-                                <% if post.caption_text && post.status_type != "shared_story" %>
-                                  <li><%= post.caption_text %></li>
-                                <% end %>
-                                <% if post.article_link && post.type == "link" %>
-                                  <li><%= link_to "View the Link", post.article_link, :target => "_blank" %></li>
-                                <% end %>
-                              </ul>
-                              <% if post.story_tags %>
-                                <ul class="story_tags">
-                                  <% post.story_tags.each do |story_tag| %>
-                                    <% if story_tag.type == "user" %>
-                                      <li><%= link_to story_tag.name, story_tag.link_to_profile, :target => "_blank" %></li>
-                                    <% else %>
-                                      <li><%= story_tag.name %></li>
-                                    <% end %>
-                                  <% end %>
-                                  <% if post.story_tags.length > 1 %>
-                                    <li>were tagged in this post.</li>
-                                  <% else %>
-                                    <li>was tagged in this post.</li>
-                                  <% end %>
-                                </ul>
-                              <% end %>
+
                             </div><br>
                           </div>
                         </div>

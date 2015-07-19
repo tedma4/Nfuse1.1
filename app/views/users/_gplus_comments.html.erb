@@ -1,0 +1,34 @@
+<% if post.type == 'photo'%>
+  <div class="modal-timeline-user-box center">
+    <%= image_tag(post.photo, :class => "image_post gplusplus_image") %>
+  </div>
+  <% if post.caption.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+  <% end %>
+  <br>
+<% elsif post.type == 'video' %>
+  <div class="modal-timeline-user-box center">
+    <iframe
+    id="ytplayer"
+    type="text/html"
+    width="100%"
+    height="225"
+    src="<%= post.video %>"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+  </div>
+  <% if post.caption.present? %>
+    <div class="center">
+      <%= post.caption_text %>
+    </div>
+  <% end %>
+  <br>
+<% else %>
+  <div class="center">
+    <%= post.caption_text %>
+  </div>
+  <br>
+<% end %>
