@@ -13,7 +13,7 @@
 	  <% @timeline.each do |post| %>
 	    <% if post.provider == "gplus" %>
 	        <% if post.type != 'hiddenType' %>
-	          <%= render partial: "users/gplus_post", locals: {post: post} %>
+	      		<%= render partial: "users/post", locals: {post: post} %>
 	        <% end %>
 	    <% end %>
 	  <% end %>

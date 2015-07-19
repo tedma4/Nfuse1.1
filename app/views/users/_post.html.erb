@@ -3,7 +3,7 @@
     width: 300px;
   }
 </style>
-<div class="individual_post <%=post.provider%>_post item" data-id="<%=post.id%>" id="content-box-feed">
+<div class="individual_post item <%=post.provider%>_post" data-id="<%=post.id%>" id="content-box-feed">
   <div class="post_main">
    <ul class="post_header">
      <li>
@@ -15,7 +15,7 @@
    </ul>
   </div>
   <div class="post_content">
-    <%= render partial: "#{post.provider}_post", locals: {post: post} %>
+    <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
   </div>
   <div class="right">
   </div>
@@ -65,7 +65,7 @@
               <div class="span6">
                 <div class="logowrapper">
                   <div class="post_content">
-                    <%= render partial: "#{post.provider}_comments", locals: {post: post}%>
+                    <%= render partial: "users/#{post.provider}_comments", locals: {post: post}%>
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@
 	  <% @timeline.each do |post| %>
 	    <% if post.provider == "tumblr" %>
 	      <% unless post.type == 'chat' || post.type == 'audio' %>
-	        <%= render partial: "users/tumblr_post", locals: {post: post} %>
+	      	<%= render partial: "users/post", locals: {post: post} %>
 	      <% end %>
 	    <% end %>
 	  <% end %>
