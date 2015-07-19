@@ -2,21 +2,7 @@ $("a#post_<%=@commentable.id%>_comment_count").text("<%=@comments.count%>");
 $("div#comment_list_<%= @commentable.id %>").html(' \
         <ul class="chat">' +
           <% Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id).each do |comment| %>
-            '<li class="left clearfix"> \
-              <span class="chat-img pull-left">\
-              <%= link_to image_tag(comment.user.avatar(:thumb), class: "user_profile_picture"), feed_user_path(comment.user) %> \
-              </span>\
-              <div class="chat-body clearfix">\
-               <div>\
-                 <strong class="primary-font">\
-                   <%= comment.user.user_name %> \
-                 </strong> \
-               </div>\
-               <p>\
-                 <%= comment.body %>\
-               </p>\
-              </div>\
-            </li>' +
+            '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
           <% end %>
         '</ul>'
 );
