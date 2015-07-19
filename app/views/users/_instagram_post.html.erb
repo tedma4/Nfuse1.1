@@ -7,7 +7,6 @@
       <%= post.caption_text %>
     </div>
     <% end %>
-  <br>
 <% elsif post.type == "video" %>
      <video width="100%" height="258" class="image_post" controls>
        <source src="<%= post.video %>" type="video/mp4">
@@ -17,5 +16,4 @@
       <%= post.caption_text %>
     </div>
     <% end %>
-  <br>
 <% end %>

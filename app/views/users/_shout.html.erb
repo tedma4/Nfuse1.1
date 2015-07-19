@@ -1,5 +1,7 @@
 <style>
-
+.url_caption {
+  margin-top: -12px;
+}
 li {
   display: block;
 }
@@ -71,12 +73,12 @@ li {
   <div class="post_content">
     <% if !shout.url.blank? %>
       <p> <%= shout.url_html %></p>
-      <div class="caption">
+      <div class="url_caption">
         <%= shout.content %>
         <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
       </div>
     <% elsif shout.is_pic? %>
-      <div class="timeline-user-box">
+      <div class="timeline-user-box image_post">
         <%= image_tag shout.pic_url %>
       </div>
       <div class="caption">

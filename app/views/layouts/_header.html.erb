@@ -8,15 +8,21 @@
         display: none;
     }
 }
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1000px) {
       #fadeshow_login1 {
           display: none;
       }
   }
-  @media only screen and (max-width: 800px) and (min-width: 1px) {
+  @media (min-width: 1000px) {
       #fadeshow_login3 {
-          display: block;
+          display: none;
       }
+  }
+
+  .login_small {
+    margin-top: 16px;
+    font-size: 1.6em;
+    font-weight: 500;
   }
 </style>
 <div class="Ourfuckinthing"></div>
@@ -90,8 +96,8 @@
       </button>
     <% end %>
   </div>
-  <div class="navbar-right" id="fadeshow_login3">
-    <%= link_to 'Log In', signin_path, class: "btn btn-link-2" %>
+  <div class="navbar-right login_small" id="fadeshow_login3">
+    <%= link_to 'Log In', signin_path%>
   </div>
 <% end %>
 

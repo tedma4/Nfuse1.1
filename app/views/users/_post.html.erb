@@ -16,6 +16,7 @@
   </div>
   <div class="post_content">
     <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+    <br>
   </div>
   <div class="right">
   </div>
@@ -39,6 +40,7 @@
         <%= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
       </a>
     </li>
+    <li class="vr"></li>
     <li class="tilt">
       <%= link_to image_tag("#{post.provider}blue.fw.png",
                             size: "24x24",

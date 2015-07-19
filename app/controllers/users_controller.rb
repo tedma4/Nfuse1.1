@@ -254,16 +254,18 @@ class UsersController < ApplicationController
   def explore_only_pages
     @providers = Providers.for(@user)
     timeline = []
-    @users = User.where.not(id: [current_user.followed_users.collect(&:id), current_user.id])
-    @users.each do |user|
-      feed=Feed.new(user)
-      timeline << feed.construct(params)
-
-    @unauthed_accounts              = feed.unauthed_accounts
-    @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-    @commenter_profile_hash         = feed.commenter_profile_hash
+    ids =  current_user.followed_users.collect(&:id)
+    ids << current_user.id
+    unless ids.empty?
+      @users = User.where.not(id: ids)
+      @users.each do |user|
+        feed=Feed.new(user)
+        timeline << feed.construct(params)
+        @unauthed_accounts              = feed.unauthed_accounts
+        @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
+        @commenter_profile_hash         = feed.commenter_profile_hash
+      end
     end
-
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 

@@ -1,13 +1,12 @@
 <% case post.type %>
   <% when 'photo' %>
     <div class="timeline-user-box">
-      <%= image_tag(post.photo, :class => "image_post gplusplus_image") %>
+      <%= image_tag(post.photo, :class => "image_post gplus_image") %>
     </div>
     <% if post.caption.present? %>
       <div class="center">
         <%= post.caption_text %>
       </div>
-      <br>
     <% end %>
   <% when 'video' %>
     <div class="timeline-user-box">
@@ -25,12 +24,10 @@
       <div class="center">
         <%= post.caption_text %>
       </div>
-    <br>
     <% end %>
 <% else %>
   <div class="center">
     <%= post.caption_text %>
   </div>
-  <br>
 <% end %>
 

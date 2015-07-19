@@ -8,7 +8,6 @@
       <%= post.caption_text %>
     </div>
   <% end %>
-  <br>
 <% elsif post.type == 'video' %>
     <div class="timeline-user-box">
       <iframe
@@ -26,12 +25,10 @@
           <%= post.caption_text %>
         </div>
     <% end %>
-    <br>
 <% elsif post.type == 'audio' %>
     <div class="timeline-user-box">
       <Iframe
       <%= post.audio %>>
-
       </Iframe>
     </div>
     <% if post.caption_text.present? %>
@@ -39,7 +36,6 @@
           <%= post.caption_text %>
         </div>
     <% end %>
-    <br>
 <% elsif post.type == 'text'  %>
     <div class="center">
       <%= post.body %>
@@ -48,7 +44,6 @@
     <div class="center">
       <%= post.text %>
     </div>
-    <br>
 <% elsif post.type == 'link'  %>
     <div class="center">
       <a href="#{ post.link_to_url}">
@@ -56,11 +51,9 @@
       </a>
       <%= post.description %>
     </div>
-    <br>
 <% else %>
   <div class="center">
     <%= post.caption_text %>
   </div>
-  <br>
 <% end %>
 </div>

@@ -764,6 +764,12 @@ td {
   text-decoration: none;
   color: #87CEEB;
 }
+.total_like_counter{
+  font-weight: 600;
+  font-size: 1em;
+  text-decoration: none;
+  color: #888;
+}
 /* #Hub
 ================================================= */
 .tab {
@@ -968,7 +974,7 @@ td {
 
 }
 .post_actions li{
-  padding-left: 2%;
+  padding-right: 10px;
 }
 .right{
   //float: right;

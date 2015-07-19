@@ -4,7 +4,7 @@
 <% if current_user.followed_users.empty? %>
   <div class="center">
     <p> Can't display posts because you aren't following anyone... </p>
-    <p> Why aren't you following someone yet? </p>
+    <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
     <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
     <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
   </div>
