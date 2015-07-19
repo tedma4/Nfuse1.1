@@ -22,7 +22,7 @@
         <% end %>
       <% when "tumblr" %>
         <% unless post.type == 'chat' || post.type == 'audio' %>
-          <%= render partial: "users/tumblr_post", locals: {post: post} %>
+          <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
       <% else %>
         <%= render partial: "users/post", locals: {post: post} %>

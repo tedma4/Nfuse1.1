@@ -8,7 +8,7 @@ module Vimeo::Api
       "https://vimeo.com/"
     end
 
-    def link_to_video
+    def link_to_post
       @post.link
     end
 

@@ -50,7 +50,7 @@ module Nfuse
       @shout.link
     end
 
-    alias_method :link_to_post, link
+    alias_method :link_to_post, :link
 
     def is_link?
       @shout.is_link

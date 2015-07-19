@@ -8,6 +8,16 @@
         display: none;
     }
 }
+  @media only screen and (max-width: 800px) {
+      #fadeshow_login1 {
+          display: none;
+      }
+  }
+  @media only screen and (max-width: 800px) and (min-width: 1px) {
+      #fadeshow_login3 {
+          display: block;
+      }
+  }
 </style>
 <div class="Ourfuckinthing"></div>
 <div class="headerBack">
@@ -65,7 +75,7 @@
 
 <% else %> <!-- else _header-->
 
-  <div class="login_form_position">
+  <div class="login_form_position" id="fadeshow_login1">
     <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
       <div class="input-group">
         <span class="input-group-addon"><%= image_tag("male80.png", size: "15x15") %></span>
@@ -79,6 +89,9 @@
         Log in!
       </button>
     <% end %>
+  </div>
+  <div class="navbar-right" id="fadeshow_login3">
+    <%= link_to 'Log In', signin_path, class: "btn btn-link-2" %>
   </div>
 <% end %>
 

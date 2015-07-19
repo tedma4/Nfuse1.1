@@ -4,7 +4,7 @@
 <div id="masonJar" class="center explore_container clearfix masonJar">
   <% @timeline.each do |post| %>
     <% if post.provider == "vimeo" %>
-      <%= render partial: "users/vimeo_posts", locals: {post: post} %>
+      <%= render partial: "users/posts", locals: {post: post} %>
     <% end %>
   <% end %>
 </div>
