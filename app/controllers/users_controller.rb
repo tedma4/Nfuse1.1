@@ -98,6 +98,10 @@ class UsersController < ApplicationController
         instagram_max_id:       feed.instagram_max_id,
         nfuse_post_last_id:     feed.nfuse_pagination_id,
         youtube_pagination:     feed.youtube_pagination_id,
+        gplus_pagination:       feed.gplus_pagination_id,
+        tumblr_pagination:      feed.tumblr_pagination_id,
+        vimeo_pagination:       feed.vimeo_pagination_id,
+        flickr_pagination:      feed.flickr_pagination_id,
         id: @user.id)
   end
 

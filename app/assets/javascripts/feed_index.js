@@ -17,7 +17,7 @@ FeedIndex = {
       //var documentHeight = $(this).height();
 
         //Delete this line if it doesn't work
-        if ($(this).height() - $(this).scrollTop() < 7500 && reloadOk === true) {
+        if ($(this).height() - $(this).scrollTop() < 2500 && reloadOk === true) {
 
 //      if (documentHeight - scrollbarPosition < 7500 && reloadOk === true) {
         $(".loading_message").show();
