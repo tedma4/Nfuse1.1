@@ -3,7 +3,7 @@
     <video src="<%= post.tweet_video %>" width="100%" height="258" controls></video>
   <% elsif post.type == 'photo' %>
     <div class="modal-timeline-user-box center">
-      <%= image_tag(post.tweet_image, :class => "image_post tweeter_image") %>
+      <%= image_tag(post.tweet_image, :class => "twitter_image") %>
     </div>
   <% end %>
 <% end %>

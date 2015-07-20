@@ -1,7 +1,7 @@
 <div class="post_content">
 <% if post.type == 'photo'%>
   <div class="timeline-user-box">
-    <%= image_tag(post.photo, :class => "image_post tumblr_image") %>
+    <%= image_tag(post.photo, :class => "tumblr_image") %>
   </div>
   <% if post.caption_text.present? %>
     <div class="center">
