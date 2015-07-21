@@ -39,9 +39,9 @@ module Youtube
 
     def get_timeline(client, page)
       if page.nil?
-        client.videos
+        client.videos.first(15)
       else
-        youtube_timeline = client.videos( page: page, count: 50)
+        youtube_timeline = client.videos( page: page, count: 25)
         # youtube_timeline.delete_at(0)
         # youtube_timeline
       end
