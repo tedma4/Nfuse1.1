@@ -57,7 +57,7 @@ module Vimeo
     def get_timeline(video, max_id)
       configure_vimeo(user_tokens)
       user = Vmo::Request.get_user(user_tokens.access_token)
-      user.videos
+      user.videos.first(15)
       # if max_id.nil?
       #   video.get_uploaded(uid, count: 25)
       # else
