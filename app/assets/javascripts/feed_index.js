@@ -12,7 +12,7 @@ FeedIndex = {
       reloadOk = true
     });
 
-    $(document).scroll(function () {
+    $("#loadMore").click(function () {
       //var scrollbarPosition = $(this).scrollTop();
       //var documentHeight = $(this).height();
 

@@ -7,6 +7,7 @@
     <li><%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %></li>
     <li><%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %></li>
     <li class="total_like_counter"> Likes: <%= @user.total_likes %></li>
+    <li><button id="loadMore">Load More</button></li>
   </ul>
 </div>
 <!-- *End* Views/shared/_stats.html -->

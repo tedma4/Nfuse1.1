@@ -101,7 +101,7 @@ class Feed
       tumblr_timeline = Tumblr::Timeline.new(@user)
       begin
         tumblr_posts = tumblr_timeline.posts(tumblr_pagination_id)['posts'].map { |post| Tumblr::Posting.from(post, @user) }
-        @tumblr_pagination_id = tumblr_timeline.current_page
+        @tumblr_pagination_id = tumblr_timeline.cursor
       rescue => e
         @unauthed_accounts << "tumblr"
       end
