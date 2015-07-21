@@ -11,7 +11,7 @@
 <% else %>
 	<div id="masonJar" class="center explore_container clearfix masonJar">
 	  <% @timeline.each do |post| %>
-	    <% if post.provider == "google_oauth2" %>
+	    <% if post.provider == "youtube" %>
 	      <%= render partial: "users/post", locals: {post: post} %>
 	    <% end %>
 	  <% end %>

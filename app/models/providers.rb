@@ -20,7 +20,7 @@ class Providers
     @user.tokens.where(provider: 'instagram').count > 0
   end
 
-  def google_oauth2?
+  def youtube?
     @user.tokens.where(provider: 'google_oauth2').count > 0
   end
 
@@ -51,7 +51,7 @@ class Providers
   end
 
   def none?
-    !(twitter? || instagram? || google_oauth2? || vimeo? || nfuse? || gplus? || flickr? || tumblr?)# || pinterest? || facebook?
+    !(twitter? || instagram? || youtube? || vimeo? || nfuse? || gplus? || flickr? || tumblr?)# || pinterest? || facebook?
   end
 
 end
