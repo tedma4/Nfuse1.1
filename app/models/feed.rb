@@ -63,7 +63,7 @@ class Feed
 
   def users_posts(shout_id)
     if shout_id.nil?
-      @_shouts = @user.shouts.limit(10)
+      @_shouts = @user.shouts.limit(200)
       @nfuse_pagination_id = @_shouts.last.id unless @_shouts.empty?
     else
       shout = Shout.find(shout_id)
