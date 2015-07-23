@@ -84,25 +84,53 @@ class UsersController < ApplicationController
   end
 
   def feed_builder
-    feed                = Feed.new(@user)
+    @feed                = Feed.new(@user)
     @providers          = Providers.for(@user)
-    @timeline           = feed.construct(params)
-    @unauthed_accounts  = feed.unauthed_accounts
+    @timeline           = @feed.construct(params)
+    @unauthed_accounts  = @feed.unauthed_accounts
     # since these two are facebook specfic. i would @_fb_REST_OF_NAME
-    @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
-    @commenter_profile_hash        = feed.commenter_profile_hash
+    @poster_recipient_profile_hash = @feed.poster_recipient_profile_hash
+    @commenter_profile_hash        = @feed.commenter_profile_hash
 
-    @load_more_url = feed_content_path(
-        twitter_pagination:     feed.twitter_pagination_id,
-        facebook_pagination_id: feed.facebook_pagination_id,
-        instagram_max_id:       feed.instagram_max_id,
-        nfuse_post_last_id:     feed.nfuse_pagination_id,
-        youtube_pagination:     feed.youtube_pagination_id,
-        gplus_pagination:       feed.gplus_pagination_id,
-        tumblr_pagination:      feed.tumblr_pagination_id,
-        vimeo_pagination:       feed.vimeo_pagination_id,
-        flickr_pagination:      feed.flickr_pagination_id,
-        id: @user.id)
+    @load_more_url = {
+        twitter_pagination:     @feed.twitter_pagination_id,
+        facebook_pagination_id: @feed.facebook_pagination_id,
+        instagram_max_id:       @feed.instagram_max_id,
+        nfuse_post_last_id:     @feed.nfuse_pagination_id,
+        youtube_pagination:     @feed.youtube_pagination_id,
+        gplus_pagination:       @feed.gplus_pagination_id,
+        tumblr_pagination:      @feed.tumblr_pagination_id,
+        vimeo_pagination:       @feed.vimeo_pagination_id,
+        flickr_pagination:      @feed.flickr_pagination_id,
+        id: @user.id }
+  end
+
+  def load_more
+    @paginations = {}
+    params.keys.each do |key|
+      unless /_pagination/.match(key)
+        @paginations[key] = params[key]
+      end
+    end
+    @feed                = Feed.new(@user)
+    @providers          = Providers.for(@user)
+    @timeline           = @feed.construct(params)
+    @unauthed_accounts  = @feed.unauthed_accounts
+    # since these two are facebook specfic. i would @_fb_REST_OF_NAME
+    @poster_recipient_profile_hash = @feed.poster_recipient_profile_hash
+    @commenter_profile_hash        = @feed.commenter_profile_hash
+
+    @load_more_url = {
+        twitter_pagination:     @feed.twitter_pagination_id,
+        facebook_pagination_id: @feed.facebook_pagination_id,
+        instagram_max_id:       @feed.instagram_max_id,
+        nfuse_post_last_id:     @feed.nfuse_pagination_id,
+        youtube_pagination:     @feed.youtube_pagination_id,
+        gplus_pagination:       @feed.gplus_pagination_id,
+        tumblr_pagination:      @feed.tumblr_pagination_id,
+        vimeo_pagination:       @feed.vimeo_pagination_id,
+        flickr_pagination:      @feed.flickr_pagination_id,
+        id: @user.id }
   end
 
   def explore
