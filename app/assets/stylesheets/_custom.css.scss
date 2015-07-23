@@ -40,14 +40,15 @@ h6 {
 }
 
 .user-full-name{
-    font-size: 1.8em;
-    font-weight: 0;
-    line-height: 50px;
+    font-size: 1.6em;
+    font-weight: 100;
+    line-height: 52px;
+    font-family: "Tahoma", Georgia, Serif;
   }
 
 
 .atUserName{
-  margin-top: -12px;
+  margin-top: -14px;
   margin-right: 0;
   color:#87CEEB;
   text-decoration: none;
@@ -723,7 +724,7 @@ td {
 }
 .profile_bar{
   background-color: white;
-  height:66px;
+  height:68px;
   margin-top: -40px;
   border-radius: 0px 0px 5px 5px;
   margin-bottom: 20px;
@@ -736,7 +737,6 @@ td {
 }
 
 .profile_bar .stats {
-  text-align: center;
   overflow: visible;
   float: left;
   display: inline-block;
@@ -966,9 +966,8 @@ td {
   height: 20px;
 }
 .timeStamp{
-  font-size: .6em;
+  font-size: .5em;
   display: inline;
-  padding: 0 0 15px 0;
 }
 .post_actions{
 
