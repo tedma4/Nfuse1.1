@@ -7,7 +7,7 @@ module Youtube
   #  client.get_all_videos(:user, :time => :today)
   #  client.my_videos
   #  client.my_video(video_id)
-    POST_PAGINATION_COUNT = 5
+    POST_PAGINATION_COUNT = 4
     def initialize(user=current_user)
       @user = user
       @authed = true
@@ -42,11 +42,13 @@ module Youtube
         store_page(POST_PAGINATION_COUNT)
       else
         vids = client.videos
-        if vids.count != last_post_number
+        if vids.count > last_post_number
           youtube_timeline = vids.first(last_post_number + POST_PAGINATION_COUNT)
+          #if true you have less posts than asked for (you reached their last post)
           if youtube_timeline.count < last_post_number + POST_PAGINATION_COUNT
             num = youtube_timeline.count - last_post_number
             youtube_timeline = youtube_timeline[-num..-1]
+            store_page(vids.count)
           else
             youtube_timeline = youtube_timeline[-POST_PAGINATION_COUNT..-1]
             store_page(last_post_number + POST_PAGINATION_COUNT)

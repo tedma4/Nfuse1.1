@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     @poster_recipient_profile_hash = @feed.poster_recipient_profile_hash
     @commenter_profile_hash        = @feed.commenter_profile_hash
 
-    @load_more_url = {
+    @load_more_url = feed_content_path(
         twitter_pagination:     @feed.twitter_pagination_id,
         facebook_pagination_id: @feed.facebook_pagination_id,
         instagram_max_id:       @feed.instagram_max_id,
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
         tumblr_pagination:      @feed.tumblr_pagination_id,
         vimeo_pagination:       @feed.vimeo_pagination_id,
         flickr_pagination:      @feed.flickr_pagination_id,
-        id: @user.id }
+        id: @user.id )
   end
 
   def load_more

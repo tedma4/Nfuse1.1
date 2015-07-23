@@ -7,7 +7,9 @@
     <li><%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %></li>
     <li><%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %></li>
     <li class="total_like_counter"> Likes: <%= @user.total_likes %></li>
-    <li><%= form_tag load_more_path(@load_more_url), remote: true do %> <%= submit_tag "load More", class: "btn", id: "loadMore" %> <% end %></li>
+    <!--<li><%= form_tag load_more_path(@load_more_url), remote: true do %> <%= submit_tag "load More", class: "btn", id: "loadMore" %> <% end %></li>-->
+    <li><button id="loadMore">Load More</button></li>
+    <li></li>
   </ul>
 </div>
 <!-- *End* Views/shared/_stats.html -->
