@@ -7,16 +7,14 @@ module Youtube
   #  client.get_all_videos(:user, :time => :today)
   #  client.my_videos
   #  client.my_video(video_id)
-
+    POST_PAGINATION_COUNT = 5
     def initialize(user=current_user)
       @user = user
       @authed = true
     end
 
-    def posts(page = nil)
-      timeline = get_timeline(client, page)
-      store_page(page)
-      timeline
+    def posts(last_post_number = nil)
+      timeline = get_timeline(client, last_post_number)
     end
 
     def get_video(video_id)
@@ -37,14 +35,27 @@ module Youtube
       @config ||= tokens.configure_youtube(tokens.access_token, tokens.refresh_token)#, tokens.expiresat)
     end
 
-    def get_timeline(client, page)
-      if page.nil?
-        client.videos
+    def get_timeline(client, last_post_number)
+      last_post_number = last_post_number.to_i
+      if last_post_number.nil? || last_post_number == 0
+        youtube_timeline = client.videos.first(POST_PAGINATION_COUNT)
+        store_page(POST_PAGINATION_COUNT)
       else
-        youtube_timeline = client.videos( page: page, count: 50)
-        # youtube_timeline.delete_at(0)
-        # youtube_timeline
+        vids = client.videos
+        if vids.count != last_post_number
+          youtube_timeline = vids.first(last_post_number + POST_PAGINATION_COUNT)
+          if youtube_timeline.count < last_post_number + POST_PAGINATION_COUNT
+            num = youtube_timeline.count - last_post_number
+            youtube_timeline = youtube_timeline[-num..-1]
+          else
+            youtube_timeline = youtube_timeline[-POST_PAGINATION_COUNT..-1]
+            store_page(last_post_number + POST_PAGINATION_COUNT)
+          end
+        else
+          youtube_timeline = []
+        end
       end
+      youtube_timeline
     end
 
     def store_page(page)
