@@ -3,7 +3,7 @@ module Gplus
 
     attr_reader :authed, :current_page
 
-    POST_PAGINATION_COUNT = 1
+    POST_PAGINATION_COUNT = 5
 
     def initialize(user=current_user)
       @user = user
