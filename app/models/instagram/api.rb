@@ -3,13 +3,16 @@ module Instagram
 
   class Api
 
+    POST_PAGINATION_COUNT = 4
     def initialize(access_token, max_id)
       @access_token = access_token
       @max_id = max_id
     end
 
     def get_timeline
-      Response.new(Faraday.get("#{create_url}"))
+      unless @max_id == -1
+        Response.new(Faraday.get("#{create_url}"))
+      end
     end
 
     def like_post(media_id)
@@ -39,9 +42,9 @@ module Instagram
 
     def create_url
       if @max_id.nil?
-        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=50"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=#{POST_PAGINATION_COUNT}"
       else
-        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=100"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=#{POST_PAGINATION_COUNT}"
       end
     end
 

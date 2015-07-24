@@ -7,7 +7,7 @@ module Youtube
   #  client.get_all_videos(:user, :time => :today)
   #  client.my_videos
   #  client.my_video(video_id)
-    POST_PAGINATION_COUNT = 4
+    POST_PAGINATION_COUNT = 1
     def initialize(user=current_user)
       @user = user
       @authed = true

@@ -22,9 +22,13 @@ module Instagram
 
     def pagination_max_id
       if success?
-        parse_response_body["pagination"]["next_max_id"]
+        id = parse_response_body["pagination"]["next_max_id"]
+        if id.nil?
+          id = -1
+        end
+        id
       else
-        nil
+        -1
       end
     end
 
