@@ -3,7 +3,7 @@ module Instagram
 
   class Api
 
-    POST_PAGINATION_COUNT = 4
+    POST_PAGINATION_COUNT = 5
     def initialize(access_token, max_id)
       @access_token = access_token
       @max_id = max_id

@@ -148,7 +148,7 @@ class Feed
     if user_has_provider?('gplus', @user)
       gplus_timeline = Gplus::Timeline.new(@user)
       begin
-        gplus_posts = gplus_timeline.posts(gplus_pagination_id).items.map { |post| Gplus::Post.from(post, @user) }
+        gplus_posts = gplus_timeline.posts(gplus_pagination_id).map { |post| Gplus::Post.from(post, @user) }
         @gplus_pagination_id = gplus_timeline.current_page
       rescue => e
         @unauthed_accounts << "gplus"

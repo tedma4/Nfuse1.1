@@ -3,15 +3,15 @@ module Gplus
 
     attr_reader :authed, :current_page
 
+    POST_PAGINATION_COUNT = 1
+
     def initialize(user=current_user)
       @user = user
       @authed = true
     end
 
     def posts(page = nil)
-      timeline = get_timeline(client, page)
-      store_page(page)
-      timeline
+      get_timeline(client, page)
     end
 
     def get_pic(post_id)
@@ -37,13 +37,28 @@ module Gplus
     end
 
     def get_timeline(client, page)
-      if page.nil?
-          client.list_activities
+      page = page.to_i
+      if page.nil? || page == 0
+        timeline = client.list_activities.items(max_results: POST_PAGINATION_COUNT)
+        store_page(POST_PAGINATION_COUNT)
       else
-        gplus_timeline = client.list_activities.items( page: page, count: 50)
-        # gplus_timeline.delete_at(0)
-        # gplus_timeline
+        total = client.list_activities.items.count
+        if total > page
+          timeline = client.list_activities.items(max_results: (page + POST_PAGINATION_COUNT))
+          #true if you requested more posts than there are left
+          if timeline.count < page + POST_PAGINATION_COUNT
+            num = timeline.count - page
+            timeline = timeline[-num..-1]
+            store_page(total)
+          else
+            timeline = timeline[-POST_PAGINATION_COUNT..-1]
+            store_page(page + POST_PAGINATION_COUNT)
+          end
+        else
+          timeline = []
+        end
       end
+      timeline
     end
 
     def store_page(page)
