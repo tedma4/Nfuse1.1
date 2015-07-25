@@ -11,7 +11,8 @@
 <% elsif post.type == "video" %>
   <div class="center">
     <video width="75%" controls>
-      <source src="<%= post.video %>" type="video/mp4">
+      <source src="<%= post.video %>" type='video/mp4' />
+      <source src="<%= post.video %>" type='video/ogv' />
     </video>
   </div>
   <% if post.caption.present? %>

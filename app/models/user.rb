@@ -99,14 +99,19 @@ class User < ActiveRecord::Base
     user_name
   end
 
-  #This allows a user to search by first name, last name or both  
   def self.search(search)
-    if search
-      q = "%#{search}%"
-      where("first_name like ? or last_name like ? or user_name like ? or (first_name || last_name) like ? or first_name || ' ' || last_name like ?", q, q, q, q, q)
-    else
-      all
+
+    conditions = []
+    search_columns = [ :first_name, :last_name, :user_name ]
+
+    search.split(' ').each do |word|
+      search_columns.each do |column|
+        conditions << " lower(#{column}) LIKE lower(#{sanitize("%#{word}%")}) "
+      end
     end
+
+    conditions = conditions.join('OR')    
+    self.where(conditions)
   end
 
   def self.all_except(other_user)

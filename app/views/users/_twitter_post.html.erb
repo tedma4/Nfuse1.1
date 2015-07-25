@@ -1,6 +1,11 @@
 <% if post.has_media? %>
   <% if post.type == 'video' %>
-    <video src="<%= post.tweet_video %>" width="100%" controls="true" type="video/mp4"></video>
+	  <div class="center">
+      <video width="100%" controls>
+        <source src="<%= post.tweet_video %>" type='video/mp4' />
+        <source src="<%= post.tweet_video %>" type='video/ogv' />
+      </video>
+	  </div>
   <% elsif post.type == 'photo' %>
     <div class="timeline-user-box">
       <%= image_tag(post.tweet_image, :class => "twitter_image") %>

@@ -8,9 +8,12 @@
     </div>
     <% end %>
 <% elsif post.type == "video" %>
-     <video width="100%" controls>
-       <source src="<%= post.video %>" type="video/mp4">
-     </video>
+  <div class="center">
+    <video width="100%" controls>
+      <source src="<%= post.video %>" type='video/mp4' />
+      <source src="<%= post.video %>" type='video/ogv' />
+    </video>
+  </div>
     <% if post.caption.present? %>
     <div class="center">
       <%= post.caption_text %>
