@@ -41,7 +41,7 @@ h6 {
 
 .user-full-name{
     font-size: 1.6em;
-    font-weight: 100;
+    font-weight: 600;
     line-height: 52px;
     font-family: "Tahoma", Georgia, Serif;
   }
@@ -721,6 +721,7 @@ td {
   border-radius: 5px;
   padding: 2px;
   background-color: white;
+  cursor: cell;
 }
 .profile_bar{
   background-color: white;
@@ -731,7 +732,7 @@ td {
 }
 .profile_bar .inLineLeft {
   width: 30%;
-  margin-left: 35px; 
+  margin-left: 44px; 
   margin-top: -4px;
   float: left;
 }

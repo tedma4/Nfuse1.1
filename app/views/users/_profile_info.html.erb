@@ -14,10 +14,35 @@
         display: none;
     }
 }
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
 </style>
 <div><%= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
-<div class="main-avatar"><%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
+<div class="main-avatar">
+  <% if current_user?(@user) %>
+    <a data-toggle="modal" data-target="#profile_pic_upload_modal">
+      <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture", title: "Edit Image" %> 
+    </a>
+  <%else%>
+    <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
+  <%end%>
 </div>
 <div class="profile_bar">
   <div class="inLineLeft" id="fadeshow1">
@@ -48,3 +73,63 @@
   </div>
     <%= render 'shared/stats' %>
 </div>
+<div id="profile_pic_upload_modal" class="modal fade">
+  <div class="modal-fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">×</button>
+          <h3>Upload a new profile pic or banner</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="span6">
+                <div class="logowrapper">
+                  <div class="Alignthisorelse">
+                    <%= render partial: 'users/upload_pics_form' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('#pictureInput').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#target').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+</script>
+<script>
+  $(function() {
+    $('#pictureInput2').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#target2').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+</script>
