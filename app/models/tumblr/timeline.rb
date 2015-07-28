@@ -2,7 +2,7 @@ module Tumblr
   class Timeline
 
     attr_reader :authed, :cursor
-    NUMBER_TO_LOAD = 1
+    NUMBER_TO_LOAD = 5
     def initialize(user=current_user)
       @user = user
       @authed = true
@@ -11,7 +11,7 @@ module Tumblr
 
     def posts(offset = 0)
       timeline = get_timeline(client, offset)
-      store_cursor(offset)
+      # store_cursor(offset)
       timeline
     end
 
@@ -35,13 +35,13 @@ module Tumblr
     end
 
     def get_timeline(client, offset)
-      if offset == 0 || offset.nil?
+      if offset.to_i == 0 || offset.nil?
         tumblr_timeline = client.posts("#{my_username}.tumblr.com", limit: NUMBER_TO_LOAD)
-        @cursor += NUMBER_TO_LOAD
+        @cursor = NUMBER_TO_LOAD
         tumblr_timeline
       else
-        tumblr_timeline = client.posts("#{my_username}.tumblr.com", offset: @cursor, limit: NUMBER_TO_LOAD)
-        @cursor += NUMBER_TO_LOAD
+        tumblr_timeline = client.posts("#{my_username}.tumblr.com", offset: offset, limit: NUMBER_TO_LOAD)
+        @cursor = offset.to_i + NUMBER_TO_LOAD
         tumblr_timeline
       end
     end
