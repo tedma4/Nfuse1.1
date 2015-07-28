@@ -1,4 +1,4 @@
-<%= form_for(@user, :multipart => true, html:{role: "form"}) do |f| %>
+<%= form_for @user, html:{role: "form", multipart: true} do |f| %>
   <h2>Upload a Profile Picture</h2>
   <div id="target"> 
     <%= image_tag @user.avatar(:medium) %> 
