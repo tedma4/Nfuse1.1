@@ -48,7 +48,7 @@ module Twitter
       if max_id.nil?
         client.user_timeline(:count =>1)
       else
-        twitter_timeline = client.user_timeline(:max_id => max_id, :count => 2)
+        twitter_timeline = client.user_timeline(:max_id => max_id, :count => 5)
         twitter_timeline.delete_at(0)
         twitter_timeline
       end
