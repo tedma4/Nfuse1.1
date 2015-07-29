@@ -18,9 +18,9 @@ GIT
 
 GIT
   remote: https://github.com/ermacaz/vmo.git
-  revision: d610542d4a743873e322b54a039ae381a9e44c4a
+  revision: 8fdd326e9d3dc79c04bf85d058a955c6ce854903
   specs:
-    vmo (0.1.4)
+    vmo (0.1.5)
 
 GIT
   remote: https://github.com/ermacaz/yt.git
@@ -582,3 +582,6 @@ DEPENDENCIES
   wicked
   will_paginate (~> 3.0.4)
   yt!
+
+BUNDLED WITH
+   1.10.5

@@ -1,5 +1,6 @@
 module Vimeo
   class Timeline
+    POST_PAGINATION_COUNT = 5
 
     attr_reader :authed, :last_post_id
 
@@ -11,7 +12,6 @@ module Vimeo
 
     def posts(max_id = nil)
       timeline = get_timeline(video, max_id)
-      store_last_post_id(timeline)
       timeline
     end
 
@@ -54,10 +54,20 @@ module Vimeo
     #  vimeo_timeline = video.get_uploaded(uid, { :page => "1", :per_page => "25", :full_response => "0", :sort => "newest" })
     #end
 
-    def get_timeline(video, max_id)
+    def get_timeline(video, page)
       configure_vimeo(user_tokens)
-      user = Vmo::Request.get_user(user_tokens.access_token)
-      user.videos
+      if page == nil
+        user = Vmo::Request.get_user_videos(user_tokens.access_token, page: 1, per_page: POST_PAGINATION_COUNT)
+        timeline = user.videos
+        @last_post_id = 1
+      else
+        page = page.to_i + 1
+        user = Vmo::Request.get_user_videos(user_tokens.access_token, page: page, per_page: POST_PAGINATION_COUNT)
+        timeline = user.videos
+        @last_post_id = page
+      end
+      timeline
+
       # if max_id.nil?
       #   video.get_uploaded(uid, count: 25)
       # else
@@ -65,14 +75,6 @@ module Vimeo
       #   vimeo_timeline.delete_at(0)
       #   vimeo_timeline
       # end
-    end
-
-    def store_last_post_id(timeline)
-      if last = timeline.last
-        @last_post_id = last.id
-      else
-        @last_post_id = nil
-      end
     end
 
   end

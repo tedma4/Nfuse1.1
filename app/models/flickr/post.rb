@@ -33,7 +33,9 @@ module Flickr
     end
 
     def created_time
-      flickr.photos.getInfo(photo_id: @post.id).dates.taken
+      @info ||= flickr.photos.getInfo(photo_id: @post.id)
+      utime = @info.dates.posted
+      Time.zone.parse(Time.at(utime.to_i).to_s(:db))
     end
 
     def id
@@ -49,11 +51,13 @@ module Flickr
     end
 
     def link_to_post
-      flickr.photos.getInfo(photo_id: @post.id).urls[0]._content
+      @info ||= flickr.photos.getInfo(photo_id: @post.id)
+      @info.urls[0]._content
     end
 
     def caption
-      @post.title
+      @info ||= flickr.photos.getInfo(photo_id: @post.id)
+      @info['description']
     end
 
   end

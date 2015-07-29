@@ -1,5 +1,6 @@
 module Flickr
   class Timeline
+    POST_PAGINATION_COUNT = 3
 
     # FlickRaw.api_key="... Your API key ..."
     # FlickRaw.shared_secret="... Your shared secret ..."
@@ -23,9 +24,7 @@ module Flickr
     end
 
     def posts(max_id = nil)
-      timeline = get_timeline(client, max_id)
-      store_last_post_id(timeline)
-      timeline
+      get_timeline(client, max_id)
     end
 
     def get_video(video_id)
@@ -50,23 +49,23 @@ module Flickr
       @config ||= tokens.configure_flickr(tokens.access_token, tokens.access_token_secret)#, tokens.expiresat)
     end
 
-    def get_timeline(client, max_id)
-      # if max_id.nil?
-        client.people.getPhotos('user_id' => @user.tokens.where('provider' => 'flickr').first.uid)
-      # else
-      #   flickr_timeline = client.getRecent( max_id: max_id, count: 50)
-      #   flickr_timeline.delete_at(0)
-      #   flickr_timeline
-      # end
+    def get_timeline(client, page)
+       if page.nil?
+        timeline = client.people.getPhotos('user_id' => @user.tokens.where('provider' => 'flickr').first.uid,
+                                'per_page' => POST_PAGINATION_COUNT,
+                                'page' => 1)
+         @last_post_id = 1
+       else
+         page = page.to_i + 1
+         timeline = client.people.getPhotos('user_id' => @user.tokens.where('provider' => 'flickr').first.uid,
+                                 'per_page' => POST_PAGINATION_COUNT,
+                                 'page' => page)
+         @last_post_id = page
+       end
+      timeline
     end
 
-    def store_last_post_id(timeline)
-      if last = timeline[timeline.count-1]
-        @last_post_id = last.id
-      else
-        @last_post_id = nil
-      end
-    end
+
 
 
   end
