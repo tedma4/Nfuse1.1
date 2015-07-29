@@ -38,7 +38,7 @@
 <div class="main-avatar">
   <% if current_user?(@user) %>
     <a data-toggle="modal" data-target="#profile_pic_upload_modal">
-      <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture", title: "Edit Image" %> 
+      <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %> 
     </a>
   <%else%>
     <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 

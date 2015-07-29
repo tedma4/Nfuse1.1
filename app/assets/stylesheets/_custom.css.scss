@@ -713,7 +713,7 @@ td {
   padding: 0;
 
 }
-#profile-picture {
+#profile-picture-current-user{
   margin-top: -225px;
   margin-left: 35px;
   width: 200px;
@@ -722,6 +722,15 @@ td {
   padding: 2px;
   background-color: white;
   cursor: cell;
+}
+#profile-picture {
+  margin-top: -225px;
+  margin-left: 35px;
+  width: 200px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 2px;
+  background-color: white;
 }
 .profile_bar{
   background-color: white;
