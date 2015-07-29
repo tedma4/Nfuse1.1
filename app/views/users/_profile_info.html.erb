@@ -63,7 +63,7 @@
           <% end %>
         </li>
         <li id="fadeshow3">
-          <%= link_to edit_user_path(session[:user_id]) do %>
+          <%= link_to edit_user_path(current_user) do %>
             <%= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
           <% end %>
         </li>
