@@ -97,262 +97,116 @@ div.setting-tab div.setting-tab-content:not(.active){
 
 <div class="container">
   <div class="row">
-        <div class="col-lg-14 col-md-12 col-md-offset-1 col-sm-8 col-xs-9 setting-tab-container">
-<!--           This controls the tabs supposedly -->
-            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 setting-tab-menu">
-              <div class="list-group">
-                <a href="#" class="list-group-item active text-center">
-                  <%= image_tag("nfuseblue.fw.png", size: "60x60") %><br>Networks
-                </a>
-                <a href="#" class="list-group-item text-center">
-                  <%= image_tag("pencilblue.fw.png", size: "60x60") %><br>Account Info
-                </a>
-                <a href="#" class="list-group-item text-center">
-                  <%= image_tag("createprofileblue.fw.png", size: "60x60") %><br>Profile Images
-                </a>
+    <div class="col-lg-14 col-md-12 col-md-offset-1 col-sm-8 col-xs-9 setting-tab-container">
+      <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 setting-tab-menu">
+        <div class="list-group">
+          <a href="#" class="list-group-item active text-center">
+            <%= image_tag("nfuseblue.fw.png", size: "60x60") %><br>Networks
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <%= image_tag("pencilblue.fw.png", size: "60x60") %><br>Account Info
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <%= image_tag("createprofileblue.fw.png", size: "60x60") %><br>Profile Images
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 setting-tab">
+        <div class="setting-tab-content active">
+          <div class="Alignthisorelse sup-padding">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-10  form-box wow fadeInUp">
+                  <div class="form-top">
+                    <div class="form-top-left">
+                      <h2>Network Nfusion.</h2>
+                        <p>Add more networks to share with everyone.</p>
+                    </div>
+                    <div class="form-top-right">
+                      <a href="#"><%= image_tag("Nfuselogogray.fw.png", size: "65x65") %></a>
+                    </div>
+                  </div>
+                  <div class="form-bottom-sup-nfusion">
+                    <%= render partial: 'users/network_authentications' %>
+                  </div>
+                </div>
               </div>
             </div>
-<!--             These control the rest of it -->
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 setting-tab">
-                <!-- flight section -->
-                <div class="setting-tab-content active">
-                    <center>
-                      <div class="Alignthisorelse sup-padding">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-10  form-box wow fadeInUp">
-                                  <div class="form-top">
-                                    <div class="form-top-left">
-                                      <h2>Network Nfusion.</h2>
-                                        <p>Add more networks to share with everyone.</p>
-                                    </div>
-                                    <div class="form-top-right">
-                                      <a href="#"><%= image_tag("Nfuselogogray.fw.png", size: "65x65") %></a>
-                                    </div>
-                                    </div>
-                                    <div class="form-bottom-sup-nfusion">
-
-                                  <form role="form">
-                                    <div class="Alignthisorelse">
-                                      <div class="features-container section-container">
-                                        <div class="container">
-                                            <div class="row">
-                                              <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-                                                <!-- twitter -->
-                                                <div class="features-box-icon">
-                                                  <%= link_to image_tag("twitterblue.fw.png", size: "60x60"), "/auth/twitter?origin=#{request.original_url}" %>
-                                                </div>
-                                                  <h3>Twitter</h3>
-                                                  <p>Share your Twitter posts.</p>
-                                                <% if current_user && user_has_provider?('twitter') %>
-                                                  <%= link_to "You've Nfused Twitter", "/auth/twitter?origin=#{request.original_url}" %>
-                                                  <% else %>
-                                                  <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
-                                                  <% end %>
-                                                <!-- twitter -->
-                                              </div>
-                                              <div class="col-sm-3 features-box wow fadeInDown">
-                                                <!-- instagram -->
-                                                <div class="features-box-icon">
-                                                  <%= link_to image_tag("instagramblue.fw.png", size: "60x60"), "/auth/instagram?origin=#{request.original_url}" %>
-                                                </div>
-                                                  <h3>Instagram</h3>
-                                                  <p>Share your Instagram posts.</p>
-                                                <% if current_user && user_has_provider?('instagram') %>
-                                                    <%= link_to "You've Nfused Instagram", "/auth/instagram?origin=#{request.original_url}" %>
-                                                    <% else %>
-                                                    <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
-                                                    <% end %>
-                                                <!-- instagram -->
-                                              </div>
-                                              <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-                                                <!-- tumblr -->
-                                                <div class="features-box-icon">
-                                                  <%= link_to image_tag("tumblrblue.fw.png", size: "60x60"), "/auth/tumblr?origin=#{request.original_url}" %>
-                                                </div>
-                                                  <h3>Tumblr</h3>
-                                                  <p>Share your Tumblr posts.</p>
-                                                  <% if current_user && user_has_provider?('tumblr') %>
-                                                    <%= link_to "You've Nfused Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
-                                                  <% else %>
-                                                    <%= link_to "Nfuse Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
-                                                  <% end %>
-                                                  <!-- tumblr -->
-                                              </div>
-                                            </div>
-                                            <div class="row">
-                                              <div class="col-sm-3 features-box wow fadeInUp">
-                                                <!-- youtube -->
-                                                <div class="features-box-icon">
-                                                  <%= link_to image_tag("youtubeblue.fw.png", size: "60x60"), "/auth/google_oauth2?origin=#{request.original_url}" %>
-                                                </div>
-                                                  <h3>Youtube</h3>
-                                                  <p>Share your Youtube posts.</p>
-                                                <% if current_user && user_has_provider?('google_oauth2') %>
-                                                    <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
-                                                    <% else %>
-                                                    <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
-                                                    <% end %>
-                                                <!-- youtube -->
-                                                </div>
-                                                <div class="col-sm-3 features-box features-box-gray wow fadeInDown">
-                                                <!-- gplus -->
-                                                <div class="features-box-icon">
-                                                  <%= link_to image_tag("gplusblue.fw.png", size: "60x60"), "/auth/gplus?origin=#{request.original_url}" %>
-                                                </div>
-                                                  <h3>Google Plus</h3>
-                                                  <p>Share your Google+ posts.</p>
-                                                <% if current_user && user_has_provider?('gplus') %>
-                                                    <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
-                                                    <% else %>
-                                                    <%= link_to "Nfuse Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
-                                                    <% end %>
-                                                <!-- gplus -->
-                                                </div>
-                                              <div class="col-sm-3 features-box wow fadeInUp">
-                                                  <!-- vimeo -->
-                                                  <div class="features-box-icon">
-                                                    <%= link_to image_tag("vimeoblue.fw.png", size: "60x60"), "/auth/vimeo?origin=#{request.original_url}" %>
-                                                  </div>
-                                                  <h3>Vimeo</h3>
-                                                  <p>Share your Vimeo posts.</p>
-                                                <% if current_user && user_has_provider?('vimeo') %>
-                                                    <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-                                                    <% else %>
-                                                    <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-                                                    <% end %>
-                                                  <!-- vimeo -->
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                              <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-                                                <!-- flickr -->
-                                                <div class="features-box-icon">
-                                                 <%= link_to image_tag("flickrblue.fw.png", size: "60x60"), "/auth/flickr?origin=#{request.original_url}" %>
-                                                </div>
-                                                  <h3>Flickr</h3>
-                                                  <p>Share your Flickr posts.</p>
-                                                <% if current_user && user_has_provider?('flickr') %>
-                                                    <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
-                                                    <% else %>
-                                                    <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
-                                                    <% end %>
-                                                    <!-- flickr -->
-                                              </div>
-                                                <div class="col-sm-3 features-box wow fadeInDown">
-                                                  <h3><%= link_to "Done Nfusing?", root_path, class: "btn btn-link-2" %></h3>
-                                                </div>
-                                              <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-                                              <!-- facebook -->
-                                              <div class="features-box-icon">
-                                                <%#= link_to image_tag("facebookblue.fw.png", size: "60x60"), "/auth/facebook?origin=#{request.original_url}" %>
-                                                <%= image_tag("Newpostin1.fw.png", size: "60x60") %>
-                                              </div>
-                                                <h3>More Soon</h3>
-                                              <%# if current_user && user_has_provider?('facebook') %>
-                                                  <%#= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-                                                  <%# else %>
-                                                  <%#= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
-                                                  <%# end %>
-                                                  <!-- facebook -->
-                                              </div>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </center>
-                </div>
-                <!-- train section -->
-                <div class="setting-tab-content">
-                    <center>
-                      <div class="Alignthisorelse">
-                      <div class="container signup-padding">
-                        <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
-                          <div class="form-top">
-                            <div class="form-top-left">
-                              <h3>Account Info</h3>
-                                <p>Update or change your account info.</p>
-                            </div>
-                            <div class="form-top-right">
-                              <a href="#"><%= image_tag("pencilgray.fw.png", size: "65x65") %></a>
-                            </div>
-                          </div>
-                          <div class="form-bottom">
-                              <%= form_for(@user, html: { role: "form"}) do |f| %>
-                                <div class="error_messages">
-                                  <div>
-                                    <%= render 'shared/error_messages', object: f.object %>
-                                  </div>
-                                  <div class="form-group">
-                                    <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
-                                  </div>
-                                  <div class="form-group">
-                                    <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
-                                  </div>
-                                  <div class="form-group">
-                                    <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
-                                  </div>
-                                  <div class="form-group">
-                                    <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
-                                  </div>
-                                  <div class="form-group">
-                                    <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
-                                  </div>
-                                  <div class="form-group">
-                                    <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
-                                  </div>
-                                  <button type="submit" class="btn">
-                                  Save
-                                  </button>
-                                </div>
-                              <% end %>
-                                <div class="form-links">
-                      <!--             <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
-                       -->          </div>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                    </center>
-                </div>
-    
-                <!-- hotel search -->
-                <div class="setting-tab-content">
-                    <center>
-
-                      <div class="Alignthisorelse">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-sm-6 col-sm-offset-2 form-box wow fadeInUp">
-                              <div class="form-top">
-                                <div class="form-top-left">
-                                  <h3>Choose you profile images</h3>
-                                    <p>Update or change your profile images.</p>
-                                </div>
-                                <div class="form-top-right">
-                                  <a href="#"><%= image_tag("createprofilegray.fw.png", size: "60x60") %></a>
-                                </div>
-                              </div>
-                              <div class="form-bottom">
-                                <div class="Alignthisorelse">
-                                  <%= render partial: 'users/upload_pics_form' %>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </center>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="setting-tab-content">
+          <div class="Alignthisorelse">
+            <div class="container signup-padding">
+              <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
+                <div class="form-top">
+                  <div class="form-top-left">
+                    <h3>Account Info</h3>
+                    <p>Update or change your account info.</p>
+                  </div>
+                  <div class="form-top-right">
+                    <a href="#"><%= image_tag("pencilgray.fw.png", size: "65x65") %></a>
+                  </div>
+                </div>
+                <div class="form-bottom">
+                  <%= form_for(@user, html: { role: "form"}) do |f| %>
+                    <div class="error_messages">
+                      <div>
+                        <%= render 'shared/error_messages', object: f.object %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+                      </div>
+                      <button type="submit" class="btn">
+                      Save
+                      </button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="setting-tab-content">
+          <div class="Alignthisorelse">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-2 form-box wow fadeInUp">
+                  <div class="form-top">
+                    <div class="form-top-left">
+                      <h3>Choose you profile images</h3>
+                        <p>Update or change your profile images.</p>
+                    </div>
+                    <div class="form-top-right">
+                      <a href="#"><%= image_tag("createprofilegray.fw.png", size: "60x60") %></a>
+                    </div>
+                  </div>
+                  <div class="form-bottom">
+                    <div class="Alignthisorelse">
+                      <%= render partial: 'users/upload_pics_form' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
