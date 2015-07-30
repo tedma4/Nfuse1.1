@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
+  rescue_from ActionController::ParameterMissing, with: :update_error
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
                 only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page, :feed]
@@ -275,6 +276,9 @@ class UsersController < ApplicationController
   end
 
   private
+  def update_error  
+    redirect_to feed_user_path(@user)
+  end
 
   def timeline(user=current_user)
     stack = {
