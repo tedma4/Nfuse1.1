@@ -18,7 +18,13 @@
           display: none;
       }
   }
-
+  <% if signed_in? %>
+    @media only screen and (max-width: 550px) {
+        #fadeshow4_logged_out_banner {
+            display: none;
+        }
+    }
+  <%end%>
   .login_small {
     margin-top: 16px;
     font-size: 1.6em;
@@ -30,7 +36,7 @@
 <nav class="header" role="navigation">
   <div class="header_inLineLeft">
     <ul>
-      <li><%= link_to image_tag('Full-Logo.png', size: "151x47"), root_path %>
+      <li><%= link_to image_tag('Full-Logo.png', size: "151x47", id: "fadeshow4_logged_out_banner"), root_path %>
       </li>
     </ul>
   </div>
@@ -168,9 +174,11 @@ $(document).ready(function(){
     else if(urlPath.indexOf('/explore_tumblr_only')!== -1){
       $('#explore').addClass("activeNavIcon");
     }
-    else if(urlPath.indexOf('/feed')!== -1){
+    <% if current_page?(feed_user_path(current_user)) %>
+    else if(urlPath.indexOf("/feed")!== -1){
       $('#profile').addClass("activeNavIcon");
     }
+    <%end%>
     else if(urlPath.indexOf('/nfuse_page')!== -1){
       $('#profile').addClass("activeNavIcon");
     }
