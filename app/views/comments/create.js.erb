@@ -1,14 +1,14 @@
 $("a#post_<%=@commentable.id%>_comment_count").text("<%=@comments.count%>");
 $("div#comment_list_<%= @commentable.id %>").html(' \
-        <ul class="chat">' +
-                <% if @commentable.is_a? Shout %>
-                    <% Comment.where(commentable_type: @commentable.class.to_s, commentable_id: @commentable.id).each do |comment| %>
-                    '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
-                    <% end %>
-                <% else %>
-                    <% Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id).each do |comment| %>
-                    '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
-                    <% end %>
-                <% end%>
-        '</ul>'
+  <ul class="chat">' +
+    <% if @commentable.is_a? Shout %>
+      <% Comment.where(commentable_type: @commentable.class.to_s, commentable_id: @commentable.id).each do |comment| %>
+      '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
+      <% end %>
+    <% else %>
+      <% Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id).each do |comment| %>
+      '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
+      <% end %>
+    <% end%>
+  '</ul>'
 );
