@@ -17,7 +17,7 @@ class LikesController < ApplicationController
     post = instagram_api.get_post(media_id).parse
     render json: post
   end
-
+  
   def facebook
     post_id = params[:post_id]
     token = current_user.tokens.find_by(provider: 'facebook')
@@ -26,5 +26,4 @@ class LikesController < ApplicationController
     post = facebook_api.get_post(post_id).parse
     render json: post
   end
-
 end

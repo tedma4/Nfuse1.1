@@ -2,11 +2,9 @@ class Feed
   include ApplicationHelper
   attr_accessor :params
 
-  attr_reader :poster_recipient_profile_hash,
-              :commenter_profile_hash,
-              :unauthed_accounts,
+  attr_reader :unauthed_accounts,
               :twitter_pagination_id,
-              :facebook_pagination_id,
+              #:facebook_pagination_id,
               :instagram_max_id,
               :youtube_pagination_id,
               :gplus_pagination_id,
@@ -23,7 +21,7 @@ class Feed
   end
 
   def posts(twitter_pagination_id, 
-            facebook_pagination_id,
+            #facebook_pagination_id,
             instagram_max_id, 
             user_id, 
             youtube_pagination_id, 
@@ -33,7 +31,7 @@ class Feed
             gplus_pagination_id)
     TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
-                                   facebook_posts(facebook_pagination_id),
+                                   #facebook_posts(facebook_pagination_id),
                                    youtube_posts(youtube_pagination_id),
                                    gplus_posts(gplus_pagination_id),
                                    vimeo_posts(vimeo_pagination_id),
@@ -47,7 +45,7 @@ class Feed
   def construct(params)
     self.params = params
     tw = twitter_posts(params[:twitter_pagination])
-    fb = facebook_posts(params[:facebook_pagination_id])
+    #fb = facebook_posts(params[:facebook_pagination_id])
     ig = instagram_posts(params[:instagram_max_id])
     yt = youtube_posts(params[:youtube_pagination])
     gp = gplus_posts(params[:gplus_pagination])
@@ -56,7 +54,7 @@ class Feed
     # pt = pinterest_posts(params[:pinterest_pagination])
     fl = flickr_posts(params[:flickr_pagination])
     tb = tumblr_posts(params[:tumblr_pagination])
-    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt, fl, gp, tb ) #, pt, fl
+    TimelineConcatenator.new.merge(tw, ig, up, vp, yt, fl, gp, tb ) #, pt, fl, fb
   end
 
   private
@@ -209,24 +207,4 @@ class Feed
     end
   end
 
-  def facebook_posts(facebook_pagination_id)
-    if user_has_provider?('facebook', @user)
-      facebook_timeline = Facebook::Timeline.new(@user)
-      facebook_posts = facebook_timeline.posts(facebook_pagination_id).map { |post| Facebook::Post.from(post, @user) }
-
-      auth_facebook(facebook_timeline)
-      @poster_recipient_profile_hash = facebook_timeline.poster_recipient_profile_hash
-      @commenter_profile_hash = facebook_timeline.commenter_profile_hash
-      @facebook_pagination_id = facebook_timeline.pagination_id
-      facebook_posts
-    else
-      []
-    end
-  end
-
-  def auth_facebook(facebook_timeline)
-    unless facebook_timeline.authed
-      @unauthed_accounts << "facebook"
-    end
-  end
 end

@@ -91,12 +91,10 @@ class UsersController < ApplicationController
     @timeline           = feed.construct(params)
     @unauthed_accounts  = feed.unauthed_accounts
     # since these two are facebook specfic. i would @_fb_REST_OF_NAME
-    @poster_recipient_profile_hash = feed.poster_recipient_profile_hash
-    @commenter_profile_hash        = feed.commenter_profile_hash
 
     @load_more_url = feed_content_path(
         twitter_pagination:     feed.twitter_pagination_id,
-        facebook_pagination_id: feed.facebook_pagination_id,
+        #facebook_pagination_id: feed.facebook_pagination_id,
         instagram_max_id:       feed.instagram_max_id,
         nfuse_post_last_id:     feed.nfuse_pagination_id,
         youtube_pagination:     feed.youtube_pagination_id,
@@ -118,8 +116,6 @@ class UsersController < ApplicationController
         feed=Feed.new(user)
         timeline << feed.construct(params)
         @unauthed_accounts              = feed.unauthed_accounts
-        @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-        @commenter_profile_hash         = feed.commenter_profile_hash
       end
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
@@ -208,8 +204,6 @@ class UsersController < ApplicationController
     @providers = Providers.for(current_user)
     @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
     @unauthed_accounts              = timeline[:unauthed_accounts].first
-    @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
-    @commenter_profile_hash         = timeline[:commenter_profile_hash].first
   end
 
   def explore_nfuse_only
@@ -268,8 +262,6 @@ class UsersController < ApplicationController
         feed=Feed.new(user)
         timeline << feed.construct(params)
         @unauthed_accounts              = feed.unauthed_accounts
-        @poster_recipient_profile_hash  = feed.poster_recipient_profile_hash
-        @commenter_profile_hash         = feed.commenter_profile_hash
       end
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
@@ -284,8 +276,6 @@ class UsersController < ApplicationController
     stack = {
       timeline: [],
       unauthed_accounts: [],
-      poster_recipient_profile_hash: [],
-      commenter_profile_hash: [],
       feed_unauthed_accounts: []
     }
     current_user.followed_users.each do |user|
@@ -293,8 +283,6 @@ class UsersController < ApplicationController
       stack[:timeline] << feed.construct(params)
       # this is constantly getting over written for each user.
       stack[:feed_unauthed_accounts] << feed.unauthed_accounts
-      stack[:poster_recipient_profile_hash] << feed.poster_recipient_profile_hash
-      stack[:commenter_profile_hash] << feed.commenter_profile_hash
     end
     stack
   end

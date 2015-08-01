@@ -10,8 +10,6 @@ class PagesController < ApplicationController
       # hence why i put #first at the end of the hash.
 
       @unauthed_accounts              = timeline[:unauthed_accounts].first
-      @poster_recipient_profile_hash  = timeline[:poster_recipient_profile_hash].first
-      @commenter_profile_hash         = timeline[:commenter_profile_hash].first
     end
     # render 'home' is implicit.
   end
@@ -22,8 +20,6 @@ class PagesController < ApplicationController
     stack = {
       timeline: [],
       unauthed_accounts: [],
-      poster_recipient_profile_hash: [],
-      commenter_profile_hash: [],
       feed_unauthed_accounts: []
     }
     current_user.followed_users.each do |user|
@@ -31,8 +27,6 @@ class PagesController < ApplicationController
       stack[:timeline] << feed.construct(params)
       # this is constantly getting over written for each user.
       stack[:feed_unauthed_accounts] << feed.unauthed_accounts
-      stack[:poster_recipient_profile_hash] << feed.poster_recipient_profile_hash
-      stack[:commenter_profile_hash] << feed.commenter_profile_hash
     end
     stack
   end

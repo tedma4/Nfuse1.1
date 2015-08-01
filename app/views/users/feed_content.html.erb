@@ -1,8 +1,6 @@
 <% if @timeline.present? %>
   <% @timeline.each do |post| %>
     <% case post.provider %>
-    <% when "facebook" %>
-      <%= render partial: "facebook_post", locals: {post: post, poster_recipient_profile_hash: @poster_recipient_profile_hash, commenter_profile_hash: @commenter_profile_hash} %>
     <% when "nfuse" %>
       <%  render partial: 'users/shout', locals: {shout: post} %>
     <% when "gplus" %>

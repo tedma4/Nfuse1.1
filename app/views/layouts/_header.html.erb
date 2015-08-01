@@ -58,11 +58,7 @@
       <li class="navIcon tilt" id="explore">        
       <%= link_to image_tag('educational27.png', size: "32x32", title: "Explore"), explore_user_path(current_user) %>
       </li>
-      <% if current_page?(feed_user_path(current_user)) %>
-        <li class="navIcon tilt" id="profile">
-      <%else%>
-        <li class="navIcon tilt">
-      <%end%>
+      <li class="navIcon tilt" id="profile">
         <%= link_to image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{ current_user.full_name}"), feed_user_path(current_user) %>
       </li>
       <li class="navIcon tilt" id="newpost">
@@ -178,9 +174,11 @@ $(document).ready(function(){
     else if(urlPath.indexOf('/explore_tumblr_only')!== -1){
       $('#explore').addClass("activeNavIcon");
     }
+    <% if signed_in? && current_page?(feed_user_path(current_user)) %>
     else if(urlPath.indexOf("/feed")!== -1){
       $('#profile').addClass("activeNavIcon");
     }
+    <%end%>
     else if(urlPath.indexOf('/nfuse_page')!== -1){
       $('#profile').addClass("activeNavIcon");
     }
