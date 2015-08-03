@@ -31,7 +31,7 @@ module Nfuse
     end
 
     def avatar
-      @shout.user.avatar
+      @shout.user.avatar(:thumb)
     end
 
     def full_name
@@ -41,6 +41,8 @@ module Nfuse
     def user_name
       @shout.user.user_name
     end
+
+    alias_method :username, :user_name
 
     def link?
       @shout.link

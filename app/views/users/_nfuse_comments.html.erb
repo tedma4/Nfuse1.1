@@ -1,0 +1,59 @@
+<% if !post.url.blank? %>
+  <p> <%= post.url_html %></p>
+  <div class="caption Alignthisorelse">
+    <strong><%= post.content %></strong>
+  </div>
+<% elsif post.is_pic? %>
+  <div class="modal-timeline-user-box center">
+    <%= image_tag post.pic_url %>
+  </div>
+  <div class="caption Alignthisorelse">
+    <strong><%= post.content %></strong>
+  </div>
+<% elsif post.is_video? %>
+  <div class="modal-timeline-user-box center">
+    <video
+    id="ytplayer"
+    type="video/mp4"
+    width="100%"
+    height="225"
+    src="<%= post.video_url %>"
+    frameborder="0"
+    allowfullscreen
+    controls>
+    </video>
+    <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+  </div>
+  <div class="caption Alignthisorelse">
+    <strong><%= post.content %></strong>
+  </div>
+<% elsif post.is_full_video? %>
+  <div class="timeline-user-box">
+    <video
+    id="ytplayer"
+    type="video/mp4"
+    width="100%"
+    height="225"
+    src="<%= post.video_url %>"
+    frameborder="0"
+    allowfullscreen
+    controls>
+    </video>
+    <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+
+    height="225"
+    src="<%= post.full_video_url %>"
+    frameborder="0"
+    allowfullscreen
+    controls>
+    </video>
+    <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+  </div>
+  <div class="caption Alignthisorelse">
+    <strong><%= post.content %></strong>
+  </div>
+<% else %>
+  <div class="caption Alignthisorelse">
+    <strong><%= post.content %></strong>
+  </div>
+<% end %>

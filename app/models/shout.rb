@@ -8,6 +8,8 @@ class Shout < ActiveRecord::Base
 
   attr_accessor :photo_delete, :video_delete
 
+  scope :order_by_time, -> { order("created_at DESC")}
+
   has_destroyable_file :pic, :snip, :video
 
   has_attached_file :pic, 

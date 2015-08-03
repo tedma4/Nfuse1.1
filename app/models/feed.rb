@@ -60,19 +60,18 @@ class Feed
   end
 
   private
-
+  SHOUT_PAGINATION_COUNT = 4
   def users_posts(shout_id)
     if shout_id.nil?
-      @_shouts = @user.shouts.limit(10)
-      @nfuse_pagination_id = @_shouts.last.id unless @_shouts.empty?
-    else
+      @_shouts = @user.shouts.order_by_time.limit(SHOUT_PAGINATION_COUNT)
+      @nfuse_pagination_id = @_shouts.last.id
+    elsif shout_id != -1
       shout = Shout.find(shout_id)
-      @_shouts = @user.shouts.where(['created_at > ?', shout.created_at ])
-
-      if @_shouts.count == 1 && @_shouts.first.id == shout_id.to_i 
+      @_shouts = @user.shouts.where(['created_at < ?', shout.created_at ]).order_by_time.limit(SHOUT_PAGINATION_COUNT)
+      if @_shouts.empty?
+        @nfuse_pagination_id = -1
+      else
         @nfuse_pagination_id = @_shouts.last.id
-
-        @_shouts = []
       end
     end
     @nfuse_shouts = @_shouts.map { |shout| Nfuse::Post.new(shout) }
