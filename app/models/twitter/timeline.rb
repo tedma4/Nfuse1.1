@@ -1,5 +1,5 @@
 module Twitter
-  class Timeline
+  class Timeline < NfuseBase::Timeline
 
     attr_reader :authed, :last_post_id
 
@@ -46,9 +46,9 @@ module Twitter
 
     def get_timeline(client, max_id)
       if max_id.nil?
-        client.user_timeline(:count =>1)
+        client.user_timeline(:count =>TWITTER_PAGINATION_COUNT)
       else
-        twitter_timeline = client.user_timeline(:max_id => max_id, :count => 5)
+        twitter_timeline = client.user_timeline(:max_id => max_id, :count => TWITTER_PAGINATION_COUNT)
         twitter_timeline.delete_at(0)
         twitter_timeline
       end

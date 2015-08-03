@@ -1,6 +1,5 @@
 module Flickr
-  class Timeline
-    POST_PAGINATION_COUNT = 3
+  class Timeline < NfuseBase::Timeline
 
     # FlickRaw.api_key="... Your API key ..."
     # FlickRaw.shared_secret="... Your shared secret ..."
@@ -52,13 +51,13 @@ module Flickr
     def get_timeline(client, page)
        if page.nil?
         timeline = client.people.getPhotos('user_id' => @user.tokens.where('provider' => 'flickr').first.uid,
-                                'per_page' => POST_PAGINATION_COUNT,
+                                'per_page' => FLICKR_PAGINATION_COUNT,
                                 'page' => 1)
          @last_post_id = 1
        else
          page = page.to_i + 1
          timeline = client.people.getPhotos('user_id' => @user.tokens.where('provider' => 'flickr').first.uid,
-                                 'per_page' => POST_PAGINATION_COUNT,
+                                 'per_page' => FLICKR_PAGINATION_COUNT,
                                  'page' => page)
          @last_post_id = page
        end

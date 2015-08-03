@@ -1,9 +1,7 @@
 module Gplus
-  class Timeline
+  class Timeline < NfuseBase::Timeline
 
     attr_reader :authed, :current_page
-
-    POST_PAGINATION_COUNT = 5
 
     def initialize(user=current_user)
       @user = user
@@ -39,20 +37,20 @@ module Gplus
     def get_timeline(client, page)
       page = page.to_i
       if page.nil? || page == 0
-        timeline = client.list_activities.items(max_results: POST_PAGINATION_COUNT)
-        store_page(POST_PAGINATION_COUNT)
+        timeline = client.list_activities.items(max_results: GPLUS_PAGINATION_COUNT)
+        store_page(GPLUS_PAGINATION_COUNT)
       else
         total = client.list_activities.items.count
         if total > page
-          timeline = client.list_activities.items(max_results: (page + POST_PAGINATION_COUNT))
+          timeline = client.list_activities.items(max_results: (page + GPLUS_PAGINATION_COUNT))
           #true if you requested more posts than there are left
-          if timeline.count < page + POST_PAGINATION_COUNT
+          if timeline.count < page + GPLUS_PAGINATION_COUNT
             num = timeline.count - page
             timeline = timeline[-num..-1]
             store_page(total)
           else
-            timeline = timeline[-POST_PAGINATION_COUNT..-1]
-            store_page(page + POST_PAGINATION_COUNT)
+            timeline = timeline[-GPLUS_PAGINATION_COUNT..-1]
+            store_page(page + GPLUS_PAGINATION_COUNT)
           end
         else
           timeline = []
