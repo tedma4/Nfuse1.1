@@ -48,6 +48,7 @@ gem 'flickraw'
 gem 'tumblr_client'
 #This allows the use of the twitter api
 gem 'twitter', '>= 5.14.0'
+gem 'koala', "~> 2.0"
 gem 'yt', :git => 'https://github.com/ermacaz/yt.git'
 gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth 

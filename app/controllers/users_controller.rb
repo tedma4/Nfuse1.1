@@ -94,7 +94,7 @@ class UsersController < ApplicationController
 
     @load_more_url = feed_content_path(
         twitter_pagination:     feed.twitter_pagination_id,
-        #facebook_pagination_id: feed.facebook_pagination_id,
+        facebook_pagination:    feed.facebook_pagination_id,
         instagram_max_id:       feed.instagram_max_id,
         nfuse_post_last_id:     feed.nfuse_pagination_id,
         youtube_pagination:     feed.youtube_pagination_id,
