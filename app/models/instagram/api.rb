@@ -1,9 +1,9 @@
 module Instagram
   class Unauthorized < StandardError; end
 
-  class Api
+  class Api < NfuseBase::Timeline
 
-    POST_PAGINATION_COUNT = 5
+
     def initialize(access_token, max_id)
       @access_token = access_token
       @max_id = max_id
@@ -42,9 +42,9 @@ module Instagram
 
     def create_url
       if @max_id.nil?
-        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=#{POST_PAGINATION_COUNT}"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&count=#{INSTAGRAM_PAGINATION_COUNT}"
       else
-        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=#{POST_PAGINATION_COUNT}"
+        "#{users_api}/self/media/recent/?access_token=#{@access_token}&max_id=#{@max_id}&count=#{INSTAGRAM_PAGINATION_COUNT}"
       end
     end
 

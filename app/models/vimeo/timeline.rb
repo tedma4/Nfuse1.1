@@ -1,6 +1,5 @@
 module Vimeo
-  class Timeline
-    POST_PAGINATION_COUNT = 5
+  class Timeline < NfuseBase::Timeline
 
     attr_reader :authed, :last_post_id
 
@@ -57,12 +56,12 @@ module Vimeo
     def get_timeline(video, page)
       configure_vimeo(user_tokens)
       if page == nil
-        user = Vmo::Request.get_user_videos(user_tokens.access_token, page: 1, per_page: POST_PAGINATION_COUNT)
+        user = Vmo::Request.get_user_videos(user_tokens.access_token, page: 1, per_page: VIMEO_PAGINATION_COUNT)
         timeline = user.videos
         @last_post_id = 1
       else
         page = page.to_i + 1
-        user = Vmo::Request.get_user_videos(user_tokens.access_token, page: page, per_page: POST_PAGINATION_COUNT)
+        user = Vmo::Request.get_user_videos(user_tokens.access_token, page: page, per_page: VIMEO_PAGINATION_COUNT)
         timeline = user.videos
         @last_post_id = page
       end

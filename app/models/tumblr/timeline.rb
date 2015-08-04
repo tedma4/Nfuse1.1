@@ -1,8 +1,7 @@
 module Tumblr
-  class Timeline
+  class Timeline < NfuseBase::Timeline
 
     attr_reader :authed, :cursor
-    NUMBER_TO_LOAD = 5
     def initialize(user=current_user)
       @user = user
       @authed = true
@@ -36,21 +35,21 @@ module Tumblr
 
     def get_timeline(client, offset)
       if offset.to_i == 0 || offset.nil?
-        tumblr_timeline = client.posts("#{my_username}.tumblr.com", limit: NUMBER_TO_LOAD)
-        @cursor = NUMBER_TO_LOAD
+        tumblr_timeline = client.posts("#{my_username}.tumblr.com", limit: TUMBLR_PAGINATION_COUNT)
+        @cursor = TUMBLR_PAGINATION_COUNT
         tumblr_timeline
       else
-        tumblr_timeline = client.posts("#{my_username}.tumblr.com", offset: offset, limit: NUMBER_TO_LOAD)
-        @cursor = offset.to_i + NUMBER_TO_LOAD
+        tumblr_timeline = client.posts("#{my_username}.tumblr.com", offset: offset, limit: TUMBLR_PAGINATION_COUNT)
+        @cursor = offset.to_i + TUMBLR_PAGINATION_COUNT
         tumblr_timeline
       end
     end
 
     def store_cursor(offset)
       if offset.nil?
-        @cursor = NUMBER_TO_LOAD
+        @cursor = TUMBLR_PAGINATION_COUNT
       else
-        @cursor += NUMBER_TO_LOAD
+        @cursor += TUMBLR_PAGINATION_COUNT
       end
     end
   end

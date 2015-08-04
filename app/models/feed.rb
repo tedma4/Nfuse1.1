@@ -31,7 +31,7 @@ class Feed
             flickr_pagination_id, 
             tumblr_pagination_id, 
             gplus_pagination_id)
-    TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
+    TimelineConcatenator.merge(twitter_posts(twitter_pagination_id),
                                    instagram_posts(instagram_max_id),
                                    facebook_posts(facebook_pagination_id),
                                    youtube_posts(youtube_pagination_id),
@@ -56,7 +56,24 @@ class Feed
     # pt = pinterest_posts(params[:pinterest_pagination])
     fl = flickr_posts(params[:flickr_pagination])
     tb = tumblr_posts(params[:tumblr_pagination])
-    TimelineConcatenator.new.merge(tw, ig, fb, up, vp, yt, fl, gp, tb ) #, pt, fl
+    posts = []
+    posts << tw
+    posts << fb
+    posts << ig
+    posts << yt
+    posts << gp
+    posts << vp
+    posts << up
+    posts << fl
+    posts << tb
+
+    date = find_recent_last_post(posts)
+    posts = filter_older_posts(posts, date)
+    # TimelineConcatenator.merge(tw, ig, fb, up, vp, yt, fl, gp, tb ) #, pt, fl
+    return {
+        posts: TimelineConcatenator.merge2(posts),
+        date: date
+    }
   end
 
   private
@@ -227,5 +244,32 @@ class Feed
     unless facebook_timeline.authed
       @unauthed_accounts << "facebook"
     end
+  end
+
+  def find_recent_last_post(posts)
+    date = Time.zone.now - 100.years
+    posts.each do |provider_posts|
+      unless provider_posts.empty?
+        if provider_posts.last.created_time > date
+          date = provider_posts.last.created_time
+        end
+      end
+    end
+    date
+  end
+
+  def filter_older_posts(posts, date)
+    filtered = []
+    posts.each do |provider_posts|
+      unless provider_posts.empty?
+        provider_posts.each do |post|
+          if post.created_time > date
+            filtered << post
+          end
+        end
+      end
+
+    end
+    filtered
   end
 end

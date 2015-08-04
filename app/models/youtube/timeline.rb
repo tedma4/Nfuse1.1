@@ -1,5 +1,5 @@
 module Youtube
-  class Timeline
+  class Timeline < NfuseBase::Timeline
 
     attr_reader :authed, :current_page
     
@@ -7,7 +7,6 @@ module Youtube
   #  client.get_all_videos(:user, :time => :today)
   #  client.my_videos
   #  client.my_video(video_id)
-    POST_PAGINATION_COUNT = 1
     def initialize(user=current_user)
       @user = user
       @authed = true
@@ -38,20 +37,20 @@ module Youtube
     def get_timeline(client, last_post_number)
       last_post_number = last_post_number.to_i
       if last_post_number.nil? || last_post_number == 0
-        youtube_timeline = client.videos.first(POST_PAGINATION_COUNT)
-        store_page(POST_PAGINATION_COUNT)
+        youtube_timeline = client.videos.first(YOUTUBE_PAGINATION_COUNT)
+        store_page(YOUTUBE_PAGINATION_COUNT)
       else
         vids = client.videos
         if vids.count > last_post_number
-          youtube_timeline = vids.first(last_post_number + POST_PAGINATION_COUNT)
+          youtube_timeline = vids.first(last_post_number + YOUTUBE_PAGINATION_COUNT)
           #if true you have less posts than asked for (you reached their last post)
-          if youtube_timeline.count < last_post_number + POST_PAGINATION_COUNT
+          if youtube_timeline.count < last_post_number + YOUTUBE_PAGINATION_COUNT
             num = youtube_timeline.count - last_post_number
             youtube_timeline = youtube_timeline[-num..-1]
             store_page(vids.count)
           else
-            youtube_timeline = youtube_timeline[-POST_PAGINATION_COUNT..-1]
-            store_page(last_post_number + POST_PAGINATION_COUNT)
+            youtube_timeline = youtube_timeline[-YOUTUBE_PAGINATION_COUNT..-1]
+            store_page(last_post_number + YOUTUBE_PAGINATION_COUNT)
           end
         else
           youtube_timeline = []
