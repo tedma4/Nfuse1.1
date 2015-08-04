@@ -86,7 +86,8 @@ class UsersController < ApplicationController
   def feed_builder
     @feed                = Feed.new(@user)
     @providers          = Providers.for(@user)
-    @timeline           = @feed.construct(params)
+    temp_hash = @feed.construct(params)
+    @timeline = temp_hash[:posts]
     @unauthed_accounts  = @feed.unauthed_accounts
     # since these two are facebook specfic. i would @_fb_REST_OF_NAME
     @poster_recipient_profile_hash = @feed.poster_recipient_profile_hash
@@ -102,7 +103,8 @@ class UsersController < ApplicationController
         tumblr_pagination:      @feed.tumblr_pagination_id,
         vimeo_pagination:       @feed.vimeo_pagination_id,
         flickr_pagination:      @feed.flickr_pagination_id,
-        id: @user.id )
+        id: @user.id,
+        filter_date: temp_hash[:date].to_i)
   end
 
   def explore
