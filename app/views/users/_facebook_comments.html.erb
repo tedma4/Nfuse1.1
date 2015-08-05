@@ -1,14 +1,61 @@
-<ul>
-  <% if post.story %>
-    <li><%= post.story %></li>
+  <% case post.type %>
+  <% when 'photo' %>
+    <div class="timeline-user-box">
+      <%= image_tag(post.image, class: 'facebook_image') %>
+    </div>
+      <div class="center">
+        <% if post.message.present? %>
+            <%= post.message%>
+        <%end%>
+      </div>
+  <% when 'link' %>
+    <% if post.image.present? %>
+      <div class="timeline-user-box">
+        <%= image_tag(post.image, class: 'facebook_image') %>
+      </div>
+    <%end%>
+      <div class="center">
+        <% if post.description.present? %>
+            <%= post.description %>
+        <%end%>
+      </div>
+      <div class="center">
+        <% if post.message.present? %>
+            <%= post.message%>
+        <%end%>
+      </div>
+  <% when 'video' %>
+    <div class="center">
+      <% if post.caption == 'youtube.com' %>
+        <iframe
+        id="ytplayer"
+        width="75%"
+        autoplay=0
+        src="<%= post.youtube_source %>"
+        frameborder="0"
+        allowfullscreen>
+        </iframe>
+      <div class="center">
+        <% if post.message.present? %>
+            <%= post.message%>
+        <%end%>
+      </div>
+      <%else%>
+        <video width="75%" controls>
+          <source src="<%= post.source %>" type='video/mp4' />
+          <source src="<%= post.source %>" type='video/ogv' />
+        </video>
+      <div class="center">
+        <% if post.message.present? %>
+            <%= post.message%>
+        <%end%>
+      </div>
+      <%end%>
+    </div>
+  <% when 'status' %>
+    <div class="center">
+      <% if post.message.present? %>
+          <%= post.message%>
+      <%end%>
+    </div>
   <% end %>
-  <% if post.image %>
-    <li><%= image_tag(post.image) %></li>
-  <% end %>
-  <% if post.caption_text && post.status_type != "shared_story" %>
-    <li><%= post.caption_text %></li>
-  <% end %>
-  <% if post.article_link && post.type == "link" %>
-    <li><%= link_to "View the Link", post.article_link, :target => "_blank" %></li>
-  <% end %>
-</ul>
