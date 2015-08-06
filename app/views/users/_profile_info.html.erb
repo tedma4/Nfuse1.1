@@ -14,24 +14,6 @@
         display: none;
     }
 }
-
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-}
-.fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
 </style>
 <div><%= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
@@ -148,7 +130,7 @@
                                       <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
                                     </div>
                                     <div class="form-grouP">
-                                      <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+                                      <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
                                     </div>
                                   </div>
                                  </div>
@@ -177,8 +159,8 @@
                                 <div class="row">
                                   <div class="col-sm-5 section-bottom-button wow fadeInUp">
                                     <div id="target"></div>
-                                    <div id="target2"></div>
-                                    <div id="preview"></div>
+                                    <div id="profilePostTarget"></div>
+                                    <div id="profileUrlPostPreview"></div>
                                     <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
                                   </div>
                                 </div>
@@ -253,7 +235,7 @@
         var img = new Image();
         console.log(file);
         img.src = file.target.result;
-        $('#target2').html(img);
+        $('#profilePostTarget').html(img);
       }
       reader.readAsDataURL(image);
       console.log(files);
@@ -264,7 +246,7 @@
 <script>
 function load(request) {
   $('#code').text(request);
-  $('#preview').html(request);
+  $('#profileUrlPostPreview').html(request);
 }
 
 function preview(value) {
@@ -288,23 +270,23 @@ function preview(value) {
 }
 
 function previewUrl() {
-  preview({'url':$('#url_body').val()});
+  preview({'url':$('#profile_post_url_body').val()});
 }
 
 $('#examples a').click(function() {
-  $('#url_body').focus(); 
-  $('#url_body').val( $(this).attr('href'));
+  $('#profile_post_url_body').focus(); 
+  $('#profile_post_url_body').val( $(this).attr('href'));
   previewUrl();
 });
 
 $(function () { 
-  $("#url_body").focus();
+  $("#profile_post_url_body").focus();
   previewUrl();
 });
 
 //$('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
-//$('#url_body').keydown(function() { alert("hi"); previewUrl() });
-//$('#url_body').bind('input propertychange', function() { alert("hi"); previewUrl() });  
+//$('#profile_post_url_body').keydown(function() { alert("hi"); previewUrl() });
+//$('#profile_post_url_body').bind('input propertychange', function() { alert("hi"); previewUrl() });  
 
 
 </script>
