@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers,
                                           :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, 
-                                          :facebook_only, :youtube_only, :gplus_only, :flickr_only, :tumblr_only]
+                                          :facebook_only, :youtube_only, :gplus_only, :flickr_only, :tumblr_only, :ajax_feed_load]
 
   def index
     #user = User.find(params[:id])
@@ -78,9 +78,34 @@ class UsersController < ApplicationController
   end
 
   def feed
-    feed_builder
+    # feed_builder
     render 'show_feed'
 
+  end
+
+  def ajax_feed_load
+    @feed                = Feed.new(@user)
+    @providers          = Providers.for(@user)
+    temp_hash = @feed.construct(params)
+    @timeline = temp_hash[:posts]
+    @unauthed_accounts  = @feed.unauthed_accounts
+    # since these two are facebook specfic. i would @_fb_REST_OF_NAME
+    @poster_recipient_profile_hash = @feed.poster_recipient_profile_hash
+    @commenter_profile_hash        = @feed.commenter_profile_hash
+
+    @load_more_url = feed_content_path(
+        twitter_pagination:     @feed.twitter_pagination_id,
+        facebook_pagination_id: @feed.facebook_pagination_id,
+        instagram_max_id:       @feed.instagram_max_id,
+        nfuse_post_last_id:     @feed.nfuse_pagination_id,
+        youtube_pagination:     @feed.youtube_pagination_id,
+        gplus_pagination:       @feed.gplus_pagination_id,
+        tumblr_pagination:      @feed.tumblr_pagination_id,
+        vimeo_pagination:       @feed.vimeo_pagination_id,
+        flickr_pagination:      @feed.flickr_pagination_id,
+        id: @user.id,
+        filter_date: temp_hash[:date].to_i)
+    render partial: 'users/ajax_feed_load' if request.xhr?
   end
 
   def feed_builder

@@ -1,0 +1,41 @@
+<style>
+  .timeline-user-box img {
+    min-width: 150px;
+    min-height: 150px;
+  }
+</style>
+<% unless @unauthed_accounts.empty? %>
+  <%= render partial: "unauthed_accounts" %>
+<% end %>
+<!-- masonJar js-masonry -->
+<div id="masonJar" class="feed_container clearfix masonJar" data-user-id="<%= @user.id %>" >
+  <% if @timeline.present? %>
+    <% @timeline.each do |post| %>
+      <% case post.provider %>
+  <% when "gplus" %>
+        <% if post.type != 'hiddenType' %>
+          <%= render partial: "users/post", locals: {post: post} %>
+        <% end %>
+      <% when "tumblr" %>
+        <% unless post.type == 'chat' || post.type == 'audio' %>
+          <%= render partial: "users/post", locals: {post: post} %>
+        <% end %>
+      <% else %>
+        <%= render partial: "users/post", locals: {post: post} %>
+      <% end %>
+
+    <% end %>
+    <div class="load_posts_link">
+      <%= link_to "Load more posts", @load_more_url, id: "load-more" %>
+    </div>
+  <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
+    <div id="empty_feed_container">
+      <% if current_user?(@user) %>
+        <%= render partial: "link_networks" %>
+      <% else %>
+        <p> <%= @user.user_name %> has not Nfused any networks. </p>
+        <%= image_tag("sadface.fw.png", size:"100x100") %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  get 'users/:id/ajax-feed-load', to: 'users#ajax_feed_load', as: :ajax_feed_load
+
   resources :callback_links
 
   resources :users do
