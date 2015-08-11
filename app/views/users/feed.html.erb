@@ -5,12 +5,17 @@
      type: "GET"
    }).done(function(data) {
       $("#masonJar").html(data);
-     msnry.destroy();
+
+   }).fail(function(err) {
+     console.log(err);
+   }).always(function() {
+     if (!(msnry == null)) {
+       msnry.destroy();
+     }
      initMasonry();
      resizeMasonry();
-   }).fail(function(err) {
-     console.log(err)
-   });
+     $(window).trigger('resize');
+    })
   };
   $(document).ready(loadPosts);
   $(document).on('page:load', ready);
