@@ -4,7 +4,7 @@
      url: '<%="/users/#{current_user.user_name}/ajax-feed-load" %>',
      type: "GET"
    }).done(function(data) {
-      $("#masonJar").append(data);
+      $("#masonJar").html(data);
      msnry.destroy();
      initMasonry();
      resizeMasonry();
