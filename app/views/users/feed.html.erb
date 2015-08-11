@@ -4,8 +4,10 @@
      url: '<%="/users/#{current_user.user_name}/ajax-feed-load" %>',
      type: "GET"
    }).done(function(data) {
-      $("#load-posts").html(data);
-//      $grid.masonry();
+      $("#masonJar").append(data);
+     msnry.destroy();
+     initMasonry();
+     resizeMasonry();
    }).fail(function(err) {
      console.log(err)
    });
@@ -14,6 +16,6 @@
   $(document).on('page:load', ready);
 </script>
 
-<div id="load-posts">
+<div id="masonJar" class="feed_container clearfix masonJar" data-user-id="<%= @user.id %>" >
 
 </div>

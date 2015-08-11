@@ -56,24 +56,24 @@ class Feed
     # pt = pinterest_posts(params[:pinterest_pagination])
     fl = flickr_posts(params[:flickr_pagination])
     tb = tumblr_posts(params[:tumblr_pagination])
-    posts = []
-    posts << tw
-    posts << fb
-    posts << ig
-    posts << yt
-    posts << gp
-    posts << vp
-    posts << up
-    posts << fl
-    posts << tb
+    # posts = []
+    # posts << tw
+    # posts << fb
+    # posts << ig
+    # posts << yt
+    # posts << gp
+    # posts << vp
+    # posts << up
+    # posts << fl
+    # posts << tb
 
-    date = find_recent_last_post(posts)
-    posts = filter_older_posts(posts, date)
-    # TimelineConcatenator.merge(tw, ig, fb, up, vp, yt, fl, gp, tb ) #, pt, fl
-    return {
-        posts: TimelineConcatenator.merge2(posts),
-        date: date
-    }
+    # date = find_recent_last_post(posts)
+    # posts = filter_older_posts(posts, date)
+    TimelineConcatenator.merge(tw, ig, fb, up, vp, yt, fl, gp, tb ) #, pt, fl
+  #   return {
+  #       posts: TimelineConcatenator.merge2(posts),
+  #       date: date
+  #   }
   end
 
   private
