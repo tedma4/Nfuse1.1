@@ -117,6 +117,7 @@ Rails.application.routes.draw do
   post '/facebook/like/:post_id',     to: 'likes#facebook'
 
   root to: 'pages#home'
+  get '/wired_posts', to: 'pages#wired_posts'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

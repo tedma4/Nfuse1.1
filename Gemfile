@@ -43,6 +43,7 @@ gem 'omniauth-tumblr'
 #This allows the use of the facebook graph api
 gem 'fb_graph'
 gem 'vimeo'
+#gem 'instagram', '1.1.5'
 gem 'vmo', :git => 'https://github.com/ermacaz/vmo.git'
 gem 'flickraw'
 gem 'tumblr_client'
