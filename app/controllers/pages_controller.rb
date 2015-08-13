@@ -26,7 +26,7 @@ class PagesController < ApplicationController
    @comp     = 'wired'
    @comp_url = 'https://www.youtube.com/user/wired'
    page     = Page::Timeline.new(@comp, @comp_url)
-   @timline = page.construct(params)
+   @timeline = page.construct(params)
    render 'comp'
   end
 

@@ -1,12 +1,17 @@
 module Page
 	class Post < TimelineEntry
 
-    def self.from(post)
-      new(post)
+    def self.from(post, provider)
+      new(post, provider)
     end
 
-    def initialize(post)
+    def initialize(post, provider)
       @post = post
+      @provider = provider
+    end
+
+    def provider
+      @provider
     end
 
     def avatar
@@ -20,53 +25,58 @@ module Page
     #-----------id----------
 
     def id
-    	if #instagram
-      	@post["id"]
-	    else
-	    	@post.id
-	    end
+      case(@provider)
+        when 'instagram'
+          @post["id"]
+        else
+          @post.id
+      end
     end
 
     #-----------type----------
 
     def type
-    	if #instagram
-      	@post["type"]
-    	elsif #twitter
-     	  @post.attrs[:extended_entities][:media][0][:type]
-     	end
+      case(@provider)
+        when 'instagram'
+          @post["type"]
+        when 'twitter'
+          @post.attrs[:extended_entities][:media][0][:type]
+      end
     end
 
     #-----------text----------
 
     def text
-    	if #instagram
-    		@post['caption']['text']
-    	elsif #twitter
-    		@post.text
-    	else
-    		@post.description
+      case(@provider)
+        when 'instagram'
+          @post['caption']['text']
+        when 'twitter'
+          @post.text
+        else
+          @post.description
     	end
     end
 
     #-----------image----------
 
     def image
-    	if #instagram
-      	@post["images"]["low_resolution"]["url"]
-      elsif #twitter
-      	@post.attrs[:extended_entities][:media][0][:media_url]
+      case(@provider)
+        when 'instagram'
+          @post["images"]["low_resolution"]["url"]
+        when 'twitter'
+          @post.attrs[:extended_entities][:media][0][:media_url]
       end
     end
 
     #-----------video----------
 
     def video
-    	if #instagram
-      	@post["videos"]["standard_resolution"]["url"]
-    	elsif #twitter
-      	@post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
-      else
+      case(@provider)
+        when 'instagram'
+          @post["videos"]["standard_resolution"]["url"]
+        when 'twitter'
+          @post.attrs[:extended_entities][:media][0][:media_url]
+        else
       	@post.id
       end	      	
     end
@@ -74,23 +84,25 @@ module Page
     #-----------link----------
 
     def link_to_post
-    	if #instagram
-     	  @post["link"]
-    	elsif #twitter
-     	  "https://twitter.com/#{username}/status/#{id}"
-    	elsif #youtube
-    	  "https://www.youtube.com/watch?v=#{@post.id}"
+      case(@provider)
+        when 'instagram'
+          @post["videos"]["standard_resolution"]["url"]
+        when 'twitter'
+          @post.attrs[:extended_entities][:media][0][:media_url]
+        when 'youtube'
+          "https://www.youtube.com/watch?v=#{@post.id}"
     	end
     end
 
     #-----------created_at----------
     def created_time
-    	if #instagram
-      	Time.at(@post["created_time"].to_i)
-    	elsif #twitter
-    		@post.created_at
-      elsif #youtube
-      	@post.published_at
+      case(@provider)
+        when 'instagram'
+          Time.at(@post.created_time.to_i)
+        when 'twitter'
+          @post.created_at
+        when 'youtube'
+          @post.published_at
       end
     end
 
