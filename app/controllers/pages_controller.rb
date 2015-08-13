@@ -22,12 +22,11 @@ class PagesController < ApplicationController
   def privacy; end
   def notifications; end
 
-  def wired_posts
+  def wired_posts(comp)
    comp = 'wired'
    comp_url = 'https://www.youtube.com/user/wired'
-   twitter_setup
-   youtube_setup
-   instagram_setup
+   @timeline = Page::Timeline.new(comp)
+   render 'comp'
   end
 
   private
@@ -46,31 +45,6 @@ class PagesController < ApplicationController
       end
       stack
     end
-
-   def twitter_setup
-    client = Twitter::REST::Client.new do |i|
-      i.consumer_key = ENV['twitter_api_key']
-      i.consumer_secret = ENV['twitter_api_secret']
-    end
-    client.user_timeline(comp).take(25)
-   end
-
-   def youtube_setup
-    Yt.configuration.api_key = ENV['youtube_dev_key']
-    channel = Yt::Channel.new url: comp_url
-    channel.videos.first(15)
-   end
-
-   def instagram_setup
-     client_id = ENV['instagram_client_id']
-     client = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{comp}&client_id=#{client_id}").body)
-     if client['data'][0]['username'] == comp
-       usid = client['data'][0]['id']
-       posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}").body)
-     else
-       []
-     end
-   end
 end
 # To perform GET on "https://api.instagram.com/v1/users/<user-id>/media/recent/" 
 

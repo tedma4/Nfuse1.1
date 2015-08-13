@@ -1,0 +1,8 @@
+<div>
+  <%= render partial: "pages/comp_header" %>
+</div><br>
+<div id="masonJar" class="center clearfix masonJar">
+  <% @timeline do |post| %>
+    <%= render partial: "pages/post", locals: {post: post} %>
+  <% end %>
+</div>
