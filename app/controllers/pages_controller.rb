@@ -22,10 +22,10 @@ class PagesController < ApplicationController
   def privacy; end
   def notifications; end
 
-  def wired_posts(comp)
+  def wired_posts
    comp = 'wired'
    comp_url = 'https://www.youtube.com/user/wired'
-   @timeline = Page::Timeline.new(comp)
+   @timeline = Page::Timeline.new(comp, comp_url)
    render 'comp'
   end
 

@@ -1,8 +1,13 @@
 module Page
 	class Timeline
 
+    def initialize(comp, comp_url)
+      @comp = comp
+      @comp_url = comp_url
+    end
+
     def posts
-      timeline = PageConcatenator.new.merge()
+      timeline = PageConcatenator.new.merge(twitter_setup, youtube_setup, instagram_setup)
       timeline
     end
 
