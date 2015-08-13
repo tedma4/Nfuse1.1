@@ -23,9 +23,10 @@ class PagesController < ApplicationController
   def notifications; end
 
   def wired_posts
-   comp = 'wired'
-   comp_url = 'https://www.youtube.com/user/wired'
-   @timeline = Page::Timeline.new(comp, comp_url)
+   @comp     = 'wired'
+   @comp_url = 'https://www.youtube.com/user/wired'
+   page     = Page::Timeline.new(@comp, @comp_url)
+   @timline = page.construct(params)
    render 'comp'
   end
 

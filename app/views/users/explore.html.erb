@@ -5,7 +5,7 @@
 <!--   <div class="loader">
     <div class="loader-img"></div>
   </div> -->
-    <% @timeline.each do |post| %>
+    <% @timeline.first(30).each do |post| %>
       <% case post.provider %>
       <% when "nfuse" %>
         <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->

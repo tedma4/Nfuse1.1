@@ -10,7 +10,7 @@
 <!-- masonJar js-masonry -->
 <div id="masonJar" class="feed_container clearfix masonJar" data-user-id="<%= @user.id %>" >
   <% if @timeline.present? %>
-    <% @timeline.each do |post| %>
+    <% @timeline.first(30).each do |post| %>
       <% case post.provider %>
       <% when "nfuse" %>
         <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
