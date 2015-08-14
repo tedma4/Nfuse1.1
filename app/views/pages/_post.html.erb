@@ -7,40 +7,42 @@
   <div class="post_main">
    <ul class="post_header">
      <li>
-       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
+       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), root_path %>
      </li>
      <li class="user_name">
-       <%= link_to "#{post.username}", feed_user_path(post.user) %>
+       <%= link_to "#{post.username}", root_path %>
      </li>
    </ul>
   </div>
   <div class="post_content">
-    <% if post.type == "image" %>
+    <% if post.image.present? %>
         <div class="timeline-user-box">
-          <%= image_tag(post.low_resolution_image_url, :class => "image_post") %>
+          <%= image_tag(post.image, :class => "image_post") %>
         </div>
         <% if post.text.present? %>
         <div class="center">
           <%= post.text %>
         </div>
         <% end %>
-    <% elsif post.type == "video" && instagram || twitter %>
-      <div class="center">
-        <video width="100%" controls>
-          <source src="<%= post.video %>" type='video/mp4' />
-          <source src="<%= post.video %>" type='video/ogv' />
-        </video>
-      </div>
-    <% elsif post.type == "video" && youtube %>
-      <iframe
-        id="ytplayer"
-        type="text/html"
-        width="100%"
-        height="225"
-        src="http://www.youtube.com/embed/<%= post.video %>"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
+    <% elsif post.video.present? %>
+      <% if post.provider == 'youtube' %>
+        <iframe
+          id="ytplayer"
+          type="text/html"
+          width="100%"
+          height="225"
+          src="http://www.youtube.com/embed/<%= post.video %>"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      <% else %>
+        <div class="center">
+          <video width="100%" controls>
+            <source src="<%= post.video %>" type='video/mp4' />
+            <source src="<%= post.video %>" type='video/ogv' />
+          </video>
+        </div>
+      <%end%>
       <% if post.text.present? %>
         <div class="center">
           <%= post.text %>
@@ -79,13 +81,13 @@
     </li>
     <li class="vr"></li>
     <li class="tilt">
-      <%#= link_to image_tag("#{post.provider}blue.fw.png",
+      <%= link_to image_tag("#{post.provider}blue.fw.png",
                             size: "24x24",
                             :class => "#{post.provider}_provider_logo"),
                   post.link_to_post,
                   :target => "_blank" %>
       <p class="timeStamp">
-        <%#= time_ago_in_words(post.created_time) %> ago
+        <%= time_ago_in_words(post.created_time) %> ago
       </p>
     </li>
   </ul>

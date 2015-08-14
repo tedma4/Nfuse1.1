@@ -35,14 +35,14 @@ module Page
 
     #-----------type----------
 
-    def type
-      case(@provider)
-        when 'instagram'
-          @post["type"]
-        when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:type]
-      end
-    end
+    # def type
+    #   case(@provider)
+    #     when 'instagram'
+    #       @post["type"]
+    #     when 'twitter'
+    #       @post.attrs[:extended_entities][:media][0][:type]
+    #   end
+    # end
 
     #-----------text----------
 
@@ -64,7 +64,9 @@ module Page
         when 'instagram'
           @post["images"]["low_resolution"]["url"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:media_url]
+          if @post.attrs.has_key? :extended_entities
+            @post.attrs[:extended_entities][:media][0][:media_url]
+          end
       end
     end
 
@@ -75,7 +77,9 @@ module Page
         when 'instagram'
           @post["videos"]["standard_resolution"]["url"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:media_url]
+          if @post.attrs.has_key? :extended_entities
+            @post.attrs[:extended_entities][:media][0][:media_url]
+          end
         else
       	@post.id
       end	      	
@@ -86,9 +90,11 @@ module Page
     def link_to_post
       case(@provider)
         when 'instagram'
-          @post["videos"]["standard_resolution"]["url"]
+          @post["link"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:media_url]
+          if @post.attrs.has_key? :extended_entities
+            @post.attrs[:extended_entities][:media][0][:media_url]
+          end
         when 'youtube'
           "https://www.youtube.com/watch?v=#{@post.id}"
     	end
@@ -98,7 +104,7 @@ module Page
     def created_time
       case(@provider)
         when 'instagram'
-          Time.at(@post.created_time.to_i)
+          Time.at(@post['created_time'].to_i)
         when 'twitter'
           @post.created_at
         when 'youtube'
@@ -106,11 +112,7 @@ module Page
       end
     end
 
-
     #-----------other----------
 
-    def has_media?
-      @post.attrs.has_key? :extended_entities
-    end
 	end
 end

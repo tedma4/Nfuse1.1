@@ -37,14 +37,14 @@ module Page
      posts = channel.videos.first(15)
      youtube_posts = posts.map { |post| Page::Post.from(post, 'youtube') }
     end
- 
+
     def instagram_setup
       client_id = ENV['instagram_client_id']
       client = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@comp}&client_id=#{client_id}").body)
       if client['data'][0]['username'] == @comp
         usid = client['data'][0]['id']
-        posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}").body)
-        instagram_posts = posts.map { |post| Page::Post.from(post,'instagram') }
+        posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=25").body)
+        instagram_posts = posts['data'].map { |post| Page::Post.from(post,'instagram') }
       else
         []
       end
