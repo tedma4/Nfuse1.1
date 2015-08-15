@@ -7,10 +7,10 @@
   <div class="post_main">
    <ul class="post_header">
      <li>
-       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), root_path %>
+       <%= link_to image_tag("#{@comp}.jpg", :class => "user_profile_picture", size: "50x50"), root_path %>
      </li>
      <li class="user_name">
-       <%= link_to "#{post.username}", root_path %>
+       <%= link_to "#{@comp}", root_path %>
      </li>
    </ul>
   </div>

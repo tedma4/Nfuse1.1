@@ -14,12 +14,28 @@ module Page
       @provider
     end
 
-    def avatar
+    # def avatar
+    #   case(@provider)
+    #     when 'instagram'
+    #       @post["user"]['profile_picture']
+    #     when 'twitter'
+    #       @post.attrs[:user][:profile_image_url]
+    #     when 'youtube'
+    #       "youtubeblue.fw.png"
+    #   end
 
-    end
+    # end
 
     def username
-
+      case(@provider)
+        when 'instagram'
+          @post["user"]['username']
+        when 'twitter'
+          @post.attrs[:user][:screen_name]
+        when 'youtube'
+          'youtube user'
+      end
+``
     end
 
     #-----------id----------
@@ -92,9 +108,7 @@ module Page
         when 'instagram'
           @post["link"]
         when 'twitter'
-          if @post.attrs.has_key? :extended_entities
-            @post.attrs[:extended_entities][:media][0][:media_url]
-          end
+          "https://twitter.com/#{username}/status/#{id}"
         when 'youtube'
           "https://www.youtube.com/watch?v=#{@post.id}"
     	end

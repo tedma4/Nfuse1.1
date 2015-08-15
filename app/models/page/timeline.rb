@@ -2,9 +2,10 @@ module Page
 	class Timeline
   attr_accessor :params
 
-    def initialize(comp, comp_url)
+    def initialize(comp, comp_url, incomp)
       @comp = comp
       @comp_url = comp_url
+      @incomp = incomp
     end
 
     def posts
@@ -27,23 +28,23 @@ module Page
        i.consumer_key = ENV['twitter_api_key']
        i.consumer_secret = ENV['twitter_api_secret']
      end
-     posts = client.user_timeline(@comp).take(25)
+     posts = client.user_timeline(@comp).take(10)
      twitter_posts = posts.map { |post| Page::Post.from(post, 'twitter') }
     end
  
     def youtube_setup
      Yt.configuration.api_key = ENV['youtube_dev_key']
      channel = Yt::Channel.new url: @comp_url
-     posts = channel.videos.first(15)
+     posts = channel.videos.first(10)
      youtube_posts = posts.map { |post| Page::Post.from(post, 'youtube') }
     end
 
     def instagram_setup
       client_id = ENV['instagram_client_id']
-      client = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@comp}&client_id=#{client_id}").body)
-      if client['data'][0]['username'] == @comp
+      client = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@incomp}&client_id=#{client_id}").body)
+      if client['data'][0]['username'] == @incomp
         usid = client['data'][0]['id']
-        posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=25").body)
+        posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=10").body)
         instagram_posts = posts['data'].map { |post| Page::Post.from(post,'instagram') }
       else
         []
