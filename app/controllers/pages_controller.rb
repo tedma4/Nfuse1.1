@@ -94,6 +94,15 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
+  def us_weekly
+   @comp     = 'usweekly'
+   @comp_url = 'https://www.youtube.com/user/UsWeekly'
+   @incomp   = 'usweekly'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
   def entertainment_weekly
    @comp     = 'EW'
    @comp_url = 'https://www.youtube.com/user/ew'
@@ -132,7 +141,7 @@ class PagesController < ApplicationController
 
   def bloomberg_businessweekly
    @comp     = 'business'
-   @comp_url = 'https://www.youtube.com/user/Boomberg'
+   @comp_url = 'https://www.youtube.com/user/Bloomberg'
    @incomp   = 'bloomberg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
