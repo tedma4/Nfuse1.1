@@ -125,17 +125,18 @@ Rails.application.routes.draw do
   get '/newsweek', to: 'pages#newsweek'
   get '/popularscience', to: 'pages#popular_science'
   get '/vogue', to: 'pages#vogue'
-  get '/bloombergbusinessweekly', to: 'pages#bloomberg_businessweekly'
+  get '/bloomberg', to: 'pages#bloomberg_businessweekly'
   get '/gq', to: 'pages#gq'
   get '/hgtv', to: 'pages#hgtv'
-  get '/forbesmagazine', to: 'pages#forbes_magazine'
+  get '/forbes', to: 'pages#forbes_magazine'
   get '/fortune', to: 'pages#fortune'
   get '/enews', to: 'pages#e_news'
   get '/google', to: 'pages#google'
   get '/tedtalks', to: 'pages#tedtalks'
   get '/tesla', to: 'pages#tesla'
-  get '/victorias_secret', to: 'pages#victorias_secret'
+  get '/victoriassecret', to: 'pages#victorias_secret'
   get '/cnn', to: 'pages#cnn'
+  get '/businessconnector', to: 'pages#business_connector'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

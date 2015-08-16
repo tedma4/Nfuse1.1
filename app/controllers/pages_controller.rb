@@ -23,6 +23,7 @@ class PagesController < ApplicationController
   def notifications; end
 
   def wired
+   @compname = 'Wired'
    @comp     = 'wired'
    @comp_url = 'https://www.youtube.com/user/wired'
    @incomp   = 'wired'
@@ -32,6 +33,7 @@ class PagesController < ApplicationController
   end
 
   def national_geographic
+   @compname = 'National Geographic'
    @comp     = 'NatGeo'
    @comp_url = 'https://www.youtube.com/user/NationalGeographic'
    @incomp   = 'natgeo'
@@ -41,6 +43,7 @@ class PagesController < ApplicationController
   end
 
   def people_magazine
+   @compname = 'People Magazine'
    @comp     = 'people'
    @comp_url = 'https://www.youtube.com/user/people'
    @incomp   = 'peoplemag'
@@ -50,6 +53,7 @@ class PagesController < ApplicationController
   end
 
   def time_magazine
+   @compname = 'Time Magazine'
    @comp     = 'TIME'
    @comp_url = 'https://www.youtube.com/user/TimeMagazine'
    @incomp   = 'time'
@@ -59,6 +63,7 @@ class PagesController < ApplicationController
   end
 
   def sports_illustrated
+   @compname = 'Sports Illustrated'
    @comp     = 'sinow'
    @comp_url = 'https://www.youtube.com/user/SportsIllustrated'
    @incomp   = 'sportsillustrated'
@@ -68,6 +73,7 @@ class PagesController < ApplicationController
   end
 
   def cosmopolitan
+   @compname = 'Cosmopolitan'
    @comp     = 'Cosmopolitan'
    @comp_url = 'https://www.youtube.com/user/HelloStyleChannel'
    @incomp   = 'cosmopolitan'
@@ -77,6 +83,7 @@ class PagesController < ApplicationController
   end
 
   def redbull
+   @compname = 'Redbull'
    @comp     = 'redbull'
    @comp_url = 'https://www.youtube.com/user/redbull'
    @incomp   = 'redbull'
@@ -86,6 +93,7 @@ class PagesController < ApplicationController
   end
 
   def espn
+   @compname = 'ESPN'
    @comp     = 'espn'
    @comp_url = 'https://www.youtube.com/user/ESPN'
    @incomp   = 'espn'
@@ -95,6 +103,7 @@ class PagesController < ApplicationController
   end
 
   def us_weekly
+   @compname = 'US Weekly'
    @comp     = 'usweekly'
    @comp_url = 'https://www.youtube.com/user/UsWeekly'
    @incomp   = 'usweekly'
@@ -104,6 +113,7 @@ class PagesController < ApplicationController
   end
 
   def entertainment_weekly
+   @compname = 'Entertainment Weekly'
    @comp     = 'EW'
    @comp_url = 'https://www.youtube.com/user/ew'
    @incomp   = 'entertainmentweekly'
@@ -113,6 +123,7 @@ class PagesController < ApplicationController
   end
 
   def newsweek
+   @compname = 'Newsweek'
    @comp     = 'Newsweek'
    @comp_url = 'https://www.youtube.com/user/NewsweekVideo'
    @incomp   = 'newsweek'
@@ -122,6 +133,7 @@ class PagesController < ApplicationController
   end
 
   def popular_science
+   @compname = 'Popular Science'
    @comp     = 'PopSci'
    @comp_url = 'https://www.youtube.com/user/Popscivideo'
    @incomp   = 'popsci'
@@ -131,6 +143,7 @@ class PagesController < ApplicationController
   end
 
   def vogue
+   @compname = 'Vogue'
    @comp     = 'vougemagazine'
    @comp_url = 'https://www.youtube.com/user/Americanvogue'
    @incomp   = 'vougemagazine'
@@ -140,6 +153,7 @@ class PagesController < ApplicationController
   end
 
   def bloomberg_businessweekly
+   @compname = 'Bloomberg'
    @comp     = 'business'
    @comp_url = 'https://www.youtube.com/user/Bloomberg'
    @incomp   = 'bloomberg'
@@ -149,6 +163,7 @@ class PagesController < ApplicationController
   end
 
   def gq
+   @compname = 'GQ Magazine'
    @comp     = 'GQMagazine'
    @comp_url = 'https://www.youtube.com/user/GQVideos'
    @incomp   = 'gq'
@@ -158,6 +173,7 @@ class PagesController < ApplicationController
   end
 
   def hgtv
+   @compname = 'HGTV'
    @comp     = 'hgtv'
    @comp_url = 'https://www.youtube.com/user/HGTV'
    @incomp   = 'hgtv'
@@ -167,6 +183,7 @@ class PagesController < ApplicationController
   end
 
   def forbes_magazine
+   @compname = 'Forbes'
    @comp     = 'Forbes'
    @comp_url = 'https://www.youtube.com/user/forbes'
    @incomp   = 'forbes'
@@ -176,6 +193,7 @@ class PagesController < ApplicationController
   end
 
   def fortune
+   @compname = 'Fortune'
    @comp     = 'FortuneMagazine'
    @comp_url = 'https://www.youtube.com/user/FortuneMagazineVideo'
    @incomp   = 'fortunemag'
@@ -185,6 +203,7 @@ class PagesController < ApplicationController
   end
 
   def e_news
+   @compname = 'E! News'
    @comp     = 'Enews'
    @comp_url = 'https://www.youtube.com/user/enews'
    @incomp   = 'enews'
@@ -194,6 +213,7 @@ class PagesController < ApplicationController
   end
 
   def google
+   @compname = 'Google'
    @comp     = 'google'
    @comp_url = 'https://www.youtube.com/user/Google'
    @incomp   = 'google'
@@ -203,6 +223,7 @@ class PagesController < ApplicationController
   end
 
   def tedtalks
+   @compname = 'TED Talks'
    @comp     = 'TEDTalks'
    @comp_url = 'https://www.youtube.com/user/TEDtalksDirector'
    @incomp   = 'ted'
@@ -212,6 +233,7 @@ class PagesController < ApplicationController
   end
 
   def tesla
+   @compname = 'Tesla'
    @comp     = 'TeslaMotors'
    @comp_url = 'https://www.youtube.com/user/TeslaMotors'
    @incomp   = 'teslamotors'
@@ -221,6 +243,7 @@ class PagesController < ApplicationController
   end
 
   def victorias_secret
+   @compname = "Victoria's Secret"
    @comp     = 'VictoriasSecret'
    @comp_url = 'https://www.youtube.com/user/VICTORIASSECRET'
    @incomp   = 'victoriassecret'
@@ -230,12 +253,16 @@ class PagesController < ApplicationController
   end
 
   def cnn
+   @compname = 'CNN'
    @comp     = 'CNN'
    @comp_url = 'https://www.youtube.com/user/CNN'
    @incomp   = 'cnn'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'
+  end
+
+  def business_connector
   end
 
   private
