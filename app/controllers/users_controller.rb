@@ -7,9 +7,7 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers,
-                                          :nfuse_page, :nfuse_only, :twitter_only, :instagram_only, 
-                                          :facebook_only, :youtube_only, :gplus_only, :flickr_only, :tumblr_only]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page ]
 
   def index
     #user = User.find(params[:id])
@@ -144,127 +142,6 @@ class UsersController < ApplicationController
 
   def nfuse_page
     @nfuse_pages = NfusePage.where(user_id: @user.id).order('created_at DESC')
-  end
-
-  def nfuse_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def twitter_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def instagram_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def facebook_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def youtube_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def gplus_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def vimeo_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def flickr_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def tumblr_only
-    #These are concept pages for toggling network's posts i.e. viewing only the posts you want to see
-    #fron certain networks. Idk the js/ruby needed to do this so these will have to do for now
-    only_pages
-  end
-
-  def only_pages
-    @providers = Providers.for(current_user)
-    @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
-    @unauthed_accounts              = timeline[:unauthed_accounts].first
-  end
-
-  def explore_nfuse_only
-    explore_only_pages
-    render "explore_nfuse_only"
-  end
-
-  def explore_twitter_only
-    explore_only_pages
-    render "explore_twitter_only"
-  end
-
-  def explore_instagram_only
-    explore_only_pages
-    render "explore_instagram_only"
-  end
-
-  def explore_facebook_only
-    explore_only_pages
-    render "explore_facebook_only"
-  end
-
-  def explore_youtube_only
-    explore_only_pages
-    render "explore_youtube_only"
-  end
-
-  def explore_gplus_only
-    explore_only_pages
-    render "explore_gplus_only"
-  end
-
-  def explore_vimeo_only
-    explore_only_pages
-    render "explore_vimeo_only"
-  end
-
-  def explore_flickr_only
-    explore_only_pages
-    render "explore_flickr_only"
-  end
-
-  def explore_tumblr_only
-    explore_only_pages
-    render "explore_tumblr_only"
-  end
-
-  def explore_only_pages
-    @providers = Providers.for(@user)
-    timeline = []
-    ids =  current_user.followed_users.collect(&:id)
-    ids << current_user.id
-    unless ids.empty?
-      @users = User.where.not(id: ids)
-      @users.each do |user|
-        feed=Feed.new(user)
-        timeline << feed.construct(params)
-        @unauthed_accounts              = feed.unauthed_accounts
-      end
-    end
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 
   private
