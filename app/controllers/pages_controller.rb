@@ -33,7 +33,7 @@ class PagesController < ApplicationController
   end
 
   def national_geographic
-   @compname = 'National Geographic'
+   @compname = 'NatGeo'
    @comp     = 'NatGeo'
    @comp_url = 'https://www.youtube.com/user/NationalGeographic'
    @incomp   = 'natgeo'
@@ -43,7 +43,7 @@ class PagesController < ApplicationController
   end
 
   def people_magazine
-   @compname = 'People Magazine'
+   @compname = 'People'
    @comp     = 'people'
    @comp_url = 'https://www.youtube.com/user/people'
    @incomp   = 'peoplemag'
@@ -53,7 +53,7 @@ class PagesController < ApplicationController
   end
 
   def time_magazine
-   @compname = 'Time Magazine'
+   @compname = 'Time'
    @comp     = 'TIME'
    @comp_url = 'https://www.youtube.com/user/TimeMagazine'
    @incomp   = 'time'
@@ -113,7 +113,7 @@ class PagesController < ApplicationController
   end
 
   def entertainment_weekly
-   @compname = 'Entertainment Weekly'
+   @compname = 'Entertainment'
    @comp     = 'EW'
    @comp_url = 'https://www.youtube.com/user/ew'
    @incomp   = 'entertainmentweekly'
@@ -133,7 +133,7 @@ class PagesController < ApplicationController
   end
 
   def popular_science
-   @compname = 'Popular Science'
+   @compname = 'PopSci'
    @comp     = 'PopSci'
    @comp_url = 'https://www.youtube.com/user/Popscivideo'
    @incomp   = 'popsci'
@@ -257,6 +257,167 @@ class PagesController < ApplicationController
    @comp     = 'CNN'
    @comp_url = 'https://www.youtube.com/user/CNN'
    @incomp   = 'cnn'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+
+  def hbo
+   @compname = 'HBO'
+   @comp     = 'HBO'
+   @comp_url = 'https://www.youtube.com/user/HBO'
+   @incomp   = 'hbo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def showtime
+   @compname = 'Showtime'
+   @comp     = 'SHO_Networks'
+   @comp_url = 'https://www.youtube.com/user/SHOWTIME'
+   @incomp   = 'showtime'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def marvel
+   @compname = 'Marvel'
+   @comp     = 'Marvel'
+   @comp_url = 'https://www.youtube.com/user/MARVEL'
+   @incomp   = 'marvel'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def syfy
+   @compname = 'Syfy'
+   @comp     = 'SyfyTV'
+   @comp_url = 'https://www.youtube.com/user/Syfy'
+   @incomp   = 'syfy'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def netflix
+   @compname = 'Netflix'
+   @comp     = 'netflix'
+   @comp_url = 'https://www.youtube.com/user/NewOnNetflix'
+   @incomp   = 'netflix'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def buzzfeed
+   @compname = 'Buzzfeed'
+   @comp     = 'Buzzfeed'
+   @comp_url = 'https://www.youtube.com/user/BuzzFeedVideo'
+   @incomp   = 'buzzfeed'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def reddit
+   @compname = 'Reddit'
+   @comp     = 'reddit'
+   @comp_url = 'https://www.youtube.com/user/reddit'
+   @incomp   = 'reddit'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def collegehumor
+   @compname = 'College Humor'
+   @comp     = 'CollegeHumor'
+   @comp_url = 'https://www.youtube.com/user/collegehumor'
+   @incomp   = 'collegehumor'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def microsoft
+   @compname = 'Microsoft'
+   @comp     = 'Microsoft'
+   @comp_url = 'https://www.youtube.com/user/Microsoft'
+   @incomp   = 'microsoft'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def pinterest
+   @compname = 'Pinterest'
+   @comp     = 'Pinterest'
+   @comp_url = 'https://www.youtube.com/user/pinterest'
+   @incomp   = 'pinterestfavs'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def imdb
+   @compname = 'IMDb'
+   @comp     = 'IMDb'
+   @comp_url = 'https://www.youtube.com/user/VideoIMDb'
+   @incomp   = 'imdblive'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def vevo
+   @compname = 'Vevo'
+   @comp     = 'Vevo'
+   @comp_url = 'https://www.youtube.com/user/VEVO'
+   @incomp   = 'vevo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def starwars
+   @compname = 'Star Wars'
+   @comp     = 'starwars'
+   @comp_url = 'https://www.youtube.com/user/starwars'
+   @incomp   = 'starwars'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nasa
+   @compname = 'NASA'
+   @comp     = 'NASA'
+   @comp_url = 'https://www.youtube.com/user/NASAtelevision'
+   @incomp   = 'nasa'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def wsj
+   @compname = 'WSJ'
+   @comp     = 'WSJ'
+   @comp_url = 'https://www.youtube.com/user/WSJDigitalNetwork'
+   @incomp   = 'wsj'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def mtv
+   @compname = 'MTV'
+   @comp     = 'MTV'
+   @comp_url = 'https://www.youtube.com/user/MTV'
+   @incomp   = 'mtv'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'

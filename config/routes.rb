@@ -136,6 +136,23 @@ Rails.application.routes.draw do
   get '/victoriassecret', to: 'pages#victorias_secret'
   get '/cnn', to: 'pages#cnn'
   get '/businessconnector', to: 'pages#business_connector'
+
+  get '/hbo', to: 'pages#hbo'
+  get '/showtime', to: 'pages#showtime'
+  get '/marvel', to: 'pages#marvel'
+  get '/syfy', to: 'pages#syfy'
+  get '/netflix', to: 'pages#netflix'
+  get '/buzzfeed', to: 'pages#buzzfeed'
+  get '/reddit', to: 'pages#reddit'
+  get '/collegehumor', to: 'pages#collegehumor'
+  get '/microsoft', to: 'pages#microsoft'
+  get '/pinterest', to: 'pages#pinterest'
+  get '/imdb', to: 'pages#imdb'
+  get '/vevo', to: 'pages#vevo'
+  get '/starwars', to: 'pages#starwars'
+  get '/nasa', to: 'pages#nasa'
+  get '/wsj', to: 'pages#wsj'
+  get '/mtv', to: 'pages#mtv'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
