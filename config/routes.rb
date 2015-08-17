@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  require './lib/company_page'
 #This says that the messages'resources are apart of the conversation
   resources :conversations do
     resources :messages, only: [:create]
@@ -111,31 +112,8 @@ Rails.application.routes.draw do
   post '/facebook/like/:post_id',     to: 'likes#facebook'
 
   root to: 'pages#home'
-  get '/wired', to: 'pages#wired'
-  get '/nationalgeographic', to: 'pages#national_geographic'
-  get '/peoplemagazine', to: 'pages#people_magazine'
-  get '/timemagazine', to: 'pages#time_magazine'
-  get '/sportsillustrated', to: 'pages#sports_illustrated'
-  get '/cosmopolitan', to: 'pages#cosmopolitan'
-  get '/redbull', to: 'pages#redbull'
-  get '/espn', to: 'pages#espn'
-  get '/usweekly', to: 'pages#us_weekly'
-  get '/entertainmentweekly', to: 'pages#entertainment_weekly'
-  get '/newsweek', to: 'pages#newsweek'
-  get '/popularscience', to: 'pages#popular_science'
-  get '/vogue', to: 'pages#vogue'
-  get '/bloomberg', to: 'pages#bloomberg_businessweekly'
-  get '/gq', to: 'pages#gq'
-  get '/hgtv', to: 'pages#hgtv'
-  get '/forbes', to: 'pages#forbes_magazine'
-  get '/fortune', to: 'pages#fortune'
-  get '/enews', to: 'pages#e_news'
-  get '/google', to: 'pages#google'
-  get '/tedtalks', to: 'pages#tedtalks'
-  get '/tesla', to: 'pages#tesla'
-  get '/victoriassecret', to: 'pages#victorias_secret'
-  get '/cnn', to: 'pages#cnn'
-  get '/businessconnector', to: 'pages#business_connector'
+  
+  get '/:company', to: CompanyPage.new
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
