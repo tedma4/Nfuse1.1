@@ -11,7 +11,7 @@
     <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
   </div>
 <% else %>
-  <div id="masonJar" class="hub_container clearfix masonJar">
+  <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% timeline.first(30).each do |post| %>
       <% case post.provider %>
       <% when "nfuse" %>
