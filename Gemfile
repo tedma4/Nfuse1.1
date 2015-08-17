@@ -84,7 +84,8 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rails-erd'
   gem 'simplecov'
-
+  gem 'pry'
+  gem 'pry-rails'
   # ^-- Used in both dev and testing.
 end
 #These are the gems used in the test enviornment
@@ -100,8 +101,6 @@ group :test do
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
   gem "selenium-webdriver", "~> 2.43.0"
-  gem 'pry'
-  gem 'pry-rails'
 end
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
