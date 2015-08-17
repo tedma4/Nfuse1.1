@@ -2,7 +2,7 @@
   <%= render partial: "users/explore_filters" %>
 </div><br>
 <div id="masonJar" class="center clearfix masonJar">
-  <% @timeline.first(30).each do |post| %>
+  <% @timeline.first(50).each do |post| %>
     <%= render partial: "pages/post", locals: {post: post} %>
   <% end %>
 </div>
