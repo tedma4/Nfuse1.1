@@ -24,7 +24,7 @@ gem "paperclip", "3.5.3"
 # Handles video upload
 gem 'paperclip-av-transcoder', "0.6.4"
 gem 'acts_as_votable', '~> 0.10.0'
-gem 'activeadmin', github: 'activeadmin'
+# gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
