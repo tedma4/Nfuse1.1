@@ -12,7 +12,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :flickr,        ENV["flickr_key"],                ENV["flickr_secret"],
         scope: 'read'
   provider :tumblr,        ENV["tumblr_consumer_key"],      ENV["tumblr_consumer_secret"]
-  provider :pinterest,     ENV["pinterest_client_secret"], ENV["pinterest_id"]
+  # provider :pinterest,     ENV["pinterest_client_secret"], ENV["pinterest_id"]
   provider :gplus,         ENV["google_client_id"],         ENV["google_client_secret"],
         scope: "plus.me,
                 plus.stream.read"

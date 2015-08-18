@@ -99,7 +99,7 @@ Rails.application.routes.draw do
     get '/google_oauth2/callback', to: 'registrations/youtube#create'
     get '/gplus/callback',         to: 'registrations/gplus#create'
     get '/vimeo/callback',         to: 'registrations/vimeo#create'
-    get '/pinterest/callback',     to: 'registrations/pinterest#create'
+    # get '/pinterest/callback',     to: 'registrations/pinterest#create'
     get '/flickr/callback',        to: 'registrations/flickr#create'
     get '/tumblr/callback',        to: 'registrations/tumblr#create'
   end
@@ -146,13 +146,19 @@ Rails.application.routes.draw do
   get '/reddit', to: 'pages#reddit'
   get '/collegehumor', to: 'pages#collegehumor'
   get '/microsoft', to: 'pages#microsoft'
-  get '/pinterest', to: 'pages#pinterest'
+  get '/nike', to: 'pages#nike'
   get '/imdb', to: 'pages#imdb'
   get '/vevo', to: 'pages#vevo'
   get '/starwars', to: 'pages#starwars'
   get '/nasa', to: 'pages#nasa'
-  get '/wsj', to: 'pages#wsj'
+  get '/bravo', to: 'pages#bravo'
   get '/mtv', to: 'pages#mtv'
+
+  get '/golfdigest', to: 'pages#golfdigest'
+  get '/nba', to: 'pages#nba'
+  get '/nfl', to: 'pages#nfl'
+  get '/mlb', to: 'pages#mlb'
+  get '/nhl', to: 'pages#nhl'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

@@ -20,9 +20,10 @@
           <%= image_tag(post.image, :class => "image_post") %>
         </div>
         <% if post.text.present? %>
-        <div class="center">
-          <%= post.text %>
-        </div>
+          <div class="center">
+            <%= post.text %>
+          </div>
+            <%else%>
         <% end %>
     <% elsif post.video.present? %>
       <% if post.provider == 'youtube' %>

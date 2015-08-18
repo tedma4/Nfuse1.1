@@ -275,7 +275,7 @@ class PagesController < ApplicationController
 
   def showtime
    @compname = 'Showtime'
-   @comp     = 'SHO_Networks'
+   @comp     = 'SHO_Network'
    @comp_url = 'https://www.youtube.com/user/SHOWTIME'
    @incomp   = 'showtime'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
@@ -353,11 +353,11 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def pinterest
-   @compname = 'Pinterest'
-   @comp     = 'Pinterest'
-   @comp_url = 'https://www.youtube.com/user/pinterest'
-   @incomp   = 'pinterestfavs'
+  def nike
+   @compname = 'Nike'
+   @comp     = 'Nike'
+   @comp_url = 'https://www.youtube.com/user/nike'
+   @incomp   = 'nike'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'
@@ -403,11 +403,11 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def wsj
-   @compname = 'WSJ'
-   @comp     = 'WSJ'
-   @comp_url = 'https://www.youtube.com/user/WSJDigitalNetwork'
-   @incomp   = 'wsj'
+  def bravo
+   @compname = 'Bravo'
+   @comp     = 'Bravotv'
+   @comp_url = 'https://www.youtube.com/user/BravoShows'
+   @incomp   = 'bravotv'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'
@@ -418,6 +418,56 @@ class PagesController < ApplicationController
    @comp     = 'MTV'
    @comp_url = 'https://www.youtube.com/user/MTV'
    @incomp   = 'mtv'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp' 
+  end
+
+  def golfdigest
+   @compname = 'Golf Digest'
+   @comp     = 'GolfDigest'
+   @comp_url = 'https://www.youtube.com/user/GolfDigestMagazine'
+   @incomp   = 'golfdigest'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nba
+   @compname = 'NBA'
+   @comp     = 'NBA'
+   @comp_url = 'https://www.youtube.com/user/NBA'
+   @incomp   = 'nba'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nfl
+   @compname = 'NFL'
+   @comp     = 'NFL'
+   @comp_url = 'https://www.youtube.com/user/NFL'
+   @incomp   = 'nfl'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def mlb
+   @compname = 'MLB'
+   @comp     = 'MLB'
+   @comp_url = 'https://www.youtube.com/user/MLB'
+   @incomp   = 'mlb'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nhl
+   @compname = 'NHL'
+   @comp     = 'NHL'
+   @comp_url = 'https://www.youtube.com/user/NHLVideo'
+   @incomp   = 'nhl'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'

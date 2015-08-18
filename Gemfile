@@ -37,7 +37,7 @@ gem 'omniauth-facebook', '~> 1.6.0'
 gem 'omniauth-twitter', '~> 1.0.1'
 #gem 'omniauth-pinterest', '~> 1.0.0'
 gem 'omniauth-vimeo'
-gem 'omniauth-pinterest'
+# gem 'omniauth-pinterest'
 gem 'omniauth-flickr'
 gem 'omniauth-tumblr'
 #This allows the use of the facebook graph api
