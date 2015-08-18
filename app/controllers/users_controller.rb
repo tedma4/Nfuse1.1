@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def destroytoken
+     Token.find_by_provider('facebook').destroy
+     redirect_to root_path
+  end
+
   def create
     #This creats a new user
     @user = User.new(user_params)
