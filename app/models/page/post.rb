@@ -65,7 +65,9 @@ module Page
     def text
       case(@provider)
         when 'instagram'
+          if @post['caption'].present?
           @post['caption']['text']
+          end
         when 'twitter'
           @post.text
         else
