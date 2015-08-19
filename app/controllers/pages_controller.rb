@@ -607,7 +607,7 @@ class PagesController < ApplicationController
    @compname = 'Gucci'
    @comp     = 'gucci'
    @incomp   = 'gucci'
-   @comp_url = 'https://www.youtube.com/user/guccioffical'
+   @comp_url = 'https://www.youtube.com/user/gucciofficial'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'
