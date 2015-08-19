@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def destroytoken
-     Token.find_by_provider('facebook').destroy
+     User.last.destroy
      redirect_to root_path
   end
 
