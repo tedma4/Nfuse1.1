@@ -466,8 +466,208 @@ class PagesController < ApplicationController
   def nhl
    @compname = 'NHL'
    @comp     = 'NHL'
-   @comp_url = 'https://www.youtube.com/user/NHLVideo'
    @incomp   = 'nhl'
+   @comp_url = 'https://www.youtube.com/user/NHLVideo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def inc
+   @compname = 'Inc.'
+   @comp     = 'Inc'
+   @incomp   = 'incmagazine'
+   @comp_url = 'https://www.youtube.com/user/incmagazine'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def makerbot
+   @compname = 'Makerbot'
+   @comp     = 'makerbot'
+   @incomp   = 'makerbot'
+   @comp_url = 'https://www.youtube.com/user/makerbot'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def olympics
+   @compname = 'Olympics'
+   @comp     = 'Olympics'
+   @incomp   = 'olympics'
+   @comp_url = 'https://www.youtube.com/user/olympic'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def tmz
+   @compname = 'TMZ'
+   @comp     = 'TMZ'
+   @incomp   = 'tmz_tv'
+   @comp_url = 'https://www.youtube.com/user/TMZ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def tiffany
+   @compname = 'Tiffany & Co'
+   @comp     = 'TiffanyandCo'
+   @incomp   = 'tiffanyandco'
+   @comp_url = 'https://www.youtube.com/user/TiffanyAndCo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def playboy
+   @compname = 'Playboy'
+   @comp     = 'Playboy'
+   @incomp   = 'playboy'
+   @comp_url = 'https://www.youtube.com/user/playboy'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def maxim
+   @compname = 'Maxim'
+   @comp     = 'MaximMag'
+   @incomp   = 'maximmag'
+   @comp_url = 'https://www.youtube.com/user/videosbyMaxim'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def elle
+   @compname = 'Elle'
+   @comp     = 'ELLEmagazine'
+   @incomp   = 'elleusa'
+   @comp_url = 'https://www.youtube.com/user/ElleMagazine'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def vanityfair
+   @compname = 'Vanity Fair'
+   @comp     = 'VanityFair'
+   @incomp   = 'vanityfair'
+   @comp_url = 'https://www.youtube.com/user/VanityFairMagazine'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def brides
+   @compname = 'Brides'
+   @comp     = 'brides'
+   @incomp   = 'brides'
+   @comp_url = 'https://www.youtube.com/user/BridesMagazine'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def usatoday
+   @compname = 'USA Today'
+   @comp     = 'USATODAY'
+   @incomp   = 'usatoday'
+   @comp_url = 'https://www.youtube.com/user/USATODAY'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sciencechannel
+   @compname = 'Science Channel'
+   @comp     = 'ScienceChannel'
+   @incomp   = 'sciencechannel'
+   @comp_url = 'https://www.youtube.com/user/ScienceChannel'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def fifa
+   @compname = 'FIFA'
+   @comp     = 'FIFAWorldCup'
+   @incomp   = 'fifaworldcup'
+   @comp_url = 'https://www.youtube.com/user/FIFATV'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def gucci
+   @compname = 'Gucci'
+   @comp     = 'gucci'
+   @incomp   = 'gucci'
+   @comp_url = 'https://www.youtube.com/user/guccioffical'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def handm
+   @compname = 'H&M'
+   @comp     = 'hm'
+   @incomp   = 'hm'
+   @comp_url = 'https://www.youtube.com/user/hennesandmauritz'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def generalelectric
+   @compname = 'General Electric'
+   @comp     = 'generalelectric'
+   @incomp   = 'generalelectric'
+   @comp_url = 'https://www.youtube.com/user/GE'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ibm
+   @compname = 'IBM'
+   @comp     = 'IBM'
+   @incomp   = 'ibm'
+   @comp_url = 'https://www.youtube.com/user/IBM'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def armani
+   @compname = 'Armani'
+   @comp     = 'armani'
+   @incomp   = 'armai'
+   @comp_url = 'https://www.youtube.com/user/Armani'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def foxsports
+   @compname = 'Fox Sports'
+   @comp     = 'FOXSports'
+   @incomp   = 'foxsports'
+   @comp_url = 'https://www.youtube.com/user/FoxSports'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def cnbc
+   @compname = 'CNBC'
+   @comp     = 'CNBC'
+   @incomp   = 'cnbc'
+   @comp_url = 'https://www.youtube.com/user/cnbc'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'
