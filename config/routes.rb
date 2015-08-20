@@ -194,6 +194,18 @@ Rails.application.routes.draw do
   get '/xbox', to: 'pages#xbox'
   get '/playstation', to: 'pages#playstation'
   get '/nordstrom', to: 'pages#nordstrom'
+
+  get '/entrepreneur', to: 'pages#entrepreneur'
+  get '/bananarepublic', to: 'pages#bananarepublic'
+  get '/calvinklein', to: 'pages#calvinklein'
+  get '/underarmour', to: 'pages#underarmour'
+  get '/facebook', to: 'pages#facebook'
+
+  get '/burberry', to: 'pages#burberry'
+  get '/abc', to: 'pages#abc'
+  get '/nbc', to: 'pages#nbc'
+  get '/cbs', to: 'pages#cbs'
+  get '/thecw', to: 'pages#thecw'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
