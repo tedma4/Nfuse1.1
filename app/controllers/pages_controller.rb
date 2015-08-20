@@ -873,6 +873,156 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
+  def hugoboss
+   @compname = 'Hugo Boss'
+   @comp     = 'HUGOBOSS'
+   @incomp   = 'hugoboss'
+   @comp_url = 'https://www.youtube.com/user/HUGOBOSSTV'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def cbsnews
+   @compname = 'CBS News'
+   @comp     = 'CBSNews'
+   @incomp   = 'cbsnews'
+   @comp_url = 'https://www.youtube.com/user/CBSNewsOnline'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def foxnews
+   @compname = 'Fox News'
+   @comp     = 'FoxNews'
+   @incomp   = 'foxnews'
+   @comp_url = 'https://www.youtube.com/user/FoxNewsChannel'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nbcnews
+   @compname = 'NBC News'
+   @comp     = 'NBCNews'
+   @incomp   = 'nbcnews'
+   @comp_url = 'https://www.youtube.com/user/NBCNews'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def abcnews
+   @compname = 'ABC News'
+   @comp     = 'ABC'
+   @incomp   = 'abcnews'
+   @comp_url = 'https://www.youtube.com/user/ABCNews'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def cbssports
+   @compname = 'CBS Sports'
+   @comp     = 'CBSSports'
+   @incomp   = 'cbssports'
+   @comp_url = 'https://www.youtube.com/user/CBSSports'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def fox
+   @compname = 'Fox'
+   @comp     = 'FOXTV'
+   @incomp   = 'foxtv'
+   @comp_url = 'https://www.youtube.com/user/FoxBroadcasting'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def uber
+   @compname = 'Uber'
+   @comp     = 'Uber'
+   @incomp   = 'uber'
+   @comp_url = 'https://www.youtube.com/user/UberWorldwide'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def forever21
+   @compname = 'Forever 21'
+   @comp     = 'Forever21'
+   @incomp   = 'forever21'
+   @comp_url = 'https://www.youtube.com/user/Forever21Inc'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def mls
+   @compname = 'MLS'
+   @comp     = 'MLS'
+   @incomp   = 'mls'
+   @comp_url = 'https://www.youtube.com/user/mls'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def urbanoutfitters
+   @compname = 'Urban Outfitters'
+   @comp     = 'UrbanOutfitters'
+   @incomp   = 'urbanoutfitters'
+   @comp_url = 'https://www.youtube.com/user/uotv'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def allure
+   @compname = 'Allure'
+   @comp     = 'Allure_magazine'
+   @incomp   = 'allure'
+   @comp_url = 'https://www.youtube.com/user/AllureMagazine'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def wmagazine
+   @compname = 'W Magazine'
+   @comp     = 'wmag'
+   @incomp   = 'wmag'
+   @comp_url = 'https://www.youtube.com/user/wmagazinedotcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thescene
+   @compname = 'The Scene'
+   @comp     = 'SCENE'
+   @incomp   = 'thescene'
+   @comp_url = 'https://www.youtube.com/user/thesceneYT'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def youtube
+   @compname = 'YouTube'
+   @comp     = 'YouTube'
+   @incomp   = 'youtube'
+   @comp_url = 'https://www.youtube.com/user/Youtube'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
   def business_connector
   end
 
