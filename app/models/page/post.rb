@@ -44,9 +44,15 @@ module Page
       case(@provider)
         when 'instagram'
           @post["id"]
-        else
+        when 'twitter'
+          @post.id
+        when 'youtube'
           @post.id
       end
+    end
+
+    def is_not_in_reply
+      @post.attrs[:in_reply_to_status_id]
     end
 
     #-----------type----------
