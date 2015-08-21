@@ -57,15 +57,17 @@ module Page
 
     #-----------type----------
 
-    # def type
-    #   case(@provider)
-    #     when 'instagram'
-    #       @post["type"]
-    #     when 'twitter'
-    #       @post.attrs[:extended_entities][:media][0][:type]
-    #   end
-    # end
-
+    def has_media?
+      @post.attrs.has_key? :extended_entities
+    end
+    def type
+      case(@provider)
+        when 'instagram'
+          @post["type"]
+        when 'twitter'
+          @post.attrs[:extended_entities][:media][0][:type]
+      end
+    end
     #-----------text----------
 
     def text
@@ -88,9 +90,7 @@ module Page
         when 'instagram'
           @post["images"]["low_resolution"]["url"]
         when 'twitter'
-          if @post.attrs.has_key? :extended_entities
-            @post.attrs[:extended_entities][:media][0][:media_url]
-          end
+          @post.attrs[:extended_entities][:media][0][:media_url]
       end
     end
 
@@ -101,9 +101,7 @@ module Page
         when 'instagram'
           @post["videos"]["standard_resolution"]["url"]
         when 'twitter'
-          if @post.attrs.has_key? :extended_entities
-            @post.attrs[:extended_entities][:media][0][:media_url]
-          end
+          @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
         else
       	@post.id
       end	      	
