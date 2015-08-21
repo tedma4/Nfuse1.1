@@ -101,7 +101,11 @@ module Page
         when 'instagram'
           @post["videos"]["standard_resolution"]["url"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
+          if type == "animated_gif"
+            @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
+          elsif type == "video"
+            @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+          end
         else
       	@post.id
       end	      	
