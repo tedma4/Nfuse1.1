@@ -101,7 +101,7 @@ module Page
         when 'instagram'
           @post["videos"]["standard_resolution"]["url"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+          @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
         else
       	@post.id
       end	      	

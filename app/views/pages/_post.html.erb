@@ -41,7 +41,7 @@
       <% end %>
     <% when 'twitter' %>
       <% if post.has_media? %>
-        <% if post.type == 'video' %>
+        <% if post.type == 'animated_gif' || post.type== 'video' %>
           <div class="center">
             <video width="100%" controls>
               <source src="<%= post.video %>" type='video/mp4' />
