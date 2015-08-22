@@ -73,6 +73,10 @@ module Facebook
     def status_type
       @post['status_type']
     end
+
+    def story
+      @post['story']
+    end
   
     def image
       if type == 'link'
