@@ -31,7 +31,11 @@ module Facebook
     end
 
     def link_to_post
-      @post['actions'][0]['link']
+      if type == 'link' || type == 'video' || type == 'status'
+        @post['actions'][0]['link']
+      elsif type == 'photo'
+        @post['link']
+      end
     end
 
     def created_time
@@ -71,7 +75,14 @@ module Facebook
     end
   
     def image
-      @post['picture']
+      if type == 'link'
+        @post['picture']
+      elsif type == 'photo'
+        @token = @user.tokens.find_by(provider: 'facebook')
+        @graph = Koala::Facebook::API.new @token.access_token
+        @post = @graph.get_object(@post['object_id'])
+        @post['images'][0]['source']
+      end
     end
 
     def description
@@ -82,8 +93,19 @@ module Facebook
       @post['message']
     end
 
+    def name
+      @post['name']
+    end
+
     def caption
       @post['caption']
     end
+    #
+    # private
+    #
+    # def new_request
+    #   @token = @user.tokens.find_by(provider: 'facebook')
+    #   @graph = Koala::Facebook::API.new @token.access_token
+    # end
   end
 end
