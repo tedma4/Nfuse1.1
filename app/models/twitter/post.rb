@@ -75,7 +75,11 @@ module Twitter
     end
 
     def tweet_video
-      @tweet.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+      if type == "animated_gif"
+        @tweet.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
+      elsif type == "video"
+        @tweet.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+      end
     end
 
     def type
