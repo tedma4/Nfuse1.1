@@ -79,13 +79,13 @@ module Facebook
     end
   
     def image
-      if type == 'link'
-        @post['picture']
-      elsif type == 'photo'
+      if type == 'photo'
         @token = @user.tokens.find_by(provider: 'facebook')
         @graph = Koala::Facebook::API.new @token.access_token
         @post = @graph.get_object(@post['object_id'])
         @post['images'][0]['source']
+      else
+        @post['picture']
       end
     end
 
