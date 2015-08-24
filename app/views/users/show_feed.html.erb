@@ -1,7 +1,7 @@
 <% provide(:title, @title) %>
-<!--     <div class="loader">
+    <div class="loader">
       <div class="loader-img"></div>
-    </div> -->
+    </div>
   <div class="container_profile">
     <%= render partial: "profile_info" %>
     <div class="center">   
@@ -14,4 +14,22 @@
     $(document).ready(function () {
       FeedIndex.initialize();
     });
+  </script>
+
+<script>
+
+jQuery(window).load(function() {
+  
+  /*
+    Loader
+  */
+  $(".loader-img").fadeOut();
+  $(".loader").delay(1000).fadeOut("slow");
+  
+  /*
+    Hidden images
+  */
+  $(".modal-body img, .testimonial-image img").attr("style", "width: auto !important; height: auto !important;");
+  
+});
   </script>
