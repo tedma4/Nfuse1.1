@@ -4,9 +4,9 @@
   }
 </style>
 <% if current_user.followed_users.empty? %>
-  <div class="loader">
+<!--   <div class="loader">
     <div class="loader-img"></div>
-  </div>
+  </div> -->
   <div class="center hub_padding">
     <p> Can't display posts because you aren't following anyone... </p>
     <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
@@ -14,9 +14,9 @@
     <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
   </div>
 <% else %>
-  <div class="loader">
+<!--   <div class="loader">
     <div class="loader-img"></div>
-  </div>
+  </div> -->
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% timeline.first(30).each do |post| %>
       <% case post.provider %>
