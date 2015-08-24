@@ -134,17 +134,17 @@ li {
         <%= shout.like_score(shout.id) %>
       </a>
     </li>
-    <li class="vr"></li>
+<!--     <li class="vr"></li>
     <li class="tilt">
       <div id="shout-<%= shout.id %>">
       <a data-toggle="modal" data-target="#nfuse_modal_<%= shout.id %>">
-        <%= image_tag("commentgray.fw.png", size: "24x24") %>
+        <%#= image_tag("commentgray.fw.png", size: "24x24") %>
       </a>
       <a id="post_<%=shout.id%>_comment_count">
         <%= shout.comment_count %>
       </a>
       </div>
-    </li>
+    </li> -->
     <li class="vr"></li>
     <li class="tilt">
       <%= image_tag "nfuseblue.fw.png", 
@@ -170,7 +170,7 @@ li {
     </li> -->
   </ul>
 </div>
-
+<!-- 
 <div id="nfuse_modal_<%= shout.id %>" class="modal fade">
   <div class="modal-fade">
     <div class="modal-dialog">
@@ -185,20 +185,19 @@ li {
               <div class="span6">
                 <div class="logowrapper">
                   <div class="post_content">
-                    <% if !shout.url.blank? %>
+                    <%# if !shout.url.blank? %>
                       <p> <%= shout.url_html %></p>
                       <div class="caption Alignthisorelse">
                         <strong><%= shout.content %><strong>
-                        <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
                       </div>
-                    <% elsif shout.is_pic? %>
+                    <%# elsif shout.is_pic? %>
                       <div class="modal-timeline-user-box center">
                         <%= image_tag shout.pic_url %>
                       </div>
                       <div class="caption Alignthisorelse">
                           <strong><%= shout.content %><strong>
                       </div>
-                    <% elsif shout.is_video? %>
+                    <%# elsif shout.is_video? %>
                       <div class="modal-timeline-user-box center">
                         <video 
                           id="ytplayer" 
@@ -214,7 +213,7 @@ li {
                       <div class="caption Alignthisorelse">
                           <strong><%= shout.content %><strong>
                       </div>
-                    <% elsif shout.is_full_video? %>
+                    <%# elsif shout.is_full_video? %>
                       <div class="timeline-user-box">
                         <video 
                           id="ytplayer" 
@@ -230,7 +229,7 @@ li {
                       <div class="caption Alignthisorelse">
                           <strong><%= shout.content %><strong>
                       </div>
-                    <% end %>
+                    <% #end %>
                   </div>
                 </div>
               </div>
@@ -241,7 +240,7 @@ li {
                       <div class="panel-body" id="comment_list_<%= shout.id %>">
                         <ul class="chat">
                           <% shout.comments.each do |comment| %>
-                            <%= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
+                            <%#= render partial: 'shared/comment', locals: {comment: Commented.new(comment) } %>
                           <% end %>
                         </ul>
                       </div>
@@ -250,7 +249,7 @@ li {
                 </div>
               </div>
               <div>
-                <%= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
+                <%#= render partial: 'shared/comment_form', locals: { shout: Commented.new(shout) } %>
               </div>
             </div>
           </div>
@@ -258,4 +257,4 @@ li {
       </div>
     </div>
   </div>
-</div>
+</div> -->
