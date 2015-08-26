@@ -31,10 +31,10 @@ module Facebook
     end
 
     def link_to_post
-      if type == 'link' || type == 'video' || type == 'status'
-        @post['actions'][0]['link']
-      elsif type == 'photo'
+      begin
         @post['link']
+      rescue
+        @post['actions'][0]['link']
       end
     end
 
