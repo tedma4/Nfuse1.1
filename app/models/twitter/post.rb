@@ -74,6 +74,10 @@ module Twitter
       @tweet.text
     end
 
+    def retweeted
+      @tweet.retweeted
+    end
+
     def tweet_video
       if type == "animated_gif"
         @tweet.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]

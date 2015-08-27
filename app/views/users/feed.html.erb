@@ -23,10 +23,14 @@
         <% unless post.type == 'chat' || post.type == 'audio' %>
           <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
-      <% when "facebook" %>
-        <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
+          <% when "facebook" %>
+              <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+                  <%= render partial: "users/post", locals: {post: post} %>
+              <% end %>
+          <% when "twitter" %>
+              <% unless post.retweeted == true %>
+                  <%= render partial: "users/post", locals: {post: post} %>
+              <% end %>
       <% else %>
         <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
