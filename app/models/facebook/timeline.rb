@@ -44,7 +44,7 @@ module Facebook
 
       if page.nil?
         #client.get_object("me")
-        client.get_connections("me", "posts").first(15)
+        client.get_connections("me", "posts").first(50)
       else
         facebook_timeline = client.get_connections("me", "posts", page: page, :count => 50)
       end
