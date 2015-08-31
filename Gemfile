@@ -74,7 +74,7 @@ gem "faker", "~> 1.4.3"
 
 #These are the gems used in the development enviornment
 # gem 'rack-mini-profiler', group: :development #causing errors each request
-gem 'bullet', group: :development
+gem 'bullet', "4.14.7" group: :development
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
