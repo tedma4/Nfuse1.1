@@ -465,7 +465,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.4)
   bootstrap-will_paginate (~> 0.0.9)
   brakeman
-  bullet
+  bullet (= 4.14.7)
   capybara (~> 2.4.3)
   cocaine (= 0.5.5)
   coffee-rails (~> 4.0.0)
