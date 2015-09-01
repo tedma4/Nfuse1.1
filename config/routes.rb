@@ -70,11 +70,12 @@ Rails.application.routes.draw do
   resources :activities
 
   # Authentication and Settings
-  get    '/signup',   to: 'users#new'
-  get    '/login',    to: 'sessions#new', as: :signin
-  get '/signout',  to: 'sessions#destroy'
-  get    '/settings', to: 'users#settings'
+  get    '/signup',       to: 'users#new'
+  get    '/login',        to: 'sessions#new', as: :signin
+  get    '/signout',      to: 'sessions#destroy'
+  get    '/settings',     to: 'users#settings'
   get    '/destroytoken', to: 'users#destroytoken'
+  get    '/destroyuser',  to: 'users#destroyuser'
   #get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages

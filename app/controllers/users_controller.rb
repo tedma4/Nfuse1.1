@@ -23,8 +23,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def destroytoken
+  def destroyuser
      User.last.destroy
+     redirect_to root_path
+  end
+
+  def destroytoken
+     Token.last.destroy
      redirect_to root_path
   end
 
