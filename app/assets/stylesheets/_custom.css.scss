@@ -1924,3 +1924,14 @@ footer {
   .modal-timeline-user-box img {
     min-width: 500px;
   }
+
+/*notifications*/
+.activities {
+  border-bottom: solid 1px #87ceeb;
+  padding: 16px 0 0 16px;
+  em {
+    color: #777;
+    font-size: 55px;
+    padding-left: 5px;
+  }
+}

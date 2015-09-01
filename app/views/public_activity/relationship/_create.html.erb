@@ -1,0 +1,14 @@
+<%# if a.owner %>
+
+<% if a.trackable %>
+  <span>Followed </span>
+  <%= link_to image_tag(a.trackable.followed.avatar(:small),
+   class: "soon_to_be_made_class", 
+    size: "32x32", 
+    title: "#{ a.trackable.followed.full_name}"), 
+    feed_user_path(a.trackable.followed) %>
+  <%= link_to a.trackable.followed.full_name, 
+    feed_user_path(a.trackable.followed) %>
+<% else %>
+  unfollowed user
+<% end %>

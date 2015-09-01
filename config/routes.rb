@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
+  resources :activities
 
   # Authentication and Settings
   get    '/signup',   to: 'users#new'
