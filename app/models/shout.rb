@@ -43,7 +43,8 @@ class Shout < ActiveRecord::Base
   before_create { |record|
                 check_file_types.call(record)
                 }
-
+  include PublicActivity::Model
+  tracked # owner: Proc.new{ |controller, model| controller.current_user }
   def all_votes
    ActsAsVotable::Vote.where(votable_id: self.id)
   end

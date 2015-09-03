@@ -13,13 +13,15 @@ class Shouts::LikesController < ApplicationController
         like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).count
     }
     respond_to do |format|
-      format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
+      #if @shout.save
+        #@shout.create_activity(:like, owner: current_user, recipient: ActsAsVotable::Vote.find_by(owner_id: params[:owner_id]))
+        format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
+      #end
     end
   end
 
   def destroy
-    if @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id,
-                                         votable_id: params[:id])
+    if @like == ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
       @like.destroy
     end
     render js: 'alert("dislike")' and return
