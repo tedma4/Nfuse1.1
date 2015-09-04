@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include UserOptions
   include Authentication
+  include PublicActivity::Common
   # 
   # Associations
   # 

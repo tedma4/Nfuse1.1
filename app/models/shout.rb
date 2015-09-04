@@ -1,4 +1,5 @@
 class Shout < ActiveRecord::Base
+  include PublicActivity::Common
   belongs_to :user 
   #has_and_belongs_to_many :nfuse_pages
   has_many :nfuse_pages, dependent: :destroy
@@ -43,8 +44,6 @@ class Shout < ActiveRecord::Base
   before_create { |record|
                 check_file_types.call(record)
                 }
-  include PublicActivity::Model
-  tracked # owner: Proc.new{ |controller, model| controller.current_user }
   def all_votes
    ActsAsVotable::Vote.where(votable_id: self.id)
   end
