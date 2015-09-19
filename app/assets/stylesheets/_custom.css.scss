@@ -437,6 +437,19 @@ ul li a:hover + .hidden, .hidden:hover {
    padding: 7px 5px 5px 2px; 
    line-height: 28px; 
  }
+.content-search-bar input{
+  height: 34px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 1.2em;
+  text-align: left;
+}
+.content-search-bar input[type="text"]{
+   padding: 7px 5px 5px 2px; 
+   line-height: 28px; 
+ }
 /* #Home           =============================================== */
 .banner {
   margin-top: 0px;

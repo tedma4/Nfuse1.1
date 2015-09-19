@@ -126,7 +126,7 @@ module Search
       if !!(@search =~ USERNAME) #Searches by @username and then deletes the '@'
         begin
           search = @search.gsub(/[^0-9A-Za-z+\s]/, '')#deletes all special characters and spaces
-        client = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{search}&client_id=#{client_id}").body)
+          client = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{search}&client_id=#{client_id}").body)
           begin
             usid = client['data'][0]['id']
             posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=25").body)

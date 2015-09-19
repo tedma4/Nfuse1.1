@@ -25,13 +25,14 @@
         }
     }
   <%end%>
+
   .login_small {
     margin-top: 16px;
     font-size: 1.6em;
     font-weight: 500;
   }
 
-.fileUpload {
+/*.fileUpload {
     position: relative;
     overflow: hidden;
     margin: 10px;
@@ -47,7 +48,7 @@
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
-}
+}*/
 </style>
 <div class="Thing"></div>
 <div class="headerBack">
@@ -62,7 +63,7 @@
 <% if signed_in? %> <!-- if signed in _header-->
   <ul class="header_inlineleft">
     <li id="fadeshow4">
-      <%= form_tag search_path, method: "get", class: "search-bar" do %>
+      <%= form_tag searchuser_path, method: "get", class: "search-bar" do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search"%>
       <% end %>
     </li>
@@ -107,25 +108,32 @@
   </div>
 
 <% else %> <!-- else _header-->
-
-  <div class="login_form_position" id="fadeshow_login1">
-    <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
-      <div class="input-group">
-        <span class="input-group-addon"><%= image_tag("male80.png", size: "15x15") %></span>
-          <%= f.text_field :email, placeholder: "Email", class: "form-control input-bg", id: "email", type: "email" %>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><%= image_tag("lock27.png", size: "15x15") %></span>
-          <%= f.text_field :password, placeholder: "Password", class: "form-control input-bg", id: "password", type: "password" %>
-      </div>
-      <button type= "submit" class="btn btn-link-login">
-        Log in!
-      </button>
-    <% end %>
-  </div>
-  <div class="navbar-right login_small" id="fadeshow_login3">
-    <%= link_to 'Log In', signin_path%>
-  </div>
+  <% if current_page?(root_path) %>
+    <div class="login_form_position" id="fadeshow_login1">
+      <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
+        <div class="input-group">
+          <span class="input-group-addon"><%= image_tag("male80.png", size: "15x15") %></span>
+            <%= f.text_field :email, placeholder: "Email", class: "form-control input-bg", id: "email", type: "email" %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"><%= image_tag("lock27.png", size: "15x15") %></span>
+            <%= f.text_field :password, placeholder: "Password", class: "form-control input-bg", id: "password", type: "password" %>
+        </div>
+        <button type= "submit" class="btn btn-link-login">
+          Log in!
+        </button>
+      <% end %>
+    </div>
+    <div class="navbar-right login_small" id="fadeshow_login3">
+      <%= link_to 'Log In', signin_path%>
+    </div>
+  <% else %>
+    <div>
+      <%= form_tag search_path, method: 'get', class: "navbar-form navbar-right content-search-bar" do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Users with @user. Hashtags with #hashtag" %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 
 </nav>
