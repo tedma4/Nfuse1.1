@@ -91,7 +91,8 @@ Rails.application.routes.draw do
   get '/contacts', to: 'contacts#new'
 
   get '/feed_content', to: 'users#feed_content', as: :feed_content
-  get "search" => "searches#index"
+  #get "search" => "searches#index"
+  get '/search', to: 'searches#search'
 
   #  OmniAuth * Registrations
   scope '/auth' do

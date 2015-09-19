@@ -1,0 +1,17 @@
+<% if post.has_media? %>
+  <% if post.type == 'animated_gif' || post.type== 'video' %>
+    <div class="center">
+      <video width="100%" controls>
+        <source src="<%= post.video %>" type='video/mp4' />
+        <source src="<%= post.video %>" type='video/ogv' />
+      </video>
+    </div>
+  <% elsif post.type == 'photo' %>
+    <div class="timeline-user-box center">
+      <%= image_tag(post.image, :class => "image_post") %>
+    </div>
+  <% end %>
+<% end %>
+<div class="center">
+  <%= post.text %>
+</div>

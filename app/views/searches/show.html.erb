@@ -1,0 +1,16 @@
+<div class="container search_height">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= image_tag('cv-logo-black.fw.png', size:"555x100") %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= form_tag search_path, method: 'get', html: {class: "search-form"} do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Users with @user. Hashtags with #hashtag" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<style>
+.no_timeline_padding {
+	margin-top: 75px
+}
+</style>
+<!-- <nav class="navbar navbar-clearvoice navbar-fixed-top">
+  <div class="container">
+		<div class="navbar-header" id="fadeshow">
+			<%#= link_to image_tag('cv-logo-black.fw.png', size:"180x60"), root_path %>
+		</div>
+		<div class="col-sm-3 searchpadding" id="navbar">
+			<%#= form_tag search_path, method: 'get', html: {class: "navbar-form navbar-right search-form", role: "searh"} do %>
+				<%#= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Users with @user. Hashtags with #hashtag" %>
+			<%# end %>
+		</div>
+	</div>
+</nav> -->
+<% if @timeline.present? %>
+<div id="masonJar" class="clearfix masonJar topcontainerpadding">
+  <% @timeline.each do |post| %>
+		<%= render partial: "searches/post", locals: {post: post} %>
+  <% end %>
+</div>
+<% else %>
+  <div class="center no_timeline_padding">
+    <p> Sorry, We couldn't find anything like that </p>
+    <p> Try searching again </p>
+    <%= link_to image_tag("sadface.png", size:"100x100"), root_path %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="individual_post item post_entry">
+  <div class="post_main">
+    <ul class="post_header">
+      <li>
+        <%= image_tag("#{post.avatar}", class: 'profile_picture', size:'45x45') %>
+      </li>
+      <li class="user_name">
+        <%= post.user_name %>
+      </li>
+    </ul>
+  </div>
+  <div class="post_content">
+    <% case post.provider %>
+      <% when 'twitter' %>
+        <%= render partial: 'searches/twitter', locals: {post: post} %>
+      <% when 'youtube' %>
+        <%= render partial: 'searches/youtube', locals: {post: post} %>
+      <% when 'instagram' %>
+        <%= render partial: 'searches/instagram', locals: {post: post} %>
+      <% when 'facebook' %>
+        <%= render partial: 'searches/facebook', locals:{post: post} %>
+    <%end%><br>
+  </div>
+  <div class="post_footer">
+    <ul class="post_actions">
+      <li class="tilt">
+        <%= link_to image_tag("#{post.provider}blue.fw.png",
+                              size: "24x24",
+                              :class => "#{post.provider}_provider_logo"),
+                    post.link_to_post,
+                    :target => "_blank",
+                    title: "Go To Entry" %>
+        <p class="timeStamp">
+          <%= time_ago_in_words(post.created_time) %> ago
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
