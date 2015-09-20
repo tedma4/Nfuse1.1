@@ -4,8 +4,13 @@
 }
 </style>
 
+<% if signed_in? %>
+<div class="row">
+	<%= render partial: "searches/show"%>
+</div>
+<% end %>
 <% if @timeline.present? %>
-	<div id="masonJar" class="clearfix masonJar topcontainerpadding">
+	<div id="masonJar" class="clearfix masonJar">
 	  <% @timeline.each do |post| %>
 			<%= render partial: "searches/post", locals: {post: post} %>
 	  <% end %>
