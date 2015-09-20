@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
 #This says that the messages'resources are apart of the conversation
   resources :conversations do
     resources :messages, only: [:create]
@@ -115,6 +114,9 @@ Rails.application.routes.draw do
   post '/facebook/like/:post_id',     to: 'likes#facebook'
 
   root to: 'pages#home'
+
+  #COMPANIES
+  get '/businessconnector', to: 'pages#business_connector'
   get '/wired', to: 'pages#wired'
   get '/nationalgeographic', to: 'pages#national_geographic'
   get '/peoplemagazine', to: 'pages#people_magazine'
@@ -139,8 +141,6 @@ Rails.application.routes.draw do
   get '/tesla', to: 'pages#tesla'
   get '/victoriassecret', to: 'pages#victorias_secret'
   get '/cnn', to: 'pages#cnn'
-  get '/businessconnector', to: 'pages#business_connector'
-
   get '/hbo', to: 'pages#hbo'
   get '/showtime', to: 'pages#showtime'
   get '/marvel', to: 'pages#marvel'
@@ -157,13 +157,11 @@ Rails.application.routes.draw do
   get '/nasa', to: 'pages#nasa'
   get '/bravo', to: 'pages#bravo'
   get '/mtv', to: 'pages#mtv'
-
   get '/golfdigest', to: 'pages#golfdigest'
   get '/nba', to: 'pages#nba'
   get '/nfl', to: 'pages#nfl'
   get '/mlb', to: 'pages#mlb'
   get '/nhl', to: 'pages#nhl'
-
   get '/inc', to: 'pages#inc'
   get '/makerbot', to: 'pages#makerbot'
   get '/olympics', to: 'pages#olympics'
@@ -174,7 +172,6 @@ Rails.application.routes.draw do
   get '/elle', to: 'pages#elle'
   get '/vanityfair', to: 'pages#vanityfair'
   get '/brides', to: 'pages#brides'
-
   get '/usatoday', to: 'pages#usatoday'
   get '/sciencechannel', to: 'pages#sciencechannel'
   get '/fifa', to: 'pages#fifa'
@@ -185,48 +182,59 @@ Rails.application.routes.draw do
   get '/ibm', to: 'pages#ibm'
   get '/foxsports', to: 'pages#foxsports'
   get '/cnbc', to: 'pages#cnbc'
-
   get '/amazon', to: 'pages#amazon'
   get '/foodnetwork', to: 'pages#food'
   get '/sony', to: 'pages#sony'
   get '/gap', to: 'pages#gap'
   get '/history', to: 'pages#history'
-
   get '/ralphlauren', to: 'pages#ralph'
   get '/tlc', to: 'pages#tlc'
   get '/xbox', to: 'pages#xbox'
   get '/playstation', to: 'pages#playstation'
   get '/nordstrom', to: 'pages#nordstrom'
-
   get '/entrepreneur', to: 'pages#entrepreneur'
   get '/bananarepublic', to: 'pages#bananarepublic'
   get '/calvinklein', to: 'pages#calvinklein'
   get '/underarmour', to: 'pages#underarmour'
   get '/facebook', to: 'pages#facebook'
-
   get '/burberry', to: 'pages#burberry'
   get '/abc', to: 'pages#abc'
   get '/nbc', to: 'pages#nbc'
   get '/cbs', to: 'pages#cbs'
   get '/thecw', to: 'pages#thecw'
-
   get '/hugoboss', to: 'pages#hugoboss'
   get '/cbsnews', to: 'pages#cbsnews'
   get '/foxnews', to: 'pages#foxnews'
   get '/nbcnews', to: 'pages#nbcnews'
   get '/abcnews', to: 'pages#abcnews'
-
   get '/cbssports', to: 'pages#cbssports'
   get '/fox', to: 'pages#fox'
   get '/uber', to: 'pages#uber'
   get '/forever21', to: 'pages#forever21'
   get '/mls', to: 'pages#mls'
-
   get '/urbanoutfitters', to: 'pages#urbanoutfitters'
   get '/allure', to: 'pages#allure'
   get '/wmagazine', to: 'pages#wmagazine'
   get '/thescene', to: 'pages#thescene'
   get '/youtube', to: 'pages#youtube'
+
+  #CELEBRITIES
+  get'/celebrities', to: 'pages#celebrity_connector'
+  get'/katyperry', to: 'pages#katyperry_celeb'
+  get'/barackobama', to: 'pages#barackobama'
+  get'/taylorswift', to: 'pages#taylorswift'
+  get'/ladygaga', to: 'pages#ladygaga'
+  get'/justintimberlake', to: 'pages#justintimberlake'
+  get'/brittneyspears', to: 'pages#brittneyspears'
+  get'/kimkardashianwest', to: 'pages#kimkardashianwest'
+  get'/shakira', to: 'pages#shakira'
+  get'/jenniferlopez', to: 'pages#jenniferlopez'
+  get'/selenagomez', to: 'pages#selenagomez'
+  # get'/selenagomez', to: 'pages#selenagomez'
+  # get'/selenagomez', to: 'pages#selenagomez'
+  # get'/selenagomez', to: 'pages#selenagomez'
+  # get'/selenagomez', to: 'pages#selenagomez'
+  # get'/selenagomez', to: 'pages#selenagomez'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

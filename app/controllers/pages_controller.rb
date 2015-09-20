@@ -14,6 +14,24 @@ class PagesController < ApplicationController
     # render 'home' is implicit.
   end
 
+  private
+
+    def timeline(user=current_user)
+      stack = {
+        timeline: [],
+        unauthed_accounts: [],
+        feed_unauthed_accounts: []
+      }
+      current_user.followed_users.each do |user|
+        feed=Feed.new(user)
+        stack[:timeline] << feed.construct(params)
+        # this is constantly getting over written for each user.
+        stack[:feed_unauthed_accounts] << feed.unauthed_accounts
+      end
+      stack
+    end
+  public
+
   def help; end
   def about; end
   def feedback; end
@@ -1026,33 +1044,437 @@ class PagesController < ApplicationController
   def business_connector
   end
 
-  private
+  def celebrity_connector
+  end
 
-    def timeline(user=current_user)
-      stack = {
-        timeline: [],
-        unauthed_accounts: [],
-        feed_unauthed_accounts: []
-      }
-      current_user.followed_users.each do |user|
-        feed=Feed.new(user)
-        stack[:timeline] << feed.construct(params)
-        # this is constantly getting over written for each user.
-        stack[:feed_unauthed_accounts] << feed.unauthed_accounts
-      end
-      stack
-    end
+  def katyperry_celeb
+   @compname = 'Katy Perry'
+   @comp     = 'katyperry'
+   @incomp   = 'katyperry'
+   @comp_url = 'https://www.youtube.com/user/KatyPerryVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def barackobama
+   @compname = 'Barack Obama'
+   @comp     = 'BarackObama'
+   @incomp   = 'barackobama'
+   @comp_url = 'https://www.youtube.com/user/BarackObamadotcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def taylorswift
+   @compname = 'Taylor Swift'
+   @comp     = 'taylorswift13'
+   @incomp   = 'taylorswift'
+   @comp_url = 'https://www.youtube.com/user/TaylorSwiftVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ladygaga
+   @compname = 'Lady Gaga'
+   @comp     = 'ladygaga'
+   @incomp   = 'ladygaga'
+   @comp_url = 'https://www.youtube.com/user/LadyGagaVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def justintimberlake
+   @compname = 'Justin Timberlake'
+   @comp     = 'jtimberlake'
+   @incomp   = 'justintimberlake'
+   @comp_url = 'https://www.youtube.com/user/justintimberlakeVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def brittneyspears
+   @compname = 'Britney Spears'
+   @comp     = 'britneyspears'
+   @incomp   = 'britneyspears'
+   @comp_url = 'https://www.youtube.com/user/BritneySpearsVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def kimkardashianwest
+   @compname = 'Kim Kardashian'
+   @comp     = 'KimKardashian'
+   @incomp   = 'kimkardashian'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def shakira
+   @compname = 'Shakira'
+   @comp     = 'shakira'
+   @incomp   = 'shakira'
+   @comp_url = 'https://www.youtube.com/user/shakiraVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def jenniferlopez
+   @compname = 'Jennifer Lopez'
+   @comp     = 'JLo'
+   @incomp   = 'jlo'
+   @comp_url = 'https://www.youtube.com/user/JenniferLopez'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def selenagomez
+   @compname = 'Selena Gomez'
+   @comp     = 'selenagomez'
+   @incomp   = 'selenagomez'
+   @comp_url = 'https://www.youtube.com/user/SelenaGomezVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def arianagrande
+   @compname = 'Ariana Grande'
+   @comp     = 'ArianaGrande'
+   @incomp   = 'arianagrande'
+   @comp_url = 'https://www.youtube.com/user/ArianaGrandeVevo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def arianagrande
+   @compname = 'Ariana Grande'
+   @comp     = 'ArianaGrande'
+   @incomp   = 'arianagrande'
+   @comp_url = 'https://www.youtube.com/user/ArianaGrandeVevo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
 end
-# To perform GET on "https://api.instagram.com/v1/users/<user-id>/media/recent/" 
 
-# You can perform "https://api.instagram.com/v1/users/[USER ID]/media/recent/?client_id=[CLIENT ID]"
+####CELEBRITIES
+# katyperry           katyperry           katyperry               https://www.youtube.com/user/KatyPerryVEVO
+# barackobama         BarackObama         barackobama             https://www.youtube.com/user/BarackObamadotcom
+# taylorswift         taylorswift13       taylorswift             https://www.youtube.com/user/TaylorSwiftVEVO
+# ladygaga            ladygaga            ladygaga                https://www.youtube.com/user/LadyGagaVEVO
+# justintimberlake    jtimberlake         justintimberlake        https://www.youtube.com/user/justintimberlakeVEVO
 
-# [CLIENT ID] would be valid client id registered in app through manage clients 
-# (not related to user whatsoever). You can get [USER ID] from username 
-# by performing GET users search request: "https://api.instagram.com/v1/users/search?q=[USERNAME]&client_id=[CLIENT ID]"
+# brittneyspears      britneyspears       britneyspears           https://www.youtube.com/user/BritneySpearsVEVO
+# kimkardashianwest   KimKardashian       kimkardashian           none
+# shakira             shakira             shakira                 https://www.youtube.com/user/shakiraVEVO
+# jenniferlopez       JLo                 jlo                     https://www.youtube.com/user/JenniferLopez
+# selenagomez         selenagomez         selenagomez             https://www.youtube.com/user/SelenaGomezVEVO
 
-# first search by username(companys username) and get user_id from the search
-# next, use the recieved user_id to get the recent media of said company 
-# https://api.instagram.com/v1/users/search?q=wired&client_id=d5a97c3cf7b04c70ae234eb9933ef2fd
+# arianagrande        ArianaGrande        arianagrande            https://www.youtube.com/user/ArianaGrandeVevo
+# demilovato          ddlovato            ddlovato                https://www.youtube.com/user/DemiLovatoVEVO
+# jimmyfallon         jimmyfallon         jimmyfallon             https://www.youtube.com/user/latenight
+# lebronjames         KingJames           kingjames               none
+# adele               OfficialAdele       adele                   https://www.youtube.com/user/AdeleVEVO
+# brunomars           BrunoMars           brunomars               https://www.youtube.com/user/ElektraRecords
+# aliciakeys          aliciakeys          aliciakeys              https://www.youtube.com/user/aliciakeysVEVO
+# mileyraycyrus       MileyCyrus          mileycyrus              https://www.youtube.com/user/MileyCyrusVEVO
+# nickiminaj          NICKIMINAJ          nickiminaj              https://www.youtube.com/user/NickiMinajAtVEVO
+# emmawatson          EmWatson            emmawatson              none
+# neilpatrickharris   ActuallyNPH         nph                     https://www.youtube.com/channel/UCk_Dx67t-aXqw9uQLVX-UCQ
+# davidguetta         davidguetta         davidguetta             https://www.youtube.com/user/davidguettavevo
+# conanobrien         ConanOBrien         teamcoco                https://www.youtube.com/user/teamcoco
+# khloekardashian     KhloeKardashian     kloekardashianthegirl   https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g
+# kourtneykardashian  kourtneykardashian  kourtneykardash         https://www.youtube.com/channel/UCXIf9YuOaiCSn2r4P5SZ_Zw
+# christinaaguilera   xtina               xtina                   https://www.youtube.com/user/CAguileraVEVO
+# beyonce             Beyonce             beyonce                 https://www.youtube.com/user/beyonceVEVO
+# oprah winfrey       Oprah               oprah                   https://www.youtube.com/channel/UCqL0gza-KJcuVe3e0FCbM8Q
+# johnnydepp          realdepp            johnnydepp.oficial      https://www.youtube.com/channel/UCPP2obRMCcnokAqR4NzMuwQ
+# scarlettjohansson   ScarlettJOnline     scarlettjohanssonaddict https://www.youtube.com/channel/UCuaGAGmxgipdJEOrYaMT0Nw
+# madonna             Madonna             madonna                 https://www.youtube.com/user/madonna
+# tomhanks            tomhanks            tomhanks                https://www.youtube.com/user/tomhankschannel
+# jessicaalba         jessicaalba         jessicaalba             https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A
+# meganfox            meganfox            dailymeganfox           https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg
+# tigerwoods          TigerWoods          TigerWoods              none 
+# blakelively         blakelively         blakelively             https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA
+# leonardodicaprio    LeoDiCaprio         leonardodicaprio        https://www.youtube.com/channel/UCc5HhOHhTKOMK_ta2lqtKgw
+# emmastone           EmmaStoneWeb        emmastone_official_     none
+# jayz                JayZClassicBars     shawn.carter            https://www.youtube.com/user/JayZVEVO
+# ellendegeneres      TheEllenShow        theellenshow            https://www.youtube.com/user/TheEllenShow
+# sandrabullock       sbullockweb         sandrabullockig         none
+# ashleygreene        AshleyMGreene       ashleygreene            https://www.youtube.com/channel/UCEHOQe7Kk_4F6LvAcPp1SKQ
+# natalieportman      PortmanUpdate       natalieportmanlove      https://www.youtube.com/channel/UC7M0_DE8EhWTpSgRqiuToCA
+# jenniferlawrence    MsJenniferLaw       jenniferlawrencepx      https://www.youtube.com/channel/UC1SBXt6T5VT12_UFUupLWXA
+# katebosworth        katebosworth        katebosworth            https://www.youtube.com/channel/UC-jXKCYtzcMjBr8f66hyEvA
+# camerondiaz         CameronDiaz         camerondiaz             https://www.youtube.com/channel/UC9k-NlU7gjr8F0HlCTAWlXQ
+# milakunis           Milla_Kunis         milakunis______         https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg
+# floydmayweather     FloydMayweather     floydmayweather         https://www.youtube.com/user/FloydMayweather
+# reesewitherspoon    RWitherspoon        reesewitherspoon        https://www.youtube.com/channel/UCE20hbhrnFW3bhndXukSxAg
+# kateupton           KateUpton           kateupton               https://www.youtube.com/channel/UCyXW3LwGzBo1gQ8DOg7L5Nw
+# peterdinklage       Peter_Dinklage      peterdinklage           none
 
-# "https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}"
+
+#####TV SHOWS
+# Last Week Tonight With John Oliver  LastWeekTonight     lastweektonight            https://www.youtube.com/user/LastWeekTonight
+# Game of Thrones                     GameOfThrones       gameofthrones              https://www.youtube.com/user/GameofThrones
+# Better Call Saul                    BetterCallSaul      bettercallsaulamc          https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ
+# Orange Is The New Black             OITNB               oitnb                      none
+# Empire                              EmpireFox           empirefox                  https://www.youtube.com/user/EMPIREonFOX
+# How I Met Your Mother               OfficialHIMYM       himym_official             none
+# Mad Men                             MadMen_AMC          madmen_amc                 none 
+# The Americans                       TheAmericansFX      theamericansfx             https://www.youtube.com/user/TheAmericansFX
+# The Tonight Show                    FallonTonight       fallontonight              https://www.youtube.com/user/latenight
+# True Detective                      TrueDetective       truedetective              none
+# Justified                           JustifiedFX         justifiedfx                none
+# Sense8                              sense8              sense8                     https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw
+# iZombie                             CWiZombie           thecwizombie               https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw
+# The Flash                           CW_TheFlash         cwtheflash                 https://www.youtube.com/user/barryallentheflash1
+# The Bachelor                        BachelorABC         bachelorabc                https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw
+# Suits                               Suits_USA           suits_usa                  https://www.youtube.com/user/SuitsonUSA
+# The Ellen Show                      TheEllenShow        theellenshow               https://www.youtube.com/user/TheEllenShow
+# Greys Anatomy                       GreysABC            greysabc                   https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow
+# The Walking Dead                    WalkingDead_AMC     amcthewalkingdead          none
+# American Horror Story               AmericanHorrorStory americanhorrorstory        https://www.youtube.com/user/qwerty19107
+# Shark Tank                          ABCSharkTank        sharktankabc               none
+# Gotham                              Gotham              gothamonfox                https://www.youtube.com/user/GothamFOX
+# The Good Wife                       TheGoodWife_CBS     thegoodwife_cbs            https://www.youtube.com/user/thegoodwife
+# The Big Bang Theory                 BigBang_CBS         bigbangtheory_cbs          https://www.youtube.com/user/thebigbangtheory
+# The Blacklist                       NBCBlacklist        nbcblacklist               https://www.youtube.com/user/NBCBlacklist
+# How To Get Away With Murder         HowToGetAwayABC     howtogetawaywithmurder     https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ
+# The Voice                           NBCTheVoice         nbcthevoice                https://www.youtube.com/user/NBCTheVoice
+# Bachelorette                        BacheloretteABC     bacheloretteabc            none
+# Scandal                             ScandalABC          scandalabc                 https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA
+# Downton     Abbey                   DowntonAbbey        downtonabbey_official      https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ
+# Dancing With The Stars              DancingABC          dancingabc                 https://www.youtube.com/user/ABCDWTS
+# American Idol                       AmericanIdol        americanidol               https://www.youtube.com/user/americanidol
+# The Mentalist                       Mentalist_CBS       mentalist_cbs              https://www.youtube.com/user/CBSTheMentalist
+# House Of Cards                      HouseofCards        houseofcards               https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg
+# Transparent                         transparent_tv      transparentamazon          https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw
+# Louie                               LouieFX             louieonfx                  none
+# Community                           CommunityTV         communitytv                none
+# Parks And Recreation                parksandrecnbc      nbcparksandrec             https://www.youtube.com/user/nbcParksandRec
+# Sons Of Anarchy                     SonsofAnarchy       soafx                      https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw
+# Brooklyn Nine-Nine                  Brooklyn99FOX       brooklyn99fox              none
+# Jane The Virgin                     CWJaneTheVirgin     cwjanethevirgin            none
+# Fargo                               FargoFX             fargo                      none
+# Saturday Night Live                 nbcsnl              nbcsnl                     https://www.youtube.com/user/SaturdayNightLive
+# Mr. Robot                           whoismrrobot        whoismrrobot               https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw
+# The Mindy Project                   TheMindyProject     mindyprojecthulu           none
+# New Girl                            NewGirlonFOX        newgirlfox                 none 
+# Scorpion                            ScorpionCBS         scorpioncbs                https://www.youtube.com/user/CBSScorpion
+# Modern Family                       ModernFam           modernfamily               none 
+
+
+# ####MUSIC
+
+
+# One Direction           onedirection        onedirection          https://www.youtube.com/user/OneDirectionVEVO
+# Katy Perry              katyperry           katyperry             https://www.youtube.com/user/KatyPerryVEVO
+# Beyonce                 Beyonce             beyonce               https://www.youtube.com/user/beyonceVEVO
+# Taylor Swift            taylorswift13       taylorswift           https://www.youtube.com/user/TaylorSwiftVEVO
+# Justin Timberlake       jtimberlake         justintimberlake      https://www.youtube.com/user/justintimberlakeVEVO
+# Iggy Azalea             IGGYAZALEA          thenewclassic         https://www.youtube.com/user/iggyazaleamusicVEVO
+# Ariana Grande           ArianaGrande        arianagrande          https://www.youtube.com/user/ArianaGrandeVevo
+# Miley Cyrus             MileyCyrus          mileycyrus            https://www.youtube.com/user/MileyCyrusVEVO
+# Pharrel Williams        Pharrell            pharrell              https://www.youtube.com/user/PharrellWilliamsVEVO
+# Eminem                  Eminem              eminem                https://www.youtube.com/user/EminemVEVO
+# Lorde                   lordemusic          lordemusic            https://www.youtube.com/user/LordeVEVO
+# Luke Bryan              LukeBryanOnline     lukebryan             https://www.youtube.com/user/LukeBryanVEVO
+# Sam Smith               samsmithworld       samsmithworld         https://www.youtube.com/user/SamSmithWorldVEVO
+# John Legend             johnlegend          johnlegend            https://www.youtube.com/user/johnlegendVEVO
+# OneRepublic             OneRepublic         onerepublic           https://www.youtube.com/user/OneRepublicVEVO
+# Drake                   Drake               leaderofnewschool     https://www.youtube.com/user/DrakeVEVO
+# Jason Derulo            jasonderulo         jasonderulo           https://www.youtube.com/user/JasonDerulo
+# Justin Bieber           justinbieber        justinbieber          https://www.youtube.com/user/JustinBieberVEVO
+# Imagine Dragons         imaginedragons      imaginedragons        https://www.youtube.com/user/ImagineDragonsVEVO
+# Florida Georgia Line    FLAGALine           flagaline             https://www.youtube.com/user/FlaGeorgiaLineVEVO
+# Nicki Minaj             NICKIMINAJ          nickiminaj            https://www.youtube.com/user/NickiMinajAtVEVO
+# 5 Seconds Of Summer     5SOS                5sos                  https://www.youtube.com/user/5sosvevo
+# Lady Gaga               ladygaga            ladygaga              https://www.youtube.com/user/LadyGagaVEVO
+# Pitbull                 pitbull             pitbull               https://www.youtube.com/user/PitbullVEVO
+# Bruno Mars              BrunoMars           brunomars             https://www.youtube.com/user/ElektraRecords
+# Jason Aldean            Jason_Aldean        jasonaldean           https://www.youtube.com/user/JasonAldeanVEVO
+# Maroon 5                maroon5             maroon5               https://www.youtube.com/user/Maroon5VEVO
+# Chris Brown             chrisbrown          chrisbrownofficial    https://www.youtube.com/user/ChrisBrownVEVO
+# Meghan Trainor          Meghan_Trainor      meghan_trainor        https://www.youtube.com/user/MeghanTrainorVEVO
+# Bastille                bastilledan         bastilledan           https://www.youtube.com/user/BastilleVEVO
+# Avicii                  Avicii              avicii                https://www.youtube.com/user/AviciiOfficialVEVO
+# Magic!                  ournameisMAGIC      ournameismagic        https://www.youtube.com/user/ournameismagicVEVO
+# Demi Lovato             ddlovato            ddlovato              https://www.youtube.com/user/DemiLovatoVEVO
+# Blake Shelton           blakeshelton        blakeshelton          https://www.youtube.com/user/blakeshelton
+# Coldplay                coldplay            coldplay              https://www.youtube.com/user/ColdplayVEVO
+# Charli XCX              charli_xcx          charli_xcx            https://www.youtube.com/user/officialcharlixcx
+# Nico & Vinz             NicoandVinz         nicoandvinz           https://www.youtube.com/user/envymusicchannel
+# The Rolling Stones      RollingStones       therollingstones      https://www.youtube.com/user/TheRollingStones
+# Shakira                 shakira             shakira               https://www.youtube.com/user/shakiraVEVO
+# Passenger               passengermusic      passengermusic        https://www.youtube.com/user/passengermusic
+# Brantley Gilbert        BrantleyGilbert     brantleygilbert       https://www.youtube.com/user/BrantleyGilbertVEVO
+# Ellie Goulding          elliegoulding       elliegoulding         https://www.youtube.com/user/EllieGouldingVEVO
+# Eric Church             ericchurch          ericchurchmusic       https://www.youtube.com/user/EricChurchVEVO
+# Idina Menzel            idinamenzel         idinamenzel           https://www.youtube.com/user/Idinamenzel
+# Selena Gomez            selenagomez         selenagomez           https://www.youtube.com/user/SelenaGomezVEVO
+# Calvin Harris           CalvinHarris        calvinharris          https://www.youtube.com/user/CalvinHarrisVEVO
+# Michael Buble           michaelbuble        michaelbuble          https://www.youtube.com/user/MichaelBubleTV
+# Michael Jackson         michaeljackson      michaeljackson        https://www.youtube.com/user/michaeljacksonVEVO
+# Britney Spears          britneyspears       britneyspears         https://www.youtube.com/user/BritneySpearsVEVO
+# Kelly Clarkson          kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
+# Christina Aguilera      xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
+
+
+
+# #######Sports
+
+# Real Madrid                     realmadrid        realmadrid            https://www.youtube.com/user/realmadridcf
+# Dallas Cowboys                  dallascowboys     dallascowboys         https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw
+# New York Yankees                Yankees           yankees               https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ
+# Barcelona                       FCBarcelona       fcbarcelona           https://www.youtube.com/user/fcbarcelona
+# Manchester United               ManUtd            manchesterunited      https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg
+# Los Angeles Lakers              Lakers            lakers                https://www.youtube.com/user/lakersnationdotcom
+# New England Patriots            Patriots          patriots              https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ
+# New York Knicks                 nyknicks          nyknicks              https://www.youtube.com/user/nyknicks
+# Los Angeles Dodgers             Dodgers           dodgers               https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w
+# Washington Redskins             Redskins          redskins              https://www.youtube.com/user/redskinsdotcom
+# Bayern Munich                   FCBayern          fcbayern              https://www.youtube.com/user/fcbayern
+# Boston Red Sox                  RedSox            redsox                https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g
+# New York Giants                 Giants            nygiants              https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg
+# Chicago Bulls                   chicagobulls      chicagobulls          https://www.youtube.com/user/chicagobullsofficial
+# San Francisco Giants            SFGiants          sfgiants              none
+# Houston Texans                  HoustonTexans     houstontexans         https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g
+# Chicago Cubs                    Cubs              cubs                  https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA
+# New York Jets                   nyjets            nyjets                https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w
+# Philadelphia Eagles             Eagles            philadelphiaeagles    https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ
+# Boston Celtics                  celtics           celtics               https://www.youtube.com/user/bostonceltics
+# Chicago Bears                   ChicagoBears      chicagobears          https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ
+# Los Angeles Clippers            LAClippers        laclippers            https://www.youtube.com/user/clippers1970
+# San Francisco 49ers             49ers             49ers                 https://www.youtube.com/user/sanfrancisco49ers
+# Baltimore Ravens                Ravens            ravens                https://www.youtube.com/user/baltimoreravens
+# Brooklyn Nets                   BrooklynNets      brooklynnets          https://www.youtube.com/user/NBANets
+# Denver Broncos                  Broncos           broncos               https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA
+# Indianapolis Colts              Colts             colts                 none
+# St. Louis Cardinals             Cardinals         cardinals             https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A
+# Green Bay Packers               packers           packers               https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg
+# Manchester City                 MCFC              mcfcofficial          https://www.youtube.com/user/mcfcofficial
+# Chelsea                         ChelseaFC         chelseafc             https://www.youtube.com/user/chelseafc
+# Ferrari                         Ferrari           ferrariusa            https://www.youtube.com/user/ferrariworld
+# New York Mets                   Mets              mets                  none
+# Pittsburgh Steelers             steelers          steelers              https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg
+# Seattle Seahawks                Seahawks          seahawks              https://www.youtube.com/user/seahawksdotcom
+# Arsenal                         Arsenal           arsenal               https://www.youtube.com/user/ArsenalTour
+# Golden State Warriors           warriors          warriors              https://www.youtube.com/user/GoldenStateWarriors
+# Los Angeles Angels Of Anaheim   Angels            angels                none
+# Miami Dolphins                  MiamiDolphins     miamidolphins         https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg
+# Toronto Maple Leafs             MapleLeafs        mapleleafs            https://www.youtube.com/user/torontomapleleafs
+# Washington Nationals            Nationals         nationals             https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw
+# Carolina Panthers               Panthers          panthers              https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg
+# Houston Rockets                 HoustonRockets    houstonrockets        https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q
+# Philadelphia Phillies           Phillies          phillies              https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ
+# Tampa Bay Buccaneers            TBBuccaneers      tbbuccaneers          https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg
+# Texas Rangers                   Rangers           rangers               none
+# Miami Heat                      MiamiHEAT         miamiheat             https://www.youtube.com/user/miamiheat
+# Tennessee Titans                Titans            tennesseetitans       https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw
+# Atlanta Braves                  Braves            braves                https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ
+# Minnesota Vikings               Vikings           vikings               https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA
+# Arizona Cardinals               AZCardinals       azcardinals           https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ
+
+
+
+# #####Food
+
+# Allrecipes              Allrecipes      allrecipes                https://www.youtube.com/user/allrecipes
+# Cooking.com             CookingCom      cookingcom                https://www.youtube.com/user/cookingcom
+# Food Network            FoodNetwork     foodnetwork               https://www.youtube.com/user/FoodNetworkTV
+# The Kitchn              thekitchn       thekitchn                 https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ
+# Open Table              OpenTable       opentable                 None
+# Taste Of Home           tasteofhome     tasteofhome               https://www.youtube.com/user/tasteofhome
+# Epicurious              epicurious      epicurious                https://www.youtube.com/user/epicuriousdotcom
+# Grubhub                 GrubHub         grubhub                   https://www.youtube.com/user/grubhub
+# Seamless                Seamless        eatseamless               https://www.youtube.com/user/eatseamless
+# Yummly                  yummly          yummly                    https://www.youtube.com/user/Yummly1
+# Huffington Post Food    HuffPostFood    huffpostfood              None
+# Food.com                Fooddotcom      fooddotcom                None
+# Bonappetit              bonappetit      bonappetitmag             https://www.youtube.com/user/BonAppetitDotCom
+# Weight Watchers         WeightWatchers  weightwatchers            https://www.youtube.com/user/WeightWatchers
+# Food And Wine           FoodAndWineMag  foodandwine               https://www.youtube.com/user/foodandwinevideo
+# The Chew                thechew         abcthechew                https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA
+# Americas Test Kitchen   TestKitchen     testkitchen               https://www.youtube.com/user/americastestkitchen
+# Iron Chef America       IronChefAmerica ironchefamericacuisine    https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q
+
+# Diners, Drive-ins and Dives       
+# Cake Boss       
+# Cupcake Wars        
+# Come Dine Witth Me        
+# Cutthroat Kitchen       
+# Bizarre Foods       
+# Hells Kitchen        
+# Chopped       
+# Top Chef        
+# The Rachael Ray Show        
+# Kitchen Nightmares        
+# Bar Rescue        
+
+
+# ####TRAVEL
+
+# Budget Travel         BudgetTravel    budgettravel            None
+# Afar                  AFARmedia       afarmedia               None
+# Travel And Leisure    TravelLeisure   travelandleisure        None
+# Conde Nast Traveler   CNTraveler      cntraveler              None
+# Geographical          GeographicalMag geographical_magazine   None
+# National Geographic   NatGeo          natgeotravel            None
+# Wanderlust            WanderlustFest  wanderlustfest          None
+
+# Cruise Travel       
+# Cruising World        
+# Coastal Living        
+# Caribbean Living        
+# Yachting        
+# Destinations        
+# Pathfinders Travel        
+# Africa Geographic       
+# Backpacker        
+# Outside       
+# Camping Life        
+# Cabin Life        
+# American Road       
+# Trailer Life        
+# Outpost Magazine        
+# The Expeditioner        
+# Suitcase        
+
+
+# #####FASHION
+
+# Armani                Armani            armani            https://www.youtube.com/user/Armani
+# Burberry              Burberry          burberry          https://www.youtube.com/user/Burberry
+# Calvin Klein          CalvinKlein       calvinklein       https://www.youtube.com/user/calvinklein
+# Chanel                CHANEL            chanelofficial    https://www.youtube.com/user/CHANEL
+# Christian Dior        Dior              dior              https://www.youtube.com/user/Dior
+# Christian Louboutin   LouboutinWorld    louboutinworld    https://www.youtube.com/user/christianlouboutin
+# Dolce & Gabbana       dolcegabbana      dolcegabbana      https://www.youtube.com/user/dolcegabbanachannel
+# DKNY                  dkny              dkny              https://www.youtube.com/user/dkny
+# Escada                ESCADA            escadaofficial    https://www.youtube.com/user/Escadaeditor
+# Fendi                 Fendi             fendi             https://www.youtube.com/user/FENDICHANNEL
+# Gucci                 gucci             gucci             https://www.youtube.com/user/gucciofficial
+# Prada                 Prada             prada             https://www.youtube.com/user/PRADA
+# Hugo Boss             HUGOBOSS          hugoboss          https://www.youtube.com/user/HUGOBOSSTV
+# John Varvatos         johnvarvatos      johnvarvatos      https://www.youtube.com/user/johnvarvatos
+# La Perla Lingerie     LaPerlaLingerie   laperlalingerie   https://www.youtube.com/user/LaPerlaLingerie
+# Louis Vuitton         LouisVuitton      louisvuitton      https://www.youtube.com/user/LOUISVUITTON
+# Manolo Blahnik        ManoloBlahnik     manoloblahnikhq   https://www.youtube.com/channel/UCBldabiGA8UYQQgbwyI-jyw
+# Missoni               Missoni           missoni           https://www.youtube.com/user/MissoniOfficial
+# Ralph Lauren          RalphLauren       ralphlauren       https://www.youtube.com/user/RLTVralphlauren
+# Roland Mouret         RolandMouret      roland_mouret     https://www.youtube.com/user/RolandMouretFilms
+# Stella McCartney      StellaMcCartney   stellamccartney   https://www.youtube.com/user/stellamccartney1
+# Tom Ford              TOMFORD           tomford           https://www.youtube.com/user/TOMFORDINTERNATIONAL
+# Versace               Versace           versace_official  https://www.youtube.com/user/VersaceVideos
+# Michael Kors          MichaelKors       michaelkors       https://www.youtube.com/user/michaelkors
