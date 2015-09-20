@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :shouts
     resources :comments
     member do
-      get :following, :followers, :bio, :feed, :settings, :explore, :nfuse_page
+      get :following, :followers, :bio, :feed, :settings, :explore, :explore_users, :nfuse_page
     end
   end
 

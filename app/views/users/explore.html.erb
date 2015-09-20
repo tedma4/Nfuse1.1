@@ -1,50 +1,6 @@
+<div class="row">
+  <%= render partial: "searches/show" %>
+</div>
 <div class="explore_filters">
   <%= render partial: "users/explore_filters" %>
 </div><br>
-<div class="loader">
-  <div class="loader-img"></div>
-</div>
-<div id="masonJar" class="center explore_container clearfix masonJar">
-    <% @timeline.first(30).each do |post| %>
-      <% case post.provider %>
-      <% when "nfuse" %>
-        <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-        <%=  render partial: 'users/shout', locals: {shout: post} %>
-      <% when "gplus" %>
-        <% if post.type != 'hiddenType' %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
-      <% when "tumblr" %>
-        <% unless post.type == 'chat' || post.type == 'audio' %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
-      <% when "facebook" %>
-          <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-              <%= render partial: "users/post", locals: {post: post} %>
-          <% end %>
-      <% when "twitter" %>
-          <% unless post.retweeted == true %>
-              <%= render partial: "users/post", locals: {post: post} %>
-          <% end %>
-      <% else %>
-        <%= render partial: "users/post", locals: {post: post} %>
-      <% end %>
-    <% end %>
-</div>
-<script>
-
-jQuery(window).load(function() {
-  
-  /*
-    Loader
-  */
-  $(".loader-img").fadeOut();
-  $(".loader").delay(1000).fadeOut("slow");
-  
-  /*
-    Hidden images
-  */
-  $(".modal-body img, .testimonial-image img").attr("style", "width: auto !important; height: auto !important;");
-  
-});
-  </script>

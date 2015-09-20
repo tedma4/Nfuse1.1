@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :update_error
   #This ensures that a user must be logged in to make changes to a profile
   before_action :signed_in_user,
-                only: [:explore, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page, :feed]
+                only: [:explore, :explore_users, :show, :index, :edit, :update, :destroy, :following, :followers, :nfuse_page, :feed]
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :following, :followers, :nfuse_page ]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :explore_users, :following, :followers, :nfuse_page ]
 
   def index
     #user = User.find(params[:id])
@@ -114,6 +114,9 @@ class UsersController < ApplicationController
   end
 
   def explore
+  end
+
+  def explore_users
     @providers = Providers.for(@user)
     timeline = []
     ids =  current_user.followed_users.collect(&:id)
@@ -127,7 +130,7 @@ class UsersController < ApplicationController
       end
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
-    render "explore"
+    render "explore_users"
   end
 
   def bio

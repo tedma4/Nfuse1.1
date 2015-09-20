@@ -14,8 +14,4 @@ class SearchesController < ApplicationController
 	  page     = Search::Timeline.new(@search)
 	  @timeline = page.construct(params)
 	end
-
-  # def show
-  # 	@find = Search::Timeline.new(@search)
-  # end
 end
