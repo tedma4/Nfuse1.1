@@ -1396,28 +1396,171 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
+
+
+
+  def blakelively
+   @compname = 'Blake Lively'
+   @comp     = 'blakelively'
+   @incomp   = 'blakelively'
+   @comp_url = 'https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def leonardodicaprio
+   @compname = 'Leonardo DiCaprio'
+   @comp     = 'LeoDiCaprio'
+   @incomp   = 'leonardodicaprio'
+   @comp_url = 'https://www.youtube.com/channel/UCc5HhOHhTKOMK_ta2lqtKgw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def emmastone
+   @compname = 'Emma Stone'
+   @comp     = 'EmmaStoneWeb'
+   @incomp   = 'emmastone_official_'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def jayz
+   @compname = 'Jay Z'
+   @comp     = 'JayZClassicBars'
+   @incomp   = 'shawn.carter '
+   @comp_url = 'https://www.youtube.com/user/JayZVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ellendegeneres
+   @compname = 'Ellen DeGeneres'
+   @comp     = 'TheEllenShow'
+   @incomp   = 'theellenshow'
+   @comp_url = 'https://www.youtube.com/user/TheEllenShow'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sandrabullock
+   @compname = 'Sandra Bullock'
+   @comp     = 'sbullockweb'
+   @incomp   = 'sandrabullockig'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ashleygreene
+   @compname = 'Ashley Greene'
+   @comp     = 'AshleyMGreene'
+   @incomp   = 'ashleygreene'
+   @comp_url = 'https://www.youtube.com/channel/UCEHOQe7Kk_4F6LvAcPp1SKQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def natalieportman
+   @compname = 'Natalie Portman'
+   @comp     = 'PortmanUpdate'
+   @incomp   = 'natalieportmanlove'
+   @comp_url = 'https://www.youtube.com/channel/UC7M0_DE8EhWTpSgRqiuToCA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def jenniferlawrence
+   @compname = 'Jennifer Lawrence'
+   @comp     = 'MsJenniferLaw'
+   @incomp   = 'jenniferlawrencepx'
+   @comp_url = 'https://www.youtube.com/channel/UC1SBXt6T5VT12_UFUupLWXA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def katebosworth
+   @compname = 'Kate Bosworth'
+   @comp     = 'katebosworth'
+   @incomp   = 'katebosworth'
+   @comp_url = 'https://www.youtube.com/channel/UC-jXKCYtzcMjBr8f66hyEvA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def camerondiaz
+   @compname = 'Cameron Diaz'
+   @comp     = 'CameronDiaz'
+   @incomp   = 'camerondiaz'
+   @comp_url = 'https://www.youtube.com/channel/UC9k-NlU7gjr8F0HlCTAWlXQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def milakunis
+   @compname = 'Milla Kunis'
+   @comp     = 'Milla_Kunis'
+   @incomp   = 'milakunis______'
+   @comp_url = 'https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def floydmayweather
+   @compname = 'Floyd Mayweather'
+   @comp     = 'FloydMayweather'
+   @incomp   = 'floydmayweather'
+   @comp_url = 'https://www.youtube.com/user/FloydMayweather'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def reesewitherspoon
+   @compname = 'Reese Witherspoon'
+   @comp     = 'RWitherspoon'
+   @incomp   = 'reesewitherspoon'
+   @comp_url = 'https://www.youtube.com/channel/UCE20hbhrnFW3bhndXukSxAg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def kateupton
+   @compname = 'Kate Upton'
+   @comp     = 'KateUpton'
+   @incomp   = 'kateupton'
+   @comp_url = 'https://www.youtube.com/channel/UCyXW3LwGzBo1gQ8DOg7L5Nw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def peterdinklage
+   @compname = 'Peter Dinklage'
+   @comp     = 'Peter_Dinklage'
+   @incomp   = 'peterdinklage'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
 end
 
 ####CELEBRITIES
-
-# neilpatrickharris   ActuallyNPH         nph                     https://www.youtube.com/channel/UCk_Dx67t-aXqw9uQLVX-UCQ
-# davidguetta         davidguetta         davidguetta             https://www.youtube.com/user/davidguettavevo
-# conanobrien         ConanOBrien         teamcoco                https://www.youtube.com/user/teamcoco
-# khloekardashian     KhloeKardashian     kloekardashianthegirl   https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g
-# kourtneykardashian  kourtneykardashian  kourtneykardash         https://www.youtube.com/channel/UCXIf9YuOaiCSn2r4P5SZ_Zw
-
-# christinaaguilera   xtina               xtina                   https://www.youtube.com/user/CAguileraVEVO
-# beyonce             Beyonce             beyonce                 https://www.youtube.com/user/beyonceVEVO
-# oprahwinfrey        Oprah               oprah                   https://www.youtube.com/channel/UCqL0gza-KJcuVe3e0FCbM8Q
-# johnnydepp          realdepp            johnnydepp.oficial      https://www.youtube.com/channel/UCPP2obRMCcnokAqR4NzMuwQ
-# scarlettjohansson   ScarlettJOnline     scarlettjohanssonaddict https://www.youtube.com/channel/UCuaGAGmxgipdJEOrYaMT0Nw
-
-# madonna             Madonna             madonna                 https://www.youtube.com/user/madonna
-# tomhanks            tomhanks            tomhanks                https://www.youtube.com/user/tomhankschannel
-# jessicaalba         jessicaalba         jessicaalba             https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A
-# meganfox            meganfox            dailymeganfox           https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg
-# tigerwoods          TigerWoods          TigerWoods              none 
-
 # blakelively         blakelively         blakelively             https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA
 # leonardodicaprio    LeoDiCaprio         leonardodicaprio        https://www.youtube.com/channel/UCc5HhOHhTKOMK_ta2lqtKgw
 # emmastone           EmmaStoneWeb        emmastone_official_     none
@@ -1435,6 +1578,7 @@ end
 # floydmayweather     FloydMayweather     floydmayweather         https://www.youtube.com/user/FloydMayweather
 # reesewitherspoon    RWitherspoon        reesewitherspoon        https://www.youtube.com/channel/UCE20hbhrnFW3bhndXukSxAg
 # kateupton           KateUpton           kateupton               https://www.youtube.com/channel/UCyXW3LwGzBo1gQ8DOg7L5Nw
+
 # peterdinklage       Peter_Dinklage      peterdinklage           none
 
 
@@ -1464,6 +1608,25 @@ end
 # mileyraycyrus       MileyCyrus          mileycyrus              https://www.youtube.com/user/MileyCyrusVEVO
 # nickiminaj          NICKIMINAJ          nickiminaj              https://www.youtube.com/user/NickiMinajAtVEVO
 # emmawatson          EmWatson            emmawatson              none
+
+# neilpatrickharris   ActuallyNPH         nph                     https://www.youtube.com/channel/UCk_Dx67t-aXqw9uQLVX-UCQ
+# davidguetta         davidguetta         davidguetta             https://www.youtube.com/user/davidguettavevo
+# conanobrien         ConanOBrien         teamcoco                https://www.youtube.com/user/teamcoco
+# khloekardashian     KhloeKardashian     kloekardashianthegirl   https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g
+# kourtneykardashian  kourtneykardashian  kourtneykardash         https://www.youtube.com/channel/UCXIf9YuOaiCSn2r4P5SZ_Zw
+
+# christinaaguilera   xtina               xtina                   https://www.youtube.com/user/CAguileraVEVO
+# beyonce             Beyonce             beyonce                 https://www.youtube.com/user/beyonceVEVO
+# oprahwinfrey        Oprah               oprah                   https://www.youtube.com/channel/UCqL0gza-KJcuVe3e0FCbM8Q
+# johnnydepp          realdepp            johnnydepp.oficial      https://www.youtube.com/channel/UCPP2obRMCcnokAqR4NzMuwQ
+# scarlettjohansson   ScarlettJOnline     scarlettjohanssonaddict https://www.youtube.com/channel/UCuaGAGmxgipdJEOrYaMT0Nw
+
+# madonna             Madonna             madonna                 https://www.youtube.com/user/madonna
+# tomhanks            tomhanks            tomhanks                https://www.youtube.com/user/tomhankschannel
+# jessicaalba         jessicaalba         jessicaalba             https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A
+# meganfox            meganfox            dailymeganfox           https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg
+# tigerwoods          TigerWoods          TigerWoods              none 
+
 
 
 #####TV SHOWS

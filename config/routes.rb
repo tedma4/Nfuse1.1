@@ -256,11 +256,23 @@ Rails.application.routes.draw do
   get'/jessicaalba', to: 'pages#jessicaalba'
   get'/meganfox', to: 'pages#meganfox'
   get'/tigerwoods', to: 'pages#tigerwoods'
-  # get'/madonna', to: 'pages#madonna'
-  # get'/tomhanks', to: 'pages#tomhanks'
-  # get'/jessicaalba', to: 'pages#jessicaalba'
-  # get'/meganfox', to: 'pages#meganfox'
-  # get'/tigerwoods', to: 'pages#tigerwoods'
+  
+  get'/blakelively', to: 'pages#blakelively'
+  get'/leonardodicaprio', to: 'pages#leonardodicaprio'
+  get'/emmastone', to: 'pages#emmastone'
+  get'/jayz', to: 'pages#jayz'
+  get'/ellendegeneres', to: 'pages#ellendegeneres'
+  get'/sandrabullock', to: 'pages#sandrabullock'
+  get'/ashleygreene', to: 'pages#ashleygreene'
+  get'/natalieportman', to: 'pages#natalieportman'
+  get'/jenniferlawrence', to: 'pages#jenniferlawrence'
+  get'/katebosworth', to: 'pages#katebosworth'
+  get'/camerondiaz', to: 'pages#camerondiaz'
+  get'/milakunis', to: 'pages#milakunis'
+  get'/floydmayweather', to: 'pages#floydmayweather'
+  get'/reesewitherspoon', to: 'pages#reesewitherspoon'
+  get'/kateupton', to: 'pages#kateupton'
+  get'/peterdinklage', to: 'pages#peterdinklage'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
