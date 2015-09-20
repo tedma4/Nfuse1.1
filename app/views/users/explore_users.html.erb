@@ -1,6 +1,3 @@
-<div class="explore_filters">
-  <%= render partial: "users/explore_filters" %>
-</div><br>
 <div id="masonJar" class="center explore_container clearfix masonJar">
   <% @timeline.first(30).each do |post| %>
     <% case post.provider %>
