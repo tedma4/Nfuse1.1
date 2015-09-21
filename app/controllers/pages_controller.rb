@@ -2040,7 +2040,588 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
+
+#####SPORTS
+
+  def sports_connector
+  end
+
+  def realmadrid
+   @compname = 'Real Madrid'
+   @comp     = 'realmadrid'
+   @incomp   = 'realmadrid'
+   @comp_url = 'https://www.youtube.com/user/realmadridcf'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def dallascowboys
+   @compname = 'Dallas Cowboys'
+   @comp     = 'dallascowboys'
+   @incomp   = 'dallascowboys'
+   @comp_url = 'https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newyorkyankees
+   @compname = 'New York Yankees'
+   @comp     = 'Yankees'
+   @incomp   = 'yankees'
+   @comp_url = 'https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def barcelona
+   @compname = 'Barcelona'
+   @comp     = 'FCBarcelona'
+   @incomp   = 'fcbarcelona'
+   @comp_url = 'https://www.youtube.com/user/fcbarcelona'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def manchesterunited
+   @compname = 'Manchester United'
+   @comp     = 'ManUtd'
+   @incomp   = 'manchesterunited'
+   @comp_url = 'https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def losangeleslakers
+   @compname = 'Los Angeles Lakers'
+   @comp     = 'Lakers'
+   @incomp   = 'lakers'
+   @comp_url = 'https://www.youtube.com/user/lakersnationdotcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newenglandpatriots
+   @compname = 'New England Patriots'
+   @comp     = 'Patriots'
+   @incomp   = 'patriots'
+   @comp_url = 'https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newyorkknicks
+   @compname = 'New York Knicks'
+   @comp     = 'nyknicks'
+   @incomp   = 'nyknicks'
+   @comp_url = 'https://www.youtube.com/user/nyknicks'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def losangelesdodgers
+   @compname = 'Los Angeles Dodgers'
+   @comp     = 'Dodgers'
+   @incomp   = 'dodgers'
+   @comp_url = 'https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def washingtonredskins
+   @compname = 'Washington Redskins'
+   @comp     = 'Redskins'
+   @incomp   = 'redskins'
+   @comp_url = 'https://www.youtube.com/user/redskinsdotcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bayernmunich
+   @compname = 'Bayern Munich'
+   @comp     = 'FCBayern'
+   @incomp   = 'fcbayern'
+   @comp_url = 'https://www.youtube.com/user/fcbayern'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bostonredsox
+   @compname = 'Boston Red Sox'
+   @comp     = 'RedSox'
+   @incomp   = 'redsox'
+   @comp_url = 'https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newyorkgiants
+   @compname = 'New York Giants'
+   @comp     = 'Giants'
+   @incomp   = 'nygiants'
+   @comp_url = 'https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def chicagobulls
+   @compname = 'Chicago Bulls'
+   @comp     = 'chicagobulls'
+   @incomp   = 'chicagobulls'
+   @comp_url = 'https://www.youtube.com/user/chicagobullsofficial'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sanfranciscogiants
+   @compname = 'San Francisco Giants'
+   @comp     = 'SFGiants'
+   @incomp   = 'sfgiants'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def houstontexans
+   @compname = 'Houston Texans'
+   @comp     = 'HoustonTexans'
+   @incomp   = 'houstontexans'
+   @comp_url = 'https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def chicagocubs
+   @compname = 'Chicago Cubs'
+   @comp     = 'Cubs'
+   @incomp   = 'cubs'
+   @comp_url = 'https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newyorkjets
+   @compname = 'New York Jets'
+   @comp     = 'nyjets'
+   @incomp   = 'nyjets'
+   @comp_url = 'https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def philadelphiaeagles
+   @compname = 'Philadelphia Eagles'
+   @comp     = 'Eagles'
+   @incomp   = 'philadelphiaeagles'
+   @comp_url = 'https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bostonceltics
+   @compname = 'Boston Celtics'
+   @comp     = 'celtics'
+   @incomp   = 'celtics'
+   @comp_url = 'https://www.youtube.com/user/bostonceltics'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def chicagobears
+   @compname = 'Chicago Bears'
+   @comp     = 'ChicagoBears'
+   @incomp   = 'chicagobears'
+   @comp_url = 'https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def losangelesclippers
+   @compname = 'Los Angeles Clippers'
+   @comp     = 'LAClippers'
+   @incomp   = 'laclippers'
+   @comp_url = 'https://www.youtube.com/user/clippers1970'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sanfrancisco49ers
+   @compname = 'San Francisco 49ers'
+   @comp     = '49ers'
+   @incomp   = '49ers'
+   @comp_url = 'https://www.youtube.com/user/sanfrancisco49ers'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def baltimoreravens
+   @compname = 'Baltimore Ravens'
+   @comp     = 'Ravens'
+   @incomp   = 'ravens'
+   @comp_url = 'https://www.youtube.com/user/baltimoreravens'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def brooklynnets
+   @compname = 'Brooklyn Nets'
+   @comp     = 'BrooklynNets'
+   @incomp   = 'brooklynnets'
+   @comp_url = 'https://www.youtube.com/user/NBANets'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def denverbroncos
+   @compname = 'Denver Broncos'
+   @comp     = 'Broncos'
+   @incomp   = 'broncos'
+   @comp_url = 'https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def indianapoliscolts
+   @compname = 'Indianapolis Colts'
+   @comp     = 'Colts'
+   @incomp   = 'colts'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def stlouiscardinals
+   @compname = 'St. Louis Cardinals'
+   @comp     = 'Cardinals'
+   @incomp   = 'cardinals'
+   @comp_url = 'https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def greenbaypackers
+   @compname = 'Greenbay Packers'
+   @comp     = 'packers'
+   @incomp   = 'packers'
+   @comp_url = 'https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def chelsea
+   @compname = 'Chelsea'
+   @comp     = 'ChelseaFC'
+   @incomp   = 'chelseafc'
+   @comp_url = 'https://www.youtube.com/user/chelseafc'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ferrari
+   @compname = 'Ferrari'
+   @comp     = 'Ferrari'
+   @incomp   = 'ferrariusa'
+   @comp_url = 'https://www.youtube.com/user/ferrariworld'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newyorkmets
+   @compname = 'New York Mets'
+   @comp     = 'Mets'
+   @incomp   = 'mets'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def pittsburghsteelers
+   @compname = 'Pittsburgh Steelers'
+   @comp     = 'steelers'
+   @incomp   = 'steelers'
+   @comp_url = 'https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def seattleseahawks
+   @compname = 'Seattle Seahawks'
+   @comp     = 'Seahawks'
+   @incomp   = 'seahawks'
+   @comp_url = 'https://www.youtube.com/user/seahawksdotcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def arsenal
+   @compname = 'Arsenal'
+   @comp     = 'Arsenal'
+   @incomp   = 'arsenal'
+   @comp_url = 'https://www.youtube.com/user/ArsenalTour'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def goldenstatewarriors
+   @compname = 'Golden State Warriors'
+   @comp     = 'warriors'
+   @incomp   = 'warriors'
+   @comp_url = 'https://www.youtube.com/user/GoldenStateWarriors'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def losangelesangelsofanaheim
+   @compname = 'Angels of Anaheim'
+   @comp     = 'Angels'
+   @incomp   = 'angels'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def miamidolphins
+   @compname = 'Miami Dolphins'
+   @comp     = 'MiamiDolphins'
+   @incomp   = 'miamidolphins'
+   @comp_url = 'https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def torontomapleleafs
+   @compname = 'Toronto Maple Leafs'
+   @comp     = 'MapleLeafs'
+   @incomp   = 'mapleleafs'
+   @comp_url = 'https://www.youtube.com/user/torontomapleleafs'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def washingtonnationals
+   @compname = 'Washington Nationals'
+   @comp     = 'Nationals'
+   @incomp   = 'nationals'
+   @comp_url = 'https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def carolinapanthers
+   @compname = 'Carolina Panthers'
+   @comp     = 'Panthers'
+   @incomp   = 'panthers'
+   @comp_url = 'https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def houstonrockets
+   @compname = 'Houston Rockets'
+   @comp     = 'HoustonRockets'
+   @incomp   = 'houstonrockets'
+   @comp_url = 'https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def philadelphiaphillies
+   @compname = 'Philadelphia Phillies'
+   @comp     = 'Phillies'
+   @incomp   = 'phillies'
+   @comp_url = 'https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def tampabaybuccaneers
+   @compname = 'Tampa Bay Buccaneers'
+   @comp     = 'TBBuccaneers'
+   @incomp   = 'tbbuccaneers'
+   @comp_url = 'https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def texasrangers
+   @compname = 'Texas Rangers'
+   @comp     = 'Rangers'
+   @incomp   = 'rangers'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def miamiheat
+   @compname = 'Miami Heat'
+   @comp     = 'MiamiHEAT'
+   @incomp   = 'miamiheat'
+   @comp_url = 'https://www.youtube.com/user/miamiheat'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def tennesseetitans
+   @compname = 'Tennessee Titans'
+   @comp     = 'Titans'
+   @incomp   = 'tennesseetitans'
+   @comp_url = 'https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def atlantabraves
+   @compname = 'Atlanta Braves'
+   @comp     = 'Braves'
+   @incomp   = 'braves'
+   @comp_url = 'https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def minnesotavikings
+   @compname = 'Minnesota Vikings'
+   @comp     = 'Vikings'
+   @incomp   = 'vikings'
+   @comp_url = 'https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def arizonacardinals
+   @compname = 'Arizona Cardinals'
+   @comp     = 'AZCardinals'
+   @incomp   = 'azcardinals'
+   @comp_url = 'https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def manchestercity
+   @compname = 'Manchester City'
+   @comp     = 'MCFC'
+   @incomp   = 'mcfcofficial'
+   @comp_url = 'https://www.youtube.com/user/mcfcofficial'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
 end
+
+# #######Sports
+
+# realmadrid                      realmadrid        realmadrid            https://www.youtube.com/user/realmadridcf
+# dallascowboys                   dallascowboys     dallascowboys         https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw
+# newyorkyankees                  Yankees           yankees               https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ
+# barcelona                       FCBarcelona       fcbarcelona           https://www.youtube.com/user/fcbarcelona
+# manchesterunited                ManUtd            manchesterunited      https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg
+
+# losangeleslakers                Lakers            lakers                https://www.youtube.com/user/lakersnationdotcom
+# newenglandpatriots              Patriots          patriots              https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ
+# newyorkknicks                   nyknicks          nyknicks              https://www.youtube.com/user/nyknicks
+# losangelesdodgers               Dodgers           dodgers               https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w
+# washingtonredskins              Redskins          redskins              https://www.youtube.com/user/redskinsdotcom
+
+# bayernmunich                    FCBayern          fcbayern              https://www.youtube.com/user/fcbayern
+# bostonredsox                    RedSox            redsox                https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g
+# newyorkgiants                   Giants            nygiants              https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg
+# chicagobulls                    chicagobulls      chicagobulls          https://www.youtube.com/user/chicagobullsofficial
+# sanfranciscogiants              SFGiants          sfgiants              none
+
+# houstontexans                   HoustonTexans     houstontexans         https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g
+# chicagocubs                     Cubs              cubs                  https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA
+# newyorkjets                     nyjets            nyjets                https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w
+# philadelphiaeagles              Eagles            philadelphiaeagles    https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ
+# bostonceltics                   celtics           celtics               https://www.youtube.com/user/bostonceltics
+
+# chicagobears                    ChicagoBears      chicagobears          https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ
+# losangelesclippers              LAClippers        laclippers            https://www.youtube.com/user/clippers1970
+# sanfrancisco49ers               49ers             49ers                 https://www.youtube.com/user/sanfrancisco49ers
+# baltimoreravens                 Ravens            ravens                https://www.youtube.com/user/baltimoreravens
+# brooklynnets                    BrooklynNets      brooklynnets          https://www.youtube.com/user/NBANets
+
+# denverbroncos                   Broncos           broncos               https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA
+# indianapoliscolts               Colts             colts                 none
+# stlouiscardinals                Cardinals         cardinals             https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A
+# greenbaypackers                 packers           packers               https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg
+# manchestercity                  MCFC              mcfcofficial          https://www.youtube.com/user/mcfcofficial
+
+# chelsea                         ChelseaFC         chelseafc             https://www.youtube.com/user/chelseafc
+# ferrari                         Ferrari           ferrariusa            https://www.youtube.com/user/ferrariworld
+# newyorkmets                     Mets              mets                  none
+# pittsburghsteelers              steelers          steelers              https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg
+# seattleseahawks                 Seahawks          seahawks              https://www.youtube.com/user/seahawksdotcom
+
+# arsenal                         Arsenal           arsenal               https://www.youtube.com/user/ArsenalTour
+# goldenstatewarriors             warriors          warriors              https://www.youtube.com/user/GoldenStateWarriors
+# losangelesangelsofanaheim       Angels            angels                none
+# miamidolphins                   MiamiDolphins     miamidolphins         https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg
+# torontomapleleafs               MapleLeafs        mapleleafs            https://www.youtube.com/user/torontomapleleafs
+
+# washingtonnationals             Nationals         nationals             https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw
+# carolinapanthers                Panthers          panthers              https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg
+# houstonrockets                  HoustonRockets    houstonrockets        https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q
+# philadelphiaphillies            Phillies          phillies              https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ
+# tampabaybuccaneers              TBBuccaneers      tbbuccaneers          https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg
+
+# texasrangers                    Rangers           rangers               none
+# miamiheat                       MiamiHEAT         miamiheat             https://www.youtube.com/user/miamiheat
+# tennesseetitans                 Titans            tennesseetitans       https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw
+# atlantabraves                   Braves            braves                https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ
+# minnesotavikings                Vikings           vikings               https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA
+
+# arizonacardinals                AZCardinals       azcardinals           https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ
+
+
 
 # ####MUSIC
 
@@ -2095,62 +2676,6 @@ end
 # Britney Spears          britneyspears       britneyspears         https://www.youtube.com/user/BritneySpearsVEVO
 # Kelly Clarkson          kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
 # Christina Aguilera      xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
-
-
-
-# #######Sports
-
-# Real Madrid                     realmadrid        realmadrid            https://www.youtube.com/user/realmadridcf
-# Dallas Cowboys                  dallascowboys     dallascowboys         https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw
-# New York Yankees                Yankees           yankees               https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ
-# Barcelona                       FCBarcelona       fcbarcelona           https://www.youtube.com/user/fcbarcelona
-# Manchester United               ManUtd            manchesterunited      https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg
-# Los Angeles Lakers              Lakers            lakers                https://www.youtube.com/user/lakersnationdotcom
-# New England Patriots            Patriots          patriots              https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ
-# New York Knicks                 nyknicks          nyknicks              https://www.youtube.com/user/nyknicks
-# Los Angeles Dodgers             Dodgers           dodgers               https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w
-# Washington Redskins             Redskins          redskins              https://www.youtube.com/user/redskinsdotcom
-# Bayern Munich                   FCBayern          fcbayern              https://www.youtube.com/user/fcbayern
-# Boston Red Sox                  RedSox            redsox                https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g
-# New York Giants                 Giants            nygiants              https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg
-# Chicago Bulls                   chicagobulls      chicagobulls          https://www.youtube.com/user/chicagobullsofficial
-# San Francisco Giants            SFGiants          sfgiants              none
-# Houston Texans                  HoustonTexans     houstontexans         https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g
-# Chicago Cubs                    Cubs              cubs                  https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA
-# New York Jets                   nyjets            nyjets                https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w
-# Philadelphia Eagles             Eagles            philadelphiaeagles    https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ
-# Boston Celtics                  celtics           celtics               https://www.youtube.com/user/bostonceltics
-# Chicago Bears                   ChicagoBears      chicagobears          https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ
-# Los Angeles Clippers            LAClippers        laclippers            https://www.youtube.com/user/clippers1970
-# San Francisco 49ers             49ers             49ers                 https://www.youtube.com/user/sanfrancisco49ers
-# Baltimore Ravens                Ravens            ravens                https://www.youtube.com/user/baltimoreravens
-# Brooklyn Nets                   BrooklynNets      brooklynnets          https://www.youtube.com/user/NBANets
-# Denver Broncos                  Broncos           broncos               https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA
-# Indianapolis Colts              Colts             colts                 none
-# St. Louis Cardinals             Cardinals         cardinals             https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A
-# Green Bay Packers               packers           packers               https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg
-# Manchester City                 MCFC              mcfcofficial          https://www.youtube.com/user/mcfcofficial
-# Chelsea                         ChelseaFC         chelseafc             https://www.youtube.com/user/chelseafc
-# Ferrari                         Ferrari           ferrariusa            https://www.youtube.com/user/ferrariworld
-# New York Mets                   Mets              mets                  none
-# Pittsburgh Steelers             steelers          steelers              https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg
-# Seattle Seahawks                Seahawks          seahawks              https://www.youtube.com/user/seahawksdotcom
-# Arsenal                         Arsenal           arsenal               https://www.youtube.com/user/ArsenalTour
-# Golden State Warriors           warriors          warriors              https://www.youtube.com/user/GoldenStateWarriors
-# Los Angeles Angels Of Anaheim   Angels            angels                none
-# Miami Dolphins                  MiamiDolphins     miamidolphins         https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg
-# Toronto Maple Leafs             MapleLeafs        mapleleafs            https://www.youtube.com/user/torontomapleleafs
-# Washington Nationals            Nationals         nationals             https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw
-# Carolina Panthers               Panthers          panthers              https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg
-# Houston Rockets                 HoustonRockets    houstonrockets        https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q
-# Philadelphia Phillies           Phillies          phillies              https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ
-# Tampa Bay Buccaneers            TBBuccaneers      tbbuccaneers          https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg
-# Texas Rangers                   Rangers           rangers               none
-# Miami Heat                      MiamiHEAT         miamiheat             https://www.youtube.com/user/miamiheat
-# Tennessee Titans                Titans            tennesseetitans       https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw
-# Atlanta Braves                  Braves            braves                https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ
-# Minnesota Vikings               Vikings           vikings               https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA
-# Arizona Cardinals               AZCardinals       azcardinals           https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ
 
 
 
