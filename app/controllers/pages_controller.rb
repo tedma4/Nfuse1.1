@@ -1396,7 +1396,7 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
-  
+
   def blakelively
    @compname = 'Blake Lively'
    @comp     = 'blakelively'
@@ -1571,72 +1571,478 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
+  def gameofthrones
+   @compname = 'Game Of Thrones'
+   @comp     = 'GameOfThrones'
+   @incomp   = 'gameofthrones'
+   @comp_url = 'https://www.youtube.com/user/GameofThrones'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bettercallsaul
+   @compname = 'Better Call Saul'
+   @comp     = 'BetterCallSaul'
+   @incomp   = 'bettercallsaulamc'
+   @comp_url = 'https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def orangeisthenewblack
+   @compname = 'Orange Is The New Black'
+   @comp     = 'OITNB'
+   @incomp   = 'oitnb'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def empire
+   @compname = 'Empire'
+   @comp     = 'EmpireFox'
+   @incomp   = 'empirefox'
+   @comp_url = 'https://www.youtube.com/user/EMPIREonFOX'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def howimetyourmother
+   @compname = 'How I Met Your Mother'
+   @comp     = 'OfficialHIMYM'
+   @incomp   = 'himym_official'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def madmen
+   @compname = 'Mad Men'
+   @comp     = 'MadMen_AMC'
+   @incomp   = 'madmen_amc'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def theamericans
+   @compname = 'The Americans'
+   @comp     = 'TheAmericansFX'
+   @incomp   = 'theamericansfx'
+   @comp_url = 'https://www.youtube.com/user/TheAmericansFX'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thetonightshow
+   @compname = 'The Tonight Show'
+   @comp     = 'FallonTonight'
+   @incomp   = 'fallontonight'
+   @comp_url = 'https://www.youtube.com/user/latenight'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def truedetective
+   @compname = 'True Detective'
+   @comp     = 'TrueDetective'
+   @incomp   = 'truedetective'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def justified
+   @compname = 'Justified'
+   @comp     = 'JustifiedFX'
+   @incomp   = 'justifiedfx'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sense8
+   @compname = 'Sense8'
+   @comp     = 'sense8'
+   @incomp   = 'sense8'
+   @comp_url = 'https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def izombie
+   @compname = 'iZombie'
+   @comp     = 'CWiZombie'
+   @incomp   = 'thecwizombie'
+   @comp_url = 'https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def theflash
+   @compname = 'The Flash'
+   @comp     = 'CW_TheFlash'
+   @incomp   = 'thecwizombie'
+   @comp_url = 'https://www.youtube.com/user/barryallentheflash1'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thebachelor
+   @compname = 'The Bachelor'
+   @comp     = 'BachelorABC'
+   @incomp   = 'bachelorabc'
+   @comp_url = 'https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def suits
+   @compname = 'Suits'
+   @comp     = 'Suits_USA'
+   @incomp   = 'suits_usa'
+   @comp_url = 'https://www.youtube.com/user/SuitsonUSA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def theellenshow
+   @compname = 'The Ellen Show'
+   @comp     = 'TheEllenShow'
+   @incomp   = 'theellenshow'
+   @comp_url = 'https://www.youtube.com/user/TheEllenShow'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def greysanatomy
+   @compname = 'Greys Anatomy'
+   @comp     = 'GreysABC'
+   @incomp   = 'greysabc'
+   @comp_url = 'https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thewalkingdead
+   @compname = 'The Walking Dead'
+   @comp     = 'WalkingDead_AMC'
+   @incomp   = 'amcthewalkingdead'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def americanhorrorstory
+   @compname = 'American Horror Story'
+   @comp     = 'AmericanHorrorStory'
+   @incomp   = 'americanhorrorstory'
+   @comp_url = 'https://www.youtube.com/user/qwerty19107'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sharktank
+   @compname = 'Shark Tank'
+   @comp     = 'ABCSharkTank'
+   @incomp   = 'sharktankabc'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def gotham
+   @compname = 'Gotham'
+   @comp     = 'Gotham'
+   @incomp   = 'gothamonfox'
+   @comp_url = 'https://www.youtube.com/user/GothamFOX'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thegoodwife
+   @compname = 'The Good Wife'
+   @comp     = 'TheGoodWife_CBS'
+   @incomp   = 'thegoodwife_cbs'
+   @comp_url = 'https://www.youtube.com/user/thegoodwife'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thebigbangtheory
+   @compname = 'The Big Bang Theory'
+   @comp     = 'BigBang_CBS'
+   @incomp   = 'bigbangtheory_cbs'
+   @comp_url = 'https://www.youtube.com/user/thebigbangtheory'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def theblacklist
+   @compname = 'Blacklist'
+   @comp     = 'NBCBlacklist'
+   @incomp   = 'nbcblacklist'
+   @comp_url = 'https://www.youtube.com/user/NBCBlacklist'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def howtogetawaywithmurder
+   @compname = 'How To Get Away'
+   @comp     = 'HowToGetAwayABC'
+   @incomp   = 'howtogetawaywithmurder'
+   @comp_url = 'https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thevoice
+   @compname = 'The Voice'
+   @comp     = 'NBCTheVoice'
+   @incomp   = 'nbcthevoice'
+   @comp_url = 'https://www.youtube.com/user/NBCTheVoice'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bachelorette
+   @compname = 'Bachelorette'
+   @comp     = 'BacheloretteABC'
+   @incomp   = 'bacheloretteabc'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def scandal
+   @compname = 'Scandal'
+   @comp     = 'ScandalABC'
+   @incomp   = 'scandalabc'
+   @comp_url = 'https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def downtonabbey
+   @compname = 'Downton Abbey'
+   @comp     = 'DowntonAbbey'
+   @incomp   = 'downtonabbey_official'
+   @comp_url = 'https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def dancingwiththestars
+   @compname = 'Dancing With The Stars'
+   @comp     = 'DancingABC'
+   @incomp   = 'dancingabc'
+   @comp_url = 'https://www.youtube.com/user/ABCDWTS'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def americanidol
+   @compname = 'American Idol'
+   @comp     = 'AmericanIdol'
+   @incomp   = 'americanidol'
+   @comp_url = 'https://www.youtube.com/user/americanidol'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thementalist
+   @compname = 'Mentalist'
+   @comp     = 'Mentalist_CBS'
+   @incomp   = 'mentalist_cbs'
+   @comp_url = 'https://www.youtube.com/user/CBSTheMentalist'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def houseofcards
+   @compname = 'House of Cards'
+   @comp     = 'HouseofCards'
+   @incomp   = 'houseofcards'
+   @comp_url = 'https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def transparent
+   @compname = 'Transparent'
+   @comp     = 'transparent_tv'
+   @incomp   = 'transparentamazon'
+   @comp_url = 'https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def louie
+   @compname = 'Louie'
+   @comp     = 'LouieFX'
+   @incomp   = 'louieonfx'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def community
+   @compname = 'Community'
+   @comp     = 'CommunityTV'
+   @incomp   = 'communitytv'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def parksandrecreation
+   @compname = 'Parks and Recreation'
+   @comp     = 'parksandrecnbc'
+   @incomp   = 'nbcparksandrec'
+   @comp_url = 'https://www.youtube.com/user/nbcParksandRec'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def sonsofanarchy
+   @compname = 'Sons of Anarchy'
+   @comp     = 'SonsofAnarchy'
+   @incomp   = 'soafx'
+   @comp_url = 'https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def brooklynninenine
+   @compname = 'Brooklyn 9-9'
+   @comp     = 'Brooklyn99FOX'
+   @incomp   = 'brooklyn99fox'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def fargo
+   @compname = 'Fargo'
+   @comp     = 'FargoFX'
+   @incomp   = 'fargo'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def saturdaynightlive
+   @compname = 'Saturday Night Live'
+   @comp     = 'nbcsnl'
+   @incomp   = 'nbcsnl'
+   @comp_url = 'https://www.youtube.com/user/SaturdayNightLive'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def mrrobot
+   @compname = 'Mr. Robot'
+   @comp     = 'whoismrrobot'
+   @incomp   = 'whoismrrobot'
+   @comp_url = 'https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def themindyproject
+   @compname = 'The Mindy Project'
+   @comp     = 'TheMindyProject'
+   @incomp   = 'mindyprojecthulu'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def newgirl
+   @compname = 'New Girl'
+   @comp     = 'NewGirlonFOX'
+   @incomp   = 'newgirlfox'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def scorpion
+   @compname = 'Scorpion'
+   @comp     = 'ScorpionCBS'
+   @incomp   = 'scorpioncbs'
+   @comp_url = 'https://www.youtube.com/user/CBSScorpion'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def modernfamily
+   @compname = 'Modern Family'
+   @comp     = 'ModernFam'
+   @incomp   = 'modernfamily'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def janethevirgin
+   @compname = 'Jane The Virgin'
+   @comp     = 'CWJaneTheVirgin'
+   @incomp   = 'cwjanethevirgin'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
 end
 
-
-
-#####TV SHOWS
-# lastweektonight                     LastWeekTonight     lastweektonight            https://www.youtube.com/user/LastWeekTonight
-# gameofthrones                       GameOfThrones       gameofthrones              https://www.youtube.com/user/GameofThrones
-# bettercallsaul                      BetterCallSaul      bettercallsaulamc          https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ
-# orangeisthenewblack                 OITNB               oitnb                      none
-# empire                              EmpireFox           empirefox                  https://www.youtube.com/user/EMPIREonFOX
-
-# howimetyourmother                   OfficialHIMYM       himym_official             none
-# madmen                              MadMen_AMC          madmen_amc                 none 
-# theamericans                        TheAmericansFX      theamericansfx             https://www.youtube.com/user/TheAmericansFX
-# thetonightshow                      FallonTonight       fallontonight              https://www.youtube.com/user/latenight
-# truedetective                       TrueDetective       truedetective              none
-
-# justified                           JustifiedFX         justifiedfx                none
-# sense8                              sense8              sense8                     https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw
-# izombie                             CWiZombie           thecwizombie               https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw
-# theflash                            CW_TheFlash         cwtheflash                 https://www.youtube.com/user/barryallentheflash1
-# thebachelor                         BachelorABC         bachelorabc                https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw
-
-# suits                               Suits_USA           suits_usa                  https://www.youtube.com/user/SuitsonUSA
-# theellenshow                        TheEllenShow        theellenshow               https://www.youtube.com/user/TheEllenShow
-# greysanatomy                        GreysABC            greysabc                   https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow
-# thewalkingdead                      WalkingDead_AMC     amcthewalkingdead          none
-# americanhorrorstory                 AmericanHorrorStory americanhorrorstory        https://www.youtube.com/user/qwerty19107
-
-# sharktank                           ABCSharkTank        sharktankabc               none
-# gotham                              Gotham              gothamonfox                https://www.youtube.com/user/GothamFOX
-# thegoodwife                         TheGoodWife_CBS     thegoodwife_cbs            https://www.youtube.com/user/thegoodwife
-# thebigbangtheory                    BigBang_CBS         bigbangtheory_cbs          https://www.youtube.com/user/thebigbangtheory
-# theblacklist                        NBCBlacklist        nbcblacklist               https://www.youtube.com/user/NBCBlacklist
-
-# howtogetawaywithmurder              HowToGetAwayABC     howtogetawaywithmurder     https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ
-# thevoice                            NBCTheVoice         nbcthevoice                https://www.youtube.com/user/NBCTheVoice
-# bachelorette                        BacheloretteABC     bacheloretteabc            none
-# scandal                             ScandalABC          scandalabc                 https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA
-# downtonabbey                        DowntonAbbey        downtonabbey_official      https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ
-
-# dancingwiththestars                 DancingABC          dancingabc                 https://www.youtube.com/user/ABCDWTS
-# americanidol                        AmericanIdol        americanidol               https://www.youtube.com/user/americanidol
-# thementalist                        Mentalist_CBS       mentalist_cbs              https://www.youtube.com/user/CBSTheMentalist
-# houseofcards                        HouseofCards        houseofcards               https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg
-# transparent                         transparent_tv      transparentamazon          https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw
-
-# louie                               LouieFX             louieonfx                  none
-# community                           CommunityTV         communitytv                none
-# parksandrecreation                  parksandrecnbc      nbcparksandrec             https://www.youtube.com/user/nbcParksandRec
-# sonsofanarchy                       SonsofAnarchy       soafx                      https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw
-# brooklynninenine                    Brooklyn99FOX       brooklyn99fox              none
-
-# janethevirgin                       CWJaneTheVirgin     cwjanethevirgin            none
-# fargo                               FargoFX             fargo                      none
-# saturdaynightlive                   nbcsnl              nbcsnl                     https://www.youtube.com/user/SaturdayNightLive
-# mrrobot                             whoismrrobot        whoismrrobot               https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw
-# themindyproject                     TheMindyProject     mindyprojecthulu           none
-
-# newgirl                             NewGirlonFOX        newgirlfox                 none 
-# scorpion                            ScorpionCBS         scorpioncbs                https://www.youtube.com/user/CBSScorpion
-# modernfamily                        ModernFam           modernfamily               none 
-
-
 # ####MUSIC
-
 
 # One Direction           onedirection        onedirection          https://www.youtube.com/user/OneDirectionVEVO
 # Katy Perry              katyperry           katyperry             https://www.youtube.com/user/KatyPerryVEVO
@@ -1910,3 +2316,64 @@ end
 # jessicaalba         jessicaalba         jessicaalba             https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A
 # meganfox            meganfox            dailymeganfox           https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg
 # tigerwoods          TigerWoods          TigerWoods              none 
+
+
+#####TV SHOWS
+
+# lastweektonight                     LastWeekTonight     lastweektonight            https://www.youtube.com/user/LastWeekTonight
+# gameofthrones                       GameOfThrones       gameofthrones              https://www.youtube.com/user/GameofThrones
+# bettercallsaul                      BetterCallSaul      bettercallsaulamc          https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ
+# orangeisthenewblack                 OITNB               oitnb                      none
+# empire                              EmpireFox           empirefox                  https://www.youtube.com/user/EMPIREonFOX
+
+# howimetyourmother                   OfficialHIMYM       himym_official             none
+# madmen                              MadMen_AMC          madmen_amc                 none 
+# theamericans                        TheAmericansFX      theamericansfx             https://www.youtube.com/user/TheAmericansFX
+# thetonightshow                      FallonTonight       fallontonight              https://www.youtube.com/user/latenight
+# truedetective                       TrueDetective       truedetective              none
+
+# justified                           JustifiedFX         justifiedfx                none
+# sense8                              sense8              sense8                     https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw
+# izombie                             CWiZombie           thecwizombie               https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw
+# theflash                            CW_TheFlash         cwtheflash                 https://www.youtube.com/user/barryallentheflash1
+# thebachelor                         BachelorABC         bachelorabc                https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw
+
+# suits                               Suits_USA           suits_usa                  https://www.youtube.com/user/SuitsonUSA
+# theellenshow                        TheEllenShow        theellenshow               https://www.youtube.com/user/TheEllenShow
+# greysanatomy                        GreysABC            greysabc                   https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow
+# thewalkingdead                      WalkingDead_AMC     amcthewalkingdead          none
+# americanhorrorstory                 AmericanHorrorStory americanhorrorstory        https://www.youtube.com/user/qwerty19107
+
+# sharktank                           ABCSharkTank        sharktankabc               none
+# gotham                              Gotham              gothamonfox                https://www.youtube.com/user/GothamFOX
+# thegoodwife                         TheGoodWife_CBS     thegoodwife_cbs            https://www.youtube.com/user/thegoodwife
+# thebigbangtheory                    BigBang_CBS         bigbangtheory_cbs          https://www.youtube.com/user/thebigbangtheory
+# theblacklist                        NBCBlacklist        nbcblacklist               https://www.youtube.com/user/NBCBlacklist
+
+# howtogetawaywithmurder              HowToGetAwayABC     howtogetawaywithmurder     https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ
+# thevoice                            NBCTheVoice         nbcthevoice                https://www.youtube.com/user/NBCTheVoice
+# bachelorette                        BacheloretteABC     bacheloretteabc            none
+# scandal                             ScandalABC          scandalabc                 https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA
+# downtonabbey                        DowntonAbbey        downtonabbey_official      https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ
+
+# dancingwiththestars                 DancingABC          dancingabc                 https://www.youtube.com/user/ABCDWTS
+# americanidol                        AmericanIdol        americanidol               https://www.youtube.com/user/americanidol
+# thementalist                        Mentalist_CBS       mentalist_cbs              https://www.youtube.com/user/CBSTheMentalist
+# houseofcards                        HouseofCards        houseofcards               https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg
+# transparent                         transparent_tv      transparentamazon          https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw
+
+# louie                               LouieFX             louieonfx                  none
+# community                           CommunityTV         communitytv                none
+# parksandrecreation                  parksandrecnbc      nbcparksandrec             https://www.youtube.com/user/nbcParksandRec
+# sonsofanarchy                       SonsofAnarchy       soafx                      https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw
+# brooklynninenine                    Brooklyn99FOX       brooklyn99fox              none
+
+# janethevirgin                       CWJaneTheVirgin     cwjanethevirgin            none
+# fargo                               FargoFX             fargo                      none
+# saturdaynightlive                   nbcsnl              nbcsnl                     https://www.youtube.com/user/SaturdayNightLive
+# mrrobot                             whoismrrobot        whoismrrobot               https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw
+# themindyproject                     TheMindyProject     mindyprojecthulu           none
+
+# newgirl                             NewGirlonFOX        newgirlfox                 none 
+# scorpion                            ScorpionCBS         scorpioncbs                https://www.youtube.com/user/CBSScorpion
+# modernfamily                        ModernFam           modernfamily               none 

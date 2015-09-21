@@ -321,7 +321,8 @@ Rails.application.routes.draw do
   get 'newgirl', to: 'pages#newgirl'
   get 'scorpion', to: 'pages#scorpion'
   get 'modernfamily', to: 'pages#modernfamily'
-  
+  get 'themindyproject', to: 'pages#themindyproject'
+
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
