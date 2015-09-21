@@ -1396,9 +1396,7 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
-
-
-
+  
   def blakelively
    @compname = 'Blake Lively'
    @comp     = 'blakelively'
@@ -1558,59 +1556,83 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
+
+  #####TVSHOWS
+  def tv_show_connector
+  end
+
+  def lastweektonight
+   @compname = 'Last Week Tonight'
+   @comp     = 'LastWeekTonight'
+   @incomp   = 'lastweektonight'
+   @comp_url = 'https://www.youtube.com/user/LastWeekTonight'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
 end
 
 
 
 #####TV SHOWS
-# Last Week Tonight With John Oliver  LastWeekTonight     lastweektonight            https://www.youtube.com/user/LastWeekTonight
-# Game of Thrones                     GameOfThrones       gameofthrones              https://www.youtube.com/user/GameofThrones
-# Better Call Saul                    BetterCallSaul      bettercallsaulamc          https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ
-# Orange Is The New Black             OITNB               oitnb                      none
-# Empire                              EmpireFox           empirefox                  https://www.youtube.com/user/EMPIREonFOX
-# How I Met Your Mother               OfficialHIMYM       himym_official             none
-# Mad Men                             MadMen_AMC          madmen_amc                 none 
-# The Americans                       TheAmericansFX      theamericansfx             https://www.youtube.com/user/TheAmericansFX
-# The Tonight Show                    FallonTonight       fallontonight              https://www.youtube.com/user/latenight
-# True Detective                      TrueDetective       truedetective              none
-# Justified                           JustifiedFX         justifiedfx                none
-# Sense8                              sense8              sense8                     https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw
-# iZombie                             CWiZombie           thecwizombie               https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw
-# The Flash                           CW_TheFlash         cwtheflash                 https://www.youtube.com/user/barryallentheflash1
-# The Bachelor                        BachelorABC         bachelorabc                https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw
-# Suits                               Suits_USA           suits_usa                  https://www.youtube.com/user/SuitsonUSA
-# The Ellen Show                      TheEllenShow        theellenshow               https://www.youtube.com/user/TheEllenShow
-# Greys Anatomy                       GreysABC            greysabc                   https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow
-# The Walking Dead                    WalkingDead_AMC     amcthewalkingdead          none
-# American Horror Story               AmericanHorrorStory americanhorrorstory        https://www.youtube.com/user/qwerty19107
-# Shark Tank                          ABCSharkTank        sharktankabc               none
-# Gotham                              Gotham              gothamonfox                https://www.youtube.com/user/GothamFOX
-# The Good Wife                       TheGoodWife_CBS     thegoodwife_cbs            https://www.youtube.com/user/thegoodwife
-# The Big Bang Theory                 BigBang_CBS         bigbangtheory_cbs          https://www.youtube.com/user/thebigbangtheory
-# The Blacklist                       NBCBlacklist        nbcblacklist               https://www.youtube.com/user/NBCBlacklist
-# How To Get Away With Murder         HowToGetAwayABC     howtogetawaywithmurder     https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ
-# The Voice                           NBCTheVoice         nbcthevoice                https://www.youtube.com/user/NBCTheVoice
-# Bachelorette                        BacheloretteABC     bacheloretteabc            none
-# Scandal                             ScandalABC          scandalabc                 https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA
-# Downton     Abbey                   DowntonAbbey        downtonabbey_official      https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ
-# Dancing With The Stars              DancingABC          dancingabc                 https://www.youtube.com/user/ABCDWTS
-# American Idol                       AmericanIdol        americanidol               https://www.youtube.com/user/americanidol
-# The Mentalist                       Mentalist_CBS       mentalist_cbs              https://www.youtube.com/user/CBSTheMentalist
-# House Of Cards                      HouseofCards        houseofcards               https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg
-# Transparent                         transparent_tv      transparentamazon          https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw
-# Louie                               LouieFX             louieonfx                  none
-# Community                           CommunityTV         communitytv                none
-# Parks And Recreation                parksandrecnbc      nbcparksandrec             https://www.youtube.com/user/nbcParksandRec
-# Sons Of Anarchy                     SonsofAnarchy       soafx                      https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw
-# Brooklyn Nine-Nine                  Brooklyn99FOX       brooklyn99fox              none
-# Jane The Virgin                     CWJaneTheVirgin     cwjanethevirgin            none
-# Fargo                               FargoFX             fargo                      none
-# Saturday Night Live                 nbcsnl              nbcsnl                     https://www.youtube.com/user/SaturdayNightLive
-# Mr. Robot                           whoismrrobot        whoismrrobot               https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw
-# The Mindy Project                   TheMindyProject     mindyprojecthulu           none
-# New Girl                            NewGirlonFOX        newgirlfox                 none 
-# Scorpion                            ScorpionCBS         scorpioncbs                https://www.youtube.com/user/CBSScorpion
-# Modern Family                       ModernFam           modernfamily               none 
+# lastweektonight                     LastWeekTonight     lastweektonight            https://www.youtube.com/user/LastWeekTonight
+# gameofthrones                       GameOfThrones       gameofthrones              https://www.youtube.com/user/GameofThrones
+# bettercallsaul                      BetterCallSaul      bettercallsaulamc          https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ
+# orangeisthenewblack                 OITNB               oitnb                      none
+# empire                              EmpireFox           empirefox                  https://www.youtube.com/user/EMPIREonFOX
+
+# howimetyourmother                   OfficialHIMYM       himym_official             none
+# madmen                              MadMen_AMC          madmen_amc                 none 
+# theamericans                        TheAmericansFX      theamericansfx             https://www.youtube.com/user/TheAmericansFX
+# thetonightshow                      FallonTonight       fallontonight              https://www.youtube.com/user/latenight
+# truedetective                       TrueDetective       truedetective              none
+
+# justified                           JustifiedFX         justifiedfx                none
+# sense8                              sense8              sense8                     https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw
+# izombie                             CWiZombie           thecwizombie               https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw
+# theflash                            CW_TheFlash         cwtheflash                 https://www.youtube.com/user/barryallentheflash1
+# thebachelor                         BachelorABC         bachelorabc                https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw
+
+# suits                               Suits_USA           suits_usa                  https://www.youtube.com/user/SuitsonUSA
+# theellenshow                        TheEllenShow        theellenshow               https://www.youtube.com/user/TheEllenShow
+# greysanatomy                        GreysABC            greysabc                   https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow
+# thewalkingdead                      WalkingDead_AMC     amcthewalkingdead          none
+# americanhorrorstory                 AmericanHorrorStory americanhorrorstory        https://www.youtube.com/user/qwerty19107
+
+# sharktank                           ABCSharkTank        sharktankabc               none
+# gotham                              Gotham              gothamonfox                https://www.youtube.com/user/GothamFOX
+# thegoodwife                         TheGoodWife_CBS     thegoodwife_cbs            https://www.youtube.com/user/thegoodwife
+# thebigbangtheory                    BigBang_CBS         bigbangtheory_cbs          https://www.youtube.com/user/thebigbangtheory
+# theblacklist                        NBCBlacklist        nbcblacklist               https://www.youtube.com/user/NBCBlacklist
+
+# howtogetawaywithmurder              HowToGetAwayABC     howtogetawaywithmurder     https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ
+# thevoice                            NBCTheVoice         nbcthevoice                https://www.youtube.com/user/NBCTheVoice
+# bachelorette                        BacheloretteABC     bacheloretteabc            none
+# scandal                             ScandalABC          scandalabc                 https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA
+# downtonabbey                        DowntonAbbey        downtonabbey_official      https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ
+
+# dancingwiththestars                 DancingABC          dancingabc                 https://www.youtube.com/user/ABCDWTS
+# americanidol                        AmericanIdol        americanidol               https://www.youtube.com/user/americanidol
+# thementalist                        Mentalist_CBS       mentalist_cbs              https://www.youtube.com/user/CBSTheMentalist
+# houseofcards                        HouseofCards        houseofcards               https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg
+# transparent                         transparent_tv      transparentamazon          https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw
+
+# louie                               LouieFX             louieonfx                  none
+# community                           CommunityTV         communitytv                none
+# parksandrecreation                  parksandrecnbc      nbcparksandrec             https://www.youtube.com/user/nbcParksandRec
+# sonsofanarchy                       SonsofAnarchy       soafx                      https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw
+# brooklynninenine                    Brooklyn99FOX       brooklyn99fox              none
+
+# janethevirgin                       CWJaneTheVirgin     cwjanethevirgin            none
+# fargo                               FargoFX             fargo                      none
+# saturdaynightlive                   nbcsnl              nbcsnl                     https://www.youtube.com/user/SaturdayNightLive
+# mrrobot                             whoismrrobot        whoismrrobot               https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw
+# themindyproject                     TheMindyProject     mindyprojecthulu           none
+
+# newgirl                             NewGirlonFOX        newgirlfox                 none 
+# scorpion                            ScorpionCBS         scorpioncbs                https://www.youtube.com/user/CBSScorpion
+# modernfamily                        ModernFam           modernfamily               none 
 
 
 # ####MUSIC
