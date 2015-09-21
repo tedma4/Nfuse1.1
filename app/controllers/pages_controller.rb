@@ -1560,73 +1560,6 @@ class PagesController < ApplicationController
   end
 end
 
-####CELEBRITIES
-# blakelively         blakelively         blakelively             https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA
-# leonardodicaprio    LeoDiCaprio         leonardodicaprio        https://www.youtube.com/channel/UCc5HhOHhTKOMK_ta2lqtKgw
-# emmastone           EmmaStoneWeb        emmastone_official_     none
-# jayz                JayZClassicBars     shawn.carter            https://www.youtube.com/user/JayZVEVO
-# ellendegeneres      TheEllenShow        theellenshow            https://www.youtube.com/user/TheEllenShow
-
-# sandrabullock       sbullockweb         sandrabullockig         none
-# ashleygreene        AshleyMGreene       ashleygreene            https://www.youtube.com/channel/UCEHOQe7Kk_4F6LvAcPp1SKQ
-# natalieportman      PortmanUpdate       natalieportmanlove      https://www.youtube.com/channel/UC7M0_DE8EhWTpSgRqiuToCA
-# jenniferlawrence    MsJenniferLaw       jenniferlawrencepx      https://www.youtube.com/channel/UC1SBXt6T5VT12_UFUupLWXA
-# katebosworth        katebosworth        katebosworth            https://www.youtube.com/channel/UC-jXKCYtzcMjBr8f66hyEvA
-
-# camerondiaz         CameronDiaz         camerondiaz             https://www.youtube.com/channel/UC9k-NlU7gjr8F0HlCTAWlXQ
-# milakunis           Milla_Kunis         milakunis______         https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg
-# floydmayweather     FloydMayweather     floydmayweather         https://www.youtube.com/user/FloydMayweather
-# reesewitherspoon    RWitherspoon        reesewitherspoon        https://www.youtube.com/channel/UCE20hbhrnFW3bhndXukSxAg
-# kateupton           KateUpton           kateupton               https://www.youtube.com/channel/UCyXW3LwGzBo1gQ8DOg7L5Nw
-
-# peterdinklage       Peter_Dinklage      peterdinklage           none
-
-
-
-
-
-# katyperry           katyperry           katyperry               https://www.youtube.com/user/KatyPerryVEVO
-# barackobama         BarackObama         barackobama             https://www.youtube.com/user/BarackObamadotcom
-# taylorswift         taylorswift13       taylorswift             https://www.youtube.com/user/TaylorSwiftVEVO
-# ladygaga            ladygaga            ladygaga                https://www.youtube.com/user/LadyGagaVEVO
-# justintimberlake    jtimberlake         justintimberlake        https://www.youtube.com/user/justintimberlakeVEVO
-
-# brittneyspears      britneyspears       britneyspears           https://www.youtube.com/user/BritneySpearsVEVO
-# kimkardashianwest   KimKardashian       kimkardashian           none
-# shakira             shakira             shakira                 https://www.youtube.com/user/shakiraVEVO
-# jenniferlopez       JLo                 jlo                     https://www.youtube.com/user/JenniferLopez
-# selenagomez         selenagomez         selenagomez             https://www.youtube.com/user/SelenaGomezVEVO
-
-# arianagrande        ArianaGrande        arianagrande            https://www.youtube.com/user/ArianaGrandeVevo
-# demilovato          ddlovato            ddlovato                https://www.youtube.com/user/DemiLovatoVEVO
-# jimmyfallon         jimmyfallon         jimmyfallon             https://www.youtube.com/user/latenight
-# lebronjames         KingJames           kingjames               none
-# adele               OfficialAdele       adele                   https://www.youtube.com/user/AdeleVEVO
-
-# brunomars           BrunoMars           brunomars               https://www.youtube.com/user/ElektraRecords
-# aliciakeys          aliciakeys          aliciakeys              https://www.youtube.com/user/aliciakeysVEVO
-# mileyraycyrus       MileyCyrus          mileycyrus              https://www.youtube.com/user/MileyCyrusVEVO
-# nickiminaj          NICKIMINAJ          nickiminaj              https://www.youtube.com/user/NickiMinajAtVEVO
-# emmawatson          EmWatson            emmawatson              none
-
-# neilpatrickharris   ActuallyNPH         nph                     https://www.youtube.com/channel/UCk_Dx67t-aXqw9uQLVX-UCQ
-# davidguetta         davidguetta         davidguetta             https://www.youtube.com/user/davidguettavevo
-# conanobrien         ConanOBrien         teamcoco                https://www.youtube.com/user/teamcoco
-# khloekardashian     KhloeKardashian     kloekardashianthegirl   https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g
-# kourtneykardashian  kourtneykardashian  kourtneykardash         https://www.youtube.com/channel/UCXIf9YuOaiCSn2r4P5SZ_Zw
-
-# christinaaguilera   xtina               xtina                   https://www.youtube.com/user/CAguileraVEVO
-# beyonce             Beyonce             beyonce                 https://www.youtube.com/user/beyonceVEVO
-# oprahwinfrey        Oprah               oprah                   https://www.youtube.com/channel/UCqL0gza-KJcuVe3e0FCbM8Q
-# johnnydepp          realdepp            johnnydepp.oficial      https://www.youtube.com/channel/UCPP2obRMCcnokAqR4NzMuwQ
-# scarlettjohansson   ScarlettJOnline     scarlettjohanssonaddict https://www.youtube.com/channel/UCuaGAGmxgipdJEOrYaMT0Nw
-
-# madonna             Madonna             madonna                 https://www.youtube.com/user/madonna
-# tomhanks            tomhanks            tomhanks                https://www.youtube.com/user/tomhankschannel
-# jessicaalba         jessicaalba         jessicaalba             https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A
-# meganfox            meganfox            dailymeganfox           https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg
-# tigerwoods          TigerWoods          TigerWoods              none 
-
 
 
 #####TV SHOWS
@@ -1883,3 +1816,75 @@ end
 # Tom Ford              TOMFORD           tomford           https://www.youtube.com/user/TOMFORDINTERNATIONAL
 # Versace               Versace           versace_official  https://www.youtube.com/user/VersaceVideos
 # Michael Kors          MichaelKors       michaelkors       https://www.youtube.com/user/michaelkors
+
+
+
+
+
+
+####CELEBRITIES
+# blakelively         blakelively         blakelively             https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA
+# leonardodicaprio    LeoDiCaprio         leonardodicaprio        https://www.youtube.com/channel/UCc5HhOHhTKOMK_ta2lqtKgw
+# emmastone           EmmaStoneWeb        emmastone_official_     none
+# jayz                JayZClassicBars     shawn.carter            https://www.youtube.com/user/JayZVEVO
+# ellendegeneres      TheEllenShow        theellenshow            https://www.youtube.com/user/TheEllenShow
+
+# sandrabullock       sbullockweb         sandrabullockig         none
+# ashleygreene        AshleyMGreene       ashleygreene            https://www.youtube.com/channel/UCEHOQe7Kk_4F6LvAcPp1SKQ
+# natalieportman      PortmanUpdate       natalieportmanlove      https://www.youtube.com/channel/UC7M0_DE8EhWTpSgRqiuToCA
+# jenniferlawrence    MsJenniferLaw       jenniferlawrencepx      https://www.youtube.com/channel/UC1SBXt6T5VT12_UFUupLWXA
+# katebosworth        katebosworth        katebosworth            https://www.youtube.com/channel/UC-jXKCYtzcMjBr8f66hyEvA
+
+# camerondiaz         CameronDiaz         camerondiaz             https://www.youtube.com/channel/UC9k-NlU7gjr8F0HlCTAWlXQ
+# milakunis           Milla_Kunis         milakunis______         https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg
+# floydmayweather     FloydMayweather     floydmayweather         https://www.youtube.com/user/FloydMayweather
+# reesewitherspoon    RWitherspoon        reesewitherspoon        https://www.youtube.com/channel/UCE20hbhrnFW3bhndXukSxAg
+# kateupton           KateUpton           kateupton               https://www.youtube.com/channel/UCyXW3LwGzBo1gQ8DOg7L5Nw
+
+# peterdinklage       Peter_Dinklage      peterdinklage           none
+
+
+
+
+
+# katyperry           katyperry           katyperry               https://www.youtube.com/user/KatyPerryVEVO
+# barackobama         BarackObama         barackobama             https://www.youtube.com/user/BarackObamadotcom
+# taylorswift         taylorswift13       taylorswift             https://www.youtube.com/user/TaylorSwiftVEVO
+# ladygaga            ladygaga            ladygaga                https://www.youtube.com/user/LadyGagaVEVO
+# justintimberlake    jtimberlake         justintimberlake        https://www.youtube.com/user/justintimberlakeVEVO
+
+# brittneyspears      britneyspears       britneyspears           https://www.youtube.com/user/BritneySpearsVEVO
+# kimkardashianwest   KimKardashian       kimkardashian           none
+# shakira             shakira             shakira                 https://www.youtube.com/user/shakiraVEVO
+# jenniferlopez       JLo                 jlo                     https://www.youtube.com/user/JenniferLopez
+# selenagomez         selenagomez         selenagomez             https://www.youtube.com/user/SelenaGomezVEVO
+
+# arianagrande        ArianaGrande        arianagrande            https://www.youtube.com/user/ArianaGrandeVevo
+# demilovato          ddlovato            ddlovato                https://www.youtube.com/user/DemiLovatoVEVO
+# jimmyfallon         jimmyfallon         jimmyfallon             https://www.youtube.com/user/latenight
+# lebronjames         KingJames           kingjames               none
+# adele               OfficialAdele       adele                   https://www.youtube.com/user/AdeleVEVO
+
+# brunomars           BrunoMars           brunomars               https://www.youtube.com/user/ElektraRecords
+# aliciakeys          aliciakeys          aliciakeys              https://www.youtube.com/user/aliciakeysVEVO
+# mileyraycyrus       MileyCyrus          mileycyrus              https://www.youtube.com/user/MileyCyrusVEVO
+# nickiminaj          NICKIMINAJ          nickiminaj              https://www.youtube.com/user/NickiMinajAtVEVO
+# emmawatson          EmWatson            emmawatson              none
+
+# neilpatrickharris   ActuallyNPH         nph                     https://www.youtube.com/channel/UCk_Dx67t-aXqw9uQLVX-UCQ
+# davidguetta         davidguetta         davidguetta             https://www.youtube.com/user/davidguettavevo
+# conanobrien         ConanOBrien         teamcoco                https://www.youtube.com/user/teamcoco
+# khloekardashian     KhloeKardashian     kloekardashianthegirl   https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g
+# kourtneykardashian  kourtneykardashian  kourtneykardash         https://www.youtube.com/channel/UCXIf9YuOaiCSn2r4P5SZ_Zw
+
+# christinaaguilera   xtina               xtina                   https://www.youtube.com/user/CAguileraVEVO
+# beyonce             Beyonce             beyonce                 https://www.youtube.com/user/beyonceVEVO
+# oprahwinfrey        Oprah               oprah                   https://www.youtube.com/channel/UCqL0gza-KJcuVe3e0FCbM8Q
+# johnnydepp          realdepp            johnnydepp.oficial      https://www.youtube.com/channel/UCPP2obRMCcnokAqR4NzMuwQ
+# scarlettjohansson   ScarlettJOnline     scarlettjohanssonaddict https://www.youtube.com/channel/UCuaGAGmxgipdJEOrYaMT0Nw
+
+# madonna             Madonna             madonna                 https://www.youtube.com/user/madonna
+# tomhanks            tomhanks            tomhanks                https://www.youtube.com/user/tomhankschannel
+# jessicaalba         jessicaalba         jessicaalba             https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A
+# meganfox            meganfox            dailymeganfox           https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg
+# tigerwoods          TigerWoods          TigerWoods              none 
