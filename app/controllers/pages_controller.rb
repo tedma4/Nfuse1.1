@@ -1509,16 +1509,6 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def milakunis
-   @compname = 'Milla Kunis'
-   @comp     = 'Milla_Kunis'
-   @incomp   = 'milakunis______'
-   @comp_url = 'https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg'
-   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
-   render 'comp'
-  end
-
   def floydmayweather
    @compname = 'Floyd Mayweather'
    @comp     = 'FloydMayweather'
@@ -1554,6 +1544,16 @@ class PagesController < ApplicationController
    @comp     = 'Peter_Dinklage'
    @incomp   = 'peterdinklage'
    @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def milakunis
+   @compname = 'Milla Kunis'
+   @comp     = 'Milla_Kunis'
+   @incomp   = 'milakunis______'
+   @comp_url = 'https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params)
    render 'comp'
