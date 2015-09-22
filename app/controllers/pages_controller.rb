@@ -1612,7 +1612,7 @@ class PagesController < ApplicationController
   end
 
   def howimetyourmother
-   @compname = 'How I Met Your Mother'
+   @compname = 'HIMYM'
    @comp     = 'OfficialHIMYM'
    @incomp   = 'himym_official'
    @comp_url = 'https://www.youtube.com/user/blank'
@@ -2557,70 +2557,6 @@ class PagesController < ApplicationController
   end
 end
 
-# #######Sports
-
-# realmadrid                      realmadrid        realmadrid            https://www.youtube.com/user/realmadridcf
-# dallascowboys                   dallascowboys     dallascowboys         https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw
-# newyorkyankees                  Yankees           yankees               https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ
-# barcelona                       FCBarcelona       fcbarcelona           https://www.youtube.com/user/fcbarcelona
-# manchesterunited                ManUtd            manchesterunited      https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg
-
-# losangeleslakers                Lakers            lakers                https://www.youtube.com/user/lakersnationdotcom
-# newenglandpatriots              Patriots          patriots              https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ
-# newyorkknicks                   nyknicks          nyknicks              https://www.youtube.com/user/nyknicks
-# losangelesdodgers               Dodgers           dodgers               https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w
-# washingtonredskins              Redskins          redskins              https://www.youtube.com/user/redskinsdotcom
-
-# bayernmunich                    FCBayern          fcbayern              https://www.youtube.com/user/fcbayern
-# bostonredsox                    RedSox            redsox                https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g
-# newyorkgiants                   Giants            nygiants              https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg
-# chicagobulls                    chicagobulls      chicagobulls          https://www.youtube.com/user/chicagobullsofficial
-# sanfranciscogiants              SFGiants          sfgiants              none
-
-# houstontexans                   HoustonTexans     houstontexans         https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g
-# chicagocubs                     Cubs              cubs                  https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA
-# newyorkjets                     nyjets            nyjets                https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w
-# philadelphiaeagles              Eagles            philadelphiaeagles    https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ
-# bostonceltics                   celtics           celtics               https://www.youtube.com/user/bostonceltics
-
-# chicagobears                    ChicagoBears      chicagobears          https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ
-# losangelesclippers              LAClippers        laclippers            https://www.youtube.com/user/clippers1970
-# sanfrancisco49ers               49ers             49ers                 https://www.youtube.com/user/sanfrancisco49ers
-# baltimoreravens                 Ravens            ravens                https://www.youtube.com/user/baltimoreravens
-# brooklynnets                    BrooklynNets      brooklynnets          https://www.youtube.com/user/NBANets
-
-# denverbroncos                   Broncos           broncos               https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA
-# indianapoliscolts               Colts             colts                 none
-# stlouiscardinals                Cardinals         cardinals             https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A
-# greenbaypackers                 packers           packers               https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg
-# manchestercity                  MCFC              mcfcofficial          https://www.youtube.com/user/mcfcofficial
-
-# chelsea                         ChelseaFC         chelseafc             https://www.youtube.com/user/chelseafc
-# ferrari                         Ferrari           ferrariusa            https://www.youtube.com/user/ferrariworld
-# newyorkmets                     Mets              mets                  none
-# pittsburghsteelers              steelers          steelers              https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg
-# seattleseahawks                 Seahawks          seahawks              https://www.youtube.com/user/seahawksdotcom
-
-# arsenal                         Arsenal           arsenal               https://www.youtube.com/user/ArsenalTour
-# goldenstatewarriors             warriors          warriors              https://www.youtube.com/user/GoldenStateWarriors
-# losangelesangelsofanaheim       Angels            angels                none
-# miamidolphins                   MiamiDolphins     miamidolphins         https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg
-# torontomapleleafs               MapleLeafs        mapleleafs            https://www.youtube.com/user/torontomapleleafs
-
-# washingtonnationals             Nationals         nationals             https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw
-# carolinapanthers                Panthers          panthers              https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg
-# houstonrockets                  HoustonRockets    houstonrockets        https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q
-# philadelphiaphillies            Phillies          phillies              https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ
-# tampabaybuccaneers              TBBuccaneers      tbbuccaneers          https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg
-
-# texasrangers                    Rangers           rangers               none
-# miamiheat                       MiamiHEAT         miamiheat             https://www.youtube.com/user/miamiheat
-# tennesseetitans                 Titans            tennesseetitans       https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw
-# atlantabraves                   Braves            braves                https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ
-# minnesotavikings                Vikings           vikings               https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA
-
-# arizonacardinals                AZCardinals       azcardinals           https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ
-
 
 
 # ####MUSIC
@@ -2902,3 +2838,67 @@ end
 # newgirl                             NewGirlonFOX        newgirlfox                 none 
 # scorpion                            ScorpionCBS         scorpioncbs                https://www.youtube.com/user/CBSScorpion
 # modernfamily                        ModernFam           modernfamily               none 
+
+# #######Sports
+
+# realmadrid                      realmadrid        realmadrid            https://www.youtube.com/user/realmadridcf
+# dallascowboys                   dallascowboys     dallascowboys         https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw
+# newyorkyankees                  Yankees           yankees               https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ
+# barcelona                       FCBarcelona       fcbarcelona           https://www.youtube.com/user/fcbarcelona
+# manchesterunited                ManUtd            manchesterunited      https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg
+
+# losangeleslakers                Lakers            lakers                https://www.youtube.com/user/lakersnationdotcom
+# newenglandpatriots              Patriots          patriots              https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ
+# newyorkknicks                   nyknicks          nyknicks              https://www.youtube.com/user/nyknicks
+# losangelesdodgers               Dodgers           dodgers               https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w
+# washingtonredskins              Redskins          redskins              https://www.youtube.com/user/redskinsdotcom
+
+# bayernmunich                    FCBayern          fcbayern              https://www.youtube.com/user/fcbayern
+# bostonredsox                    RedSox            redsox                https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g
+# newyorkgiants                   Giants            nygiants              https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg
+# chicagobulls                    chicagobulls      chicagobulls          https://www.youtube.com/user/chicagobullsofficial
+# sanfranciscogiants              SFGiants          sfgiants              none
+
+# houstontexans                   HoustonTexans     houstontexans         https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g
+# chicagocubs                     Cubs              cubs                  https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA
+# newyorkjets                     nyjets            nyjets                https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w
+# philadelphiaeagles              Eagles            philadelphiaeagles    https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ
+# bostonceltics                   celtics           celtics               https://www.youtube.com/user/bostonceltics
+
+# chicagobears                    ChicagoBears      chicagobears          https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ
+# losangelesclippers              LAClippers        laclippers            https://www.youtube.com/user/clippers1970
+# sanfrancisco49ers               49ers             49ers                 https://www.youtube.com/user/sanfrancisco49ers
+# baltimoreravens                 Ravens            ravens                https://www.youtube.com/user/baltimoreravens
+# brooklynnets                    BrooklynNets      brooklynnets          https://www.youtube.com/user/NBANets
+
+# denverbroncos                   Broncos           broncos               https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA
+# indianapoliscolts               Colts             colts                 none
+# stlouiscardinals                Cardinals         cardinals             https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A
+# greenbaypackers                 packers           packers               https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg
+# manchestercity                  MCFC              mcfcofficial          https://www.youtube.com/user/mcfcofficial
+
+# chelsea                         ChelseaFC         chelseafc             https://www.youtube.com/user/chelseafc
+# ferrari                         Ferrari           ferrariusa            https://www.youtube.com/user/ferrariworld
+# newyorkmets                     Mets              mets                  none
+# pittsburghsteelers              steelers          steelers              https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg
+# seattleseahawks                 Seahawks          seahawks              https://www.youtube.com/user/seahawksdotcom
+
+# arsenal                         Arsenal           arsenal               https://www.youtube.com/user/ArsenalTour
+# goldenstatewarriors             warriors          warriors              https://www.youtube.com/user/GoldenStateWarriors
+# losangelesangelsofanaheim       Angels            angels                none
+# miamidolphins                   MiamiDolphins     miamidolphins         https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg
+# torontomapleleafs               MapleLeafs        mapleleafs            https://www.youtube.com/user/torontomapleleafs
+
+# washingtonnationals             Nationals         nationals             https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw
+# carolinapanthers                Panthers          panthers              https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg
+# houstonrockets                  HoustonRockets    houstonrockets        https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q
+# philadelphiaphillies            Phillies          phillies              https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ
+# tampabaybuccaneers              TBBuccaneers      tbbuccaneers          https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg
+
+# texasrangers                    Rangers           rangers               none
+# miamiheat                       MiamiHEAT         miamiheat             https://www.youtube.com/user/miamiheat
+# tennesseetitans                 Titans            tennesseetitans       https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw
+# atlantabraves                   Braves            braves                https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ
+# minnesotavikings                Vikings           vikings               https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA
+
+# arizonacardinals                AZCardinals       azcardinals           https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ
