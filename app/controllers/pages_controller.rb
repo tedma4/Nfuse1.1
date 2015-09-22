@@ -1047,7 +1047,7 @@ class PagesController < ApplicationController
   def celebrity_connector
   end
 
-  def katyperry_celeb
+  def katyperry
    @compname = 'Katy Perry'
    @comp     = 'katyperry'
    @incomp   = 'katyperry'
@@ -1097,7 +1097,7 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def brittneyspears
+  def britneyspears
    @compname = 'Britney Spears'
    @comp     = 'britneyspears'
    @incomp   = 'britneyspears'
@@ -2555,63 +2555,586 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
+
+  def music_connector
+  end
+
+  def onedirection
+   @compname = 'One Direction'
+   @comp     = 'onedirection'
+   @incomp   = 'onedirection'
+   @comp_url = 'https://www.youtube.com/user/OneDirectionVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def katyperrymusic
+   @compname = 'Katy Perry'
+   @comp     = 'katyperry'
+   @incomp   = 'katyperry'
+   @comp_url = 'https://www.youtube.com/user/KatyPerryVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def beyoncemusic
+   @compname = 'Beyonce'
+   @comp     = 'Beyonce'
+   @incomp   = 'beyonce'
+   @comp_url = 'https://www.youtube.com/user/beyonceVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def taylorswiftmusic
+   @compname = 'Taylor Swift'
+   @comp     = 'taylorswift13'
+   @incomp   = 'taylorswift'
+   @comp_url = 'https://www.youtube.com/user/TaylorSwiftVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def justintimberlakemusic
+   @compname = 'Justin Timberlake'
+   @comp     = 'jtimberlake'
+   @incomp   = 'justintimberlake'
+   @comp_url = 'https://www.youtube.com/user/justintimberlakeVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def iggyazalea
+   @compname = 'Iggy Azalea'
+   @comp     = 'IGGYAZALEA'
+   @incomp   = 'thenewclassic'
+   @comp_url = 'https://www.youtube.com/user/iggyazaleamusicVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def arianagrandemusic
+   @compname = 'Ariana Grande'
+   @comp     = 'ArianaGrande'
+   @incomp   = 'arianagrande'
+   @comp_url = 'https://www.youtube.com/user/ArianaGrandeVevo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def mileycyrus
+   @compname = 'Miley Cyrus'
+   @comp     = 'MileyCyrus'
+   @incomp   = 'mileycyrus'
+   @comp_url = 'https://www.youtube.com/user/MileyCyrusVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def pharrelwilliams
+   @compname = 'Pharrell Williams'
+   @comp     = 'Pharrell'
+   @incomp   = 'pharrell'
+   @comp_url = 'https://www.youtube.com/user/PharrellWilliamsVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def eminem
+   @compname = 'Eminem'
+   @comp     = 'Eminem'
+   @incomp   = 'eminem'
+   @comp_url = 'https://www.youtube.com/user/EminemVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def lorde
+   @compname = 'Lorde'
+   @comp     = 'lordemusic'
+   @incomp   = 'lordemusic'
+   @comp_url = 'https://www.youtube.com/user/LordeVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def lukebryan
+   @compname = 'Luke Bryan'
+   @comp     = 'LukeBryanOnline'
+   @incomp   = 'lukebryan'
+   @comp_url = 'https://www.youtube.com/user/LukeBryanVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def samsmith
+   @compname = 'Sam Smith'
+   @comp     = 'samsmithworld'
+   @incomp   = 'samsmithworld'
+   @comp_url = 'https://www.youtube.com/user/SamSmithWorldVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def johnlegend
+   @compname = 'John Legend'
+   @comp     = 'johnlegend'
+   @incomp   = 'johnlegend'
+   @comp_url = 'https://www.youtube.com/user/johnlegendVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def onerepublic
+   @compname = 'One Republic'
+   @comp     = 'OneRepublic'
+   @incomp   = 'onerepublic'
+   @comp_url = 'https://www.youtube.com/user/OneRepublicVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def drake
+   @compname = 'Drake'
+   @comp     = 'Drake'
+   @incomp   = 'leaderofnewschool'
+   @comp_url = 'https://www.youtube.com/user/DrakeVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def jasonderulo
+   @compname = 'Jason Derulo'
+   @comp     = 'jasonderulo'
+   @incomp   = 'jasonderulo'
+   @comp_url = 'https://www.youtube.com/user/JasonDerulo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def justinbieber
+   @compname = 'Justin Bieber'
+   @comp     = 'justinbieber'
+   @incomp   = 'justinbieber'
+   @comp_url = 'https://www.youtube.com/user/JustinBieberVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def imaginedragons
+   @compname = 'Imagine Dragons'
+   @comp     = 'imaginedragons'
+   @incomp   = 'imaginedragons'
+   @comp_url = 'https://www.youtube.com/user/ImagineDragonsVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def floridageorgialine
+   @compname = 'Florida Georgia Line'
+   @comp     = 'FLAGALine'
+   @incomp   = 'flagaline'
+   @comp_url = 'https://www.youtube.com/user/FlaGeorgiaLineVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nickiminajmusic
+   @compname = 'Nicki Minaj'
+   @comp     = 'NICKIMINAJ'
+   @incomp   = 'nickiminaj'
+   @comp_url = 'https://www.youtube.com/user/NickiMinajAtVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def secondsofsummer
+   @compname = '5 Seconds of Summer'
+   @comp     = '5SOS'
+   @incomp   = '5sos'
+   @comp_url = 'https://www.youtube.com/user/5sosvevo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ladygagamusic
+   @compname = 'Lady Gaga'
+   @comp     = 'ladygaga'
+   @incomp   = 'ladygaga'
+   @comp_url = 'https://www.youtube.com/user/LadyGagaVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def pitbull
+   @compname = 'Pitbull'
+   @comp     = 'pitbull'
+   @incomp   = 'pitbull'
+   @comp_url = 'https://www.youtube.com/user/PitbullVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def brunomarsmusic
+   @compname = 'Bruno Mars'
+   @comp     = 'BrunoMars'
+   @incomp   = 'brunomars'
+   @comp_url = 'https://www.youtube.com/user/ElektraRecords'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def jasonaldean
+   @compname = 'Jason Aldean'
+   @comp     = 'Jason_Aldean'
+   @incomp   = 'jasonaldean'
+   @comp_url = 'https://www.youtube.com/user/Jason_Aldean'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def maroon5
+   @compname = 'Maroon 5'
+   @comp     = 'maroon5'
+   @incomp   = 'maroon5'
+   @comp_url = 'https://www.youtube.com/user/Maroon5VEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def chrisbrown
+   @compname = 'Chris Brown'
+   @comp     = 'chrisbrown'
+   @incomp   = 'chrisbrownofficial'
+   @comp_url = 'https://www.youtube.com/user/ChrisBrownVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def meghantrainor
+   @compname = 'Meghan Trainor'
+   @comp     = 'Meghan_Trainor'
+   @incomp   = 'meghan_trainor'
+   @comp_url = 'https://www.youtube.com/user/MeghanTrainorVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bastille
+   @compname = 'Bastille'
+   @comp     = 'bastilledan'
+   @incomp   = 'bastilledan'
+   @comp_url = 'https://www.youtube.com/user/BastilleVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def avicii
+   @compname = 'Avicii'
+   @comp     = 'Avicii'
+   @incomp   = 'avicii'
+   @comp_url = 'https://www.youtube.com/user/AviciiOfficialVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def magic
+   @compname = 'Magic!'
+   @comp     = 'ournameisMAGIC'
+   @incomp   = 'ournameismagic'
+   @comp_url = 'https://www.youtube.com/user/ournameismagicVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def demilovatomusic
+   @compname = 'Demi Lovato'
+   @comp     = 'ddlovato'
+   @incomp   = 'ddlovato'
+   @comp_url = 'https://www.youtube.com/user/DemiLovatoVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def blakeshelton
+   @compname = 'Blake Shelton'
+   @comp     = 'blakeshelton'
+   @incomp   = 'blakeshelton'
+   @comp_url = 'https://www.youtube.com/user/blakeshelton'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def coldplay
+   @compname = 'Coldplay'
+   @comp     = 'coldplay'
+   @incomp   = 'coldplay'
+   @comp_url = 'https://www.youtube.com/user/ColdplayVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def charlixcx
+   @compname = 'Charli XCX'
+   @comp     = 'charli_xcx'
+   @incomp   = 'charli_xcx'
+   @comp_url = 'https://www.youtube.com/user/officialcharlixcx'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nicoandvinz
+   @compname = 'Nico & Vinz'
+   @comp     = 'NicoandVinz'
+   @incomp   = 'nicoandvinz'
+   @comp_url = 'https://www.youtube.com/user/envymusicchannel'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def therollingstones
+   @compname = 'The Rolling Stones'
+   @comp     = 'RollingStones'
+   @incomp   = 'therollingstones'
+   @comp_url = 'https://www.youtube.com/user/TheRollingStones'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def shakiramusic
+   @compname = 'Shakira'
+   @comp     = 'shakira'
+   @incomp   = 'shakira'
+   @comp_url = 'https://www.youtube.com/user/shakiraVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def passenger
+   @compname = 'Passenger'
+   @comp     = 'passengermusic'
+   @incomp   = 'passengermusic'
+   @comp_url = 'https://www.youtube.com/user/passengermusic'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def brantleygilbert
+   @compname = 'Brantley Gilbert'
+   @comp     = 'BrantleyGilbert'
+   @incomp   = 'brantleygilbert'
+   @comp_url = 'https://www.youtube.com/user/BrantleyGilbertVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def elliegoulding
+   @compname = 'Ellie Goulding'
+   @comp     = 'elliegoulding'
+   @incomp   = 'elliegoulding'
+   @comp_url = 'https://www.youtube.com/user/EllieGouldingVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ericchurch
+   @compname = 'Eric Church'
+   @comp     = 'ericchurch'
+   @incomp   = 'ericchurchmusic'
+   @comp_url = 'https://www.youtube.com/user/EricChurchVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def idinamenzel
+   @compname = 'Idina Menzel'
+   @comp     = 'idinamenzel'
+   @incomp   = 'idinamenzel'
+   @comp_url = 'https://www.youtube.com/user/Idinamenzel'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def selenagomezmusic
+   @compname = 'Selena Gomez'
+   @comp     = 'selenagomez'
+   @incomp   = 'selenagomez'
+   @comp_url = 'https://www.youtube.com/user/SelenaGomezVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def calvinharris
+   @compname = 'Calvin Harris'
+   @comp     = 'CalvinHarris'
+   @incomp   = 'calvinharris'
+   @comp_url = 'https://www.youtube.com/user/CalvinHarrisVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def michaelbuble
+   @compname = 'Michael Buble'
+   @comp     = 'michaelbuble'
+   @incomp   = 'michaelbuble'
+   @comp_url = 'https://www.youtube.com/user/MichaelBubleTV'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def michaeljackson
+   @compname = 'Michael Jackson'
+   @comp     = 'michaeljackson'
+   @incomp   = 'michaeljackson'
+   @comp_url = 'https://www.youtube.com/user/michaeljacksonVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def britneyspearsmusic
+   @compname = 'Britney Spears'
+   @comp     = 'britneyspears'
+   @incomp   = 'britneyspears'
+   @comp_url = 'https://www.youtube.com/user/BritneySpearsVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def kellyclarkson
+   @compname = 'Kelly Clarkson'
+   @comp     = 'kelly_clarkson'
+   @incomp   = 'kellyclarkson'
+   @comp_url = 'https://www.youtube.com/user/kellyclarksonVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def christinaaguileramusic
+   @compname = 'Christinaa Guilera'
+   @comp     = 'xtina'
+   @incomp   = 'xtina'
+   @comp_url = 'https://www.youtube.com/user/CAguileraVEVO'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
 end
 
 
 
 # ####MUSIC
 
-# One Direction           onedirection        onedirection          https://www.youtube.com/user/OneDirectionVEVO
-# Katy Perry              katyperry           katyperry             https://www.youtube.com/user/KatyPerryVEVO
-# Beyonce                 Beyonce             beyonce               https://www.youtube.com/user/beyonceVEVO
-# Taylor Swift            taylorswift13       taylorswift           https://www.youtube.com/user/TaylorSwiftVEVO
-# Justin Timberlake       jtimberlake         justintimberlake      https://www.youtube.com/user/justintimberlakeVEVO
-# Iggy Azalea             IGGYAZALEA          thenewclassic         https://www.youtube.com/user/iggyazaleamusicVEVO
-# Ariana Grande           ArianaGrande        arianagrande          https://www.youtube.com/user/ArianaGrandeVevo
-# Miley Cyrus             MileyCyrus          mileycyrus            https://www.youtube.com/user/MileyCyrusVEVO
-# Pharrel Williams        Pharrell            pharrell              https://www.youtube.com/user/PharrellWilliamsVEVO
-# Eminem                  Eminem              eminem                https://www.youtube.com/user/EminemVEVO
-# Lorde                   lordemusic          lordemusic            https://www.youtube.com/user/LordeVEVO
-# Luke Bryan              LukeBryanOnline     lukebryan             https://www.youtube.com/user/LukeBryanVEVO
-# Sam Smith               samsmithworld       samsmithworld         https://www.youtube.com/user/SamSmithWorldVEVO
-# John Legend             johnlegend          johnlegend            https://www.youtube.com/user/johnlegendVEVO
-# OneRepublic             OneRepublic         onerepublic           https://www.youtube.com/user/OneRepublicVEVO
-# Drake                   Drake               leaderofnewschool     https://www.youtube.com/user/DrakeVEVO
-# Jason Derulo            jasonderulo         jasonderulo           https://www.youtube.com/user/JasonDerulo
-# Justin Bieber           justinbieber        justinbieber          https://www.youtube.com/user/JustinBieberVEVO
-# Imagine Dragons         imaginedragons      imaginedragons        https://www.youtube.com/user/ImagineDragonsVEVO
-# Florida Georgia Line    FLAGALine           flagaline             https://www.youtube.com/user/FlaGeorgiaLineVEVO
-# Nicki Minaj             NICKIMINAJ          nickiminaj            https://www.youtube.com/user/NickiMinajAtVEVO
-# 5 Seconds Of Summer     5SOS                5sos                  https://www.youtube.com/user/5sosvevo
-# Lady Gaga               ladygaga            ladygaga              https://www.youtube.com/user/LadyGagaVEVO
-# Pitbull                 pitbull             pitbull               https://www.youtube.com/user/PitbullVEVO
-# Bruno Mars              BrunoMars           brunomars             https://www.youtube.com/user/ElektraRecords
-# Jason Aldean            Jason_Aldean        jasonaldean           https://www.youtube.com/user/JasonAldeanVEVO
-# Maroon 5                maroon5             maroon5               https://www.youtube.com/user/Maroon5VEVO
-# Chris Brown             chrisbrown          chrisbrownofficial    https://www.youtube.com/user/ChrisBrownVEVO
-# Meghan Trainor          Meghan_Trainor      meghan_trainor        https://www.youtube.com/user/MeghanTrainorVEVO
-# Bastille                bastilledan         bastilledan           https://www.youtube.com/user/BastilleVEVO
-# Avicii                  Avicii              avicii                https://www.youtube.com/user/AviciiOfficialVEVO
-# Magic!                  ournameisMAGIC      ournameismagic        https://www.youtube.com/user/ournameismagicVEVO
-# Demi Lovato             ddlovato            ddlovato              https://www.youtube.com/user/DemiLovatoVEVO
-# Blake Shelton           blakeshelton        blakeshelton          https://www.youtube.com/user/blakeshelton
-# Coldplay                coldplay            coldplay              https://www.youtube.com/user/ColdplayVEVO
-# Charli XCX              charli_xcx          charli_xcx            https://www.youtube.com/user/officialcharlixcx
-# Nico & Vinz             NicoandVinz         nicoandvinz           https://www.youtube.com/user/envymusicchannel
-# The Rolling Stones      RollingStones       therollingstones      https://www.youtube.com/user/TheRollingStones
-# Shakira                 shakira             shakira               https://www.youtube.com/user/shakiraVEVO
-# Passenger               passengermusic      passengermusic        https://www.youtube.com/user/passengermusic
-# Brantley Gilbert        BrantleyGilbert     brantleygilbert       https://www.youtube.com/user/BrantleyGilbertVEVO
-# Ellie Goulding          elliegoulding       elliegoulding         https://www.youtube.com/user/EllieGouldingVEVO
-# Eric Church             ericchurch          ericchurchmusic       https://www.youtube.com/user/EricChurchVEVO
-# Idina Menzel            idinamenzel         idinamenzel           https://www.youtube.com/user/Idinamenzel
-# Selena Gomez            selenagomez         selenagomez           https://www.youtube.com/user/SelenaGomezVEVO
-# Calvin Harris           CalvinHarris        calvinharris          https://www.youtube.com/user/CalvinHarrisVEVO
-# Michael Buble           michaelbuble        michaelbuble          https://www.youtube.com/user/MichaelBubleTV
-# Michael Jackson         michaeljackson      michaeljackson        https://www.youtube.com/user/michaeljacksonVEVO
-# Britney Spears          britneyspears       britneyspears         https://www.youtube.com/user/BritneySpearsVEVO
-# Kelly Clarkson          kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
-# Christina Aguilera      xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
+# onedirection            onedirection        onedirection          https://www.youtube.com/user/OneDirectionVEVO
+# katyperrymusic               katyperry           katyperry             https://www.youtube.com/user/KatyPerryVEVO
+# beyoncemusic                 Beyonce             beyonce               https://www.youtube.com/user/beyonceVEVO
+# taylorswiftmusic             taylorswift13       taylorswift           https://www.youtube.com/user/TaylorSwiftVEVO
+# justintimberlakemusic        jtimberlake         justintimberlake      https://www.youtube.com/user/justintimberlakeVEVO
+
+# iggyazalea              IGGYAZALEA          thenewclassic         https://www.youtube.com/user/iggyazaleamusicVEVO
+# arianagrandemusic            ArianaGrande        arianagrande          https://www.youtube.com/user/ArianaGrandeVevo
+# mileycyrus                   MileyCyrus          mileycyrus            https://www.youtube.com/user/MileyCyrusVEVO
+# pharrelwilliams         Pharrell            pharrell              https://www.youtube.com/user/PharrellWilliamsVEVO
+# eminem                  Eminem              eminem                https://www.youtube.com/user/EminemVEVO
+
+# lorde                   lordemusic          lordemusic            https://www.youtube.com/user/LordeVEVO
+# lukebryan               LukeBryanOnline     lukebryan             https://www.youtube.com/user/LukeBryanVEVO
+# samsmith                samsmithworld       samsmithworld         https://www.youtube.com/user/SamSmithWorldVEVO
+# johnlegend              johnlegend          johnlegend            https://www.youtube.com/user/johnlegendVEVO
+# onerepublic             OneRepublic         onerepublic           https://www.youtube.com/user/OneRepublicVEVO
+
+# drake                   Drake               leaderofnewschool     https://www.youtube.com/user/DrakeVEVO
+# jasonderulo             jasonderulo         jasonderulo           https://www.youtube.com/user/JasonDerulo
+# justinbieber            justinbieber        justinbieber          https://www.youtube.com/user/JustinBieberVEVO
+# imaginedragons          imaginedragons      imaginedragons        https://www.youtube.com/user/ImagineDragonsVEVO
+# floridageorgialine      FLAGALine           flagaline             https://www.youtube.com/user/FlaGeorgiaLineVEVO
+
+# nickiminajmusic              NICKIMINAJ          nickiminaj            https://www.youtube.com/user/NickiMinajAtVEVO
+# 5secondsofsummer        5SOS                5sos                  https://www.youtube.com/user/5sosvevo
+# ladygagamusic                ladygaga            ladygaga              https://www.youtube.com/user/LadyGagaVEVO
+# pitbull                 pitbull             pitbull               https://www.youtube.com/user/PitbullVEVO
+# brunomarsmusic               BrunoMars           brunomars             https://www.youtube.com/user/ElektraRecords
+
+# jasonaldean             Jason_Aldean        jasonaldean           https://www.youtube.com/user/Jason_Aldean
+# maroon5                 maroon5             maroon5               https://www.youtube.com/user/Maroon5VEVO
+# chrisbrown              chrisbrown          chrisbrownofficial    https://www.youtube.com/user/ChrisBrownVEVO
+# meghantrainor           Meghan_Trainor      meghan_trainor        https://www.youtube.com/user/MeghanTrainorVEVO
+# bastille                bastilledan         bastilledan           https://www.youtube.com/user/BastilleVEVO
+
+# avicii                  Avicii              avicii                https://www.youtube.com/user/AviciiOfficialVEVO
+# magic                   ournameisMAGIC      ournameismagic        https://www.youtube.com/user/ournameismagicVEVO
+# demilovatomusic              ddlovato            ddlovato              https://www.youtube.com/user/DemiLovatoVEVO
+# blakeshelton            blakeshelton        blakeshelton          https://www.youtube.com/user/blakeshelton
+# coldplay                coldplay            coldplay              https://www.youtube.com/user/ColdplayVEVO
+
+# charlixcx               charli_xcx          charli_xcx            https://www.youtube.com/user/officialcharlixcx
+# nicoandvinz             NicoandVinz         nicoandvinz           https://www.youtube.com/user/envymusicchannel
+# therollingstones        RollingStones       therollingstones      https://www.youtube.com/user/TheRollingStones
+# shakiramusic                 shakira             shakira               https://www.youtube.com/user/shakiraVEVO
+# passenger               passengermusic      passengermusic        https://www.youtube.com/user/passengermusic
+
+# brantleygilbert         BrantleyGilbert     brantleygilbert       https://www.youtube.com/user/BrantleyGilbertVEVO
+# elliegoulding           elliegoulding       elliegoulding         https://www.youtube.com/user/EllieGouldingVEVO
+# ericchurch              ericchurch          ericchurchmusic       https://www.youtube.com/user/EricChurchVEVO
+# idinamenzel             idinamenzel         idinamenzel           https://www.youtube.com/user/Idinamenzel
+# selenagomezmusic             selenagomez         selenagomez           https://www.youtube.com/user/SelenaGomezVEVO
+
+# calvinharris            CalvinHarris        calvinharris          https://www.youtube.com/user/CalvinHarrisVEVO
+# michaelbuble            michaelbuble        michaelbuble          https://www.youtube.com/user/MichaelBubleTV
+# michaeljackson          michaeljackson      michaeljackson        https://www.youtube.com/user/michaeljacksonVEVO
+# britneyspearsmusic           britneyspears       britneyspears         https://www.youtube.com/user/BritneySpearsVEVO
+# kellyclarkson           kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
+
+# christinaaguileramusic       xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
 
 
 
