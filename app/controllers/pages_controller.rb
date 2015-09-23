@@ -3253,54 +3253,91 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
+  ######TRAVEL
+
+  def travel_connector
+  end
+
+  def budgettravel
+   @compname = 'Budget Travel'
+   @comp     = 'BudgetTravel'
+   @incomp   = 'budgettravel'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def afar
+   @compname = 'Afar'
+   @comp     = 'AFARmedia'
+   @incomp   = 'afarmedia'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def travelandleisure
+   @compname = 'Travel and Leisure'
+   @comp     = 'TravelLeisure'
+   @incomp   = 'travelandleisure'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def condenasttraveler
+   @compname = 'Condenast Traveler'
+   @comp     = 'CNTraveler'
+   @incomp   = 'cntraveler'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def geographical
+   @compname = 'Geographical'
+   @comp     = 'GeographicalMag'
+   @incomp   = 'geographical_magazine'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def nationalgeographic
+   @compname = 'NatGeo'
+   @comp     = 'NatGeo'
+   @incomp   = 'natgeotravel'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def wanderlust
+   @compname = 'Wanderlust'
+   @comp     = 'WanderlustFest'
+   @incomp   = 'wanderlustfest'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
 end
-# #####Food
-
-# allrecipes              Allrecipes      allrecipes                https://www.youtube.com/user/allrecipes
-# cookingdotcom           CookingCom      cookingcom                https://www.youtube.com/user/cookingcom
-# foodnetwork             FoodNetwork     foodnetwork               https://www.youtube.com/user/FoodNetworkTV
-# thekitchn               thekitchn       thekitchn                 https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ
-# opentable               OpenTable       opentable                 None
-
-# tasteofhome             tasteofhome     tasteofhome               https://www.youtube.com/user/tasteofhome
-# epicurious              epicurious      epicurious                https://www.youtube.com/user/epicuriousdotcom
-# grubhub                 GrubHub         grubhub                   https://www.youtube.com/user/grubhub
-# seamless                Seamless        eatseamless               https://www.youtube.com/user/eatseamless
-# yummly                  yummly          yummly                    https://www.youtube.com/user/Yummly1
-
-# huffingtonpostfood      HuffPostFood    huffpostfood              None
-# fooddotcom              Fooddotcom      fooddotcom                None
-# bonappetit              bonappetit      bonappetitmag             https://www.youtube.com/user/BonAppetitDotCom
-# weightwatchers          WeightWatchers  weightwatchers            https://www.youtube.com/user/WeightWatchers
-# foodandwine             FoodAndWineMag  foodandwine               https://www.youtube.com/user/foodandwinevideo
-
-# thechew                 thechew         abcthechew                https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA
-# americastestkitchen     TestKitchen     testkitchen               https://www.youtube.com/user/americastestkitchen
-# ironchefamerica         IronChefAmerica ironchefamericacuisine    https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q
-
-# Diners, Drive-ins and Dives       
-# Cake Boss       
-# Cupcake Wars        
-# Come Dine Witth Me        
-# Cutthroat Kitchen       
-# Bizarre Foods       
-# Hells Kitchen        
-# Chopped       
-# Top Chef        
-# The Rachael Ray Show        
-# Kitchen Nightmares        
-# Bar Rescue        
-
-
 # ####TRAVEL
 
-# Budget Travel         BudgetTravel    budgettravel            None
-# Afar                  AFARmedia       afarmedia               None
-# Travel And Leisure    TravelLeisure   travelandleisure        None
-# Conde Nast Traveler   CNTraveler      cntraveler              None
-# Geographical          GeographicalMag geographical_magazine   None
-# National Geographic   NatGeo          natgeotravel            None
-# Wanderlust            WanderlustFest  wanderlustfest          None
+# budgettravel          BudgetTravel    budgettravel            None
+# afar                  AFARmedia       afarmedia               None
+# travelandleisure      TravelLeisure   travelandleisure        None
+# condenasttraveler     CNTraveler      cntraveler              None
+# geographical          GeographicalMag geographical_magazine   None
+
+# nationalgeographic    NatGeo          natgeotravel            None
+# wanderlust            WanderlustFest  wanderlustfest          None
 
 # Cruise Travel       
 # Cruising World        
@@ -3608,3 +3645,41 @@ end
 # kellyclarkson           kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
 
 # christinaaguileramusic       xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
+
+# #####Food
+
+# allrecipes              Allrecipes      allrecipes                https://www.youtube.com/user/allrecipes
+# cookingdotcom           CookingCom      cookingcom                https://www.youtube.com/user/cookingcom
+# foodnetwork             FoodNetwork     foodnetwork               https://www.youtube.com/user/FoodNetworkTV
+# thekitchn               thekitchn       thekitchn                 https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ
+# opentable               OpenTable       opentable                 None
+
+# tasteofhome             tasteofhome     tasteofhome               https://www.youtube.com/user/tasteofhome
+# epicurious              epicurious      epicurious                https://www.youtube.com/user/epicuriousdotcom
+# grubhub                 GrubHub         grubhub                   https://www.youtube.com/user/grubhub
+# seamless                Seamless        eatseamless               https://www.youtube.com/user/eatseamless
+# yummly                  yummly          yummly                    https://www.youtube.com/user/Yummly1
+
+# huffingtonpostfood      HuffPostFood    huffpostfood              None
+# fooddotcom              Fooddotcom      fooddotcom                None
+# bonappetit              bonappetit      bonappetitmag             https://www.youtube.com/user/BonAppetitDotCom
+# weightwatchers          WeightWatchers  weightwatchers            https://www.youtube.com/user/WeightWatchers
+# foodandwine             FoodAndWineMag  foodandwine               https://www.youtube.com/user/foodandwinevideo
+
+# thechew                 thechew         abcthechew                https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA
+# americastestkitchen     TestKitchen     testkitchen               https://www.youtube.com/user/americastestkitchen
+# ironchefamerica         IronChefAmerica ironchefamericacuisine    https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q
+
+# Diners, Drive-ins and Dives       
+# Cake Boss       
+# Cupcake Wars        
+# Come Dine Witth Me        
+# Cutthroat Kitchen       
+# Bizarre Foods       
+# Hells Kitchen        
+# Chopped       
+# Top Chef        
+# The Rachael Ray Show        
+# Kitchen Nightmares        
+# Bar Rescue        
+

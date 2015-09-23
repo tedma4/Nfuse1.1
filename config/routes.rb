@@ -452,6 +452,15 @@ Rails.application.routes.draw do
   get 'americastestkitchen', to: 'pages#americastestkitchen'
   get 'ironchefamerica', to: 'pages#ironchefamerica'
 
+  #####TRAVEL
+  get 'travel', to: 'pages#travel_connector'
+  get 'budgettravel', to: 'pages#budgettravel'
+  get 'afar', to: 'pages#afar'
+  get 'travelandleisure', to: 'pages#travelandleisure'
+  get 'condenasttraveler', to: 'pages#condenasttraveler'
+  get 'geographical', to: 'pages#geographical'
+  get 'nationalgeographictravel', to: 'pages#nationalgeographic'
+  get 'wanderlust', to: 'pages#wanderlust'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
