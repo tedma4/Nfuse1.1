@@ -3068,27 +3068,215 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
+
+  ####FOoD
+  def food_connector
+  end
+
+  def allrecipes
+   @compname = 'All Recipes'
+   @comp     = 'Allrecipes'
+   @incomp   = 'allrecipes'
+   @comp_url = 'https://www.youtube.com/user/allrecipes'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def cookingdotcom
+   @compname = 'Cooking.com'
+   @comp     = 'CookingCom'
+   @incomp   = 'cookingcom'
+   @comp_url = 'https://www.youtube.com/user/cookingcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def foodnetwork
+   @compname = 'Food Network'
+   @comp     = 'FoodNetwork'
+   @incomp   = 'foodnetwork'
+   @comp_url = 'https://www.youtube.com/user/FoodNetworkTV'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thekitchn
+   @compname = 'The Kitchn'
+   @comp     = 'thekitchn'
+   @incomp   = 'thekitchn'
+   @comp_url = 'https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def opentable
+   @compname = 'Open Table'
+   @comp     = 'OpenTable'
+   @incomp   = 'opentable'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def tasteofhome
+   @compname = 'Taste Of Home'
+   @comp     = 'tasteofhome'
+   @incomp   = 'tasteofhome'
+   @comp_url = 'https://www.youtube.com/user/tasteofhome'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def epicurious
+   @compname = 'Epicurious'
+   @comp     = 'epicurious'
+   @incomp   = 'epicurious'
+   @comp_url = 'https://www.youtube.com/user/epicuriousdotcom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def grubhub
+   @compname = 'Grub Hub'
+   @comp     = 'GrubHub'
+   @incomp   = 'grubhub'
+   @comp_url = 'https://www.youtube.com/user/grubhub'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def seamless
+   @compname = 'Seamless'
+   @comp     = 'Seamless'
+   @incomp   = 'eatseamless'
+   @comp_url = 'https://www.youtube.com/user/eatseamless'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def yummly
+   @compname = 'Yummly'
+   @comp     = 'yummly'
+   @incomp   = 'yummly'
+   @comp_url = 'https://www.youtube.com/user/Yummly1'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def huffingtonpostfood
+   @compname = 'Huffington Post Food'
+   @comp     = 'HuffPostFood'
+   @incomp   = 'huffpostfood'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def fooddotcom
+   @compname = 'Food.com'
+   @comp     = 'Fooddotcom'
+   @incomp   = 'fooddotcom'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def bonappetit
+   @compname = 'BonAppetit.com'
+   @comp     = 'bonappetit'
+   @incomp   = 'bonappetitmag'
+   @comp_url = 'https://www.youtube.com/user/BonAppetitDotCom'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def weightwatchers
+   @compname = 'Weight Watchers'
+   @comp     = 'WeightWatchers'
+   @incomp   = 'weightwatchers'
+   @comp_url = 'https://www.youtube.com/user/WeightWatchers'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def foodandwine
+   @compname = 'Food And Wine'
+   @comp     = 'FoodAndWineMag'
+   @incomp   = 'foodandwine'
+   @comp_url = 'https://www.youtube.com/user/foodandwinevideo'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def thechew
+   @compname = 'The Chew'
+   @comp     = 'thechew'
+   @incomp   = 'abcthechew'
+   @comp_url = 'https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def americastestkitchen
+   @compname = 'Americas Test Kitchen'
+   @comp     = 'TestKitchen'
+   @incomp   = 'testkitchen'
+   @comp_url = 'https://www.youtube.com/user/americastestkitchen'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ironchefamerica
+   @compname = 'Iron Chef America'
+   @comp     = 'IronChefAmerica'
+   @incomp   = 'ironchefamericacuisine'
+   @comp_url = 'https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
 end
 # #####Food
 
-# Allrecipes              Allrecipes      allrecipes                https://www.youtube.com/user/allrecipes
-# Cooking.com             CookingCom      cookingcom                https://www.youtube.com/user/cookingcom
-# Food Network            FoodNetwork     foodnetwork               https://www.youtube.com/user/FoodNetworkTV
-# The Kitchn              thekitchn       thekitchn                 https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ
-# Open Table              OpenTable       opentable                 None
-# Taste Of Home           tasteofhome     tasteofhome               https://www.youtube.com/user/tasteofhome
-# Epicurious              epicurious      epicurious                https://www.youtube.com/user/epicuriousdotcom
-# Grubhub                 GrubHub         grubhub                   https://www.youtube.com/user/grubhub
-# Seamless                Seamless        eatseamless               https://www.youtube.com/user/eatseamless
-# Yummly                  yummly          yummly                    https://www.youtube.com/user/Yummly1
-# Huffington Post Food    HuffPostFood    huffpostfood              None
-# Food.com                Fooddotcom      fooddotcom                None
-# Bonappetit              bonappetit      bonappetitmag             https://www.youtube.com/user/BonAppetitDotCom
-# Weight Watchers         WeightWatchers  weightwatchers            https://www.youtube.com/user/WeightWatchers
-# Food And Wine           FoodAndWineMag  foodandwine               https://www.youtube.com/user/foodandwinevideo
-# The Chew                thechew         abcthechew                https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA
-# Americas Test Kitchen   TestKitchen     testkitchen               https://www.youtube.com/user/americastestkitchen
-# Iron Chef America       IronChefAmerica ironchefamericacuisine    https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q
+# allrecipes              Allrecipes      allrecipes                https://www.youtube.com/user/allrecipes
+# cookingdotcom           CookingCom      cookingcom                https://www.youtube.com/user/cookingcom
+# foodnetwork             FoodNetwork     foodnetwork               https://www.youtube.com/user/FoodNetworkTV
+# thekitchn               thekitchn       thekitchn                 https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ
+# opentable               OpenTable       opentable                 None
+
+# tasteofhome             tasteofhome     tasteofhome               https://www.youtube.com/user/tasteofhome
+# epicurious              epicurious      epicurious                https://www.youtube.com/user/epicuriousdotcom
+# grubhub                 GrubHub         grubhub                   https://www.youtube.com/user/grubhub
+# seamless                Seamless        eatseamless               https://www.youtube.com/user/eatseamless
+# yummly                  yummly          yummly                    https://www.youtube.com/user/Yummly1
+
+# huffingtonpostfood      HuffPostFood    huffpostfood              None
+# fooddotcom              Fooddotcom      fooddotcom                None
+# bonappetit              bonappetit      bonappetitmag             https://www.youtube.com/user/BonAppetitDotCom
+# weightwatchers          WeightWatchers  weightwatchers            https://www.youtube.com/user/WeightWatchers
+# foodandwine             FoodAndWineMag  foodandwine               https://www.youtube.com/user/foodandwinevideo
+
+# thechew                 thechew         abcthechew                https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA
+# americastestkitchen     TestKitchen     testkitchen               https://www.youtube.com/user/americastestkitchen
+# ironchefamerica         IronChefAmerica ironchefamericacuisine    https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q
 
 # Diners, Drive-ins and Dives       
 # Cake Boss       

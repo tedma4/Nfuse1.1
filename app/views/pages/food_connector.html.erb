@@ -1,0 +1,173 @@
+<style>
+  .container {
+    padding-bottom: 100px;
+  }
+</style>
+<div class="Alignthisorelse">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("Allrecipes.jpg", size: "150x150", title: "All Recipes"), allrecipes_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("CookingCom.jpg", size: "150x150", title: "Cooking.com"), cookingdotcom_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("FoodNetwork.jpg", size: "150x150", title: "Food Network"), foodnetworkchannel_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("thekitchn.jpg", size: "150x150", title: "The Kitchn"), thekitchn_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("OpenTable.jpg", size: "150x150", title: "Open Table"), opentable_path %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("tasteofhome.jpg", size: "150x150", title: "Taste Of Home"), tasteofhome_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("epicurious.jpg", size: "150x150", title: "Epicurious"), epicurious_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("GrubHub.jpg", size: "150x150", title: "Grub Hub"), grubhub_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("Seamless.jpg", size: "150x150", title: "Seamless"), seamless_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("yummly.jpg", size: "150x150", title: "Yummly"), yummly_path %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("HuffPostFood.jpg", size: "150x150", title: "Huffington Post Food"), huffingtonpostfood_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("Fooddotcom.jpg", size: "150x150", title: "Food.com"), fooddotcom_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("bonappetit.jpg", size: "150x150", title: "BonAppetit.com"), bonappetit_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("WeightWatchers.jpg", size: "150x150", title: "Weight Watchers"), weightwatchers_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("FoodAndWineMag.jpg", size: "150x150", title: "Food And Wine"), foodandwine_path %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("thechew.jpg", size: "150x150", title: "The Chew"), thechew_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInDown">
+        <div class="features-box-icon">
+          <%= link_to image_tag("TestKitchen.jpg", size: "150x150", title: "Americas Test Kitchen"), americastestkitchen_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <%= link_to image_tag("IronChefAmerica.jpg", size: "150x150", title: "Iron Chef America"), ironchefamerica_path %>
+        </div>
+      </div>
+      <div class="col-sm-2 features-box wow fadeInUp">
+        <div class="features-box-icon">
+          <a data-toggle="modal" data-target="#new_request_modal">
+            <%= image_tag('requestmore.png', title: "New Request") %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new_request_modal" class="modal fade">
+  <div class="modal-fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">×</button>
+          <h3>Did we miss someone?</h3>
+        </div>
+        <div class="modal-body-new-post">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="span6">
+                <div class="logowrapper">
+                  <div class="Alignthisorelse">
+                    <div class="container post-padding">
+                      <div class="col-sm-6 form-box wow fadeInUp">
+                        <div class="form-top-contacts">
+                          <div class="form-top-left">
+                            <h3><strong>Nprove Nfuse<strong></h3>
+                            <p> Any advice you can give us about Nfuse would be awesome, Thank you. </p>
+                          </div>
+                          <div class="form-top-right">
+                            <a href="#"><%= image_tag("contactfeedbackgray.fw.png", size: "65x65") %></a>
+                          </div>
+                        </div>
+                        <div class="form-bottom">
+                          <%= form_for Contact.new, html: {role: "form"} do |f| %>
+                            <div class="form-group">
+                              <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-control input-lg", id:"form-full-name", type: "search" %>
+                            </div>
+                            <div class="form-group">
+                              <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
+                            </div>
+                            <div class="form-group">
+                              <%= f.text_area :message, :placeholder => "Message", class: "form-control input-lg", id:"form-message", type: "message" %>
+                            </div>
+                            <div style="display: none;">
+                              <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
+                            </div>
+                            <p class ="center fb-par-btm"> If you need to contact us about anything besides feedback just fill out the form and we will get back to you as soon as possible. Nothing on your mind right now? Don’t worry, this form will be available for you to leave us your thoughts whenever you feel like it. </p>
+                            <button type= "submit" class="btn">
+                              Send!
+                            </button>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

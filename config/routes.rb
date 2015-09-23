@@ -431,6 +431,27 @@ Rails.application.routes.draw do
   get 'kellyclarkson', to: 'pages#kellyclarkson'
   get 'christinaaguileramusic', to: 'pages#christinaaguileramusic'
 
+  ####FOOD
+  get 'food', to: 'pages#food_connector'
+  get 'allrecipes', to: 'pages#allrecipes'
+  get 'cookingdotcom', to: 'pages#cookingdotcom'
+  get 'foodnetworkchannel', to: 'pages#foodnetwork'
+  get 'thekitchn', to: 'pages#thekitchn'
+  get 'opentable', to: 'pages#opentable'
+  get 'tasteofhome', to: 'pages#tasteofhome'
+  get 'epicurious', to: 'pages#epicurious'
+  get 'grubhub', to: 'pages#grubhub'
+  get 'seamless', to: 'pages#seamless'
+  get 'yummly', to: 'pages#yummly'
+  get 'huffingtonpostfood', to: 'pages#huffingtonpostfood'
+  get 'fooddotcom', to: 'pages#fooddotcom'
+  get 'bonappetit', to: 'pages#bonappetit'
+  get 'weightwatchers', to: 'pages#weightwatchers'
+  get 'foodandwine', to: 'pages#foodandwine'
+  get 'thechew', to: 'pages#thechew'
+  get 'americastestkitchen', to: 'pages#americastestkitchen'
+  get 'ironchefamerica', to: 'pages#ironchefamerica'
+
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
