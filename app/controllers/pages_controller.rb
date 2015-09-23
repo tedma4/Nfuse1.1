@@ -3069,75 +3069,6 @@ class PagesController < ApplicationController
    render 'comp'
   end
 end
-
-
-
-# ####MUSIC
-
-# onedirection            onedirection        onedirection          https://www.youtube.com/user/OneDirectionVEVO
-# katyperrymusic               katyperry           katyperry             https://www.youtube.com/user/KatyPerryVEVO
-# beyoncemusic                 Beyonce             beyonce               https://www.youtube.com/user/beyonceVEVO
-# taylorswiftmusic             taylorswift13       taylorswift           https://www.youtube.com/user/TaylorSwiftVEVO
-# justintimberlakemusic        jtimberlake         justintimberlake      https://www.youtube.com/user/justintimberlakeVEVO
-
-# iggyazalea              IGGYAZALEA          thenewclassic         https://www.youtube.com/user/iggyazaleamusicVEVO
-# arianagrandemusic            ArianaGrande        arianagrande          https://www.youtube.com/user/ArianaGrandeVevo
-# mileycyrus                   MileyCyrus          mileycyrus            https://www.youtube.com/user/MileyCyrusVEVO
-# pharrelwilliams         Pharrell            pharrell              https://www.youtube.com/user/PharrellWilliamsVEVO
-# eminem                  Eminem              eminem                https://www.youtube.com/user/EminemVEVO
-
-# lorde                   lordemusic          lordemusic            https://www.youtube.com/user/LordeVEVO
-# lukebryan               LukeBryanOnline     lukebryan             https://www.youtube.com/user/LukeBryanVEVO
-# samsmith                samsmithworld       samsmithworld         https://www.youtube.com/user/SamSmithWorldVEVO
-# johnlegend              johnlegend          johnlegend            https://www.youtube.com/user/johnlegendVEVO
-# onerepublic             OneRepublic         onerepublic           https://www.youtube.com/user/OneRepublicVEVO
-
-# drake                   Drake               leaderofnewschool     https://www.youtube.com/user/DrakeVEVO
-# jasonderulo             jasonderulo         jasonderulo           https://www.youtube.com/user/JasonDerulo
-# justinbieber            justinbieber        justinbieber          https://www.youtube.com/user/JustinBieberVEVO
-# imaginedragons          imaginedragons      imaginedragons        https://www.youtube.com/user/ImagineDragonsVEVO
-# floridageorgialine      FLAGALine           flagaline             https://www.youtube.com/user/FlaGeorgiaLineVEVO
-
-# nickiminajmusic              NICKIMINAJ          nickiminaj            https://www.youtube.com/user/NickiMinajAtVEVO
-# 5secondsofsummer        5SOS                5sos                  https://www.youtube.com/user/5sosvevo
-# ladygagamusic                ladygaga            ladygaga              https://www.youtube.com/user/LadyGagaVEVO
-# pitbull                 pitbull             pitbull               https://www.youtube.com/user/PitbullVEVO
-# brunomarsmusic               BrunoMars           brunomars             https://www.youtube.com/user/ElektraRecords
-
-# jasonaldean             Jason_Aldean        jasonaldean           https://www.youtube.com/user/Jason_Aldean
-# maroon5                 maroon5             maroon5               https://www.youtube.com/user/Maroon5VEVO
-# chrisbrown              chrisbrown          chrisbrownofficial    https://www.youtube.com/user/ChrisBrownVEVO
-# meghantrainor           Meghan_Trainor      meghan_trainor        https://www.youtube.com/user/MeghanTrainorVEVO
-# bastille                bastilledan         bastilledan           https://www.youtube.com/user/BastilleVEVO
-
-# avicii                  Avicii              avicii                https://www.youtube.com/user/AviciiOfficialVEVO
-# magic                   ournameisMAGIC      ournameismagic        https://www.youtube.com/user/ournameismagicVEVO
-# demilovatomusic              ddlovato            ddlovato              https://www.youtube.com/user/DemiLovatoVEVO
-# blakeshelton            blakeshelton        blakeshelton          https://www.youtube.com/user/blakeshelton
-# coldplay                coldplay            coldplay              https://www.youtube.com/user/ColdplayVEVO
-
-# charlixcx               charli_xcx          charli_xcx            https://www.youtube.com/user/officialcharlixcx
-# nicoandvinz             NicoandVinz         nicoandvinz           https://www.youtube.com/user/envymusicchannel
-# therollingstones        RollingStones       therollingstones      https://www.youtube.com/user/TheRollingStones
-# shakiramusic                 shakira             shakira               https://www.youtube.com/user/shakiraVEVO
-# passenger               passengermusic      passengermusic        https://www.youtube.com/user/passengermusic
-
-# brantleygilbert         BrantleyGilbert     brantleygilbert       https://www.youtube.com/user/BrantleyGilbertVEVO
-# elliegoulding           elliegoulding       elliegoulding         https://www.youtube.com/user/EllieGouldingVEVO
-# ericchurch              ericchurch          ericchurchmusic       https://www.youtube.com/user/EricChurchVEVO
-# idinamenzel             idinamenzel         idinamenzel           https://www.youtube.com/user/Idinamenzel
-# selenagomezmusic             selenagomez         selenagomez           https://www.youtube.com/user/SelenaGomezVEVO
-
-# calvinharris            CalvinHarris        calvinharris          https://www.youtube.com/user/CalvinHarrisVEVO
-# michaelbuble            michaelbuble        michaelbuble          https://www.youtube.com/user/MichaelBubleTV
-# michaeljackson          michaeljackson      michaeljackson        https://www.youtube.com/user/michaeljacksonVEVO
-# britneyspearsmusic           britneyspears       britneyspears         https://www.youtube.com/user/BritneySpearsVEVO
-# kellyclarkson           kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
-
-# christinaaguileramusic       xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
-
-
-
 # #####Food
 
 # Allrecipes              Allrecipes      allrecipes                https://www.youtube.com/user/allrecipes
@@ -3425,3 +3356,67 @@ end
 # minnesotavikings                Vikings           vikings               https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA
 
 # arizonacardinals                AZCardinals       azcardinals           https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ
+
+# ####MUSIC
+
+# onedirection            onedirection        onedirection          https://www.youtube.com/user/OneDirectionVEVO
+# katyperrymusic               katyperry           katyperry             https://www.youtube.com/user/KatyPerryVEVO
+# beyoncemusic                 Beyonce             beyonce               https://www.youtube.com/user/beyonceVEVO
+# taylorswiftmusic             taylorswift13       taylorswift           https://www.youtube.com/user/TaylorSwiftVEVO
+# justintimberlakemusic        jtimberlake         justintimberlake      https://www.youtube.com/user/justintimberlakeVEVO
+
+# iggyazalea              IGGYAZALEA          thenewclassic         https://www.youtube.com/user/iggyazaleamusicVEVO
+# arianagrandemusic            ArianaGrande        arianagrande          https://www.youtube.com/user/ArianaGrandeVevo
+# mileycyrus                   MileyCyrus          mileycyrus            https://www.youtube.com/user/MileyCyrusVEVO
+# pharrelwilliams         Pharrell            pharrell              https://www.youtube.com/user/PharrellWilliamsVEVO
+# eminem                  Eminem              eminem                https://www.youtube.com/user/EminemVEVO
+
+# lorde                   lordemusic          lordemusic            https://www.youtube.com/user/LordeVEVO
+# lukebryan               LukeBryanOnline     lukebryan             https://www.youtube.com/user/LukeBryanVEVO
+# samsmith                samsmithworld       samsmithworld         https://www.youtube.com/user/SamSmithWorldVEVO
+# johnlegend              johnlegend          johnlegend            https://www.youtube.com/user/johnlegendVEVO
+# onerepublic             OneRepublic         onerepublic           https://www.youtube.com/user/OneRepublicVEVO
+
+# drake                   Drake               leaderofnewschool     https://www.youtube.com/user/DrakeVEVO
+# jasonderulo             jasonderulo         jasonderulo           https://www.youtube.com/user/JasonDerulo
+# justinbieber            justinbieber        justinbieber          https://www.youtube.com/user/JustinBieberVEVO
+# imaginedragons          imaginedragons      imaginedragons        https://www.youtube.com/user/ImagineDragonsVEVO
+# floridageorgialine      FLAGALine           flagaline             https://www.youtube.com/user/FlaGeorgiaLineVEVO
+
+# nickiminajmusic              NICKIMINAJ          nickiminaj            https://www.youtube.com/user/NickiMinajAtVEVO
+# 5secondsofsummer        5SOS                5sos                  https://www.youtube.com/user/5sosvevo
+# ladygagamusic                ladygaga            ladygaga              https://www.youtube.com/user/LadyGagaVEVO
+# pitbull                 pitbull             pitbull               https://www.youtube.com/user/PitbullVEVO
+# brunomarsmusic               BrunoMars           brunomars             https://www.youtube.com/user/ElektraRecords
+
+# jasonaldean             Jason_Aldean        jasonaldean           https://www.youtube.com/user/Jason_Aldean
+# maroon5                 maroon5             maroon5               https://www.youtube.com/user/Maroon5VEVO
+# chrisbrown              chrisbrown          chrisbrownofficial    https://www.youtube.com/user/ChrisBrownVEVO
+# meghantrainor           Meghan_Trainor      meghan_trainor        https://www.youtube.com/user/MeghanTrainorVEVO
+# bastille                bastilledan         bastilledan           https://www.youtube.com/user/BastilleVEVO
+
+# avicii                  Avicii              avicii                https://www.youtube.com/user/AviciiOfficialVEVO
+# magic                   ournameisMAGIC      ournameismagic        https://www.youtube.com/user/ournameismagicVEVO
+# demilovatomusic              ddlovato            ddlovato              https://www.youtube.com/user/DemiLovatoVEVO
+# blakeshelton            blakeshelton        blakeshelton          https://www.youtube.com/user/blakeshelton
+# coldplay                coldplay            coldplay              https://www.youtube.com/user/ColdplayVEVO
+
+# charlixcx               charli_xcx          charli_xcx            https://www.youtube.com/user/officialcharlixcx
+# nicoandvinz             NicoandVinz         nicoandvinz           https://www.youtube.com/user/envymusicchannel
+# therollingstones        RollingStones       therollingstones      https://www.youtube.com/user/TheRollingStones
+# shakiramusic                 shakira             shakira               https://www.youtube.com/user/shakiraVEVO
+# passenger               passengermusic      passengermusic        https://www.youtube.com/user/passengermusic
+
+# brantleygilbert         BrantleyGilbert     brantleygilbert       https://www.youtube.com/user/BrantleyGilbertVEVO
+# elliegoulding           elliegoulding       elliegoulding         https://www.youtube.com/user/EllieGouldingVEVO
+# ericchurch              ericchurch          ericchurchmusic       https://www.youtube.com/user/EricChurchVEVO
+# idinamenzel             idinamenzel         idinamenzel           https://www.youtube.com/user/Idinamenzel
+# selenagomezmusic             selenagomez         selenagomez           https://www.youtube.com/user/SelenaGomezVEVO
+
+# calvinharris            CalvinHarris        calvinharris          https://www.youtube.com/user/CalvinHarrisVEVO
+# michaelbuble            michaelbuble        michaelbuble          https://www.youtube.com/user/MichaelBubleTV
+# michaeljackson          michaeljackson      michaeljackson        https://www.youtube.com/user/michaeljacksonVEVO
+# britneyspearsmusic           britneyspears       britneyspears         https://www.youtube.com/user/BritneySpearsVEVO
+# kellyclarkson           kelly_clarkson      kellyclarkson         https://www.youtube.com/user/kellyclarksonVEVO
+
+# christinaaguileramusic       xtina               xtina                 https://www.youtube.com/user/CAguileraVEVO
