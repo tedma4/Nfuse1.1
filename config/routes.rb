@@ -463,7 +463,7 @@ Rails.application.routes.draw do
   get 'wanderlust', to: 'pages#wanderlust'
 
   #####FASHION
-  get 'fashion', to: 'pages#fashiom_connector'
+  get 'fashion', to: 'pages#fashion_connector'
   get 'armanifashion', to: 'pages#armanifashion'
   get 'burberryfashion', to: 'pages#burberryfashion'
   get 'calvinkleinfashion', to: 'pages#calvinkleinfashion'

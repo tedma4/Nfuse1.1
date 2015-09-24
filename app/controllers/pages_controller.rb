@@ -3328,7 +3328,7 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def fashiom_connector
+  def fashion_connector
   end
 
   def youtubers
@@ -3413,7 +3413,7 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
-  
+
   def shanedawson
    @compname = 'Shane Dawson'
    @comp     = 'shanedawson'
@@ -3653,8 +3653,281 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
-end
 
+####FASHION
+
+  def armanifashion
+   @compname = 'Armani'
+   @comp     = 'Armani'
+   @incomp   = 'armani'
+   @comp_url = 'https://www.youtube.com/user/Armani'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def burberryfashion
+   @compname = 'Burberry'
+   @comp     = 'Burberry'
+   @incomp   = 'burberry'
+   @comp_url = 'https://www.youtube.com/user/Burberry'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def calvinkleinfashion
+   @compname = 'Calvin Klein'
+   @comp     = 'CalvinKlein'
+   @incomp   = 'calvinklein'
+   @comp_url = 'https://www.youtube.com/user/calvinklein'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def chanel
+   @compname = 'CHANEL'
+   @comp     = 'CHANEL'
+   @incomp   = 'chanelofficial'
+   @comp_url = 'https://www.youtube.com/user/CHANEL'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def christiandior
+   @compname = 'Dior'
+   @comp     = 'Dior'
+   @incomp   = 'dior'
+   @comp_url = 'https://www.youtube.com/user/Dior'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def christianlouboutin
+   @compname = 'Christian Louboutin'
+   @comp     = 'LouboutinWorld'
+   @incomp   = 'louboutinworld'
+   @comp_url = 'https://www.youtube.com/user/christianlouboutin'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def dolceandgabbana
+   @compname = 'Dolce and Gabbana'
+   @comp     = 'dolcegabbana'
+   @incomp   = 'dolcegabbana'
+   @comp_url = 'https://www.youtube.com/user/dolcegabbanachannel'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def dkny
+   @compname = 'DKNY'
+   @comp     = 'dkny'
+   @incomp   = 'dkny'
+   @comp_url = 'https://www.youtube.com/user/dkny'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def escada
+   @compname = 'Escada'
+   @comp     = 'ESCADA'
+   @incomp   = 'escadaofficial'
+   @comp_url = 'https://www.youtube.com/user/Escadaeditor'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def fendi
+   @compname = 'Fendi'
+   @comp     = 'Fendi'
+   @incomp   = 'fendi'
+   @comp_url = 'https://www.youtube.com/user/FENDICHANNEL'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def gucci
+   @compname = 'Gucci'
+   @comp     = 'gucci'
+   @incomp   = 'gucci'
+   @comp_url = 'https://www.youtube.com/user/gucciofficial'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def prada
+   @compname = 'Prada'
+   @comp     = 'Prada'
+   @incomp   = 'prada'
+   @comp_url = 'https://www.youtube.com/user/PRADA'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def hugobossfashion
+   @compname = 'Hugo Boss'
+   @comp     = 'HUGOBOSS'
+   @incomp   = 'hugoboss'
+   @comp_url = 'https://www.youtube.com/user/HUGOBOSSTV'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def johnvarvatos
+   @compname = 'John Varvatos'
+   @comp     = 'johnvarvatos'
+   @incomp   = 'johnvarvatos'
+   @comp_url = 'https://www.youtube.com/user/johnvarvatos'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def laperlalingerie
+   @compname = 'La Perla Lingerie'
+   @comp     = 'LaPerlaLingerie'
+   @incomp   = 'laperlalingerie'
+   @comp_url = 'https://www.youtube.com/user/LaPerlaLingerie'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def louisvuitton
+   @compname = 'Louis Vuitton'
+   @comp     = 'LouisVuitton'
+   @incomp   = 'louisvuitton'
+   @comp_url = 'https://www.youtube.com/user/LOUISVUITTON'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def manoloblahnik
+   @compname = 'Manolo Blahnik'
+   @comp     = 'ManoloBlahnik'
+   @incomp   = 'manoloblahnikhq'
+   @comp_url = 'https://www.youtube.com/channel/UCBldabiGA8UYQQgbwyI-jyw'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def missoni
+   @compname = 'Missoni'
+   @comp     = 'Missoni'
+   @incomp   = 'missoni'
+   @comp_url = 'https://www.youtube.com/user/MissoniOfficial'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def ralphlaurenfashion
+   @compname = 'Ralph Lauren'
+   @comp     = 'RalphLauren'
+   @incomp   = 'ralphlauren'
+   @comp_url = 'https://www.youtube.com/user/RLTVralphlauren'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def rolandmouret
+   @compname = 'Roland Mouret'
+   @comp     = 'RolandMouret'
+   @incomp   = 'roland_mouret'
+   @comp_url = 'https://www.youtube.com/user/RolandMouretFilms'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def stellamccartney
+   @compname = 'Stella McCartney'
+   @comp     = 'StellaMcCartney'
+   @incomp   = 'stellamccartney'
+   @comp_url = 'https://www.youtube.com/user/stellamccartney1'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def tomford
+   @compname = 'Tom Ford'
+   @comp     = 'TOMFORD'
+   @incomp   = 'tomford'
+   @comp_url = 'https://www.youtube.com/user/TOMFORDINTERNATIONAL'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def versace
+   @compname = 'Versace'
+   @comp     = 'Versace'
+   @incomp   = 'versace_official'
+   @comp_url = 'https://www.youtube.com/user/VersaceVideos'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
+  def michaelkors
+   @compname = 'Michael Kors'
+   @comp     = 'MichaelKors'
+   @incomp   = 'michaelkors'
+   @comp_url = 'https://www.youtube.com/user/michaelkors'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+end
+# #####FASHION
+
+
+
+# armanifashion                Armani            armani            https://www.youtube.com/user/Armani
+# burberryfashion              Burberry          burberry          https://www.youtube.com/user/Burberry
+# calvinkleinfashion           CalvinKlein       calvinklein       https://www.youtube.com/user/calvinklein
+# chanel                CHANEL            chanelofficial    https://www.youtube.com/user/CHANEL
+# christiandior         Dior              dior              https://www.youtube.com/user/Dior
+
+# christianlouboutin    LouboutinWorld    louboutinworld    https://www.youtube.com/user/christianlouboutin
+# dolceandgabbana       dolcegabbana      dolcegabbana      https://www.youtube.com/user/dolcegabbanachannel
+# dkny                  dkny              dkny              https://www.youtube.com/user/dkny
+# escada                ESCADA            escadaofficial    https://www.youtube.com/user/Escadaeditor
+# fendi                 Fendi             fendi             https://www.youtube.com/user/FENDICHANNEL
+
+# gucci                 gucci             gucci             https://www.youtube.com/user/gucciofficial
+# prada                 Prada             prada             https://www.youtube.com/user/PRADA
+# hugobossfashion              HUGOBOSS          hugoboss          https://www.youtube.com/user/HUGOBOSSTV
+# johnvarvatos          johnvarvatos      johnvarvatos      https://www.youtube.com/user/johnvarvatos
+# laperlalingerie       LaPerlaLingerie   laperlalingerie   https://www.youtube.com/user/LaPerlaLingerie
+
+# louisvuitton          LouisVuitton      louisvuitton      https://www.youtube.com/user/LOUISVUITTON
+# manoloblahnik         ManoloBlahnik     manoloblahnikhq   https://www.youtube.com/channel/UCBldabiGA8UYQQgbwyI-jyw
+# missoni               Missoni           missoni           https://www.youtube.com/user/MissoniOfficial
+# ralphlaurenfashion           RalphLauren       ralphlauren       https://www.youtube.com/user/RLTVralphlauren
+# rolandmouret          RolandMouret      roland_mouret     https://www.youtube.com/user/RolandMouretFilms
+
+# stellamccartney       StellaMcCartney   stellamccartney   https://www.youtube.com/user/stellamccartney1
+# tomford               TOMFORD           tomford           https://www.youtube.com/user/TOMFORDINTERNATIONAL
+# versace               Versace           versace_official  https://www.youtube.com/user/VersaceVideos
+# michaelkors           MichaelKors       michaelkors       https://www.youtube.com/user/michaelkors
 
 ###########YOUTUBER
 
@@ -3697,39 +3970,6 @@ end
 
 # amazingphil         AmazingPhil       amazingphil         https://www.youtube.com/user/AmazingPhil
 # sampepper           sampepper         itssampepper        https://www.youtube.com/user/OFFICIALsampepper
-
-
-# #####FASHION
-
-# armanifashion                Armani            armani            https://www.youtube.com/user/Armani
-# burberryfashion              Burberry          burberry          https://www.youtube.com/user/Burberry
-# calvinkleinfashion           CalvinKlein       calvinklein       https://www.youtube.com/user/calvinklein
-# chanel                CHANEL            chanelofficial    https://www.youtube.com/user/CHANEL
-# christiandior         Dior              dior              https://www.youtube.com/user/Dior
-# christianlouboutin    LouboutinWorld    louboutinworld    https://www.youtube.com/user/christianlouboutin
-# dolceandgabbana       dolcegabbana      dolcegabbana      https://www.youtube.com/user/dolcegabbanachannel
-# dkny                  dkny              dkny              https://www.youtube.com/user/dkny
-# escada                ESCADA            escadaofficial    https://www.youtube.com/user/Escadaeditor
-# fendi                 Fendi             fendi             https://www.youtube.com/user/FENDICHANNEL
-# gucci                 gucci             gucci             https://www.youtube.com/user/gucciofficial
-# prada                 Prada             prada             https://www.youtube.com/user/PRADA
-# hugobossfashion              HUGOBOSS          hugoboss          https://www.youtube.com/user/HUGOBOSSTV
-# johnvarvatos          johnvarvatos      johnvarvatos      https://www.youtube.com/user/johnvarvatos
-# laperlalingerie       LaPerlaLingerie   laperlalingerie   https://www.youtube.com/user/LaPerlaLingerie
-# louisvuitton          LouisVuitton      louisvuitton      https://www.youtube.com/user/LOUISVUITTON
-# manoloblahnik         ManoloBlahnik     manoloblahnikhq   https://www.youtube.com/channel/UCBldabiGA8UYQQgbwyI-jyw
-# missoni               Missoni           missoni           https://www.youtube.com/user/MissoniOfficial
-# ralphlaurenfashion           RalphLauren       ralphlauren       https://www.youtube.com/user/RLTVralphlauren
-# rolandmouret          RolandMouret      roland_mouret     https://www.youtube.com/user/RolandMouretFilms
-# stellamccartney       StellaMcCartney   stellamccartney   https://www.youtube.com/user/stellamccartney1
-# tomford               TOMFORD           tomford           https://www.youtube.com/user/TOMFORDINTERNATIONAL
-# versace               Versace           versace_official  https://www.youtube.com/user/VersaceVideos
-# michaelkors           MichaelKors       michaelkors       https://www.youtube.com/user/michaelkors
-
-
-
-
-
 
 ####CELEBRITIES
 # blakelively         blakelively         blakelively             https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA
