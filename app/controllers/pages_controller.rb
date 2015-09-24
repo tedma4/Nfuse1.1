@@ -3327,35 +3327,7 @@ class PagesController < ApplicationController
    @timeline = page.construct(params)
    render 'comp'
   end
-end
-# ####TRAVEL
-
-# budgettravel          BudgetTravel    budgettravel            None
-# afar                  AFARmedia       afarmedia               None
-# travelandleisure      TravelLeisure   travelandleisure        None
-# condenasttraveler     CNTraveler      cntraveler              None
-# geographical          GeographicalMag geographical_magazine   None
-
-# nationalgeographic    NatGeo          natgeotravel            None
-# wanderlust            WanderlustFest  wanderlustfest          None
-
-# Cruise Travel       
-# Cruising World        
-# Coastal Living        
-# Caribbean Living        
-# Yachting        
-# Destinations        
-# Pathfinders Travel        
-# Africa Geographic       
-# Backpacker        
-# Outside       
-# Camping Life        
-# Cabin Life        
-# American Road       
-# Trailer Life        
-# Outpost Magazine        
-# The Expeditioner        
-# Suitcase        
+end      
 
 
 # #####FASHION
@@ -3683,3 +3655,32 @@ end
 # Kitchen Nightmares        
 # Bar Rescue        
 
+
+# ####TRAVEL
+
+# budgettravel          BudgetTravel    budgettravel            None
+# afar                  AFARmedia       afarmedia               None
+# travelandleisure      TravelLeisure   travelandleisure        None
+# condenasttraveler     CNTraveler      cntraveler              None
+# geographical          GeographicalMag geographical_magazine   None
+
+# nationalgeographic    NatGeo          natgeotravel            None
+# wanderlust            WanderlustFest  wanderlustfest          None
+
+# Cruise Travel       
+# Cruising World        
+# Coastal Living        
+# Caribbean Living        
+# Yachting        
+# Destinations        
+# Pathfinders Travel        
+# Africa Geographic       
+# Backpacker        
+# Outside       
+# Camping Life        
+# Cabin Life        
+# American Road       
+# Trailer Life        
+# Outpost Magazine        
+# The Expeditioner        
+# Suitcase  
