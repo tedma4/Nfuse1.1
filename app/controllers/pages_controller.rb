@@ -3658,7 +3658,7 @@ class PagesController < ApplicationController
 
   def armanifashion
    @compname = 'Armani'
-   @comp     = 'Armani'
+   @comp     = 'armani'
    @incomp   = 'armani'
    @comp_url = 'https://www.youtube.com/user/Armani'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
