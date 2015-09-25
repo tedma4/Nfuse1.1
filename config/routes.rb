@@ -474,7 +474,7 @@ Rails.application.routes.draw do
   get 'dkny', to: 'pages#dkny'
   get 'escada', to: 'pages#escada'
   get 'fendi', to: 'pages#fendi'
-  get 'gucci', to: 'pages#gucci'
+  get 'guccifashion', to: 'pages#guccifashion'
   get 'prada', to: 'pages#prada'
   get 'hugobossfashion', to: 'pages#hugobossfashion'
   get 'johnvarvatos', to: 'pages#johnvarvatos'

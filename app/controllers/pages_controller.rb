@@ -3756,7 +3756,7 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def gucci
+  def guccifashion
    @compname = 'Gucci'
    @comp     = 'gucci'
    @incomp   = 'gucci'
