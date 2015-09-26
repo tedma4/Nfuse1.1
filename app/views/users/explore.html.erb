@@ -1,6 +1,6 @@
 <style>
 .centering_search {
-  margin-top: 15%;
+  margin-top: 12%;
 }
 .row_top_padding {
 	padding-top: 10px
@@ -17,12 +17,10 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-12">
-				<div class="col-md-6 col-md-offset-3 " >
+			<div class="col-sm-12 center">
 				  <%= form_tag search_path, method: 'get', class: "content-search-bar" do %>
 				    	<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Users with @user. Hashtags with #hashtag" %>
 				  <% end %>
-				</div>
 			</div>
 		</div>
 
@@ -32,18 +30,18 @@
 					<div class="col-md-6 col-md-offset-3">
 					  <%= link_to 'Users', explore_users_user_path(current_user), class: "btn btn-link-2" %>
 					  <%= link_to 'Businesses', businessconnector_path, class: "btn btn-link-2" %>
-					  <%= link_to 'Tv', tv_shows_path, class: "btn btn-link-2" %>
-					  <%= link_to 'Travel', travel_path, class: "btn btn-link-2" %>
-					  <%= link_to 'Sports', sports_path, class: "btn btn-link-2" %>
+					  <%= link_to 'Youtubers', youtubers_path, class: "btn btn-link-2" %>
+					  <%= link_to 'Celebrities', celebrities_path, class: "btn btn-link-2" %>
+					  <%= link_to 'Fashion', fashion_path, class: "btn btn-link-2" %>
 					</div>
 				</div>
 				<div class="row row_top_padding">
 					<div class="col-md-6 col-md-offset-3">
 					  <%= link_to 'Music', music_path, class: "btn btn-link-2" %>
 					  <%= link_to 'Food', food_path, class: "btn btn-link-2" %>
-					  <%= link_to 'Celebrities', celebrities_path, class: "btn btn-link-2" %>
-					  <%= link_to 'Fashion', fashion_path, class: "btn btn-link-2" %>
-					  <%= link_to 'Youtubers', youtubers_path, class: "btn btn-link-2" %>
+					  <%= link_to 'Tv', tv_shows_path, class: "btn btn-link-2" %>
+					  <%= link_to 'Travel', travel_path, class: "btn btn-link-2" %>
+					  <%= link_to 'Sports', sports_path, class: "btn btn-link-2" %>
 					</div>
 				</div>
 			</div>
