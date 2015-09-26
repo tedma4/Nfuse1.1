@@ -453,6 +453,10 @@ ul li a:hover + .hidden, .hidden:hover {
    padding: 7px 5px 5px 2px; 
    line-height: 28px; 
  }
+
+ #request_more_hover {
+  cursor: pointer;
+ }
 /* #Home           =============================================== */
 .banner {
   margin-top: 0px;
