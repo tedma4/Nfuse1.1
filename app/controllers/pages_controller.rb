@@ -3258,6 +3258,16 @@ class PagesController < ApplicationController
   def travel_connector
   end
 
+  def drewbinsky
+   @compname = 'Drew Binsky'
+   @comp     = 'drewbinsky7'
+   @incomp   = 'drewbinsky'
+   @comp_url = 'https://www.youtube.com/user/blank'
+   page     = Page::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params)
+   render 'comp'
+  end
+
   def budgettravel
    @compname = 'Budget Travel'
    @comp     = 'BudgetTravel'

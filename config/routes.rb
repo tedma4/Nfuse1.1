@@ -454,6 +454,7 @@ Rails.application.routes.draw do
 
   #####TRAVEL
   get 'travel', to: 'pages#travel_connector'
+  get 'drewbinsky', to: 'pages#drewbinsky'
   get 'budgettravel', to: 'pages#budgettravel'
   get 'afar', to: 'pages#afar'
   get 'travelandleisure', to: 'pages#travelandleisure'

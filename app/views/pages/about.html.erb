@@ -50,3 +50,401 @@
 
 
 
+<% content_for :for_head do %>
+
+<!--New head -->
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nfuse - Landing Page</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+  <!-- Javascript -->
+  <%= javascript_include_tag 'jquery-1.11.1.min.js' %>
+  <%= javascript_include_tag 'bootstrap.min.js' %>
+  <%= javascript_include_tag 'wow.min.js' %>
+  <%= javascript_include_tag 'jquery.magnific-popup.min.js' %>
+  <%= javascript_include_tag 'scripts.js' %>
+<% end %>
+<style type="text/css">
+    .bs-example{
+      margin-top: 20vh;
+    }
+</style>
+        <!-- Loader -->
+<div class="Alignthisorelse">
+<div class="loader">
+  <div class="loader-img"></div>
+</div>
+<div class="top-content">
+  <div class="inner-bg">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-7 text">
+                  <h1 class="wow fadeInLeftBig"><strong> "I Nfuse therefore I am Social"</strong></h1>
+                  <div class="description wow fadeInLeftBig">
+                    <p class="intro-par"><strong>
+                      We want to bring together all the places that you have friends and make sharing as simple as it should be. 
+                    </strong></p>
+                  </div>
+                  <div class="top-big-link wow fadeInUp">
+                    <%= link_to 'Log In', signin_path, class: "btn btn-link-1" %>
+                    <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
+                  </div>
+              </div>
+              <div class="col-sm-5 form-box wow fadeInUp">
+                <div class="form-top">
+                  <div class="form-top-left">
+                    <h3><strong>Sign up right now!!!</strong></h3>
+                      <p>Nfuse is free as long as the infinite exists.</p>
+                  </div>
+                  <div class="form-top-right">
+                    <span aria-hidden="true" class="typcn typcn-pencil"></span>
+                  </div>
+                  </div>
+                  <div class="form-bottom">
+                  <%= form_for(:user, url: users_path, html: {role: "form"}) do |f| %>
+                    <div class="form-group">
+                      <%= f.text_field :first_name, :placeholder => "First Name", class: "form-fi-name form-control", id:"form-first-name" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-la-name form-control", id:"form-last-name" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :user_name, :placeholder => "User Name", class: "form-user-name form-control", id:"form-user-name" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.password_field :password, :placeholder => "Password", class: "form-password form-control", id:"form-password" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-password form-control", id:"form-password" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.password_field :intro, :placeholder => "Code", class: "form-password form-control", id:"form-password" %>
+                    </div>
+                      <button
+                      <%= f.submit "Create my account", class: "btn" %>> Sign up!
+                      </button>
+                  <% end %>
+                     <div class="form-links">
+                      <%= link_to 'Privacy', privacy_path %>
+                      <%#= link_to 'Privacy', "#", data: {toggle: "modal", target: "#modal-privacy"}, class: "launch-modal" %>
+<!--                       <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
+ -->                  </div>
+              </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+            
+        
+        <!-- Features -->
+<div class="features-container section-container">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12 features section-description wow fadeIn">
+              <h2><strong>What is Nfuse?<strong></h2>
+              <div class="divider-1 wow fadeInUp"><span></span></div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
+            <div class="features-box-icon">
+              <span aria-hidden="true" class="typcn typcn-eye-outline"></span>
+            </div>
+              <h3><strong>Easy To Use<strong></h3>
+              <p>The site is so simply you can use it while checking your other 20 sites or just use our site becuase we made it that easy.</p>
+            </div>
+            <div class="col-sm-4 features-box wow fadeInDown">
+            <div class="features-box-icon">
+              <span aria-hidden="true" class="typcn typcn-compass"></span>
+            </div>
+              <h3><strong>Discover Interest<strong></h3>
+              <p> Nfuse allows you to find all the things that you might find cool or discover new worlds that your missing out on.</p>
+            </div>
+            <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
+            <div class="features-box-icon">
+              <span aria-hidden="true" class="typcn typcn-camera-outline"></span>
+            </div>
+              <h3><strong>Share Photos<strong></h3>
+              <p>Share a photo to the world of what you like or just post as many selfies as you possibly can for the rest of your life.</p>
+            </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4 features-box wow fadeInUp">
+            <div class="features-box-icon">
+              <span aria-hidden="true" class="typcn typcn-group-outline"></span>
+            </div>
+              <h3><strong>Follow Friends<strong></h3>
+              <p>Remove the digital walls and view what everyone is posting on all social media, follow your friends or find new ones.</p>
+            </div>
+            <div class="col-sm-4 features-box features-box-gray wow fadeInDown">
+            <div class="features-box-icon">
+              <span aria-hidden="true" class="typcn typcn-infinity-outline"></span>
+            </div>
+              <h3><strong>Infinite Possibilities<strong></h3>
+              <p> Everyone has infinite possibilities and if you are kind enough to indulge us, we would like to change the world together.</p>
+            </div>
+            <div class="col-sm-4 features-box wow fadeInUp">
+            <div class="features-box-icon">
+              <span aria-hidden="true" class="typcn typcn-video-outline"></span>
+            </div>
+              <h3><strong>Stream Videos<strong></h3>
+              <p>Upload your favorite video, show it off to your friends or just stream everything your doing to the Nfuse community.</p>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 section-bottom-button wow fadeInUp">
+                <a class="btn btn-link-1 scroll-link" href="#top-content">Sign up now</a>
+        </div>
+      </div>
+  </div>
+</div>
+        
+        
+        <!-- Ready in 4 Steps-->
+<div class="how-it-works-container section-container section-container-image-bg">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12 how-it-works section-description wow fadeIn">
+              <h2><strong>Ready in 4 steps<strong></h2>
+              <div class="divider-1 wow fadeInUp"><span></span></div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-1 how-it-works-box wow fadeInUp">
+          <div class="how-it-works-box-icon">
+            <span aria-hidden="true" class="typcn typcn-pencil"></span>
+            <span aria-hidden="true" class="how-it-works-step">1</span>
+          </div>
+            <h2>Sign up</h2>
+            <p class="ready-par">Fill out the sign up form or come back later, we might be here.</p>
+        </div>
+        <div class="col-sm-4 col-sm-offset-2 how-it-works-box wow fadeInDown">
+          <div class="how-it-works-box-icon">
+            <span aria-hidden="true" class="typcn typcn-point-of-interest-outline"></span>
+            <span aria-hidden="true" class="how-it-works-step">2</span>
+          </div>
+            <h2>Nfuse Your Networks</h2>
+            <p class="ready-par">Show off your cool post from other networks or create your own.</p>
+        </div>
+       </div>
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-1 how-it-works-box wow fadeInUp">
+          <div class="how-it-works-box-icon">
+            <span aria-hidden="true" class="typcn typcn-coffee"></span>
+            <span aria-hidden="true" class="how-it-works-step">3</span>
+          </div>
+            <h2>Create Profile</h2>
+            <p class="ready-par"> Just upload your favorite picture of yourself or maybe a selfie.</p>
+          </div>
+          <div class="col-sm-4 col-sm-offset-2 how-it-works-box wow fadeInDown">
+          <div class="how-it-works-box-icon">
+            <span aria-hidden="true" class="typcn typcn-thumbs-up"></span>
+            <span aria-hidden="true" class="how-it-works-step">4</span>
+          </div>
+            <h2>Njoy</h3>
+            <p class="ready-par"> Sit back, relax, grab a beer and scroll for days or just enjoy the site.</p>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 section-bottom-button wow fadeInUp">
+          <a class="btn btn-link-1 scroll-link" href="#top-content">Sign up now</a>
+        </div>
+      </div>
+  </div>
+</div>
+        
+        <!-- About us -->
+<div class="about-us-container section-container">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12 about-us section-description wow fadeIn">
+              <h2><strong>The Nfuse Team<strong></h2>
+              <div class="divider-1 wow fadeInUp"><span></span></div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4 about-us-box wow fadeInUp">
+            <div class="about-us-photo">
+              <%= image_tag('taylorpic.png') %>
+              <div class="about-us-role">CEO</div>
+            </div>
+              <h3><strong>Taylor Owen</strong></h3>
+              <p>Co-founder and a Visioneer of life. "Be the change you wish to see in the world"</p>
+              <div class="about-us-social">
+              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+              <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+            </div>
+          </div>
+          <div class="col-sm-4 about-us-box wow fadeInDown">
+            <div class="about-us-photo">
+              <%= image_tag('tedpic.png') %>
+              <div class="about-us-role">Developer</div>
+            </div>
+              <h3><strong>Ted Martinez</strong></h3>
+              <p>Co-founder and life long learner. "If you don't give up on getting there you're never on the wrong road"</p>
+              <div class="about-us-social">
+              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+              <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+            </div>
+          </div>
+          <div class="col-sm-4 about-us-box wow fadeInUp">
+            <div class="about-us-photo">
+              <%= image_tag('orionpic.png') %>
+              <div class="about-us-role">Developer</div>
+            </div>
+              <h3><strong>Orion Engleton<strong></h3>
+              <p>Programming enthusiast "Learning to dream in color and code"</p>
+              <div class="about-us-social">
+              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4 about-us-box wow fadeInUp">
+            <div class="about-us-photo">
+              <%= image_tag('kenpic.png') %>
+              <div class="about-us-role">Developer</div>
+            </div>
+              <h3><strong>Ken Ken Price<strong></h3>
+              <p>A cool cat. "Don't hate, Procreate"</p>
+              <div class="about-us-social">
+              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+            </div>
+          </div>
+          <div class="col-sm-4 about-us-box wow fadeInDown">
+            <div class="about-us-photo">
+              <%= image_tag('3.png') %>
+              <div class="about-us-role">Developer</div>
+            </div>
+              <h3><strong>Albert Einstein<strong></h3>
+              <p>Hack 4 life. "So it goes"</p>
+              <div class="about-us-social">
+              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+            </div>
+          </div>
+          <div class="col-sm-4 about-us-box wow fadeInUp">
+            <div class="about-us-photo">
+              <%= image_tag('2.png') %>
+              <div class="about-us-role">Designer</div>
+            </div>
+              <h3><strong>Steve Jobs<strong></h3>
+              <p>Design is everything. "I live through Nfuse"</p>
+              <div class="about-us-social">
+              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+        
+        
+        <!-- Call to action -->
+<div class="call-to-action-container section-container section-container-image-bg">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12 call-to-action section-description wow fadeInLeftBig">
+              <h2><strong>Nfuse is a way of life<strong></h2>
+              <div class="divider-2 wow fadeInUp"><span></span></div>
+              <p>
+                Nfusion is our philosophy and here at Nfuse we believe that technology should serve you and through technolgy we can make life more enjoyable. We are here to serve you and make the world a better place. This is just the start! Vi Veri Universum Vivus Vici.
+              </p>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 section-bottom-button wow fadeInUp">
+                <a class="btn btn-link-1 scroll-link" href="#top-content">Sign up now</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+        <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+       <div class="col-sm-12 footer-social">
+         <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+         <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+         <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+         <a href="#"><span class="typcn typcn-social-flickr"></span></a>
+         <a href="#"><span class="typcn typcn-social-youtube"></span></a>
+         <a href="#"><span class="typcn typcn-social-vimeo"></span></a>
+         <a href="#"><span class="typcn typcn-social-pinterest"></span></a>
+       </div>
+    </div>
+      <div class="row">
+        <div class="col-sm-12 footer-copyright">
+          &copy; Nfuse LLC. 2015
+        </div>
+      </div>
+  </div>
+</footer>
+        
+        
+        <!-- MODAL: Privacy policy -->
+        <div class="modal fade" id="modal-privacy" tabindex="-1" role="dialog" aria-labelledby="modal-privacy-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title" id="modal-privacy-label">Privacy policy</h2>
+              </div>
+              <div class="modal-body">
+                <p>This Privacy Policy governs the manner in which Nfuse collects, uses, maintains and discloses information collected from users (each, a "User") of the https://Nfuse.it website ("Site"). This privacy policy applies to the Site and all products and services offered by Nfuse.</p>
+                <h3>Personal identification information</h3>
+                  <p>We may collect personal identification information from Users in a variety of ways, including, but not limited to, when Users visit our site, register on the site, fill out a form, and in connection with other activities, services, features or resources we make available on our Site. Users may be asked for, as appropriate, name, email address. We will collect personal identification information from Users only if they voluntarily submit such information to us. Users can always refuse to supply personally identification information, except that it may prevent them from engaging in certain Site related activities.</p>
+                <h3>Non-personal identification information</h3>
+                  <p>We may collect non-personal identification information about Users whenever they interact with our Site. Non-personal identification information may include the browser name, the type of computer and technical information about Users means of connection to our Site, such as the operating system and the Internet service providers utilized and other similar information.</p>
+                <h3>Web browser cookies</h3>
+                  <p>Our Site may use "cookies" to enhance User experience. User's web browser places cookies on their hard drive for record-keeping purposes and sometimes to track information about them. User may choose to set their web browser to refuse cookies, or to alert you when cookies are being sent. If they do so, note that some parts of the Site may not function properly.</p>
+                <h3>How we use collected information</h3>
+                  <p>Nfuse may collect and use Users personal information for the following purposes:</P>
+                <h3>To improve customer service</h3>
+                  <p>Information you provide helps us respond to your customer service requests and support needs more efficiently.</p>
+                <h3>To personalize user experience</h3>
+                  <p>We may use information in the aggregate to understand how our Users as a group use the services and resources provided on our Site.</p>
+                <h3>To improve our Site</h3>
+                  <p>We may use feedback you provide to improve our products and services.</p>
+                <h3>To send periodic emails</h3>
+                  <p>We may use the email address to send them information and updates pertaining to their account.</p>
+                <h3>How we protect your information</h3>
+                  <p>We adopt appropriate data collection, storage and processing practices and security measures to protect against unauthorized access, alteration, disclosure or destruction of your personal information, username, password, transaction information and data stored on our Site.</p>
+                  <p>Sensitive and private data exchange between the Site and its Users happens over a SSL secured communication channel and is encrypted and protected with digital signatures.</p>
+                <h3>Sharing your personal information</h3>
+                  <p>We do not sell, trade, or rent Users personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates and advertisers for the purposes outlined above.</p>
+                <h3>Third party websites</h3>
+                  <p>Users may find advertising or other content on our Site that link to the sites and services of our partners, suppliers, advertisers, sponsors, licensors and other third parties. We do not control the content or links that appear on these sites and are not responsible for the practices employed by websites linked to or from our Site. In addition, these sites or services, including their content and links, may be constantly changing. These sites and services may have their own privacy policies and customer service policies. Browsing and interaction on any other website, including websites which have a link to our Site, is subject to that website's own terms and policies.</p>
+                <h3>Changes to this privacy policy</h3>
+                  <p>Nfuse has the discretion to update this privacy policy at any time. When we do, we will revise the updated date at the bottom of this page. We encourage Users to frequently check this page for any changes to stay informed about how we are helping to protect the personal information we collect. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.</p>
+                <h3>Your acceptance of these terms</h3>
+                  <p>By using this Site, you signify your acceptance of this policy. If you do not agree to this policy, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.</p>
+                <h3>Contacting us</h3>
+                  <p>If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at:
+                  <br>https://nfuse.it
+                  <br>ower@cerebralhq.com or tedma4@yahoo.com
+                  <br>This document was last updated on 4/6/2015</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
