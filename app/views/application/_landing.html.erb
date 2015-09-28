@@ -40,6 +40,31 @@
     .landingbottompush {
       padding-bottom: 1%;
     }
+
+#search {
+
+}
+
+#search input[type="text"] {
+    background: url(search-dark.png) no-repeat 10px 6px #444;
+    border: 0 none;
+    font: bold 12px Arial,Helvetica,Sans-serif;
+    color: #777;
+    width: 660px;
+    height: 40px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    }
+/*
+#search input[type="text"]:focus {
+    width: 660px;
+    }*/
 </style>
 <div class="Alignthisorelse">
   <div class="loader">
@@ -56,11 +81,20 @@
                Share & Discover Social Media
               </strong></p>
             </div>
-            <div class="description wow fadeInLeftBig">
-              <%= render partial: "searches/show" %>
-            </div>
+<!--             <div class="description wow fadeInLeftBig">
+              <%#= render partial: "searches/show" %>
+            </div> -->
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-12 center">
+            <form method="get" action="/search" id="search">
+              <input name="q" type="text" size="40" placeholder="Search..." />
+            </form>
+          </div>
+        </div>
+
         <div class="top-big-link wow fadeInUp landingbottompush">
           <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
           <%= link_to 'Learn More', about_path, class: "btn btn-link-2" %>
@@ -70,55 +104,3 @@
     </div>
   </div>
 </div>
-<!--         <div class="row">
-          <div class="col-sm-2 col-sm-offset-2 features-box wow fadeInUp">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("twitterblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Twitter<strong></h3>
-            </div>
-            <div class="col-sm-2 features-box wow fadeInDown">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("instagramblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Instagram<strong></h3>
-            </div>
-            <div class="col-sm-2 features-box wow fadeInUp">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("tumblrblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Tumblr<strong></h3>
-            </div>
-            <div class="col-sm-2 features-box wow fadeInDown">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("youtubeblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Youtube<strong></h3>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-2 col-sm-offset-2 features-box wow fadeInUp">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("gplusblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Google+<strong></h3>
-            </div>
-            <div class="col-sm-2 features-box wow fadeInDown">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("vimeoblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Vimeo<strong></h3>
-            </div>
-            <div class="col-sm-2 features-box wow fadeInUp">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("flickrblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Flickr<strong></h3>
-            </div>
-            <div class="col-sm-2 features-box wow fadeInUp">
-            <div class="features-box-icon">
-              <a href="#"><%#= image_tag("facebookblue.fw.png", size: "60x60") %></a>
-            </div>
-              <h3><strong>Facebook<strong></h3>
-            </div>
-        </div> -->
