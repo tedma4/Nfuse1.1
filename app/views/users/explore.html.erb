@@ -1,6 +1,6 @@
 <style>
 .centering_search {
-  margin-top: 12%;
+  margin-top: 10%;
 }
 .row_top_padding {
 	padding-top: 10px
@@ -18,9 +18,9 @@
 
 		<div class="row">
 			<div class="col-sm-12 center">
-				  <%= form_tag search_path, method: 'get', class: "content-search-bar" do %>
-				    	<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Users with @user. Hashtags with #hashtag" %>
-				  <% end %>
+				<%= form_tag search_path, method: 'get', class: "content-search-bar" do %>
+				  <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Users with @user. Hashtags with #hashtag" %>
+				<% end %>
 			</div>
 		</div>
 

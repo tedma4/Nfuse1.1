@@ -1,16 +1,17 @@
 <!-- *Start* Views/pages/about.html -->
 <style type="text/css">
-	.about-padding {
+/*	.about-padding {
 		margin-top: 8vh;
 	}
 
   h3 {
     color: #fff;
-  }
+  }*/
+
 </style>
 
 <% provide(:title, 'About Us') %>
-
+<!-- 
 <div class="Alignthisorelse">
   <div class="container about-padding">
     <div class="row">
@@ -21,7 +22,7 @@
               <p>Don't mind this page. Ongoing story ; )</p>
           </div>
           <div class="form-top-right">
-            <a href="#"><%= image_tag("aboutpagegray.fw.png", size: "65x65") %></a>
+            <a href="#"><%#= image_tag("aboutpagegray.fw.png", size: "65x65") %></a>
           </div>
         </div>
         <div class="form-bottom">
@@ -32,7 +33,7 @@
 							<p>Nfuse is a young startup that is pioneering new types of social aggregation. What we are doing is completely different than any of today’s social platforms. The market Nfuse will serve is vast and the need is significant, so we have an extremely exciting opportunity ahead of us! We are still in stealth mode, so contact us to find out more, and we are confident you will see that what we are doing is visionary and exciting. We are building up our team now, and we are looking to hire the absolute best. </p>		
 
 							<h4>About the Founders</h4>
-							<p>Ted Martinez, Taylor Owen, and Matt Hamada founded Nfuse, a software company specializing in application and network aggregation. With Orion Engleton's help, Nfuse became a true “garage” startup, entirely created with zero funding and pure will power. From their garage, the founders took a simple idea of changing the way we use social media to a growing company with endless potential. If you would like to learn more about the founders or Nfuse, please send a message on the <%= link_to "contact page", contacts_path %>.
+							<p>Ted Martinez, Taylor Owen, and Matt Hamada founded Nfuse, a software company specializing in application and network aggregation. With Orion Engleton's help, Nfuse became a true “garage” startup, entirely created with zero funding and pure will power. From their garage, the founders took a simple idea of changing the way we use social media to a growing company with endless potential. If you would like to learn more about the founders or Nfuse, please send a message on the <%#= link_to "contact page", contacts_path %>.
 							</p>
 						</div>
 					</form>
@@ -40,7 +41,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- *End* Views/pages/about.html -->
 
 
@@ -67,6 +68,7 @@
   <%= javascript_include_tag 'jquery.magnific-popup.min.js' %>
   <%= javascript_include_tag 'scripts.js' %>
 <% end %>
+
 <style type="text/css">
     .bs-example{
       margin-top: 20vh;
@@ -79,66 +81,22 @@
 </div>
 <div class="top-content">
   <div class="inner-bg">
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-7 text">
-                  <h1 class="wow fadeInLeftBig"><strong> "I Nfuse therefore I am Social"</strong></h1>
-                  <div class="description wow fadeInLeftBig">
-                    <p class="intro-par"><strong>
-                      We want to bring together all the places that you have friends and make sharing as simple as it should be. 
-                    </strong></p>
-                  </div>
-                  <div class="top-big-link wow fadeInUp">
-                    <%= link_to 'Log In', signin_path, class: "btn btn-link-1" %>
-                    <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
-                  </div>
-              </div>
-              <div class="col-sm-5 form-box wow fadeInUp">
-                <div class="form-top">
-                  <div class="form-top-left">
-                    <h3><strong>Sign up right now!!!</strong></h3>
-                      <p>Nfuse is free as long as the infinite exists.</p>
-                  </div>
-                  <div class="form-top-right">
-                    <span aria-hidden="true" class="typcn typcn-pencil"></span>
-                  </div>
-                  </div>
-                  <div class="form-bottom">
-                  <%= form_for(:user, url: users_path, html: {role: "form"}) do |f| %>
-                    <div class="form-group">
-                      <%= f.text_field :first_name, :placeholder => "First Name", class: "form-fi-name form-control", id:"form-first-name" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-la-name form-control", id:"form-last-name" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.text_field :user_name, :placeholder => "User Name", class: "form-user-name form-control", id:"form-user-name" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.text_field :email, :placeholder => "Email", class: "form-em form-control", id:"form-email" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.password_field :password, :placeholder => "Password", class: "form-password form-control", id:"form-password" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-password form-control", id:"form-password" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.password_field :intro, :placeholder => "Code", class: "form-password form-control", id:"form-password" %>
-                    </div>
-                      <button
-                      <%= f.submit "Create my account", class: "btn" %>> Sign up!
-                      </button>
-                  <% end %>
-                     <div class="form-links">
-                      <%= link_to 'Privacy', privacy_path %>
-                      <%#= link_to 'Privacy', "#", data: {toggle: "modal", target: "#modal-privacy"}, class: "launch-modal" %>
-<!--                       <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a>
- -->                  </div>
-              </div>
-              </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7 text">
+          <h1 class="wow fadeInLeftBig"><strong> "I Nfuse therefore I am Social"</strong></h1>
+          <div class="description wow fadeInLeftBig">
+            <p class="intro-par"><strong>
+              We want to bring together all the places that you have friends and make sharing as simple as it should be. 
+            </strong></p>
           </div>
+          <div class="top-big-link wow fadeInUp">
+            <%= link_to 'Log In', signin_path, class: "btn btn-link-1" %>
+            <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
@@ -264,90 +222,52 @@
         <!-- About us -->
 <div class="about-us-container section-container">
   <div class="container">
-      <div class="row">
-          <div class="col-sm-12 about-us section-description wow fadeIn">
-              <h2><strong>The Nfuse Team<strong></h2>
-              <div class="divider-1 wow fadeInUp"><span></span></div>
-          </div>
+    <div class="row">
+      <div class="col-sm-12 about-us section-description wow fadeIn">
+        <h2><strong>The Nfuse Team<strong></h2>
+        <div class="divider-1 wow fadeInUp"><span></span></div>
       </div>
-      <div class="row">
-          <div class="col-sm-4 about-us-box wow fadeInUp">
-            <div class="about-us-photo">
-              <%= image_tag('taylorpic.png') %>
-              <div class="about-us-role">CEO</div>
-            </div>
-              <h3><strong>Taylor Owen</strong></h3>
-              <p>Co-founder and a Visioneer of life. "Be the change you wish to see in the world"</p>
-              <div class="about-us-social">
-              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-              <a href="#"><span class="typcn typcn-social-instagram"></span></a>
-            </div>
-          </div>
-          <div class="col-sm-4 about-us-box wow fadeInDown">
-            <div class="about-us-photo">
-              <%= image_tag('tedpic.png') %>
-              <div class="about-us-role">Developer</div>
-            </div>
-              <h3><strong>Ted Martinez</strong></h3>
-              <p>Co-founder and life long learner. "If you don't give up on getting there you're never on the wrong road"</p>
-              <div class="about-us-social">
-              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-              <a href="#"><span class="typcn typcn-social-instagram"></span></a>
-            </div>
-          </div>
-          <div class="col-sm-4 about-us-box wow fadeInUp">
-            <div class="about-us-photo">
-              <%= image_tag('orionpic.png') %>
-              <div class="about-us-role">Developer</div>
-            </div>
-              <h3><strong>Orion Engleton<strong></h3>
-              <p>Programming enthusiast "Learning to dream in color and code"</p>
-              <div class="about-us-social">
-              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-            </div>
-          </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 about-us-box wow fadeInUp">
+        <div class="about-us-photo">
+          <%= image_tag('taylorpic.png') %>
+          <div class="about-us-role">CEO</div>
+        </div>
+          <h3><strong>Taylor Owen</strong></h3>
+          <p>Co-founder and a Visioneer of life. "Be the change you wish to see in the world"</p>
+          <div class="about-us-social">
+          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+          <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+        </div>
       </div>
-      <div class="row">
-          <div class="col-sm-4 about-us-box wow fadeInUp">
-            <div class="about-us-photo">
-              <%= image_tag('kenpic.png') %>
-              <div class="about-us-role">Developer</div>
-            </div>
-              <h3><strong>Ken Ken Price<strong></h3>
-              <p>A cool cat. "Don't hate, Procreate"</p>
-              <div class="about-us-social">
-              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-            </div>
-          </div>
-          <div class="col-sm-4 about-us-box wow fadeInDown">
-            <div class="about-us-photo">
-              <%= image_tag('3.png') %>
-              <div class="about-us-role">Developer</div>
-            </div>
-              <h3><strong>Albert Einstein<strong></h3>
-              <p>Hack 4 life. "So it goes"</p>
-              <div class="about-us-social">
-              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-            </div>
-          </div>
-          <div class="col-sm-4 about-us-box wow fadeInUp">
-            <div class="about-us-photo">
-              <%= image_tag('2.png') %>
-              <div class="about-us-role">Designer</div>
-            </div>
-              <h3><strong>Steve Jobs<strong></h3>
-              <p>Design is everything. "I live through Nfuse"</p>
-              <div class="about-us-social">
-              <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-              <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-            </div>
-          </div>
+      <div class="col-sm-4 about-us-box wow fadeInDown">
+        <div class="about-us-photo">
+          <%= image_tag('tedpic.png') %>
+          <div class="about-us-role">Developer</div>
+        </div>
+          <h3><strong>Ted Martinez</strong></h3>
+          <p>Co-founder and life long learner. "If you don't give up on getting there you're never on the wrong road"</p>
+          <div class="about-us-social">
+          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+          <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+        </div>
       </div>
+      <div class="col-sm-4 about-us-box wow fadeInUp">
+        <div class="about-us-photo">
+          <%= image_tag('orionpic.png') %>
+          <div class="about-us-role">Developer</div>
+        </div>
+          <h3><strong>Orion Engleton<strong></h3>
+          <p>Programming enthusiast "Learning to dream in color and code"</p>
+          <div class="about-us-social">
+          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
