@@ -88,7 +88,7 @@
           </div>
           <div class="top-big-link wow fadeInUp">
             <%= link_to 'Log In', signin_path, class: "btn btn-link-1" %>
-            <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
+            <%= link_to 'Sign up', signup_path, class: "btn btn-link-2" %>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
+      <div class="col-sm-4 features-box wow fadeInUp">
         <div class="features-box-icon">
           <%= image_tag('easytouseblue.fw.png', size: "75") %>
         </div>
@@ -119,7 +119,7 @@
           <h3><strong>Discover Interest<strong></h3>
           <p> Nfuse allows you to find all the things that you might find cool or discover new worlds that your missing out on.</p>
       </div>
-      <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
+      <div class="col-sm-4 features-box wow fadeInUp">
         <div class="features-box-icon">
           <%= image_tag('easytouseblue.fw.png', size: "75") %>
         </div>
@@ -135,7 +135,7 @@
         <h3><strong>Follow Friends<strong></h3>
         <p>Remove the digital walls and view what everyone is posting on all social media, follow your friends or find new ones.</p>
       </div>
-      <div class="col-sm-4 features-box features-box-gray wow fadeInDown">
+      <div class="col-sm-4 features-box wow fadeInDown">
         <div class="features-box-icon">
           <%= image_tag('easytouseblue.fw.png', size: "75") %>
         </div>
@@ -229,11 +229,6 @@
         </div>
           <h3><strong>Taylor Owen</strong></h3>
           <p>Co-founder and a Visioneer of life. "Be the change you wish to see in the world"</p>
-          <div class="about-us-social">
-          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-          <a href="#"><span class="typcn typcn-social-instagram"></span></a>
-        </div>
       </div>
       <div class="col-sm-4 about-us-box wow fadeInDown">
         <div class="about-us-photo">
@@ -242,11 +237,6 @@
         </div>
           <h3><strong>Ted Martinez</strong></h3>
           <p>Co-founder and life long learner. "If you don't give up on getting there you're never on the wrong road"</p>
-          <div class="about-us-social">
-          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-          <a href="#"><span class="typcn typcn-social-instagram"></span></a>
-        </div>
       </div>
       <div class="col-sm-4 about-us-box wow fadeInUp">
         <div class="about-us-photo">
@@ -255,10 +245,6 @@
         </div>
           <h3><strong>Albert Einstein<strong></h3>
           <p>Programming enthusiast "Learning to dream in color and code"</p>
-          <div class="about-us-social">
-          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-        </div>
       </div>
     </div>
   </div>
@@ -278,7 +264,8 @@
     </div>
     <div class="row">
       <div class="col-sm-12 section-bottom-button wow fadeInUp">
-        <a class="btn btn-link-1 scroll-link" href="#top-content">Sign up now</a>
+        <%= link_to 'Contact Us', contacts_path, class: "btn btn-link-1" %>
+        <%= link_to 'Privacy', privacy_path, class: "btn btn-link-2" %>
       </div>
     </div>
   </div>
@@ -286,17 +273,6 @@
         <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12 footer-social">
-          <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-          <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-          <a href="#"><span class="typcn typcn-social-instagram"></span></a>
-          <a href="#"><span class="typcn typcn-social-flickr"></span></a>
-          <a href="#"><span class="typcn typcn-social-youtube"></span></a>
-          <a href="#"><span class="typcn typcn-social-vimeo"></span></a>
-          <a href="#"><span class="typcn typcn-social-pinterest"></span></a>
-        </div>
-      </div>
       <div class="row">
         <div class="col-sm-12 footer-copyright">
           &copy; Nfuse LLC. 2015
