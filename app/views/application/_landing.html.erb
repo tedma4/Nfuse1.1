@@ -46,17 +46,16 @@
 }
 
 #search input[type="text"] {
-    background: url(search-dark.png) no-repeat 10px 6px #444;
+    background-color: rgba(19, 19, 19, 0.11);
     border: 0 none;
-    font: bold 12px Arial,Helvetica,Sans-serif;
+    font: bold 22px Arial,Helvetica,Sans-serif;
     color: #777;
-    width: 660px;
+    width: 620px;
     height: 40px;
     padding: 6px 15px 6px 35px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
@@ -81,17 +80,13 @@
                Share & Discover Social Media
               </strong></p>
             </div>
-<!--             <div class="description wow fadeInLeftBig">
-              <%#= render partial: "searches/show" %>
-            </div> -->
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12 center">
-            <form method="get" action="/search" id="search">
-              <input name="q" type="text" size="40" placeholder="Search..." />
-            </form>
+            <div class="description wow fadeInLeftBig">
+              <div class="col-sm-12 center" >
+                <%= form_tag search_path, method: 'get', id: "search" do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Search #Hashtags @Users and Popular Media" %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
 

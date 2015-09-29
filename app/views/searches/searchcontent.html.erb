@@ -2,6 +2,10 @@
 .no_timeline_padding {
 	margin-top: 75px
 }
+
+.yes_timeline_padding {
+	margin: 15px;
+}
 </style>
 
 <% if signed_in? %>
@@ -10,7 +14,7 @@
 </div>
 <% end %>
 <% if @timeline.present? %>
-	<div id="masonJar" class="clearfix masonJar">
+	<div id="masonJar" class="clearfix masonJar yes_timeline_padding">
 	  <% @timeline.each do |post| %>
 			<%= render partial: "searches/post", locals: {post: post} %>
 	  <% end %>

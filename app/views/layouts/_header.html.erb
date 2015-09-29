@@ -32,7 +32,7 @@
     font-weight: 500;
   }
 
-/*.fileUpload {
+.fileUpload {
     position: relative;
     overflow: hidden;
     margin: 10px;
@@ -48,7 +48,27 @@
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
-}*/
+}
+
+#search_header {
+
+}
+
+#search_header input[type="text"] {
+    background-color: rgba(19, 19, 19, 0.11);
+    border: 0 none;
+    font: bold 22px Arial,Helvetica,Sans-serif;
+    color: #777;
+    width: 220px;
+    height: 40px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    }
 </style>
 <div class="Thing"></div>
 <div class="headerBack">
@@ -128,11 +148,17 @@
       <%= link_to 'Log In', signin_path%>
     </div>
   <% else %>
-    <div>
-      <%= form_tag search_path, method: 'get', class: "navbar-form navbar-right content-search-bar" do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search Users with @user. Hashtags with #hashtag" %>
+     <div>
+      <%= form_tag search_path, method: 'get', class: "navbar-form navbar-right", id:"search_header" do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
       <% end %>
     </div>
+<!-- 
+    <div>
+      <form method="get" action="/search" class="navbar-form navbar-right" id="search_header">
+        <input name="q" type="text" placeholder="Search..." />
+      </form>
+    </div> -->
   <% end %>
 <% end %>
 
