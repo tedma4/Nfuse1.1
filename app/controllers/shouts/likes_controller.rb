@@ -10,9 +10,10 @@ class Shouts::LikesController < ApplicationController
     end
     @shout = {
         id: params[:id],
-        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).count
+        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).count,
+        owner_id: params[:owner_id]
     }
-    current_user.create_activity(key: 'shout.like', owner: current_user, recipient: (ActsAsVotable::Vote.find(params[:owner_id])))
+    current_user.create_activity(key: 'shout.like', owner: current_user, recipient: User.find_by(@shout[owner_id: params[:owner_id]]))
     respond_to do |format|
       #if @shout.save
         #@shout.create_activity(:like, owner: current_user, recipient: ActsAsVotable::Vote.find_by(owner_id: params[:owner_id]))

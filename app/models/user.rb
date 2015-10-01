@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   include UserOptions
   include Authentication
-  include PublicActivity::Common
+  include PublicActivity::Model
+  tracked except: :destroy, owner: ->(controller, model) { controller && controller.current_user }, recipient: ->(controller, model) {model && model.user}
+
   # 
   # Associations
   # 

@@ -5,6 +5,27 @@
 .row_top_padding {
 	padding-top: 10px
 }
+
+#search_explore {
+
+}
+
+#search_explore input[type="text"] {
+    background-color: rgba(19, 19, 19, 0.11);
+    border: 0 none;
+    font: bold 22px Arial,Helvetica,Sans-serif;
+    margin-top: 2px;
+    color: #21efb8;
+    width: 620px;
+    height: 40px;
+    padding: 6px 15px 6px 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    }
 </style>
 <div calss="container">
 	<div class="centering_search">
@@ -17,11 +38,11 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-12 center">
-				<%= form_tag search_path, method: 'get', class: "content-search-bar" do %>
-				  <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Users with @user. Hashtags with #hashtag" %>
-				<% end %>
-			</div>
+      <div class="col-sm-12 center" >
+        <%= form_tag search_path, method: 'get', id: "search_explore" do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search #Hashtags @Users and Popular Media" %>
+        <% end %>
+      </div>
 		</div>
 
 		<div class="row">
