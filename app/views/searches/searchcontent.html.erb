@@ -18,6 +18,11 @@
 	  <% @timeline.each do |post| %>
 			<%= render partial: "searches/post", locals: {post: post} %>
 	  <% end %>
+		<% if !signed_in? %>
+			<div class="item">
+				<%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+			</div>
+		<% end %>
 	</div>
 <% else %>
   <div class="center no_timeline_padding">
@@ -25,12 +30,4 @@
     <p> Try searching again </p>
     <%= link_to image_tag("sadface.fw.png", size:"100x100"), root_path %>
   </div>
-<% end %>
-
-<% if !signed_in? %>
-	<div class="row">
-		<div class="col-sm-12 center">
-		  <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
-		</div>
-	</div>
 <% end %>
