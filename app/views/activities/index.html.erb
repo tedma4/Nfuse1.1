@@ -6,10 +6,12 @@
 <div class="row">
 	<div class="center">
 		<% @activities.each do |a| %>
-			<div class="individual_post not_bottom_margin">  
-				<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
-			  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
-				<%= render_activity a %>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="individual_post not_bottom_margin">
+					<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
+				  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
+					<%= render_activity a %>
+				</div>
 			</div>
 		<%end%>
 	</div>
