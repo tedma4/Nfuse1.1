@@ -26,3 +26,9 @@
     <%= link_to image_tag("sadface.fw.png", size:"100x100"), root_path %>
   </div>
 <% end %>
+
+<% if !signed_in? %>
+	<div class="row">
+	  <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+	</div>
+<% end %>
