@@ -29,6 +29,8 @@
 
 <% if !signed_in? %>
 	<div class="row">
-	  <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+		<div class="col-sm-12 center">
+		  <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+		</div>
 	</div>
 <% end %>
