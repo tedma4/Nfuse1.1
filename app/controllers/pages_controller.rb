@@ -38,7 +38,6 @@ class PagesController < ApplicationController
   def qanda; end
   def terms; end
   def privacy; end
-  def notifications; end
 
   def wired
    @compname = 'Wired'

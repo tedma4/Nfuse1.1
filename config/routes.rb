@@ -79,7 +79,6 @@ Rails.application.routes.draw do
   
   # Static pages
   get '/help',              to: 'pages#help'
-  get '/notifications',     to: 'pages#notifications'
   get '/about',             to: 'pages#about'
   get '/feedback',          to: 'pages#feedback'
   get '/terms',             to: 'pages#terms'

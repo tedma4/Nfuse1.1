@@ -98,6 +98,7 @@ module Search
         begin
           search = @search.gsub(/[^0-9A-Za-z]/, '')# general user search without spaces
           client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
+
           if client['items'][0]['snippet']['channelTitle'].present?
             usid = client['items'][0]['snippet']['channelTitle']
             channel = Yt::Channel.new url: "https://www.youtube.com/user/#{usid}"#can't search youtube channels with spaces in the search params 
