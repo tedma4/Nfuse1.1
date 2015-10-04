@@ -2,16 +2,16 @@
 
   <div class="post_content">
     <%# if !shout.url.blank? %>
-      <p> <%= shout.url_html %></p>
+      <p> <%#= shout.url_html %></p>
       <div class="url_caption">
-        <%= shout.content %>
+        <%#= shout.content %>
       </div>
     <%# elsif shout.is_pic? %>
       <div class="timeline-user-box image_post">
-        <%= image_tag shout.pic_url %>
+        <%#= image_tag shout.pic_url %>
       </div>
       <div class="caption">
-          <%= shout.content %>
+          <%#= shout.content %>
       </div>
     <%# elsif shout.is_video? %>
       <div class="timeline-user-box">
@@ -20,7 +20,7 @@
           type="video/mp4" 
           width="100%" 
           height="225" 
-          src="<%= shout.video_url %>" 
+          src="<%#= shout.video_url %>" 
           frameborder="0"
           allowfullscreen
           controls>
@@ -28,7 +28,7 @@
         <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
       </div>
       <div class="caption">
-          <%= shout.content %>
+          <%#= shout.content %>
       </div>
     <%# elsif shout.is_full_video? %>
       <div class="timeline-user-box">
@@ -37,7 +37,7 @@
           type="video/flv" 
           width="100%" 
           height="225" 
-          src="<%= shout.full_video_url %>" 
+          src="<%#= shout.full_video_url %>" 
           frameborder="0"
           allowfullscreen
           controls>
@@ -45,7 +45,7 @@
         <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
       </div>
       <div class="caption">
-          <%= shout.content %>
+          <%#= shout.content %>
       </div>
     <%# end %>
   </div><br> -->
