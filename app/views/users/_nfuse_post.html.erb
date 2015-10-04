@@ -1,19 +1,19 @@
 <!-- 	
 
   <div class="post_content">
-    <% if !shout.url.blank? %>
+    <%# if !shout.url.blank? %>
       <p> <%= shout.url_html %></p>
       <div class="url_caption">
         <%= shout.content %>
       </div>
-    <% elsif shout.is_pic? %>
+    <%# elsif shout.is_pic? %>
       <div class="timeline-user-box image_post">
         <%= image_tag shout.pic_url %>
       </div>
       <div class="caption">
           <%= shout.content %>
       </div>
-    <% elsif shout.is_video? %>
+    <%# elsif shout.is_video? %>
       <div class="timeline-user-box">
         <video 
           id="ytplayer" 
@@ -30,7 +30,7 @@
       <div class="caption">
           <%= shout.content %>
       </div>
-    <% elsif shout.is_full_video? %>
+    <%# elsif shout.is_full_video? %>
       <div class="timeline-user-box">
         <video 
           id="ytplayer" 
@@ -47,5 +47,5 @@
       <div class="caption">
           <%= shout.content %>
       </div>
-    <% end %>
+    <%# end %>
   </div><br> -->
