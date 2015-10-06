@@ -72,7 +72,9 @@ module Vimeo
     end
 
     def get_vimeo_post(client, post_id)
-      client.videos(post_id)
+      configure_vimeo(user_tokens)
+      user = Vmo::Request.get_user(user_tokens.access_token)
+      user.videos(post_id)
     end
 
     def store_last_post_id(timeline)

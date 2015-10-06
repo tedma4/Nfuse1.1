@@ -47,7 +47,7 @@ module Tumblr
     end
 
     def get_tumblr_post(client, post_id)
-      client.posts(post_id)
+      client.posts("#{my_username}.tumblr.com", post_id)
     end
 
     def store_page(page)
