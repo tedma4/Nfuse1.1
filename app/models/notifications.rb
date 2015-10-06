@@ -2,8 +2,18 @@ class Notifications
   include ApplicationHelper
   attr_accessor :params
 
-  def initialize(user=current_user)
+  def self.from(post_id, provider)
+    new(post_id, provider)
+  end
+
+  def initialize(user=current_user, post_id, provider)
     @user = user
+    @post_id = post_id
+    @provider = provider
+  end
+
+  def provider
+    @provider
   end
 
   def posts

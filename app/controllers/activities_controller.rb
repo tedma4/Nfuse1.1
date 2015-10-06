@@ -12,11 +12,11 @@ class ActivitiesController < ApplicationController
 	def index
 	  @activities 	= PublicActivity::Activity.order(created_at: :desc).where(recipient_id: current_user.id,
 	                                                                         recipient_type: 'User')
-    notification  = Notifications.new(current_user)
+    notification  = Notifications.new(current_user, @post_id, @provider)
 	  @providers    = Providers.for(current_user)
     @post_id      = PublicActivity::Activity.last.parameters[:id]
+		@provider 		= PublicActivity::Activity.last.parameters[:provider]
 	  @timeline     = notification.construct(params)
-    @provider 		= PublicActivity::Activity.find(parameters[:provider])
 	end
 end
 
