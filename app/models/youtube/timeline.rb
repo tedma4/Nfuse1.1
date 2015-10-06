@@ -23,6 +23,10 @@ module Youtube
       Yt::Video.new id: video_id, auth: client
     end
 
+    def get_post(post_id)
+      get_youtube_post(client, post_id)
+    end
+
     private
 
     def client
@@ -45,6 +49,10 @@ module Youtube
         # youtube_timeline.delete_at(0)
         # youtube_timeline
       end
+    end
+
+    def get_youtube_post(client, post_id)
+      client.videos(post_id)
     end
 
     def store_page(page)

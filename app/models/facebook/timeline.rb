@@ -14,6 +14,9 @@ module Facebook
       timeline
     end
 
+    def get_post(post_id)
+      get_fb_post(client, post_id)
+    end
     private
 
     def client
@@ -48,6 +51,10 @@ module Facebook
       else
         facebook_timeline = client.get_connections("me", "posts", page: page, :count => 50)
       end
+    end
+
+    def get_fb_post(client, post_id)
+      client.get_object(post_id)
     end
 
     def store_last_post_id(page)

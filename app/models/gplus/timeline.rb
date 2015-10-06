@@ -19,6 +19,10 @@ module Gplus
       activites = person.list_activities.items
     end
 
+    def get_post(post_id)
+      get_gplus_post(client, post_id)
+    end
+
     private
     # Gem documents https://github.com/seejohnrun/google_plus
     # Google doc for gplus that says to use list.Activities for user posts https://developers.google.com/+/domains/posts/reading
@@ -44,6 +48,10 @@ module Gplus
         # gplus_timeline.delete_at(0)
         # gplus_timeline
       end
+    end
+
+    def get_glus_post(client, post_id)
+      client.posts(post_id)
     end
 
     def store_page(page)

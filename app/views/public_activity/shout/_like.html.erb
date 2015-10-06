@@ -1,26 +1,25 @@
 <% if a.trackable %>
   <span>liked your post</span>
-    <% @timeline.each do |post| %>
-        <% case post.provider %>
-        <% when "gplus" %>
-            <% if post.type != 'hiddenType' %>
-                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
-            <% end %>
-        <% when "tumblr" %>
-            <% unless post.type == 'chat' || post.type == 'audio' %>
-                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
-            <% end %>
-        <% when "facebook" %>
-            <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
-            <% end %>
-        <% when "twitter" %>
-            <% unless post.retweeted == true %>
-                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
-            <% end %>
-        <% else %>
-            <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
-        <% end %>
-
+  <% @timeline.each do |post| %>
+    <% case post.provider %>
+    <% when "gplus" %>
+      <% if post.type != 'hiddenType' %>
+        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% end %>
+    <% when "tumblr" %>
+      <% unless post.type == 'chat' || post.type == 'audio' %>
+        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% end %>
+    <% when "facebook" %>
+      <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% end %>
+    <% when "twitter" %>
+      <% unless post.retweeted == true %>
+        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% end %>
+    <% else %>
+        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
     <% end %>
+  <% end %>
 <% end %>

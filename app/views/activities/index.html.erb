@@ -6,13 +6,47 @@
 <div class="row">
 	<div class="center">
 		<% @activities.each do |a| %>
-			<div class="col-md-6 col-md-offset-3">
-				<div class="individual_post not_bottom_margin">
-					<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
-				  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
-					<%= render_activity a, locals: {timeline: @timeline} %>
+			<% case a.attributes['trackable_type'] %>
+			<% when 'Relationship' %>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="individual_post not_bottom_margin">
+						<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
+					  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
+						<%= render_activity a %>
+					</div>
 				</div>
-			</div>
+			<% when 'User' %>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="individual_post not_bottom_margin">
+						<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
+					  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
+						<%= render_activity a, locals: {timeline: @timeline} %>
+					</div>
+				</div>
+			<% end %>
 		<%end%>
 	</div>
 </div>
+<!--a.attributes["trackable_type"] Relationship, User-->
+<!--a.attributes['parameters'] gives back the id and provider
+needed for the individually liked post-->
+<!--How do you associate the post to the saved parameters-->
+<!--twitter-->
+<!--@tweet.attrs['id']-->
+<!--facebook-->
+<!--@post['id']-->
+<!--g+-->
+<!--@post.attributes['id']-->
+<!--nfuse-->
+<!--@shout.attributes['id']-->
+<!--tumblr-->
+<!--@post['id']-->
+<!--youtube-->
+<!--@post.id-->
+<!--instagram-->
+<!--@post['id']-->
+<!--flickr-->
+<!--@post["id"]-->
+<!--vimeo-->
+<!--@post.id-->
+

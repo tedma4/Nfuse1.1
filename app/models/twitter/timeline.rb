@@ -4,8 +4,8 @@ module Twitter
     attr_reader :authed, :last_post_id
 
     def initialize(user=current_user)
-      @user = user
-      @authed = true
+      @user    = user
+      @authed  = true
     end
 
     def posts(max_id = nil)
@@ -14,21 +14,9 @@ module Twitter
       timeline
     end
 
-    def get_tweet(tweet_id)
-      client.status(tweet_id)
+    def get_tweet(post_id)
+      get_twitter_post(client, post_id)
     end
-
-    #def create_tweet(tweet)
-    #  client.update(tweet)
-    #end
-#
-    #def favorite_tweet(tweet_id)
-    #  client.favorite(tweet_id)
-    #end
-#
-    #def retweet_tweet(tweet_id)
-    #  client.retweet(tweet_id)
-    #end
 
     private
 
@@ -52,6 +40,10 @@ module Twitter
         twitter_timeline.delete_at(0)
         twitter_timeline
       end
+    end
+
+    def get_twitter_post(client, post_id)
+      client.status(post_id)
     end
 
     def store_last_post_id(timeline)

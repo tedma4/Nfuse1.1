@@ -36,6 +36,10 @@ module Flickr
       @last_post_id
     end
 
+    def get_post(post_id)
+      get_flickr_post(client, post_id)
+    end
+
     private
 
     def client
@@ -58,6 +62,10 @@ module Flickr
       #   flickr_timeline.delete_at(0)
       #   flickr_timeline
       # end
+    end
+
+    def get_flickr_post(client, post_id)
+      client.posts(post_id)
     end
 
     def store_last_post_id(timeline)
