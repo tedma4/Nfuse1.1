@@ -1,23 +1,23 @@
 <% if a.trackable %>
   <span>liked your post</span>
-    <% case @notification.provider %>
+    <% case @provider %>
     <% when "gplus" %>
       <% if post.type != 'hiddenType' %>
-        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
       <% end %>
     <% when "tumblr" %>
-      <% unless post.type == 'chat' || post.type == 'audio' %>
-        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% unless a.type == 'chat' || a.type == 'audio' %>
+        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
       <% end %>
     <% when "facebook" %>
-      <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% unless a.story.present? && ((a.story.include? 'profile picture') || (a.story.include? 'cover photo')) %>
+        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
       <% end %>
     <% when "twitter" %>
-      <% unless post.retweeted == true %>
-        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+      <% unless a.retweeted == true %>
+        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
       <% end %>
     <% else %>
-        <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
     <% end %>
   <% end %>

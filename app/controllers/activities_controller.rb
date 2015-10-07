@@ -14,14 +14,14 @@ class ActivitiesController < ApplicationController
 	                                                                         recipient_type: 'User')
     @post_id      = PublicActivity::Activity.last.parameters[:id]
 		@provider 		= PublicActivity::Activity.last.parameters[:provider]
-    @notification = post(@post_id, @provider)
+    @notification = post(@post_id)
 	  @providers    = Providers.for(current_user)
 	end
 end
 
 private
 
-def post(post_id, provider)
+def post(post_id)
   case(@provider)
     when 'twitter'
       token = current_user.tokens.find_by(provider: 'twitter').access_token
@@ -29,7 +29,7 @@ def post(post_id, provider)
       client.status(post_id).map { |post| Twitter::Post.from(post, @user) }
     when 'facebook'
       access_token = current_user.tokens.find_by(provider: 'facebook').access_token
-      configure_facebook(access_token)
+      client = configure_facebook(access_token)
       client.get_object(post_id).map { |post| Facebook::Post.from(post, @user) }
     when 'youtube'
       token = current_user.tokens.find_by(provider: 'google_oauth2').access_token
