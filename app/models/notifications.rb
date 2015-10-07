@@ -56,8 +56,11 @@ class Notifications
   end
 
   def twitter_posts
+    if @provider = 'twitter'
     twitter_notification = Twitter::Timeline.new(@user)
     twitter_notification.get_tweet(@post_id).map { |post| Twitter::Post.from(post, @user) }
+
+    end
   end
 
   def tumblr_posts

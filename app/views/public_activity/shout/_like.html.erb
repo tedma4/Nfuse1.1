@@ -1,7 +1,6 @@
 <% if a.trackable %>
   <span>liked your post</span>
-  <% @timeline.each do |post| %>
-    <% case post.provider %>
+    <% case @notification.provider %>
     <% when "gplus" %>
       <% if post.type != 'hiddenType' %>
         <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
@@ -22,4 +21,3 @@
         <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
     <% end %>
   <% end %>
-<% end %>
