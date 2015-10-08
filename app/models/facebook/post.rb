@@ -7,7 +7,7 @@ module Facebook
   
   include Api
 
-    def self.from(post, user)
+    def self.from(post, user=current_user)
       new(post, user)
     end
 

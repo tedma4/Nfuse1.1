@@ -1,23 +1,183 @@
 <% if a.trackable %>
   <span>liked your post</span>
+    <% if @post_entry.present? %>
     <% case @provider %>
     <% when "gplus" %>
-      <% if post.type != 'hiddenType' %>
-        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
-      <% end %>
+        <% case post.type %>
+        <% when 'photo' %>
+            <div class="timeline-user-box">
+              <%= image_tag(post.photo, :class => "gplus_image") %>
+            </div>
+            <% if post.caption.present? %>
+                <div class="center">
+                  <%= post.caption_text %>
+                </div>
+            <% end %>
+        <% when 'video' %>
+            <div class="timeline-user-box">
+              <iframe
+              id="ytplayer"
+              type="text/html"
+              width="100%"
+              height="225"
+              src="<%= post.video %>"
+              frameborder="0"
+              allowfullscreen>
+              </iframe>
+            </div>
+            <% if post.caption.present? %>
+                <div class="center">
+                  <%= post.caption_text %>
+                </div>
+            <% end %>
+        <% else %>
+            <div class="center">
+              <%= post.caption_text %>
+            </div>
+        <% end %>
     <% when "tumblr" %>
-      <% unless a.type == 'chat' || a.type == 'audio' %>
-        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
-      <% end %>
+        <div class="post_content">
+          <% if post.type == 'photo'%>
+              <div class="timeline-user-box">
+                <%= image_tag(post.photo, :class => "tumblr_image") %>
+              </div>
+              <% if post.caption_text.present? %>
+                  <div class="center">
+                    <%= post.caption_text %>
+                  </div>
+              <% end %>
+          <% elsif post.type == 'video' %>
+              <div class="timeline-user-box">
+                <iframe
+                id="ytplayer"
+                type="text/html"
+                width="100%"
+                height="225"
+                src="<%= post.video %>"
+                frameborder="0"
+                allowfullscreen>
+                </iframe>
+              </div>
+              <% if post.caption_text.present? %>
+                  <div class="center">
+                    <%= post.caption_text %>
+                  </div>
+              <% end %>
+          <% elsif post.type == 'audio' %>
+              <div class="timeline-user-box">
+                <Iframe
+                <%= post.audio %>>
+                </Iframe>
+              </div>
+              <% if post.caption_text.present? %>
+                  <div class="center">
+                    <%= post.caption_text %>
+                  </div>
+              <% end %>
+          <% elsif post.type == 'text'  %>
+              <div class="center">
+                <%= post.body %>
+              </div>
+          <% elsif post.type == 'quote'  %>
+              <div class="center">
+                <%= post.text %>
+              </div>
+          <% elsif post.type == 'link'  %>
+              <div class="center">
+                <a href="#{post.link_to_url}">
+                  <%= post.excerpt %>
+                </a>
+                <%= post.description %>
+              </div>
+          <% else %>
+              <div class="center">
+                <%= post.caption_text %>
+              </div>
+          <% end %>
+        </div>
     <% when "facebook" %>
-      <% unless a.story.present? && ((a.story.include? 'profile picture') || (a.story.include? 'cover photo')) %>
-        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
-      <% end %>
+        <% case a.type %>
+        <% when 'photo' %>
+            <div class="timeline-user-box">
+              <%= image_tag(post.image, class: 'facebook_image') %>
+            </div>
+            <div class="center">
+              <% if post.name.present? %>
+                  <%= post.name %>
+              <%elsif post.message.present? %>
+                  <%= post.message %>
+              <%end%>
+            </div>
+        <% when 'link' %>
+            <% if post.image.present? %>
+                <div class="timeline-user-box">
+                  <%= image_tag(post.image, class: 'facebook_image') %>
+                </div>
+            <%end%>
+            <div class="center">
+              <% if post.description.present? %>
+                  <%= post.description %>
+              <%end%>
+            </div>
+            <div class="center">
+              <% if post.message.present? %>
+                  <%= post.message%>
+              <%end%>
+            </div>
+        <% when 'video' %>
+            <div class="center">
+              <% if post.caption == 'youtube.com' %>
+                  <iframe
+                  id="ytplayer"
+                  width="100%"
+                  autoplay=0
+                  src="<%= post.youtube_source %>"
+                  frameborder="0"
+                  allowfullscreen>
+                  </iframe>
+                  <div class="center">
+                    <% if post.message.present? %>
+                        <%= post.message%>
+                    <%end%>
+                  </div>
+              <%else%>
+                  <video width="100%" controls>
+                    <source src="<%= post.source %>" type='video/mp4' />
+                    <source src="<%= post.source %>" type='video/ogv' />
+                  </video>
+                  <div class="center">
+                    <% if post.message.present? %>
+                        <%= post.message%>
+                    <%end%>
+                  </div>
+              <%end%>
+            </div>
+        <% when 'status' %>
+            <div class="center">
+              <% if post.message.present? %>
+                  <%= post.message%>
+              <%end%>
+            </div>
+        <% end %>
     <% when "twitter" %>
-      <% unless a.retweeted == true %>
-        <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
-      <% end %>
+        <% if post.has_media? %>
+            <% if post.type == 'video' || post.type == "animated_gif" %>
+                <div class="center">
+                  <video width="100%" controls>
+                    <source src="<%= post.tweet_video %>" type='video/mp4' />
+                    <source src="<%= post.tweet_video %>" type='video/ogv' />
+                  </video>
+                </div>
+            <% elsif post.type == 'photo' %>
+                <div class="timeline-user-box">
+                  <%= image_tag(post.tweet_image, :class => "twitter_image") %>
+                </div>
+            <% end %>
+        <% end %>
+        <%= post.tweet_text %><br>
+
     <% else %>
         <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
     <% end %>
   <% end %>
+<% end %>
