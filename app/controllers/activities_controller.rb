@@ -5,8 +5,8 @@ class ActivitiesController < ApplicationController
     @post_id      = PublicActivity::Activity.last.parameters[:id]
 		@provider 		= PublicActivity::Activity.last.parameters[:provider]
 	  # @providers    = Providers.for(current_user)
-    notifi        = Notification::Timeline.new(@post_id, @provider, current_user)
-    @post_entry     = notifi.single_post(@post_id)
+    notify        = Notification::Timeline.new(@post_id, @provider, current_user)
+    @post_entry   = notify.construct(params)
 	end
 end
 

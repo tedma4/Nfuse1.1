@@ -1,6 +1,6 @@
 <% if a.trackable %>
   <span>liked your post</span>
-    <% if @post_entry.present? %>
+    <% @post_entry.each do |post| %>
     <% case @provider %>
     <% when "gplus" %>
         <% case post.type %>
@@ -96,7 +96,7 @@
           <% end %>
         </div>
     <% when "facebook" %>
-        <% case a.type %>
+        <% case post.type %>
         <% when 'photo' %>
             <div class="timeline-user-box">
               <%= image_tag(post.image, class: 'facebook_image') %>
@@ -159,25 +159,35 @@
               <%end%>
             </div>
         <% end %>
-    <% when "twitter" %>
-        <% if post.has_media? %>
-            <% if post.type == 'video' || post.type == "animated_gif" %>
-                <div class="center">
-                  <video width="100%" controls>
-                    <source src="<%= post.tweet_video %>" type='video/mp4' />
-                    <source src="<%= post.tweet_video %>" type='video/ogv' />
-                  </video>
-                </div>
-            <% elsif post.type == 'photo' %>
-                <div class="timeline-user-box">
-                  <%= image_tag(post.tweet_image, :class => "twitter_image") %>
-                </div>
+        <% when 'twitter' %>
+            <% if post.has_media? %>
+                <% if post.type == 'video' || post.type == "animated_gif" %>
+                    <div class="center">
+                      <video width="100%" controls>
+                        <source src="<%= post.tweet_video %>" type='video/mp4' />
+                        <source src="<%= post.tweet_video %>" type='video/ogv' />
+                      </video>
+                    </div>
+                <% elsif post.type == 'photo' %>
+                    <div class="timeline-user-box">
+                      <%= image_tag(post.tweet_image, :class => "twitter_image") %>
+                    </div>
+                <% end %>
             <% end %>
-        <% end %>
-        <%= post.tweet_text %><br>
-
-    <% else %>
+        <% when 'youtube' %>
+            <iframe
+            id="ytplayer"
+            type="text/html"
+            width="100%"
+            height="225"
+            src="http://www.youtube.com/embed/<%= post.id %>"
+            frameborder="0"
+            allowfullscreen>
+            </iframe>
+            <%= post.description %><br>
+        <% else %>
         <%= render partial: "users/#{a.provider}_post", locals: {post: post} %>
     <% end %>
   <% end %>
 <% end %>
+

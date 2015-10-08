@@ -1,6 +1,6 @@
 module Notification
   class Timeline
-    include ApplicationHelper
+    attr_accessor :params
 
     def initialize(post_id, provider, user=current_user)
       @post_id = post_id
@@ -8,8 +8,10 @@ module Notification
       @provider = provider
     end
 
-    def get_it
-      single_post(post_id)
+    def construct(params)
+      self.params = params
+      sp = single_post(@post_id)
+      NotificationConcatenator.new.merge(sp)
     end
 
     def single_post(post_id)
@@ -17,7 +19,7 @@ module Notification
         when 'twitter'
           token = @user.tokens.find_by(provider: 'twitter')
           client = configure_twitter(token.access_token, token.access_token_secret)
-          client.status(post_id).map { |post| Notification::Entry.from(post, @user, 'twitter') }
+          client.status(post_id).attrs.map { |post| Notification::Entry.from(post, @user, 'twitter') }
         when 'facebook'
           access_token = @user.tokens.find_by(provider: 'facebook').access_token
           client = configure_facebook(access_token)
@@ -26,7 +28,8 @@ module Notification
           token = @user.tokens.find_by(provider: 'google_oauth2')
           client = configure_youtube(token.access_token, token.refresh_token)
           video = Yt::Video.new id: post_id, auth: client
-          video.map {|post| Notification::Entry.from(post, @user, 'youtube') }
+          video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
+          video.snippet.data.map {|post| Notification::Entry.from(post, @user, 'youtube') }
         when 'gplus'
           uid = @user.tokens.find_by(provider: 'gplus').uid
           configure_gplus(uid)
@@ -55,7 +58,6 @@ module Notification
       def configure_facebook(access_token)
         app_secret = ENV['facebook_app_secret']
         client = Koala::Facebook::API.new(access_token, app_secret)
-        client
       end
 
       def configure_twitter(access_token, access_token_secret)
@@ -113,4 +115,10 @@ module Notification
         client
       end
     end
+end
+
+class NotificationConcatenator
+  def merge(single_post)
+    (single_post)#.sort_by { |post| post.created_time }.reverse
+  end
 end

@@ -7,11 +7,7 @@ module Page
       @comp_url = comp_url
       @incomp = incomp
     end
-
-    def posts
-      PageConcatenator.new.merge(twitter_setup, youtube_setup, instagram_setup)
-    end
-
+    
     def construct(params)
       self.params = params
       tw = twitter_setup
