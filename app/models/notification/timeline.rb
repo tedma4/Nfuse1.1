@@ -21,12 +21,10 @@ module Notification
           client = configure_twitter(token.access_token, token.access_token_secret)
           client.status(post_id).attrs.map { |entry| Notification::Entry.from(entry, 'twitter') }
         when 'facebook'
-          fb_post = []
           access_token = @user.tokens.find_by(provider: 'facebook').access_token
           app_secret = ENV['facebook_app_secret']
           client = Koala::Facebook::API.new(access_token, app_secret)
-          fb_post = client.get_object(post_id).map { |entry| Notification::Entry.from(entry, 'facebook') }
-          fb_post
+          client.get_object(post_id).map { |entry| Notification::Entry.from(entry, 'facebook') }
         when 'youtube'
           token = @user.tokens.find_by(provider: 'google_oauth2')
           client = configure_youtube(token.access_token, token.refresh_token)

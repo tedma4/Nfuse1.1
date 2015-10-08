@@ -1,6 +1,5 @@
 <% if a.trackable %>
   <span>liked your post</span>
-    <% @post_entry.each do |entry| %>
     <% case @provider %>
       <% when "nfuse" %>
         <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
@@ -192,5 +191,4 @@
         <%= render partial: "users/post", locals: {post: entry} %>
     <% end %>
   <% end %>
-<% end %>
 
