@@ -1,105 +1,103 @@
 module Notification
-	class Entry
+	class Entry < TimelineEntry
 
-    def self.from(post, user, provider)
-      new(post, user, provider)
+    def self.from(entry, provider)
+      new(entry, provider)
     end
 
-    def initialize(post, user, provider)
-      @post = post
+    def initialize(entry, provider)
+      @entry = entry
       @provider = provider
-      @user = user
     end
 
     def provider
       @provider
     end
 
-    # def avatar
-    #   case(@provider)
-    #     when 'instagram'
-    #       @post["user"]['profile_picture']
-    #     when 'twitter'
-    #       @post.attrs[:user][:profile_image_url]
-    #     when 'youtube'
-    #       "youtubeblue.fw.png"
-    #   end
-
-    # end
-
-    def username
+    def avatar
       case(@provider)
-        when 'instagram'
-          @post["user"]['username']
         when 'twitter'
-          @post.attrs[:user][:screen_name]
+          @entry.attrs[:user][:profile_image_url]
         when 'youtube'
-          'youtube user'
+          "youtubeblue.fw.png"
+        when 'instagram'
+          @entry["user"]['profile_picture']
       end
+    end
 
+    def user_name
+      case(@provider)
+        when 'twitter'
+          @entry.attrs[:user][:screen_name]
+        when 'youtube'
+          if @entry.channel_title.present?
+            @entry.channel_title
+          else
+            "Youtube User"
+          end
+        when 'instagram'
+          @entry["user"]['username']
+      end
     end
 
     #-----------id----------
 
     def id
       case(@provider)
-        when 'instagram'
-          @post["id"]
         when 'twitter'
-          @post.id
+          @entry.id
         when 'youtube'
-          @post.id
-      end
-    end
-
-    def is_not_in_reply
-      @post.attrs[:in_reply_to_status_id]
-    end
-
-    def is_not_retweeted?
-      if @post.attrs.has_key? :retweeted_status
-      @post.attrs[:user][:screen_name] == @post.attrs[:retweeted_status][:user][:screen_name]
-      else
-        true
+          @entry.id
+        when 'instagram'
+          @entry["id"]
+        when 'facebook'
+          @entry["id"]
       end
     end
 
     #-----------type----------
 
     def has_media?
-      @post.attrs.has_key? :extended_entities
+      @entry.attrs.has_key? :extended_entities
     end
+
     def type
       case(@provider)
-        when 'instagram'
-          @post["type"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:type]
+          @entry.attrs[:extended_entities][:media][0][:type]
+        when 'instagram'
+          @entry["type"]
+        when 'facebook'
+          @entry["type"]
       end
     end
     #-----------text----------
 
     def text
       case(@provider)
-        when 'instagram'
-          if @post['caption'].present?
-          @post['caption']['text']
-          end
         when 'twitter'
-          @post.text
-        else
-          @post.description
-    	end
+          @entry.text
+        when 'youtube'
+          @entry.description
+        when 'instagram'
+          if @entry['caption'].present?
+            @entry['caption']['text']
+          end
+        when 'facebook'
+          @entry['caption']
+      end
     end
 
     #-----------image----------
 
     def image
       case(@provider)
-        when 'instagram'
-          @post["images"]["low_resolution"]["url"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:media_url]
+          @entry.attrs[:extended_entities][:media][0][:media_url]
+        when 'instagram'
+          @entry["images"]["low_resolution"]["url"]
+        when 'facebook'
+          @entry['picture']
       end
     end
 
@@ -107,45 +105,75 @@ module Notification
 
     def video
       case(@provider)
-        when 'instagram'
-          @post["videos"]["standard_resolution"]["url"]
         when 'twitter'
           if type == "animated_gif"
-            @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
+            @entry.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
           elsif type == "video"
-            @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+            @entry.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
           end
-        else
-      	@post.id
-      end	      	
-    end
-
-    #-----------link----------
-
-    def link_to_post
-      case(@provider)
-        when 'instagram'
-          @post["link"]
-        when 'twitter'
-          "https://twitter.com/#{username}/status/#{id}"
         when 'youtube'
-          "https://www.youtube.com/watch?v=#{@post.id}"
-    	end
+          @entry.id
+        when 'instagram'
+          @entry["videos"]["standard_resolution"]["url"]
+        when 'facebook'
+          @entry['source'].sub("?autoplay=1", "")
+      end
     end
 
     #-----------created_at----------
     def created_time
       case(@provider)
-        when 'instagram'
-          Time.at(@post['created_time'].to_i)
         when 'twitter'
-          @post.created_at
+          @entry.created_at
         when 'youtube'
-          @post.published_at
+          @entry.published_at
+        when 'instagram'
+          Time.at(@entry['created_time'].to_i)
+        when 'facebook'
+          @entry['created_time']
       end
     end
 
     #-----------other----------
 
-	end
+    def link_to_entry
+      case(@provider)
+        when 'twitter'
+          "https://twitter.com/#{user_name}/status/#{id}"
+        when 'youtube'
+          "https://www.youtube.com/watch?v=#{@entry.id}"
+        when 'instagram'
+          @entry["link"]
+        when 'facebook'
+          @entry['actions'][0]['link']
+      end
+    end
+
+    def description
+      @entry['description']
+    end
+
+    def name
+      @entry['name']
+    end
+
+    def message
+      @entry['message']
+    end
+
+    def source
+      @entry['source']
+    end
+
+    def likes #favorites
+      case(@provider)
+        when 'twitter'
+          @entry.favorite_count
+        when 'instagram'
+          @entry['likes']['count']
+        when 'youtube'
+          'find view count'
+      end
+    end
+  end
 end

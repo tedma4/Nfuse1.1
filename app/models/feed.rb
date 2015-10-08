@@ -20,28 +20,6 @@ class Feed
     @unauthed_accounts = []
   end
 
-  # def posts(twitter_pagination_id, 
-  #           facebook_pagination_id,
-  #           instagram_max_id, 
-  #           user_id, 
-  #           youtube_pagination_id, 
-  #           vimeo_pagination_id, 
-  #           flickr_pagination_id, 
-  #           tumblr_pagination_id, 
-  #           gplus_pagination_id)
-  #   TimelineConcatenator.new.merge(twitter_posts(twitter_pagination_id),
-  #                                  instagram_posts(instagram_max_id),
-  #                                  facebook_posts(facebook_pagination_id),
-  #                                  youtube_posts(youtube_pagination_id),
-  #                                  gplus_posts(gplus_pagination_id),
-  #                                  vimeo_posts(vimeo_pagination_id),
-  #                                  # pinterest_posts(pinterest_pagination_id),
-  #                                  flickr_posts(flickr_pagination_id),
-  #                                  tumblr_posts(tumblr_pagination_id),
-  #                                  users_posts(user_id)
-  #                                  )
-  # end
-
   def construct(params)
     self.params = params
     tw = twitter_posts(params[:twitter_pagination])

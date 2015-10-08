@@ -1,12 +1,21 @@
 class ActivitiesController < ApplicationController
+	# def index
+	# 	@activities 	= PublicActivity::Activity.order(created_at: :desc).where(recipient_id: current_user.id,
+	# 																																				 recipient_type: 'User')
+	# 	feed                = Feed.new(current_user)
+	# 	@providers          = Providers.for(current_user)
+	# 	@timeline           = feed.construct(params)
+	# 	@unauthed_accounts  = feed.unauthed_accounts
+	# end
+
 	def index
-	  @activities 	= PublicActivity::Activity.order(created_at: :desc).where(recipient_id: current_user.id,
-	                                                                         recipient_type: 'User')
-    @post_id      = PublicActivity::Activity.last.parameters[:id]
+		@activities 	= PublicActivity::Activity.order(created_at: :desc).where(recipient_id: current_user.id,
+																																					 recipient_type: 'User')
+		@post_id      = PublicActivity::Activity.last.parameters[:id]
 		@provider 		= PublicActivity::Activity.last.parameters[:provider]
-	  # @providers    = Providers.for(current_user)
-    notify        = Notification::Timeline.new(@post_id, @provider, current_user)
-    @post_entry   = notify.construct(params)
+		# @providers    = Providers.for(current_user)
+		notify        = Notification::Timeline.new(@post_id, @provider, current_user)
+		@post_entry   = notify.construct(params)
 	end
 end
 
