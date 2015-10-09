@@ -11,7 +11,7 @@ module Notification
     def construct
       single_post(@post_id)
     end
-
+private
     def single_post(post_id)
       case(@provider)
         when 'twitter'
@@ -58,6 +58,9 @@ module Notification
           instagram_api = Instagram::Api.new(token.access_token, nil)
           entry = instagram_api.get_post(post_id)
           Notification::Entry.from(entry, 'instagram')
+        when nil
+          entry = @user.shouts.find(post_id)
+          Notification::Entry.from(entry, 'nfuse')
       end
     end
 
