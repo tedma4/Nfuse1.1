@@ -25,14 +25,14 @@ module Page
        i.consumer_secret = ENV['twitter_api_secret']
      end
      posts = client.user_timeline(@comp).take(15)
-     twitter_posts = posts.map { |post| Page::Post.from(post, 'twitter') }
+     posts.map { |post| Page::Post.from(post, 'twitter') }
     end
  
     def youtube_setup
      Yt.configuration.api_key = ENV['youtube_dev_key']
      channel = Yt::Channel.new url: @comp_url
      posts = channel.videos.first(15)
-     youtube_posts = posts.map { |post| Page::Post.from(post, 'youtube') }
+     posts.map { |post| Page::Post.from(post, 'youtube') }
     end
 
     def instagram_setup
@@ -41,7 +41,7 @@ module Page
       if client['data'][0]['username'] == @incomp
         usid = client['data'][0]['id']
         posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
-        instagram_posts = posts['data'].map { |post| Page::Post.from(post,'instagram') }
+        posts['data'].map { |post| Page::Post.from(post,'instagram') }
        else
          []
       end
