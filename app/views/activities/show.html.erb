@@ -34,19 +34,20 @@
             <span>liked your post</span>
           <% if @post_entry.present? %>
 					<% if a.trackable %>
+					<%= a.inspect %>
 					    <% case @provider %>
 					      <% when "nfuse" %>
 					        <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-					        <%=  render partial: 'users/shout', locals: {shout: entry} %>
+					        <%=  render partial: 'users/shout', locals: {shout: @post_entry} %>
 					    <% when "gplus" %>
-					        <% case entry.type %>
+					        <% case @post_entry.type %>
 					        <% when 'photo' %>
 					            <div class="timeline-user-box">
-					              <%= image_tag(entry.photo, :class => "gplus_image") %>
+					              <%= image_tag(@post_entry.photo, :class => "gplus_image") %>
 					            </div>
-					            <% if entry.caption.present? %>
+					            <% if @post_entry.caption.present? %>
 					                <div class="center">
-					                  <%= entry.caption_text %>
+					                  <%= @post_entry.caption_text %>
 					                </div>
 					            <% end %>
 					        <% when 'video' %>
@@ -56,78 +57,78 @@
 					              type="text/html"
 					              width="100%"
 					              height="225"
-					              src="<%= entry.video %>"
+					              src="<%= @post_entry.video %>"
 					              frameborder="0"
 					              allowfullscreen>
 					              </iframe>
 					            </div>
-					            <% if entry.caption.present? %>
+					            <% if @post_entry.caption.present? %>
 					                <div class="center">
-					                  <%= entry.caption_text %>
+					                  <%= @post_entry.caption_text %>
 					                </div>
 					            <% end %>
 					        <% else %>
 					            <div class="center">
-					              <%= entry.caption_text %>
+					              <%= @post_entry.caption_text %>
 					            </div>
 					        <% end %>
 					    <% when "tumblr" %>
 					        <div class="post_content">
-					          <% if entry.type == 'photo'%>
+					          <% if @post_entry.type == 'photo'%>
 					              <div class="timeline-user-box">
-					                <%= image_tag(entry.photo, :class => "tumblr_image") %>
+					                <%= image_tag(@post_entry.photo, :class => "tumblr_image") %>
 					              </div>
-					              <% if entry.caption_text.present? %>
+					              <% if @post_entry.caption_text.present? %>
 					                  <div class="center">
-					                    <%= entry.caption_text %>
+					                    <%= @post_entry.caption_text %>
 					                  </div>
 					              <% end %>
-					          <% elsif entry.type == 'video' %>
+					          <% elsif @post_entry.type == 'video' %>
 					              <div class="timeline-user-box">
 					                <iframe
 					                id="ytplayer"
 					                type="text/html"
 					                width="100%"
 					                height="225"
-					                src="<%= entry.video %>"
+					                src="<%= @post_entry.video %>"
 					                frameborder="0"
 					                allowfullscreen>
 					                </iframe>
 					              </div>
-					              <% if entry.caption_text.present? %>
+					              <% if @post_entry.caption_text.present? %>
 					                  <div class="center">
-					                    <%= entry.caption_text %>
+					                    <%= @post_entry.caption_text %>
 					                  </div>
 					              <% end %>
-					          <% elsif entry.type == 'audio' %>
+					          <% elsif @post_entry.type == 'audio' %>
 					              <div class="timeline-user-box">
 					                <Iframe
-					                <%= entry.audio %>>
+					                <%= @post_entry.audio %>>
 					                </Iframe>
 					              </div>
-					              <% if entry.caption_text.present? %>
+					              <% if @post_entry.caption_text.present? %>
 					                  <div class="center">
-					                    <%= entry.caption_text %>
+					                    <%= @post_entry.caption_text %>
 					                  </div>
 					              <% end %>
-					          <% elsif entry.type == 'text'  %>
+					          <% elsif @post_entry.type == 'text'  %>
 					              <div class="center">
-					                <%= entry.body %>
+					                <%= @post_entry.body %>
 					              </div>
-					          <% elsif entry.type == 'quote'  %>
+					          <% elsif @post_entry.type == 'quote'  %>
 					              <div class="center">
-					                <%= entry.text %>
+					                <%= @post_entry.text %>
 					              </div>
-					          <% elsif entry.type == 'link'  %>
+					          <% elsif @post_entry.type == 'link'  %>
 					              <div class="center">
-					                <a href="#{entry.link_to_url}">
-					                  <%= entry.excerpt %>
+					                <a href="#{@post_entry.link_to_url}">
+					                  <%= @post_entry.excerpt %>
 					                </a>
-					                <%= entry.description %>
+					                <%= @post_entry.description %>
 					              </div>
 					          <% else %>
 					              <div class="center">
-					                <%= entry.caption_text %>
+					                <%= @post_entry.caption_text %>
 					              </div>
 					          <% end %>
 					        </div>
@@ -135,29 +136,29 @@
 					        <% case @post_entry.type %>
 					        <% when 'photo' %>
 					            <div class="timeline-user-box">
-					              <%= image_tag(entry.image, class: 'facebook_image') %>
+					              <%= image_tag(@post_entry.image, class: 'facebook_image') %>
 					            </div>
 					            <div class="center">
-					              <% if entry.name.present? %>
-					                  <%= entry.name %>
-					              <%elsif entry.message.present? %>
-					                  <%= entry.message %>
+					              <% if @post_entry.name.present? %>
+					                  <%= @post_entry.name %>
+					              <%elsif @post_entry.message.present? %>
+					                  <%= @post_entry.message %>
 					              <%end%>
 					            </div>
 					        <% when 'link' %>
-					            <% if entry.image.present? %>
+					            <% if @post_entry.image.present? %>
 					                <div class="timeline-user-box">
-					                  <%= image_tag(entry.image, class: 'facebook_image') %>
+					                  <%= image_tag(@post_entry.image, class: 'facebook_image') %>
 					                </div>
 					            <%end%>
 					            <div class="center">
-					              <% if entry.description.present? %>
-					                  <%= entry.description %>
+					              <% if @post_entry.description.present? %>
+					                  <%= @post_entry.description %>
 					              <%end%>
 					            </div>
 					            <div class="center">
-					              <% if entry.message.present? %>
-					                  <%= entry.message%>
+					              <% if @post_entry.message.present? %>
+					                  <%= @post_entry.message%>
 					              <%end%>
 					            </div>
 					        <% when 'video' %>
@@ -167,13 +168,13 @@
 					                  id="ytplayer"
 					                  width="100%"
 					                  autoplay=0
-					                  src="<%= entry.youtube_source %>"
+					                  src="<%= @post_entry.youtube_source %>"
 					                  frameborder="0"
 					                  allowfullscreen>
 					                  </iframe>
 					                  <div class="center">
-					                    <% if entry.message.present? %>
-					                        <%= entry.message%>
+					                    <% if @post_entry.message.present? %>
+					                        <%= @post_entry.message%>
 					                    <%end%>
 					                  </div>
 					              <%else%>
@@ -190,39 +191,50 @@
 					            </div>
 					        <% when 'status' %>
 					            <div class="center">
-					              <% if entry.message.present? %>
-					                  <%= entry.message%>
+					              <% if @post_entry.message.present? %>
+					                  <%= @post_entry.message%>
 					              <%end%>
 					            </div>
 					        <% end %>
 					        <% when 'twitter' %>
-					            <% if entry.has_media? %>
-					                <% if entry.type == 'video' || entry.type == "animated_gif" %>
-					                    <div class="center">
-					                      <video width="100%" controls>
-					                        <source src="<%= entry.tweet_video %>" type='video/mp4' />
-					                        <source src="<%= entry.tweet_video %>" type='video/ogv' />
-					                      </video>
-					                    </div>
-					                <% elsif entry.type == 'photo' %>
-					                    <div class="timeline-user-box">
-					                      <%= image_tag(entry.tweet_image, :class => "twitter_image") %>
-					                    </div>
-					                <% end %>
+					          <% if @post_entry.has_media? %>
+					            <% if @post_entry.type == 'video' || @post_entry.type == "animated_gif" %>
+					                <div class="center">
+					                  <video width="100%" controls>
+					                    <source src="<%= @post_entry.video %>" type='video/mp4' />
+					                    <source src="<%= @post_entry.video %>" type='video/ogv' />
+					                  </video>
+					                </div>
+					            <% elsif @post_entry.type == 'photo' %>
+					                <div class="timeline-user-box">
+					                  <%= image_tag(@post_entry.image, :class => "twitter_image") %>
+					                </div>
 					            <% end %>
+					            <% elsif @post_entry.twitter_url_video.present? %>
+						            <iframe
+						            id="ytplayer"
+						            type="text/html"
+						            width="100%"
+						            height="225"
+						            src="http://www.youtube.com/embed/<%= @post_entry.twitter_url_video %>"
+						            frameborder="0"
+						            allowfullscreen>
+						            </iframe>
+					          <% end %>
+  									<%= @post_entry.text %><br>
 					        <% when 'youtube' %>
 					            <iframe
 					            id="ytplayer"
 					            type="text/html"
 					            width="100%"
 					            height="225"
-					            src="http://www.youtube.com/embed/<%= entry.id %>"
+					            src="http://www.youtube.com/embed/<%= @post_entry.id %>"
 					            frameborder="0"
 					            allowfullscreen>
 					            </iframe>
-					            <%= entry.description %><br>
+					            <%= @post_entry.description %><br>
 					        <% else %>
-					        <%= render partial: "users/post", locals: {post: entry} %>
+					        <%= render partial: "users/post", locals: {post: @post_entry} %>
 					    <% end %>
 					  <% end %>
            <% end %>

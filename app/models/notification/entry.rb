@@ -17,7 +17,7 @@ module Notification
     def avatar
       case(@provider)
         when 'twitter'
-          @entry.attrs[:user][:profile_image_url]
+          @entry[:user][:profile_image_url]
         when 'youtube'
           "youtubeblue.fw.png"
         when 'instagram'
@@ -28,7 +28,7 @@ module Notification
     def user_name
       case(@provider)
         when 'twitter'
-          @entry.attrs[:user][:screen_name]
+          @entry[:user][:screen_name]
         when 'youtube'
           if @entry.channel_title.present?
             @entry.channel_title
@@ -58,13 +58,13 @@ module Notification
     #-----------type----------
 
     def has_media?
-      @entry.attrs.has_key? :extended_entities
+      @entry.has_key? :extended_entities
     end
 
     def type
       case(@provider)
         when 'twitter'
-          @entry.attrs[:extended_entities][:media][0][:type]
+          @entry[:extended_entities][:media][0][:type]
         when 'instagram'
           @entry["type"]
         when 'facebook'
@@ -76,7 +76,7 @@ module Notification
     def text
       case(@provider)
         when 'twitter'
-          @entry.text
+          @entry[:text]
         when 'youtube'
           @entry.description
         when 'instagram'
@@ -93,7 +93,7 @@ module Notification
     def image
       case(@provider)
         when 'twitter'
-          @entry.attrs[:extended_entities][:media][0][:media_url]
+          @entry[:extended_entities][:media][0][:media_url]
         when 'instagram'
           @entry["images"]["low_resolution"]["url"]
         when 'facebook'
@@ -107,9 +107,9 @@ module Notification
       case(@provider)
         when 'twitter'
           if type == "animated_gif"
-            @entry.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
+            @entry[:extended_entities][:media][0][:video_info][:variants][0][:url]
           elsif type == "video"
-            @entry.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+            @entry[:extended_entities][:media][0][:video_info][:variants][2][:url]
           end
         when 'youtube'
           @entry.id
@@ -118,6 +118,10 @@ module Notification
         when 'facebook'
           @entry['source'].sub("?autoplay=1", "")
       end
+    end
+
+    def twitter_url_video
+      @entry[:entities][:urls][0][:expanded_url]
     end
 
     #-----------created_at----------

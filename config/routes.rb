@@ -66,7 +66,8 @@ Rails.application.routes.draw do
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
-  resources :activities, path: "notifications"
+  resources :activities
+  get '/notifications/:id', to: 'activities#show'
 
   # Authentication and Settings
   get    '/signup',       to: 'users#new'
