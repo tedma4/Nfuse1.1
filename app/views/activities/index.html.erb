@@ -31,7 +31,6 @@
 				<div class="individual_post not_bottom_margin">
 					<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
 				  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
-				  <% @post_entry.each do |entry| %>
             <span>liked your post</span>
           <% if @post_entry.present? %>
 					<% if a.trackable %>
@@ -133,7 +132,7 @@
 					          <% end %>
 					        </div>
 					    <% when "facebook" %>
-					        <% case @entry.type %>
+					        <% case @post_entry.type %>
 					        <% when 'photo' %>
 					            <div class="timeline-user-box">
 					              <%= image_tag(entry.image, class: 'facebook_image') %>
@@ -163,7 +162,7 @@
 					            </div>
 					        <% when 'video' %>
 					            <div class="center">
-					              <% if entry.caption == 'youtube.com' %>
+					              <% if @post_entry.text == 'youtube.com' %>
 					                  <iframe
 					                  id="ytplayer"
 					                  width="100%"
@@ -179,12 +178,12 @@
 					                  </div>
 					              <%else%>
 					                  <video width="100%" controls>
-					                    <source src="<%= entry.source %>" type='video/mp4' />
-					                    <source src="<%= entry.source %>" type='video/ogv' />
+					                    <source src="<%= @post_entry.source %>" type='video/mp4' />
+					                    <source src="<%= @post_entry.source %>" type='video/ogv' />
 					                  </video>
 					                  <div class="center">
-					                    <% if entry.message.present? %>
-					                        <%= entry.message%>
+					                    <% if @post_entry.message.present? %>
+					                        <%= @post_entry.message%>
 					                    <%end%>
 					                  </div>
 					              <%end%>
@@ -226,7 +225,6 @@
 					        <%= render partial: "users/post", locals: {post: entry} %>
 					    <% end %>
 					  <% end %>
-           <% end %>
            <% end %>
 				</div>
 			</div>

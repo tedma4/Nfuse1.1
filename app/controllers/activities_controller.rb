@@ -15,6 +15,7 @@ class ActivitiesController < ApplicationController
 		@provider 		= @activities.where(trackable_type: 'User').last.parameters[:provider]
 		notify        = Notification::Timeline.new(@post_id, @provider, current_user)
 		@post_entry   = notify.construct
+		@post_entry
 	end
 
 end
