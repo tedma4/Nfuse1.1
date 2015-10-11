@@ -1,0 +1,59 @@
+<div class="post_content">
+  <% if @post_entry.type == 'photo'%>
+    <div class="timeline-user-box">
+      <%= image_tag(@post_entry.photo, :class => "tumblr_image") %>
+    </div>
+    <% if @post_entry.caption_text.present? %>
+      <div class="center">
+        <%= @post_entry.caption_text %>
+      </div>
+    <% end %>
+  <% elsif @post_entry.type == 'video' %>
+    <div class="timeline-user-box">
+      <iframe
+      id="ytplayer"
+      type="text/html"
+      width="100%"
+      height="225"
+      src="<%= @post_entry.video %>"
+      frameborder="0"
+      allowfullscreen>
+      </iframe>
+    </div>
+    <% if @post_entry.caption_text.present? %>
+      <div class="center">
+        <%= @post_entry.caption_text %>
+      </div>
+    <% end %>
+  <% elsif @post_entry.type == 'audio' %>
+    <div class="timeline-user-box">
+      <Iframe
+      <%= @post_entry.audio %>>
+      </Iframe>
+    </div>
+    <% if @post_entry.caption_text.present? %>
+      <div class="center">
+        <%= @post_entry.caption_text %>
+      </div>
+    <% end %>
+  <% elsif @post_entry.type == 'text'  %>
+    <div class="center">
+      <%= @post_entry.body %>
+    </div>
+  <% elsif @post_entry.type == 'quote'  %>
+    <div class="center">
+      <%= @post_entry.text %>
+    </div>
+  <% elsif @post_entry.type == 'link'  %>
+    <div class="center">
+      <a href="#{@post_entry.link_to_url}">
+        <%= @post_entry.excerpt %>
+      </a>
+      <%= @post_entry.description %>
+    </div>
+  <% else %>
+    <div class="center">
+      <%= @post_entry.caption_text %>
+    </div>
+  <% end %>
+</div>

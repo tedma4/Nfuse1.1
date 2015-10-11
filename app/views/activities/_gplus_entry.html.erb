@@ -1,0 +1,32 @@
+<% case @post_entry.type %>
+<% when 'photo' %>
+  <div class="timeline-user-box">
+    <%= image_tag(@post_entry.photo, :class => "gplus_image") %>
+  </div>
+  <% if @post_entry.caption.present? %>
+    <div class="center">
+      <%= @post_entry.caption_text %>
+    </div>
+  <% end %>
+<% when 'video' %>
+  <div class="timeline-user-box">
+    <iframe
+    id="ytplayer"
+    type="text/html"
+    width="100%"
+    height="225"
+    src="<%= @post_entry.video %>"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+  </div>
+  <% if @post_entry.caption.present? %>
+    <div class="center">
+      <%= @post_entry.caption_text %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="center">
+    <%= @post_entry.caption_text %>
+  </div>
+<% end %>

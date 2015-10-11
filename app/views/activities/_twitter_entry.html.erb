@@ -1,0 +1,25 @@
+<% if @post_entry.has_media? %>
+  <% if @post_entry.type == 'video' || @post_entry.type == "animated_gif" %>
+    <div class="center">
+      <video width="100%" controls>
+        <source src="<%= @post_entry.video %>" type='video/mp4' />
+        <source src="<%= @post_entry.video %>" type='video/ogv' />
+      </video>
+    </div>
+  <% elsif @post_entry.type == 'photo' %>
+    <div class="timeline-user-box">
+      <%= image_tag(@post_entry.image, :class => "twitter_image") %>
+    </div>
+  <% end %>
+<% elsif @post_entry.twitter_url_video.present? %>
+  <iframe
+  id="ytplayer"
+  type="text/html"
+  width="100%"
+  height="225"
+  src="http://www.youtube.com/embed/<%= @post_entry.twitter_url_video %>"
+  frameborder="0"
+  allowfullscreen>
+  </iframe>
+<% end %>
+<%= @post_entry.text %><br>

@@ -121,7 +121,7 @@ module Notification
     end
 
     def twitter_url_video
-      @entry[:entities][:urls][0][:expanded_url]
+      @entry[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
     end
 
     #-----------created_at----------
