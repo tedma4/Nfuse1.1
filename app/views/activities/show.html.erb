@@ -27,6 +27,7 @@
 				</div>
 			</div>
 		<% when 'User' %>
+              <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.owner).construct %>
 			<div class="col-md-6 col-md-offset-3">
 				<div class="individual_post not_bottom_margin">
 					<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
@@ -34,8 +35,10 @@
             <span>liked your post</span>
           <% if @post_entry.present? %>
 					<% if a.trackable %>
-					<%= a.inspect %>
-					    <% case @provider %>
+					<%= a.parameters[:id] %>
+					<%= a.parameters[:provider] %>
+
+					    <% case a.parameters[:provider] %>
 					      <% when "nfuse" %>
 					        <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
 					        <%=  render partial: 'users/shout', locals: {shout: @post_entry} %>
