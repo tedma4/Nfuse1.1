@@ -6,60 +6,53 @@
 <div class="row">
 	<div class="center">
 		<% @activities.each do |a| %>		
-		<% case a.attributes['trackable_type'] %>
-		<% when 'Relationship' %>
-			<div class="col-md-6 col-md-offset-3">
-				<div class="individual_post not_bottom_margin">
-					<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
-				  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
-					<% if a.trackable %>
-					  <span>started following You </span>
-					  <%#= link_to image_tag(a.trackable.followed.avatar(:small),
-					   class: "soon_to_be_made_class", 
-					    size: "32x32", 
-					    title: "#{ a.trackable.followed.full_name}"), 
-					    feed_user_path(a.trackable.followed) %>
-					  <%#= link_to a.trackable.followed.full_name, 
-					    feed_user_path(a.trackable.followed) %>
-					<% else %>
-					  unfollowed you
-					<% end %>
-				</div>
-			</div>
-		<% when 'User' %>
-      <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.owner).construct %>
-			<div class="col-md-6 col-md-offset-3">
-				<div class="individual_post not_bottom_margin">
-					<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
-				  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
-            <span>liked your <%= a.parameters[:provider].capitalize %> post </span>
-          <% if @post_entry.present? %>
+			<% case a.attributes['trackable_type'] %>
+			<% when 'Relationship' %>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="individual_post not_bottom_margin">
+						<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
+					  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
 						<% if a.trackable %>
-						  <% case a.parameters[:provider] %>
-						  <% when "nfuse" %>
-						    <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
-						  <% when "gplus" %>
-						  	<%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
-						  <% when "tumblr" %>
-						  	<%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
-						  <% when "facebook" %>
-						  	<%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
-						  <% when 'twitter' %>
-						  	<%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
-						  <% when 'youtube' %>
-						  	<%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
-						  <% when 'vimeo' %>
-						  	<%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
-						  <% when 'flickr' %>
-						  	<%= render partial: 'activities/flickr_entry', locals: {flickr_entry: @post_entry} %>
-						  <% when 'instagram' %>
-						  	<%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
-						  <% end %>
-					  <% end %>
-          <% end %>
+						  <span>started following You </span>
+						<% else %>
+						  unfollowed you
+						<% end %>
+					</div>
 				</div>
-			</div>
-		<% end %>
+			<% when 'User' %>
+	      <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.recipient	).construct %>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="individual_post not_bottom_margin">
+						<%= link_to image_tag(a.owner.avatar(:small), class: "soon_to_be_made_class", size: "32x32", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>
+					  <%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %>
+	            <span>liked your <%= (a.parameters[:provider].presence || 'nfuse').capitalize %> post </span>
+	          <% if @post_entry.present? %>
+							<% if a.trackable %>
+							  <% case a.parameters[:provider] %>
+							  <% when nil %>
+							    <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+							  <% when "gplus" %>
+							  	<%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+							  <% when "tumblr" %>
+							  	<%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+							  <% when "facebook" %>
+							  	<%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
+							  <% when 'twitter' %>
+							  	<%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
+							  <% when 'youtube' %>
+							  	<%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
+							  <% when 'vimeo' %>
+							  	<%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
+							  <% when 'flickr' %>
+							  	<%= render partial: 'activities/flickr_entry', locals: {flickr_entry: @post_entry} %>
+							  <% when 'instagram' %>
+							  	<%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
+							  <% end %>
+						  <% end %>
+	          <% end %>
+					</div>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

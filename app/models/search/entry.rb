@@ -70,6 +70,14 @@ module Search
         when 'facebook'
           @post["type"]
       end
+
+    def has_video_url?
+      !@post.attrs[:entities][:urls] == []
+    end
+
+      def twitter_url_video
+        @post.attrs[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
+      end
     end
     #-----------text----------
 

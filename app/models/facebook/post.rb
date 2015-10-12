@@ -108,12 +108,5 @@ module Facebook
     def caption
       @post['caption']
     end
-    #
-    # private
-    #
-    # def new_request
-    #   @token = @user.tokens.find_by(provider: 'facebook')
-    #   @graph = Koala::Facebook::API.new @token.access_token
-    # end
   end
 end

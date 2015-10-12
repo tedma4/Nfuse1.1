@@ -1,63 +1,63 @@
 <% case @post_entry.type %>
-<% when 'photo' %>
+<% when nil %>
+  <div class="timeline-user-box">
+    <%= image_tag(@post_entry.image, class: 'facebook_image') %>
+  </div>
+  <div class="center">
+    <% if @post_entry.name.present? %>
+      <%= @post_entry.name %>
+    <%elsif @post_entry.message.present? %>
+      <%= @post_entry.message %>
+    <%end%>
+  </div>
+<% when 'link' %>
+  <% if @post_entry.image.present? %>
     <div class="timeline-user-box">
       <%= image_tag(@post_entry.image, class: 'facebook_image') %>
     </div>
-    <div class="center">
-      <% if @post_entry.name.present? %>
-          <%= @post_entry.name %>
-      <%elsif @post_entry.message.present? %>
-          <%= @post_entry.message %>
-      <%end%>
-    </div>
-<% when 'link' %>
-    <% if @post_entry.image.present? %>
-        <div class="timeline-user-box">
-          <%= image_tag(@post_entry.image, class: 'facebook_image') %>
-        </div>
+  <%end%>
+  <div class="center">
+    <% if @post_entry.description.present? %>
+      <%= @post_entry.description %>
     <%end%>
-    <div class="center">
-      <% if @post_entry.description.present? %>
-          <%= @post_entry.description %>
-      <%end%>
-    </div>
-    <div class="center">
-      <% if @post_entry.message.present? %>
-          <%= @post_entry.message%>
-      <%end%>
-    </div>
+  </div>
+  <div class="center">
+    <% if @post_entry.message.present? %>
+      <%= @post_entry.message%>
+    <%end%>
+  </div>
 <% when 'video' %>
-    <div class="center">
-      <% if @post_entry.text == 'youtube.com' %>
-          <iframe
-          id="ytplayer"
-          width="100%"
-          autoplay=0
-          src="<%= @post_entry.youtube_source %>"
-          frameborder="0"
-          allowfullscreen>
-          </iframe>
-          <div class="center">
-            <% if @post_entry.message.present? %>
-                <%= @post_entry.message%>
-            <%end%>
-          </div>
-      <%else%>
-          <video width="100%" controls>
-            <source src="<%= @post_entry.source %>" type='video/mp4' />
-            <source src="<%= @post_entry.source %>" type='video/ogv' />
-          </video>
-          <div class="center">
-            <% if @post_entry.message.present? %>
-                <%= @post_entry.message%>
-            <%end%>
-          </div>
-      <%end%>
-    </div>
-<% when 'status' %>
-    <div class="center">
-      <% if @post_entry.message.present? %>
+  <div class="center">
+    <% if @post_entry.text == 'youtube.com' %>
+      <iframe
+      id="ytplayer"
+      width="100%"
+      autoplay=0
+      src="<%= @post_entry.youtube_source %>"
+      frameborder="0"
+      allowfullscreen>
+      </iframe>
+      <div class="center">
+        <% if @post_entry.message.present? %>
           <%= @post_entry.message%>
-      <%end%>
-    </div>
+        <%end%>
+      </div>
+    <%else%>
+      <video width="100%" controls>
+        <source src="<%= @post_entry.source %>" type='video/mp4' />
+        <source src="<%= @post_entry.source %>" type='video/ogv' />
+      </video>
+      <div class="center">
+        <% if @post_entry.message.present? %>
+          <%= @post_entry.message%>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
+<% when 'status' %>
+  <div class="center">
+    <% if @post_entry.message.present? %>
+      <%= @post_entry.message%>
+    <%end%>
+  </div>
 <% end %>

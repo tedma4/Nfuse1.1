@@ -70,6 +70,14 @@ module Twitter
       @tweet.attrs.has_key? :extended_entities
     end
 
+    def has_video_url?
+      !@tweet.attrs[:entities][:urls] == []
+    end
+
+    def twitter_url_video
+      @tweet.attrs[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
+    end
+
     def tweet_text
       @tweet.text
     end

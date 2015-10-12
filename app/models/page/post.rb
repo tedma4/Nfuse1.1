@@ -76,6 +76,14 @@ module Page
           @post.attrs[:extended_entities][:media][0][:type]
       end
     end
+
+    def has_video_url?
+      !@post.attrs[:entities][:urls] == []
+    end
+
+    def twitter_url_video
+      @post.attrs[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
+    end
     #-----------text----------
 
     def text

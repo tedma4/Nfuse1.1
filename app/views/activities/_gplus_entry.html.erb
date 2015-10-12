@@ -5,7 +5,7 @@
   </div>
   <% if @post_entry.caption.present? %>
     <div class="center">
-      <%= @post_entry.caption_text %>
+      <%= @post_entry.text %>
     </div>
   <% end %>
 <% when 'video' %>
@@ -20,13 +20,13 @@
     allowfullscreen>
     </iframe>
   </div>
-  <% if @post_entry.caption.present? %>
+  <% if @post_entry.text.present? %>
     <div class="center">
-      <%= @post_entry.caption_text %>
+      <%= @post_entry.text %>
     </div>
   <% end %>
 <% else %>
   <div class="center">
-    <%= @post_entry.caption_text %>
+    <%= @post_entry.text %>
   </div>
 <% end %>

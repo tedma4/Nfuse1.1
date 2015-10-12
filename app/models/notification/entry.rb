@@ -14,32 +14,6 @@ module Notification
       @provider
     end
 
-    def avatar
-      case(@provider)
-        when 'twitter'
-          @entry[:user][:profile_image_url]
-        when 'youtube'
-          "youtubeblue.fw.png"
-        when 'instagram'
-          @entry["user"]['profile_picture']
-      end
-    end
-
-    def user_name
-      case(@provider)
-        when 'twitter'
-          @entry[:user][:screen_name]
-        when 'youtube'
-          if @entry.channel_title.present?
-            @entry.channel_title
-          else
-            "Youtube User"
-          end
-        when 'instagram'
-          @entry["user"]['username']
-      end
-    end
-
     #-----------id----------
 
     def id
@@ -97,7 +71,18 @@ module Notification
         when 'instagram'
           @entry["images"]["low_resolution"]["url"]
         when 'facebook'
-          @entry['picture']
+          if type == 'photo'
+            @token = @user.tokens.find_by(provider: 'facebook')
+            @graph = Koala::Facebook::API.new @token.access_token
+            begin
+              @entry = @graph.get_object(@entry['object_id'])
+              @entry['images'][0]['source']
+            rescue
+              @entry['picture']
+            end
+          else
+            @entry['picture']
+          end
       end
     end
 
@@ -118,6 +103,10 @@ module Notification
         when 'facebook'
           @entry['source'].sub("?autoplay=1", "")
       end
+    end
+
+    def has_video_url?
+      !@entry[:entities][:urls] == []
     end
 
     def twitter_url_video
@@ -169,15 +158,85 @@ module Notification
       @entry['source']
     end
 
-    def likes #favorites
-      case(@provider)
-        when 'twitter'
-          @entry.favorite_count
-        when 'instagram'
-          @entry['likes']['count']
-        when 'youtube'
-          'find view count'
-      end
+    #-----------------Nfuse--------------
+
+
+    def content
+      @entry.content
     end
+
+    def link?
+      @entry.link
+    end
+
+    def link
+      @entry.link
+    end
+
+    def is_link?
+      @entry.is_link
+    end
+
+    def is_link
+      @entry.is_link
+    end
+
+    def uid
+      @entry.uid
+    end
+
+    def title
+      @entry.title
+    end
+
+    def author
+      @entry.author
+    end
+
+    def duration
+      @entry.duration
+    end
+
+    def is_pic?
+      @entry.is_pic
+    end
+
+    def pic_url
+      @entry.pic.url(:medium)
+    end
+
+    def is_video?
+      @entry.is_video
+    end
+
+    def video_url
+      @entry.snip.url(:medium)
+    end
+
+    def is_full_video?
+      @entry.is_full_video
+    end
+
+    def full_video_url
+      @entry.video.url(:medium)
+    end
+
+    def url_html
+      @entry.url_html
+    end
+
+    def url
+      @entry.url
+    end
+
+    def has_content?
+      @entry.has_content
+    end
+
+    def has_content
+      @entry.has_content
+    end
+
+
   end
 end

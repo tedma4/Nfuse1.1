@@ -1,10 +1,10 @@
 <% if @post_entry.type == "image" %>
     <div class="timeline-user-box">
-      <%= image_tag(@post_entry.low_resolution_image_url, :class => "image_post") %>
+      <%= image_tag(@post_entry.image, :class => "image_post") %>
     </div>
-    <% if @post_entry.caption.present? %>
+    <% if @post_entry.text.present? %>
     <div class="center">
-      <%= @post_entry.caption_text %>
+      <%= @post_entry.text %>
     </div>
     <% end %>
 <% elsif @post_entry.type == "video" %>
@@ -14,9 +14,9 @@
       <source src="<%= @post_entry.video %>" type='video/ogv' />
     </video>
   </div>
-    <% if @post_entry.caption.present? %>
+    <% if @post_entry.text.present? %>
     <div class="center">
-      <%= @post_entry.caption_text %>
+      <%= @post_entry.text %>
     </div>
     <% end %>
 <% end %>

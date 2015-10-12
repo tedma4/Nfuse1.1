@@ -30,7 +30,7 @@ private
           client = configure_youtube(token.access_token, token.refresh_token)
           video = Yt::Video.new id: post_id, auth: client
           video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
-          entry = video.snippet.data
+          entry = video
           Notification::Entry.from(entry, 'youtube')
         when 'gplus'
           uid = @user.tokens.find_by(provider: 'gplus').uid
@@ -56,7 +56,7 @@ private
         when 'instagram'
           token = @user.tokens.find_by(provider: 'instagram')
           instagram_api = Instagram::Api.new(token.access_token, nil)
-          entry = instagram_api.get_post(post_id)
+          entry = instagram_api.get_post(post_id)['data']
           Notification::Entry.from(entry, 'instagram')
         when nil
           entry = @user.shouts.find(post_id)

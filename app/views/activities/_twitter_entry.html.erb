@@ -11,7 +11,7 @@
       <%= image_tag(@post_entry.image, :class => "twitter_image") %>
     </div>
   <% end %>
-<% elsif @post_entry.twitter_url_video.present? %>
+<% elsif @post_entry.has_video_url? %>
   <iframe
   id="ytplayer"
   type="text/html"

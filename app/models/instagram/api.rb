@@ -16,10 +16,8 @@ module Instagram
       Typhoeus.post("#{media_api}/#{media_id}/likes?access_token=#{@access_token}")
     end
 
-    def get_post(media_id)
-      Response.new(
-        Typhoeus.get("#{media_api}/#{media_id}/?access_token=#{@access_token}")
-      )
+    def get_post(post_id)
+      Oj.load(Faraday.get("https://api.instagram.com/v1/media/#{post_id}/?access_token=#{@access_token}").body)
     end
 
     private

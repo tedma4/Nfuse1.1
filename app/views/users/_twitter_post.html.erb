@@ -11,5 +11,15 @@
       <%= image_tag(post.tweet_image, :class => "twitter_image") %>
     </div>
   <% end %>
+<% elsif post.has_video_url? %>
+    <iframe
+    id="ytplayer"
+    type="text/html"
+    width="100%"
+    height="225"
+    src="http://www.youtube.com/embed/<%= post.twitter_url_video %>"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
 <% end %>
   <%= post.tweet_text %><br>
