@@ -107,11 +107,9 @@
           </a>
         <%#= link_to image_tag('add50blue.fw.png', size: "32x32", title: "New post"), new_shout_path %>
       </li> -->
-<!--       <li class="navIcon tilt" id="notifications">
-        <%#= link_to notifications_path do %>
-        <%#= image_tag('notifications.fw.png', size: "32x32", title: "Notifications") %>
-        <%# end %>
-      </li> -->
+       <li class="navIcon tilt" id="notifications">
+        <%= link_to image_tag('notifications.fw.png', size: "32x32", title: "Notifications"), activities_path %>
+      </li> 
       <li class="navIcon edit feedback" id="help">
         <a href="#" class="dropdown-toggle">
           <%= image_tag('menu24.fw.png', size: "32x32", title: "Menu") %> <b class="caret"></b>
@@ -283,62 +281,11 @@ $(document).ready(function(){
     if(urlPath == "/"){
       $('#home').addClass("activeNavIcon");
     }
-    else if(urlPath.indexOf('/nfuse_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/twitter_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/instagram_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/facebook_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/youtube_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/gplus_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/vimeo_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/flickr_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/tumblr_only')!== -1){
-      $('#home').addClass("activeNavIcon");
-    }
     else if(urlPath.indexOf('/explore')!== -1){
       $('#explore').addClass("activeNavIcon");
     }
-    else if(urlPath.indexOf('/explore_nfuse_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_twitter_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_instagram_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_facebook_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_youtube_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_gplus_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_vimeo_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_flickr_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
-    }
-    else if(urlPath.indexOf('/explore_tumblr_only')!== -1){
-      $('#explore').addClass("activeNavIcon");
+    else if(urlPath.indexOf('/notifications')!== -1){
+      $('#notifications').addClass("activeNavIcon");
     }
     <% if signed_in? && current_page?(feed_user_path(current_user)) %>
     else if(urlPath.indexOf("/feed")!== -1){
