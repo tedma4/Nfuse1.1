@@ -1,11 +1,11 @@
 <div class="post_content">
   <% if @post_entry.type == 'photo'%>
     <div class="timeline-user-box">
-      <%= image_tag(@post_entry.photo, :class => "tumblr_image") %>
+      <%= image_tag(@post_entry.image, :class => "tumblr_image") %>
     </div>
-    <% if @post_entry.caption_text.present? %>
+    <% if @post_entry.text.present? %>
       <div class="center">
-        <%= @post_entry.caption_text %>
+        <%= @post_entry.text %>
       </div>
     <% end %>
   <% elsif @post_entry.type == 'video' %>
@@ -20,9 +20,9 @@
       allowfullscreen>
       </iframe>
     </div>
-    <% if @post_entry.caption_text.present? %>
+    <% if @post_entry.text.present? %>
       <div class="center">
-        <%= @post_entry.caption_text %>
+        <%= @post_entry.text %>
       </div>
     <% end %>
   <% elsif @post_entry.type == 'audio' %>
@@ -31,9 +31,9 @@
       <%= @post_entry.audio %>>
       </Iframe>
     </div>
-    <% if @post_entry.caption_text.present? %>
+    <% if @post_entry.text.present? %>
       <div class="center">
-        <%= @post_entry.caption_text %>
+        <%= @post_entry.text %>
       </div>
     <% end %>
   <% elsif @post_entry.type == 'text'  %>
@@ -53,7 +53,7 @@
     </div>
   <% else %>
     <div class="center">
-      <%= @post_entry.caption_text %>
+      <%= @post_entry.text %>
     </div>
   <% end %>
 </div>

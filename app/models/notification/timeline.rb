@@ -38,14 +38,18 @@ private
           Notification::Entry.from(entry, 'gplus')
         when 'vimeo'
           access_token = @user.tokens.find_by(provider: 'vimeo').access_token
-          user = configure_vimeo(access_token)
-          entry = user.videos.find(id: post_id)
+          user = Vmo::Request.get_user(access_token)
+          entry = user.videos[0]
+          #Right now there is no way easy way to find the vimeo post by id but I do get an array of all vimeo videos
+          #So, I need to look into how to match the liked post's id to the array of all videos and return the index value of that specific video
+          # entry = Oj.load(Faraday.get("https://api.vimeo.com/me/#{post_id}").body)
+          # entry = user.videos.find(id: post_id)
           Notification::Entry.from(entry, 'vimeo')
         when 'tumblr'
           token = @user.tokens.find_by(provider: 'tumblr')
           client = configure_tumblr(token.access_token, token.access_token_secret)
           username = client.info['user']['name']
-          entry = client.posts("#{username}.tumblr.com", id: post_id)
+          entry = client.posts("#{username}.tumblr.com", id: post_id)['posts'][0]
           Notification::Entry.from(entry, 'tumblr')
         when 'flickr'
           token = @user.tokens.find_by(provider: 'flickr').access_token
@@ -88,16 +92,15 @@ private
         client = Tumblr::Client.new#(client: :httpclient)
       end
       
-      def configure_vimeo(access_token)
-        client = Vmo::Base.new(access_token)
-          user = Vmo::Request.get_user(access_token)
-      end
+      # def configure_vimeo(access_token)
+      #   client = Vmo::Base.new(access_token)
+      #     user = Vmo::Request.get_user(access_token)
+      # end
 
       # def configure_vimeo(access_token)
       #   consumer_secret = ENV['vimeo_client_secret']
       #   consumer_key = ENV['vimeo_client_id']
-      #   client = Vmo::Advanced::Base.new(access_token)
-      #     user = Vmo::Advanced::Video(consumer_secret, consumer_key, access_token )
+      #   user = Vimeo::Advanced::Video.new(consumer_key, consumer_secret, token: access_token )
       # end
 
       def configure_youtube(access_token, refresh_token)#, expiresat)

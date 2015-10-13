@@ -26,6 +26,8 @@ module Notification
           @entry["id"]
         when 'facebook'
           @entry["id"]
+        when 'vimeo'
+          @entry.embedUrl
       end
     end
 
@@ -43,6 +45,8 @@ module Notification
           @entry["type"]
         when 'facebook'
           @entry["type"]
+        when 'tumblr'
+          @entry["type"]
       end
     end
     #-----------text----------
@@ -59,6 +63,14 @@ module Notification
           end
         when 'facebook'
           @entry['caption']
+        when 'tumblr'
+          if @entry['type'] == 'quote'
+            @entry['text']
+          else
+            @entry['caption']
+          end
+        when 'vimeo'
+          @entry.description
       end
     end
 
@@ -83,6 +95,8 @@ module Notification
           else
             @entry['picture']
           end
+        when 'tumblr'
+      @entry['photos'][0]['alt_sizes'][0]['url']          
       end
     end
 
@@ -102,6 +116,8 @@ module Notification
           @entry["videos"]["standard_resolution"]["url"]
         when 'facebook'
           @entry['source'].sub("?autoplay=1", "")
+        when 'tumblr'
+          @entry['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
       end
     end
 
@@ -125,6 +141,10 @@ module Notification
         when 'facebook'
           @entry['created_time']
       end
+    end
+
+    def body
+      @entry['body'].html_safe
     end
 
     #-----------other----------
@@ -156,6 +176,17 @@ module Notification
 
     def source
       @entry['source']
+    end
+
+    def youtube_source
+      @entry['source'].sub("?autoplay=1", "")
+    end
+
+    def description
+      @entry['description'].html_safe
+    end
+    def excerpt
+      @entry['excerpt']
     end
 
     #-----------------Nfuse--------------
