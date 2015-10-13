@@ -28,6 +28,10 @@ module Notification
           @entry["id"]
         when 'vimeo'
           @entry.embedUrl
+        when 'flickr'
+          @entry['id']
+        when 'gplus'
+          @entry.id
       end
     end
 
@@ -47,8 +51,27 @@ module Notification
           @entry["type"]
         when 'tumblr'
           @entry["type"]
+        when 'gplus'
+          if @entry.object.attributes.include? 'attachments'
+            if @entry.object.attachments[0]['objectType'] == 'video'
+              if @entry.object.attachments[0].has_key? "embed"
+                'video'
+              else
+                'hiddenType'
+              end
+            else
+              @entry.object.attachments[0]['objectType']
+            end
+          else
+            case @entry.object.object_type
+              when 'note'
+                'hiddenType'
+              else
+                @entry.object.object_type
+            end
+          end
+        end
       end
-    end
     #-----------text----------
 
     def text
@@ -71,6 +94,10 @@ module Notification
           end
         when 'vimeo'
           @entry.description
+        when 'flickr'
+          @entry.caption
+        when 'gplus'
+          @entry.object.content
       end
     end
 
@@ -96,7 +123,11 @@ module Notification
             @entry['picture']
           end
         when 'tumblr'
-      @entry['photos'][0]['alt_sizes'][0]['url']          
+          @entry['photos'][0]['alt_sizes'][0]['url']   
+        when 'flickr'
+          flickr.photos.getSizes(photo_id: @entry.id)[3].source
+        when 'gplus'
+          @entry.object.attachments[0]["image"]["url"]
       end
     end
 
@@ -118,6 +149,12 @@ module Notification
           @entry['source'].sub("?autoplay=1", "")
         when 'tumblr'
           @entry['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+        when 'gplus'
+          if @entry.object.attachments[0].has_key? "embed"
+            @entry.object.attachments[0]["embed"]["url"]
+          else
+            @entry.object.attachments[0]["image"]["url"]
+          end
       end
     end
 

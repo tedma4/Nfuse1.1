@@ -43,7 +43,6 @@ private
           #Right now there is no way easy way to find the vimeo post by id but I do get an array of all vimeo videos
           #So, I need to look into how to match the liked post's id to the array of all videos and return the index value of that specific video
           # entry = Oj.load(Faraday.get("https://api.vimeo.com/me/#{post_id}").body)
-          # entry = user.videos.find(id: post_id)
           Notification::Entry.from(entry, 'vimeo')
         when 'tumblr'
           token = @user.tokens.find_by(provider: 'tumblr')

@@ -1,9 +1,9 @@
 <% case @post_entry.type %>
 <% when 'photo' %>
   <div class="timeline-user-box">
-    <%= image_tag(@post_entry.photo, :class => "gplus_image") %>
+    <%= image_tag(@post_entry.image, :class => "gplus_image") %>
   </div>
-  <% if @post_entry.caption.present? %>
+  <% if @post_entry.text.present? %>
     <div class="center">
       <%= @post_entry.text %>
     </div>
