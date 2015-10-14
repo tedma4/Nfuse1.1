@@ -60,16 +60,17 @@ module Search
     def has_media?
       @post.attrs.has_key? :extended_entities
     end
-    
+
     def type
       case(@provider)
         when 'twitter'
           @post.attrs[:extended_entities][:media][0][:type]
         when 'instagram'
-          @post["type"]
+          @post['type']
         when 'facebook'
           @post["type"]
       end
+    end
 
     def has_video_url?
       !@post.attrs[:entities][:urls] == []
@@ -78,7 +79,6 @@ module Search
       def twitter_url_video
         @post.attrs[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
       end
-    end
     #-----------text----------
 
     def text
