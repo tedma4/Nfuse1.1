@@ -17,6 +17,7 @@
 						<% else %>
 						  unfollowed you
 						<% end %>
+						<%= time_ago_in_words(a.created_at) %> ago
 					</div>
 				</div>
 			<% when 'User' %>
@@ -49,6 +50,7 @@
 							  	<%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
 							  <% end %>
 						  <% end %>
+						   <%= time_ago_in_words(a.created_at) %>
 	          <% end %>
 					</div>
 				</div>
