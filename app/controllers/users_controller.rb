@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def destroyuser
-     User.last.destroy
+     PublicActivity::Activity.destroy_all
      redirect_to root_path
   end
 
