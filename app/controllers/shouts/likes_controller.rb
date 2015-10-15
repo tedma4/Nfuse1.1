@@ -18,7 +18,7 @@ class Shouts::LikesController < ApplicationController
                                  parameters: {id:       @shout[:id],
                                               provider: @shout[:provider]},
                                  owner: current_user,
-                                 recipient: User.find_by(@shout[:owner_id]))
+                                 recipient: User.find(@shout[:owner_id]))
     respond_to do |format|
       #if @shout.save
         #@shout.create_activity(:like, owner: current_user, recipient: ActsAsVotable::Vote.find_by(owner_id: params[:owner_id]))
