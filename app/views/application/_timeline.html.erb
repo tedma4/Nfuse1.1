@@ -4,9 +4,6 @@
   }
 </style>
 <% if current_user.followed_users.empty? %>
-  <div class="loader">
-    <div class="loader-img"></div>
-  </div>
   <div class="center hub_padding">
     <p> Can't display posts because you aren't following anyone... </p>
     <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>

@@ -1964,3 +1964,54 @@ footer {
     padding-left: 5px;
   }
 }
+
+  .not_bottom_margin{
+    margin: 10px 0 0 0;
+  }
+
+  .post {
+    .content {
+    margin-left: 60px;
+    margin-top: 10px;
+    padding: 5px 15px;
+    .text {
+      font-size: 1.5rem;
+    }
+    .attachment {
+      border: 1px solid #e0e0e0;
+      padding: 5px;
+      margin-top: 10px;
+      img {
+        width: 100%;
+        }
+      }
+    }
+  }
+
+  .well {
+    background-color: white;
+  }
+ 
+  .created-at {
+    color: #808080;
+    font-size: 1.25rem;
+    margin-top: 15px;
+    margin-left: 75px;
+  } 
+  
+  .avatar {
+    border: 1px solid #e0e0e0;
+    width: 50px;
+    height: 50px;
+  }
+
+  .name {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+
+  .action {
+    font-size: 1.5rem;
+    margin-left: 2px;
+  }
