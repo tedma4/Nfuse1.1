@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
   resources :activities, path: 'notifications'
-
+  post 'activities/read_all_notifications'
   # Authentication and Settings
   get    '/signup',       to: 'users#new'
   get    '/login',        to: 'sessions#new', as: :signin

@@ -19,6 +19,7 @@
 //= require jquery.magnific-popup
 //= require placeholder
 //= require scripts
+//= require activities
 //= require turbolinks
 //= require video
 //= require feed_index
