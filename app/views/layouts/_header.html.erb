@@ -51,7 +51,9 @@
 }
 
 #search_header {
-
+  margin: -40px 20px;
+    position: absolute;
+    z-index: 100;
 }
 
 #search_header input[type="text"] {
@@ -70,6 +72,9 @@
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     }
+  .counterPlacement {
+
+  }
 </style>
 <div class="Thing"></div>
 <div class="headerBack">
@@ -109,7 +114,10 @@
       </li> -->
        <li class="navIcon tilt" id="notifications">
         <%= link_to image_tag('notifications3.fw.png', size: "32x32", title: "Notifications", class: 'cr'), activities_path %>
-      </li><%= PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+         <div class="counterPlacement">
+           <%= PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+         </div>
+       </li>
       <li class="navIcon edit feedback" id="help">
         <a href="#" class="dropdown-toggle">
           <%= image_tag('menu24.fw.png', size: "32x32", title: "Menu") %> <b class="caret"></b>
