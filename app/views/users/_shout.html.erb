@@ -126,10 +126,17 @@ li {
   </div>
   <ul class="post_actions">
     <li class="tilt">
+      <% if ActsAsVotable::Vote.where(votable_id: shout.id).pluck(:voter_id).include?(current_user.id) %>
+      <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+                      like_shout_path(id: shout.id,
+                      owner_id: shout.user.id), 
+                       method: :post, remote: true %>
+      <% else %>
       <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
                       like_shout_path(id: shout.id,
                       owner_id: shout.user.id), 
                        method: :post, remote: true %>
+      <% end %>
       <a id="shout-<%=shout.id%>">
         <%= shout.like_score(shout.id) %>
       </a>
