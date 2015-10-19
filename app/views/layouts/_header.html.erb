@@ -113,7 +113,7 @@
         <%#= link_to image_tag('add50blue.fw.png', size: "32x32", title: "New post"), new_shout_path %>
       </li> -->
        <li class="navIcon tilt" id="notifications">
-        <%= link_to image_tag('notifications3.fw.png', size: "32x32", title: "Notifications", class: 'cr'), activities_path %>
+          <%= link_to image_tag('notifications3.fw.png', size: "32x32", title: "Notifications", class: 'cr'), 'activities/read_all_notifications', method: :post %> 
          <div class="counterPlacement">
            <%= PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
          </div>
