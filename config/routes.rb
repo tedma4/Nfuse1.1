@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :contacts,      only: [:new, :create]
+  resources :contacts,      only: [:new, :create], path: "contact"
   resources :sessions,      only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
