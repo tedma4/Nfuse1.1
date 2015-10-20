@@ -1,4 +1,11 @@
 <style>
+.notificationPost{
+  overflow: hidden;
+  box-shadow: 5px 3px rgba(100,100,100,0.5);
+}
+.imageAndVideoWidth{
+	max-width: 400px
+}
 </style>
 
 <div class="post"> <!--  id="post-<%#= @activity.id %>" -->
@@ -6,7 +13,7 @@
 		<% @activities.each do |a| %>		
 			<% case a.attributes['trackable_type'] %>
 			<% when 'Relationship' %>
-		    <div class="col-lg-6 col-lg-offset-3 well">
+		    <div class="col-lg-4 col-lg-offset-4 well">
 					<div class="info">
 						<%= link_to image_tag(a.owner.avatar(:small), class: "avatar", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>			  
 						<h4 class="name"><%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %></h4>
@@ -24,7 +31,7 @@
 		    </div>
 		  <% when 'User' %>
 	      <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.recipient	).construct %>
-		    <div class="col-lg-6 col-lg-offset-3 well">
+		    <div class="col-lg-4 col-lg-offset-4 well notificationPost">
 					<div class="info">
 						<%= link_to image_tag(a.owner.avatar(:small), class: "avatar", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>			  
 						<h4 class="name"><%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %></h4>
