@@ -1,6 +1,6 @@
 class Shout < ActiveRecord::Base
-  include PublicActivity::Model
-  # tracked except: :destroy, owner: ->(controller, model) { controller && controller.current_user }, recipient: ->(controller, model) {model && model.owner_id}
+  include PublicActivity::Common
+  # tracked only: :destroy, owner: ->(controller, model) { controller && controller.current_user }, recipient: ->(controller, model) {model && model.owner_id}
   belongs_to :user 
   #has_and_belongs_to_many :nfuse_pages
   has_many :nfuse_pages, dependent: :destroy
@@ -42,9 +42,8 @@ class Shout < ActiveRecord::Base
                   !!(record.content                 = record.content)
   }
 
-  before_create { |record|
-                check_file_types.call(record)
-                }
+  before_create { |record| check_file_types.call(record) }
+  
   def all_votes
    ActsAsVotable::Vote.where(votable_id: self.id)
   end

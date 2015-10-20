@@ -20,10 +20,7 @@ class Shouts::LikesController < ApplicationController
                                  owner: current_user,
                                  recipient: User.find(@shout[:owner_id]))
     respond_to do |format|
-      #if @shout.save
-        #@shout.create_activity(:like, owner: current_user, recipient: ActsAsVotable::Vote.find_by(owner_id: params[:owner_id]))
-        format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
-      #end
+      format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
     end
   end
 

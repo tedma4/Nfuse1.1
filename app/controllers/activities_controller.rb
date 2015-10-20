@@ -11,4 +11,14 @@ class ActivitiesController < ApplicationController
 	end
 end
 
+# Part of the new index method
+# exclusive_posts = PublicActivity::Activity.where(trackable_type: 'Shout', parameters: {user: current_user.id})
 
+# if exclusive_posts.empty?
+# 	@activities << exclusive_posts
+# else 
+# 	@activities
+# end
+
+# Place this in the shout controller create action 
+# @shout.create_activity(key: 'shout.shout', owner: @shout.user, parameters{user: @shout.user.followed_users.pluck(:id)})

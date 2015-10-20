@@ -139,7 +139,10 @@ $(function () {
                   <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
                 </div>
               </div>
-
+              <div class="row">
+                <%= f.label "Do you want to send this to only your followers?" %>
+                <%= f.check_box :is_exclusive %>
+              </div>
               <div class="row">
                 <div class="col-sm-4 section-bottom-button wow fadeInUp">
                   <button type="submit" class="btn">

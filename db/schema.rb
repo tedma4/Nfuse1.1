@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016005429) do
+ActiveRecord::Schema.define(version: 20151020180234) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 20151016005429) do
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
     t.boolean  "is_full_video",                  default: false
+    t.boolean  "is_exclusive",                   default: false
   end
 
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"

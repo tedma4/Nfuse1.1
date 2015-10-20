@@ -27,6 +27,9 @@ class ShoutsController < ApplicationController
     @shout = current_user.shouts.create(shout_params)
     respond_to do |format|
       if @shout.save
+        if @shout.is_exclusive == true
+          @shout.create_activity(key: 'shout.shout', owner: current_user, parameters:{user: @shout.user.followed_users.pluck(:id)})
+        end
           format.html { redirect_to feed_user_path(@shout.user)}
           format.json { render json: @shout, status: :created, location: @shout }
       else
@@ -55,7 +58,7 @@ class ShoutsController < ApplicationController
   end
 
   def nfuse_post
-    if @nfuse_page = NfusePage.find_by(social_id: params[:id], social_key: params[:key])
+    if @nfuse_page == NfusePage.find_by(social_id: params[:id], social_key: params[:key])
       render json: { nfuse_page: @nfuse_page }
     else
       @nfuse_page = NfusePage.build(params)
@@ -77,7 +80,7 @@ class ShoutsController < ApplicationController
     end
 
   def shout_params
-      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html, :is_full_video, :video )
+      params.require(:shout).permit( :user_id, :content, :pic, :snip, :is_video, :link, :is_link, :is_pic, :url, :url_html, :is_full_video, :video, :is_exclusive )
     end
 
     def correct_user
