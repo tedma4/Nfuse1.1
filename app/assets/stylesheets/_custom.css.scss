@@ -947,8 +947,7 @@ td {
 }
 .post_header li{
   display: inline;
-  color: green;
-  padding: 0;
+  margin-left: 5px;
 }
 .provider_logo{
   margin: 0;
@@ -974,7 +973,20 @@ td {
 .user_name{
   margin: 20px 0 0 0;
   font-size: 1.8em;
-  padding: 20px 0px 0px 20px;
+  padding: 18px 0 0 0;
+  margin: auto;
+}
+.user_name_notifications :hover{
+  color: black;
+}
+.user_name_notifications{
+  font-size: 1.1em;
+  padding: 18px 0 0 0;
+  margin: auto;
+}
+.user_name_li{
+  padding: 18px 0 0 0;
+  font-size: 1.1em;
   margin: auto;
 }
 .user_link {
@@ -1952,53 +1964,3 @@ footer {
   .modal-timeline-user-box img {
     min-width: 500px;
   }
-
-/*notifications*/
-.activities {
-  border-bottom: solid 1px #87ceeb;
-  padding: 16px 0 0 16px;
-  em {
-    color: #777;
-    font-size: 55px;
-    padding-left: 5px;
-  }
-}
-
-  .not_bottom_margin{
-    margin: 10px 0 0 0;
-  }
-
-  .post {
-    .content {
-    text-align: center;
-    padding: 5px 2px;
-    .text {
-      font-size: 1.5rem;
-    }
-    }
-  }
-
-  .well {
-    background-color: white;
-  }
- 
-  .created-at {
-    color: #808080;
-    font-size: 1.25rem;
-    margin-top: 15px;
-    margin-left: 75px;
-  }
-
-  .name {
-    display: inline-block;
-    font-size: 1.5rem;
-  }
-
-  .action {
-    font-size: 1.5rem;
-    margin-left: 2px;
-  }
-.notifications_avatar{
-  margin: 0 0 2px 0;
-  border-radius: 50px;
-}

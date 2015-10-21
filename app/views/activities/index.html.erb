@@ -16,30 +16,44 @@
 			<% case a.attributes['trackable_type'] %>
 			<% when 'Relationship' %>
 		    <div class="individual_post item">
-					<div class="info">
-						<%= link_to image_tag(a.owner.avatar(:small), class: "notifications_avatar", size: "50", title: "#{ a.owner.first_name}"), feed_user_path(a.owner) %>			  
-						<h4 class="name"><%= link_to a.owner.first_name.capitalize, feed_user_path(a.owner) %></h4>
-						<% if a.trackable %>
-						  <span class="action">started following You </span>
-						<% else %>
-						  <span class="action">Unfollowed You </span>
-						<% end %>
+				  <div class="post_main">
+				    <ul class="post_header">
+				      <li>
+								<%= link_to image_tag(a.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ a.owner.first_name}"), feed_user_path(a.owner) %>
+							</li>
+							<li class="user_name_notifications">
+								<%= link_to a.owner.first_name.capitalize, feed_user_path(a.owner) %>
+							</li>
+						</ul>
 					</div>
-					<div class="content">
+						<% if a.trackable %>
+						  started following You
+						<% else %>
+						  Unfollowed You
+						<% end %>
+					<div class="post_content">
 					  <div class="created-at">
 							<%= time_ago_in_words(a.created_at) %> ago
 		    		</div>
 					</div>
-		    </div>
+				</div>
 		  <% when 'User' %>
 	      <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.recipient	).construct %>
 		    <div class="individual_post item">
-					<div class="info">
-						<%= link_to image_tag(a.owner.avatar(:small), class: "notifications_avatar", size: "50", title: "#{ a.owner.first_name}"), feed_user_path(a.owner) %>			  
-						<h4 class="name"><%= link_to a.owner.first_name.capitalize, feed_user_path(a.owner) %></h4>
-						  <span class="action">liked your <%= (a.parameters[:provider].presence || 'nfuse').capitalize %> post </span>
+				  <div class="post_main">
+				    <ul class="post_header">
+				      <li>
+								<%= link_to image_tag(a.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ a.owner.first_name}"), feed_user_path(a.owner) %>
+							</li>
+							<li class="user_name_notifications">
+								<%= link_to a.owner.first_name.capitalize, feed_user_path(a.owner) %>
+							</li>
+							<li class="user_name_li">
+						  	liked your <%= (a.parameters[:provider].presence || 'nfuse').capitalize %> post
+							</li>
+						</ul>
 					</div>
-					<div class="content">
+					<div class="post_content">
 	          <% if @post_entry.present? %>
 							<% if a.trackable %>
 							  <% case a.parameters[:provider] %>
