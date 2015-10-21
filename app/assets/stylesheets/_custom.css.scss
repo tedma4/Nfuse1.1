@@ -1969,10 +1969,8 @@ footer {
   }
 
   .post {
-    margin-top: 10px;
     .content {
     text-align: center;
-    margin-top: 10px;
     padding: 5px 2px;
     .text {
       font-size: 1.5rem;
@@ -1994,10 +1992,13 @@ footer {
   .name {
     display: inline-block;
     font-size: 1.5rem;
-    margin-left: 10px;
   }
 
   .action {
     font-size: 1.5rem;
     margin-left: 2px;
   }
+.notifications_avatar{
+  margin: 0 0 2px 0;
+  border-radius: 50px;
+}

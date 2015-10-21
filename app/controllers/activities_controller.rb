@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
 	def index
 		@activities = PublicActivity::Activity.order(created_at: :desc)
 									.where(recipient_id: current_user.id,
-									recipient_type: 'User')#Add will paginate stuff
+									recipient_type: 'User').paginate(page: params[:page], per_page: 10)
 		# @notification_count = @activities.where(:read => false).count
 	end
 	def read_all_notifications
