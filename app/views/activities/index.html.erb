@@ -8,11 +8,11 @@
 }
 </style>
 
-<div id="masonJar" class="center explore_container clearfix masonJar">
+<div id="masonJar" class="clearfix masonJar yes_timeline_padding">
 		<% @activities.each do |a| %>		
 			<% case a.attributes['trackable_type'] %>
 			<% when 'Relationship' %>
-		    <div class="item well">
+		    <div class="individual_post item">
 					<div class="info">
 						<%= link_to image_tag(a.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>			  
 						<h4 class="name"><%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %></h4>
@@ -30,7 +30,7 @@
 		    </div>
 		  <% when 'User' %>
 	      <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.recipient	).construct %>
-		    <div class="item well notificationPost">
+		    <div class="individual_post item">
 					<div class="info">
 						<%= link_to image_tag(a.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>			  
 						<h4 class="name"><%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %></h4>
