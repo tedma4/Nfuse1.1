@@ -8,12 +8,11 @@
 }
 </style>
 
-<div class="post"> <!--  id="post-<%#= @activity.id %>" -->
-  <div class="row">
+<div id="masonJar" class="center explore_container clearfix masonJar">
 		<% @activities.each do |a| %>		
 			<% case a.attributes['trackable_type'] %>
 			<% when 'Relationship' %>
-		    <div class="col-lg-4 col-lg-offset-4 well">
+		    <div class="item well">
 					<div class="info">
 						<%= link_to image_tag(a.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>			  
 						<h4 class="name"><%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %></h4>
@@ -31,7 +30,7 @@
 		    </div>
 		  <% when 'User' %>
 	      <% @post_entry = Notification::Timeline.new(a.parameters[:id], a.parameters[:provider], a.recipient	).construct %>
-		    <div class="col-lg-4 col-lg-offset-4 well notificationPost">
+		    <div class="item well notificationPost">
 					<div class="info">
 						<%= link_to image_tag(a.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ a.owner.full_name}"), feed_user_path(a.owner) %>			  
 						<h4 class="name"><%= link_to a.owner.full_name.capitalize, feed_user_path(a.owner) %></h4>
@@ -120,5 +119,4 @@
 				  </div><br>
 			<% end %>
 		<% end %>
-  </div>
 </div>

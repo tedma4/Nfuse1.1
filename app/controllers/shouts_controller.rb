@@ -28,7 +28,7 @@ class ShoutsController < ApplicationController
     respond_to do |format|
       if @shout.save
         if @shout.is_exclusive == true
-          @shout.create_activity(key: 'shout.shout', owner: current_user, parameters:{user: @shout.user.followed_users.pluck(:id)})
+          @shout.create_activity(key: 'shout.shout', owner: current_user, user_recipients: @shout.user.followed_users.pluck(:id) )
         end
           format.html { redirect_to feed_user_path(@shout.user)}
           format.json { render json: @shout, status: :created, location: @shout }

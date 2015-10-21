@@ -1,6 +1,6 @@
 class Shout < ActiveRecord::Base
   include PublicActivity::Common
-  # tracked only: :destroy, owner: ->(controller, model) { controller && controller.current_user }, recipient: ->(controller, model) {model && model.owner_id}
+  # tracked user_recipients:, owner: ->(controller, model) { controller.current_user }, recipient: ->(controller, model) {model && model.followed_users.pluck(:id)}
   belongs_to :user 
   #has_and_belongs_to_many :nfuse_pages
   has_many :nfuse_pages, dependent: :destroy
