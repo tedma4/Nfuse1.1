@@ -1,0 +1,126 @@
+<div id="masonJar" class="clearfix masonJar">
+  <% @activities.each do |activity| %>
+   <% case activity.attributes['trackable_type'] %>
+   <% when 'Relationship' %>
+     <div class="individual_post item">
+       <div class="post_main">
+         <ul class="post_header">
+           <li>
+             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+           </li>
+           <li class="user_name_notifications">
+             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+           </li>
+         </ul>
+       </div>
+         <% if activity.trackable %>
+           started following You
+         <% else %>
+           Unfollowed You
+         <% end %>
+       <div class="post_content">
+         <div class="created-at">
+           <%= time_ago_in_words(activity.created_at) %> ago
+         </div>
+       </div>
+     </div>
+   <% when 'User' %>
+     <% @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct %>
+     <div class="individual_post item">
+       <div class="post_main">
+         <ul class="post_header">
+           <li>
+             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+           </li>
+           <li class="user_name_notifications">
+             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+           </li>
+           <li class="user_name_li">
+             <strong>liked</strong> your <%= (activity.parameters[:provider].presence || 'nfuse').capitalize %> post
+           </li>
+         </ul>
+       </div>
+       <div class="post_content">
+         <% if @post_entry.present? %>
+           <% if activity.trackable %>
+             <% case activity.parameters[:provider] %>
+             <% when nil %>
+               <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+             <% when "gplus" %>
+               <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+             <% when "tumblr" %>
+               <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+             <% when "facebook" %>
+               <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
+             <% when 'twitter' %>
+               <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
+             <% when 'youtube' %>
+               <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
+             <% when 'vimeo' %>
+               <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
+             <% when 'flickr' %>
+               <%= render partial: 'activities/flickr_entry', locals: {flickr_entry: @post_entry} %>
+             <% when 'instagram' %>
+               <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
+             <% end %>
+           <% end %>
+         <% end %>
+         <div class="created-at">
+           <%= time_ago_in_words(activity.created_at) %> ago
+         </div>
+       </div>
+     </div>
+   <% when 'Shout' %>
+     <div class="post_content">
+         <% if !activity.trackable.url.blank? %>
+           <p> <%= activity.trackable.url_html %></p>
+           <div class="url_caption">
+             <%= activity.trackable.content %>
+             <!-- <p>Duration: <b><%#= activity.trackable.duration %></b></p> -->
+           </div>
+         <% elsif activity.trackable.is_pic? %>
+           <div class="timeline-user-box image_post">
+             <%= image_tag activity.trackable.pic_url %>
+           </div>
+           <div class="caption">
+               <%= activity.trackable.content %>
+           </div>
+         <% elsif activity.trackable.is_video? %>
+           <div class="timeline-user-box">
+             <video 
+               id="ytplayer" 
+               type="video/mp4" 
+               width="100%" 
+               height="225" 
+               src="<%= activity.trackable.video_url %>" 
+               frameborder="0"
+               allowfullscreen
+               controls>
+             </video>
+             <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+           </div>
+           <div class="caption">
+               <%= activity.trackable.content %>
+           </div>
+         <% elsif activity.trackable.is_full_video? %>
+           <div class="timeline-user-box">
+             <video 
+               id="ytplayer" 
+               type="video/flv" 
+               width="100%" 
+               height="225" 
+               src="<%= activity.trackable.full_video_url %>" 
+               frameborder="0"
+               allowfullscreen
+               controls>
+             </video>
+             <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
+           </div>
+           <div class="caption">
+               <%= activity.trackable.content %>
+           </div>
+         <% end %>
+       </div><br>
+   <% end %>
+  <% end %>
+</div>
