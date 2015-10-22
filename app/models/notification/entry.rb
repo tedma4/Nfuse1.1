@@ -110,11 +110,8 @@ module Notification
         when 'instagram'
           @entry["images"]["low_resolution"]["url"]
         when 'facebook'
-          if type == 'photo'
-            @token = @user.tokens.find_by(provider: 'facebook')
-            @graph = Koala::Facebook::API.new @token.access_token
+          if type == nil
             begin
-              @entry = @graph.get_object(@entry['object_id'])
               @entry['images'][0]['source']
             rescue
               @entry['picture']
@@ -131,6 +128,13 @@ module Notification
       end
     end
 
+    def fb_image
+      begin
+        @entry['images'][0]['source']
+      rescue
+        @entry['picture']
+      end
+    end
     #-----------video----------
 
     def video
