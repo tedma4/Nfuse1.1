@@ -1,14 +1,14 @@
   <% if !@post_entry.url.blank? %>
     <p> <%= @post_entry.url_html %></p>
     <div class="url_caption">
-      <%= @post_entry.content %>
+      <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% elsif @post_entry.is_pic? %>
     <div class="timeline-user-box image_post">
       <%= image_tag @post_entry.pic_url %>
     </div>
     <div class="caption">
-        <%= @post_entry.content %>
+        <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% elsif @post_entry.is_video? %>
     <div class="timeline-user-box">
@@ -24,7 +24,7 @@
       </video>
     </div>
     <div class="caption">
-      <%= @post_entry.content %>
+      <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% elsif @post_entry.is_full_video? %>
     <div class="timeline-user-box">
@@ -40,6 +40,6 @@
       </video>
     </div>
     <div class="caption">
-      <%= @post_entry.content %>
+      <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% end %>

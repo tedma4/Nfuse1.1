@@ -7,7 +7,7 @@
     <% if @post_entry.name.present? %>
       <%= @post_entry.name %>
     <%elsif @post_entry.message.present? %>
-      <%= @post_entry.message %>
+      <%= truncate(@post_entry.message, lenght: 30) %>
     <%end%>
   </div>
 <% when 'link' %>
@@ -18,12 +18,12 @@
   <%end%>
   <div class="center">
     <% if @post_entry.description.present? %>
-      <%= @post_entry.description %>
+      <%= truncate(@post_entry.description, lenght: 30) %>
     <%end%>
   </div>
   <div class="center">
     <% if @post_entry.message.present? %>
-      <%= @post_entry.message%>
+      <%= truncate(@post_entry.message, lenght: 30)%>
     <%end%>
   </div>
 <% when 'video' %>
@@ -39,7 +39,7 @@
       </iframe>
       <div class="center">
         <% if @post_entry.message.present? %>
-          <%= @post_entry.message%>
+          <%= truncate(@post_entry.message, lenght: 30) %>
         <%end%>
       </div>
     <%else%>
@@ -49,7 +49,7 @@
       </video>
       <div class="center">
         <% if @post_entry.message.present? %>
-          <%= @post_entry.message%>
+          <%= truncate(@post_entry.message, lenght: 30) %>
         <%end%>
       </div>
     <%end%>
@@ -57,7 +57,7 @@
 <% when 'status' %>
   <div class="center">
     <% if @post_entry.message.present? %>
-      <%= @post_entry.message%>
+      <%= truncate(@post_entry.message, lenght: 30) %>
     <%end%>
   </div>
 <% end %>

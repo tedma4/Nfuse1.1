@@ -5,7 +5,7 @@
   </div>
   <% if @post_entry.text.present? %>
     <div class="center">
-      <%= @post_entry.text %>
+      <%= truncate(@post_entry.text, lenght: 30) %>
     </div>
   <% end %>
 <% when 'video' %>
@@ -22,11 +22,11 @@
   </div>
   <% if @post_entry.text.present? %>
     <div class="center">
-      <%= @post_entry.text %>
+      <%= truncate(@post_entry.text, lenght: 30) %>
     </div>
   <% end %>
 <% else %>
   <div class="center">
-    <%= @post_entry.text %>
+    <%= truncate(@post_entry.text, lenght: 30) %>
   </div>
 <% end %>

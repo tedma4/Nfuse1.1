@@ -22,4 +22,4 @@
   allowfullscreen>
   </iframe>
 <% end %>
-<%= @post_entry.text %><br>
+<%= truncate(@post_entry.text, lenght: 30) %><br>
