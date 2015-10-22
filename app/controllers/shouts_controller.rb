@@ -24,12 +24,12 @@ class ShoutsController < ApplicationController
   end
 
   def create
+    if params[:shout]["is_exclusive"] == "0"
+      Shout.public_activity_off
+    end
     @shout = current_user.shouts.create(shout_params)
     respond_to do |format|
       if @shout.save
-        if @shout.is_exclusive == true
-          @shout.create_activity(key: 'shout.shout', owner: current_user, user_recipients: @shout.user.followed_users.pluck(:id) )
-        end
           format.html { redirect_to feed_user_path(@shout.user)}
           format.json { render json: @shout, status: :created, location: @shout }
       else

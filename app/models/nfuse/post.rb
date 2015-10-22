@@ -50,6 +50,10 @@ module Nfuse
       @shout.link
     end
 
+    def exclusive
+      @shout.is_exclusive
+    end
+
     alias_method :link_to_post, :link
 
     def is_link?

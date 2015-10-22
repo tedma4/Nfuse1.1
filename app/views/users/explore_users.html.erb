@@ -3,7 +3,9 @@
     <% case post.provider %>
     <% when "nfuse" %>
       <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-      <%=  render partial: 'users/shout', locals: {shout: post} %>
+      <% unless post.exclusive == true %>
+        <%=  render partial: 'users/shout', locals: {shout: post} %>
+      <% end %>
     <% when "gplus" %>
       <% if post.type != 'hiddenType' %>
         <%= render partial: "users/post", locals: {post: post} %>

@@ -1,7 +1,13 @@
 class Shout < ActiveRecord::Base
-  include PublicActivity::Common
-  # tracked user_recipients:, owner: ->(controller, model) { controller.current_user }, recipient: ->(controller, model) {model && model.followed_users.pluck(:id)}
+  include PublicActivity::Model
+  tracked only: [:create], owner: ->(controller, model) { controller.current_user }, user_recipients: ->(controller, model) {model && model.user.followed_users.pluck(:id).join(" ")}
   belongs_to :user 
+  # I added is_exclusive to the shouts table and user_recipients to activities
+  # now I need to get the ids from a users followers when a user make an exclusive post
+  # So. If is_exclusive == true track the action 
+  # only exclusive posts need to be tracked
+  # This is a create problem. So I need ot turn off P_A if it isn't an exclusive post
+
   #has_and_belongs_to_many :nfuse_pages
   has_many :nfuse_pages, dependent: :destroy
   validates :user_id, :content, presence: true
