@@ -1,7 +1,7 @@
 <% if post.has_media? %>
   <% if post.type == 'video' || post.type == "animated_gif" %>
 	  <div class="center">
-      <video width="100%" controls preload="none">
+      <video width="100%" controls preload="none" poster=<%= post.tweet_image%> >
         <source src="<%= post.tweet_video %>" type='video/mp4' />
         <source src="<%= post.tweet_video %>" type='video/ogv' />
       </video>

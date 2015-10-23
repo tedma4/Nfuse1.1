@@ -88,6 +88,7 @@ li {
     <% elsif shout.is_video? %>
       <div class="timeline-user-box">
         <video 
+          poster=<%= shout.pic_url %>
           preload="none"
           id="ytplayer" 
           type="video/mp4" 
@@ -106,6 +107,7 @@ li {
     <% elsif shout.is_full_video? %>
       <div class="timeline-user-box">
         <video 
+          poster=<%= shout.pic_url %>
           preload="none"
           id="ytplayer" 
           type="video/flv" 
