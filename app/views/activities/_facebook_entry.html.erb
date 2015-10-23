@@ -43,7 +43,7 @@
         <%end%>
       </div>
     <%else%>
-      <video width="100%" controls>
+      <video width="100%" controls preload="none">
         <source src="<%= @post_entry.source %>" type='video/mp4' />
         <source src="<%= @post_entry.source %>" type='video/ogv' />
       </video>

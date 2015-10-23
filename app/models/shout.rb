@@ -1,6 +1,6 @@
 class Shout < ActiveRecord::Base
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(controller, model) { controller.current_user }, user_recipients: ->(controller, model) {model && model.user.followed_users.pluck(:id).join(" ")}
+  tracked only: [:create], owner: ->(controller, model) { controller.current_user }, user_recipients: ->(controller, model) {model && model.user.followers.pluck(:id).join(", ")}
   belongs_to :user 
   # I added is_exclusive to the shouts table and user_recipients to activities
   # now I need to get the ids from a users followers when a user make an exclusive post

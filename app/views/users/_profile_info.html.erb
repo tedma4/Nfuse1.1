@@ -168,7 +168,9 @@
                                   <%= f.label "Do you want to send this to only your followers?" %>
                                 </div>
                                 <div class="row">
-                                  <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
+                                  <% unless current_user.followers.empty? %>
+                                    <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
+                                  <% end %>
                                   <%= f.check_box :is_exclusive %>
                                     <button type="submit" class="btn">
                                      Post!

@@ -13,6 +13,7 @@
   <% elsif @post_entry.is_video? %>
     <div class="timeline-user-box">
       <video 
+        preload="none"
         id="ytplayer" 
         type="video/mp4" 
         width="100%" 
@@ -29,6 +30,7 @@
   <% elsif @post_entry.is_full_video? %>
     <div class="timeline-user-box">
       <video 
+        preload="none"
         id="ytplayer" 
         type="video/flv" 
         width="100%" 
