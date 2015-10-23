@@ -78,7 +78,7 @@
              <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
            </li>
            <li class="user_name_notifications">
-             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>'s
            </li>
            <li class="user_name_li">
              <strong>Exclusive<strong> Post
