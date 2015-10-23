@@ -1,9 +1,9 @@
 class ActivitiesController < ApplicationController
 	def index
-		# @activities = PublicActivity::Activity.where(recipient_id: current_user.id, recipient_type: 'User')
+		activity1 = PublicActivity::Activity.includes(:recipient, :owner, :trackable).where(recipient_id: current_user.id, recipient_type: 'User')
 
-		@activities = PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id)
-
+		activity2 = PublicActivity::Activity.includes(:recipient, :owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id)
+		@activities = (activity1 + activity2).sort_by{|t| - t.created_at.to_i}
 		# @notification_count = @activities.where(:read => false).count
 	end
 	def read_all_notifications
