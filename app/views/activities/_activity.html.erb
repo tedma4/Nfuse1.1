@@ -71,11 +71,25 @@
        </div>
      </div>
    <% when 'Shout' %>
-     <div class="post_content">
+     <div class="individual_post item exclusive_bgc">
+       <div class="post_main">
+         <ul class="post_header">
+           <li>
+             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+           </li>
+           <li class="user_name_notifications">
+             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+           </li>
+           <li class="user_name_li">
+             <strong>Exclusive<strong> Post
+           </li>
+         </ul>
+       </div>
+       <div class="post_content">
          <% if !activity.trackable.url.blank? %>
            <p> <%= activity.trackable.url_html %></p>
            <div class="url_caption">
-             <%= activity.trackable.content %>
+             <%= truncate(activity.trackable.content, length: 30) %>
              <!-- <p>Duration: <b><%#= activity.trackable.duration %></b></p> -->
            </div>
          <% elsif activity.trackable.is_pic? %>
@@ -83,7 +97,7 @@
              <%= image_tag activity.trackable.pic_url %>
            </div>
            <div class="caption">
-               <%= activity.trackable.content %>
+               <%= truncate(activity.trackable.content, length: 30) %>
            </div>
          <% elsif activity.trackable.is_video? %>
            <div class="timeline-user-box">
@@ -101,7 +115,7 @@
              <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
            </div>
            <div class="caption">
-               <%= activity.trackable.content %>
+               <%= truncate(activity.trackable.content, length: 30) %>
            </div>
          <% elsif activity.trackable.is_full_video? %>
            <div class="timeline-user-box">
@@ -119,10 +133,14 @@
              <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
            </div>
            <div class="caption">
-               <%= activity.trackable.content %>
+               <%= truncate(activity.trackable.content, length: 30) %>
            </div>
          <% end %>
+         <div class="created-at">
+           <%= time_ago_in_words(activity.created_at) %> ago
+         </div>
        </div><br>
+     </div>
    <% end %>
   <% end %>
 </div>

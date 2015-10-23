@@ -1,10 +1,8 @@
 class ActivitiesController < ApplicationController
 	def index
-		# @activities = PublicActivity::Activity.order(created_at: :desc)
-		# 							.where(recipient_id: current_user.id,
-		# 							recipient_type: 'User').paginate(page: params[:page], per_page: 20)
+		# @activities = PublicActivity::Activity.where(recipient_id: current_user.id, recipient_type: 'User')
 
-		@activities = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id)
+		@activities = PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id)
 
 		# @notification_count = @activities.where(:read => false).count
 	end
@@ -13,6 +11,11 @@ class ActivitiesController < ApplicationController
 		redirect_to :activities
 	end
 end
+
+
+# .order(created_at: :desc)
+# .paginate(page: params[:page], per_page: 20)
+
 
 # Need to get the two sql queries merged together to form a super query for current user activities
 
