@@ -34,7 +34,7 @@ private
           Notification::Entry.from(entry, 'youtube')
         when 'gplus'
           uid = @user.tokens.find_by(provider: 'gplus').uid
-          entry = configure_gplus(uid)
+          entry = configure_gplus(post_id)
           Notification::Entry.from(entry, 'gplus')
         when 'vimeo'
           access_token = @user.tokens.find_by(provider: 'vimeo').access_token
@@ -111,9 +111,7 @@ private
         client
       end
 
-      def configure_gplus(uid)
-        GooglePlus.api_key = ENV['youtube_dev_key']
-        client = GooglePlus::Person.get(uid)
+      def configure_gplus(post_id)
         post = GooglePlus::Activity.get(post_id)
       end
 
