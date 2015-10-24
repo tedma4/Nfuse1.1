@@ -62,9 +62,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :contacts,      only: [:new, :create], path: "contact"
-  resources :sessions,      only: [:new, :create, :destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :contacts, path: 'contact_us', only: [:new, :create]
+  resources :sessions,                  only: [:new, :create, :destroy]
+  resources :relationships,             only: [:create, :destroy]
   resources :password_resets
   resources :activities, path: 'notifications'
   post 'activities/read_all_notifications'
