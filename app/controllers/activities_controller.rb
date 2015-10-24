@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+
 	def index
 		activity1 = PublicActivity::Activity.includes(:recipient, :owner, :trackable).where(recipient_id: current_user.id, recipient_type: 'User')
 
@@ -8,6 +9,7 @@ class ActivitiesController < ApplicationController
 	end
 	def read_all_notifications
 		PublicActivity::Activity.where(recipient_id: current_user.id).update_all(:read => true)
+		PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).update_all(:read => true)
 		redirect_to :activities
 	end
 end

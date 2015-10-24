@@ -116,7 +116,9 @@
        <li class="navIcon tilt" id="notifications">
           <%= link_to image_tag('notifications3.fw.png', size: "32x32", title: "Notifications", class: 'cr'), activities_read_all_notifications_path, method: :post %>
          <div class="counterPlacement">
-           <%= PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+           <% activity1 = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+           <% activity2 = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).where(read: false).count %>
+           <%= activity1 + activity2 %>
          </div>
        </li>
       <li class="navIcon edit feedback" id="help">
