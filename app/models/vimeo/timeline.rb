@@ -19,10 +19,6 @@ module Vimeo
       video.get_info(video_id)
     end
 
-    def get_post(post_id)
-      get_vimeo_post(client, post_id)
-    end
-
     private
 
     def video
@@ -69,12 +65,6 @@ module Vimeo
       #   vimeo_timeline.delete_at(0)
       #   vimeo_timeline
       # end
-    end
-
-    def get_vimeo_post(client, post_id)
-      configure_vimeo(user_tokens)
-      user = Vmo::Request.get_user(user_tokens.access_token)
-      user.videos(post_id)
     end
 
     def store_last_post_id(timeline)

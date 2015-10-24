@@ -14,10 +14,6 @@ module Twitter
       timeline
     end
 
-    def get_tweet(post_id)
-      get_twitter_post(client, post_id)
-    end
-
     private
 
     def client
@@ -40,10 +36,6 @@ module Twitter
         twitter_timeline.delete_at(0)
         twitter_timeline
       end
-    end
-
-    def get_twitter_post(client, post_id)
-      client.status(post_id)
     end
 
     def store_last_post_id(timeline)

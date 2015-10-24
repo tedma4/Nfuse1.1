@@ -181,7 +181,6 @@ class Token < ActiveRecord::Base
     GooglePlus.api_key = ENV['youtube_dev_key']
     # gplus_access = @user.tokens.find_by_provider('gplus')
     client = GooglePlus::Person.get(uid)
-    post = GooglePlus::Activity.get(post_id)
   end
 
   def configure_flickr(access_token, access_secret)
