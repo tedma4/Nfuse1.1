@@ -138,7 +138,7 @@
   </div>
 
 <% else %> <!-- else _header-->
-  <% if current_page?(root_path) || current_page?(about_path) || current_page?(signup_path) || current_page?(privacy_path) || current_page?(new_contacts_path) %>
+  <% if current_page?(root_path) || current_page?(about_path) || current_page?(signup_path) || current_page?(privacy_path) || current_page?(new_contact_path) %>
     <div class="login_form_position" id="fadeshow_login1">
       <%= form_for(:session, url: sessions_path, html: { class: "navbar-form navbar-right", id:"signin", role: "form" }) do |f| %>
         <div class="input-group">
