@@ -1,3 +1,8 @@
+<style>
+.nfused_network a{
+  color: #af9aee;
+}
+</style>
 <form role="form">
   <div class="Alignthisorelse">
     <div class="features-container section-container">
@@ -11,7 +16,9 @@
               <h3>Twitter</h3>
               <p>Share your Twitter posts.</p>
             <% if current_user && user_has_provider?('twitter') %>
+              <p class="nfused_network">
               <%= link_to "You've Nfused Twitter", "/auth/twitter?origin=#{request.original_url}" %>
+              </p>
             <% else %>
               <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
             <% end %>
@@ -25,7 +32,9 @@
               <h3>Instagram</h3>
               <p>Share your Instagram posts.</p>
             <% if current_user && user_has_provider?('instagram') %>
+              <p class="nfused_network">
                 <%= link_to "You've Nfused Instagram", "/auth/instagram?origin=#{request.original_url}" %>
+              </p>
             <% else %>
                 <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
             <% end %>
@@ -39,7 +48,9 @@
               <h3>Tumblr</h3>
               <p>Share your Tumblr posts.</p>
               <% if current_user && user_has_provider?('tumblr') %>
+              <p class="nfused_network">
                 <%= link_to "You've Nfused Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
+              </p>
               <% else %>
                 <%= link_to "Nfuse Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
               <% end %>
@@ -55,7 +66,9 @@
               <h3>Youtube</h3>
               <p>Share your Youtube posts.</p>
             <% if current_user && user_has_provider?('google_oauth2') %>
+              <p class="nfused_network">
               <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+              </p>
             <% else %>
               <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
             <% end %>
@@ -69,7 +82,9 @@
             <h3>Google Plus</h3>
             <p>Share your Google+ posts.</p>
             <% if current_user && user_has_provider?('gplus') %>
+              <p class="nfused_network">
               <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
+              </p>
             <% else %>
               <%= link_to "Nfuse Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
             <% end %>
@@ -83,7 +98,9 @@
               <h3>Vimeo</h3>
               <p>Share your Vimeo posts.</p>
             <% if current_user && user_has_provider?('vimeo') %>
+              <p class="nfused_network">
                 <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+              </p>
             <% else %>
                 <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
             <% end %>
@@ -99,7 +116,9 @@
             <h3>Flickr</h3>
             <p>Share your Flickr posts.</p>
             <% if current_user && user_has_provider?('flickr') %>
+              <p class="nfused_network">
               <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+              </p>
             <% else %>
               <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
             <% end %>
@@ -123,7 +142,9 @@
               <h3>Facebook</h3>
               <p>Share your Facebook posts</p>
             <% if current_user && user_has_provider?('facebook') %>
+              <p class="nfused_network">
               <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+              </p>
             <% else %>
               <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
             <% end %>
