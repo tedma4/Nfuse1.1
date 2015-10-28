@@ -16,18 +16,18 @@
         </video>
       </div>
     <% else %>
-    <div class="timeline-user-box">
-      <iframe
-      id="ytplayer"
-      type="text/html"
-      width="100%"
-      height="225"
-      src="<%= @post_entry.video %>"
-      frameborder="0"
-      allowfullscreen>
-      </iframe>
-      <% end %>
-    </div>
+      <div class="timeline-user-box">
+        <iframe
+        id="ytplayer"
+        type="text/html"
+        width="100%"
+        height="225"
+        src="<%= @post_entry.video %>"
+        frameborder="0"
+        allowfullscreen>
+        </iframe>
+      </div>
+    <% end %>
     <% if @post_entry.text.present? %>
       <div class="center">
         <%= truncate(@post_entry.text, lenght: 30) %>
