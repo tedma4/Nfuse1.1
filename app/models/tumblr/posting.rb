@@ -57,7 +57,19 @@ module Tumblr
     end
 
     def video
-      @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+      if @post['video_type'] == 'tumblr'
+        @post['video_url']
+      else
+        @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+      end
+    end
+
+    def video_thumbnail
+      @post['thumbnail_url']
+    end
+
+    def video_type
+      @post['video_type']
     end
 
     def audio

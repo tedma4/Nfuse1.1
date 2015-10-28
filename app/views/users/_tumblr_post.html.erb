@@ -9,6 +9,14 @@
     </div>
   <% end %>
 <% elsif post.type == 'video' %>
+  <% if post.video_type == 'tumblr' %>
+    <div class="center">
+      <video width="100%" controls preload="none" poster=<%= post.video_thumbnail %> >
+        <source src="<%= post.video %>" type='video/mp4' />
+        <source src="<%= post.video %>" type='video/ogv' />
+      </video>
+    </div>
+  <% else %>
     <div class="timeline-user-box">
       <iframe
       id="ytplayer"
@@ -20,6 +28,7 @@
       allowfullscreen>
       </iframe>
     </div>
+  <% end %>
     <% if post.caption_text.present? %>
         <div class="center">
           <%= post.caption_text %>

@@ -152,7 +152,11 @@ module Notification
         when 'facebook'
           @entry['source'].sub("?autoplay=1", "")
         when 'tumblr'
-          @entry['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+          if @entry['video_type'] == 'tumblr'
+            @entry['video_url']
+          else
+            @entry['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+          end
         when 'gplus'
           if @entry.object.attachments[0].has_key? "embed"
             @entry.object.attachments[0]["embed"]["url"]
@@ -160,6 +164,14 @@ module Notification
             @entry.object.attachments[0]["image"]["url"]
           end
       end
+    end
+
+    def video_thumbnail
+      @entry['thumbnail_url']
+    end
+
+    def video_type
+      @entry['video_type']
     end
 
     def has_video_url?
