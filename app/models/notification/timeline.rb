@@ -11,7 +11,7 @@ module Notification
     def construct
       single_post(@post_id)
     end
-private
+    private
     def single_post(post_id)
       case(@provider)
         when 'twitter'

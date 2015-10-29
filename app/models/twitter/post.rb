@@ -1,11 +1,7 @@
-require_relative 'api'
-
 module Twitter
   class Post < TimelineEntry
 
-  attr_reader :user  
-  
-  include Api
+  attr_reader :user
 
     def self.from(tweet, user)
       new(tweet, user)

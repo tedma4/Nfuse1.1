@@ -20,6 +20,11 @@ class Feed
     @unauthed_accounts = []
   end
 
+  # current_user.tokens.pluck(:provider)
+  # I need to make the construct params based only on the providers the user has
+  # to reduce the number of times it checks to see if a user has one of these 
+  # networks already
+
   def construct(params)
     self.params = params
     tw = twitter_posts(params[:twitter_pagination])

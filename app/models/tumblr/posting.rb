@@ -1,11 +1,7 @@
-require_relative 'api'
-
 module Tumblr
   class Posting < TimelineEntry
 
-  attr_reader :user  
-  
-  include Api
+  attr_reader :user
 
     def self.from(post, user)
       new(post, user)

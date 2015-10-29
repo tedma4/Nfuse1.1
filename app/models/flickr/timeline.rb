@@ -1,20 +1,5 @@
 module Flickr
   class Timeline
-
-    # FlickRaw.api_key="... Your API key ..."
-    # FlickRaw.shared_secret="... Your shared secret ..."
-
-    # list   = flickr.photos.getRecent
-
-    # id     = list[0].id
-    # secret = list[0].secret
-    # info = flickr.photos.getInfo :photo_id => id, :secret => secret
-
-    # sizes = flickr.photos.getSizes :photo_id => id
-
-    # original = sizes.find {|s| s.label == 'Original' }
-    # puts original.width       # => "226" -- may fail if they have no original marked image
-
     attr_reader :authed, :last_vid_id
 
     def initialize(user=current_user)

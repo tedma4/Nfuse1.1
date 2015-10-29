@@ -1,11 +1,7 @@
-require_relative "api"
-
 module Flickr
 	class Post < TimelineEntry
 
   attr_reader :user
-
-  include Api
 
     def self.from(post, user)
       new(post, user)

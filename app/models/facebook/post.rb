@@ -1,11 +1,7 @@
-require_relative 'api'
-
 module Facebook
   class Post < TimelineEntry
 
-  attr_reader :user  
-  
-  include Api
+  attr_reader :user
 
     def self.from(post, user=current_user)
       new(post, user)

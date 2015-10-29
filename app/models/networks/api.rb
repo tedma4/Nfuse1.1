@@ -1,11 +1,12 @@
-module Facebook::Api
+module Networks::Api
 
   module ClassMethods; end
   
   module InstanceMethods
-
+    provider = params['provider']
+    
     def base_uri
-      "https://facebook.com/"
+      "https://#{provider}.com/"
     end
 
     def link_to_post

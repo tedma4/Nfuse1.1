@@ -98,7 +98,6 @@ class UsersController < ApplicationController
     @providers          = Providers.for(@user)
     @timeline           = feed.construct(params)
     @unauthed_accounts  = feed.unauthed_accounts
-    # since these two are facebook specfic. i would @_fb_REST_OF_NAME
 
     @load_more_url = feed_content_path(
         twitter_pagination:     feed.twitter_pagination_id,
