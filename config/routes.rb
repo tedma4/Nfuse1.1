@@ -107,10 +107,10 @@ Rails.application.routes.draw do
   end
 
   # Likes
-  post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
-  post '/twitter/retweet/:tweet_id',  to: 'shares#twitter'
-  post '/instagram/like/:media_id',   to: 'likes#instagram'
-  post '/facebook/like/:post_id',     to: 'likes#facebook'
+  # post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
+  # post '/twitter/retweet/:tweet_id',  to: 'shares#twitter'
+  # post '/instagram/like/:media_id',   to: 'likes#instagram'
+  # post '/facebook/like/:post_id',     to: 'likes#facebook'
 
   root to: 'pages#home'
 

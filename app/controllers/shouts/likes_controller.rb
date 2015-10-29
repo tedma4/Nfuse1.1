@@ -40,22 +40,27 @@ class Shouts::LikesController < ApplicationController
 
   def twitter
     Twitter::Vote.create(vote_params) 
+    # Networks::Vote.create(vote_params) 
   end
 
   def facebook
     Facebook::Vote.create(vote_params)
+    # Networks::Vote.create(vote_params) 
   end
 
   def instagram
     Instagram::Vote.create(vote_params) 
+    # Networks::Vote.create(vote_params) 
   end
 
   def youtube
     Youtube::Vote.create(vote_params)
+    # Networks::Vote.create(vote_params) 
   end
 
   def vimeo
     Vimeo::Vote.create(vote_params) 
+    # Networks::Vote.create(vote_params) 
   end
 
   # def pinterest
@@ -64,14 +69,17 @@ class Shouts::LikesController < ApplicationController
 
   def flickr
     Flickr::Vote.create(vote_params) 
+    # Networks::Vote.create(vote_params) 
   end
 
   def gplus
     Gplus::Vote.create(vote_params) 
+    # Networks::Vote.create(vote_params) 
   end
 
   def tumblr
     Tumblr::Vote.create(vote_params) 
+    # Networks::Vote.create(vote_params) 
   end
 
   def vote_params

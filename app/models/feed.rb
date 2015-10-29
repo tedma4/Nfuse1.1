@@ -20,10 +20,23 @@ class Feed
     @unauthed_accounts = []
   end
 
-  # current_user.tokens.pluck(:provider)
+  # user_provider_info = current_user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret)
+  # get_provider = Hash[[:provider, :uid, :access_token, :access_token_secret].zip(user_provider_info.transpose)]
+  # {
+  #  :provider=>["facebook", "tumblr", "twitter", "google_oauth2", "vimeo"], 
+  #  :uid=>["1187467057945665", "tedma4", "2525729819", "108818010640714676811", "36828893"], 
+  #  :access_token=>["CAAHRjuMYUXIBAFHuZAaH0qMNPdw3bVCcUabucr5Lw0OmjI0qcLDuFaChUaJ1fUE2lBumQmCEJ4iT1hsxyHZCNe8RhdLiuRZBNFiDFf16WodK8dTG2k1xmXbsgZCKXeSzmtnjD8ZCbMTn4ogARTmIpXG9ZCZBAZAOHLGZBXPfwvPnXLvi3pIMuo02Cog8RWNplMUFJUJhttYTh6gZDZD", "usYpVEY46coleHLHU5mw61Hz4aUf0ryhPpv2QN3XjpeOnUw4sg", "2525729819-eQhtgxvzDap1ZBdLkAs24twWwTZu0i4mUMj3rcz", "ya29.GwLrdvBitqt9CqPdayjPI50thdfmNv--1oK8O_bjocqo3QwYp0Y3thATu0et48CcBclA", "2b40dcd0aca1551d8cd82bb7f9480c21"], 
+  #  :acces_token_secret=>[nil, "9I6S7flKXsDXcr4QrKUhU5pTWAy7nt6zGzM3514NgFQjM4qrL6", "yOsbHmfEgAb91o4HfQ6oL0l17ratMkMqeGnmPA5WdVo87", nil, nil]
+  # }
   # I need to make the construct params based only on the providers the user has
   # to reduce the number of times it checks to see if a user has one of these 
   # networks already
+
+  # def get_providers(provider, uid, access_token, access_token_secret)
+  #   provider_and_token = {}
+  #   @user.tokens.pluck(:provider)
+  
+  # end
 
   def construct(params)
     self.params = params

@@ -1,5 +1,320 @@
-# module Networks
-#   class Post
+module Networks
+  class Post < TimelineEntry
 
-#   end
-# end
+    def self.from(post, provider)
+      new(post, provider)
+    end
+
+    def initialize(post, provider)
+      @post = post
+      @provider = provider
+    end
+
+    def provider
+      @provider
+    end
+
+    #-----------id----------
+
+    def id
+      case(@provider)
+        when 'twitter'
+          @post.id
+        when 'youtube'
+          @post.id
+        when 'instagram'
+          @post["id"]
+        when 'facebook'
+          @post["id"]
+        when 'vimeo'
+          @post.embedUrl
+        when 'flickr'
+          @post['id']
+        when 'gplus'
+          @post.id
+      end
+    end
+
+    #-----------type----------
+
+    def has_media?
+      @post.has_key? :extended_entities
+    end
+
+    def type
+      case(@provider)
+        when 'twitter'
+          @post[:extended_entities][:media][0][:type]
+        when 'instagram'
+          @post["type"]
+        when 'facebook'
+          @post["type"]
+        when 'tumblr'
+          @post["type"]
+        when 'gplus'
+          if @post.object.attributes.include? 'attachments'
+            if @post.object.attachments[0]['objectType'] == 'video'
+              if @post.object.attachments[0].has_key? "embed"
+                'video'
+              else
+                'hiddenType'
+              end
+            else
+              @post.object.attachments[0]['objectType']
+            end
+          else
+            case @post.object.object_type
+              when 'note'
+                'hiddenType'
+              else
+                @post.object.object_type
+            end
+          end
+        end
+      end
+    #-----------text----------
+
+    def text
+      case(@provider)
+        when 'twitter'
+          @post[:text]
+        when 'youtube'
+          @post.description
+        when 'instagram'
+          if @post['caption'].present?
+            @post['caption']['text']
+          end
+        when 'facebook'
+          @post['caption']
+        when 'tumblr'
+          if @post['type'] == 'quote'
+            @post['text']
+          else
+            @post['caption']
+          end
+        when 'vimeo'
+          @post.description
+        when 'flickr'
+          @post.caption
+        when 'gplus'
+          @post.object.content
+      end
+    end
+
+    #-----------image----------
+
+    def image
+      case(@provider)
+        when 'twitter'
+          @post[:extended_entities][:media][0][:media_url]
+        when 'instagram'
+          @post["images"]["low_resolution"]["url"]
+        when 'facebook'
+          if type == nil
+            begin
+              @post['images'][0]['source']
+            rescue
+              @post['picture']
+            end
+          else
+            @post['picture']
+          end
+        when 'tumblr'
+          @post['photos'][0]['alt_sizes'][0]['url']   
+        when 'flickr'
+          flickr.photos.getSizes(photo_id: @post.id)[3].source
+        when 'gplus'
+          @post.object.attachments[0]["image"]["url"]
+      end
+    end
+
+    def fb_image
+      begin
+        @post['images'][0]['source']
+      rescue
+        @post['picture']
+      end
+    end
+    #-----------video----------
+
+    def video
+      case(@provider)
+        when 'twitter'
+          if type == "animated_gif"
+            @post[:extended_entities][:media][0][:video_info][:variants][0][:url]
+          elsif type == "video"
+            @post[:extended_entities][:media][0][:video_info][:variants][2][:url]
+          end
+        when 'youtube'
+          @post.id
+        when 'instagram'
+          @post["videos"]["standard_resolution"]["url"]
+        when 'facebook'
+          @post['source'].sub("?autoplay=1", "")
+        when 'tumblr'
+          if @post['video_type'] == 'tumblr'
+            @post['video_url']
+          else
+            @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+          end
+        when 'gplus'
+          if @post.object.attachments[0].has_key? "embed"
+            @post.object.attachments[0]["embed"]["url"]
+          else
+            @post.object.attachments[0]["image"]["url"]
+          end
+      end
+    end
+
+    def video_thumbnail
+      @post['thumbnail_url']
+    end
+
+    def video_type
+      @post['video_type']
+    end
+
+    def has_video_url?
+      !@post[:entities][:urls] == []
+    end
+
+    def twitter_url_video
+      @post[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
+    end
+
+    #-----------created_at----------
+    def created_time
+      case(@provider)
+        when 'twitter'
+          @post.created_at
+        when 'youtube'
+          @post.published_at
+        when 'instagram'
+          Time.at(@post['created_time'].to_i)
+        when 'facebook'
+          @post['created_time']
+      end
+    end
+
+    def body
+      @post['body'].html_safe
+    end
+
+    #-----------other----------
+
+    def link_to_post
+      case(@provider)
+        when 'twitter'
+          "https://twitter.com/#{user_name}/status/#{id}"
+        when 'youtube'
+          "https://www.youtube.com/watch?v=#{@post.id}"
+        when 'instagram'
+          @post["link"]
+        when 'facebook'
+          @post['actions'][0]['link']
+      end
+    end
+
+    def name
+      @post['name']
+    end
+
+    def message
+      @post['message']
+    end
+
+    def source
+      @post['source']
+    end
+
+    def youtube_source
+      @post['source'].sub("?autoplay=1", "")
+    end
+
+    def description
+      @post['description'].html_safe
+    end
+    def excerpt
+      @post['excerpt']
+    end
+
+    #-----------------Nfuse--------------
+
+
+    def content
+      @post.content
+    end
+
+    def link?
+      @post.link
+    end
+
+    def link
+      @post.link
+    end
+
+    def is_link?
+      @post.is_link
+    end
+
+    def is_link
+      @post.is_link
+    end
+
+    def uid
+      @post.uid
+    end
+
+    def title
+      @post.title
+    end
+
+    def author
+      @post.author
+    end
+
+    def duration
+      @post.duration
+    end
+
+    def is_pic?
+      @post.is_pic
+    end
+
+    def pic_url
+      @post.pic.url(:medium)
+    end
+
+    def is_video?
+      @post.is_video
+    end
+
+    def video_url
+      @post.snip.url(:medium)
+    end
+
+    def is_full_video?
+      @post.is_full_video
+    end
+
+    def full_video_url
+      @post.video.url(:medium)
+    end
+
+    def url_html
+      @post.url_html
+    end
+
+    def url
+      @post.url
+    end
+
+    def has_content?
+      @post.has_content
+    end
+
+    def has_content
+      @post.has_content
+    end
+  end
+end
