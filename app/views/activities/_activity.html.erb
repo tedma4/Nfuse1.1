@@ -135,6 +135,10 @@
            <div class="caption">
                <%= truncate(activity.trackable.content, length: 30) %>
            </div>
+         <% else %>
+           <div class="caption">
+               <%= truncate(activity.trackable.content, length: 30) %>
+           </div>
          <% end %>
          <div class="created-at">
            <%= time_ago_in_words(activity.created_at) %> ago

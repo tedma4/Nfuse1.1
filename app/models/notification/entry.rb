@@ -215,10 +215,6 @@ module Notification
       end
     end
 
-    def description
-      @entry['description']
-    end
-
     def name
       @entry['name']
     end
@@ -320,7 +316,5 @@ module Notification
     def has_content
       @entry.has_content
     end
-
-
   end
 end
