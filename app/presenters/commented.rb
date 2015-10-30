@@ -7,7 +7,7 @@ class Commented
   end
 
   def id
-    return obj.tweet_id if obj.class  == Twitter::Post
+    return obj.tweet_id if obj.class == Twitter::Post
     return obj.id
   end
 
@@ -26,6 +26,7 @@ class Commented
           # 'Pinterest::Post' => "/comments/pinterest/#{id}",
           'Flickr::Post' => "/comments/flickr/#{id}",
           'Tumblr::Posting' => "/comments/tumblr/#{id}"
+          # 'Networks::Post' => "/comments/#{provider}/#{id}"
     }
     routes.fetch(obj.class.to_s, "/shouts/#{id}/comments")
   end
