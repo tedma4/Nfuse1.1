@@ -40,7 +40,7 @@ module Flickr
       @post["user"]["full_name"]
     end
 
-    def low_resolution_image_url
+    def image
       flickr.photos.getSizes(photo_id: @post.id)[3].source
     end
 
@@ -48,7 +48,7 @@ module Flickr
       flickr.photos.getInfo(photo_id: @post.id).urls[0]._content
     end
 
-    def caption
+    def text
       @post.title
     end
 

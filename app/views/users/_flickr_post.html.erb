@@ -1,8 +1,8 @@
 <div class="timeline-user-box">
-  <%= image_tag(post.low_resolution_image_url, :class => "flickr_image") %>
+  <%= image_tag(post.image, :class => "flickr_image") %>
 </div>
-<% if post.caption.present? %>
+<% if post.text.present? %>
   <div class="center">
-    <%= post.caption %>
+    <%= post.text %>
   </div>
 <% end %>

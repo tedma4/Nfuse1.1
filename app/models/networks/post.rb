@@ -108,7 +108,7 @@ module Networks
         when 'vimeo'
           @post.description
         when 'flickr'
-          @post.caption
+          @post.title
         when 'gplus'
           @post.object.content
       end

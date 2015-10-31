@@ -182,7 +182,7 @@ module Networks
 
     def flickr_posts
       if user_has_provider?('flickr', @user)
-        token = @user.tokens.find_by(provider: 'flickr').access_token
+        token = @user.tokens.find_by(provider: 'flickr')
         client = configure_flickr(token.access_token, token.access_token_secret)
         begin
           flickr_posts = client.people.getPhotos('user_id' => token.uid).map { |post| Networks::Post.from(post, 'flickr', @user) }

@@ -51,7 +51,7 @@ module Notification
           entry = client.posts("#{username}.tumblr.com", id: post_id)['posts'][0]
           Notification::Entry.from(entry, 'tumblr')
         when 'flickr'
-          token = @user.tokens.find_by(provider: 'flickr').access_token
+          token = @user.tokens.find_by(provider: 'flickr')
           client = configure_flickr(token.access_token, token.access_token_secret)
           info = client.photos.getInfo(:photo_id => post_id)
           entry = FlickRaw.url_z(info)
