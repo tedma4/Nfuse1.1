@@ -40,7 +40,7 @@ module Vimeo
       @post.id
     end
 
-    def embedUrl
+    def embedurl
       @post.embedUrl
     end
 
