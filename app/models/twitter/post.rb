@@ -74,7 +74,7 @@ module Twitter
       @tweet.attrs[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
     end
 
-    def tweet_text
+    def text
       @tweet.text
     end
 
@@ -82,7 +82,7 @@ module Twitter
       @tweet.retweeted
     end
 
-    def tweet_video
+    def video
       if type == "animated_gif"
         @tweet.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
       elsif type == "video"
@@ -106,7 +106,7 @@ module Twitter
     #  @tweet['media'][0]['media_url'] if @tweet.fetch('media', nil)
     #end
   
-    def tweet_image
+    def image
       @tweet.attrs[:extended_entities][:media][0][:media_url]
     end
   end

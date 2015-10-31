@@ -28,7 +28,7 @@ module Vimeo
       @post.created_time
     end
 
-    def description
+    def text
       @post.description
     end
 

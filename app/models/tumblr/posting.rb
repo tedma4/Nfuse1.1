@@ -48,7 +48,7 @@ module Tumblr
       @post['caption'].html_safe
     end
 
-    def photo
+    def image
       @post['photos'][0]['alt_sizes'][0]['url']
     end
 
@@ -81,7 +81,7 @@ module Tumblr
     end
 
     def text
-      @post['text'].html_safe
+      @post['text']
     end
 
     def link_to_url

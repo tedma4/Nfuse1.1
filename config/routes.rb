@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   get    '/settings',     to: 'users#settings'
   get    '/destroytoken', to: 'users#destroytoken'
   get    '/destroyuser',  to: 'users#destroyuser'
+  get    '/feed_numero_dos',  to: 'users#feed_numero_dos'
   #get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages

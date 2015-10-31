@@ -32,7 +32,7 @@ module Youtube
       @post.published_at
     end
 
-    def description
+    def text
       @post.description
     end
 

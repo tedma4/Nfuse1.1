@@ -1,14 +1,14 @@
 <% if post.has_media? %>
   <% if post.type == 'video' || post.type == "animated_gif" %>
 	  <div class="center">
-      <video width="100%" controls preload="none" poster=<%= post.tweet_image%> >
-        <source src="<%= post.tweet_video %>" type='video/mp4' />
-        <source src="<%= post.tweet_video %>" type='video/ogv' />
+      <video width="100%" controls preload="none" poster=<%= post.image%> >
+        <source src="<%= post.video %>" type='video/mp4' />
+        <source src="<%= post.video %>" type='video/ogv' />
       </video>
 	  </div>
   <% elsif post.type == 'photo' %>
     <div class="timeline-user-box">
-      <%= image_tag(post.tweet_image, :class => "twitter_image") %>
+      <%= image_tag(post.image, :class => "twitter_image") %>
     </div>
   <% end %>
 <% elsif post.has_video_url? %>
@@ -22,4 +22,4 @@
     allowfullscreen>
     </iframe>
 <% end %>
-  <%= post.tweet_text %><br>
+  <%= post.text %><br>

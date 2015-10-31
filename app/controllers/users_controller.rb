@@ -112,6 +112,13 @@ class UsersController < ApplicationController
         id: @user.id)
   end
 
+  def feed_numero_dos
+    feed       = Networks::Timeline.new(current_user)
+    @providers = Providers.for(current_user)
+    @timeline  = feed.construct(params)
+    @unauthed_accounts = feed.unauthed_accounts
+  end
+
   def explore
   end
 

@@ -1,17 +1,30 @@
 module Networks
   class Post < TimelineEntry
-
-    def self.from(post, provider)
-      new(post, provider)
+    attr_reader :user
+    def self.from(post, provider, user)
+      new(post, provider, user)
     end
 
-    def initialize(post, provider)
+    def initialize(post, provider, user)
       @post = post
       @provider = provider
+      @user = user
     end
 
     def provider
       @provider
+    end
+
+    def avatar
+      @user.avatar(:thumb)
+    end
+
+    def username
+      @user.user_name
+    end
+
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).count
     end
 
     #-----------id----------
@@ -38,13 +51,13 @@ module Networks
     #-----------type----------
 
     def has_media?
-      @post.has_key? :extended_entities
+      @post.attrs.has_key? :extended_entities
     end
 
     def type
       case(@provider)
         when 'twitter'
-          @post[:extended_entities][:media][0][:type]
+          @post.attrs[:extended_entities][:media][0][:type]
         when 'instagram'
           @post["type"]
         when 'facebook'
@@ -106,7 +119,7 @@ module Networks
     def image
       case(@provider)
         when 'twitter'
-          @post[:extended_entities][:media][0][:media_url]
+          @post.attrs[:extended_entities][:media][0][:media_url]
         when 'instagram'
           @post["images"]["low_resolution"]["url"]
         when 'facebook'
@@ -175,11 +188,15 @@ module Networks
     end
 
     def has_video_url?
-      !@post[:entities][:urls] == []
+      !@post.attrs[:entities][:urls] == []
     end
 
     def twitter_url_video
       @post[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
+    end
+
+    def embedurl
+      @post.embedUrl
     end
 
     #-----------created_at----------
@@ -193,6 +210,14 @@ module Networks
           Time.at(@post['created_time'].to_i)
         when 'facebook'
           @post['created_time']
+        when 'gplus'
+          @post.published
+        when 'tumblr'
+          @post['date']
+        when 'vimeo'
+          @post.created_time
+        when 'vimeo'
+          flickr.photos.getInfo(photo_id: @post.id).dates.taken
       end
     end
 
@@ -205,7 +230,7 @@ module Networks
     def link_to_post
       case(@provider)
         when 'twitter'
-          "https://twitter.com/#{user_name}/status/#{id}"
+          "https://twitter.com/#{@post.attrs[:user][:screen_name]}/status/#{id}"
         when 'youtube'
           "https://www.youtube.com/watch?v=#{@post.id}"
         when 'instagram'

@@ -101,7 +101,7 @@ module Facebook
       @post['name']
     end
 
-    def caption
+    def text
       @post['caption']
     end
   end
