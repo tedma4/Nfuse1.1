@@ -207,12 +207,12 @@ module Networks
     def instagram_posts
       if user_has_provider?('instagram', @user)
         token = @user.tokens.find_by(provider: 'instagram')
-        client = Instagram::Api.new(token.access_token, @user)
+        client = Instagram::Api.new(token.access_token, nil)
         begin
-          instagram_posts = client.get_timeline.map { |post| Networks::Post.from(post,'instagram', @user) }
+          instagram_posts = client.get_timeline.posts.map { |post| Networks::Post.from(post,'instagram', @user) }
           instagram_posts
         rescue => e
-          auth_instagram(instagram_timeline)
+          @unauthed_accounts << "instagram"
         end
       else
         []

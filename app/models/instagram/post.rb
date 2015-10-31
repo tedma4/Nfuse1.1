@@ -46,7 +46,7 @@ module Instagram
     #  "http://www.instagram.com/#{full_name}"
     #end
 
-    def low_resolution_image_url
+    def image
       @post["images"]["low_resolution"]["url"]
     end
 
@@ -54,7 +54,7 @@ module Instagram
       @post["caption"]
     end
 
-    def caption_text
+    def text
       @post["caption"]["text"]
     end
 
