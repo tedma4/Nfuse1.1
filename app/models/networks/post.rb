@@ -239,7 +239,11 @@ module Networks
         when 'instagram'
           @post["link"]
         when 'facebook'
-          @post['actions'][0]['link']
+          begin
+            @post['link']
+          rescue
+            @post['actions'][0]['link']
+          end
       end
     end
 
