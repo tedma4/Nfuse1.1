@@ -123,8 +123,11 @@ module Networks
         when 'instagram'
           @post["images"]["low_resolution"]["url"]
         when 'facebook'
-          if type == nil
+          if type == 'photo'
+            @token = @user.tokens.find_by(provider: 'facebook')
+            @graph = Koala::Facebook::API.new @token.access_token
             begin
+              @post = @graph.get_object(@post['object_id'])
               @post['images'][0]['source']
             rescue
               @post['picture']

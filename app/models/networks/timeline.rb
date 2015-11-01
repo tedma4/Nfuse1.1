@@ -80,9 +80,9 @@ module Networks
 
     def facebook_posts
       if user_has_provider?('facebook', @user)
-        token = @user.tokens.find_by(provider: 'facebook').access_token
+        token = @user.tokens.find_by(provider: 'facebook')
         app_secret = ENV['facebook_app_secret']
-        client = Koala::Facebook::API.new(token, app_secret)
+        client = Koala::Facebook::API.new(token.access_token, app_secret)
         begin
           facebook_posts = client.get_connections('me', 'posts').first(25).map { |post| Networks::Post.from(post, 'facebook', @user) }
           facebook_posts
@@ -195,12 +195,12 @@ module Networks
       end
     end
     
-    def configure_flickr(access_token, access_secret)
+    def configure_flickr(access_token, access_token_secret)
       FlickRaw.api_key=ENV["flickr_key"]
       FlickRaw.shared_secret=ENV["flickr_secret"]
       client = FlickRaw::Flickr.new
       client.access_token = access_token
-      client.access_secret = access_secret
+      client.access_secret = access_token_secret
       client
     end
 
