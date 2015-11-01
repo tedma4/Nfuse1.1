@@ -55,7 +55,9 @@ module Instagram
     end
 
     def text
-      @post["caption"]["text"]
+      if @post['caption'].present?
+        @post['caption']['text']
+      end
     end
 
     def link_to_post
