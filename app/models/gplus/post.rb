@@ -47,11 +47,7 @@ module Gplus
         @post.actor.display_name
     end
 
-    def caption
-      @post.object.content
-    end
-
-    def caption_text
+    def text
       @post.object.content
     end
 
@@ -59,7 +55,7 @@ module Gplus
       @post.object.url
     end
 
-    def photo
+    def image
       @post.object.attachments[0]["image"]["url"]
     end
 

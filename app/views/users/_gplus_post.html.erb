@@ -1,11 +1,11 @@
 <% case post.type %>
   <% when 'photo' %>
     <div class="timeline-user-box">
-      <%= image_tag(post.photo, :class => "gplus_image") %>
+      <%= image_tag(post.image, :class => "gplus_image") %>
     </div>
-    <% if post.caption.present? %>
+    <% if post.text.present? %>
       <div class="center">
-        <%= post.caption_text %>
+        <%= post.text %>
       </div>
     <% end %>
   <% when 'video' %>
@@ -20,14 +20,14 @@
       allowfullscreen>
       </iframe>
     </div>
-    <% if post.caption.present? %>
+    <% if post.text.present? %>
       <div class="center">
-        <%= post.caption_text %>
+        <%= post.text %>
       </div>
     <% end %>
 <% else %>
   <div class="center">
-    <%= post.caption_text %>
+    <%= post.text %>
   </div>
 <% end %>
 
