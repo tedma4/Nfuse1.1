@@ -28,6 +28,11 @@ class UsersController < ApplicationController
      redirect_to root_path
   end
 
+  def remove_token
+    current_user.tokens.find_by(provider: params['provider']).destroy
+    redirect_to edit_user_path(current_user)
+  end
+
   def destroytoken
      Token.last.destroy
      redirect_to root_path

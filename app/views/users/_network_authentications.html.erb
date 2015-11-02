@@ -18,6 +18,7 @@
             <% if current_user && user_has_provider?('twitter') %>
               <p class="nfused_network">
               <%= link_to "You've Nfused Twitter", "/auth/twitter?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'twitter') %>
               </p>
             <% else %>
               <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
@@ -34,6 +35,7 @@
             <% if current_user && user_has_provider?('instagram') %>
               <p class="nfused_network">
                 <%= link_to "You've Nfused Instagram", "/auth/instagram?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'instagram') %>
               </p>
             <% else %>
                 <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
@@ -50,6 +52,7 @@
               <% if current_user && user_has_provider?('tumblr') %>
               <p class="nfused_network">
                 <%= link_to "You've Nfused Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'tumblr') %>
               </p>
               <% else %>
                 <%= link_to "Nfuse Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
@@ -68,6 +71,7 @@
             <% if current_user && user_has_provider?('google_oauth2') %>
               <p class="nfused_network">
               <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'youtube') %>
               </p>
             <% else %>
               <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
@@ -84,6 +88,7 @@
             <% if current_user && user_has_provider?('gplus') %>
               <p class="nfused_network">
               <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'gplus') %>
               </p>
             <% else %>
               <%= link_to "Nfuse Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
@@ -100,6 +105,7 @@
             <% if current_user && user_has_provider?('vimeo') %>
               <p class="nfused_network">
                 <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'vimeo') %>
               </p>
             <% else %>
                 <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
@@ -118,6 +124,7 @@
             <% if current_user && user_has_provider?('flickr') %>
               <p class="nfused_network">
               <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'flickr') %>
               </p>
             <% else %>
               <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
@@ -144,6 +151,7 @@
             <% if current_user && user_has_provider?('facebook') %>
               <p class="nfused_network">
               <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+              <%= link_to "Remove Network", remove_token_path(provider: 'facebook') %>
               </p>
             <% else %>
               <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
