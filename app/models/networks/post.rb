@@ -219,7 +219,7 @@ module Networks
           @post['date']
         when 'vimeo'
           @post.created_time
-        when 'vimeo'
+        when 'flickr'
           flickr.photos.getInfo(photo_id: @post.id).dates.taken
       end
     end

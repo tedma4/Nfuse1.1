@@ -229,6 +229,6 @@ end
 
 class HubConcatenator
   def self.merge(twitter_posts, facebook_posts, youtube_posts, gplus_posts, vimeo_posts, tumblr_posts, flickr_posts, instagram_posts)
-    (twitter_posts + facebook_posts + youtube_posts + gplus_posts + vimeo_posts + tumblr_posts + flickr_posts + instagram_posts).sort_by { |post| post.created_time.to_i }.reverse
+    (twitter_posts + facebook_posts + youtube_posts + gplus_posts + vimeo_posts + tumblr_posts + flickr_posts + instagram_posts).sort_by { |post| post.created_time }.reverse
   end
 end
