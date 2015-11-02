@@ -157,9 +157,9 @@ module Networks
       case(@provider)
         when 'twitter'
           if type == "animated_gif"
-            @post[:extended_entities][:media][0][:video_info][:variants][0][:url]
+            @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
           elsif type == "video"
-            @post[:extended_entities][:media][0][:video_info][:variants][2][:url]
+            @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
           end
         when 'youtube'
           @post.id
@@ -195,7 +195,7 @@ module Networks
     end
 
     def twitter_url_video
-      @post[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
+      @post.attrs[:entities][:urls][0][:expanded_url].match(/youtube.com.*(?:\/|v=)([^&$]+)/)[1]
     end
 
     def embedurl

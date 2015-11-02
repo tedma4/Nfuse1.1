@@ -80,17 +80,17 @@
                Share & Discover Social Media
               </strong></p>
             </div>
-            <div class="description wow fadeInLeftBig">
+            <div class="description">
               <div class="col-sm-12 center" >
                 <%= form_tag search_path, method: 'get', id: "search" do %>
-                    <%= text_field_tag :search, params[:search], placeholder: "Search #Hashtags @Users and Popular Media" %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Search #Hashtags @Users and Social Media" %>
                 <% end %>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="top-big-link wow fadeInUp landingbottompush">
+        <div class="top-big-link landingbottompush">
           <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
           <%= link_to 'Learn More', about_path, class: "btn btn-link-2" %>
           <!-- <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a> -->    
