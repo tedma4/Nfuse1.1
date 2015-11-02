@@ -124,6 +124,16 @@ class UsersController < ApplicationController
     @unauthed_accounts = feed.unauthed_accounts
   end
 
+  def hub_numero_dos
+    @providers = Providers.for(current_user)
+    stack = {timeline: []}
+    current_user.followed_users.each do |user|
+      feed = Networks::Timeline.new(user)
+      stack[:timeline] << feed.construct(params)
+    end
+    @timeline = stack[:timeline].flatten.sort { |a, b| b.created_time <=> a.created_time }
+  end
+
   def explore
   end
 

@@ -40,7 +40,7 @@ module Networks
         when 'facebook'
           @post["id"]
         when 'vimeo'
-          @post.embedUrl
+          @post.id
         when 'flickr'
           @post['id']
         when 'gplus'
