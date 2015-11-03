@@ -31,13 +31,13 @@
           <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
         <% when "facebook" %>
-            <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+            <%# unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
                 <%= render partial: "users/post", locals: {post: post} %>
-            <% end %>
+            <%# end %>
         <% when "twitter" %>
-            <% unless post.retweeted == true %>
+            <%# unless post.retweeted == true %>
                 <%= render partial: "users/post", locals: {post: post} %>
-            <% end %>
+            <%# end %>
       <% else %>
         <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
