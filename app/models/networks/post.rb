@@ -214,7 +214,7 @@ module Networks
         when 'facebook'
           @post['created_time']
         when 'gplus'
-          @post.published
+          @post.attributes['published']
         when 'tumblr'
           @post['date']
         when 'vimeo'

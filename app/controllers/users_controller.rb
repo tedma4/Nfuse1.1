@@ -120,18 +120,14 @@ class UsersController < ApplicationController
   def feed_numero_dos
     feed       = Networks::Timeline.new(current_user)
     @providers = Providers.for(current_user)
-    @timeline  = feed.construct(params)
+    @timeline  = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
     @unauthed_accounts = feed.unauthed_accounts
   end
 
   def hub_numero_dos
     @providers = Providers.for(current_user)
-    stack = {timeline: []}
-    current_user.followed_users.find_each do |user|
-      feed = Networks::Timeline.new(user)
-      stack[:timeline] << feed.construct(params)
-    end
-    @timeline = stack[:timeline].flatten.sort { |a, b| b.created_time <=> a.created_time }
+    @timeline = newtimeline[:timeline].flatten.sort { |a, b| b.created_time <=> a.created_time }
+    @unauthed_accounts = newtimeline[:unauthed_accounts].first
   end
 
   def explore
@@ -193,6 +189,20 @@ class UsersController < ApplicationController
       feed=Feed.new(user)
       stack[:timeline] << feed.construct(params)
       # this is constantly getting over written for each user.
+      stack[:feed_unauthed_accounts] << feed.unauthed_accounts
+    end
+    stack
+  end
+
+  def newtimeline(user=current_user)
+    stack = {
+      timeline: [],
+      unauthed_accounts: [],
+      feed_unauthed_accounts: []
+    }
+    current_user.followed_users.find_each do |user|
+      feed=Networks::Timeline.new(user)
+      stack[:timeline] << feed.construct(params)
       stack[:feed_unauthed_accounts] << feed.unauthed_accounts
     end
     stack
