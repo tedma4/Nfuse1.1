@@ -127,7 +127,7 @@ class UsersController < ApplicationController
   def hub_numero_dos
     @providers = Providers.for(current_user)
     stack = {timeline: []}
-    current_user.followed_users.each do |user|
+    current_user.followed_users.find_each do |user|
       feed = Networks::Timeline.new(user)
       stack[:timeline] << feed.construct(params)
     end
