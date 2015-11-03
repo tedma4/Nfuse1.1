@@ -33,7 +33,9 @@ module Networks
       fl = flickr_posts
       tb = tumblr_posts
       #up = users_posts
-      HubConcatenator.merge(tw, ig, vp, yt, fl, gp, tb, fb )#, up
+      merge_posts = (tw + fb + ig + yt + gp + vp + fl + tb).sort_by{|t| - t.created_time.to_i}
+      merge_posts #.sort_by{|t| - t.created_time.to_i}
+      # Just merge them here
     end
 
   # user_provider_info = current_user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret)
@@ -120,8 +122,8 @@ module Networks
 
     def gplus_posts
       if user_has_provider?('gplus', @user)
-        token = @user.tokens.find_by(provider: 'gplus')
-        client = configure_gplus(token.uid.to_s, token.access_token)
+        token = @user.tokens.find_by(provider: 'gplus').uid
+        client = configure_gplus(token)
         begin
           gplus_posts = client.list_activities.items.map { |post| Networks::Post.from(post, 'gplus', @user) }
           gplus_posts
@@ -133,10 +135,10 @@ module Networks
       end
     end
 
-    def configure_gplus(uid, access_token)
+    def configure_gplus(uid)
       GooglePlus.api_key = ENV['youtube_dev_key']
-      # gplus_access = @user.tokens.find_by_provider('gplus')
-      client = GooglePlus::Person.get(uid)
+      # GooglePlus.access_token = access_token
+      GooglePlus::Person.get(uid)
     end
 
     def vimeo_posts
@@ -224,11 +226,5 @@ module Networks
         @unauthed_accounts << "instagram"
       end
     end
-  end
-end
-
-class HubConcatenator
-  def self.merge(twitter_posts, facebook_posts, youtube_posts, gplus_posts, vimeo_posts, tumblr_posts, flickr_posts, instagram_posts)
-    (twitter_posts + facebook_posts + youtube_posts + gplus_posts + vimeo_posts + tumblr_posts + flickr_posts + instagram_posts).sort_by { |post| post.created_time }.reverse
   end
 end
