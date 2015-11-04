@@ -34,21 +34,23 @@ module Networks
       tb = tumblr_posts
       #up = users_posts
       merge_posts = (tw + fb + ig + yt + gp + vp + fl + tb)#.sort_by{|t| - t.created_time.to_i}
+      merge_posts
     end
     private
 
     def twitter_posts
+      twitter_posts = []
       if user_has_provider?('twitter', @user)
         token = @user.tokens.find_by(provider: 'twitter')
         client = configure_twitter(token.access_token, token.access_token_secret)
         begin
           twitter_posts = client.user_timeline(count: 25).map { |post| Networks::Post.from(post, 'twitter', @user)}
-          twitter_posts
         rescue => e
           @unauthed_accounts << "twitter"
         end
+        twitter_posts
       else
-        []
+        twitter_posts
       end
     end
 
@@ -62,33 +64,35 @@ module Networks
     end
 
     def facebook_posts
+      facebook_posts = []
       if user_has_provider?('facebook', @user)
         token = @user.tokens.find_by(provider: 'facebook')
         app_secret = ENV['facebook_app_secret']
         client = Koala::Facebook::API.new(token.access_token, app_secret)
         begin
           facebook_posts = client.get_connections('me', 'posts').first(25).map { |post| Networks::Post.from(post, 'facebook', @user) }
-          facebook_posts
         rescue => e
           @unauthed_accounts << "facebook"
         end
+        facebook_posts
       else
-        []
+        facebook_posts
       end
     end
 
     def youtube_posts
+      youtube_posts = []
       if user_has_provider?('google_oauth2', @user)
         token = @user.tokens.find_by(provider: 'google_oauth2')
         client = configure_youtube(token.access_token, token.refresh_token)
         begin
           youtube_posts = client.videos.first(15).map { |post| Networks::Post.from(post, 'youtube', @user) }
-          youtube_posts
         rescue => e
           @unauthed_accounts << "youtube"
         end
+        youtube_posts
       else
-        []
+        youtube_posts
       end
     end
 
@@ -102,17 +106,18 @@ module Networks
     end
 
     def gplus_posts
+      gplus_posts = []
       if user_has_provider?('gplus', @user)
         token = @user.tokens.find_by(provider: 'gplus').uid
         client = configure_gplus(token)
         begin
           gplus_posts = client.list_activities.items.map { |post| Networks::Post.from(post, 'gplus', @user) }
-          gplus_posts
         rescue => e
-          @unauthed_accounts << "gplus"
+          @unauthed_accounts << 'gplus'
         end
+        gplus_posts
       else
-        []
+        gplus_posts
       end
     end
 
@@ -123,33 +128,35 @@ module Networks
     end
 
     def vimeo_posts
+      vimeo_posts = []
       if user_has_provider?('vimeo', @user)
         token = @user.tokens.find_by(provider: 'vimeo')
         client = Vmo::Request.get_user(token.access_token)
         begin
           vimeo_posts = client.videos.take(15).map { |post| Networks::Post.from(post, 'vimeo', @user) }
-          vimeo_posts
         rescue => e
           @unauthed_accounts << "vimeo"
         end
+        vimeo_posts
       else
-        []
+        vimeo_posts
       end
     end
 
     def tumblr_posts
+      tumblr_posts = []
       if user_has_provider?('tumblr', @user)
         token = @user.tokens.find_by(provider: 'tumblr')
         client = configure_tumblr(token.access_token, token.access_token_secret)
         username = client.info['user']['name']
         begin
           tumblr_posts = client.posts("#{username}.tumblr.com")['posts'].map { |post| Networks::Post.from(post, 'tumblr', @user)}
-          tumblr_posts
         rescue => e
           @unauthed_accounts << "tumblr"
         end
+        tumblr_posts
       else
-        []
+        tumblr_posts
       end
     end
 
@@ -164,17 +171,18 @@ module Networks
     end
 
     def flickr_posts
+      flickr_posts = []
       if user_has_provider?('flickr', @user)
         token = @user.tokens.find_by(provider: 'flickr')
         client = configure_flickr(token.access_token, token.access_token_secret)
         begin
           flickr_posts = client.people.getPhotos('user_id' => token.uid).map { |post| Networks::Post.from(post, 'flickr', @user) }
-          flickr_posts
         rescue => e
           @unauthed_accounts << "flickr"
         end
+        flickr_posts
       else
-        []
+        flickr_posts
       end
     end
     
@@ -193,10 +201,10 @@ module Networks
         client = Instagram::Api.new(token.access_token, nil)
         begin
           instagram_posts = client.get_timeline.posts.map { |post| Networks::Post.from(post,'instagram', @user) }
-          instagram_posts
         rescue => e
           @unauthed_accounts << "instagram"
         end
+        instagram_posts
       else
         []
       end
