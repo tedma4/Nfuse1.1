@@ -34,7 +34,6 @@ module Networks
       tb = tumblr_posts
       #up = users_posts
       merge_posts = (tw + fb + ig + yt + gp + vp + fl + tb)#.sort_by{|t| - t.created_time.to_i}
-      merge_posts
     end
     private
 
