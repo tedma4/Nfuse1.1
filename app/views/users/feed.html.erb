@@ -38,9 +38,9 @@
       <% end %>
 
     <% end %>
-  <div class="load_posts_link">
+<!--   <div class="load_posts_link">
     <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>
-  </div>
+  </div> -->
   <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
     <div id="empty_feed_container">
       <% if current_user?(@user) %>

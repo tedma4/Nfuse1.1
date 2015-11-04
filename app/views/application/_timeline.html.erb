@@ -11,9 +11,6 @@
     <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
   </div>
 <% else %>
-  <div class="loader">
-    <div class="loader-img"></div>
-  </div>
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% timeline.first(30).each do |post| %>
       <% case post.provider %>
@@ -30,34 +27,17 @@
         <% unless post.type == 'chat' || post.type == 'audio' %>
           <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
-        <% when "facebook" %>
-            <%# unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-                <%= render partial: "users/post", locals: {post: post} %>
-            <%# end %>
-        <% when "twitter" %>
-            <%# unless post.retweeted == true %>
-                <%= render partial: "users/post", locals: {post: post} %>
-            <%# end %>
+      <% when "facebook" %>
+        <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+          <%= render partial: "users/post", locals: {post: post} %>
+        <% end %>
+      <% when "twitter" %>
+        <% unless post.retweeted == true %>
+          <%= render partial: "users/post", locals: {post: post} %>
+        <% end %>
       <% else %>
         <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
     <% end %>
   </div>
 <% end %>
-<script>
-
-jQuery(window).load(function() {
-  
-  /*
-    Loader
-  */
-  $(".loader-img").fadeOut();
-  $(".loader").delay(1000).fadeOut("slow");
-  
-  /*
-    Hidden images
-  */
-  $(".modal-body img, .testimonial-image img").attr("style", "width: auto !important; height: auto !important;");
-  
-});
-  </script>
