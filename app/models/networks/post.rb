@@ -151,6 +151,14 @@ module Networks
         @post['picture']
       end
     end
+
+    def story
+      @post['story']
+    end
+
+    def retweeted
+      @post.retweeted
+    end
     #-----------video----------
 
     def video

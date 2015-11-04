@@ -99,22 +99,22 @@ class UsersController < ApplicationController
   end
 
   def feed_builder
-    feed                = Feed.new(@user)
+    feed                = Networks::Timeline.new(@user)
     @providers          = Providers.for(@user)
-    @timeline           = feed.construct(params)
+    @timeline           = feed.construct(params).sort { |a,b| b.created_time <=> a.created_time }
     @unauthed_accounts  = feed.unauthed_accounts
 
-    @load_more_url = feed_content_path(
-        twitter_pagination:     feed.twitter_pagination_id,
-        facebook_pagination:    feed.facebook_pagination_id,
-        instagram_max_id:       feed.instagram_max_id,
-        nfuse_post_last_id:     feed.nfuse_pagination_id,
-        youtube_pagination:     feed.youtube_pagination_id,
-        gplus_pagination:       feed.gplus_pagination_id,
-        tumblr_pagination:      feed.tumblr_pagination_id,
-        vimeo_pagination:       feed.vimeo_pagination_id,
-        flickr_pagination:      feed.flickr_pagination_id,
-        id: @user.id)
+    # @load_more_url = feed_content_path(
+    #     twitter_pagination:     feed.twitter_pagination_id,
+    #     facebook_pagination:    feed.facebook_pagination_id,
+    #     instagram_max_id:       feed.instagram_max_id,
+    #     nfuse_post_last_id:     feed.nfuse_pagination_id,
+    #     youtube_pagination:     feed.youtube_pagination_id,
+    #     gplus_pagination:       feed.gplus_pagination_id,
+    #     tumblr_pagination:      feed.tumblr_pagination_id,
+    #     vimeo_pagination:       feed.vimeo_pagination_id,
+    #     flickr_pagination:      feed.flickr_pagination_id,
+    #     id: @user.id)
   end
 
   def feed_numero_dos

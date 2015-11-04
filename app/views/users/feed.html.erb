@@ -8,7 +8,7 @@
     <%= render partial: "unauthed_accounts" %>
   <% end %>
 <!-- masonJar js-masonry -->
-<div id="masonJar" class="feed_container clearfix masonJar" data-user-id="<%= @user.id %>" >
+<div id="masonJar" class="feed_container clearfix masonJar" >
   <% if @timeline.present? %>
     <% @timeline.each do |post| %>
       <% case post.provider %>
@@ -24,23 +24,22 @@
       <% when "tumblr" %>
         <% unless post.type == 'chat' || post.type == 'audio' %>
           <%= render partial: "users/post", locals: {post: post} %>
-
         <% end %>
       <% when "facebook" %>
         <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
           <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
-          <% when "twitter" %>
-              <% unless post.retweeted == true %>
-                  <%= render partial: "users/post", locals: {post: post} %>
-              <% end %>
+      <% when "twitter" %>
+        <% unless post.retweeted == true %>
+          <%= render partial: "users/post", locals: {post: post} %>
+        <% end %>
       <% else %>
         <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
 
     <% end %>
   <div class="load_posts_link">
-    <%= link_to "Load more posts", @load_more_url, id: "load-more" %>
+    <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>
   </div>
   <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
     <div id="empty_feed_container">
