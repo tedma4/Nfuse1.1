@@ -1,9 +1,7 @@
-<!-- *Start* Views/pages/home.html -->
-<div class="center">
-<!--      <div class="loader">
-       <div class="loader-img"></div>
-     </div> -->
-	<%= render partial: 'timeline', locals: { timeline: @timeline } if signed_in? %>
-</div>
-<%= render partial: 'landing' unless signed_in? %>
-<!-- *End* Views/pages/home.html -->
+<% if signed_in? %>
+  <div class="center">
+  	<%= render partial: 'timeline', locals: { timeline: @timeline }%>
+  </div>
+<% else %>
+  <%= render partial: 'landing'%>
+<% end %>

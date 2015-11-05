@@ -3,13 +3,17 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @providers = Providers.for(current_user)
-      @timeline  = timeline[:timeline].flatten.sort {|a, b|  b.created_time <=> a.created_time }
-      # We need to do something with this
-      # because if each user's details is needed.
-      # only the last user's data is saved to this loop.
-      # hence why i put #first at the end of the hash.
-
-      @unauthed_accounts              = timeline[:unauthed_accounts].first
+      timeline = []
+      ids =  current_user.followed_users.collect(&:id)
+      unless ids.empty?
+        @users = User.where(id: ids)
+        @users.find_each do |user|
+          feed=Networks::Timeline.new(user)
+          timeline << feed.construct(params)
+          @unauthed_accounts = feed.unauthed_accounts
+        end
+      end
+      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time }
     end
     # render 'home' is implicit.
   end

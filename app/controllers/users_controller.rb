@@ -99,8 +99,8 @@ class UsersController < ApplicationController
   end
 
   def feed_builder
+    @providers          = Providers.for(current_user)
     feed                = Networks::Timeline.new(@user)
-    @providers          = Providers.for(@user)
     @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
     @unauthed_accounts  = feed.unauthed_accounts
 
@@ -117,19 +117,6 @@ class UsersController < ApplicationController
     #     id: @user.id)
   end
 
-  def feed_numero_dos
-    feed       = Networks::Timeline.new(current_user)
-    @providers = Providers.for(current_user)
-    @timeline  = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
-    @unauthed_accounts = feed.unauthed_accounts
-  end
-
-  def hub_numero_dos
-    @providers = Providers.for(current_user)
-    @timeline = newtimeline[:timeline].flatten.sort { |a, b| b.created_time <=> a.created_time }
-    @unauthed_accounts = newtimeline[:unauthed_accounts].first
-  end
-
   def explore
   end
 
@@ -143,7 +130,7 @@ class UsersController < ApplicationController
       @users.each do |user|
         feed=Networks::Timeline.new(user)
         timeline << feed.construct(params)
-        @unauthed_accounts              = feed.unauthed_accounts
+        @unauthed_accounts = feed.unauthed_accounts
       end
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
