@@ -43,6 +43,8 @@ module Networks
           @post.id
         when 'flickr'
           @post['id']
+        when 'tumblr'
+          @post['id']
         when 'gplus'
           @post.id
       end

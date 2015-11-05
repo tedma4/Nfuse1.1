@@ -32,10 +32,20 @@ module Networks
       vp = vimeo_posts
       fl = flickr_posts
       tb = tumblr_posts
-      #up = users_posts
-      merge_posts = (tw + fb + ig + yt + gp + vp + fl + tb)#.sort_by{|t| - t.created_time.to_i}
+      up = users_posts
+      merge_posts = (tw + fb + ig + yt + gp + vp + fl + tb + up)#.sort_by{|t| - t.created_time.to_i}
     end
     private
+
+  def users_posts
+    users_posts = []
+    if @user.shouts.any?
+      users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
+    else
+      users_posts
+    end
+    users_posts
+  end
 
     def twitter_posts
       twitter_posts = []

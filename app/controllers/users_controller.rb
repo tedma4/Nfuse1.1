@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   def feed_builder
     feed                = Networks::Timeline.new(@user)
     @providers          = Providers.for(@user)
-    @timeline           = feed.construct(params).sort { |a,b| b.created_time <=> a.created_time }
+    @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
     @unauthed_accounts  = feed.unauthed_accounts
 
     # @load_more_url = feed_content_path(
@@ -141,7 +141,7 @@ class UsersController < ApplicationController
     unless ids.empty?
       @users = User.where.not(id: ids)
       @users.each do |user|
-        feed=Feed.new(user)
+        feed=Networks::Timeline.new(user)
         timeline << feed.construct(params)
         @unauthed_accounts              = feed.unauthed_accounts
       end
@@ -186,7 +186,7 @@ class UsersController < ApplicationController
       feed_unauthed_accounts: []
     }
     current_user.followed_users.each do |user|
-      feed=Feed.new(user)
+      feed=Networks::Timeline.new(user)
       stack[:timeline] << feed.construct(params)
       # this is constantly getting over written for each user.
       stack[:feed_unauthed_accounts] << feed.unauthed_accounts

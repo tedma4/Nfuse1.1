@@ -13,7 +13,6 @@
     <% @timeline.each do |post| %>
       <% case post.provider %>
       <% when "nfuse" %>
-        <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
         <% unless post.exclusive == true %>
           <%=  render partial: 'users/shout', locals: {shout: post} %>
         <% end %>
