@@ -17,9 +17,7 @@
 //= require npm
 //= require wow
 //= require jquery.magnific-popup
-//= require placeholder
 //= require scripts
-//= require activities
 //= require turbolinks
 //= require feed_index
 //= require analytics
