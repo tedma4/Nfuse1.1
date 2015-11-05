@@ -15,7 +15,7 @@ module Tumblr
     # 
     def like_score(id)
       # Implement counter cache per / Records
-      ActsAsVotable::Vote.where(votable_id: id).count
+      ActsAsVotable::Vote.where(votable_id: id).size
     end
 
     # User Object * because delegate is not working.

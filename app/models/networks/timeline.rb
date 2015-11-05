@@ -39,7 +39,7 @@ module Networks
 
   def users_posts
     users_posts = []
-    if @user.shouts.any?
+    if @user.shouts.any? #User.includes(:shouts).find(@user.id).shouts.any?
       users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
     else
       users_posts

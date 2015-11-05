@@ -98,8 +98,8 @@
                   <div class="Alignthisorelse">
                     <div class="container post-padding">
                       <div class="col-sm-6 form-box wow fadeInUp">
-                        <div class="form-top-new-post"><!-- 
-                          <div class="form-top-left">
+                        <div class="form-top-new-post">
+                <!--      <div class="form-top-left">
                             <h2><strong>Create A Post<strong></h2>
                               <p>Share a picture or url</p>
                           </div>
@@ -108,79 +108,71 @@
                           </div>
                         </div> -->
                         <div class="form-bottom">
-
                         <%= form_for Shout.new, :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
-
                           <div class="Alignthisorelse">
                             <div class="container">
-
-                                <div class="row">
-                                  <div class="col-sm-2 how-it-works-box wow fadeInUp">
-                                      <div class="how-it-works-box-icon">
-                                        <a href="#"><%= image_tag("circlephoto.fw.png", size: "175x175") %></a>
-                                      </div>
-                                      <div class="fileUpload btn-link-1">
-                                        <span>Upload Pic</span>
-                                         <%= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
-                                      </div>
+                              <div class="row">
+                                <div class="col-sm-2 how-it-works-box wow fadeInUp">
+                                  <div class="how-it-works-box-icon">
+                                    <a href="#"><%= image_tag("circlephoto.fw.png", size: "175x175") %></a>
                                   </div>
-
-                                  <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                                    <div class="how-it-works-box-icon">
-                                      <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
-                                    </div>
-                                    <div class="form-grouP">
-                                      <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
-                                    </div>
-                                  </div>
-                                 </div>
-                  <!--                 <div class="row">
-                                   <div class="col-sm-3 how-it-works-box wow fadeInUp">
-                                     <div class="how-it-works-box-icon">
-                                       <a href="#"><%#= image_tag("circlevideo.fw.png", size: "160x160") %></a>
-                                     </div>
-                                     <div class="fileUpload btn-link-1">
-                                       <span>Upload Video</span>
-                                       <%#= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
-                                     </div>
-                                   </div>
-
-                                   <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                                     <div class="how-it-works-box-icon">
-                                       <%#= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
-                                     </div>
-                                     <div class="fileUpload btn-link-1">
-                                       <span>Upload Snip</span>
-                                         <%#= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
-                                     </div>
-                                   </div>
-                                </div> -->
-
-                                <div class="row">
-                                  <div class="col-sm-5 section-bottom-button wow fadeInUp">
-                                    <div id="target"></div>
-                                    <div id="profilePostTarget"></div>
-                                    <div id="profileUrlPostPreview"></div>
-                                    <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                  <div class="fileUpload btn-link-1">
+                                    <span>Upload Pic</span>
+                                     <%= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
                                   </div>
                                 </div>
-                                <div class="row">
-                                  <%= f.label "Do you want to send this to only your followers?" %>
+                                <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
+                                  <div class="how-it-works-box-icon">
+                                    <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
+                                  </div>
+                                  <div class="form-grouP">
+                                    <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+                                  </div>
                                 </div>
-                                <div class="row">
-                                  <% unless current_user.followers.empty? %>
-                                    <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
+                              </div>
+                  <!--        <div class="row">
+                                <div class="col-sm-3 how-it-works-box wow fadeInUp">
+                                  <div class="how-it-works-box-icon">
+                                    <a href="#"><%#= image_tag("circlevideo.fw.png", size: "160x160") %></a>
+                                  </div>
+                                  <div class="fileUpload btn-link-1">
+                                    <span>Upload Video</span>
+                                    <%#= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                                  </div>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
+                                  <div class="how-it-works-box-icon">
+                                    <%#= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
+                                  </div>
+                                  <div class="fileUpload btn-link-1">
+                                    <span>Upload Snip</span>
+                                      <%#= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                                  </div>
+                                </div>
+                              </div> -->
+                              <div class="row">
+                                <div class="col-sm-5 section-bottom-button wow fadeInUp">
+                                  <div id="target"></div>
+                                  <div id="profilePostTarget"></div>
+                                  <div id="profileUrlPostPreview"></div>
+                                  <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <%= f.label "Do you want to send this to only your followers?" %>
+                              </div>
+                              <div class="row">
+                                <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
+                                  <% if current_user.followers.any? %>
+                                    <%= f.check_box :is_exclusive %>
                                   <% end %>
-                                  <%= f.check_box :is_exclusive %>
-                                    <button type="submit" class="btn">
-                                     Post!
-                                    </button>
-                                  </div>
+                                  <button type="submit" class="btn">
+                                   Post!
+                                  </button>
                                 </div>
-
+                              </div>
                             </div>
                           </div>
-
                         <% end %>
                         </div>
                       </div>

@@ -10,7 +10,7 @@ class Shouts::LikesController < ApplicationController
     end
     @shout = {
         id: params[:id],
-        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).count,
+        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
         owner_id: params[:owner_id],
         provider: params[:key]
     }

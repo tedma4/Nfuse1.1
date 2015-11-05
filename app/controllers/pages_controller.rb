@@ -19,21 +19,6 @@ class PagesController < ApplicationController
   end
 
   private
-
-    def timeline(user=current_user)
-      stack = {
-        timeline: [],
-        unauthed_accounts: [],
-        feed_unauthed_accounts: []
-      }
-      current_user.followed_users.find_each do |user|
-        feed=Networks::Timeline.new(user)
-        stack[:timeline] << feed.construct(params)
-        # this is constantly getting over written for each user.
-        stack[:feed_unauthed_accounts] << feed.unauthed_accounts
-      end
-      stack
-    end
   public
 
   def help; end

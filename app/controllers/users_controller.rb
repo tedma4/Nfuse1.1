@@ -104,6 +104,7 @@ class UsersController < ApplicationController
     @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
     @unauthed_accounts  = feed.unauthed_accounts
 
+    # This is for pagination
     # @load_more_url = feed_content_path(
     #     twitter_pagination:     feed.twitter_pagination_id,
     #     facebook_pagination:    feed.facebook_pagination_id,

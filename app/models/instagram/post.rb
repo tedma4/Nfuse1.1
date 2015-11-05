@@ -15,7 +15,7 @@ module Instagram
     end
 
     def like_score(id)
-      ActsAsVotable::Vote.where(votable_id: id).count
+      ActsAsVotable::Vote.where(votable_id: id).size
     end
 
     def avatar
