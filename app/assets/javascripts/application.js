@@ -21,7 +21,6 @@
 //= require scripts
 //= require activities
 //= require turbolinks
-//= require video
 //= require feed_index
 //= require analytics
 //= require_tree .

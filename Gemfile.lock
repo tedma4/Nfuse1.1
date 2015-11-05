@@ -440,7 +440,6 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uniform_notifier (1.9.0)
-    videojs_rails (4.6.1)
     vimeo (1.5.4)
       httparty (>= 0.4.5)
       httpclient (>= 2.1.5.2)
@@ -533,7 +532,6 @@ DEPENDENCIES
   typhoeus (~> 0.6.8)
   tzinfo-data
   uglifier (>= 1.3.0)
-  videojs_rails
   vimeo
   vmo!
   wicked

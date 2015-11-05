@@ -165,33 +165,4 @@ class UsersController < ApplicationController
   def update_error  
     redirect_to feed_user_path(@user)
   end
-
-  def timeline(user=current_user)
-    stack = {
-      timeline: [],
-      unauthed_accounts: [],
-      feed_unauthed_accounts: []
-    }
-    current_user.followed_users.each do |user|
-      feed=Networks::Timeline.new(user)
-      stack[:timeline] << feed.construct(params)
-      # this is constantly getting over written for each user.
-      stack[:feed_unauthed_accounts] << feed.unauthed_accounts
-    end
-    stack
-  end
-
-  def newtimeline(user=current_user)
-    stack = {
-      timeline: [],
-      unauthed_accounts: [],
-      feed_unauthed_accounts: []
-    }
-    current_user.followed_users.find_each do |user|
-      feed=Networks::Timeline.new(user)
-      stack[:timeline] << feed.construct(params)
-      stack[:feed_unauthed_accounts] << feed.unauthed_accounts
-    end
-    stack
-  end
 end
