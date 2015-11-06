@@ -17,8 +17,13 @@
 //= require npm
 //= require wow
 //= require jquery.magnific-popup
+//= require jquery-utils-delayedobserver
+//= require jquery.bind_with_delay
+//= require jquery.backstretch
 //= require scripts
 //= require turbolinks
-//= require feed_index
 //= require analytics
-//= require_tree .
+//= require imagesloaded.pkgd
+//= require masonry.pkgd.min
+//= require resize_masonry
+//= require jquery-1.11.1
