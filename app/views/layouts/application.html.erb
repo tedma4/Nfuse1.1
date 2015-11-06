@@ -10,12 +10,12 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'%>
-    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <%= javascript_include_tag 'masonry.pkgd.js'%>
-    <%= javascript_include_tag 'resize_masonry.js'%>
-    <%= javascript_include_tag 'imagesloaded.pkgd.js'%>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', async: true %>
+    <script async src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script async src="https://www.youtube.com/iframe_api"></script>
+    <%= javascript_include_tag 'masonry.pkgd.js', async: true %>
+    <%= javascript_include_tag 'resize_masonry.js', async: true %>
+    <%= javascript_include_tag 'imagesloaded.pkgd.js', async: true %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <%= favicon_link_tag 'Nfuselogopurple.fw.png'%>
     <%= render 'layouts/shim' %>
