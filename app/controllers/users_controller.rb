@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     ids << current_user.id
     unless ids.empty?
       @users = User.where.not(id: ids)
-      @users.each do |user|
+      @users.find_each do |user|
         feed=Networks::Timeline.new(user)
         timeline << feed.construct(params)
         @unauthed_accounts = feed.unauthed_accounts

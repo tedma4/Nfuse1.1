@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020234938) do
+ActiveRecord::Schema.define(version: 20151105234045) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -161,8 +161,12 @@ ActiveRecord::Schema.define(version: 20151020234938) do
     t.datetime "video_updated_at"
     t.boolean  "is_full_video",                  default: false
     t.boolean  "is_exclusive",                   default: false
+    t.integer  "cached_votes_total",             default: 0
+    t.integer  "cached_votes_score",             default: 0
   end
 
+  add_index "shouts", ["cached_votes_score"], name: "index_shouts_on_cached_votes_score"
+  add_index "shouts", ["cached_votes_total"], name: "index_shouts_on_cached_votes_total"
   add_index "shouts", ["permalink"], name: "index_shouts_on_permalink"
   add_index "shouts", ["uid"], name: "index_shouts_on_uid", unique: true
   add_index "shouts", ["user_id", "created_at"], name: "index_shouts_on_user_id_and_created_at"
