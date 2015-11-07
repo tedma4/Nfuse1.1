@@ -10,7 +10,9 @@
 <!-- masonJar js-masonry -->
 <div id="masonJar" class="feed_container clearfix masonJar" >
   <% if @timeline.present? %>
+    <% cache('users_feed') do %>
     <% @timeline.each do |post| %>
+    <% cache(post) do %>
       <% case post.provider %>
       <% when "nfuse" %>
         <% unless post.exclusive == true %>
@@ -35,7 +37,8 @@
       <% else %>
         <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
-
+    <% end %>
+    <% end %>
     <% end %>
 <!--   <div class="load_posts_link">
     <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>

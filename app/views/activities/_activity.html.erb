@@ -1,5 +1,7 @@
 <div id="masonJar" class="clearfix masonJar">
+  <% cache('user_activities') do %>
   <% @activities.each do |activity| %>
+  <% cache(activity) do %>
    <% case activity.attributes['trackable_type'] %>
    <% when 'Relationship' %>
      <div class="individual_post item">
@@ -146,5 +148,7 @@
        </div><br>
      </div>
    <% end %>
+  <% end %>
+  <% end %>
   <% end %>
 </div>

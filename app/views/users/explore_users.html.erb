@@ -1,6 +1,6 @@
 <div id="masonJar" class="center explore_container clearfix masonJar">
    <% cache('explore_users') do %>
-   <% timeline.first(30).each do |post| %>
+   <% @timeline.first(30).each do |post| %>
    <% cache(post) do %>
     <% case post.provider %>
     <% when "nfuse" %>
