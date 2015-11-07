@@ -1,5 +1,5 @@
 <div id="masonJar" class="clearfix masonJar">
-  <% cache(["user_activities", timeline.map(&:id)]) do %>
+  <% cache(["user_activities", @activities.map(&:id)]) do %>
   <% @activities.each do |activity| %>
   <% cache(activity) do %>
    <% case activity.attributes['trackable_type'] %>
