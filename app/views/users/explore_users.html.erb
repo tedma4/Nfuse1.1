@@ -1,5 +1,7 @@
 <div id="masonJar" class="center explore_container clearfix masonJar">
-  <% @timeline.first(30).each do |post| %>
+   <% cache('explore_users') do %>
+   <% timeline.first(30).each do |post| %>
+   <% cache(post) do %>
     <% case post.provider %>
     <% when "nfuse" %>
       <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
@@ -15,15 +17,17 @@
         <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
     <% when "facebook" %>
-        <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-            <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
+      <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+        <%= render partial: "users/post", locals: {post: post} %>
+      <% end %>
     <% when "twitter" %>
-        <% unless post.retweeted == true %>
-            <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
+      <% unless post.retweeted == true %>
+        <%= render partial: "users/post", locals: {post: post} %>
+      <% end %>
     <% else %>
       <%= render partial: "users/post", locals: {post: post} %>
     <% end %>
+  <% end %>
+  <% end %>
   <% end %>
 </div>
