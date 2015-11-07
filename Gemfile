@@ -72,7 +72,6 @@ gem 'thin'
 gem 'auto_html'
 gem "faker", "~> 1.4.3"
 gem 'public_activity', '1.4.2'
-gem 'actionpack-action_caching'
 #These are the gems used in the development enviornment
 # gem 'rack-mini-profiler', group :development #causing errors each request
 group :development do
