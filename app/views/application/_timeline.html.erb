@@ -13,30 +13,32 @@
 <% else %>
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% timeline.first(30).each do |post| %>
-      <% case post.provider %>
-      <% when "nfuse" %>
-        <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-        <% unless post.exclusive == true %>
-          <%=  render partial: 'users/shout', locals: {shout: post} %>
-        <% end %>
-      <% when "gplus" %>
-        <% if post.type != 'hiddenType' %>
+      <% cache(post) do %>
+        <% case post.provider %>
+        <% when "nfuse" %>
+          <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
+          <% unless post.exclusive == true %>
+            <%=  render partial: 'users/shout', locals: {shout: post} %>
+          <% end %>
+        <% when "gplus" %>
+          <% if post.type != 'hiddenType' %>
+            <%= render partial: "users/post", locals: {post: post} %>
+          <% end %>
+        <% when "tumblr" %>
+          <% unless post.type == 'chat' || post.type == 'audio' %>
+            <%= render partial: "users/post", locals: {post: post} %>
+          <% end %>
+        <% when "facebook" %>
+          <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+            <%= render partial: "users/post", locals: {post: post} %>
+          <% end %>
+        <% when "twitter" %>
+          <% unless post.retweeted == true %>
+            <%= render partial: "users/post", locals: {post: post} %>
+          <% end %>
+        <% else %>
           <%= render partial: "users/post", locals: {post: post} %>
         <% end %>
-      <% when "tumblr" %>
-        <% unless post.type == 'chat' || post.type == 'audio' %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
-      <% when "facebook" %>
-        <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
-      <% when "twitter" %>
-        <% unless post.retweeted == true %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
-      <% else %>
-        <%= render partial: "users/post", locals: {post: post} %>
       <% end %>
     <% end %>
   </div>
