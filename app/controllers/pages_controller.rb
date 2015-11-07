@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
 
+  # if signed_in?
+  #   caches_action :home
+  # else
+  #   caches_page :home
+  # end
+
   def home
     if signed_in?
       @providers = Providers.for(current_user)
