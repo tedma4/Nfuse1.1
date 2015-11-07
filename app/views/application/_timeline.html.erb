@@ -12,8 +12,8 @@
   </div>
 <% else %>
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
-    <% timeline.first(30).each do |post| %>
-      <% cache(post) do %>
+    <% cache ['user-hub', *@timeline] do %>
+      <% timeline.first(30).each do |post| %>
         <% case post.provider %>
         <% when "nfuse" %>
           <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
