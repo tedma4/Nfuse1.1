@@ -31,7 +31,7 @@ gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'
 gem "httparty"
 gem 'cocaine', '0.5.5'
-#This allows the use of the facebook oauth 
+#This allows the use of the facebook oauth
 gem 'omniauth-facebook', '~> 1.6.0'
 #This allows the use of the twitter oauth
 gem 'omniauth-twitter', '~> 1.0.1'
@@ -52,14 +52,14 @@ gem 'twitter', '>= 5.14.0'
 gem 'koala', "~> 2.0"
 gem 'yt', :git => 'https://github.com/ermacaz/yt.git'
 gem 'excon', '~> 0.42.1'
-#This allows the use of the instagram oauth 
+#This allows the use of the instagram oauth
 gem 'omniauth-instagram', '~> 1.0.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-gplus'
 gem 'google_plus'
 gem 'faraday', '~> 0.9.0'
 gem 'oj', '~> 2.9.3'
-gem 'oj_mimic_json', '~> 1.0.0'
+# gem 'oj_mimic_json', '~> 1.0.0'
 gem 'newrelic_rpm'
 # #This allows us to use burbon css file
 # gem 'bourbon', '~> 3.2.3'
@@ -67,16 +67,11 @@ gem 'newrelic_rpm'
 gem 'seed-fu', '~> 2.3'
 
 #This allows the use of the faye websocket server
-gem 'private_pub'
-gem 'thin'
+# gem 'private_pub'
+# gem 'thin'
 gem 'auto_html'
 gem "faker", "~> 1.4.3"
 gem 'public_activity', '1.4.2'
-#These are the gems used in the development enviornment
-# gem 'rack-mini-profiler', group :development #causing errors each request
-group :development do
-  gem 'bullet', "4.14.7"
-end
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -131,5 +126,13 @@ group :production do
   gem 'mysql2'
   gem 'rails_12factor', '~> 0.0.3'
 end
+#These are the gems used in the development enviornment
+group :development do
+  gem 'bullet', "4.14.7"
+  gem 'rack-mini-profiler', require: false
+  gem 'flamegraph'
+  gem 'stackprof' # ruby 2.1+ only
+  gem 'memory_profiler'
+  end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

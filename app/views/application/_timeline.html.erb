@@ -3,14 +3,7 @@
     margin: 15px 0 0 0;
   }
 </style>
-<% if current_user.followed_users.empty? %>
-  <div class="center hub_padding">
-    <p> Can't display posts because you aren't following anyone... </p>
-    <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
-    <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
-    <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
-  </div>
-<% else %>
+<% if current_user.followed_users.any? %>
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
     <% timeline.first(30).each do |post| %>
@@ -43,5 +36,12 @@
       <% end %>
     <% end %>
     <% end %>
+  </div>
+<% else %>
+  <div class="center hub_padding">
+    <p> Can't display posts because you aren't following anyone... </p>
+    <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
+    <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
+    <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
   </div>
 <% end %>
