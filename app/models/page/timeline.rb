@@ -39,10 +39,10 @@ def concurrency_test_with_thread
   threads << Thread.new { @youtube_thingy = channel.videos.first(15) }
   threads << Thread.new { @instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) }
   threads.each(&:join) # this waits for all the threads to finish before proceeding
-  merge = [@twitter_thingy.map { |post| Page::Post.from(post, 'twitter') } +
+  merge = (@twitter_thingy.map { |post| Page::Post.from(post, 'twitter') } +
     @youtube_thingy.map { |post| Page::Post.from(post, 'youtube') } +
     @instagram_thingy['data'].map { |post| Page::Post.from(post, 'instagram') }
-    ]
+  )
 end
 
 
