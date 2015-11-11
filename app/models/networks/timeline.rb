@@ -20,7 +20,12 @@ module Networks
     end
 
     # I could set all the providers in the initializer like the pages do
-    # but I need to make it so that the correct info gets passed
+    # but I need to make it so that the correct info gets passed to the
+    # correct network. I need to make some kind of feed builder.
+    # So. If a user has twitter and instagram, the feed builder goes to twitter_posts
+    # and instagram_posts and ignores the rest of the methods. So a custom constructor.
+    # And at the end it will use the new way of generating the post requests that I'm
+    # going to make using typhoeus
 
     def construct(params)
       self.params = params
@@ -194,7 +199,7 @@ module Networks
         flickr_posts
       end
     end
-    
+
     def configure_flickr(access_token, access_token_secret)
       FlickRaw.api_key=ENV["flickr_key"]
       FlickRaw.shared_secret=ENV["flickr_secret"]
