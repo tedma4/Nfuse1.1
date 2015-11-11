@@ -34,7 +34,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/wired'
    @incomp   = 'wired'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -44,7 +44,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/NationalGeographic'
    @incomp   = 'natgeo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -54,7 +54,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/people'
    @incomp   = 'peoplemag'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -64,7 +64,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/TimeMagazine'
    @incomp   = 'time'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -74,7 +74,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/SportsIllustrated'
    @incomp   = 'sportsillustrated'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -84,7 +84,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/HelloStyleChannel'
    @incomp   = 'cosmopolitan'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -94,7 +94,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/redbull'
    @incomp   = 'redbull'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -104,7 +104,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/ESPN'
    @incomp   = 'espn'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -114,7 +114,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/UsWeekly'
    @incomp   = 'usweekly'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -124,7 +124,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/ew'
    @incomp   = 'entertainmentweekly'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -134,7 +134,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/NewsweekVideo'
    @incomp   = 'newsweek'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -144,7 +144,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/Popscivideo'
    @incomp   = 'popsci'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -154,7 +154,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/Americanvogue'
    @incomp   = 'vougemagazine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -164,7 +164,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/Bloomberg'
    @incomp   = 'bloomberg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -174,7 +174,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/GQVideos'
    @incomp   = 'gq'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -184,7 +184,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/HGTV'
    @incomp   = 'hgtv'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -194,7 +194,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/forbes'
    @incomp   = 'forbes'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -204,7 +204,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/FortuneMagazineVideo'
    @incomp   = 'fortunemag'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -214,7 +214,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/enews'
    @incomp   = 'enews'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -224,7 +224,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/Google'
    @incomp   = 'google'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -234,7 +234,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/TEDtalksDirector'
    @incomp   = 'ted'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -244,7 +244,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/TeslaMotors'
    @incomp   = 'teslamotors'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -254,7 +254,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/VICTORIASSECRET'
    @incomp   = 'victoriassecret'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -264,7 +264,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/CNN'
    @incomp   = 'cnn'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -275,7 +275,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/HBO'
    @incomp   = 'hbo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -285,7 +285,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/SHOWTIME'
    @incomp   = 'showtime'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -295,7 +295,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/MARVEL'
    @incomp   = 'marvel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -305,7 +305,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/Syfy'
    @incomp   = 'syfy'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -315,7 +315,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/NewOnNetflix'
    @incomp   = 'netflix'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -325,7 +325,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/BuzzFeedVideo'
    @incomp   = 'buzzfeed'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -335,7 +335,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/reddit'
    @incomp   = 'reddit'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -345,7 +345,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/collegehumor'
    @incomp   = 'collegehumor'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -355,7 +355,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/Microsoft'
    @incomp   = 'microsoft'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -365,7 +365,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/nike'
    @incomp   = 'nike'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -375,7 +375,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/VideoIMDb'
    @incomp   = 'imdblive'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -385,7 +385,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/VEVO'
    @incomp   = 'vevo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -395,7 +395,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/starwars'
    @incomp   = 'starwars'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -405,7 +405,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/NASAtelevision'
    @incomp   = 'nasa'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -415,7 +415,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/BravoShows'
    @incomp   = 'bravotv'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -425,7 +425,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/MTV'
    @incomp   = 'mtv'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp' 
   end
 
@@ -435,7 +435,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/GolfDigestMagazine'
    @incomp   = 'golfdigest'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -445,7 +445,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/NBA'
    @incomp   = 'nba'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -455,7 +455,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/NFL'
    @incomp   = 'nfl'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -465,7 +465,7 @@ class PagesController < ApplicationController
    @comp_url = 'https://www.youtube.com/user/MLB'
    @incomp   = 'mlb'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -475,7 +475,7 @@ class PagesController < ApplicationController
    @incomp   = 'nhl'
    @comp_url = 'https://www.youtube.com/user/NHLVideo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -485,7 +485,7 @@ class PagesController < ApplicationController
    @incomp   = 'incmagazine'
    @comp_url = 'https://www.youtube.com/user/incmagazine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -495,7 +495,7 @@ class PagesController < ApplicationController
    @incomp   = 'makerbot'
    @comp_url = 'https://www.youtube.com/user/makerbot'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -505,7 +505,7 @@ class PagesController < ApplicationController
    @incomp   = 'olympics'
    @comp_url = 'https://www.youtube.com/user/olympic'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -515,7 +515,7 @@ class PagesController < ApplicationController
    @incomp   = 'tmz_tv'
    @comp_url = 'https://www.youtube.com/user/TMZ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -525,7 +525,7 @@ class PagesController < ApplicationController
    @incomp   = 'tiffanyandco'
    @comp_url = 'https://www.youtube.com/user/OfficialTiffanyAndCo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -535,7 +535,7 @@ class PagesController < ApplicationController
    @incomp   = 'playboy'
    @comp_url = 'https://www.youtube.com/user/playboy'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -545,7 +545,7 @@ class PagesController < ApplicationController
    @incomp   = 'maximmag'
    @comp_url = 'https://www.youtube.com/user/videosbyMaxim'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -555,7 +555,7 @@ class PagesController < ApplicationController
    @incomp   = 'elleusa'
    @comp_url = 'https://www.youtube.com/user/ElleMagazine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -565,7 +565,7 @@ class PagesController < ApplicationController
    @incomp   = 'vanityfair'
    @comp_url = 'https://www.youtube.com/user/VanityFairMagazine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -575,7 +575,7 @@ class PagesController < ApplicationController
    @incomp   = 'brides'
    @comp_url = 'https://www.youtube.com/user/BridesMagazine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -585,7 +585,7 @@ class PagesController < ApplicationController
    @incomp   = 'usatoday'
    @comp_url = 'https://www.youtube.com/user/USATODAY'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -595,7 +595,7 @@ class PagesController < ApplicationController
    @incomp   = 'sciencechannel'
    @comp_url = 'https://www.youtube.com/user/ScienceChannel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -605,7 +605,7 @@ class PagesController < ApplicationController
    @incomp   = 'fifaworldcup'
    @comp_url = 'https://www.youtube.com/user/FIFATV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -615,7 +615,7 @@ class PagesController < ApplicationController
    @incomp   = 'gucci'
    @comp_url = 'https://www.youtube.com/user/gucciofficial'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -625,7 +625,7 @@ class PagesController < ApplicationController
    @incomp   = 'hm'
    @comp_url = 'https://www.youtube.com/user/hennesandmauritz'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -635,7 +635,7 @@ class PagesController < ApplicationController
    @incomp   = 'generalelectric'
    @comp_url = 'https://www.youtube.com/user/GE'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -645,7 +645,7 @@ class PagesController < ApplicationController
    @incomp   = 'ibm'
    @comp_url = 'https://www.youtube.com/user/IBM'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -655,7 +655,7 @@ class PagesController < ApplicationController
    @incomp   = 'armai'
    @comp_url = 'https://www.youtube.com/user/Armani'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -665,7 +665,7 @@ class PagesController < ApplicationController
    @incomp   = 'foxsports'
    @comp_url = 'https://www.youtube.com/user/FoxSports'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -675,7 +675,7 @@ class PagesController < ApplicationController
    @incomp   = 'cnbc'
    @comp_url = 'https://www.youtube.com/user/cnbc'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -685,7 +685,7 @@ class PagesController < ApplicationController
    @incomp   = 'amazon'
    @comp_url = 'https://www.youtube.com/user/amazon'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -695,7 +695,7 @@ class PagesController < ApplicationController
    @incomp   = 'foodnetwork'
    @comp_url = 'https://www.youtube.com/user/FoodNetworkTV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -705,7 +705,7 @@ class PagesController < ApplicationController
    @incomp   = 'sony'
    @comp_url = 'https://www.youtube.com/user/Sonyelectronics'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -715,7 +715,7 @@ class PagesController < ApplicationController
    @incomp   = 'gap'
    @comp_url = 'https://www.youtube.com/user/Gap'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -725,7 +725,7 @@ class PagesController < ApplicationController
    @incomp   = 'history'
    @comp_url = 'https://www.youtube.com/user/historychannel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -735,7 +735,7 @@ class PagesController < ApplicationController
    @incomp   = 'ralphlauren'
    @comp_url = 'https://www.youtube.com/user/RLTVralphlauren'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -745,7 +745,7 @@ class PagesController < ApplicationController
    @incomp   = 'tlc'
    @comp_url = 'https://www.youtube.com/user/TLC'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -755,7 +755,7 @@ class PagesController < ApplicationController
    @incomp   = 'xbox'
    @comp_url = 'https://www.youtube.com/user/xbox'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -765,7 +765,7 @@ class PagesController < ApplicationController
    @incomp   = 'playstation'
    @comp_url = 'https://www.youtube.com/user/PlayStation'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -775,7 +775,7 @@ class PagesController < ApplicationController
    @incomp   = 'nordstrom'
    @comp_url = 'https://www.youtube.com/user/Nordstromcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -785,7 +785,7 @@ class PagesController < ApplicationController
    @incomp   = 'Entrepreneur'
    @comp_url = 'https://www.youtube.com/user/EntrepreneurOnline'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -795,7 +795,7 @@ class PagesController < ApplicationController
    @incomp   = 'bananarepublic'
    @comp_url = 'https://www.youtube.com/user/bananarepublic'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -805,7 +805,7 @@ class PagesController < ApplicationController
    @incomp   = 'calvinklein'
    @comp_url = 'https://www.youtube.com/user/calvinklein'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -815,7 +815,7 @@ class PagesController < ApplicationController
    @incomp   = 'underarmour'
    @comp_url = 'https://www.youtube.com/user/underarmour'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -825,7 +825,7 @@ class PagesController < ApplicationController
    @incomp   = 'facebook'
    @comp_url = 'https://www.youtube.com/user/theofficialfacebook'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -835,7 +835,7 @@ class PagesController < ApplicationController
    @incomp   = 'burberry'
    @comp_url = 'https://www.youtube.com/user/Burberry'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -845,7 +845,7 @@ class PagesController < ApplicationController
    @incomp   = 'abcnetwork'
    @comp_url = 'https://www.youtube.com/user/ABCNetwork'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -855,7 +855,7 @@ class PagesController < ApplicationController
    @incomp   = 'nbctv'
    @comp_url = 'https://www.youtube.com/user/NBC'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -865,7 +865,7 @@ class PagesController < ApplicationController
    @incomp   = 'cbstv'
    @comp_url = 'https://www.youtube.com/user/CBS'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -875,7 +875,7 @@ class PagesController < ApplicationController
    @incomp   = 'thecw'
    @comp_url = 'https://www.youtube.com/user/Cwtelevision'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -885,7 +885,7 @@ class PagesController < ApplicationController
    @incomp   = 'hugoboss'
    @comp_url = 'https://www.youtube.com/user/HUGOBOSSTV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -895,7 +895,7 @@ class PagesController < ApplicationController
    @incomp   = 'cbsnews'
    @comp_url = 'https://www.youtube.com/user/CBSNewsOnline'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -905,7 +905,7 @@ class PagesController < ApplicationController
    @incomp   = 'foxnews'
    @comp_url = 'https://www.youtube.com/user/FoxNewsChannel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -915,7 +915,7 @@ class PagesController < ApplicationController
    @incomp   = 'nbcnews'
    @comp_url = 'https://www.youtube.com/user/NBCNews'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -925,7 +925,7 @@ class PagesController < ApplicationController
    @incomp   = 'abcnews'
    @comp_url = 'https://www.youtube.com/user/ABCNews'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -935,7 +935,7 @@ class PagesController < ApplicationController
    @incomp   = 'cbssports'
    @comp_url = 'https://www.youtube.com/user/CBSSports'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -945,7 +945,7 @@ class PagesController < ApplicationController
    @incomp   = 'foxtv'
    @comp_url = 'https://www.youtube.com/user/FoxBroadcasting'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -955,7 +955,7 @@ class PagesController < ApplicationController
    @incomp   = 'uber'
    @comp_url = 'https://www.youtube.com/user/UberWorldwide'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -965,7 +965,7 @@ class PagesController < ApplicationController
    @incomp   = 'forever21'
    @comp_url = 'https://www.youtube.com/user/Forever21Inc'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -975,7 +975,7 @@ class PagesController < ApplicationController
    @incomp   = 'mls'
    @comp_url = 'https://www.youtube.com/user/mls'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -985,7 +985,7 @@ class PagesController < ApplicationController
    @incomp   = 'urbanoutfitters'
    @comp_url = 'https://www.youtube.com/user/uotv'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -995,7 +995,7 @@ class PagesController < ApplicationController
    @incomp   = 'allure'
    @comp_url = 'https://www.youtube.com/user/AllureMagazine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1005,7 +1005,7 @@ class PagesController < ApplicationController
    @incomp   = 'wmag'
    @comp_url = 'https://www.youtube.com/user/wmagazinedotcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1015,7 +1015,7 @@ class PagesController < ApplicationController
    @incomp   = 'thescene'
    @comp_url = 'https://www.youtube.com/user/thesceneYT'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1025,7 +1025,7 @@ class PagesController < ApplicationController
    @incomp   = 'youtube'
    @comp_url = 'https://www.youtube.com/user/Youtube'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1041,7 +1041,7 @@ class PagesController < ApplicationController
    @incomp   = 'katyperry'
    @comp_url = 'https://www.youtube.com/user/KatyPerryVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1051,7 +1051,7 @@ class PagesController < ApplicationController
    @incomp   = 'barackobama'
    @comp_url = 'https://www.youtube.com/user/BarackObamadotcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1061,7 +1061,7 @@ class PagesController < ApplicationController
    @incomp   = 'taylorswift'
    @comp_url = 'https://www.youtube.com/user/TaylorSwiftVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1071,7 +1071,7 @@ class PagesController < ApplicationController
    @incomp   = 'ladygaga'
    @comp_url = 'https://www.youtube.com/user/LadyGagaVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1081,7 +1081,7 @@ class PagesController < ApplicationController
    @incomp   = 'justintimberlake'
    @comp_url = 'https://www.youtube.com/user/justintimberlakeVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1091,7 +1091,7 @@ class PagesController < ApplicationController
    @incomp   = 'britneyspears'
    @comp_url = 'https://www.youtube.com/user/BritneySpearsVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1101,7 +1101,7 @@ class PagesController < ApplicationController
    @incomp   = 'kimkardashian'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1111,7 +1111,7 @@ class PagesController < ApplicationController
    @incomp   = 'shakira'
    @comp_url = 'https://www.youtube.com/user/shakiraVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1121,7 +1121,7 @@ class PagesController < ApplicationController
    @incomp   = 'jlo'
    @comp_url = 'https://www.youtube.com/user/JenniferLopez'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1131,7 +1131,7 @@ class PagesController < ApplicationController
    @incomp   = 'selenagomez'
    @comp_url = 'https://www.youtube.com/user/SelenaGomezVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1141,7 +1141,7 @@ class PagesController < ApplicationController
    @incomp   = 'arianagrande'
    @comp_url = 'https://www.youtube.com/user/ArianaGrandeVevo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1151,7 +1151,7 @@ class PagesController < ApplicationController
    @incomp   = 'ddlovato'
    @comp_url = 'https://www.youtube.com/user/DemiLovatoVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1161,7 +1161,7 @@ class PagesController < ApplicationController
    @incomp   = 'jimmyfallon'
    @comp_url = 'https://www.youtube.com/user/latenight'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1171,7 +1171,7 @@ class PagesController < ApplicationController
    @incomp   = 'kingjames'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1181,7 +1181,7 @@ class PagesController < ApplicationController
    @incomp   = 'adele'
    @comp_url = 'https://www.youtube.com/user/AdeleVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1191,7 +1191,7 @@ class PagesController < ApplicationController
    @incomp   = 'brunomars'
    @comp_url = 'https://www.youtube.com/user/ElektraRecords'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1201,7 +1201,7 @@ class PagesController < ApplicationController
    @incomp   = 'aliciakeys'
    @comp_url = 'https://www.youtube.com/user/aliciakeysVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1211,7 +1211,7 @@ class PagesController < ApplicationController
    @incomp   = 'mileycyrus'
    @comp_url = 'https://www.youtube.com/user/MileyCyrusVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1221,7 +1221,7 @@ class PagesController < ApplicationController
    @incomp   = 'nickiminaj'
    @comp_url = 'https://www.youtube.com/user/NickiMinajAtVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1231,7 +1231,7 @@ class PagesController < ApplicationController
    @incomp   = 'emmawatson'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1241,7 +1241,7 @@ class PagesController < ApplicationController
    @incomp   = 'nph'
    @comp_url = 'https://www.youtube.com/channel/UCk_Dx67t-aXqw9uQLVX-UCQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1251,7 +1251,7 @@ class PagesController < ApplicationController
    @incomp   = 'davidguetta'
    @comp_url = 'https://www.youtube.com/user/davidguettavevo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1261,7 +1261,7 @@ class PagesController < ApplicationController
    @incomp   = 'teamcoco'
    @comp_url = 'https://www.youtube.com/user/teamcoco'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1271,7 +1271,7 @@ class PagesController < ApplicationController
    @incomp   = 'kloekardashianthegirl'
    @comp_url = 'https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1281,7 +1281,7 @@ class PagesController < ApplicationController
    @incomp   = 'kourtneykardash'
    @comp_url = 'https://www.youtube.com/channel/UCXIf9YuOaiCSn2r4P5SZ_Zw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1291,7 +1291,7 @@ class PagesController < ApplicationController
    @incomp   = 'xtina'
    @comp_url = 'https://www.youtube.com/user/CAguileraVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1301,7 +1301,7 @@ class PagesController < ApplicationController
    @incomp   = 'beyonce'
    @comp_url = 'https://www.youtube.com/user/beyonceVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1311,7 +1311,7 @@ class PagesController < ApplicationController
    @incomp   = 'oprah'
    @comp_url = 'https://www.youtube.com/channel/UCqL0gza-KJcuVe3e0FCbM8Q'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1321,7 +1321,7 @@ class PagesController < ApplicationController
    @incomp   = 'johnnydepp.oficial'
    @comp_url = 'https://www.youtube.com/channel/UCPP2obRMCcnokAqR4NzMuwQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1331,7 +1331,7 @@ class PagesController < ApplicationController
    @incomp   = 'scarlettjohanssonaddict'
    @comp_url = 'https://www.youtube.com/channel/UCuaGAGmxgipdJEOrYaMT0Nw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1341,7 +1341,7 @@ class PagesController < ApplicationController
    @incomp   = 'madonna'
    @comp_url = 'https://www.youtube.com/user/madonna'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1351,7 +1351,7 @@ class PagesController < ApplicationController
    @incomp   = 'tomhanks'
    @comp_url = 'https://www.youtube.com/user/tomhankschannel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1361,7 +1361,7 @@ class PagesController < ApplicationController
    @incomp   = 'jessicaalba'
    @comp_url = 'https://www.youtube.com/channel/UCPJorwl_vxgiNni6Mas8a7A'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1371,7 +1371,7 @@ class PagesController < ApplicationController
    @incomp   = 'dailymeganfox'
    @comp_url = 'https://www.youtube.com/channel/UCsN68XRv5dVieQizOcLyzOg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1381,7 +1381,7 @@ class PagesController < ApplicationController
    @incomp   = 'TigerWoods'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1391,7 +1391,7 @@ class PagesController < ApplicationController
    @incomp   = 'blakelively'
    @comp_url = 'https://www.youtube.com/channel/UCKMKpIg3ZXn-7_xr4RAuQjA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1401,7 +1401,7 @@ class PagesController < ApplicationController
    @incomp   = 'leonardodicaprio'
    @comp_url = 'https://www.youtube.com/channel/UCc5HhOHhTKOMK_ta2lqtKgw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1411,7 +1411,7 @@ class PagesController < ApplicationController
    @incomp   = 'emmastone_official_'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1421,7 +1421,7 @@ class PagesController < ApplicationController
    @incomp   = 'shawn.carter '
    @comp_url = 'https://www.youtube.com/user/JayZVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1431,7 +1431,7 @@ class PagesController < ApplicationController
    @incomp   = 'theellenshow'
    @comp_url = 'https://www.youtube.com/user/TheEllenShow'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1441,7 +1441,7 @@ class PagesController < ApplicationController
    @incomp   = 'sandrabullockig'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1451,7 +1451,7 @@ class PagesController < ApplicationController
    @incomp   = 'ashleygreene'
    @comp_url = 'https://www.youtube.com/channel/UCEHOQe7Kk_4F6LvAcPp1SKQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1461,7 +1461,7 @@ class PagesController < ApplicationController
    @incomp   = 'natalieportmanlove'
    @comp_url = 'https://www.youtube.com/channel/UC7M0_DE8EhWTpSgRqiuToCA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1471,7 +1471,7 @@ class PagesController < ApplicationController
    @incomp   = 'jenniferlawrencepx'
    @comp_url = 'https://www.youtube.com/channel/UC1SBXt6T5VT12_UFUupLWXA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1481,7 +1481,7 @@ class PagesController < ApplicationController
    @incomp   = 'katebosworth'
    @comp_url = 'https://www.youtube.com/channel/UC-jXKCYtzcMjBr8f66hyEvA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1491,7 +1491,7 @@ class PagesController < ApplicationController
    @incomp   = 'camerondiaz'
    @comp_url = 'https://www.youtube.com/channel/UC9k-NlU7gjr8F0HlCTAWlXQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1501,7 +1501,7 @@ class PagesController < ApplicationController
    @incomp   = 'floydmayweather'
    @comp_url = 'https://www.youtube.com/user/FloydMayweather'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1511,7 +1511,7 @@ class PagesController < ApplicationController
    @incomp   = 'reesewitherspoon'
    @comp_url = 'https://www.youtube.com/channel/UCE20hbhrnFW3bhndXukSxAg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1521,7 +1521,7 @@ class PagesController < ApplicationController
    @incomp   = 'kateupton'
    @comp_url = 'https://www.youtube.com/channel/UCyXW3LwGzBo1gQ8DOg7L5Nw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1531,7 +1531,7 @@ class PagesController < ApplicationController
    @incomp   = 'peterdinklage'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1541,7 +1541,7 @@ class PagesController < ApplicationController
    @incomp   = 'milakunis______'
    @comp_url = 'https://www.youtube.com/channel/UCl6qhIrV6It5TCyjS6Cq2lg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1555,7 +1555,7 @@ class PagesController < ApplicationController
    @incomp   = 'lastweektonight'
    @comp_url = 'https://www.youtube.com/user/LastWeekTonight'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1565,7 +1565,7 @@ class PagesController < ApplicationController
    @incomp   = 'gameofthrones'
    @comp_url = 'https://www.youtube.com/user/GameofThrones'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1575,7 +1575,7 @@ class PagesController < ApplicationController
    @incomp   = 'bettercallsaulamc'
    @comp_url = 'https://www.youtube.com/channel/UCCab9hOn5MELbKB__AOU3RQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1585,7 +1585,7 @@ class PagesController < ApplicationController
    @incomp   = 'oitnb'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1595,7 +1595,7 @@ class PagesController < ApplicationController
    @incomp   = 'empirefox'
    @comp_url = 'https://www.youtube.com/user/EMPIREonFOX'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1605,7 +1605,7 @@ class PagesController < ApplicationController
    @incomp   = 'himym_official'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1615,7 +1615,7 @@ class PagesController < ApplicationController
    @incomp   = 'madmen_amc'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1625,7 +1625,7 @@ class PagesController < ApplicationController
    @incomp   = 'theamericansfx'
    @comp_url = 'https://www.youtube.com/user/TheAmericansFX'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1635,7 +1635,7 @@ class PagesController < ApplicationController
    @incomp   = 'fallontonight'
    @comp_url = 'https://www.youtube.com/user/latenight'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1645,7 +1645,7 @@ class PagesController < ApplicationController
    @incomp   = 'truedetective'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1655,7 +1655,7 @@ class PagesController < ApplicationController
    @incomp   = 'justifiedfx'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1665,7 +1665,7 @@ class PagesController < ApplicationController
    @incomp   = 'sense8'
    @comp_url = 'https://www.youtube.com/channel/UC7Vsk1omEqLSbxKdnSqYvXw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1675,7 +1675,7 @@ class PagesController < ApplicationController
    @incomp   = 'thecwizombie'
    @comp_url = 'https://www.youtube.com/channel/UCtgIz5m-kWXdHOPYLp5Banw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1685,7 +1685,7 @@ class PagesController < ApplicationController
    @incomp   = 'thecwizombie'
    @comp_url = 'https://www.youtube.com/user/barryallentheflash1'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1695,7 +1695,7 @@ class PagesController < ApplicationController
    @incomp   = 'bachelorabc'
    @comp_url = 'https://www.youtube.com/channel/UCXyOZBTth57gdz6k7KPHOsw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1705,7 +1705,7 @@ class PagesController < ApplicationController
    @incomp   = 'suits_usa'
    @comp_url = 'https://www.youtube.com/user/SuitsonUSA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1715,7 +1715,7 @@ class PagesController < ApplicationController
    @incomp   = 'theellenshow'
    @comp_url = 'https://www.youtube.com/user/TheEllenShow'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1725,7 +1725,7 @@ class PagesController < ApplicationController
    @incomp   = 'greysabc'
    @comp_url = 'https://www.youtube.com/channel/UC5lWD_N9kq8IdWzLOdy5fow'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1735,7 +1735,7 @@ class PagesController < ApplicationController
    @incomp   = 'amcthewalkingdead'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1745,7 +1745,7 @@ class PagesController < ApplicationController
    @incomp   = 'americanhorrorstory'
    @comp_url = 'https://www.youtube.com/user/qwerty19107'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1755,7 +1755,7 @@ class PagesController < ApplicationController
    @incomp   = 'sharktankabc'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1765,7 +1765,7 @@ class PagesController < ApplicationController
    @incomp   = 'gothamonfox'
    @comp_url = 'https://www.youtube.com/user/GothamFOX'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1775,7 +1775,7 @@ class PagesController < ApplicationController
    @incomp   = 'thegoodwife_cbs'
    @comp_url = 'https://www.youtube.com/user/thegoodwife'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1785,7 +1785,7 @@ class PagesController < ApplicationController
    @incomp   = 'bigbangtheory_cbs'
    @comp_url = 'https://www.youtube.com/user/thebigbangtheory'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1795,7 +1795,7 @@ class PagesController < ApplicationController
    @incomp   = 'nbcblacklist'
    @comp_url = 'https://www.youtube.com/user/NBCBlacklist'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1805,7 +1805,7 @@ class PagesController < ApplicationController
    @incomp   = 'howtogetawaywithmurder'
    @comp_url = 'https://www.youtube.com/channel/UC-GfszUQ-kV4iMmk5W67mAQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1815,7 +1815,7 @@ class PagesController < ApplicationController
    @incomp   = 'nbcthevoice'
    @comp_url = 'https://www.youtube.com/user/NBCTheVoice'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1825,7 +1825,7 @@ class PagesController < ApplicationController
    @incomp   = 'bacheloretteabc'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1835,7 +1835,7 @@ class PagesController < ApplicationController
    @incomp   = 'scandalabc'
    @comp_url = 'https://www.youtube.com/channel/UCeGLGp4pnTqL64jY3p0daXA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1845,7 +1845,7 @@ class PagesController < ApplicationController
    @incomp   = 'downtonabbey_official'
    @comp_url = 'https://www.youtube.com/channel/UCSm1kNzkDuHqirriGJMZHJQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1855,7 +1855,7 @@ class PagesController < ApplicationController
    @incomp   = 'dancingabc'
    @comp_url = 'https://www.youtube.com/user/ABCDWTS'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1865,7 +1865,7 @@ class PagesController < ApplicationController
    @incomp   = 'americanidol'
    @comp_url = 'https://www.youtube.com/user/americanidol'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1875,7 +1875,7 @@ class PagesController < ApplicationController
    @incomp   = 'mentalist_cbs'
    @comp_url = 'https://www.youtube.com/user/CBSTheMentalist'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1885,7 +1885,7 @@ class PagesController < ApplicationController
    @incomp   = 'houseofcards'
    @comp_url = 'https://www.youtube.com/channel/UCos_6s_sPNVZMA2YHeJ7nHg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1895,7 +1895,7 @@ class PagesController < ApplicationController
    @incomp   = 'transparentamazon'
    @comp_url = 'https://www.youtube.com/channel/UCDHUIuNK2PG9UqXsxoLJxsw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1905,7 +1905,7 @@ class PagesController < ApplicationController
    @incomp   = 'louieonfx'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1915,7 +1915,7 @@ class PagesController < ApplicationController
    @incomp   = 'communitytv'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1925,7 +1925,7 @@ class PagesController < ApplicationController
    @incomp   = 'nbcparksandrec'
    @comp_url = 'https://www.youtube.com/user/nbcParksandRec'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1935,7 +1935,7 @@ class PagesController < ApplicationController
    @incomp   = 'soafx'
    @comp_url = 'https://www.youtube.com/channel/UCp-omzXg5JOqQJQErHhUhrw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1945,7 +1945,7 @@ class PagesController < ApplicationController
    @incomp   = 'brooklyn99fox'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1955,7 +1955,7 @@ class PagesController < ApplicationController
    @incomp   = 'fargo'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1965,7 +1965,7 @@ class PagesController < ApplicationController
    @incomp   = 'nbcsnl'
    @comp_url = 'https://www.youtube.com/user/SaturdayNightLive'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1975,7 +1975,7 @@ class PagesController < ApplicationController
    @incomp   = 'whoismrrobot'
    @comp_url = 'https://www.youtube.com/channel/UCX5R2xqZWND8nJqGTvel3nw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1985,7 +1985,7 @@ class PagesController < ApplicationController
    @incomp   = 'mindyprojecthulu'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -1995,7 +1995,7 @@ class PagesController < ApplicationController
    @incomp   = 'newgirlfox'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2005,7 +2005,7 @@ class PagesController < ApplicationController
    @incomp   = 'scorpioncbs'
    @comp_url = 'https://www.youtube.com/user/CBSScorpion'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2015,7 +2015,7 @@ class PagesController < ApplicationController
    @incomp   = 'modernfamily'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2025,7 +2025,7 @@ class PagesController < ApplicationController
    @incomp   = 'cwjanethevirgin'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2040,7 +2040,7 @@ class PagesController < ApplicationController
    @incomp   = 'realmadrid'
    @comp_url = 'https://www.youtube.com/user/realmadridcf'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2050,7 +2050,7 @@ class PagesController < ApplicationController
    @incomp   = 'dallascowboys'
    @comp_url = 'https://www.youtube.com/channel/UCdjR8pv3bU7WLRshUMwxDVw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2060,7 +2060,7 @@ class PagesController < ApplicationController
    @incomp   = 'yankees'
    @comp_url = 'https://www.youtube.com/channel/UCQNgE6-Q5OBvLzhyAmWZItQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2070,7 +2070,7 @@ class PagesController < ApplicationController
    @incomp   = 'fcbarcelona'
    @comp_url = 'https://www.youtube.com/user/fcbarcelona'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2080,7 +2080,7 @@ class PagesController < ApplicationController
    @incomp   = 'manchesterunited'
    @comp_url = 'https://www.youtube.com/channel/UCKHRBMEiy-GuV-F7JQbJWLg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2090,7 +2090,7 @@ class PagesController < ApplicationController
    @incomp   = 'lakers'
    @comp_url = 'https://www.youtube.com/user/lakersnationdotcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2100,7 +2100,7 @@ class PagesController < ApplicationController
    @incomp   = 'patriots'
    @comp_url = 'https://www.youtube.com/channel/UCF54f0UTZ2ctCDs5yJjDblQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2110,7 +2110,7 @@ class PagesController < ApplicationController
    @incomp   = 'nyknicks'
    @comp_url = 'https://www.youtube.com/user/nyknicks'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2120,7 +2120,7 @@ class PagesController < ApplicationController
    @incomp   = 'dodgers'
    @comp_url = 'https://www.youtube.com/channel/UCg_8DdhmyMMxa8Xwbcmm-_w'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2130,7 +2130,7 @@ class PagesController < ApplicationController
    @incomp   = 'redskins'
    @comp_url = 'https://www.youtube.com/user/redskinsdotcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2140,7 +2140,7 @@ class PagesController < ApplicationController
    @incomp   = 'fcbayern'
    @comp_url = 'https://www.youtube.com/user/fcbayern'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2150,7 +2150,7 @@ class PagesController < ApplicationController
    @incomp   = 'redsox'
    @comp_url = 'https://www.youtube.com/channel/UC3FcTH3wcqNWHx4T6iICz_g'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2160,7 +2160,7 @@ class PagesController < ApplicationController
    @incomp   = 'nygiants'
    @comp_url = 'https://www.youtube.com/channel/UCnEubDTRusG-qvohSNyCuWg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2170,7 +2170,7 @@ class PagesController < ApplicationController
    @incomp   = 'chicagobulls'
    @comp_url = 'https://www.youtube.com/user/chicagobullsofficial'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2180,7 +2180,7 @@ class PagesController < ApplicationController
    @incomp   = 'sfgiants'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2190,7 +2190,7 @@ class PagesController < ApplicationController
    @incomp   = 'houstontexans'
    @comp_url = 'https://www.youtube.com/channel/UC3fjWR24Ej6EfvMv6Hqq28g'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2200,7 +2200,7 @@ class PagesController < ApplicationController
    @incomp   = 'cubs'
    @comp_url = 'https://www.youtube.com/channel/UCbtkUT23QOxQb1w1aP-tRIA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2210,7 +2210,7 @@ class PagesController < ApplicationController
    @incomp   = 'nyjets'
    @comp_url = 'https://www.youtube.com/channel/UCNdo59IgJRskCLP7FBWqe6w'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2220,7 +2220,7 @@ class PagesController < ApplicationController
    @incomp   = 'philadelphiaeagles'
    @comp_url = 'https://www.youtube.com/channel/UCaogx6OHpsGg0zuGRKsjbtQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2230,7 +2230,7 @@ class PagesController < ApplicationController
    @incomp   = 'celtics'
    @comp_url = 'https://www.youtube.com/user/bostonceltics'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2240,7 +2240,7 @@ class PagesController < ApplicationController
    @incomp   = 'chicagobears'
    @comp_url = 'https://www.youtube.com/channel/UCP0Cdc6moLMyDJiO0s-yhbQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2250,7 +2250,7 @@ class PagesController < ApplicationController
    @incomp   = 'laclippers'
    @comp_url = 'https://www.youtube.com/user/clippers1970'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2260,7 +2260,7 @@ class PagesController < ApplicationController
    @incomp   = '49ers'
    @comp_url = 'https://www.youtube.com/user/sanfrancisco49ers'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2270,7 +2270,7 @@ class PagesController < ApplicationController
    @incomp   = 'ravens'
    @comp_url = 'https://www.youtube.com/user/baltimoreravens'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2280,7 +2280,7 @@ class PagesController < ApplicationController
    @incomp   = 'brooklynnets'
    @comp_url = 'https://www.youtube.com/user/NBANets'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2290,7 +2290,7 @@ class PagesController < ApplicationController
    @incomp   = 'broncos'
    @comp_url = 'https://www.youtube.com/channel/UCe6XsNDeY3pxqXJMc_iheUA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2300,7 +2300,7 @@ class PagesController < ApplicationController
    @incomp   = 'colts'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2310,7 +2310,7 @@ class PagesController < ApplicationController
    @incomp   = 'cardinals'
    @comp_url = 'https://www.youtube.com/channel/UCYPeuBXCeFOq5QfhEnUfr8A'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2320,7 +2320,7 @@ class PagesController < ApplicationController
    @incomp   = 'packers'
    @comp_url = 'https://www.youtube.com/channel/UC_C4jeUvhqbsOFCCMql5sHg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2330,7 +2330,7 @@ class PagesController < ApplicationController
    @incomp   = 'chelseafc'
    @comp_url = 'https://www.youtube.com/user/chelseafc'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2340,7 +2340,7 @@ class PagesController < ApplicationController
    @incomp   = 'ferrariusa'
    @comp_url = 'https://www.youtube.com/user/ferrariworld'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2350,7 +2350,7 @@ class PagesController < ApplicationController
    @incomp   = 'mets'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2360,7 +2360,7 @@ class PagesController < ApplicationController
    @incomp   = 'steelers'
    @comp_url = 'https://www.youtube.com/channel/UCR6rBAe6fuKAJjdg4dbAcqg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2370,7 +2370,7 @@ class PagesController < ApplicationController
    @incomp   = 'seahawks'
    @comp_url = 'https://www.youtube.com/user/seahawksdotcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2380,7 +2380,7 @@ class PagesController < ApplicationController
    @incomp   = 'arsenal'
    @comp_url = 'https://www.youtube.com/user/ArsenalTour'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2390,7 +2390,7 @@ class PagesController < ApplicationController
    @incomp   = 'warriors'
    @comp_url = 'https://www.youtube.com/user/GoldenStateWarriors'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2400,7 +2400,7 @@ class PagesController < ApplicationController
    @incomp   = 'angels'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2410,7 +2410,7 @@ class PagesController < ApplicationController
    @incomp   = 'miamidolphins'
    @comp_url = 'https://www.youtube.com/channel/UCdbljRu3B3WIYliBJat_wsg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2420,7 +2420,7 @@ class PagesController < ApplicationController
    @incomp   = 'mapleleafs'
    @comp_url = 'https://www.youtube.com/user/torontomapleleafs'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2430,7 +2430,7 @@ class PagesController < ApplicationController
    @incomp   = 'nationals'
    @comp_url = 'https://www.youtube.com/channel/UCQh28Q2ew4jVoNcDyRygeBw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2440,7 +2440,7 @@ class PagesController < ApplicationController
    @incomp   = 'panthers'
    @comp_url = 'https://www.youtube.com/channel/UCDmv5BcYE3hQW354jk9W0Cg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2450,7 +2450,7 @@ class PagesController < ApplicationController
    @incomp   = 'houstonrockets'
    @comp_url = 'https://www.youtube.com/channel/UCmjAHvW8SC7vmhCFomfyV7Q'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2460,7 +2460,7 @@ class PagesController < ApplicationController
    @incomp   = 'phillies'
    @comp_url = 'https://www.youtube.com/channel/UCQh91_NPlNSpWWfqcVLUMTQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2470,7 +2470,7 @@ class PagesController < ApplicationController
    @incomp   = 'tbbuccaneers'
    @comp_url = 'https://www.youtube.com/channel/UC_DXo-lcvFwMWCYNgHP4_tg'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2480,7 +2480,7 @@ class PagesController < ApplicationController
    @incomp   = 'rangers'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2490,7 +2490,7 @@ class PagesController < ApplicationController
    @incomp   = 'miamiheat'
    @comp_url = 'https://www.youtube.com/user/miamiheat'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2500,7 +2500,7 @@ class PagesController < ApplicationController
    @incomp   = 'tennesseetitans'
    @comp_url = 'https://www.youtube.com/channel/UCZIg4NlOuW_ReCVVZ64eLlw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2510,7 +2510,7 @@ class PagesController < ApplicationController
    @incomp   = 'braves'
    @comp_url = 'https://www.youtube.com/channel/UCglKlWno0PXtVhWWQLyQyPQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2520,7 +2520,7 @@ class PagesController < ApplicationController
    @incomp   = 'vikings'
    @comp_url = 'https://www.youtube.com/channel/UCSb9A1uBRGUHfSyKCrhfXYA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2530,7 +2530,7 @@ class PagesController < ApplicationController
    @incomp   = 'azcardinals'
    @comp_url = 'https://www.youtube.com/channel/UC9YrTlASDs12N2SosBvl8tQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2540,7 +2540,7 @@ class PagesController < ApplicationController
    @incomp   = 'mcfcofficial'
    @comp_url = 'https://www.youtube.com/user/mcfcofficial'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2553,7 +2553,7 @@ class PagesController < ApplicationController
    @incomp   = 'onedirection'
    @comp_url = 'https://www.youtube.com/user/OneDirectionVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2563,7 +2563,7 @@ class PagesController < ApplicationController
    @incomp   = 'katyperry'
    @comp_url = 'https://www.youtube.com/user/KatyPerryVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2573,7 +2573,7 @@ class PagesController < ApplicationController
    @incomp   = 'beyonce'
    @comp_url = 'https://www.youtube.com/user/beyonceVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2583,7 +2583,7 @@ class PagesController < ApplicationController
    @incomp   = 'taylorswift'
    @comp_url = 'https://www.youtube.com/user/TaylorSwiftVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2593,7 +2593,7 @@ class PagesController < ApplicationController
    @incomp   = 'justintimberlake'
    @comp_url = 'https://www.youtube.com/user/justintimberlakeVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2603,7 +2603,7 @@ class PagesController < ApplicationController
    @incomp   = 'thenewclassic'
    @comp_url = 'https://www.youtube.com/user/iggyazaleamusicVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2613,7 +2613,7 @@ class PagesController < ApplicationController
    @incomp   = 'arianagrande'
    @comp_url = 'https://www.youtube.com/user/ArianaGrandeVevo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2623,7 +2623,7 @@ class PagesController < ApplicationController
    @incomp   = 'mileycyrus'
    @comp_url = 'https://www.youtube.com/user/MileyCyrusVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2633,7 +2633,7 @@ class PagesController < ApplicationController
    @incomp   = 'pharrell'
    @comp_url = 'https://www.youtube.com/user/PharrellWilliamsVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2643,7 +2643,7 @@ class PagesController < ApplicationController
    @incomp   = 'eminem'
    @comp_url = 'https://www.youtube.com/user/EminemVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2653,7 +2653,7 @@ class PagesController < ApplicationController
    @incomp   = 'lordemusic'
    @comp_url = 'https://www.youtube.com/user/LordeVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2663,7 +2663,7 @@ class PagesController < ApplicationController
    @incomp   = 'lukebryan'
    @comp_url = 'https://www.youtube.com/user/LukeBryanVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2673,7 +2673,7 @@ class PagesController < ApplicationController
    @incomp   = 'samsmithworld'
    @comp_url = 'https://www.youtube.com/user/SamSmithWorldVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2683,7 +2683,7 @@ class PagesController < ApplicationController
    @incomp   = 'johnlegend'
    @comp_url = 'https://www.youtube.com/user/johnlegendVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2693,7 +2693,7 @@ class PagesController < ApplicationController
    @incomp   = 'onerepublic'
    @comp_url = 'https://www.youtube.com/user/OneRepublicVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2703,7 +2703,7 @@ class PagesController < ApplicationController
    @incomp   = 'leaderofnewschool'
    @comp_url = 'https://www.youtube.com/user/DrakeVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2713,7 +2713,7 @@ class PagesController < ApplicationController
    @incomp   = 'jasonderulo'
    @comp_url = 'https://www.youtube.com/user/JasonDerulo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2723,7 +2723,7 @@ class PagesController < ApplicationController
    @incomp   = 'justinbieber'
    @comp_url = 'https://www.youtube.com/user/JustinBieberVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2733,7 +2733,7 @@ class PagesController < ApplicationController
    @incomp   = 'imaginedragons'
    @comp_url = 'https://www.youtube.com/user/ImagineDragonsVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2743,7 +2743,7 @@ class PagesController < ApplicationController
    @incomp   = 'flagaline'
    @comp_url = 'https://www.youtube.com/user/FlaGeorgiaLineVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2753,7 +2753,7 @@ class PagesController < ApplicationController
    @incomp   = 'nickiminaj'
    @comp_url = 'https://www.youtube.com/user/NickiMinajAtVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2763,7 +2763,7 @@ class PagesController < ApplicationController
    @incomp   = '5sos'
    @comp_url = 'https://www.youtube.com/user/5sosvevo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2773,7 +2773,7 @@ class PagesController < ApplicationController
    @incomp   = 'ladygaga'
    @comp_url = 'https://www.youtube.com/user/LadyGagaVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2783,7 +2783,7 @@ class PagesController < ApplicationController
    @incomp   = 'pitbull'
    @comp_url = 'https://www.youtube.com/user/PitbullVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2793,7 +2793,7 @@ class PagesController < ApplicationController
    @incomp   = 'brunomars'
    @comp_url = 'https://www.youtube.com/user/ElektraRecords'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2803,7 +2803,7 @@ class PagesController < ApplicationController
    @incomp   = 'jasonaldean'
    @comp_url = 'https://www.youtube.com/user/Jason_Aldean'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2813,7 +2813,7 @@ class PagesController < ApplicationController
    @incomp   = 'maroon5'
    @comp_url = 'https://www.youtube.com/user/Maroon5VEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2823,7 +2823,7 @@ class PagesController < ApplicationController
    @incomp   = 'chrisbrownofficial'
    @comp_url = 'https://www.youtube.com/user/ChrisBrownVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2833,7 +2833,7 @@ class PagesController < ApplicationController
    @incomp   = 'meghan_trainor'
    @comp_url = 'https://www.youtube.com/user/MeghanTrainorVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2843,7 +2843,7 @@ class PagesController < ApplicationController
    @incomp   = 'bastilledan'
    @comp_url = 'https://www.youtube.com/user/BastilleVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2853,7 +2853,7 @@ class PagesController < ApplicationController
    @incomp   = 'avicii'
    @comp_url = 'https://www.youtube.com/user/AviciiOfficialVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2863,7 +2863,7 @@ class PagesController < ApplicationController
    @incomp   = 'ournameismagic'
    @comp_url = 'https://www.youtube.com/user/ournameismagicVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2873,7 +2873,7 @@ class PagesController < ApplicationController
    @incomp   = 'ddlovato'
    @comp_url = 'https://www.youtube.com/user/DemiLovatoVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2883,7 +2883,7 @@ class PagesController < ApplicationController
    @incomp   = 'blakeshelton'
    @comp_url = 'https://www.youtube.com/user/blakeshelton'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2893,7 +2893,7 @@ class PagesController < ApplicationController
    @incomp   = 'coldplay'
    @comp_url = 'https://www.youtube.com/user/ColdplayVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2903,7 +2903,7 @@ class PagesController < ApplicationController
    @incomp   = 'charli_xcx'
    @comp_url = 'https://www.youtube.com/user/officialcharlixcx'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2913,7 +2913,7 @@ class PagesController < ApplicationController
    @incomp   = 'nicoandvinz'
    @comp_url = 'https://www.youtube.com/user/envymusicchannel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2923,7 +2923,7 @@ class PagesController < ApplicationController
    @incomp   = 'therollingstones'
    @comp_url = 'https://www.youtube.com/user/TheRollingStones'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2933,7 +2933,7 @@ class PagesController < ApplicationController
    @incomp   = 'shakira'
    @comp_url = 'https://www.youtube.com/user/shakiraVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2943,7 +2943,7 @@ class PagesController < ApplicationController
    @incomp   = 'passengermusic'
    @comp_url = 'https://www.youtube.com/user/passengermusic'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2953,7 +2953,7 @@ class PagesController < ApplicationController
    @incomp   = 'brantleygilbert'
    @comp_url = 'https://www.youtube.com/user/BrantleyGilbertVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2963,7 +2963,7 @@ class PagesController < ApplicationController
    @incomp   = 'elliegoulding'
    @comp_url = 'https://www.youtube.com/user/EllieGouldingVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2973,7 +2973,7 @@ class PagesController < ApplicationController
    @incomp   = 'ericchurchmusic'
    @comp_url = 'https://www.youtube.com/user/EricChurchVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2983,7 +2983,7 @@ class PagesController < ApplicationController
    @incomp   = 'idinamenzel'
    @comp_url = 'https://www.youtube.com/user/Idinamenzel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -2993,7 +2993,7 @@ class PagesController < ApplicationController
    @incomp   = 'selenagomez'
    @comp_url = 'https://www.youtube.com/user/SelenaGomezVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3003,7 +3003,7 @@ class PagesController < ApplicationController
    @incomp   = 'calvinharris'
    @comp_url = 'https://www.youtube.com/user/CalvinHarrisVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3013,7 +3013,7 @@ class PagesController < ApplicationController
    @incomp   = 'michaelbuble'
    @comp_url = 'https://www.youtube.com/user/MichaelBubleTV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3023,7 +3023,7 @@ class PagesController < ApplicationController
    @incomp   = 'michaeljackson'
    @comp_url = 'https://www.youtube.com/user/michaeljacksonVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3033,7 +3033,7 @@ class PagesController < ApplicationController
    @incomp   = 'britneyspears'
    @comp_url = 'https://www.youtube.com/user/BritneySpearsVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3043,7 +3043,7 @@ class PagesController < ApplicationController
    @incomp   = 'kellyclarkson'
    @comp_url = 'https://www.youtube.com/user/kellyclarksonVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3053,7 +3053,7 @@ class PagesController < ApplicationController
    @incomp   = 'xtina'
    @comp_url = 'https://www.youtube.com/user/CAguileraVEVO'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3067,7 +3067,7 @@ class PagesController < ApplicationController
    @incomp   = 'allrecipes'
    @comp_url = 'https://www.youtube.com/user/allrecipes'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3077,7 +3077,7 @@ class PagesController < ApplicationController
    @incomp   = 'cookingcom'
    @comp_url = 'https://www.youtube.com/user/cookingcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3087,7 +3087,7 @@ class PagesController < ApplicationController
    @incomp   = 'foodnetwork'
    @comp_url = 'https://www.youtube.com/user/FoodNetworkTV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3097,7 +3097,7 @@ class PagesController < ApplicationController
    @incomp   = 'thekitchn'
    @comp_url = 'https://www.youtube.com/channel/UCuNKgYLb0wOoMvclzSlBvbQ'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3107,7 +3107,7 @@ class PagesController < ApplicationController
    @incomp   = 'opentable'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3117,7 +3117,7 @@ class PagesController < ApplicationController
    @incomp   = 'tasteofhome'
    @comp_url = 'https://www.youtube.com/user/tasteofhome'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3127,7 +3127,7 @@ class PagesController < ApplicationController
    @incomp   = 'epicurious'
    @comp_url = 'https://www.youtube.com/user/epicuriousdotcom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3137,7 +3137,7 @@ class PagesController < ApplicationController
    @incomp   = 'grubhub'
    @comp_url = 'https://www.youtube.com/user/grubhub'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3147,7 +3147,7 @@ class PagesController < ApplicationController
    @incomp   = 'eatseamless'
    @comp_url = 'https://www.youtube.com/user/eatseamless'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3157,7 +3157,7 @@ class PagesController < ApplicationController
    @incomp   = 'yummly'
    @comp_url = 'https://www.youtube.com/user/Yummly1'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3167,7 +3167,7 @@ class PagesController < ApplicationController
    @incomp   = 'huffpostfood'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3177,7 +3177,7 @@ class PagesController < ApplicationController
    @incomp   = 'fooddotcom'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3187,7 +3187,7 @@ class PagesController < ApplicationController
    @incomp   = 'bonappetitmag'
    @comp_url = 'https://www.youtube.com/user/BonAppetitDotCom'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3197,7 +3197,7 @@ class PagesController < ApplicationController
    @incomp   = 'weightwatchers'
    @comp_url = 'https://www.youtube.com/user/WeightWatchers'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3207,7 +3207,7 @@ class PagesController < ApplicationController
    @incomp   = 'foodandwine'
    @comp_url = 'https://www.youtube.com/user/foodandwinevideo'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3217,7 +3217,7 @@ class PagesController < ApplicationController
    @incomp   = 'abcthechew'
    @comp_url = 'https://www.youtube.com/channel/UC-Hz_loYacm45SBtSVA0lRA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3227,7 +3227,7 @@ class PagesController < ApplicationController
    @incomp   = 'testkitchen'
    @comp_url = 'https://www.youtube.com/user/americastestkitchen'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3237,7 +3237,7 @@ class PagesController < ApplicationController
    @incomp   = 'ironchefamericacuisine'
    @comp_url = 'https://www.youtube.com/channel/UCoag6CfTHLeHuqtCpvo7o7Q'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3252,7 +3252,7 @@ class PagesController < ApplicationController
    @incomp   = 'drewbinsky'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3262,7 +3262,7 @@ class PagesController < ApplicationController
    @incomp   = 'budgettravel'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3272,7 +3272,7 @@ class PagesController < ApplicationController
    @incomp   = 'afarmedia'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3282,7 +3282,7 @@ class PagesController < ApplicationController
    @incomp   = 'travelandleisure'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3292,7 +3292,7 @@ class PagesController < ApplicationController
    @incomp   = 'cntraveler'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3302,7 +3302,7 @@ class PagesController < ApplicationController
    @incomp   = 'geographical_magazine'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3312,7 +3312,7 @@ class PagesController < ApplicationController
    @incomp   = 'natgeotravel'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3322,7 +3322,7 @@ class PagesController < ApplicationController
    @incomp   = 'wanderlustfest'
    @comp_url = 'https://www.youtube.com/user/blank'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3338,7 +3338,7 @@ class PagesController < ApplicationController
    @incomp   = 'tyleroakley'
    @comp_url = 'https://www.youtube.com/user/tyleroakley'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3348,7 +3348,7 @@ class PagesController < ApplicationController
    @incomp   = 'troyesivan'
    @comp_url = 'https://www.youtube.com/user/TroyeSivan18'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3358,7 +3358,7 @@ class PagesController < ApplicationController
    @incomp   = 'zozeebo'
    @comp_url = 'https://www.youtube.com/user/zoella280390'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3368,7 +3368,7 @@ class PagesController < ApplicationController
    @incomp   = 'connorfranta'
    @comp_url = 'https://www.youtube.com/user/ConnorFranta'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3378,7 +3378,7 @@ class PagesController < ApplicationController
    @incomp   = 'ijustine'
    @comp_url = 'https://www.youtube.com/user/ijustine'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3388,7 +3388,7 @@ class PagesController < ApplicationController
    @incomp   = 'glozell'
    @comp_url = 'https://www.youtube.com/user/glozell1'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3398,7 +3398,7 @@ class PagesController < ApplicationController
    @incomp   = 'jennamarbles'
    @comp_url = 'https://www.youtube.com/user/JennaMarbles'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3408,7 +3408,7 @@ class PagesController < ApplicationController
    @incomp   = 'pointlessblog'
    @comp_url = 'https://www.youtube.com/user/PointlessBlog'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3418,7 +3418,7 @@ class PagesController < ApplicationController
    @incomp   = 'shanedawson'
    @comp_url = 'https://www.youtube.com/user/shane'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3428,7 +3428,7 @@ class PagesController < ApplicationController
    @incomp   = 'joeygraceffa'
    @comp_url = 'https://www.youtube.com/user/JoeyGraceffa'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3438,7 +3438,7 @@ class PagesController < ApplicationController
    @incomp   = 'justcallmerebecca'
    @comp_url = 'https://www.youtube.com/user/rebecca'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3448,7 +3448,7 @@ class PagesController < ApplicationController
    @incomp   = 'pewdiepie'
    @comp_url = 'https://www.youtube.com/user/PewDiePie'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3458,7 +3458,7 @@ class PagesController < ApplicationController
    @incomp   = 'smosh'
    @comp_url = 'https://www.youtube.com/user/smosh'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3468,7 +3468,7 @@ class PagesController < ApplicationController
    @incomp   = 'nigahiga_'
    @comp_url = 'https://www.youtube.com/user/nigahiga'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3478,7 +3478,7 @@ class PagesController < ApplicationController
    @incomp   = 'tobuscus'
    @comp_url = 'https://www.youtube.com/user/Tobuscus'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3488,7 +3488,7 @@ class PagesController < ApplicationController
    @incomp   = 'sawyerhartman'
    @comp_url = 'https://www.youtube.com/user/sawyerhartman'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3498,7 +3498,7 @@ class PagesController < ApplicationController
    @incomp   = 'annoyingorange'
    @comp_url = 'https://www.youtube.com/user/realannoyingorange'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3508,7 +3508,7 @@ class PagesController < ApplicationController
    @incomp   = 'rhettandlink'
    @comp_url = 'https://www.youtube.com/user/RhettandLink'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3518,7 +3518,7 @@ class PagesController < ApplicationController
    @incomp   = 'kingsleyyy'
    @comp_url = 'https://www.youtube.com/user/ItsKingsleyBitch'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3528,7 +3528,7 @@ class PagesController < ApplicationController
    @incomp   = 'jimalfredchapman'
    @comp_url = 'https://www.youtube.com/user/j1mmyb0bba'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3538,7 +3538,7 @@ class PagesController < ApplicationController
    @incomp   = 'danisnotonfire'
    @comp_url = 'https://www.youtube.com/user/danisnotonfire'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3548,7 +3548,7 @@ class PagesController < ApplicationController
    @incomp   = 'kickthepj'
    @comp_url = 'https://www.youtube.com/user/KickThePj'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3558,7 +3558,7 @@ class PagesController < ApplicationController
    @incomp   = 'catrific'
    @comp_url = 'https://www.youtube.com/user/catrific'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3568,7 +3568,7 @@ class PagesController < ApplicationController
    @incomp   = 'tayzonday'
    @comp_url = 'https://www.youtube.com/user/TayZonday'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3578,7 +3578,7 @@ class PagesController < ApplicationController
    @incomp   = 'marcusbutler'
    @comp_url = 'https://www.youtube.com/user/MarcusButlerTV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3588,7 +3588,7 @@ class PagesController < ApplicationController
    @incomp   = 'benjamin_cook'
    @comp_url = 'https://www.youtube.com/user/ninebrassmonkeys'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3598,7 +3598,7 @@ class PagesController < ApplicationController
    @incomp   = 'olgakay'
    @comp_url = 'https://www.youtube.com/user/olgakay'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3608,7 +3608,7 @@ class PagesController < ApplicationController
    @incomp   = 'harto'
    @comp_url = 'https://www.youtube.com/user/MyHarto'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3618,7 +3618,7 @@ class PagesController < ApplicationController
    @incomp   = 'anthonypadilla'
    @comp_url = 'https://www.youtube.com/user/AnthonyPadilla'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3628,7 +3628,7 @@ class PagesController < ApplicationController
    @incomp   = 'julianwashere'
    @comp_url = 'https://www.youtube.com/user/juliansmith87'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3638,7 +3638,7 @@ class PagesController < ApplicationController
    @incomp   = 'amazingphil'
    @comp_url = 'https://www.youtube.com/user/AmazingPhil'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3648,7 +3648,7 @@ class PagesController < ApplicationController
    @incomp   = 'itssampepper'
    @comp_url = 'https://www.youtube.com/user/OFFICIALsampepper'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3660,7 +3660,7 @@ class PagesController < ApplicationController
    @incomp   = 'armani'
    @comp_url = 'https://www.youtube.com/user/Armani'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3670,7 +3670,7 @@ class PagesController < ApplicationController
    @incomp   = 'burberry'
    @comp_url = 'https://www.youtube.com/user/Burberry'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3680,7 +3680,7 @@ class PagesController < ApplicationController
    @incomp   = 'calvinklein'
    @comp_url = 'https://www.youtube.com/user/calvinklein'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3690,7 +3690,7 @@ class PagesController < ApplicationController
    @incomp   = 'chanelofficial'
    @comp_url = 'https://www.youtube.com/user/CHANEL'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3700,7 +3700,7 @@ class PagesController < ApplicationController
    @incomp   = 'dior'
    @comp_url = 'https://www.youtube.com/user/Dior'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3710,7 +3710,7 @@ class PagesController < ApplicationController
    @incomp   = 'louboutinworld'
    @comp_url = 'https://www.youtube.com/user/christianlouboutin'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3720,7 +3720,7 @@ class PagesController < ApplicationController
    @incomp   = 'dolcegabbana'
    @comp_url = 'https://www.youtube.com/user/dolcegabbanachannel'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3730,7 +3730,7 @@ class PagesController < ApplicationController
    @incomp   = 'dkny'
    @comp_url = 'https://www.youtube.com/user/dkny'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3740,7 +3740,7 @@ class PagesController < ApplicationController
    @incomp   = 'escadaofficial'
    @comp_url = 'https://www.youtube.com/user/Escadaeditor'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3750,7 +3750,7 @@ class PagesController < ApplicationController
    @incomp   = 'fendi'
    @comp_url = 'https://www.youtube.com/user/FENDICHANNEL'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3760,7 +3760,7 @@ class PagesController < ApplicationController
    @incomp   = 'gucci'
    @comp_url = 'https://www.youtube.com/user/gucciofficial'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3770,7 +3770,7 @@ class PagesController < ApplicationController
    @incomp   = 'prada'
    @comp_url = 'https://www.youtube.com/user/PRADA'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3780,7 +3780,7 @@ class PagesController < ApplicationController
    @incomp   = 'hugoboss'
    @comp_url = 'https://www.youtube.com/user/HUGOBOSSTV'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3790,7 +3790,7 @@ class PagesController < ApplicationController
    @incomp   = 'johnvarvatos'
    @comp_url = 'https://www.youtube.com/user/johnvarvatos'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3800,7 +3800,7 @@ class PagesController < ApplicationController
    @incomp   = 'laperlalingerie'
    @comp_url = 'https://www.youtube.com/user/LaPerlaLingerie'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3810,7 +3810,7 @@ class PagesController < ApplicationController
    @incomp   = 'louisvuitton'
    @comp_url = 'https://www.youtube.com/user/LOUISVUITTON'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3820,7 +3820,7 @@ class PagesController < ApplicationController
    @incomp   = 'manoloblahnikhq'
    @comp_url = 'https://www.youtube.com/channel/UCBldabiGA8UYQQgbwyI-jyw'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3830,7 +3830,7 @@ class PagesController < ApplicationController
    @incomp   = 'missoni'
    @comp_url = 'https://www.youtube.com/user/MissoniOfficial'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3840,7 +3840,7 @@ class PagesController < ApplicationController
    @incomp   = 'ralphlauren'
    @comp_url = 'https://www.youtube.com/user/RLTVralphlauren'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3850,7 +3850,7 @@ class PagesController < ApplicationController
    @incomp   = 'roland_mouret'
    @comp_url = 'https://www.youtube.com/user/RolandMouretFilms'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3860,7 +3860,7 @@ class PagesController < ApplicationController
    @incomp   = 'stellamccartney'
    @comp_url = 'https://www.youtube.com/user/stellamccartney1'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3870,7 +3870,7 @@ class PagesController < ApplicationController
    @incomp   = 'tomford'
    @comp_url = 'https://www.youtube.com/user/TOMFORDINTERNATIONAL'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3880,7 +3880,7 @@ class PagesController < ApplicationController
    @incomp   = 'versace_official'
    @comp_url = 'https://www.youtube.com/user/VersaceVideos'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 
@@ -3890,7 +3890,7 @@ class PagesController < ApplicationController
    @incomp   = 'michaelkors'
    @comp_url = 'https://www.youtube.com/user/michaelkors'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
-   @timeline = page.construct(params)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
   end
 end
