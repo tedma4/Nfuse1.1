@@ -53,10 +53,14 @@ module Networks
       end
       posts = threads.each(&:join)
       merge = []
-      token.each do |it|
-        merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
+      if token.any?
+        token.each do |it|
+          merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
+        end
+        merge.inject(:+)
+      else
+        merge
       end
-      merge.inject(:+)
     end
 
     def users_posts
