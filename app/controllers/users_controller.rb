@@ -100,7 +100,13 @@ class UsersController < ApplicationController
 
   def feed_builder
     @providers          = Providers.for(current_user)
-    feed                = Networks::Timeline.new(@user)
+    @token = []
+    if @user.tokens.any?
+      @token              = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+    else
+      @token
+    end
+    feed                = Networks::Timeline.new(@token, @user)
     @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
     @unauthed_accounts  = feed.unauthed_accounts
 
@@ -124,12 +130,25 @@ class UsersController < ApplicationController
   def explore_users
     @providers = Providers.for(@user)
     timeline = []
+    @token = []
+    if current_user.followed_users.any?
+      current_user.followed_users.each do |i|
+        @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+      end
+      unless @token.empty?
+        @token = @token[0]
+      else
+        @token
+      end
+    else
+      @token
+    end
     ids =  current_user.followed_users.collect(&:id)
     ids << current_user.id
     unless ids.empty?
       @users = User.where.not(id: ids)
       @users.find_each do |user|
-        feed=Networks::Timeline.new(user)
+        feed=Networks::Timeline.new(@token, user)
         timeline << feed.construct(params)
         @unauthed_accounts = feed.unauthed_accounts
       end

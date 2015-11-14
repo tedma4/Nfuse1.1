@@ -14,8 +14,9 @@ module Networks
               # :tumblr_pagination_id,
               # :nfuse_pagination_id
 
-    def initialize(user=current_user)
+    def initialize(token, user=current_user)
       @user = user
+      @token = token
       @unauthed_accounts = []
       @authed = true
     end    
@@ -47,14 +48,13 @@ module Networks
 
     def build_it
       threads = []
-      token = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
-      token.each do |this|
+      @token.each do |this|
         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_posts", *this)) }
       end
       posts = threads.each(&:join)
       merge = []
-      if token.any?
-        token.each do |it|
+      if @token.any?
+        @token.each do |it|
           merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
         end
         merge.inject(:+)
