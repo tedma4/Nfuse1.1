@@ -33,7 +33,7 @@ module Networks
       case(@provider)
         when 'twitter'
           @post.id
-        when 'youtube'
+        when 'google_oauth2'
           @post.id
         when 'instagram'
           @post["id"]
@@ -93,7 +93,7 @@ module Networks
       case(@provider)
         when 'twitter'
           @post[:text]
-        when 'youtube'
+        when 'google_oauth2'
           @post.description
         when 'instagram'
           if @post['caption'].present?
@@ -171,7 +171,7 @@ module Networks
           elsif type == "video"
             @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
           end
-        when 'youtube'
+        when 'google_oauth2'
           @post.id
         when 'instagram'
           @post["videos"]["standard_resolution"]["url"]
@@ -217,7 +217,7 @@ module Networks
       case(@provider)
         when 'twitter'
           @post.created_at
-        when 'youtube'
+        when 'google_oauth2'
           @post.published_at
         when 'instagram'
           Time.at(@post['created_time'].to_i)
@@ -244,7 +244,7 @@ module Networks
       case(@provider)
         when 'twitter'
           "https://twitter.com/#{@post.attrs[:user][:screen_name]}/status/#{id}"
-        when 'youtube'
+        when 'google_oauth2'
           "https://www.youtube.com/watch?v=#{@post.id}"
         when 'instagram'
           @post["link"]

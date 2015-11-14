@@ -68,7 +68,7 @@ gem 'seed-fu', '~> 2.3'
 
 #This allows the use of the faye websocket server
 # gem 'private_pub'
-# gem 'thin'
+gem 'thin'
 gem 'auto_html'
 gem "faker", "~> 1.4.3"
 gem 'public_activity', '1.4.2'
@@ -124,15 +124,15 @@ end
 #These are the gems used in the production enviornment
 group :production do
   gem 'mysql2'
-  gem 'rails_12factor', '~> 0.0.3'
+  # gem 'rails_12factor', '~> 0.0.3'
 end
 #These are the gems used in the development enviornment
 group :development do
   gem 'bullet', "4.14.7"
-  gem 'rack-mini-profiler', require: false
-  gem 'flamegraph'
-  gem 'stackprof' # ruby 2.1+ only
-  gem 'memory_profiler'
+  # gem 'rack-mini-profiler', require: false
+  # gem 'flamegraph'
+  # gem 'stackprof' # ruby 2.1+ only
+  # gem 'memory_profiler'
   end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

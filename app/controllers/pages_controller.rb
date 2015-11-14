@@ -13,7 +13,7 @@ class PagesController < ApplicationController
           @unauthed_accounts = feed.unauthed_accounts
         end
       end
-      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time }
+      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
     end
     # render 'home' is implicit.
   end
