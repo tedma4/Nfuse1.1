@@ -274,7 +274,7 @@ module Networks
     end
 
     def description
-      @post['description'].html_safe
+      @post['description']
     end
     def excerpt
       @post['excerpt']
