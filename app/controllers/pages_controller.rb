@@ -3,25 +3,25 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @providers = Providers.for(current_user)
-      @token = []
-      if current_user.followed_users.any?
-        current_user.followed_users.each do |i|
-          @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
-        end
-        unless @token.empty?
-          @token = @token[0]
-        else
-          @token
-        end
-      else
-        @token
-      end
+      # @token = []
+      # if current_user.followed_users.any?
+      #   current_user.followed_users.each do |i|
+      #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+      #   end
+      #   unless @token.empty?
+      #     @token = @token[0]
+      #   else
+      #     @token
+      #   end
+      # else
+      #   @token
+      # end
       timeline = []
       ids =  current_user.followed_users.collect(&:id)
       unless ids.empty?
         @users = User.where(id: ids)
         @users.find_each do |user|
-          feed=Networks::Timeline.new(@token, user)
+          feed=Networks::Timeline.new(user)
           timeline << feed.construct(params)
           @unauthed_accounts = feed.unauthed_accounts
         end

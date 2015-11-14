@@ -14,9 +14,9 @@ module Networks
               # :tumblr_pagination_id,
               # :nfuse_pagination_id
 
-    def initialize(token, user=current_user)
+    def initialize(user=current_user)
       @user = user
-      @token = token
+      #@token = token
       @unauthed_accounts = []
       @authed = true
     end    
@@ -36,18 +36,9 @@ module Networks
       build_it
     end
 
-      # user_provider_info = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
-      #   # => [["twitter", "2525729819", "2525729819-eQhtgxvzDap1ZBdLkAs24twWwTZu0i4mUMj3rcz", "yOsbHmfEgAb91o4HfQ6oL0l17ratMkMqeGnmPA5WdVo87", nil],
-      #   #     ["instagram", "1263283204", "1263283204.d5a97c3.346730c04ef147159da41f28f607ec7e", nil, nil],
-      #   #     ["tumblr", "tedma4", "592Eyns2c1e46zFTppV6MYJ8wPgqTdsnPdceSC1JmjJQvErZSW", "QY5DYX7Mj0yb3QpeEBRCxpgPWgBHwxyqkzIquwXbwDa3iytZYt", nil],
-      #   #     ["google_oauth2", "108818010640714676811", "ya29.KQJH2K0dPoZTDdtoMbT1HDzWTZLls0CWhXn4TRd5E36QXf7NkksK6tIu_owAzvXyUpNy", nil, "1/egw-04MFJVPyDeNHku2ry768FLbsjuW8-YEU-aI4Qb4"],
-      #   #     ["gplus", "108818010640714676811", "ya29.KQJ0dGUeiVQpybVbp6YwnN4C4t2p0GLiiKF-r6iETleK1W5CuylPrlNTkPiiMNEpug5HhqU2MRPT", nil, nil],
-      #   #     ["vimeo", "36828893", "b485c031bba2e3bc0e68d11defda7cd8", nil, nil],
-      #   #     ["facebook", "1187467057945665", "CAAHRjuMYUXIBACuMZBSavp5BumDjiX2PgyZCfSe5IrkZA8mGjyVakHTWN6pWxosNU2Dvy86YMJ9CW8SJpyiZAVgnYLnk7wZAfDKNVtNjrXTddUrHl6h5NlWbG7bZBAhE1Dalps6txGcjlx9Vq4xcbHpUpnAHXZCJW9OXmRD4AYwjEWVbeu4cr52NbURH3ipmJ2XgMeTdX8RfwZDZD", nil, nil]
-      #   #    ]
-
     def build_it
       threads = []
+      @token = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
       @token.each do |this|
         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_posts", *this)) }
       end

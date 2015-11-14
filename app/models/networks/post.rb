@@ -126,8 +126,8 @@ module Networks
           @post["images"]["low_resolution"]["url"]
         when 'facebook'
           if type == 'photo'
-            @token = @user.tokens.find_by(provider: 'facebook')
-            @graph = Koala::Facebook::API.new @token.access_token
+            @fb_token = @user.tokens.find_by(provider: 'facebook')
+            @graph = Koala::Facebook::API.new @fb_token.access_token
             begin
               @post = @graph.get_object(@post['object_id'])
               @post['images'][0]['source']
