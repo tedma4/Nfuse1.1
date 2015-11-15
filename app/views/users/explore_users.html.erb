@@ -1,7 +1,7 @@
 <div id="masonJar" class="center explore_container clearfix masonJar">
-   <%# cache(["explore_users", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
+   <% cache(["explore_users", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
    <% @timeline.first(30).each do |post| %>
-   <%# cache(post) do %>
+   <% cache(post) do %>
     <% case post.provider %>
     <% when "nfuse" %>
       <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
@@ -28,6 +28,6 @@
       <%= render partial: "users/post", locals: {post: post} %>
     <% end %>
   <% end %>
-  <%# end %>
-  <%# end %>
+  <% end %>
+  <% end %>
 </div>
