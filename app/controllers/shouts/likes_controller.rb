@@ -53,7 +53,7 @@ class Shouts::LikesController < ApplicationController
     # Networks::Vote.create(vote_params) 
   end
 
-  def youtube
+  def google_oauth2
     Youtube::Vote.create(vote_params)
     # Networks::Vote.create(vote_params) 
   end

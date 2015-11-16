@@ -39,17 +39,21 @@ module Networks
     def build_it
       threads = []
       @token = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+        # hydra = Typhoeus::Hydra.hydra
       @token.each do |this|
         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_posts", *this)) }
+        # request = Typhoeus::Request.new(instance_variable_set("@#{this.first}", self.send("#{this.first}_posts", *this)))
+        # hydra.queue(request)
       end
+      # hydra.run
       posts = threads.each(&:join)
       merge = []
       if @token.any?
         begin
-        @token.each do |it|
-          merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
-        end
-        merge.inject(:+)
+          @token.each do |it|
+            merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
+          end
+          merge.inject(:+)
         rescue
           merge
         end
