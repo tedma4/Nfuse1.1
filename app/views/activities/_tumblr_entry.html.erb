@@ -4,7 +4,7 @@
     </div>
     <% if @post_entry.text.present? %>
       <div class="center">
-        <%= truncate(@post_entry.text, lenght: 30)%>
+        <%= truncate(strip_tags(@post_entry.text), lenght: 30)%>
       </div>
     <% end %>
   <% elsif @post_entry.type == 'video' %>
@@ -30,7 +30,7 @@
     <% end %>
     <% if @post_entry.text.present? %>
       <div class="center">
-        <%= truncate(@post_entry.text, lenght: 30) %>
+        <%= truncate(strip_tags(@post_entry.text), lenght: 30) %>
       </div>
     <% end %>
   <% elsif @post_entry.type == 'audio' %>
@@ -41,7 +41,7 @@
     </div>
     <% if @post_entry.text.present? %>
       <div class="center">
-        <%= truncate(@post_entry.text, lenght: 30)%>
+        <%= truncate(strip_tags(@post_entry.text), lenght: 30)%>
       </div>
     <% end %>
   <% elsif @post_entry.type == 'text'  %>
@@ -50,17 +50,17 @@
     </div>
   <% elsif @post_entry.type == 'quote'  %>
     <div class="center">
-      <%= truncate(@post_entry.text, lenght: 30) %>
+      <%= truncate(strip_tags(@post_entry.text), lenght: 30) %>
     </div>
   <% elsif @post_entry.type == 'link'  %>
     <div class="center">
       <a href="#{@post_entry.link_to_url}">
         <%= @post_entry.excerpt %>
       </a>
-      <%= truncate(@post_entry.description, lenght: 30) %>
+      <%= truncate(strip_tags(@post_entry.description), lenght: 30) %>
     </div>
   <% else %>
     <div class="center">
-      <%= truncate(@post_entry.text, lenght: 30) %>
+      <%= truncate(strip_tags(@post_entry.text), lenght: 30) %>
     </div>
   <% end %>
