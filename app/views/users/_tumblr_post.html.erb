@@ -5,7 +5,7 @@
   </div>
   <% if post.text.present? %>
     <div class="center">
-      <%= post.text %>
+      <%= strip_tags(post.text) %>
     </div>
   <% end %>
 <% elsif post.type == 'video' %>
@@ -31,7 +31,7 @@
   <% end %>
     <% if post.text.present? %>
         <div class="center">
-          <%= post.text %>
+          <%= strip_tags(post.text) %>
         </div>
     <% end %>
 <% elsif post.type == 'audio' %>
@@ -42,7 +42,7 @@
     </div>
     <% if post.text.present? %>
         <div class="center">
-          <%= post.text %>
+          <%= strip_tags(post.text) %>
         </div>
     <% end %>
 <% elsif post.type == 'text'  %>
@@ -51,18 +51,18 @@
     </div>
 <% elsif post.type == 'quote'  %>
     <div class="center">
-      <%= post.text %>
+      <%= strip_tags(post.text) %>
     </div>
 <% elsif post.type == 'link'  %>
     <div class="center">
       <a href="#{ post.link_to_url}">
         <%= post.excerpt %>
       </a>
-      <%= post.description %>
+      <%= strip_tags(post.description) %>
     </div>
 <% else %>
   <div class="center">
-    <%= post.text %>
+    <%= strip_tags(post.text) %>
   </div>
 <% end %>
 </div>
