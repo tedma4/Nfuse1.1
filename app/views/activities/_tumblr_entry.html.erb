@@ -57,7 +57,7 @@
       <a href="#{@post_entry.link_to_url}">
         <%= @post_entry.excerpt %>
       </a>
-      <%= truncate(strip_tags(@post_entry.description), lenght: 30) %>
+      <%= truncate(strip_tags(@post_entry.text), lenght: 30) %>
     </div>
   <% else %>
     <div class="center">

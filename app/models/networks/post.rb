@@ -104,9 +104,10 @@ module Networks
         when 'tumblr'
           if @post['type'] == 'quote'
             @post['text']
+          elsif @post['type'] == 'link'
+            @post['description']
           else
             @post['caption']
-          end
         when 'vimeo'
           @post.description
         when 'flickr'

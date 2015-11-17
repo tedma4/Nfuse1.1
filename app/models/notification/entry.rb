@@ -89,6 +89,8 @@ module Notification
         when 'tumblr'
           if @entry['type'] == 'quote'
             @entry['text']
+          elsif @entry['type'] == 'link'
+            @post['description']              
           else
             @entry['caption']
           end
