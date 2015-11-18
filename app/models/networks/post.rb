@@ -108,6 +108,7 @@ module Networks
             @post['description']
           else
             @post['caption']
+          end
         when 'vimeo'
           @post.description
         when 'flickr'
