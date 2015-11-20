@@ -3,7 +3,8 @@ module UserOptions
 
   #This concatinates the user's first and last names
   def full_name
-  first_name + " " + last_name
+  new_name = first_name.capitalize + " " + last_name.capitalize
+  final_name = new_name.split(' ').each(&:capitalize!).join(' ')
   end
   #These are the relationship status options a user can choose from
   def rel_stat
