@@ -21,8 +21,12 @@ module Page
      channel = Yt::Channel.new url: @comp_url
      client_id = instagram_token
      thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@incomp}&client_id=#{client_id}").body)
-     # if thing['data'][0]['username'] == @incomp
+     if thing['data'].empty?
+       usid = "nil"
+     else
        usid = thing['data'][0]['id']
+     end
+
      # thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=1").body)
      # posts['data'].map { |post| Page::Post.from(post,'instagram') }
      #  else
@@ -34,9 +38,9 @@ module Page
      # threads << Thread.new { @instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) }
      # threads.each(&:join)
      hydra = Typhoeus::Hydra.hydra
-     first = Typhoeus::Request.new(@twitter_thingy = client.user_timeline(@comp).take(15) )
-     second = Typhoeus::Request.new(@youtube_thingy = channel.videos.first(15) )
-     third = Typhoeus::Request.new(@instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) )
+     first = Typhoeus::Request.new(@twitter_thingy = client.user_timeline(@comp).take(15) || [])
+     second = Typhoeus::Request.new(@youtube_thingy = channel.videos.first(15) || [] )
+     third = Typhoeus::Request.new(@instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) || [])
      hydra.queue first
      hydra.queue second
      hydra.queue third
@@ -82,33 +86,7 @@ end
 #   request.response.body
 # }
 
-# def first_concurrency_test
-#   twitter_token
-#   youtube_token
-#   channel = Yt::Channel.new url: @comp_url
-#   instagram_token
-#   thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@incomp}&client_id=#{client_id}").body)
-#
-#   # if thing['data'][0]['username'] == @incomp
-#     usid = thing['data'][0]['id']
-#     thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=1").body)
-#   # posts['data'].map { |post| Page::Post.from(post,'instagram') }
-#   #  else
-#   #    []
-#   # end
-#   hydra = Typhoeus::Hydra.hydra
-#   requests = {
-#   twitter_request = Typhoeus::Request.new(client.user_timeline(@comp).take(15)),
-#   youtube_request = Typhoeus::Request.new(channel.videos.first(15)),
-#   instagram_request = Typhoeus::Request.new(thingy)
-#
-#   hydra.queue twitter_request
-#   hydra.queue youtube_request
-#   hydra.queue instagram_request
-#   }
-#   hydra.run # this is a blocking call that returns once all requests are complete
-#   requests.map { |request| request.response.body }
-# end
+
 
     # def twitter_setup
     #   #twitter_posts = []

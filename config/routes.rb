@@ -69,13 +69,14 @@ Rails.application.routes.draw do
   resources :activities, path: 'notifications'
   post 'activities/read_all_notifications'
   # Authentication and Settings
-  get    '/signup',       to: 'users#new'
-  get    '/login',        to: 'sessions#new', as: :signin
-  get    '/signout',      to: 'sessions#destroy'
-  get    '/settings',     to: 'users#settings'
-  get    '/destroytoken', to: 'users#destroytoken'
-  get    '/destroyuser',  to: 'users#destroyuser'
-  get    '/remove_token',  to: 'users#remove_token'
+  get '/signup',       to: 'users#new'
+  get '/login',        to: 'sessions#new', as: :signin
+  get '/auth/facebook/callback' , to: 'sessions#create', as: :fb_signup
+  get '/signout',      to: 'sessions#destroy'
+  get '/settings',     to: 'users#settings'
+  get '/destroytoken', to: 'users#destroytoken'
+  get '/destroyuser',  to: 'users#destroyuser'
+  get '/remove_token',  to: 'users#remove_token'
   #get    '/nfuse_page', to: 'users#nfuse_page'
   
   # Static pages
@@ -94,19 +95,22 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#searchcontent'
 
   #  OmniAuth * Registrations
-  scope '/auth' do
-    get '/instagram/callback',     to: 'registrations/instagram#create'
-    get '/twitter/callback',       to: 'registrations/twitter#create'
-    get '/failure',                to: 'registrations/twitter#failure'
-    get '/facebook/callback',      to: 'registrations/facebook#create'
-    get '/google_oauth2/callback', to: 'registrations/youtube#create'
-    get '/gplus/callback',         to: 'registrations/gplus#create'
-    get '/vimeo/callback',         to: 'registrations/vimeo#create'
-    # get '/pinterest/callback',     to: 'registrations/pinterest#create'
-    get '/flickr/callback',        to: 'registrations/flickr#create'
-    get '/tumblr/callback',        to: 'registrations/tumblr#create'
-  end
-
+  # if user.id.present?
+   scope '/auth' do
+     get '/instagram/callback',     to: 'registrations/instagram#create'
+     get '/twitter/callback',       to: 'registrations/twitter#create'
+     get '/failure',                to: 'registrations/twitter#failure'
+     get '/facebook/callback',      to: 'registrations/facebook#create'
+     get '/google_oauth2/callback', to: 'registrations/youtube#create'
+     get '/gplus/callback',         to: 'registrations/gplus#create'
+     get '/vimeo/callback',         to: 'registrations/vimeo#create'
+     # get '/pinterest/callback',     to: 'registrations/pinterest#create'
+     get '/flickr/callback',        to: 'registrations/flickr#create'
+     get '/tumblr/callback',        to: 'registrations/tumblr#create'
+   end
+  # else
+  #   get 'auth/:provider/callback', to: 'sessions#create'
+  # end
   # Likes
   # post '/twitter/favorite/:tweet_id', to: 'likes#twitter'
   # post '/twitter/retweet/:tweet_id',  to: 'shares#twitter'

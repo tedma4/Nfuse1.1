@@ -2,12 +2,13 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter,       ENV["twitter_api_key"],          ENV["twitter_api_secret"]
   provider :instagram,     ENV["instagram_client_id"],      ENV["instagram_client_secret"], scope: 'likes comments relationships'
   provider :facebook,      ENV["facebook_app_id"],          ENV["facebook_app_secret"],
-       scope: 'email, 
+       scope: 'email,
                user_photos, 
                user_status, 
                user_tagged_places, 
                user_videos,
-               user_posts'
+               user_posts',
+       provider_ignores_state: true
   provider :vimeo,         ENV["vimeo_client_id"],          ENV["vimeo_client_secret"]
   provider :flickr,        ENV["flickr_key"],                ENV["flickr_secret"],
         scope: 'read'

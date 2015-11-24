@@ -32,7 +32,8 @@ gem 'typhoeus', '~> 0.6.8'
 gem "httparty"
 gem 'cocaine', '0.5.5'
 #This allows the use of the facebook oauth
-gem 'omniauth-facebook', '~> 1.6.0'
+# gem 'omniauth', '1.1.1'
+gem 'omniauth-facebook', '~> 1.4.1'
 #This allows the use of the twitter oauth
 gem 'omniauth-twitter', '~> 1.0.1'
 #gem 'omniauth-pinterest', '~> 1.0.0'

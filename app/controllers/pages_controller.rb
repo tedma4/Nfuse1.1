@@ -1281,7 +1281,7 @@ class PagesController < ApplicationController
   def khloekardashian
    @compname = 'Khloe Kardashian'
    @comp     = 'KhloeKardashian'
-   @incomp   = 'kloekardashianthegirl'
+   @incomp   = 'khloekardashianthegirl'
    @comp_url = 'https://www.youtube.com/channel/UCJy0RHFC64EC-kqWOfhCb_g'
    page     = Page::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}

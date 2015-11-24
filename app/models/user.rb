@@ -78,6 +78,23 @@ class User < ActiveRecord::Base
   # belongs in Relationship model.
   # ? methods are meant to return a boolean
 
+  def self.omniauth(auth)
+    where(auth.slice(:providers, :uid)).first_or_initialize.tap do |user|
+      user.providers = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.user_name =  auth.info.email.split('@').shift + [*('a'..'z')].sample(4).join
+      user.password = auth.credentials.token
+      user.password_confirmation = auth.credentials.token
+      user.avatar_file_name = auth.info.image
+      # user.expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+      Token.create(provider: auth.provider, uid: auth.uid, access_token: auth.credentials.token, user_id: user.id)
+    end
+  end
+
   def following?(other_user)
     !!(relationships.find_by(followed_id: other_user.id))
   end
