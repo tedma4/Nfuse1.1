@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase) unless user.nil? #params[:session][:email].nil?
+    user = User.find_by(email: params[:session][:email].downcase) if params[:session].present? #params[:session][:email].nil?
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       redirect_to explore_user_path(current_user)
