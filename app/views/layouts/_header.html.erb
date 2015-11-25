@@ -105,7 +105,11 @@
       <%= link_to image_tag('educational27.png', size: "32x32", title: "Explore"), explore_user_path(current_user) %>
       </li>
       <li class="navIcon tilt" id="profile">
-        <%= link_to image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{ current_user.full_name}"), feed_user_path(current_user) %>
+        <% if current_user.avatar_file_name.present? && current_user.avatar_file_name.include?('graph.facebook.com') %>
+          <%= link_to image_tag(current_user.avatar_file_name, class: "user_profile_picture_header", size: "32x32", title: "#{current_user.full_name}"), feed_user_path(current_user) %>
+        <% else %>
+          <%= link_to image_tag(current_user.avatar(:small), class: "user_profile_picture_header", size: "32x32", title: "#{current_user.full_name}"), feed_user_path(current_user) %>
+        <% end %>
       </li><!-- 
       <li class="navIcon tilt" id="newpost">
           <a data-toggle="modal" data-target="#new_post_header_modal">

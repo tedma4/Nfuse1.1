@@ -20,10 +20,18 @@
 <div class="main-avatar">
   <% if current_user?(@user) %>
     <a data-toggle="modal" data-target="#profile_pic_upload_modal">
-      <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %> 
+      <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+        <%= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %>
+      <% else %>
+        <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %> 
+      <% end %>
     </a>
   <%else%>
-    <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
+    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+      <%= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture"%>
+    <% else %>
+      <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
+    <% end %>
   <%end%>
 </div>
 <div class="profile_bar">

@@ -16,7 +16,11 @@ module Networks
     end
 
     def avatar
-      @user.avatar(:thumb)
+      if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com')
+        @user.avatar_file_name
+      else
+        @user.avatar(:thumb)
+      end 
     end
 
     def username

@@ -1,7 +1,11 @@
 <%= form_for @user, html:{role: "form", multipart: true} do |f| %>
   <h2>Upload a Profile Picture</h2>
-  <div id="target"> 
-    <%= image_tag @user.avatar(:medium) %> 
+  <div id="target">
+    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+      <%= image_tag @user.avatar_file_name, size: '50x50' %>
+    <% else %>
+      <%= image_tag @user.avatar(:medium) %>
+    <% end %>
   </div>
   <div class="fileUpload btn-link-1">
     <span>Upload Image</span>

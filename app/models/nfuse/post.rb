@@ -31,7 +31,11 @@ module Nfuse
     end
 
     def avatar
-      @shout.user.avatar
+      if @shout.user.avatar_file_name.present? && @shout.user.avatar_file_name.include?('graph.facebook.com')
+        @shout.user.avatar_file_name
+      else
+        @shout.user.avatar
+      end 
     end
 
     def full_name
