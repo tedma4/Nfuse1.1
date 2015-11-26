@@ -8,6 +8,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                user_tagged_places, 
                user_videos,
                user_posts',
+       image_size: 'large',
        provider_ignores_state: true
   provider :vimeo,         ENV["vimeo_client_id"],          ENV["vimeo_client_secret"]
   provider :flickr,        ENV["flickr_key"],                ENV["flickr_secret"],

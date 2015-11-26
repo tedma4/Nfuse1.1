@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   # Authentication and Settings
   get '/signup',       to: 'users#new'
   get '/login',        to: 'sessions#new', as: :signin
-  get '/auth/facebook/callback' , to: 'sessions#create', as: :fb_signup
+  # get '/auth/facebook/callback' , to: 'sessions#fb_callback', as: :fb_signup
   get '/signout',      to: 'sessions#destroy'
   get '/settings',     to: 'users#settings'
   get '/destroytoken', to: 'users#destroytoken'
