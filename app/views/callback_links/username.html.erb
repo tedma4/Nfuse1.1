@@ -1,0 +1,38 @@
+<% provide(:title, "Step 2") %>
+<style type="text/css">
+  .fb_username_change_padding {
+    margin-top: 2%;
+}
+</style>
+<div class="Alignthisorelse">
+  <div class="container fb_username_change_padding">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3 form-box wow fadeInUp">
+        <div class="form-top-pro-pic">
+          <div class="form-top-left">
+            <h3><strong>Your User Name is gonna be <%= current_user.user_name %></strong></h3>
+              <p>If you don't like it go ahead and change it below</p>
+          </div>
+          <div class="form-top-right">
+            <a href="#"><%= image_tag("createprofilegray.fw.png", size: "60x60") %></a>
+          </div>
+        </div>
+        <div class="form-bottom">
+          <div class="Alignthisorelse">
+            <%= form_for @user, html:{role: "form"} do |f| %>
+              <div class="form-group">
+                <%= f.text_field :user_name, :placeholder => "User name", class: "form-control input-lg", id:"form-user-name" %>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-link-1">
+                  Save
+                </button>
+                <%#= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -64,7 +64,11 @@ class UsersController < ApplicationController
     if @user.errors.any?
       render 'edit'
     else
-      redirect_to feed_user_path(@user)
+      if @_request.env['HTTP_REFERER'].include?('callback_links/username')
+        redirect_to '/callback_links/callbacks'
+      else
+        redirect_to feed_user_path(@user)
+      end
     end
   end
 

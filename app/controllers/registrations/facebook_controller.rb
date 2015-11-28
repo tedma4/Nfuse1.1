@@ -6,11 +6,13 @@ class Registrations::FacebookController < ApplicationController
     if session[:user_id].nil?
       if User.find_by(providers: auth['provider'], uid: auth['uid']).nil?
         user = User.omniauth(auth)
+        session[:user_id] = user.id
+        redirect_to callback_links_path
       else
         user = User.find_by(providers: auth['provider'], uid: auth['uid'])
+        session[:user_id] = user.id
+        redirect_to root_url
       end
-      session[:user_id] = user.id
-      redirect_to root_url
     else
       user = User.find(session[:user_id])
       Token.update_or_create_with_other_omniauth(user.id, auth)

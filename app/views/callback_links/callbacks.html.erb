@@ -1,6 +1,10 @@
 <!-- *Start* Views/callback_links/callbacks.html -->
-<% provide(:title, "Step 2") %>
-<style type="text/css">
+<% if current_user.providers.nil? %>
+  <% provide(:title, "Step 2") %>
+<% else %>
+  <% provide(:title, "Step 3")%>
+<% end %>
+    <style type="text/css">
   .sup-padding{
     margin-top: 4%;
   }
