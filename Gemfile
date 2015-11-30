@@ -115,6 +115,7 @@ gem 'ejs', '~> 1.1.1'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+gem 'impressionist', '1.5.1'
 # gem 'videojs_rails'
 
 gem 'aws-sdk', '< 2'

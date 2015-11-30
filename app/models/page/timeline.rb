@@ -32,19 +32,19 @@ module Page
      #  else
      #    []
      # end
-     # threads = []
-     # threads << Thread.new { @twitter_thingy = client.user_timeline(@comp).take(15) }
-     # threads << Thread.new { @youtube_thingy = channel.videos.first(15) }
-     # threads << Thread.new { @instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) }
-     # threads.each(&:join)
-     hydra = Typhoeus::Hydra.hydra
-     first = Typhoeus::Request.new(@twitter_thingy = client.user_timeline(@comp).take(15) || [])
-     second = Typhoeus::Request.new(@youtube_thingy = channel.videos.first(15) || [] )
-     third = Typhoeus::Request.new(@instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) || [])
-     hydra.queue first
-     hydra.queue second
-     hydra.queue third
-     hydra.run
+     threads = []
+     threads << Thread.new { @twitter_thingy = client.user_timeline(@comp).take(15) }
+     threads << Thread.new { @youtube_thingy = channel.videos.first(15) }
+     threads << Thread.new { @instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) }
+     threads.each(&:join)
+     # hydra = Typhoeus::Hydra.hydra
+     # first = Typhoeus::Request.new(@twitter_thingy = client.user_timeline(@comp).take(15) || [])
+     # second = Typhoeus::Request.new(@youtube_thingy = channel.videos.first(15) || [] )
+     # third = Typhoeus::Request.new(@instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) || [])
+     # hydra.queue first
+     # hydra.queue second
+     # hydra.queue third
+     # hydra.run
      merge = (@twitter_thingy.map { |post| Page::Post.from(post, 'twitter') } +
        @youtube_thingy.map { |post| Page::Post.from(post, 'youtube') } +
        @instagram_thingy['data'].map { |post| Page::Post.from(post, 'instagram') }
