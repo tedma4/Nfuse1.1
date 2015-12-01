@@ -1,4 +1,4 @@
-module Page
+module Biz
 	class Post < TimelineEntry
 
     def self.from(post, provider)

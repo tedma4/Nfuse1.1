@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130001927) do
+ActiveRecord::Schema.define(version: 20151130145237) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -125,6 +125,10 @@ ActiveRecord::Schema.define(version: 20151130001927) do
 
   add_index "nfuse_pages", ["nfuse_id"], name: "index_nfuse_pages_on_nfuse_id", unique: true
   add_index "nfuse_pages", ["social_id"], name: "index_nfuse_pages_on_social_id", unique: true
+
+  create_table "pages", force: true do |t|
+    t.integer "page_counter_cache", default: 0
+  end
 
   create_table "pics", force: true do |t|
     t.string   "image_file_name"

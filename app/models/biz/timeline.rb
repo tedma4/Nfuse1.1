@@ -1,4 +1,4 @@
-module Page
+module Biz
 	class Timeline
   attr_accessor :params
   require 'thread'
@@ -28,7 +28,7 @@ module Page
      end
 
      # thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=1").body)
-     # posts['data'].map { |post| Page::Post.from(post,'instagram') }
+     # posts['data'].map { |post| Biz::Post.from(post,'instagram') }
      #  else
      #    []
      # end
@@ -45,9 +45,9 @@ module Page
      # hydra.queue second
      # hydra.queue third
      # hydra.run
-     merge = (@twitter_thingy.map { |post| Page::Post.from(post, 'twitter') } +
-       @youtube_thingy.map { |post| Page::Post.from(post, 'youtube') } +
-       @instagram_thingy['data'].map { |post| Page::Post.from(post, 'instagram') }
+     merge = (@twitter_thingy.map { |post| Biz::Post.from(post, 'twitter') } +
+       @youtube_thingy.map { |post| Biz::Post.from(post, 'youtube') } +
+       @instagram_thingy['data'].map { |post| Biz::Post.from(post, 'instagram') }
      )
    end
 
@@ -67,7 +67,7 @@ module Page
     end
 	end
 end
-# class PageConcatenator
+# class BizConcatenator
 #   def self.merge(twitter_setup, youtube_setup, instagram_setup)
 #     (twitter_setup + youtube_setup + instagram_setup).sort_by { |post| post.created_time }.reverse
 #   end
@@ -95,14 +95,14 @@ end
     #     i.consumer_secret = ENV['twitter_api_secret']
     #   end
     #   posts = client.user_timeline(@comp).take(15)
-    #   posts.map { |post| Page::Post.from(post, 'twitter') }
+    #   posts.map { |post| Biz::Post.from(post, 'twitter') }
     # end
  
     # def youtube_setup
     #   Yt.configuration.api_key = ENV['youtube_dev_key']
     #   channel = Yt::Channel.new url: @comp_url
     #   posts = channel.videos.first(15)
-    #   posts.map { |post| Page::Post.from(post, 'youtube') }
+    #   posts.map { |post| Biz::Post.from(post, 'youtube') }
     # end
 
     # def instagram_setup
@@ -111,7 +111,7 @@ end
     #   if thing['data'][0]['username'] == @incomp
     #     usid = thing['data'][0]['id']
     #     posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
-    #     posts['data'].map { |post| Page::Post.from(post,'instagram') }
+    #     posts['data'].map { |post| Biz::Post.from(post,'instagram') }
     #    else
     #      []
     #   end
