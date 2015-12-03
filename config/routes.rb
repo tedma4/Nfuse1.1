@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   #COMPANIES
+  get'/testing_the_new_sortable_pages_per_user_for_some_category', to: 'pages#test_page'
   get '/businessconnector', to: 'pages#business_connector'
   get '/wired', to: 'pages#wired'
   get '/nationalgeographic', to: 'pages#national_geographic'

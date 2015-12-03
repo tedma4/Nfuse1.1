@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20151130145237) do
 
   create_table "pages", force: true do |t|
     t.integer "page_counter_cache", default: 0
+    t.string  "page_name"
   end
 
   create_table "pics", force: true do |t|

@@ -1,5 +1,10 @@
 class PagesController < ApplicationController
-  impressionist actions:[:wired                                                                                        ]
+  before_action :set_page, except:[:home, :help, :about, :feedback, :terms, 
+                                   :privacy, :business_connector, :celebrity_connector, 
+                                   :tv_show_connector, :fashion_connector, :youtubers,
+                                   :sports_connector, :music_connector, :food_connector,
+                                   :travel_connector
+                                  ]
 
   def home
     if signed_in?
@@ -33,6 +38,12 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def set_page
+    @page = Page.where(page_name: params[:action]).first_or_create!
+    impressionist(@page)
+  end
+
   public
 
   def help; end
@@ -41,8 +52,19 @@ class PagesController < ApplicationController
   def qanda; end
   def terms; end
   def privacy; end
+  def business_connector; end
+  def celebrity_connector; end
+  def tv_show_connector; end
+  def fashion_connector; end
+  def youtubers; end
+  def sports_connector; end
+  def music_connector; end
+  def food_connector; end
+  def travel_connector; end
+  def test_page; end
 
   def wired
+   #set_page
    @compname = 'Wired'
    @comp     = 'wired'
    @comp_url = 'https://www.youtube.com/user/wired'
@@ -1043,12 +1065,6 @@ class PagesController < ApplicationController
    render 'comp'
   end
 
-  def business_connector
-  end
-
-  def celebrity_connector
-  end
-
   def katyperry
    @compname = 'Katy Perry'
    @comp     = 'katyperry'
@@ -1560,8 +1576,6 @@ class PagesController < ApplicationController
   end
 
   #####TVSHOWS
-  def tv_show_connector
-  end
 
   def lastweektonight
    @compname = 'Last Week Tonight'
@@ -2044,9 +2058,6 @@ class PagesController < ApplicationController
   end
 
 #####SPORTS
-
-  def sports_connector
-  end
 
   def realmadrid
    @compname = 'Real Madrid'
@@ -2556,9 +2567,6 @@ class PagesController < ApplicationController
    page     = Biz::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
-  end
-
-  def music_connector
   end
 
   def onedirection
@@ -3072,8 +3080,6 @@ class PagesController < ApplicationController
   end
 
   ####FOoD
-  def food_connector
-  end
 
   def allrecipes
    @compname = 'All Recipes'
@@ -3257,9 +3263,6 @@ class PagesController < ApplicationController
 
   ######TRAVEL
 
-  def travel_connector
-  end
-
   def drewbinsky
    @compname = 'Drew Binsky'
    @comp     = 'drewbinsky7'
@@ -3338,12 +3341,6 @@ class PagesController < ApplicationController
    page     = Biz::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
-  end
-
-  def fashion_connector
-  end
-
-  def youtubers
   end
 
   def tyleroakley
