@@ -3,7 +3,7 @@ class PagesController < ApplicationController
                                    :privacy, :business_connector, :celebrity_connector, 
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
-                                   :travel_connector
+                                   :travel_connector, :test_page
                                   ]
 
   def home
