@@ -3,548 +3,404 @@
     padding-bottom: 100px;
   }
 </style>
+<% p = {} %>
+<% p[:wired] = {image: 'wired', full_name: 'Wired', path: '/wired'} %>
+<% p[:national_geographic] = {image: 'NatGeo', full_name: 'NatGeo', path: '/nationalgeographic'} %>
+<% p[:people_magazine] = {image: 'people', full_name: 'People', path: '/peoplemagazine'} %>
+<% p[:time_magazine] = {image: 'TIME', full_name: 'TIME', path: '/timemagazine'} %>
+<% p[:sports_illustrated] = {image: 'sinow', full_name: 'Sports Illustrated', path: '/sportsillustrated'} %>
+<% p[:cosmopolitan] = {image: 'Cosmopolitan', full_name: 'Cosmopolitan', path: '/cosmopolitan'} %>
+<% p[:redbull] = {image: 'redbull', full_name: 'Redbull', path: '/redbull'} %>
+<% p[:espn] = {image: 'espn', full_name: 'ESPN', path: '/espn'} %>
+<% p[:us_weekly] = {image: 'usweekly', full_name: 'US Weekly', path: '/usweekly'} %>
+<% p[:entertainment_weekly] = {image: 'EW', full_name: 'Entertainment', path: '/entertainmentweekly'} %>
+<% p[:newsweek] = {image: 'Newsweek', full_name: 'Newsweek', path: '/newsweek'} %>
+<% p[:popular_science] = {image: 'PopSci', full_name: 'PopSci', path: '/popularscience'} %>
+<% p[:vogue] = {image: 'vougemagazine', full_name: 'Vogue', path: '/vogue'} %>
+<% p[:bloomberg_businessweekly] = {image: 'business', full_name: 'Bloomberg', path: '/bloomberg'} %>
+<% p[:gq] = {image: 'GQMagazine', full_name: 'GQ Magazine', path: '/gq'} %>
+<% p[:hgtv] = {image: 'hgtv', full_name: 'HGTV', path: '/hgtv'} %>
+<% p[:forbes_magazine] = {image: 'Forbes', full_name: 'Forbes', path: '/forbes'} %>
+<% p[:fortune] = {image: 'FortuneMagazine', full_name: 'Fortune', path: '/fortune'} %>
+<% p[:e_news] = {image: 'Enews', full_name: 'E! News', path: '/enews'} %>
+<% p[:google] = {image: 'google', full_name: 'Google', path: '/google'} %>
+<% p[:tedtalks] = {image: 'TEDTalks', full_name: 'TED Talks', path: '/tedtalks'} %>
+<% p[:tesla] = {image: 'TeslaMotors', full_name: 'Tesla', path: '/tesla'} %>
+<% p[:victorias_secret] = {image: 'VictoriasSecret', full_name: "Victoria's Secret", path: '/victoriassecret'} %>
+<% p[:cnn] = {image: 'CNN', full_name: 'CNN', path: '/cnn'} %>
+<% p[:hbo] = {image: 'HBO', full_name: 'HBO', path: '/hbo'} %>
+<% p[:showtime] = {image: 'SHO_Network', full_name: 'Showtime', path: '/showtime'} %>
+<% p[:marvel] = {image: 'Marvel', full_name: 'Marvel', path: '/marvel'} %>
+<% p[:syfy] = {image: 'SyfyTV', full_name: 'Syfy', path: '/syfy'} %>
+<% p[:netflix] = {image: 'netflix', full_name: 'Netflix', path: '/netflix'} %>
+<% p[:buzzfeed] = {image: 'Buzzfeed', full_name: 'Buzzfeed', path: '/buzzfeed'} %>
+<% p[:reddit] = {image: 'reddit', full_name: 'Reddit', path: '/reddit'} %>
+<% p[:collegehumor] = {image: 'CollegeHumor', full_name: 'CollegeH umor', path: '/collegehumor'} %>
+<% p[:microsoft] = {image: 'Microsoft', full_name: 'Microsoft', path: '/microsoft'} %>
+<% p[:nike] = {image: 'Nike', full_name: 'Nike', path: '/nike'} %>
+<% p[:imdb] = {image: 'IMDb', full_name: 'IMDb', path: '/imdb'} %>
+<% p[:vevo] = {image: 'Vevo', full_name: 'Vevo', path: '/vevo'} %>
+<% p[:starwars] = {image: 'starwars', full_name: 'Star Wars', path: '/starwars'} %>
+<% p[:nasa] = {image: 'NASA', full_name: 'NASA', path: '/nasa'} %>
+<% p[:bravo] = {image: 'Bravotv', full_name: 'Bravo', path: '/bravo'} %>
+<% p[:mtv] = {image: 'MTV', full_name: 'MTV', path: '/mtv'} %>
+<% p[:golfdigest] = {image: 'GolfDigest', full_name: 'Golf Digest', path: '/golfdigest'} %>
+<% p[:nba] = {image: 'NBA', full_name: 'NBA', path: '/nba'} %>
+<% p[:nfl] = {image: 'NFL', full_name: 'NFL', path: '/nfl'} %>
+<% p[:mlb] = {image: 'MLB', full_name: 'MLB', path: '/mlb'} %>
+<% p[:nhl] = {image: 'NHL', full_name: 'NHL', path: '/nhl'} %>
+<% p[:inc] = {image: 'Inc', full_name: 'Inc', path: '/inc'} %>
+<% p[:makerbot] = {image: 'makerbot', full_name: 'Makerbot', path: '/makerbot'} %>
+<% p[:olympics] = {image: 'Olympics', full_name: 'Olympics', path: '/olympics'} %>
+<% p[:tmz] = {image: 'TMZ', full_name: 'TMZ', path: '/tmz'} %>
+<% p[:tiffany] = {image: 'TiffanyandCo', full_name: 'Tiffany & Co', path: '/tiffany'} %>
+<% p[:playboy] = {image: 'Playboy', full_name: 'Playboy', path: '/playboy'} %>
+<% p[:maxim] = {image: 'MaximMag', full_name: 'Maxim', path: '/maxim'} %>
+<% p[:elle] = {image: 'ELLEmagazine', full_name: 'ELLE', path: '/elle'} %>
+<% p[:vanityfair] = {image: 'VanityFair', full_name: 'Vanity Fair', path: '/vanityfair'} %>
+<% p[:brides] = {image: 'brides', full_name: 'Brides', path: '/brides'} %>
+<% p[:usatoday] = {image: 'USATODAY', full_name: 'USA TODAY', path: '/usatoday'} %>
+<% p[:sciencechannel] = {image: 'ScienceChannel', full_name: 'Science Channel', path: '/sciencechannel'} %>
+<% p[:fifa] = {image: 'FIFAWorldCup', full_name: 'FIFA', path: '/fifa'} %>
+<% p[:gucci] = {image: 'gucci', full_name: 'Gucci', path: '/gucci'} %>
+<% p[:handm] = {image: 'hm', full_name: 'H & M', path: '/handm'} %>
+<% p[:generalelectric] = {image: 'generalelectric', full_name: 'General Electric', path: '/generalelectric'} %>
+<% p[:armani] = {image: 'armani', full_name: 'Armani', path: '/armani'} %>
+<% p[:ibm] = {image: 'IBM', full_name: 'IBM', path: '/ibm'} %>
+<% p[:foxsports] = {image: 'FOXSports', full_name: 'FOX Sports', path: '/foxsports'} %>
+<% p[:cnbc] = {image: 'CNBC', full_name: 'CNBC', path: '/cnbc'} %>
+<% p[:amazon] = {image: 'amazon', full_name: 'Amazon', path: '/amazon'} %>
+<% p[:food] = {image: 'FoodNetwork', full_name: 'Food Network', path: '/foodnetwork'} %>
+<% p[:sony] = {image: 'Sony', full_name: 'Sony', path: '/sony'} %>
+<% p[:gap] = {image: 'Gap', full_name: 'Gap', path: '/gap'} %>
+<% p[:history] = {image: 'HISTORY', full_name: 'History', path: '/history'} %>
+<% p[:ralph] = {image: 'RalphLauren', full_name: 'Ralph Lauren', path: '/ralphlauren'} %>
+<% p[:tlc] = {image: 'TLC', full_name: 'TLC', path: '/tlc'} %>
+<% p[:xbox] = {image: 'Xbox', full_name: 'Xbox', path: '/xbox'} %>
+<% p[:playstation] = {image: 'PlayStation', full_name: 'PlayStation', path: '/playstation'} %>
+<% p[:nordstrom] = {image: 'Nordstrom', full_name: 'Nordstrom', path: '/nordstrom'} %>
+<% p[:entrepreneur] = {image: 'Entrepreneur', full_name: 'Entrepreneur', path: '/entrepreneur'} %>
+<% p[:bananarepublic] = {image: 'BananaRepublic', full_name: 'Banana Republic', path: '/bananarepublic'} %>
+<% p[:calvinklein] = {image: 'CalvinKlein', full_name: 'Calvin Klein', path: '/calvinklein'} %>
+<% p[:underarmour] = {image: 'UnderArmour', full_name: 'Under Armour', path: '/underarmour'} %>
+<% p[:facebook] = {image: 'facebook', full_name: 'Facebook', path: '/facebook'} %>
+<% p[:burberry] = {image: 'Burberry', full_name: 'Burberry', path: '/burberry'} %>
+<% p[:abc] = {image: 'ABCNetwork', full_name: 'ABC', path: '/abc'} %>
+<% p[:nbc] = {image: 'nbc', full_name: 'NBC', path: '/nbc'} %>
+<% p[:cbs] = {image: 'cbs', full_name: 'CBS', path: '/cbs'} %>
+<% p[:thecw] = {image: 'CW_network', full_name: 'The CW', path: '/thecw'} %>
+<% p[:hugoboss] = {image: 'HUGOBOSS', full_name: 'Hugo Boss', path: '/hugoboss'} %>
+<% p[:cbsnews] = {image: 'CBSNews', full_name: 'CBS News', path: '/cbsnews'} %>
+<% p[:foxnews] = {image: 'FoxNews', full_name: 'Fox News', path: '/foxnews'} %>
+<% p[:nbcnews] = {image: 'NBCNews', full_name: 'NBC News', path: '/nbcnews'} %>
+<% p[:abcnews] = {image: 'ABC', full_name: 'ABC News', path: '/abcnews'} %>
+<% p[:cbssports] = {image: 'CBSSports', full_name: 'CBS Sports', path: '/cbssports'} %>
+<% p[:fox] = {image: 'FOXTV', full_name: 'FOX', path: '/fox'} %>
+<% p[:uber] = {image: 'Uber', full_name: 'Uber', path: '/uber'} %>
+<% p[:forever21] = {image: 'Forever21', full_name: 'Forever 21', path: '/forever21'} %>
+<% p[:mls] = {image: 'MLS', full_name: 'MLS', path: '/mls'} %>
+<% p[:urbanoutfitters] = {image: 'UrbanOutfitters', full_name: 'Urban Outfitters', path: '/urbanoutfitters'} %>
+<% p[:allure] = {image: 'Allure_magazine', full_name: 'Allure', path: '/allure'} %>
+<% p[:wmagazine] = {image: 'wmag', full_name: 'W Magazine', path: '/wmagazine'} %>
+<% p[:thescene] = {image: 'SCENE', full_name: 'The Scene', path: '/thescene'} %>
+<% p[:youtube] = {image: 'YouTube', full_name: 'YouTube', path: '/youtube'} %>
+
+
+
+
+############TV SHOWS#############
+<% p[:lastweektonight] = {image: 'LastWeekTonight', full_name: 'Last Week Tonight', path: '/lastweektonight'} %>
+<% p[:gameofthrones] = {image: 'GameOfThrones', full_name: 'Game Of Thrones', path: '/gameofthrones'} %>
+<% p[:bettercallsaul] = {image: 'BetterCallSaul', full_name: 'BetterCallSaul', path: '/bettercallsaul'} %>
+<% p[:orangeisthenewblack] = {image: 'OITNB', full_name: 'Orange Is The New Black', path: '/orangeisthenewblack'} %>
+<% p[:empire] = {image: 'EmpireFox', full_name: 'Empir', path: '/empire'} %>
+<% p[:howimetyourmother] = {image: 'OfficialHIMYM', full_name: 'HIMYM', path: '/howimetyourmother'} %>
+<% p[:madmen] = {image: 'MadMen_AMC', full_name: 'Mad Men', path: '/madmen'} %>
+<% p[:theamericans] = {image: 'TheAmericansFX', full_name: 'The Americans', path: '/theamericans'} %>
+<% p[:thetonightshow] = {image: 'FallonTonight', full_name: 'THe Tonight Show', path: '/thetonightshow'} %>
+<% p[:truedetective] = {image: 'TrueDetective', full_name: 'True Detective', path: '/truedetective'} %>
+<% p[:justified] = {image: 'JustifiedFX', full_name: 'Justified', path: '/justified'} %>
+<% p[:sense8] = {image: 'sense8', full_name: 'Sense8', path: '/sense8'} %>
+<% p[:izombie] = {image: 'CWiZombie', full_name: 'iZombie', path: '/izombie'} %>
+<% p[:theflash] = {image: 'CW_TheFlash', full_name: 'The Flash', path: '/theflash'} %>
+<% p[:thebachelor] = {image: 'BachelorABC', full_name: 'The Bachelor', path: '/thebachelor'} %>
+<% p[:suits] = {image: 'Suits_USA', full_name: 'Suits', path: '/suits'} %>
+<% p[:theellenshow] = {image: 'TheEllenShow', full_name: 'The Ellen Show', path: '/theellenshow'} %>
+<% p[:greysanatomy] = {image: 'GreysABC', full_name: 'Greys Annotomy', path: '/greysanatomy'} %>
+<% p[:thewalkingdead] = {image: 'WalkingDead_AMC', full_name: 'The Walking Dead', path: '/thewalkingdead'} %>
+<% p[:americanhorrorstory] = {image: 'AmericanHorrorStory', full_name: 'American Horror Story', path: '/americanhorrorstory'} %>
+<% p[:sharktank] = {image: 'ABCSharkTank', full_name: 'Shark Tank', path: '/sharktank'} %>
+<% p[:gotham] = {image: 'Gotham', full_name: 'Gotham', path: '/gotham'} %>
+<% p[:thegoodwife] = {image: 'TheGoodWife_CBS', full_name: 'The Good Wife', path: '/thegoodwife'} %>
+<% p[:thebigbangtheory] = {image: 'BigBang_CBS', full_name: 'The Big Bang Theory', path: '/thebigbangtheory'} %>
+<% p[:theblacklist] = {image: 'NBCBlacklist', full_name: 'Blacklist', path: '/theblacklist'} %>
+<% p[:howtogetawaywithmurder] = {image: 'HowToGetAwayABC', full_name: 'How To Get Away With Murder', path: '/howtogetawaywithmurder'} %>
+<% p[:thevoice] = {image: 'NBCTheVoice', full_name: 'The Voice', path: '/thevoice'} %>
+<% p[:bachelorette] = {image: 'BacheloretteABC', full_name: 'Bachelorette', path: '/bachelorette'} %>
+<% p[:scandal] = {image: 'ScandalABC', full_name: 'Scandal', path: '/scandal'} %>
+<% p[:downtonabbey] = {image: 'DowntonAbbey', full_name: 'Downton Abbey', path: '/downtonabbey'} %>
+<% p[:dancingwiththestars] = {image: 'DancingABC', full_name: 'Dancing With the Stars', path: '/dancingwiththestars'} %>
+<% p[:americanidol] = {image: 'AmericanIdol', full_name: 'AmericanIdol', path: '/americanidol'} %>
+<% p[:thementalist] = {image: 'Mentalist_CBS', full_name: 'Mentalist', path: '/thementalist'} %>
+<% p[:houseofcards] = {image: 'HouseofCards', full_name: 'House of Cards', path: '/houseofcards'} %>
+<% p[:transparent] = {image: 'transparent_tv', full_name: 'Transparent', path: '/transparent'} %>
+<% p[:louie] = {image: 'LouieFX', full_name: 'Louie', path: '/louie'} %>
+<% p[:community] = {image: 'CommunityTV', full_name: 'Community', path: '/community'} %>
+<% p[:parksandrecreation] = {image: 'parksandrecnbc', full_name: 'Parks and Recreation', path: '/parksandrecreation'} %>
+<% p[:sonsofanarchy] = {image: 'SonsofAnarchy', full_name: 'Sons of Anarchy', path: '/sonsofanarchy'} %>
+<% p[:brooklynninenine] = {image: 'Brooklyn99FOX', full_name: 'Brooklyn 99', path: '/brooklynninenine'} %>
+<% p[:janethevirgin] = {image: 'CWJaneTheVirgin', full_name: 'Jane The Virgin', path: '/janethevirgin'} %>
+<% p[:fargo] = {image: 'FargoFX', full_name: 'Fargo', path: '/fargo'} %>
+<% p[:saturdaynightlive] = {image: 'nbcsnl', full_name: 'Saturday Night Live', path: '/saturdaynightlive'} %>
+<% p[:mrrobot] = {image: 'whoismrrobot', full_name: 'Mr. Robot', path: '/mrrobot'} %>
+<% p[:newgirl] = {image: 'NewGirlonFOX', full_name: 'New Girl', path: '/newgirl'} %>
+<% p[:scorpion] = {image: 'ScorpionCBS', full_name: 'Scorpion', path: '/scorpion'} %>
+<% p[:modernfamily] = {image: 'ModernFam', full_name: 'Modern Family', path: '/modernfamily'} %>
+<% p[:themindyproject] = {image: 'TheMindyProject', full_name: 'The Mindy Project', path: '/themindyproject'} %>
+
+
+###################SPORTS########################
+<% p[:realmadrid] = {image: 'realmadrid', full_name: 'Real Madrid', path: '/realmadrid'} %>
+<% p[:dallascowboys] = {image: 'dallascowboys', full_name: 'Dallas Cowboys', path: '/dallascowboys'} %>
+<% p[:newyorkyankees] = {image: 'Yankees', full_name: 'New York Yankees', path: '/newyorkyankees'} %>
+<% p[:barcelona] = {image: 'FCBarcelona', full_name: 'Barcelona', path: '/barcelona'} %>
+<% p[:manchesterunited] = {image: 'ManUtd', full_name: 'Manchester United', path: '/manchesterunited'} %>
+<% p[:losangeleslakers] = {image: 'Lakers', full_name: 'Los Angeles Lakers', path: '/losangeleslakers'} %>
+<% p[:newenglandpatriots] = {image: 'Patriots', full_name: 'New England Patriots', path: '/newenglandpatriots'} %>
+<% p[:newyorkknicks] = {image: 'nyknicks', full_name: 'New York KNicks', path: 'newyorkknicks'} %>
+<% p[:losangelesdodgers] = {image: 'Dodgers', full_name: 'Los Angeles Dodgers', path: '/losangelesdodgers'} %>
+<% p[:washingtonredskins] = {image: 'Redskins', full_name: 'Washington Redskins', path: '/washingtonredskins'} %>
+<% p[:bayernmunich] = {image: 'FCBayern', full_name: 'Bayern Munich', path: '/bayernmunich'} %>
+<% p[:bostonredsox] = {image: 'RedSox', full_name: 'Boston Red Sox', path: '/bostonredsox'} %>
+<% p[:newyorkgiants] = {image: 'Giants', full_name: 'New York Giants', path: '/newyorkgiants'} %>
+<% p[:chicagobulls] = {image: 'chicagobulls', full_name: 'Chicago Bulls', path: '/chicagobulls'} %>
+<% p[:sanfranciscogiants] = {image: 'SFGiants', full_name: 'San Francisco Giants', path: '/sanfranciscogiants'} %>
+<% p[:houstontexans] = {image: 'HoustonTexans', full_name: 'Houston Texans', path: '/houstontexans'} %>
+<% p[:chicagocubs] = {image: 'Cubs', full_name: 'Chicago Cubs', path: '/chicagocubs'} %>
+<% p[:newyorkjets] = {image: 'nyjets', full_name: 'New York Jets', path: '/newyorkjets'} %>
+<% p[:philadelphiaeagles] = {image: 'Eagles', full_name: 'Philadelphia Eagles', path: '/philadelphiaeagles'} %>
+<% p[:bostonceltics] = {image: 'celtics', full_name: 'Boston Celtics', path: '/bostonceltics'} %>
+<% p[:chicagobears] = {image: 'ChicagoBears', full_name: 'Chicago Bears', path: '/chicagobears'} %>
+<% p[:losangelesclippers] = {image: 'LAClippers', full_name: 'Los Angeles Clippers', path: '/losangelesclippers'} %>
+<% p[:sanfrancisco49ers] = {image: '49ers', full_name: 'San Francisco 49ers', path: '/sanfrancisco49ers'} %>
+<% p[:baltimoreravens] = {image: 'Ravens', full_name: 'Baltimore Ravens', path: '/baltimoreravens'} %>
+<% p[:brooklynnets] = {image: 'BrooklynNets', full_name: 'Brooklyn Nets', path: '/brooklynnets'} %>
+<% p[:denverbroncos] = {image: 'Broncos', full_name: 'Denver Broncos', path: '/denverbroncos'} %>
+<% p[:indianapoliscolts] = {image: 'Colts', full_name: 'Indianapolis Colts', path: '/indianapoliscolts'} %>
+<% p[:stlouiscardinals] = {image: 'Cardinals', full_name: 'St. Louis Cardinals', path: '/stlouiscardinals'} %>
+<% p[:greenbaypackers] = {image: 'packers', full_name: 'Greenbay Packers', path: '/greenbaypackers'} %>
+<% p[:manchestercity] = {image: 'MCFC', full_name: 'Manchester City', path: '/manchestercity'} %>
+<% p[:chelsea] = {image: 'ChelseaFC', full_name: 'Chelsea', path: '/chelsea'} %>
+<% p[:ferrari] = {image: 'Ferrari', full_name: 'Ferrari', path: '/ferrari'} %>
+<% p[:newyorkmets] = {image: 'Mets', full_name: 'New York Mets', path: '/newyorkmets'} %>
+<% p[:pittsburghsteelers] = {image: 'steelers', full_name: 'Pittsburgh Steelers', path: '/pittsburghsteelers'} %>
+<% p[:seattleseahawks] = {image: 'Seahawks', full_name: 'Seattle Seahawks', path: '/seattleseahawks'} %>
+<% p[:arsenal] = {image: 'Arsenal', full_name: 'Arsenal', path: '/arsenal'} %>
+<% p[:goldenstatewarriors] = {image: 'warriors', full_name: 'Golden State Warriors', path: '/goldenstatewarriors'} %>
+<% p[:losangelesangelsofanaheim] = {image: 'Angels', full_name: 'Angels of Anaheim', path: '/losangelesangelsofanaheim'} %>
+<% p[:miamidolphins] = {image: 'MiamiDolphins', full_name: 'Miami Dolphins', path: '/miamidolphins'} %>
+<% p[:torontomapleleafs] = {image: 'MapleLeafs', full_name: 'Toronto Maple Leafs', path: '/torontomapleleafs'} %>
+<% p[:washingtonnationals] = {image: 'Nationals', full_name: 'Washington Nationals', path: '/washingtonnationals'} %>
+<% p[:carolinapanthers] = {image: 'Panthers', full_name: 'Carolina Panthers', path: '/carolinapanthers'} %>
+<% p[:houstonrockets] = {image: 'HoustonRockets', full_name: 'Houston Rockets', path: '/houstonrockets'} %>
+<% p[:philadelphiaphillies] = {image: 'Phillies', full_name: 'Philadelphia Phillies', path: '/philadelphiaphillies'} %>
+<% p[:tampabaybuccaneers] = {image: 'TBBuccaneers', full_name: 'Tampa Bay Buccaneers', path: '/tampabaybuccaneers'} %>
+<% p[:texasrangers] = {image: 'Rangers', full_name: 'Texas Rangers', path: '/texasrangers'} %>
+<% p[:miamiheat] = {image: 'MiamiHEAT', full_name: 'Miami Heat', path: '/miamiheat'} %>
+<% p[:tennesseetitans] = {image: 'Titans', full_name: 'Tennessee Titans', path: '/tennesseetitans'} %>
+<% p[:atlantabraves] = {image: 'Braves', full_name: 'Atlanta Braves', path: '/atlantabraves'} %>
+<% p[:minnesotavikings] = {image: 'Vikings', full_name: 'Minnesota Vikings', path: '/minnesotavikings'} %>
+<% p[:arizonacardinals] = {image: 'AZCardinals', full_name: 'Arizona Cardinals', path: '/arizonacardinals'} %>
+
+
+
+
+###################MUSIC###################
+
+<% p[:onedirection] = {image: 'onedirection', full_name: 'One Direction', path: '/onedirection'} %>
+<% p[:katyperrymusic] = {image: 'katyperry', full_name: 'Katy Perry', path: '/katyperrymusic'} %>
+<% p[:beyoncemusic] = {image: 'Beyonce', full_name: 'Beyonce', path: '/beyoncemusic'} %>
+<% p[:taylorswiftmusic] = {image: 'taylorswift13', full_name: 'Taylor Swift', path: '/taylorswiftmusic'} %>
+<% p[:justintimberlakemusic] = {image: 'jtimberlake', full_name: 'Justin Timberlake', path: '/justintimberlakemusic'} %>
+<% p[:iggyazalea] = {image: 'IGGYAZALEA', full_name: 'Iggy Azalea', path: '/iggyazalea'} %>
+<% p[:arianagrandemusic] = {image: 'ArianaGrande', full_name: 'Ariana Grande', path: '/arianagrandemusic'} %>
+<% p[:mileycyrus] = {image: 'MileyCyrus', full_name: 'Miley Cyrus', path: '/mileycyrus'} %>
+<% p[:pharrelwilliams] = {image: 'Pharrell', full_name: 'Pharrell Williams', path: '/pharrelwilliams'} %>
+<% p[:eminem] = {image: 'Eminem', full_name: 'Eminem', path: '/eminem'} %>
+<% p[:lorde] = {image: 'lordemusic', full_name: 'Lorde', path: '/lorde'} %>
+<% p[:lukebryan] = {image: 'LukeBryanOnline', full_name: 'Luke Bryan', path: '/lukebryan'} %>
+<% p[:samsmith] = {image: 'samsmithworld', full_name: 'Sam Smith', path: '/samsmith'} %>
+<% p[:johnlegend] = {image: 'johnlegend', full_name: 'John Legend', path: '/johnlegend'} %>
+<% p[:onerepublic] = {image: 'OneRepublic', full_name: 'One Republic', path: '/onerepublic'} %>
+<% p[:drake] = {image: 'Drake', full_name: 'Drake', path: '/drake'} %>
+<% p[:jasonderulo] = {image: 'jasonderulo', full_name: 'Jason Derulo', path: '/jasonderulo'} %>
+<% p[:justinbieber] = {image: 'justinbieber', full_name: 'Justin Bieber', path: '/justinbieber'} %>
+<% p[:imaginedragons] = {image: 'imaginedragons', full_name: 'Imagine Dragons', path: '/imaginedragons'} %>
+<% p[:floridageorgialine] = {image: 'FLAGALine', full_name: 'Florida Georgia Line', path: '/floridageorgialine'} %>
+<% p[:nickiminajmusic] = {image: 'NICKIMINAJ', full_name: 'Nicki Minaj', path: '/nickiminajmusic'} %>
+<% p[:secondsofsummer] = {image: '5SOS', full_name: '5 Seconds of Summer', path: '/secondsofsummer'} %>
+<% p[:ladygagamusic] = {image: 'ladygaga', full_name: 'Lady Gaga', path: '/ladygagamusic'} %>
+<% p[:pitbull] = {image: 'pitbull', full_name: 'Pitbull', path: '/pitbull'} %>
+<% p[:brunomarsmusic] = {image: 'BrunoMars', full_name: 'Bruno Mars', path: '/brunomarsmusic'} %>
+<% p[:jasonaldean] = {image: 'Jason_Aldean', full_name: 'Jason Aldean', path: '/jasonaldean'} %>
+<% p[:maroon5] = {image: 'maroon5', full_name: 'Maroon 5', path: '/maroon5'} %>
+<% p[:chrisbrown] = {image: 'chrisbrown', full_name: 'Chris Brown', path: '/chrisbrown'} %>
+<% p[:meghantrainor] = {image: 'Meghan_Trainor', full_name: 'Meghan Trainor', path: '/meghantrainor'} %>
+<% p[:bastille] = {image: 'bastilledan', full_name: 'Bastille', path: '/bastille'} %>
+<% p[:avicii] = {image: 'Avicii', full_name: 'Avicii', path: '/avicii'} %>
+<% p[:magic] = {image: 'ournameisMAGIC', full_name: 'Magic!', path: '/magic'} %>
+<% p[:demilovatomusic] = {image: 'ddlovato', full_name: 'Demi Lovato', path: '/demilovatomusic'} %>
+<% p[:blakeshelton] = {image: 'blakeshelton', full_name: 'Blake Shelton', path: '/blakeshelton'} %>
+<% p[:coldplay] = {image: 'coldplay', full_name: 'Coldplay', path: '/coldplay'} %>
+<% p[:charlixcx] = {image: 'charli_xcx', full_name: 'Charli XCX', path: '/charlixcx'} %>
+<% p[:nicoandvinz] = {image: 'NicoandVinz', full_name: 'Nico & Vinz', path: '/nicoandvinz'} %>
+<% p[:therollingstones] = {image: 'RollingStones', full_name: 'The Rolling Stones', path: '/therollingstones'} %>
+<% p[:shakiramusic] = {image: 'shakira', full_name: 'Shakira', path: '/shakiramusic'} %>
+<% p[:passenger] = {image: 'passengermusic', full_name: 'Passenger', path: '/passenger'} %>
+<% p[:brantleygilbert] = {image: 'BrantleyGilbert', full_name: 'Brantley Gilbert', path: '/brantleygilbert'} %>
+<% p[:elliegoulding] = {image: 'elliegoulding', full_name: 'Ellie Goulding', path: '/elliegoulding'} %>
+<% p[:ericchurch] = {image: 'ericchurch', full_name: 'Eric Church', path: '/ericchurch'} %>
+<% p[:idinamenzel] = {image: 'idinamenzel', full_name: 'Idina Menzel', path: '/idinamenzel'} %>
+<% p[:selenagomezmusic] = {image: 'selenagomez', full_name: 'Selena Gomez', path: '/selenagomezmusic'} %>
+<% p[:calvinharris] = {image: 'CalvinHarris', full_name: 'Calvin Harris', path: '/calvinharris'} %>
+<% p[:michaelbuble] = {image: 'michaelbuble', full_name: 'Michael Buble', path: '/michaelbuble'} %>
+<% p[:michaeljackson] = {image: 'michaeljackson', full_name: 'Michael Jackson', path: '/michaeljackson'} %>
+<% p[:britneyspearsmusic] = {image: 'britneyspears', full_name: 'Britney Spears', path: '/britneyspearsmusic'} %>
+<% p[:kellyclarkson] = {image: 'kelly_clarkson', full_name: 'Kelly Clarkson', path: '/kellyclarkson'} %>
+<% p[:christinaaguileramusic] = {image: 'xtina', full_name: 'Christinaa Guilera', path: '/christinaaguileramusic'} %>
+
+
+
+
+
+
+
+#####################FOOD#########################
+
+<% p[:allrecipes] = {image: 'Allrecipes', full_name: 'All Recipes', path: '/allrecipes'} %>
+<% p[:cookingdotcom] = {image: 'CookingCom', full_name: 'Cooking.com', path: '/cookingdotcom'} %>
+<% p[:foodnetwork] = {image: 'FoodNetwork', full_name: 'Food Network', path: '/foodnetworkchannel'} %>
+<% p[:thekitchn] = {image: 'thekitchn', full_name: 'The Kitchn', path: '/thekitchn'} %>
+<% p[:opentable] = {image: 'OpenTable', full_name: 'Open Table', path: '/opentable'} %>
+<% p[:tasteofhome] = {image: 'tasteofhome', full_name: 'Taste Of Home', path: '/tasteofhome'} %>
+<% p[:epicurious] = {image: 'epicurious', full_name: 'Epicurious', path: '/epicurious'} %>
+<% p[:grubhub] = {image: 'GrubHub', full_name: 'Grub Hub', path: '/grubhub'} %>
+<% p[:seamless] = {image: 'Seamless', full_name: 'Seamless', path: '/seamless'} %>
+<% p[:yummly] = {image: 'yummly', full_name: 'Yummly', path: '/yummly'} %>
+<% p[:huffingtonpostfood] = {image: 'HuffPostFood', full_name: 'Huffington Post Food', path: '/huffingtonpostfood'} %>
+<% p[:fooddotcom] = {image: 'Fooddotcom', full_name: 'Food.com', path: '/fooddotcom'} %>
+<% p[:bonappetit] = {image: 'bonappetit', full_name: 'BonAppetit.com', path: '/bonappetit'} %>
+<% p[:weightwatchers] = {image: 'WeightWatchers', full_name: 'Weight Watchers', path: '/weightwatchers'} %>
+<% p[:foodandwine] = {image: 'FoodAndWineMag', full_name: 'Food And Wine', path: '/foodandwine'} %>
+<% p[:thechew] = {image: 'thechew', full_name: 'The Chew', path: '/thechew'} %>
+<% p[:americastestkitchen] = {image: 'TestKitchen', full_name: 'Americas Test Kitchen', path: '/americastestkitchen'} %>
+<% p[:ironchefamerica] = {image: 'IronChefAmerica', full_name: 'Iron Chef America', path: '/ironchefamerica'} %>
+
+
+
+
+
+
+
+
+####################Travel##################
+<% p[:drewbinsky] = {image: 'drewbinsky7', full_name: 'Drew Binsky', path: '/drewbinsky'} %>
+<% p[:budgettravel] = {image: 'BudgetTravel', full_name: 'Budget Travel', path: '/budgettravel'} %>
+<% p[:afar] = {image: 'AFARmedia', full_name: 'Afar', path: '/afar'} %>
+<% p[:travelandleisure] = {image: 'TravelLeisure', full_name: 'Travel and Leisure', path: '/travelandleisure'} %>
+<% p[:condenasttraveler] = {image: 'CNTraveler', full_name: 'Condenast Traveler', path: '/condenasttraveler'} %>
+<% p[:geographical] = {image: 'GeographicalMag', full_name: 'Geographical', path: '/geographical'} %>
+<% p[:nationalgeographic] = {image: 'NatGeo', full_name: 'NatGeo', path: '/nationalgeographictravel'} %>
+<% p[:wanderlust] = {image: 'WanderlustFest', full_name: 'Wanderlust', path: '/wanderlust'} %>
+
+
+
+
+
+
+
+
+#######################Fashion#####################
+<% p[:armanifashion] = {image: 'armani', full_name: 'Armani', path: '/armanifashion'} %>
+<% p[:burberryfashion] = {image: 'Burberry', full_name: 'Burberry', path: '/burberryfashion'} %>
+<% p[:calvinkleinfashion] = {image: 'CalvinKlein', full_name: 'Calvin Klein', path: '/calvinkleinfashion'} %>
+<% p[:chanel] = {image: 'CHANEL', full_name: 'CHANEL', path: '/chanel'} %>
+<% p[:christiandior] = {image: 'Dior', full_name: 'Dior', path: '/christiandior'} %>
+<% p[:christianlouboutin] = {image: 'LouboutinWorld', full_name: 'Christian Louboutin', path: '/christianlouboutin'} %>
+<% p[:dolceandgabbana] = {image: 'dolcegabbana', full_name: 'Dolce and Gabbana', path: '/dolceandgabbana'} %>
+<% p[:dkny] = {image: 'dkny', full_name: 'DKNY', path: '/dkny'} %>
+<% p[:escada] = {image: 'ESCADA', full_name: 'ESCADA', path: '/escada'} %>
+<% p[:fendi] = {image: 'Fendi', full_name: 'Fendi', path: '/fendi'} %>
+<% p[:guccifashion] = {image: 'gucci', full_name: 'Gucci', path: '/guccifashion'} %>
+<% p[:prada] = {image: 'Prada', full_name: 'Prada', path: '/prada'} %>
+<% p[:hugobossfashion] = {image: 'HUGOBOSS', full_name: 'HUGO BOSS', path: '/hugobossfashion'} %>
+<% p[:johnvarvatos] = {image: 'johnvarvatos', full_name: 'John Varvatos', path: '/johnvarvatos'} %>
+<% p[:laperlalingerie] = {image: 'LaPerlaLingerie', full_name: 'La Perla Lingerie', path: '/laperlalingerie'} %>
+<% p[:louisvuitton] = {image: 'LouisVuitton', full_name: 'Louis Vuitton', path: '/louisvuitton'} %>
+<% p[:manoloblahnik] = {image: 'ManoloBlahnik', full_name: 'Manolo Blahnik', path: '/manoloblahnik'} %>
+<% p[:missoni] = {image: 'Missoni', full_name: 'Missoni', path: '/missoni'} %>
+<% p[:ralphlaurenfashion] = {image: 'RalphLauren', full_name: 'Ralph Lauren', path: '/ralphlaurenfashion'} %>
+<% p[:rolandmouret] = {image: 'RolandMouret', full_name: 'Roland Mouret', path: '/rolandmouret'} %>
+<% p[:stellamccartney] = {image: 'StellaMcCartney', full_name: 'Stella McCartney', path: '/stellamccartney'} %>
+<% p[:tomford] = {image: 'TOMFORD', full_name: 'TOM FORD', path: '/tomford'} %>
+<% p[:versace] = {image: 'Versace', full_name: 'Versace', path: '/versace'} %>
+<% p[:michaelkors] = {image: 'MichaelKors', full_name: 'Michael Kors', path: '/michaelkors'} %>
+
+
+
+
+
+
+
+########################YOUTUBERS##########################
+<% p[:tyleroakley] = {image: 'tyleroakley', full_name: 'Tyler Oakley', path: '/tyleroakley'} %>
+<% p[:troyesivan] = {image: 'troyesivan', full_name: 'Troye Sivan', path: '/troyesivan'} %>
+<% p[:zoella] = {image: 'ZoellaBeauty', full_name: 'Zoella', path: '/zoella'} %>
+<% p[:connorfranta] = {image: 'ConnorFranta', full_name: 'Connor Franta', path: '/connorfranta'} %>
+<% p[:ijustine] = {image: 'ijustine', full_name: 'I Justine', path: '/ijustine'} %>
+<% p[:glozell] = {image: 'GloZell', full_name: 'GloZell', path: '/glozell'} %>
+<% p[:jennamarbles] = {image: 'Jenna_Marbles', full_name: 'Jenna Marbles', path: '/jennamarbles'} %>
+<% p[:alfiedeyes] = {image: 'PointlessBlog', full_name: 'Alfie Deyes', path: '/alfiedeyes'} %>
+<% p[:shanedawson] = {image: 'shanedawson', full_name: 'Shane Dawson', path: '/shanedawson'} %>
+<% p[:joeygraceffa] = {image: 'JoeyGraceffa', full_name: 'Joey Graceffa', path: '/joeygraceffa'} %>
+<% p[:rebeccablack] = {image: 'MsRebeccaBlack', full_name: 'Rebecca Black', path: '/rebeccablack'} %>
+<% p[:pewdiepie] = {image: 'pewdiepie', full_name: 'PewDiePie', path: '/pewdiepie'} %>
+<% p[:smosh] = {image: 'smosh', full_name: 'Smosh', path: '/smosh'} %>
+<% p[:nigahiga] = {image: 'Niga_Higa', full_name: 'Niga Higa', path: '/nigahiga'} %>
+<% p[:tobuscus] = {image: 'Tobuscus', full_name: 'Tobuscus', path: '/tobuscus'} %>
+<% p[:sawyerhartman] = {image: 'SawyerHartman', full_name: 'Sawyer Hartman', path: '/sawyerhartman'} %>
+<% p[:annoyingorange] = {image: 'annoyingorange', full_name: 'Annoying Orange', path: '/annoyingorange'} %>
+<% p[:rhettandlink] = {image: 'rhettandlink', full_name: 'Rhett and Link', path: '/rhettandlink'} %>
+<% p[:itskingsleybitch] = {image: 'kingsleyyy', full_name: 'ItsKingsleyBitch', path: '/itskingsleybitch'} %>
+<% p[:jimchapman] = {image: 'JimsTweetings', full_name: 'Jim Chapman', path: '/jimchapman'} %>
+<% p[:danisnotonfire] = {image: 'danisnotonfire', full_name: 'Dan Is Not On Fire', path: '/danisnotonfire'} %>
+<% p[:kickthepj] = {image: 'kickthepj', full_name: 'KickThePj', path: '/kickthepj'} %>
+<% p[:catrific] = {image: 'catrific', full_name: 'Catrific', path: '/catrific'} %>
+<% p[:tayzonday] = {image: 'TayZonday', full_name: 'Tay Zonday', path: '/tayzonday'} %>
+<% p[:marcusbutler] = {image: 'MarcusButler', full_name: 'Marcus Butler', path: '/marcusbutler'} %>
+<% p[:benjamincook] = {image: 'benjamin_cook', full_name: 'Benjamin Cook', path: '/benjamincook'} %>
+<% p[:olgakay] = {image: 'OlgaKay', full_name: 'Olga Kay', path: '/olgakay'} %>
+<% p[:hannahhart] = {image: 'harto', full_name: 'Hannah Hart', path: '/hannahhart'} %>
+<% p[:anthonypadilla] = {image: 'smoshanthony', full_name: 'Anthony Padilla', path: '/anthonypadilla'} %>
+<% p[:juliansmith] = {image: 'JulianWasHere', full_name: 'Julian Smith', path: '/juliansmith'} %>
+<% p[:amazingphil] = {image: 'AmazingPhil', full_name: 'Amazing Phil', path: '/amazingphil'} %>
+<% p[:sampepper] = {image: 'sampepper', full_name: 'Sam Pepper', path: '/sampepper'} %>
+
+
+
+
+<% this_is_it = Hash[p.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count}] %>
 <div class="Alignthisorelse">
-  <div class="container thingy">
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("NatGeo.jpg", size: "150x150", title: "National Geographic"), nationalgeographic_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("people.jpg", size: "150x150", title: "People Magazine"), peoplemagazine_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("TIME.jpg", size: "150x150", title: "TIME Magazine"), timemagazine_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("sinow.jpg", size: "150x150", title: "Sports Illustrated"), sportsillustrated_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("HBO.jpg", size: "150x150", title: "HBO"), hbo_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1  features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Cosmopolitan.jpg", size: "150x150", title: "Cosmopolitan"), cosmopolitan_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("redbull.jpg", size: "150x150", title: "Redbull"), redbull_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("espn.jpg", size: "150x150", title: "ESPN"), espn_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("usweekly.jpg", size: "150x150", title: "US Weekly"), usweekly_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("SHO_Network.jpg", size: "150x150", title: "Showtime"), showtime_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Newsweek.jpg", size: "150x150", title: "Newsweek"), newsweek_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("EW.jpg", size: "150x150", title: "Entertainment Weekly"), entertainmentweekly_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("PopSci.jpg", size: "150x150", title: "Popular Science"), popularscience_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("vougemagazine.jpg", size: "150x150", title: "Vogue"), vogue_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Marvel.jpg", size: "150x150", title: "Marvel"), marvel_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("business.jpg", size: "150x150", title: "Bloomberg"), bloomberg_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("GQMagazine.jpg", size: "150x150", title: "GQMagazine"), gq_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("hgtv.jpg", size: "150x150", title: "HGTV"), hgtv_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Forbes.jpg", size: "150x150", title: "Forbes"), forbes_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("SyfyTV.jpg", size: "150x150", title: "Syfy"), syfy_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("FortuneMagazine.jpg", size: "150x150", title: "Fortune Magazine"), fortune_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("wired.jpg", size: "150x150", title: "Wired"), wired_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Enews.jpg", size: "150x150", title: "E! News"), enews_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("google.jpg", size: "150x150", title: "Google"), google_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("netflix.jpg", size: "150x150", title: "Netflix"), netflix_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CNN.jpg", size: "150x150", title: "CNN"), cnn_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("TEDTalks.jpg", size: "150x150", title: "TED Talks"), tedtalks_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("TeslaMotors.jpg", size: "150x150", title: "Tesla Mortos"), tesla_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("VictoriasSecret.jpg", size: "150x150", title: "Victoria's Secret"), victoriassecret_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Buzzfeed.jpg", size: "150x150", title: "Buzzfeed"), buzzfeed_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("reddit.jpg", size: "150x150", title: "Reddit"), reddit_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CollegeHumor.jpg", size: "150x150", title: "College Humor"), collegehumor_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Microsoft.jpg", size: "150x150", title: "Microsoft"), microsoft_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Nike.jpg", size: "150x150", title: "Nike"), nike_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("IMDb.jpg", size: "150x150", title: "IMDb"), imdb_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Vevo.jpg", size: "150x150", title: "Vevo"), vevo_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("starwars.jpg", size: "150x150", title: "Star Wars"), starwars_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("NASA.jpg", size: "150x150", title: "NASA"), nasa_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Bravotv.jpg", size: "150x150", title: "Bravo"), bravo_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("MTV.jpg", size: "150x150", title: "MTV"), mtv_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("GolfDigest.jpg", size: "150x150", title: "Golf Digest"), golfdigest_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("NBA.jpg", size: "150x150", title: "NBA"), nba_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("NFL.jpg", size: "150x150", title: "NFL"), nfl_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("MLB.jpg", size: "150x150", title: "MLB"), mlb_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("NHL.jpg", size: "150x150", title: "NHL"), nhl_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("TiffanyandCo.jpg", size: "150x150", title: "Tiffany & Co"), tiffany_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Inc.jpg", size: "150x150", title: "Inc. Magazine"), inc_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("makerbot.jpg", size: "150x150", title: "Makerbot"), makerbot_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Olympics.jpg", size: "150x150", title: "Olympics"), olympics_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("TMZ.jpg", size: "150x150", title: "TMZ"), tmz_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Playboy.jpg", size: "150x150", title: "Playboy"), playboy_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("MaximMag.jpg", size: "150x150", title: "Maxim"), maxim_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("ELLEmagazine.jpg", size: "150x150", title: "Elle Magazine"), elle_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("VanityFair.jpg", size: "150x150", title: "Vanity Fair"), vanityfair_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("brides.jpg", size: "150x150", title: "Brides"), brides_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("USATODAY.jpg", size: "150x150", title: "USA Today"), usatoday_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("ScienceChannel.jpg", size: "150x150", title: "Science Channel"), sciencechannel_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("FIFAWorldCup.jpg", size: "150x150", title: "FIFA"), fifa_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("gucci.jpg", size: "150x150", title: "Gucci"), gucci_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("hm.jpg", size: "150x150", title: "H&M"), handm_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("generalelectric.jpg", size: "150x150", title: "General Electric"), generalelectric_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("IBM.jpg", size: "150x150", title: "IBM"), ibm_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("armani.jpg", size: "150x150", title: "Armani"), armani_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("FOXSports.jpg", size: "150x150", title: "Fox Sports"), foxsports_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CNBC.jpg", size: "150x150", title: "CNBC"), cnbc_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("FoodNetwork.jpg", size: "150x150", title: "Food Network"), foodnetwork_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("amazon.jpg", size: "150x150", title: "Amazon"), amazon_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Sony.jpg", size: "150x150", title: "Sony"), sony_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Gap.jpg", size: "150x150", title: "Gap"), gap_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("HISTORY.jpg", size: "150x150", title: "History"), history_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("RalphLauren.jpg", size: "150x150", title: "Ralph Lauren"), ralphlauren_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("TLC.jpg", size: "150x150", title: "TLC"), tlc_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Xbox.jpg", size: "150x150", title: "Xbox"), xbox_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("PlayStation.jpg", size: "150x150", title: "PlayStation"), playstation_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Nordstrom.jpg", size: "150x150", title: "Nordstrom"), nordstrom_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Entrepreneur.jpg", size: "150x150", title: "Entrepreneur"), entrepreneur_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("BananaRepublic.jpg", size: "150x150", title: "Banana Republic"), bananarepublic_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CalvinKlein.jpg", size: "150x150", title: "Calvin Klein"), calvinklein_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("UnderArmour.jpg", size: "150x150", title: "Under Armour"), underarmour_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("facebook.jpg", size: "150x150", title: "Facebook"), facebook_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Burberry.jpg", size: "150x150", title: "Burberry"), burberry_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("ABCNetwork.jpg", size: "150x150", title: "ABC"), abc_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("nbc.jpg", size: "150x150", title: "NBC"), nbc_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("cbs.jpg", size: "150x150", title: "CBS"), cbs_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CW_network.jpg", size: "150x150", title: "The CW"), thecw_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("HUGOBOSS.jpg", size: "150x150", title: "Hugo Boss"), hugoboss_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CBSNews.jpg", size: "150x150", title: "CBS News"), cbsnews_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("FoxNews.jpg", size: "150x150", title: "Fox News"), foxnews_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("NBCNews.jpg", size: "150x150", title: "NBC News"), nbcnews_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("ABC.jpg", size: "150x150", title: "ABC News"), abcnews_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("CBSSports.jpg", size: "150x150", title: "CBS Sports"), cbssports_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("FOXTV.jpg", size: "150x150", title: "Fox"), fox_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Uber.jpg", size: "150x150", title: "Uber"), uber_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Forever21.jpg", size: "150x150", title: "Forever 21"), forever21_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("MLS.jpg", size: "150x150", title: "MLS"), mls_path %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("UrbanOutfitters.jpg", size: "150x150", title: "Urban Outfitters"), urbanoutfitters_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("Allure_magazine.jpg", size: "150x150", title: "Allure"), allure_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("wmag.jpg", size: "150x150", title: "W Magazine"), wmagazine_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInDown">
-        <div class="features-box-icon">
-          <%= link_to image_tag("SCENE.jpg", size: "150x150", title: "The Scene"), thescene_path %>
-        </div>
-      </div>
-      <div class="col-sm-2 features-box wow fadeInUp">
-        <div class="features-box-icon">
-          <%= link_to image_tag("YouTube.jpg", size: "150x150", title: "YouTube"), youtube_path %>
-        </div>
-      </div>
-    </div>
+  <div class="container">
+    <% this_is_it.each do |key, val| %>
+      <div class="row">
+        <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
+          <div class="features-box-icon">
+            <%= link_to image_tag("#{val[:image]}.jpg", size: "150x150", title: "#{val[:full_name]}"), "#{val[:path]}" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-sm-2 col-sm-offset-1 features-box wow fadeInUp">
         <div class="features-box-icon">
@@ -613,5 +469,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

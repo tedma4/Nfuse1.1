@@ -1710,7 +1710,7 @@ class PagesController < ApplicationController
   def theflash
    @compname = 'The Flash'
    @comp     = 'CW_TheFlash'
-   @incomp   = 'thecwizombie'
+   @incomp   = 'cwtheflash'
    @comp_url = 'https://www.youtube.com/user/barryallentheflash1'
    page     = Biz::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
