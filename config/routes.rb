@@ -121,6 +121,10 @@ Rails.application.routes.draw do
 
   #COMPANIES
   get'/testing_the_new_sortable_pages_per_user_for_some_category', to: 'pages#test_page'
+  get'/my_top_50', to: 'pages#mytop50'
+  get'/most_popular', to: 'pages#mostpopular'
+  get'/random', to: 'pages#random'
+  get'/trending', to: 'pages#trending'
   get '/businessconnector', to: 'pages#business_connector'
   get '/wired', to: 'pages#wired'
   get '/nationalgeographic', to: 'pages#national_geographic'

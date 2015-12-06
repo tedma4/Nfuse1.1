@@ -62,6 +62,10 @@ class PagesController < ApplicationController
   def food_connector; end
   def travel_connector; end
   def test_page; end
+  def mytop50; end
+  def mostpopular; end
+  def random; end
+  def trending; end
 
   def wired
    #set_page
