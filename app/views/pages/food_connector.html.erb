@@ -5,24 +5,24 @@
   }
 </style>
 
-<% p = {} %>
-<% p[:allrecipes] = {image: 'Allrecipes', full_name: 'All Recipes', path: '/allrecipes'} %>
-<% p[:cookingdotcom] = {image: 'CookingCom', full_name: 'Cooking.com', path: '/cookingdotcom'} %>
-<% p[:foodnetwork] = {image: 'FoodNetwork', full_name: 'Food Network', path: '/foodnetworkchannel'} %>
-<% p[:thekitchn] = {image: 'thekitchn', full_name: 'The Kitchn', path: '/thekitchn'} %>
-<% p[:opentable] = {image: 'OpenTable', full_name: 'Open Table', path: '/opentable'} %>
-<% p[:tasteofhome] = {image: 'tasteofhome', full_name: 'Taste Of Home', path: '/tasteofhome'} %>
-<% p[:epicurious] = {image: 'epicurious', full_name: 'Epicurious', path: '/epicurious'} %>
-<% p[:grubhub] = {image: 'GrubHub', full_name: 'Grub Hub', path: '/grubhub'} %>
-<% p[:seamless] = {image: 'Seamless', full_name: 'Seamless', path: '/seamless'} %>
-<% p[:yummly] = {image: 'yummly', full_name: 'Yummly', path: '/yummly'} %>
-<% p[:huffingtonpostfood] = {image: 'HuffPostFood', full_name: 'Huffington Post Food', path: '/huffingtonpostfood'} %>
-<% p[:fooddotcom] = {image: 'Fooddotcom', full_name: 'Food.com', path: '/fooddotcom'} %>
-<% p[:bonappetit] = {image: 'bonappetit', full_name: 'BonAppetit.com', path: '/bonappetit'} %>
-<% p[:weightwatchers] = {image: 'WeightWatchers', full_name: 'Weight Watchers', path: '/weightwatchers'} %>
-<% p[:foodandwine] = {image: 'FoodAndWineMag', full_name: 'Food And Wine', path: '/foodandwine'} %>
-<% p[:thechew] = {image: 'thechew', full_name: 'The Chew', path: '/thechew'} %>
-<% p[:americastestkitchen] = {image: 'TestKitchen', full_name: 'Americas Test Kitchen', path: '/americastestkitchen'} %>
-<% p[:ironchefamerica] = {image: 'IronChefAmerica', full_name: 'Iron Chef America', path: '/ironchefamerica'} %>
+<% m = {} %>
+<% m[:allrecipes] = {image: 'Allrecipes', full_name: 'All Recipes', path: '/allrecipes'} %>
+<% m[:cookingdotcom] = {image: 'CookingCom', full_name: 'Cooking.com', path: '/cookingdotcom'} %>
+<% m[:foodnetwork] = {image: 'FoodNetwork', full_name: 'Food Network', path: '/foodnetworkchannel'} %>
+<% m[:thekitchn] = {image: 'thekitchn', full_name: 'The Kitchn', path: '/thekitchn'} %>
+<% m[:opentable] = {image: 'OpenTable', full_name: 'Open Table', path: '/opentable'} %>
+<% m[:tasteofhome] = {image: 'tasteofhome', full_name: 'Taste Of Home', path: '/tasteofhome'} %>
+<% m[:epicurious] = {image: 'epicurious', full_name: 'Epicurious', path: '/epicurious'} %>
+<% m[:grubhub] = {image: 'GrubHub', full_name: 'Grub Hub', path: '/grubhub'} %>
+<% m[:seamless] = {image: 'Seamless', full_name: 'Seamless', path: '/seamless'} %>
+<% m[:yummly] = {image: 'yummly', full_name: 'Yummly', path: '/yummly'} %>
+<% m[:huffingtonpostfood] = {image: 'HuffPostFood', full_name: 'Huffington Post Food', path: '/huffingtonpostfood'} %>
+<% m[:fooddotcom] = {image: 'Fooddotcom', full_name: 'Food.com', path: '/fooddotcom'} %>
+<% m[:bonappetit] = {image: 'bonappetit', full_name: 'BonAppetit.com', path: '/bonappetit'} %>
+<% m[:weightwatchers] = {image: 'WeightWatchers', full_name: 'Weight Watchers', path: '/weightwatchers'} %>
+<% m[:foodandwine] = {image: 'FoodAndWineMag', full_name: 'Food And Wine', path: '/foodandwine'} %>
+<% m[:thechew] = {image: 'thechew', full_name: 'The Chew', path: '/thechew'} %>
+<% m[:americastestkitchen] = {image: 'TestKitchen', full_name: 'Americas Test Kitchen', path: '/americastestkitchen'} %>
+<% m[:ironchefamerica] = {image: 'IronChefAmerica', full_name: 'Iron Chef America', path: '/ironchefamerica'} %>
 
-<%= render partial: 'pages/sort_loop_thingy', locals: {p: p} %>
+<%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>

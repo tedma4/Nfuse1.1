@@ -62,7 +62,40 @@ class PagesController < ApplicationController
   def music_connector; end
   def food_connector; end
   def travel_connector; end
-  def test_page; end
+  def test_page
+    m = {}
+    m[:connorfranta] = {image: 'ConnorFranta', full_name: 'Connor Franta', path: '/connorfranta'} 
+    m[:ijustine] = {image: 'ijustine', full_name: 'I Justine', path: '/ijustine'} 
+    m[:glozell] = {image: 'GloZell', full_name: 'GloZell', path: '/glozell'} 
+    m[:jennamarbles] = {image: 'Jenna_Marbles', full_name: 'Jenna Marbles', path: '/jennamarbles'} 
+    m[:alfiedeyes] = {image: 'PointlessBlog', full_name: 'Alfie Deyes', path: '/alfiedeyes'} 
+    m[:shanedawson] = {image: 'shanedawson', full_name: 'Shane Dawson', path: '/shanedawson'} 
+    m[:joeygraceffa] = {image: 'JoeyGraceffa', full_name: 'Joey Graceffa', path: '/joeygraceffa'} 
+    m[:rebeccablack] = {image: 'MsRebeccaBlack', full_name: 'Rebecca Black', path: '/rebeccablack'} 
+    m[:pewdiepie] = {image: 'pewdiepie', full_name: 'PewDiePie', path: '/pewdiepie'} 
+    m[:smosh] = {image: 'smosh', full_name: 'Smosh', path: '/smosh'} 
+    m[:nigahiga] = {image: 'Niga_Higa', full_name: 'Niga Higa', path: '/nigahiga'} 
+    m[:tobuscus] = {image: 'Tobuscus', full_name: 'Tobuscus', path: '/tobuscus'} 
+    m[:sawyerhartman] = {image: 'SawyerHartman', full_name: 'Sawyer Hartman', path: '/sawyerhartman'} 
+    m[:annoyingorange] = {image: 'annoyingorange', full_name: 'Annoying Orange', path: '/annoyingorange'} 
+    m[:rhettandlink] = {image: 'rhettandlink', full_name: 'Rhett and Link', path: '/rhettandlink'} 
+    m[:itskingsleybitch] = {image: 'kingsleyyy', full_name: 'ItsKingsleyBitch', path: '/itskingsleybitch'} 
+    m[:jimchapman] = {image: 'JimsTweetings', full_name: 'Jim Chapman', path: '/jimchapman'} 
+    m[:danisnotonfire] = {image: 'danisnotonfire', full_name: 'Dan Is Not On Fire', path: '/danisnotonfire'} 
+    m[:kickthepj] = {image: 'kickthepj', full_name: 'KickThePj', path: '/kickthepj'} 
+    m[:catrific] = {image: 'catrific', full_name: 'Catrific', path: '/catrific'} 
+    m[:tayzonday] = {image: 'TayZonday', full_name: 'Tay Zonday', path: '/tayzonday'} 
+    m[:marcusbutler] = {image: 'MarcusButler', full_name: 'Marcus Butler', path: '/marcusbutler'} 
+    m[:benjamincook] = {image: 'benjamin_cook', full_name: 'Benjamin Cook', path: '/benjamincook'} 
+    m[:olgakay] = {image: 'OlgaKay', full_name: 'Olga Kay', path: '/olgakay'} 
+    m[:hannahhart] = {image: 'harto', full_name: 'Hannah Hart', path: '/hannahhart'} 
+    m[:anthonypadilla] = {image: 'smoshanthony', full_name: 'Anthony Padilla', path: '/anthonypadilla'} 
+    m[:juliansmith] = {image: 'JulianWasHere', full_name: 'Julian Smith', path: '/juliansmith'} 
+    m[:amazingphil] = {image: 'AmazingPhil', full_name: 'Amazing Phil', path: '/amazingphil'} 
+    m[:sampepper] = {image: 'sampepper', full_name: 'Sam Pepper', path: '/sampepper'} 
+    this_is_it = Hash[m.sort_by {|a, b| -Impression.where(action_name: a.to_s).count}]
+    @test_page = Kaminari.paginate_array(m.to_a)
+  end
   def mytop50; end
   def mostpopular; end
   def random; end

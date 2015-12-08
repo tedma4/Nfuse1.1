@@ -1,4 +1,4 @@
-<% this_is_it = Hash[p.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count}] %>
+<% this_is_it = Hash[m.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count}] %>
 <div class="containerThingy">
   <div id="masonJar" class="center clearfix masonJar">
     <% this_is_it.first(50).each do |key, val| %>
