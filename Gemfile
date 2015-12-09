@@ -37,7 +37,7 @@ gem 'cocaine', '0.5.5'
 gem 'omniauth-facebook', '~> 1.4.1'
 #This allows the use of the twitter oauth
 gem 'omniauth-twitter', '~> 1.0.1'
-#gem 'omniauth-pinterest', '~> 1.0.0'
+gem 'omniauth-pinterest', '~> 1.0.0'
 gem 'omniauth-vimeo'
 # gem 'omniauth-pinterest'
 gem 'omniauth-flickr'

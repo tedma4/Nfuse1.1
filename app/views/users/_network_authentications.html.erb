@@ -115,21 +115,21 @@
         </div>
         <div class="row">
           <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-            <!-- flickr -->
+            <!-- pinterest -->
             <div class="features-box-icon">
-             <%= link_to image_tag("flickrblue.fw.png", size: "60x60"), "/auth/flickr?origin=#{request.original_url}" %>
+             <%= link_to image_tag("pinterestblue.fw.png", size: "60x60"), "/auth/pinterest?origin=#{request.original_url}" %>
             </div>
-            <h3>Flickr</h3>
-            <p>Share your Flickr posts.</p>
-            <% if current_user && user_has_provider?('flickr') %>
+            <h3>pinterest</h3>
+            <p>Share your pinterest posts.</p>
+            <% if current_user && user_has_provider?('pinterest') %>
               <p class="nfused_network">
-              <%= link_to "You've Nfused Flickr", "/auth/flickr?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'flickr') %>
+              <%= link_to "You've Nfused pinterest", "/auth/pinterest?origin=#{request.original_url}" %> | 
+              <%= link_to "Remove Network", remove_token_path(provider: 'pinterest') %>
               </p>
             <% else %>
-              <%= link_to "Nfuse Flickr", "/auth/flickr?origin=#{request.original_url}" %>
+              <%= link_to "Nfuse pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
             <% end %>
-            <!-- flickr -->
+            <!-- pinterest -->
           </div>
           <div class="col-sm-3 features-box wow fadeInDown">
             <% if controller_name == 'callback_links' %>

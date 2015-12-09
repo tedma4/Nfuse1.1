@@ -104,7 +104,7 @@ Rails.application.routes.draw do
      get '/google_oauth2/callback', to: 'registrations/youtube#create'
      get '/gplus/callback',         to: 'registrations/gplus#create'
      get '/vimeo/callback',         to: 'registrations/vimeo#create'
-     # get '/pinterest/callback',     to: 'registrations/pinterest#create'
+     get '/pinterest/callback',     to: 'registrations/pinterest#create'
      get '/flickr/callback',        to: 'registrations/flickr#create'
      get '/tumblr/callback',        to: 'registrations/tumblr#create'
    end
