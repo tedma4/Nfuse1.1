@@ -20,7 +20,7 @@ gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem "paperclip", "3.5.3"
+gem 'paperclip', "3.5.3"
 #gem 'panda'
 # Handles video upload
 gem 'paperclip-av-transcoder', "0.6.4"
@@ -30,16 +30,15 @@ gem 'wicked'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
 gem 'typhoeus', '~> 0.6.8'
-gem "httparty"
+gem 'httparty'
 gem 'cocaine', '0.5.5'
 #This allows the use of the facebook oauth
 # gem 'omniauth', '1.1.1'
 gem 'omniauth-facebook', '~> 1.4.1'
 #This allows the use of the twitter oauth
 gem 'omniauth-twitter', '~> 1.0.1'
-gem 'omniauth-pinterest', '~> 1.0.0'
+gem 'omniauth-pinterest', '~> 2.0.1'
 gem 'omniauth-vimeo'
-# gem 'omniauth-pinterest'
 gem 'omniauth-flickr'
 gem 'omniauth-tumblr'
 #This allows the use of the facebook graph api
@@ -72,7 +71,7 @@ gem 'seed-fu', '~> 2.3'
 # gem 'private_pub'
 gem 'thin'
 gem 'auto_html'
-gem "faker", "~> 1.4.3"
+gem 'faker', "~> 1.4.3"
 gem 'public_activity', '1.4.2'
 
 group :development, :test do
@@ -95,10 +94,10 @@ group :test do
   # gem 'wdm', '0.1.0'
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers', '~> 2.6.0', require: false
-  gem "capybara", "~> 2.4.3"
-  gem "database_cleaner", "~> 1.3.0"
-  gem "launchy", "~> 2.4.2"
-  gem "selenium-webdriver", "~> 2.43.0"
+  gem 'capybara', '~> 2.4.3'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'launchy', '~> 2.4.2'
+  gem 'selenium-webdriver', '~> 2.43.0'
   gem 'pry'
   gem 'pry-rails'
 end
