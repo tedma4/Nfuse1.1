@@ -37,9 +37,9 @@ class Providers
     @user.posts.where(provider: 'nfuse').count > 0 
   end
 
-  # def pinterest?
-  #   @user.tokens.where(provider: 'pinterest').count > 0
-  # end
+  def pinterest?
+    @user.tokens.where(provider: 'pinterest').count > 0
+  end
 
   #TODO Broken since user has no post association
   def flickr?

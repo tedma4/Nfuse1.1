@@ -245,10 +245,32 @@ module Networks
       #end
     end
 
-    def auth_instagram(instagram_posts)
-      unless instagram_posts.authed
-        @unauthed_accounts << "instagram"
-      end
-    end
+    # def auth_instagram(instagram_posts)
+    #   unless instagram_posts.authed
+    #     @unauthed_accounts << "instagram"
+    #   end
+    # end
+
+    # def pinterest_posts(*this)
+    #   #url = []
+    #   #if user_has_provider?('instagram', @user)
+    #     #token = @user.tokens.find_by(provider: 'instagram')
+    #     client = Pinterest::Api.new(this[2], nil)
+    #     begin
+    #       client.get_timeline.posts#.map { |post| Networks::Post.from(post,'instagram', @user) }
+    #     rescue => e
+    #       @unauthed_accounts << "instagram"
+    #     end
+    #     #url
+    #   #else
+    #   #url
+    #   #end
+    # end
+
+    # def auth_pinterest(pinterest_posts)
+    #   unless pinterest_posts.authed
+    #     @unauthed_accounts << "pinterest"
+    #   end
+    # end
   end
 end

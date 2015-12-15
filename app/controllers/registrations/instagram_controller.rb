@@ -6,5 +6,4 @@ class Registrations::InstagramController < ApplicationController
     Token.update_or_create_with_other_omniauth(user.id, auth)
     redirect_to request.env['omniauth.origin'] || '/default' #callback_links_path(user)
   end
-
 end

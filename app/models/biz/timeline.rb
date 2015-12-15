@@ -67,11 +67,6 @@ module Biz
     end
 	end
 end
-# class BizConcatenator
-#   def self.merge(twitter_setup, youtube_setup, instagram_setup)
-#     (twitter_setup + youtube_setup + instagram_setup).sort_by { |post| post.created_time }.reverse
-#   end
-# end
 
 
 # hydra = Typhoeus::Hydra.new

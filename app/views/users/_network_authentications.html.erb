@@ -123,11 +123,11 @@
             <p>Share your pinterest posts.</p>
             <% if current_user && user_has_provider?('pinterest') %>
               <p class="nfused_network">
-              <%= link_to "You've Nfused pinterest", "/auth/pinterest?origin=#{request.original_url}" %> | 
+              <%= link_to "You've Nfused pinterest", "/auth/pinterest" %> | 
               <%= link_to "Remove Network", remove_token_path(provider: 'pinterest') %>
               </p>
             <% else %>
-              <%= link_to "Nfuse pinterest", "/auth/pinterest?origin=#{request.original_url}" %>
+              <%= link_to "Nfuse pinterest", "/auth/pinterest" %>
             <% end %>
             <!-- pinterest -->
           </div>

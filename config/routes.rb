@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     post '/gplus/:gplus_post_id',         to: 'comments#create'
     post '/vimeo/:vimeo_post_id',         to: 'comments#create'
     post '/flickr/:flickr_post_id',       to: 'comments#create'
+    post '/pinterest/:pinterest_post_id',       to: 'comments#create'
     post '/tumblr/:tumblr_post_id',       to: 'comments#create'
 
     # Add others follow convention
