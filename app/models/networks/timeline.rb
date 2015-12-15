@@ -51,7 +51,12 @@ module Networks
       if @token.any?
         begin
           @token.each do |it|
+            if @unauthed_accounts.include?(it.first)
+
+            else
             merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
+            end
+
           end
           merge.inject(:+)
         rescue
@@ -245,11 +250,11 @@ module Networks
       #end
     end
 
-    # def auth_instagram(instagram_posts)
-    #   unless instagram_posts.authed
-    #     @unauthed_accounts << "instagram"
-    #   end
-    # end
+    def auth_instagram(instagram_posts)
+      unless instagram_posts.authed
+        @unauthed_accounts << "instagram"
+      end
+    end
 
     # def pinterest_posts(*this)
     #   #url = []
