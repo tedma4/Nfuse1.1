@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :explore_users, :following, :followers, :nfuse_page ]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :explore_users, :following, :followers, :nfuse_page, :vue ]
 
   def index
     #user = User.find(params[:id])
@@ -183,6 +183,10 @@ class UsersController < ApplicationController
 
   def nfuse_page
     @nfuse_pages = NfusePage.where(user_id: @user.id).order('created_at DESC')
+  end
+
+  def vue
+    @title = 'Vue'
   end
 
   private
