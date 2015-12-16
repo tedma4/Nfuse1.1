@@ -19,35 +19,56 @@ module Biz
      list = [['twitter', @comp], ['youtube', @comp_url], ['instagram', @incomp]]
      threads = []
      list.each do |this|
-       threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", *this))}
+       if this.second.include?('blank')
+          #
+       else
+         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", *this))}
+       end
      end
      threads.each(&:join)
      merge = []
      list.each do |it|
-       if it.first == 'instagram'
-         merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}")}
+       if instance_variable_get("@#{it.first}").nil?
+         #leaving this blank for now
+       elsif it.first == 'instagram'
+         begin
+           merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}")}
+         rescue
+          #Leaving blank till i find out what to do with it
+         end
        else
-         merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}")}
+         begin
+           merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}")}
+         rescue
+           # Same here
+         end
        end
      end
      merge.inject(:+)
      merge
    end
 
-    def twitter_setup(*this)
+    def twitter_setup(*this)#, that = false
       client = twitter_token
-      client.user_timeline(this.second).take(15)
-      # posts.map { |post| Biz::Post.from(post, 'twitter') }
+      begin
+        client.user_timeline(this.second).take(15)
+      rescue
+        client.user_timeline('LastWeekTonight')
+      end
     end
  
-    def youtube_setup(*this)
+    def youtube_setup(*this)#, that = false
       youtube_token
-      channel = Yt::Channel.new url: this.second
-      channel.videos.first(15)
-      # posts.map { |post| Biz::Post.from(post, 'youtube') }
+      begin
+        channel = Yt::Channel.new url: this.second
+        channel.videos.first(15)
+      rescue
+        channel = Yt::Channel.new url: 'https://www.youtube.com/user/LastWeekTonight'
+        channel.videos.first(15)
+      end
     end
 
-    def instagram_setup(*this)
+    def instagram_setup(*this)#, that = false
       client_id = instagram_token
       thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{this.second}&client_id=#{client_id}").body)
       if thing['data'][0]['username'] == this.second

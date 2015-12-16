@@ -128,6 +128,7 @@ Rails.application.routes.draw do
   get'/trending', to: 'pages#trending'
   get '/businessconnector', to: 'pages#business_connector'
   get '/wired', to: 'pages#wired'
+  get '/wiredtestthing', to: 'pages#wiredtestthing'
   get '/nationalgeographic', to: 'pages#national_geographic'
   get '/peoplemagazine', to: 'pages#people_magazine'
   get '/timemagazine', to: 'pages#time_magazine'

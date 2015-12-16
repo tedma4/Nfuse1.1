@@ -52,11 +52,10 @@ module Networks
         begin
           @token.each do |it|
             if @unauthed_accounts.include?(it.first)
-
+              #Leavin this blank for now
             else
-            merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
+              merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
             end
-
           end
           merge.inject(:+)
         rescue

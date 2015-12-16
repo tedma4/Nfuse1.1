@@ -469,8 +469,8 @@ class PagesController < ApplicationController
 
   def wiredtestthing
    #set_page
-   @compname = 'blank'
-   @comp     = 'wired'
+   @compname = 'WiredTestThing'
+   @comp     = 'blank'
    @comp_url = 'https://www.youtube.com/user/blank'
    @incomp   = 'wired'
    page     = Biz::Timeline.new(@comp, @comp_url, @incomp)
