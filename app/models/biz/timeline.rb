@@ -16,40 +16,48 @@ module Biz
    private
  
    def concurrency_test_with_thread
-     client = twitter_token
-     youtube_token
-     channel = Yt::Channel.new url: @comp_url
-     client_id = instagram_token
-     thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@incomp}&client_id=#{client_id}").body)
-     if thing['data'].empty?
-       usid = "nil"
-     else
-       usid = thing['data'][0]['id']
-     end
-
-     # thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=1").body)
-     # posts['data'].map { |post| Biz::Post.from(post,'instagram') }
-     #  else
-     #    []
-     # end
+     list = [['twitter', @comp], ['youtube', @comp_url], ['instagram', @incomp]]
      threads = []
-     threads << Thread.new { @twitter_thingy = client.user_timeline(@comp).take(15) }
-     threads << Thread.new { @youtube_thingy = channel.videos.first(15) }
-     threads << Thread.new { @instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) }
+     list.each do |this|
+       threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", *this))}
+     end
      threads.each(&:join)
-     # hydra = Typhoeus::Hydra.hydra
-     # first = Typhoeus::Request.new(@twitter_thingy = client.user_timeline(@comp).take(15) || [])
-     # second = Typhoeus::Request.new(@youtube_thingy = channel.videos.first(15) || [] )
-     # third = Typhoeus::Request.new(@instagram_thingy = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body) || [])
-     # hydra.queue first
-     # hydra.queue second
-     # hydra.queue third
-     # hydra.run
-     merge = (@twitter_thingy.map { |post| Biz::Post.from(post, 'twitter') } +
-       @youtube_thingy.map { |post| Biz::Post.from(post, 'youtube') } +
-       @instagram_thingy['data'].map { |post| Biz::Post.from(post, 'instagram') }
-     )
+     merge = []
+     list.each do |it|
+       if it.first == 'instagram'
+         merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}")}
+       else
+         merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}")}
+       end
+     end
+     merge.inject(:+)
+     merge
    end
+
+    def twitter_setup(*this)
+      client = twitter_token
+      client.user_timeline(this.second).take(15)
+      # posts.map { |post| Biz::Post.from(post, 'twitter') }
+    end
+ 
+    def youtube_setup(*this)
+      youtube_token
+      channel = Yt::Channel.new url: this.second
+      channel.videos.first(15)
+      # posts.map { |post| Biz::Post.from(post, 'youtube') }
+    end
+
+    def instagram_setup(*this)
+      client_id = instagram_token
+      thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{this.second}&client_id=#{client_id}").body)
+      if thing['data'][0]['username'] == this.second
+        usid = thing['data'][0]['id']
+        Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
+        # posts['data'].map { |post| Biz::Post.from(post,'instagram') }
+       else
+         []
+      end
+    end
 
     def twitter_token
       Twitter::REST::Client.new do |i|
@@ -59,7 +67,7 @@ module Biz
     end
 
     def instagram_token
-      ENV['instagram_client_id']
+      client_id = ENV['instagram_client_id']
     end
 
     def youtube_token
@@ -80,39 +88,3 @@ end
 # responses = requests.map { |request|
 #   request.response.body
 # }
-
-
-
-    # def twitter_setup
-    #   #twitter_posts = []
-    #   client = Twitter::REST::Client.new do |i|
-    #     i.consumer_key = ENV['twitter_api_key']
-    #     i.consumer_secret = ENV['twitter_api_secret']
-    #   end
-    #   posts = client.user_timeline(@comp).take(15)
-    #   posts.map { |post| Biz::Post.from(post, 'twitter') }
-    # end
- 
-    # def youtube_setup
-    #   Yt.configuration.api_key = ENV['youtube_dev_key']
-    #   channel = Yt::Channel.new url: @comp_url
-    #   posts = channel.videos.first(15)
-    #   posts.map { |post| Biz::Post.from(post, 'youtube') }
-    # end
-
-    # def instagram_setup
-    #   client_id = ENV['instagram_client_id']
-    #   thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{@incomp}&client_id=#{client_id}").body)
-    #   if thing['data'][0]['username'] == @incomp
-    #     usid = thing['data'][0]['id']
-    #     posts = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
-    #     posts['data'].map { |post| Biz::Post.from(post,'instagram') }
-    #    else
-    #      []
-    #   end
-    # end
-    
-      # tw = twitter_setup
-      # yt = youtube_setup
-      # ig = instagram_setup
-      # merge = (tw + yt + ig).sort_by { |post| post.created_time }.reverse

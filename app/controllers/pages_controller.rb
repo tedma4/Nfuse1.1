@@ -4,8 +4,9 @@ class PagesController < ApplicationController
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
                                    :travel_connector, :test_page, :mytop50, :mostpopular,
-                                   :random, :trending
+                                   :random, :trending, :wiredtestthing
                                   ]
+  #Blank is gonna be a reservered word for now
 
   def home
     if signed_in?
@@ -460,6 +461,17 @@ class PagesController < ApplicationController
    @compname = 'Wired'
    @comp     = 'wired'
    @comp_url = 'https://www.youtube.com/user/wired'
+   @incomp   = 'wired'
+   page     = Biz::Timeline.new(@comp, @comp_url, @incomp)
+   @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
+   render 'comp'
+  end
+
+  def wiredtestthing
+   #set_page
+   @compname = 'blank'
+   @comp     = 'wired'
+   @comp_url = 'https://www.youtube.com/user/blank'
    @incomp   = 'wired'
    page     = Biz::Timeline.new(@comp, @comp_url, @incomp)
    @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
