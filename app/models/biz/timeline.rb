@@ -19,10 +19,11 @@ module Biz
      list = [['twitter', @comp], ['youtube', @comp_url], ['instagram', @incomp]]
      threads = []
      list.each do |this|
-       if this.second.include?('blank')
-          #
+       if list.flatten[1].include?('blank') && list.flatten[3].include?('blank') && this.first == 'instagram'
+         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", true, *this))}
+       elsif this.second.include?('blank')
        else
-         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", *this))}
+         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", false, *this))}
        end
      end
      threads.each(&:join)
@@ -48,33 +49,52 @@ module Biz
      merge
    end
 
-    def twitter_setup(*this)#, that = false
+    def twitter_setup(that = false, *this)#, that = false,
       client = twitter_token
       begin
-        client.user_timeline(this.second).take(15)
+        if that == false
+          client.user_timeline(this.second).take(15)
+        else
+          client.user_timeline(this.second).take(30)
+        end
       rescue
-        client.user_timeline('LastWeekTonight')
+        if that == false
+          client.user_timeline('LastWeekTonight').take(15)
+        else
+          client.user_timeline('LastWeekTonight').take(30)
+        end
       end
     end
  
-    def youtube_setup(*this)#, that = false
+    def youtube_setup(that = false, *this)#, that = false
       youtube_token
       begin
         channel = Yt::Channel.new url: this.second
+        if that == false
         channel.videos.first(15)
+        else
+          channel.videos.first(30)
+        end
       rescue
         channel = Yt::Channel.new url: 'https://www.youtube.com/user/LastWeekTonight'
-        channel.videos.first(15)
+        if that == false
+          channel.videos.first(15)
+        else
+          channel.videos.first(30)
+        end
       end
     end
 
-    def instagram_setup(*this)#, that = false
+    def instagram_setup(that = false, *this)#, that = false
       client_id = instagram_token
       thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{this.second}&client_id=#{client_id}").body)
       if thing['data'][0]['username'] == this.second
         usid = thing['data'][0]['id']
-        Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
-        # posts['data'].map { |post| Biz::Post.from(post,'instagram') }
+        if that == false
+          Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
+        else
+          Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=40").body)
+        end
        else
          []
       end
