@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130145237) do
+ActiveRecord::Schema.define(version: 20151221131303) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20151130145237) do
     t.integer  "followed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "follow_type"
   end
 
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"

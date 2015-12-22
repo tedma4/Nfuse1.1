@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
             class_name: "Relationship",
             dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :followed_pages, :source => :pages, :through => :relationships
 
   has_many :tokens, dependent: :destroy
   has_many :conversations, foreign_key: :sender_id
@@ -97,15 +98,15 @@ class User < ActiveRecord::Base
   end
 
   def following?(other_user)
-    !!(relationships.find_by(followed_id: other_user.id))
+    !!(relationships.find_by(followed_id: other_user.id, follow_type: other_user.class.name))
   end
 
   def follow!(other_user)
-    relationships.create!(followed_id: other_user.id)
+    relationships.create!(followed_id: other_user.id, follow_type: other_user.class.name)
   end
 
   def unfollow!(other_user)
-    relationships.find_by(followed_id: other_user.id).destroy
+    relationships.find_by(followed_id: other_user.id, follow_type: other_user.class.name).destroy
   end
 
   def total_followers

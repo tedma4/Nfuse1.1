@@ -4,8 +4,15 @@ class PagesController < ApplicationController
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
                                    :travel_connector, :test_page, :mytop50, :mostpopular,
-                                   :random, :trending, :wiredtestthing
+                                   :random, :trending#, :wiredtestthing
                                   ]
+  # before_action :find_page, except:[:home, :help, :about, :feedback, :terms, 
+  #                                  :privacy, :business_connector, :celebrity_connector, 
+  #                                  :tv_show_connector, :fashion_connector, :youtubers,
+  #                                  :sports_connector, :music_connector, :food_connector,
+  #                                  :travel_connector, :test_page, :mytop50, :mostpopular,
+  #                                  :random, :trending, :wiredtestthing
+  #                                 ]
   #Blank is gonna be a reservered word for now
 
   def home
@@ -40,6 +47,9 @@ class PagesController < ApplicationController
   end
 
   private
+  # def find_page
+  #   @page = Page.find_by(page_name: params[:action])
+  # end
 
   def set_page
     @page = Page.where(page_name: params[:action]).first_or_create!
@@ -449,7 +459,7 @@ class PagesController < ApplicationController
     m[:amazingphil] = {image: 'AmazingPhil', full_name: 'Amazing Phil', path: '/amazingphil'}
     m[:sampepper] = {image: 'sampepper', full_name: 'Sam Pepper', path: '/sampepper'}
     @this_is_it = Hash[m.sort_by {|a, b| -Impression.where(action_name: a.to_s).count}]
-    @test_page = Kaminari.paginate_array(@this_is_it.to_a)
+    @test_pages = Kaminari.paginate_array(@this_is_it.to_a).page(params[:page]).per(3)
   end
   def mytop50; end
   def mostpopular; end
@@ -457,6 +467,8 @@ class PagesController < ApplicationController
   def trending; end
 
   def wired
+    idx = session[:test_list].index()
+    @next_image = session[:test_list][idx + 1]
    #set_page
    @compname = 'Wired'
    @comp     = 'wired'

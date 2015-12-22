@@ -4,8 +4,12 @@ class RelationshipsController < ApplicationController
 
   def create
     #This allows a user to follow another user
-    @user = User.find(params[:relationship][:followed_id])
+    #@page = Page.find(params[:relationship][:followed_id])
+    @user = @_env['HTTP_REFERER'].include?('feed' && 'users') ?
+        User.find(params[:relationship][:followed_id]) :
+        Page.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
+    #@user ? current_user.follow!(@user) : current_user.follow!(@page)
     respond_to do |format|
       format.html { redirect_to @user }
       format.js

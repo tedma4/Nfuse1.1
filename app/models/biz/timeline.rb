@@ -22,6 +22,7 @@ module Biz
        if list.flatten[1].include?('blank') && list.flatten[3].include?('blank') && this.first == 'instagram'
          threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", true, *this))}
        elsif this.second.include?('blank')
+          #Do nothing for blank biz accounts for now
        else
          threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", false, *this))}
        end
@@ -71,7 +72,7 @@ module Biz
       begin
         channel = Yt::Channel.new url: this.second
         if that == false
-        channel.videos.first(15)
+          channel.videos.first(15)
         else
           channel.videos.first(30)
         end
