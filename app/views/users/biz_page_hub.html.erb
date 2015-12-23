@@ -1,0 +1,130 @@
+<style>
+  .hub_padding{
+    margin: 15px 0 0 0;
+  }
+</style>
+<div class="explore_filters">
+  <%= render partial: "users/hub_filters" %>
+</div><br>
+<% if current_user.relationships.where(follow_type: 'Page').any? %>
+  <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
+    <% @timeline.first(30).each do |post| %>
+      <div class="individual_post item <%=post.provider%>_post" data-id="<%=post.id%>" id="content-box-feed">
+        <div class="post_main">
+         <ul class="post_header">
+           <li>
+             <%= link_to image_tag("wired.jpg", :class => "user_profile_picture", size: "50x50"), "/wired" %>
+           </li>
+           <li class="user_name">
+             <%= link_to truncate("wired", length: 15), "/wired" %>
+           </li>
+         </ul>
+        </div>
+        <div class="post_content">
+      <% case post.provider %>
+      <% when 'instagram' %>
+        <% if post.type == "image" %>
+          <div class="timeline-user-box">
+            <%= image_tag(post.image, :class => "image_post") %>
+          </div>
+          <% if post.text.present? %>
+            <div class="center">
+              <%= post.text %>
+            </div>
+          <% end %>
+        <% elsif post.type == "video" %>
+          <div class="center">
+            <video width="100%" controls autoload="none" poster=<%= post.image %> >
+              <source src="<%= post.video %>" type='video/mp4' />
+              <source src="<%= post.video %>" type='video/ogv' />
+            </video>
+          </div>
+          <% if post.text.present? %>
+            <div class="center">
+              <%= post.text %>
+            </div>
+          <% end %>
+        <% end %>
+      <% when 'twitter' %>
+        <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
+          <% if post.has_media? %>
+            <% if post.type == 'animated_gif' || post.type== 'video' %>
+              <div class="center">
+                <video width="100%" controls autoload="none" poster=<%= post.image %> >
+                  <source src="<%= post.video %>" type='video/mp4' />
+                  <source src="<%= post.video %>" type='video/ogv' />
+                </video>
+              </div>
+            <% elsif post.type == 'photo' %>
+              <div class="timeline-user-box">
+                <%= image_tag(post.image, :class => "image_post") %>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="center">
+            <%= post.text %>
+          </div>
+        <%end%>
+      <% when 'youtube' %>
+        <iframe
+          id="ytplayer"
+          type="text/html"
+          width="100%"
+          height="225"
+          src="https://www.youtube.com/embed/<%= post.video %>"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+        <% if post.text.present? %>
+          <div class="center">
+            <%= post.text %>
+          </div>
+        <% end %>
+      <%end%>
+          <br>
+        </div>
+        <div class="right">
+        </div>
+        <ul class="post_actions">
+          <li class="tilt">
+            <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+                        like_shout_path(id: post.id,
+                                        owner_id: post.user.id,
+                                        key: post.provider),
+                        method: :post, remote: true %>
+            <a id="shout-<%=post.id%>">
+              <%#= post.like_score(post.id) %>
+            </a>
+          </li>
+          <li class="vr"></li>
+          <li class="tilt">
+            <a data-toggle="modal" data-target="#<%=post.provider%>_modal_<%= post.id %>">
+              <%#= image_tag("commentgray.fw.png", size: "24x24") %>
+            </a>
+            <a id="post_<%=post.id%>_comment_count">
+              <%#= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
+            </a>
+          </li>
+          <li class="vr"></li>
+          <li class="tilt">
+            <%= link_to image_tag("#{post.provider}blue.fw.png",
+                                  size: "24x24",
+                                  :class => "#{post.provider}_provider_logo"),
+                        post.link_to_post,
+                        :target => "_blank" %>
+            <p class="timeStamp">
+              <%= time_ago_in_words(post.created_time) %> ago
+            </p>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="center hub_padding">
+    <p> Can't display posts because you aren't following anyone... </p>
+    <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
+    <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
+    <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
+  </div>
+<% end %>

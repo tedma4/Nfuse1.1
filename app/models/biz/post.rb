@@ -1,13 +1,14 @@
 module Biz
 	class Post < TimelineEntry
 
-    def self.from(post, provider)
-      new(post, provider)
+    def self.from(post, provider, page)
+      new(post, provider, page)
     end
 
-    def initialize(post, provider)
+    def initialize(post, provider, page)
       @post = post
       @provider = provider
+      @page = page
     end
 
     def provider

@@ -2,10 +2,11 @@ module Biz
 	class Timeline
   attr_accessor :params
   require 'thread'
-    def initialize(comp, comp_url, incomp)
+    def initialize(comp, comp_url, incomp, page)
       @comp = comp
       @comp_url = comp_url
       @incomp = incomp
+      @page = page
     end
     
     def construct(params)
@@ -34,13 +35,13 @@ module Biz
          #leaving this blank for now
        elsif it.first == 'instagram'
          begin
-           merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}")}
+           merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}", @page)}
          rescue
           #Leaving blank till i find out what to do with it
          end
        else
          begin
-           merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}")}
+           merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}", @page)}
          rescue
            # Same here
          end

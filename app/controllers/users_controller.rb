@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :explore_users, :following, :followers, :nfuse_page, :vue ]
+  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :explore_users, :following, :followers, :nfuse_page, :vue, :biz_page_hub ]
 
   def index
     #user = User.find(params[:id])
@@ -99,7 +99,6 @@ class UsersController < ApplicationController
   def feed
     feed_builder
     render 'show_feed'
-
   end
 
   def feed_builder
@@ -126,6 +125,19 @@ class UsersController < ApplicationController
     #     vimeo_pagination:       feed.vimeo_pagination_id,
     #     flickr_pagination:      feed.flickr_pagination_id,
     #     id: @user.id)
+  end
+
+  def biz_page_hub
+      timeline = []
+      ids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+      unless ids.empty?
+        @pages = Page.where(id: ids)
+        @pages.find_each do |page|
+          feed=Biz::Timeline.new(page.twitter_handle, page.youtube_handle, page.instagram_handle, page)
+          timeline << feed.construct(params)
+        end
+      end
+      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 
   def explore

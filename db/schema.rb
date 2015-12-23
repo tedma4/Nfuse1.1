@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221131303) do
+ActiveRecord::Schema.define(version: 20151222135126) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -129,6 +129,14 @@ ActiveRecord::Schema.define(version: 20151221131303) do
   create_table "pages", force: true do |t|
     t.integer "page_counter_cache", default: 0
     t.string  "page_name"
+    t.string  "thing_name"
+    t.string  "twitter_handle"
+    t.string  "youtube_handle"
+    t.string  "instagram_handle"
+    t.string  "facebook_handle"
+    t.string  "pinterest_handle"
+    t.string  "tumblr_handle"
+    t.string  "gplus_handle"
   end
 
   create_table "pics", force: true do |t|

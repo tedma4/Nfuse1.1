@@ -3,6 +3,9 @@
     margin: 15px 0 0 0;
   }
 </style>
+<div class="explore_filters">
+  <%= render partial: "users/hub_filters" %>
+</div><br>
 <% if current_user.followed_users.any? %>
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
