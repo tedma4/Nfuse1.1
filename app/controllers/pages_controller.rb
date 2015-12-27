@@ -484,7 +484,7 @@ class PagesController < ApplicationController
    @compname = 'WiredTestThing'
    @comp     = 'blank'
    @comp_url = 'https://www.youtube.com/user/blank'
-   @incomp   = 'blank'
+   @incomp   = 'wired'
    page     = Biz::Timeline.new(@comp, @comp_url, @incomp, @page)
    @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
    render 'comp'
