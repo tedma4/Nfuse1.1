@@ -41,17 +41,17 @@ class Providers
     @user.tokens.where(provider: 'pinterest').count > 0
   end
 
-  #TODO Broken since user has no post association
-  def flickr?
-    @user.tokens.where(provider: 'flickr').count > 0 
-  end
+  # #TODO Broken since user has no post association
+  # def flickr?
+  #   @user.tokens.where(provider: 'flickr').count > 0 
+  # end
 
   def tumblr?
     @user.tokens.where(provider: 'tumblr').count > 0 
   end
 
   def none?
-    !(twitter? || instagram? || youtube? || vimeo? || nfuse? || gplus? || flickr? || tumblr?)# || pinterest? || facebook?
+    !(twitter? || instagram? || youtube? || vimeo? || nfuse? || gplus? || tumblr?)# || pinterest? || facebook?
   end
 
 end

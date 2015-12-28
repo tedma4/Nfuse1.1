@@ -45,7 +45,7 @@ module Networks
           @post["id"]
         when 'vimeo'
           @post.id
-        when 'flickr'
+        when 'pinterest'
           @post['id']
         when 'tumblr'
           @post['id']
@@ -89,6 +89,8 @@ module Networks
                 @post.object.object_type
             end
           end
+        when 'pinterest'
+          @post['media']['type']  
         end
       end
     #-----------text----------
@@ -115,8 +117,8 @@ module Networks
           end
         when 'vimeo'
           @post.description
-        when 'flickr'
-          @post.title
+        when 'pinterst'
+          @post['note']
         when 'gplus'
           @post.object.content
       end
@@ -145,8 +147,8 @@ module Networks
           end
         when 'tumblr'
           @post['photos'][0]['alt_sizes'][0]['url']   
-        when 'flickr'
-          flickr.photos.getSizes(photo_id: @post.id)[3].source
+        when 'pinterest'
+          @post['image']['original']['url']
         when 'gplus'
           @post.object.attachments[0]["image"]["url"]
       end
@@ -195,7 +197,14 @@ module Networks
           else
             @post.object.attachments[0]["image"]["url"]
           end
+        when 'pinterest'
+          @post['attribution']['url']
       end
+    end
+
+    def provider_name
+      #this is pinterest specific. Might need it for videos that aren't vimeo or youtube
+      @post['attribution']['provider_name']
     end
 
     def video_thumbnail
@@ -235,8 +244,8 @@ module Networks
           @post['date']
         when 'vimeo'
           @post.created_time
-        when 'flickr'
-          flickr.photos.getInfo(photo_id: @post.id).dates.taken
+        when 'pinterest'
+          @post['created_at']
       end
     end
 
@@ -260,6 +269,8 @@ module Networks
           rescue
             @post['actions'][0]['link']
           end
+        when 'pinterest'
+          @post['link']  
       end
     end
 

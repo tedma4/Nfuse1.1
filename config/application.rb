@@ -13,7 +13,7 @@ Bundler.require(*Rails.groups)
 module Nfuse11
   class Application < Rails::Application
     config.assets.initialize_on_precompile = false
-    config.force_ssl = true
+    config.use_ssl = false
 
 
     config.after_initialize do |app|

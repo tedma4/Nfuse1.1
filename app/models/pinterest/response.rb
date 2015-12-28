@@ -8,7 +8,7 @@ module Pinterest
 
     def posts
       if success?
-        parse_response_body["should_get_an_error"]
+        parse_response_body['data']
       elsif !authed?
         raise Unauthorized, "This user's token is no longer valid."
       else
@@ -17,12 +17,12 @@ module Pinterest
     end
 
     def parse
-      parse_response_body["should_get_an_error"]
+      parse_response_body['data']
     end
 
     def pagination_max_id
       if success?
-        parse_response_body["pagination"]["next_max_id"]
+        parse_response_body['page']["next_max_id"]
       else
         nil
       end
@@ -41,7 +41,5 @@ module Pinterest
     def parse_response_body
       Oj.load(@response.body)
     end
-
   end
-
 end

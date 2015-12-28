@@ -5,16 +5,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   include PublicActivity::StoreController
-#   force_ssl if: :ssl_required?
+  # force_ssl
 
-# private
-
-# def ssl_required?
-# # If request came in *through* the load-balancer, this header will be present
-#   if request.headers['X-Forwarded-Proto'].present? && !request.ssl? && Rails.env.production?
-#     return true
-#     end
-#     # We came *from* the LB, ie this is a health check, so no ssl required.
-#     return false
-#   end
 end

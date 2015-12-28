@@ -208,21 +208,21 @@ module Networks
       client = Tumblr::Client.new#(client: :httpclient)
     end
 
-    def flickr_posts(*this)
-      #flickr_posts = []
-      #if user_has_provider?('flickr', @user)
-      #  token = @user.tokens.find_by(provider: 'flickr')
-        client = configure_flickr(this[2], this[3])
-        begin
-          client.people.getPhotos('user_id' => this[1])#.map { |post| Networks::Post.from(post, 'flickr', @user) }
-        rescue => e
-          @unauthed_accounts << "flickr"
-        end
-      #  flickr_posts
-      #else
-      #  flickr_posts
-      #end
-    end
+    # def flickr_posts(*this)
+    #   #flickr_posts = []
+    #   #if user_has_provider?('flickr', @user)
+    #   #  token = @user.tokens.find_by(provider: 'flickr')
+    #     client = configure_flickr(this[2], this[3])
+    #     begin
+    #       client.people.getPhotos('user_id' => this[1])#.map { |post| Networks::Post.from(post, 'flickr', @user) }
+    #     rescue => e
+    #       @unauthed_accounts << "flickr"
+    #     end
+    #   #  flickr_posts
+    #   #else
+    #   #  flickr_posts
+    #   #end
+    # end
 
     def configure_flickr(access_token, access_token_secret)
       FlickRaw.api_key=ENV["flickr_key"]
@@ -255,26 +255,26 @@ module Networks
       end
     end
 
-    # def pinterest_posts(*this)
-    #   #url = []
-    #   #if user_has_provider?('instagram', @user)
-    #     #token = @user.tokens.find_by(provider: 'instagram')
-    #     client = Pinterest::Api.new(this[2], nil)
-    #     begin
-    #       client.get_timeline.posts#.map { |post| Networks::Post.from(post,'instagram', @user) }
-    #     rescue => e
-    #       @unauthed_accounts << "instagram"
-    #     end
-    #     #url
-    #   #else
-    #   #url
-    #   #end
-    # end
+    def pinterest_posts(*this)
+      #url = []
+      #if user_has_provider?('instagram', @user)
+        #token = @user.tokens.find_by(provider: 'instagram')
+        client = Pinterest::Api.new(this[2], nil)
+        begin
+          client.get_timeline.posts#.map { |post| Networks::Post.from(post,'instagram', @user) }
+        rescue => e
+          @unauthed_accounts << "pinterest"
+        end
+        #url
+      #else
+      #url
+      #end
+    end
 
-    # def auth_pinterest(pinterest_posts)
-    #   unless pinterest_posts.authed
-    #     @unauthed_accounts << "pinterest"
-    #   end
-    # end
+    def auth_pinterest(pinterest_posts)
+      unless pinterest_posts.authed
+        @unauthed_accounts << "pinterest"
+      end
+    end
   end
 end

@@ -23,15 +23,15 @@ module Pinterest
     #   api_https_url + '/media'
     # end
 
-    def users_api
+    def pins_api
       api_https_url + '/me'
     end
 
     def create_url
       if @max_id.nil?
-        "#{users_api}/pins/?access_token=#{@access_token}&count=50"
+        "#{pins_api}/pins/?access_token=#{@access_token}&fields=created_at,note,url,id,media,link,attribution,image&count=50"
       else
-        "#{users_api}/pins/?access_token=#{@access_token}&max_id=#{@max_id}&count=100"
+        "#{pins_api}/pins/?access_token=#{@access_token}&fields=created_at,note,url,id,media,link,attribution,image&max_id=#{@max_id}&count=100"
       end
     end
 

@@ -8,6 +8,9 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  # config.force_ssl = true
+  # config.use_ssl = true
+  # config.ssl_port = 3001
 
   # Show full error reports and disable caching.
   config.cache_store = :memory_store, { size: 64.megabytes }

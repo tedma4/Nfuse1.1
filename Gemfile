@@ -1,9 +1,9 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 #This is the rails version we are using
 gem 'rails', '4.1.2'
 gem 'elastic-beanstalk', '~> 1.1.3'
-gem 'rack', '1.5.2'
+gem 'rack', '~>1.5.2'
 gem 'sqlite3'
 #This allows us to use bootstrap css file
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -69,11 +69,13 @@ gem 'seed-fu', '~> 2.3'
 
 #This allows the use of the faye websocket server
 # gem 'private_pub'
-gem 'thin'
+# gem 'thin'
 gem 'auto_html'
 gem 'faker', "~> 1.4.3"
 gem 'public_activity', '1.4.2'
-
+gem 'eventmachine', :github => 'eventmachine/eventmachine', :branch => 'master'
+# gem 'puma', '2.15.3'
+gem 'thin', '~> 1.6.4', group: :development
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
