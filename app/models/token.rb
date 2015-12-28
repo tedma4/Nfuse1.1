@@ -38,10 +38,6 @@ class Token < ActiveRecord::Base
       update_or_create_token(id, auth, 'gplus')
     end
 
-    def update_or_create_with_flickr_omniauth(id, auth)
-      update_or_create_token(id, auth, 'flickr')
-    end
-
     def update_or_create_with_tumblr_omniauth(id, auth)
       update_or_create_token(id, auth, 'tumblr')
     end
@@ -125,11 +121,6 @@ class Token < ActiveRecord::Base
       # @token.uid                 = credentials_uid
     end
 
-    def flickr_token
-      @token.access_token        = extra_access_token.token
-      @token.access_token_secret = extra_access_token.secret
-    end
-
     def tumblr_token
       @token.access_token        = extra_access_token.token
       @token.access_token_secret = extra_access_token.secret
@@ -181,17 +172,6 @@ class Token < ActiveRecord::Base
     GooglePlus.api_key = ENV['youtube_dev_key']
     # gplus_access = @user.tokens.find_by_provider('gplus')
     client = GooglePlus::Person.get(uid)
-  end
-
-  def configure_flickr(access_token, access_secret)
-    FlickRaw.api_key=ENV["flickr_key"]
-    FlickRaw.shared_secret=ENV["flickr_secret"]
-    # FlickRaw.secure = false
-
-    client = FlickRaw::Flickr.new
-    client.access_token = access_token
-    client.access_secret = access_secret
-    client
   end
 
   def configure_facebook(access_token)

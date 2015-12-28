@@ -1,4 +1,0 @@
---- !map:HashWithIndifferentAccess
-key: ENV['flickr_client_id']
-secret: ENV['flickr_client_secret']
-token_cache: "token_cache.yml"

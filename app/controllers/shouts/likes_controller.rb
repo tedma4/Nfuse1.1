@@ -67,11 +67,6 @@ class Shouts::LikesController < ApplicationController
     Pinterest::Vote.create(vote_params)
   end
 
-  def flickr
-    Flickr::Vote.create(vote_params) 
-    # Networks::Vote.create(vote_params) 
-  end
-
   def gplus
     Gplus::Vote.create(vote_params) 
     # Networks::Vote.create(vote_params) 

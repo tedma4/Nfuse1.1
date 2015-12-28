@@ -10,7 +10,6 @@ module Networks
               # :youtube_pagination_id,
               # :gplus_pagination_id,
               # :vimeo_pagination_id,
-              # :flickr_pagination_id,
               # :tumblr_pagination_id,
               # :nfuse_pagination_id
 
@@ -29,10 +28,9 @@ module Networks
       # yt = youtube_posts
       # gp = gplus_posts
       # vp = vimeo_posts
-      # fl = flickr_posts
       # tb = tumblr_posts
       # up = users_posts
-      # merge_posts = (tw + fb + ig + yt + gp + vp + fl + tb + up)#.sort_by{|t| - t.created_time.to_i}
+      # merge_posts = (tw + fb + ig + yt + gp + vp + tb + up)#.sort_by{|t| - t.created_time.to_i}
       build_it
     end
 
@@ -206,31 +204,6 @@ module Networks
         config.oauth_token_secret  = access_token_secret
       end
       client = Tumblr::Client.new#(client: :httpclient)
-    end
-
-    # def flickr_posts(*this)
-    #   #flickr_posts = []
-    #   #if user_has_provider?('flickr', @user)
-    #   #  token = @user.tokens.find_by(provider: 'flickr')
-    #     client = configure_flickr(this[2], this[3])
-    #     begin
-    #       client.people.getPhotos('user_id' => this[1])#.map { |post| Networks::Post.from(post, 'flickr', @user) }
-    #     rescue => e
-    #       @unauthed_accounts << "flickr"
-    #     end
-    #   #  flickr_posts
-    #   #else
-    #   #  flickr_posts
-    #   #end
-    # end
-
-    def configure_flickr(access_token, access_token_secret)
-      FlickRaw.api_key=ENV["flickr_key"]
-      FlickRaw.shared_secret=ENV["flickr_secret"]
-      client = FlickRaw::Flickr.new
-      client.access_token = access_token
-      client.access_secret = access_token_secret
-      client
     end
 
     def instagram_posts(*this)

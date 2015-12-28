@@ -28,8 +28,6 @@ module Notification
           @entry["id"]
         when 'vimeo'
           @entry.embedUrl
-        when 'flickr'
-          @entry['id']
         when 'gplus'
           @entry.id
       end
@@ -96,8 +94,6 @@ module Notification
           end
         when 'vimeo'
           @entry.description
-        when 'flickr'
-          @entry.caption
         when 'gplus'
           @entry.object.content
       end
@@ -122,9 +118,7 @@ module Notification
             @entry['picture']
           end
         when 'tumblr'
-          @entry['photos'][0]['alt_sizes'][0]['url']   
-        when 'flickr'
-          flickr.photos.getSizes(photo_id: @entry.id)[3].source
+          @entry['photos'][0]['alt_sizes'][0]['url']
         when 'gplus'
           @entry.object.attachments[0]["image"]["url"]
       end

@@ -1,2 +1,0 @@
-module Registrations::FlickrHelper
-end

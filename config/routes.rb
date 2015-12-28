@@ -47,7 +47,6 @@ Rails.application.routes.draw do
     post '/youtube/:youtube_post_id',     to: 'comments#create'
     post '/gplus/:gplus_post_id',         to: 'comments#create'
     post '/vimeo/:vimeo_post_id',         to: 'comments#create'
-    post '/flickr/:flickr_post_id',       to: 'comments#create'
     post '/pinterest/:pinterest_post_id',       to: 'comments#create'
     post '/tumblr/:tumblr_post_id',       to: 'comments#create'
 
@@ -106,7 +105,6 @@ Rails.application.routes.draw do
      get '/gplus/callback',         to: 'registrations/gplus#create'
      get '/vimeo/callback',         to: 'registrations/vimeo#create'
      get '/pinterest/callback',     to: 'registrations/pinterest#create'
-     get '/flickr/callback',        to: 'registrations/flickr#create'
      get '/tumblr/callback',        to: 'registrations/tumblr#create'
    end
   # else

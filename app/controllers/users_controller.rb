@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def destroyuser
-     PublicActivity::Activity.destroy_all
+     Token.where(provider: 'flickr').destroy_all
      redirect_to root_path
   end
 
@@ -123,7 +123,6 @@ class UsersController < ApplicationController
     #     gplus_pagination:       feed.gplus_pagination_id,
     #     tumblr_pagination:      feed.tumblr_pagination_id,
     #     vimeo_pagination:       feed.vimeo_pagination_id,
-    #     flickr_pagination:      feed.flickr_pagination_id,
     #     id: @user.id)
   end
 

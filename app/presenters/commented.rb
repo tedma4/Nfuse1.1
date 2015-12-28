@@ -24,7 +24,6 @@ class Commented
           'Gplus::Post' => "/comments/gplus/#{id}",
           'Vimeo::Post' => "/comments/vimeo/#{id}",
           'Pinterest::Post' => "/comments/pinterest/#{id}",
-          'Flickr::Post' => "/comments/flickr/#{id}",
           'Tumblr::Posting' => "/comments/tumblr/#{id}"
           # 'Networks::Post' => "/comments/#{provider}/#{id}"
     }

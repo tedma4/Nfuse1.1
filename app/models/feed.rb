@@ -10,7 +10,6 @@ class Feed
               :gplus_pagination_id,
               :vimeo_pagination_id,
               # :pinterest_pagination_id,
-              :flickr_pagination_id,
               :tumblr_pagination_id,
               :nfuse_pagination_id
 
@@ -48,9 +47,8 @@ class Feed
     vp = vimeo_posts(params[:vimeo_pagination])
     up = users_posts(params[:nfuse_post_last_id])
     # pt = pinterest_posts(params[:pinterest_pagination])
-    fl = flickr_posts(params[:flickr_pagination])
     tb = tumblr_posts(params[:tumblr_pagination])
-    TimelineConcatenator.new.merge(tw, ig, up, vp, yt, fl, gp, tb, fb ) #, pt, fl, fb
+    TimelineConcatenator.new.merge(tw, ig, up, vp, yt, gp, tb, fb ) #, pt, fl, fb
   end
 
   private
@@ -168,22 +166,6 @@ class Feed
   #     pinterest_posts
   #   end
   # end
-
-  def flickr_posts(flickr_pagination_id)
-    flickr_posts = []
-    if user_has_provider?('flickr', @user)
-      flickr_timeline = Flickr::Timeline.new(@user)
-      begin
-        flickr_posts = flickr_timeline.posts(flickr_pagination_id).map { |post| Flickr::Post.from(post, @user) }
-        @flickr_pagination_id = flickr_timeline.last_pic_id
-      rescue => e
-        @unauthed_accounts << "flickr"
-      end
-      flickr_posts
-    else
-      flickr_posts
-    end
-  end
 
   def facebook_posts(facebook_pagination_id)
     facebook_posts = []

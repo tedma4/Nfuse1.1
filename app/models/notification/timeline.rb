@@ -50,12 +50,6 @@ module Notification
           username = client.info['user']['name']
           entry = client.posts("#{username}.tumblr.com", id: post_id)['posts'][0]
           Notification::Entry.from(entry, 'tumblr')
-        when 'flickr'
-          token = @user.tokens.find_by(provider: 'flickr')
-          client = configure_flickr(token.access_token, token.access_token_secret)
-          info = client.photos.getInfo(:photo_id => post_id)
-          entry = FlickRaw.url_z(info)
-          Notification::Entry.from(entry, 'flickr')
         when 'instagram'
           token = @user.tokens.find_by(provider: 'instagram')
           instagram_api = Instagram::Api.new(token.access_token, nil)
@@ -113,15 +107,6 @@ module Notification
 
       def configure_gplus(post_id)
         post = GooglePlus::Activity.get(post_id)
-      end
-
-      def configure_flickr(access_token, access_secret)
-        FlickRaw.api_key=ENV["flickr_key"]
-        FlickRaw.shared_secret=ENV["flickr_secret"]
-        client = FlickRaw::Flickr.new
-        client.access_token = access_token
-        client.access_secret = access_secret
-        client
       end
     end
 end

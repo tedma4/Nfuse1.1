@@ -150,7 +150,6 @@ GEM
     ffi (1.9.8-x86-mingw32)
     figaro (1.1.1)
       thor (~> 0.14)
-    flickraw (0.9.8)
     google_plus (0.2.4)
       json
       rest-client (~> 1.6)
@@ -223,9 +222,6 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
-    omniauth-flickr (0.0.18)
-      multi_json (~> 1.11.0)
-      omniauth-oauth (~> 1.0)
     omniauth-google-oauth2 (0.2.6)
       omniauth (> 1.0)
       omniauth-oauth2 (~> 1.1)
@@ -466,7 +462,6 @@ DEPENDENCIES
   faraday (~> 0.9.0)
   fb_graph
   figaro
-  flickraw
   google_plus
   httparty
   impressionist (= 1.5.1)
@@ -480,7 +475,6 @@ DEPENDENCIES
   newrelic_rpm
   oj (~> 2.9.3)
   omniauth-facebook (~> 1.4.1)
-  omniauth-flickr
   omniauth-google-oauth2
   omniauth-gplus
   omniauth-instagram (~> 1.0.1)

@@ -1,8 +1,0 @@
-<div class="timeline-user-box">
-  <%= image_tag(@post_entry.image, :class => "flickr_image") %>
-</div>
-<% if @post_entry.text.present? %>
-  <div class="center">
-    <%= truncate(@post_entry.text, lenght: 30) %>
-  </div>
-<% end %>
