@@ -3,8 +3,8 @@
 <html>
   <head>
     <% if content_for? :for_head %>
-    <%= yield :for_head %>
-  <% end %>
+      <%= yield :for_head %>
+    <% end %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><%= full_title(yield(:title)) %></title>
@@ -21,73 +21,34 @@
     <%= render 'layouts/shim' %>
     <%= csrf_meta_tags %>
   </head>
-  <body><!--app.html body start-->
+  <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
     
     <%= render 'layouts/header' %>
-    <div class="container_app_html">
+    <div class="">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <%= value %>
         </div>
       <% end %>
-      <div class="content_container_app_html">
+      <div class="">
         <%= yield %>
       </div>
     </div>
-   <script>
-   
-     $( document ).ready(function() {
-        resizeMasonry();
-      });
-     $( window ).resize(function() {
-        resizeMasonry();
-      });
 
-var msnry;
-
-function triggerMasonry() {
-  // don't proceed if masonry has not been initialized
-  if ( !msnry ) {
-    return;
-  }
-  msnry.layout();
-}
-
-function initMasonry() {
-  var container = document.querySelector('#masonJar');
-  msnry = new Masonry( container, {
-      itemSelector: '.item',
-      isAnimated: true,
-      isResizable: true,
-      gutter: 25
-     
-      
-    });
-}
-
-// initialize masonry on document ready
-docReady( function() {
-  initMasonry();
-});
-
-
-var $container = $('#masonJar');
-// initialize Masonry after all images have loaded  
-$container.imagesLoaded( function() {
-     $container.masonry({
-      itemSelector: '.item',
-      isAnimated: true,
-      isResizable: true,
-      gutter: 25
-     
-      
-    });
-
-});
-    
-    </script>
   <%= render partial: 'layouts/footer' %>
-  </body>
-  <!-- *End* Views/layouts/application.html -->
+  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+  <script src="js/jquery.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="js/jquery.easing.min.js"></script>
+  <!-- Custom Theme JavaScript 
+  <script src="js/application.js"></script>-->
+  <script src="js/nfuse.js"></script>  </body>
 </html>
