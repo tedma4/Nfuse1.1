@@ -5,18 +5,21 @@
     <% if content_for? :for_head %>
       <%= yield :for_head %>
     <% end %>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title><%= full_title(yield(:title)) %></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nfuse, Share all your social media in on place, one feed for all your social media, easy way to share with your friends" />
+    <meta name="author" content="">
+    <meta name="keywords" content="Nfuse, Nfuse.it, wwww.nfuse.it, infuse.it, Social Media, Social Agregate, all in one social media, one social site, sharing social media, social media in one, social share, one feed" />
+
+    <title>Nfuse - Share All Your Social Media. </title>
+
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
-    <%#= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' %>
-    <script async src="https://www.google.com/jsapi" type="text/javascript"></script>
-    <script async src="https://www.youtube.com/iframe_api"></script>
-    <%= javascript_include_tag 'masonry.pkgd.js' %>
-    <%#= javascript_include_tag 'resize_masonry.js', async: true %>
-    <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,900,300,700' rel='stylesheet' type='text/css'>
+
     <%= favicon_link_tag 'Nfuselogopurple.fw.png'%>
     <%= render 'layouts/shim' %>
     <%= csrf_meta_tags %>
@@ -24,31 +27,29 @@
   <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
     
     <%= render 'layouts/header' %>
-    <div class="">
+
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <%= value %>
         </div>
       <% end %>
-      <div class="">
+
+      <div>
         <%= yield %>
       </div>
-    </div>
 
-  <%= render partial: 'layouts/footer' %>
-  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-  <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-  <script src="js/jquery.js"></script>
-  <!-- Bootstrap Core JavaScript -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- Plugin JavaScript -->
-  <script src="js/jquery.easing.min.js"></script>
-  <!-- Custom Theme JavaScript 
-  <script src="js/application.js"></script>-->
-  <script src="js/nfuse.js"></script>  </body>
+    <%= render partial: 'layouts/footer' %>
+    <%= javascript_include_tag 'jquery.js' %>
+    <!-- Bootstrap Core JavaScript -->
+    <%= javascript_include_tag 'bootstrap.min.js' %>
+    <!-- Plugin JavaScript -->
+    <%= javascript_include_tag 'jquery.easing.min.js' %>
+    <!-- Custom Theme JavaScript 
+    <script src="js/application.js"></script>-->
+    <%= javascript_include_tag 'nfuse.js' %>
+    <% if content_for? :for_body %>
+      <%= yield :for_body %>
+    <% end %>
+  </body>
 </html>
