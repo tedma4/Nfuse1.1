@@ -55,6 +55,11 @@ module Notification
           instagram_api = Instagram::Api.new(token.access_token, nil)
           entry = instagram_api.get_post(post_id)['data']
           Notification::Entry.from(entry, 'instagram')
+        when 'pinterest'
+          token = @user.tokens.find_by(provider: 'pinterest')
+          pinterest_api = Instagram::Api.new(token.access_token, nil)
+          entry = pinterest_api.get_post(post_id)['data']
+          Notification::Entry.from(entry, 'instagram')
         when nil
           entry = @user.shouts.find(post_id)
           Notification::Entry.from(entry, 'nfuse')

@@ -30,6 +30,8 @@ module Notification
           @entry.embedUrl
         when 'gplus'
           @entry.id
+        when 'pinterest'
+          @entry['id']
       end
     end
 
@@ -68,6 +70,8 @@ module Notification
                 @entry.object.object_type
             end
           end
+        when 'pinterest'
+          @entry['media']['type']  
         end
       end
     #-----------text----------
@@ -94,6 +98,8 @@ module Notification
           end
         when 'vimeo'
           @entry.description
+        when 'pinterest'
+          @post['note']
         when 'gplus'
           @entry.object.content
       end
@@ -121,6 +127,8 @@ module Notification
           @entry['photos'][0]['alt_sizes'][0]['url']
         when 'gplus'
           @entry.object.attachments[0]["image"]["url"]
+        when 'pinterest'
+          @post['image']['original']['url']
       end
     end
 
@@ -153,6 +161,8 @@ module Notification
           else
             @entry['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
           end
+        when 'pinterest'
+          @post['attribution']['url']
         when 'gplus'
           if @entry.object.attachments[0].has_key? "embed"
             @entry.object.attachments[0]["embed"]["url"]
@@ -189,6 +199,8 @@ module Notification
           Time.at(@entry['created_time'].to_i)
         when 'facebook'
           @entry['created_time']
+        when 'pinterest'
+          @post['created_at']
       end
     end
 
@@ -208,6 +220,8 @@ module Notification
           @entry["link"]
         when 'facebook'
           @entry['actions'][0]['link']
+        when 'pinterest'
+          @post['link']  
       end
     end
 

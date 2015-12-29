@@ -1,0 +1,26 @@
+<% if @post_entry.type == "image" %>
+  <div class="timeline-user-box">
+    <%= image_tag(@post_entry.image, :class => "image_@post_entry") %>
+  </div>
+  <% if @post_entry.text.present? %>
+    <div class="center">
+      <%= @post_entry.text %>
+    </div>
+  <% end %>
+<% elsif @post_entry.type == "video" %>
+  <div class="center">
+    <iframe
+        id="ytplayer"
+        width="100%"
+        autoplay=0
+        src="<%= @post_entry.video %>"
+        frameborder="0"
+        allowfullscreen>
+    </iframe>
+  </div>
+    <% if @post_entry.text.present? %>
+    <div class="center">
+      <%= @post_entry.text %>
+    </div>
+    <% end %>
+<% end %>

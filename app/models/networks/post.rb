@@ -117,7 +117,7 @@ module Networks
           end
         when 'vimeo'
           @post.description
-        when 'pinterst'
+        when 'pinterest'
           @post['note']
         when 'gplus'
           @post.object.content
@@ -146,7 +146,7 @@ module Networks
             @post['picture']
           end
         when 'tumblr'
-          @post['photos'][0]['alt_sizes'][0]['url']   
+          @post['photos'][0]['alt_sizes'][0]['url']
         when 'pinterest'
           @post['image']['original']['url']
         when 'gplus'
