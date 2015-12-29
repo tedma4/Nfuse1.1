@@ -1,6 +1,6 @@
 module Biz
 	class Post < TimelineEntry
-
+    attr_reader :page
     def self.from(post, provider, page)
       new(post, provider, page)
     end
@@ -15,17 +15,13 @@ module Biz
       @provider
     end
 
-    # def avatar
-    #   case(@provider)
-    #     when 'instagram'
-    #       @post["user"]['profile_picture']
-    #     when 'twitter'
-    #       @post.attrs[:user][:profile_image_url]
-    #     when 'youtube'
-    #       "youtubeblue.fw.png"
-    #   end
-
-    # end
+    def avatar
+      if @page.twitter_handle == 'blank'
+        'wired'
+      else
+        @page.twitter_handle
+      end 
+    end
 
     def username
       case(@provider)
@@ -37,6 +33,10 @@ module Biz
           'youtube user'
       end
 
+    end
+
+    def page_link
+      @page.thing_name
     end
 
     #-----------id----------
