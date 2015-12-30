@@ -549,7 +549,7 @@
       min-height: 1px;
   }
   #nfuse .top-nav-collapse .navbar-brand {
-      width: 0;  /*There was an error here*/
+      width: 0; /*This line breaks for rails*/
   }
   #nfuse .top-nav-collapse .navbar-toggle {
       margin: 0px;
@@ -569,7 +569,7 @@
   }
   #loggedout-nav{
     float: right;
-    padding: 0;   /*There was an error here*/
+    padding: 0; /*This line breaks for rails*/
     font-size: 12px;
   }
   .navbar-toggle{
@@ -620,7 +620,7 @@
         line-height: 20px;
     }
     .top-nav-collapse #loggedout-nav li a{
-      padding: 0;   /*There was an error here*/
+      padding: 0; /*This line breaks for rails*/
     }
     .inner .top-nav-collapse{
       height: 40px;
@@ -659,7 +659,7 @@
       font-size: 14px;
     }
     .top-nav-collapse #loggedout-nav{
-      padding: 0;   /*There was an error here*/
+      padding: 0; /*This line breaks for rails*/
     }
     #menutoggler {
         padding: 10px 10px;
@@ -937,7 +937,7 @@
 /* MISSION */
 
   #mission{
-    background-image: url(/assets/social-bg.png);
+    background-image: url(/assets/social-bg.png); /*This line breaks rails*/
       background-size: 90% auto;
       background-position: center 20%;
       background-repeat: no-repeat;
@@ -967,7 +967,7 @@
   }
   @media(min-width:1200px) {
     #mission{
-      background-size: 0;   /*There was an error here*/
+      background-size: 0; /*This line breaks for rails*/
     }
   }
   @media(min-width:1400px) {
@@ -991,7 +991,7 @@
       position: relative;
   }
   #about .bg{
-    background-image: url(/assets/masonary.jpg);
+    background-image: url(/assets/masonary.jpg); /*This line breaks rails*/
     opacity: .1;
   }
   .about-icon{
@@ -1183,7 +1183,7 @@
         padding-top: 160px;
     }
     #signup{
-      z-index: 0;   /*There was an error here*/
+      z-index: 0; /*This line breaks for rails*/
     }
     form.minimal input,
     #signin input,

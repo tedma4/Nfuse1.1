@@ -11,6 +11,6 @@
  * file per style scope.
  *
  */
-@import "bootstrap-sprockets", "bootstrap";
-@import "bootstrap/theme";
+@import "normalize";
+@import "bootstrap";
 @import "custom";
