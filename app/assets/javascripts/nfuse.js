@@ -44,7 +44,7 @@
         images = shuffle(images);
 
         $('.random.bg').each(function(i){
-            $(this).css({'background-image': 'url(img/bgs/' + images[i] + ')'});  
+            $(this).css({'background-image': 'url(/assets/bgs/' + images[i] + ')'});  
         });
     });
         
@@ -73,7 +73,7 @@
         users = shuffle(users);
 
         $('.user-block').each(function() {
-            new $('<img src="img/users/' + users[Math.floor(Math.random() * users.length)] + '">').appendTo(this);
+            new $('<img src="/assets/users/' + users[Math.floor(Math.random() * users.length)] + '">').appendTo(this);
         })       
     });*/
 

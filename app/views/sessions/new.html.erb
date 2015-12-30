@@ -1,44 +1,29 @@
-<% provide(:title, "Log in") %>
-<style type="text/css">
-	.login-padding{
-		margin-top: 2%;
-	}
-
-  h3 {
-    color: #fff;
-  }
-
-</style>
-<div class="Alignthisorelse">
-  <div class="container login-padding">
-    <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
-      <div class="form-top-login">
-        <div class="form-top-left">
-          <h3><strong>Log In Right Now!!!<strong></h3>
-            <p>Discover what you've missed since last time.</p>
-        </div>
-        <div class="form-top-right">
-          <a href="#"><%= image_tag("lock27lightgray.fw.png", size: "65x65") %></a>
-        </div>
+<section id="" class="content-section container">
+  <div class="row">
+    <header class="col-xs-12 center">
+      <h1 class="heavy">Sign In</h1>
+      <p class="intro-text">Discover what you've missed since last time.</p>
+    </header>
+    <!-- LOGIN FORM -->
+    <form id="signin" class="minimal loggedout col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6" accept-charset="UTF-8" action="/sessions" method="post">
+      <div style="display:none">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
       </div>
-      <div class="form-bottom">
-      		<%= form_for(:session, url: sessions_path, html: { role: "form"}) do |f| %>
-            <div class="form-group">
-              <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
-            </div>
-            <div class="form-group">
-              <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
-            </div>
-              <button type="submit" class="btn">
-                Log in!
-              </button>
-            <div class="form-links">
-             	  <%= link_to "Forgot password?", new_password_reset_path %>
-  							|
-  							<%= link_to "Sign up now!", signup_path %>
-            </div>
-          <% end %>
+      <div class="form-group">
+        <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
+        <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">
       </div>
-    </div>
+      <button type="submit" class="btn btn-default animated">Go!</button>
+        <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
+    </form>
   </div>
-</div>
+</section>
+   <!-- <footer>
+        <div class="container text-center">
+            <p>&copy; Nfuse LLC. 2015. <a href="page.html">Privacy</a>. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
+        </div>
+    </footer>-->
+<a id="backtotop" title="back to top" class="page-scroll animation" href="#nfuse" ><i class="fa fa-long-arrow-up"></i></a>
+<a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+<div class="random bg"></div>
