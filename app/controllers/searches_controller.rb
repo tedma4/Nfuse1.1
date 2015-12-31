@@ -10,8 +10,11 @@ class SearchesController < ApplicationController
   end	
 
   def searchcontent
+    begin
 	  @search = params[:search]
 	  page     = Search::Timeline.new(@search)
 	  @timeline = page.construct(params)
+    rescue
+    end
 	end
 end

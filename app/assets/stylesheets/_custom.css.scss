@@ -548,9 +548,9 @@
       transition: all .3s ease-in-out;
       min-height: 1px;
   }
-  #nfuse .top-nav-collapse .navbar-brand {
-      width: 0; /*This line breaks for rails*/
-  }
+/*  #nfuse .top-nav-collapse .navbar-brand {
+      width: 0; //This line breaks for rails
+  }*/
   #nfuse .top-nav-collapse .navbar-toggle {
       margin: 0px;
       padding: 5px 10px;
@@ -569,7 +569,8 @@
   }
   #loggedout-nav{
     float: right;
-    padding: 0; /*This line breaks for rails*/
+/*    padding: 0; This line breaks for rails
+*/    
     font-size: 12px;
   }
   .navbar-toggle{
@@ -620,7 +621,7 @@
         line-height: 20px;
     }
     .top-nav-collapse #loggedout-nav li a{
-      padding: 0; /*This line breaks for rails*/
+      /* padding: 0; This line breaks for rails*/
     }
     .inner .top-nav-collapse{
       height: 40px;
@@ -659,7 +660,7 @@
       font-size: 14px;
     }
     .top-nav-collapse #loggedout-nav{
-      padding: 0; /*This line breaks for rails*/
+      /* padding: 0; This line breaks for rails*/
     }
     #menutoggler {
         padding: 10px 10px;
@@ -967,7 +968,7 @@
   }
   @media(min-width:1200px) {
     #mission{
-      background-size: 0; /*This line breaks for rails*/
+      /* background-size: 0; This line breaks for rails*/
     }
   }
   @media(min-width:1400px) {
@@ -1183,7 +1184,7 @@
         padding-top: 160px;
     }
     #signup{
-      z-index: 0; /*This line breaks for rails*/
+      /* z-index: 0; This line breaks for rails*/
     }
     form.minimal input,
     #signin input,

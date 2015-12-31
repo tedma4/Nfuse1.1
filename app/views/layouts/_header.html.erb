@@ -121,7 +121,7 @@
         </div>
 
     </nav>
-<% elsif current_page?(controller: 'sessions', action: 'new') %>
+<% elsif params['controller'] == 'sessions' && params['action'] == 'new' %>
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top">
 
@@ -186,7 +186,7 @@
             </ul>
         </div>
     </nav>
-<% elsif current_page?(controller: 'users', action: 'new') %>
+<% elsif params['controller'] == 'users' && params['action'] == 'new' %>
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top">
 
@@ -320,4 +320,70 @@
         </div>
     </nav>
 <% else %>
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top">
+
+        <div class="navbar-header">
+            <a id="menutoggler" href="#" class="loggedout">
+                <i class="main-color fa fa-bars"></i>
+            </a>
+            <a class="navbar-brand" href="index.html">
+                <img src="/assets/logo.png" alt="nfuselogo"/>
+            </a>
+            
+            <!-- LOGGED OUT NAV -->
+            <div id="loggedout-nav" class="loggedout navbar-right">
+                <ul class="nav">
+                    <li>
+                        <a href="signup.html" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
+                        <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
+                    </li>
+                    <li>
+                        <a href="signin.html" class="signintoggler"><i class="fa fa-user-plus"></i> Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <form accept-charset="UTF-8" action="/search" id="head-search" class="search drk" method="get">
+            <div style="display:none">
+                <input name="utf8" type="hidden" value="✓">
+            </div>
+            <a class="randomize" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
+            <a class="gosearch" href="explore.html"><i class="fa fa-search"></i></a>
+            <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
+        </form>
+
+        <!-- LOGGED IN NAV -->
+        <div id="loggedin-nav" class="loggedout slideout">
+           <form accept-charset="UTF-8" action="/search" id="slide-search" class="search drk" method="get">
+                <div style="display:none">
+                    <input name="utf8" type="hidden" value="✓">
+                </div>
+                <a class="randomize" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
+                <a class="gosearch" href="explore.html"><i class="fa fa-search"></i></a>
+                <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
+            </form>
+            <ul class="nav">
+                <li>
+                    <a class="" href="index.html">Home</a>
+                </li>
+                <li>
+                    <a class="" href="signup.html">Sign Up</a>
+                </li>
+                <li>
+                    <a class="" href="signin.html">Sign In</a>
+                </li>
+                <li>
+                    <a class="" href="privacy.html">Privacy</a>
+                </li>
+                <li>
+                    <a class="" href="contact.html">Contact Us</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
 <% end %>

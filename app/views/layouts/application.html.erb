@@ -31,12 +31,14 @@
     <body id="nfuse" class="loggedout home" data-spy="scroll" data-target=".navbar-fixed-top">
   <% elsif current_page?(controller: 'pages', action: 'privacy')%>
     <body id="nfuse" class="loggedout general inner" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% elsif current_page?(controller: 'sessions', action: 'new')%>
+  <% elsif params['controller'] == 'sessions' && params['action'] == 'new' %>
     <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% elsif current_page?(controller: 'users', action: 'new')%>
+  <% elsif params['controller'] == 'users' && params['action'] == 'new' %>
     <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
   <% elsif current_page?(controller: 'contacts', action: 'new')%>
     <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
+  <% else %>
+    <body id="nfuse" class="loggedout explore inner" data-spy="scroll" data-target=".navbar-fixed-top">
   <% end %>
     
     <%= render 'layouts/header' %>
@@ -51,7 +53,68 @@
     <%= javascript_include_tag 'jquery.easing.min.js' %>
     <!-- Custom Theme JavaScript 
     <script src="js/application.js"></script>-->
-    <%= javascript_include_tag 'nfuse.js' %>
+    <% if params['controller'] == 'searches' %>
+      <%= javascript_include_tag 'resize_masonry.js' %>
+      <%= javascript_include_tag 'nfuse.js' %>
+      <!-- Masonary Script -->
+      <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+      <%= javascript_include_tag 'masonry.pkgd.js' %>
+       <script>
+
+                   $( document ).ready(function() {
+                    resizeMasonry();
+                });
+                   $( window ).resize(function() {
+                    resizeMasonry();
+                });
+
+                   var msnry;
+
+            function triggerMasonry() {
+            // don't proceed if masonry has not been initialized
+              if ( !msnry ) {
+                return;
+            }
+            msnry.layout();
+        }
+
+        function initMasonry() {
+          var container = document.querySelector('#masonJar');
+          msnry = new Masonry( container, {
+              itemSelector: '.item',
+              isAnimated: true,
+              isResizable: true,
+              gutter: 25
+
+
+          });
+        }
+
+            // initialize masonry on document ready
+            docReady( function() {
+              initMasonry();
+          });
+
+
+            var $container = $('#masonJar');
+            // initialize Masonry after all images have loaded  
+            $container.imagesLoaded( function() {
+               $container.masonry({
+                  itemSelector: '.item',
+                  isAnimated: true,
+                  isResizable: true,
+                  gutter: 25
+
+                  
+              });
+
+           });
+    
+    </script>
+    <% else %>
+      <%= javascript_include_tag 'nfuse.js' %>
+    <% end %>
+
     <% if content_for? :for_body %>
       <%= yield :for_body %>
     <% end %>

@@ -1,4 +1,3 @@
-// Updated at 2:11 12/30/15
 // NFUSE.JS
 
 // jQuery to collapse the navbar on scroll
@@ -46,27 +45,11 @@
       function responsive_resize(){
          var current_width = $(window).width();
         //do something with the width value here!
-         if(current_width < 481)
-          $('html').addClass("m320").removeClass("m768").removeClass("desktop").removeClass("m480");
-     
-        else if(current_width < 739)
-          $('html').addClass("m768").removeClass("desktop").removeClass("m320").removeClass("tablet");
-     
-        else if (current_width < 970)
-          $('html').addClass("tablet").removeClass("desktop").removeClass("m320").removeClass("m768");
+        if (current_width < 970)
+          $('html').addClass("mobile").removeClass("desktop")
      
         else if (current_width > 971)
-          $('html').addClass("desktop").removeClass("m320").removeClass("m768").removeClass("tablet");
-     
-        if(current_width < 650){
-          $('html').addClass("mobile-menu").removeClass("desktop-menu");
-         $('.sf-menu').removeClass("sf-js-enabled").addClass("sf-js-disabled");
-        }
-     
-        if(current_width > 651){
-          $('html').addClass("desktop-menu").removeClass("mobile-menu");
-          $('.sf-menu').removeClass("sf-js-disabled").addClass("sf-js-enabled");
-        }
+          $('html').addClass("desktop").removeClass("mobile");
       }
 
 // jQuery for background reload
@@ -92,7 +75,7 @@
         var images = ['after-jogging.jpg', 'bearded-diving.jpg', 'bride-groom.jpg', 'couple-driving.jpg', 'examining-leaves.jpg', 'friends-walking.jpg', 'girl-photographing.jpg', 'hiking-couple.jpg', 'jumping-jetty.jpg', 'midair-bike.jpg', 'mountain-biker.jpg', 'ocean-gliding.jpg', 'surfer-girl.jpg'];
         images = shuffle(images);
 
-        $('html.tablet .random.bg').each(function(i){
+        $('html.mobile .random.bg').each(function(i){
             $(this).css({'background-image': 'url(/assets/bgs/mobile/' + images[i] + ')'});  
         });
     });
