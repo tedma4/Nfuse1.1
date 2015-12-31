@@ -26,20 +26,20 @@
     <%= render 'layouts/shim' %>
     <%= csrf_meta_tags %>
   </head>
-  <!-- Updated at 1:57 12/30/15 -->
-  <% if current_page?(controller: 'pages', action: 'home')%>
-    <body id="nfuse" class="loggedout home" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% elsif current_page?(controller: 'pages', action: 'privacy')%>
-    <body id="nfuse" class="loggedout general inner" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% elsif params['controller'] == 'sessions' && params['action'] == 'new' %>
-    <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% elsif params['controller'] == 'users' && params['action'] == 'new' %>
-    <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% elsif current_page?(controller: 'contacts', action: 'new')%>
-    <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% else %>
-    <body id="nfuse" class="loggedout explore inner" data-spy="scroll" data-target=".navbar-fixed-top">
-  <% end %>
+    <!-- Updated at 1:57 12/30/15 -->
+    <% if current_page?(controller: 'pages', action: 'home')%>
+      <body id="nfuse" class="loggedout home" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% elsif current_page?(controller: 'pages', action: 'privacy')%>
+      <body id="nfuse" class="loggedout general inner" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% elsif params['controller'] == 'sessions' && params['action'] == 'new' %>
+      <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% elsif params['controller'] == 'users' && params['action'] == 'new' %>
+      <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% elsif current_page?(controller: 'contacts', action: 'new')%>
+      <body id="nfuse" class="loggedout inner pagetrans" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% else %>
+      <body id="nfuse" class="loggedout explore inner" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% end %>
     
     <%= render 'layouts/header' %>
 
