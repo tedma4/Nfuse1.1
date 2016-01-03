@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   get '/feed_content', to: 'users#feed_content', as: :feed_content
   get "searchuser" => "searches#index"
   get '/search', to: 'searches#searchcontent'
+  get '/random', to: 'searches#random_search'
 
   #  OmniAuth * Registrations
   # if user.id.present?

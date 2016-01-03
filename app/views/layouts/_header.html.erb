@@ -6,9 +6,7 @@
       <a id="menutoggler" href="#" class="loggedout">
         <i class="main-color fa fa-bars"></i>
       </a>
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/logo.png" alt="nfuselogo"/>
-      </a>
+      <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
       <!-- LOGGED OUT NAV -->
       <div id="loggedout-nav" class="loggedout navbar-right">
         <ul class="nav">
@@ -17,7 +15,9 @@
             <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
           </li>
           <li>
-            <a href="#" class="signintoggler"><i class="fa fa-user-plus"></i> Sign In</a>
+            <%= link_to signin_path, class: 'signintoggler' do %>
+            <i class="fa fa-user-plus"></i>Login
+            <% end %>
           </li>
         </ul>
       </div>
@@ -34,19 +34,19 @@
       </form>
       <ul class="nav">
         <li>
-          <a class="" href="index.html">Home</a>
+          <%= link_to 'Home', root_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signup.html">Sign Up</a>
+          <%= link_to 'Sign Un', signup_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signin.html">Sign In</a>
+          <%= link_to 'Sign In', signin_path, class: '' %>
         </li>
         <li>
-          <a class="" href="privacy.html">Privacy</a>
+          <%= link_to 'Privacy', privacy_path, class: '' %>
         </li>
         <li>
-          <a class="" href="contact.html">Contact Us</a>
+          <%= link_to 'Contact Us', new_contact_path, class: '' %>
         </li>
       </ul>
     </div>
@@ -58,18 +58,18 @@
       <a id="menutoggler" href="#" class="loggedout">
         <i class="main-color fa fa-bars"></i>
       </a>
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/logo.png" alt="nfuselogo"/>
-      </a> 
+      <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
       <!-- LOGGED OUT NAV -->
       <div id="loggedout-nav" class="loggedout">
         <ul class="nav">
           <li>
-            <a href="signup.html" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
+            <a href="/signup" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
             <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
           </li>
           <li>
-            <a href="signin.html" class="signintoggler"><i class="fa fa-user-plus"></i> Sign In</a>
+            <%= link_to signin_path do %>
+            <i class="fa fa-user-plus"></i>Login
+            <% end %>
           </li>
         </ul>
       </div>
@@ -95,19 +95,19 @@
       </form>
       <ul class="nav">
         <li>
-          <a class="" href="index.html">Home</a>
+          <%= link_to 'Home', root_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signup.html">Sign Up</a>
+          <%= link_to 'Sign Un', signup_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signin.html">Sign In</a>
+          <%= link_to 'Sign In', signin_path, class: '' %>
         </li>
         <li>
-          <a class="" href="page.html">Privacy</a>
+          <%= link_to 'Privacy', privacy_path, class: '' %>
         </li>
         <li>
-          <a class="" href="contact.html">Contact Us</a>
+          <%= link_to 'Contact Us', new_contact_path, class: '' %>
         </li>
       </ul>
     </div>
@@ -119,18 +119,18 @@
       <a id="menutoggler" href="#" class="loggedout">
         <i class="main-color fa fa-bars"></i>
       </a>
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/logo.png" alt="nfuselogo"/>
-      </a>
+      <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
       <!-- LOGGED OUT NAV -->
       <div id="loggedout-nav" class="loggedout navbar-right">
         <ul class="nav">
           <li>
-            <a href="signup.html" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
+            <a href="/signup" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
             <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
           </li>
           <li>
-            <a href="signin.html" class="signintoggler"><i class="fa fa-user-plus"></i> Sign In</a>
+            <%= link_to signin_path do %>
+            <i class="fa fa-user-plus"></i>Login
+            <% end %>
           </li>
         </ul>
       </div>
@@ -156,19 +156,19 @@
       </form>
       <ul class="nav">
         <li>
-          <a class="" href="index.html">Home</a>
+          <%= link_to 'Home', root_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signup.html">Sign Up</a>
+          <%= link_to 'Sign Un', signup_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signin.html">Sign In</a>
+          <%= link_to 'Sign In', signin_path, class: '' %>
         </li>
         <li>
-          <a class="" href="privacy.html">Privacy</a>
+          <%= link_to 'Privacy', privacy_path, class: '' %>
         </li>
         <li>
-          <a class="" href="contact.html">Contact Us</a>
+          <%= link_to 'Contact Us', new_contact_path, class: '' %>
         </li>
       </ul>
     </div>
@@ -180,18 +180,18 @@
       <a id="menutoggler" href="#" class="loggedout">
         <i class="main-color fa fa-bars"></i>
       </a>
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/logo.png" alt="nfuselogo"/>
-      </a>
+      <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
       <!-- LOGGED OUT NAV -->
       <div id="loggedout-nav" class="loggedout navbar-right">
         <ul class="nav">
           <li>
-            <a href="signup.html" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
+            <a href="/signup" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
             <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
           </li>
           <li>
-            <a href="signin.html" class=""><i class="fa fa-user-plus"></i> Sign In</a>
+            <%= link_to signin_path do %>
+            <i class="fa fa-user-plus"></i>Login
+            <% end %>
           </li>
         </ul>
       </div>
@@ -217,19 +217,19 @@
       </form>
       <ul class="nav">
         <li>
-          <a class="" href="index.html">Home</a>
+          <%= link_to 'Home', root_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signup.html">Sign Up</a>
+          <%= link_to 'Sign Un', signup_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signin.html">Sign In</a>
+          <%= link_to 'Sign In', signin_path, class: '' %>
         </li>
         <li>
-          <a class="" href="privacy.html">Privacy</a>
+          <%= link_to 'Privacy', privacy_path, class: '' %>
         </li>
         <li>
-          <a class="" href="contact.html">Contact Us</a>
+          <%= link_to 'Contact Us', new_contact_path, class: '' %>
         </li>
       </ul>
     </div>
@@ -241,18 +241,18 @@
       <a id="menutoggler" href="#" class="loggedout">
         <i class="main-color fa fa-bars"></i>
       </a>
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/logo.png" alt="nfuselogo"/>
-      </a>
+      <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
       <!-- LOGGED OUT NAV -->
       <div id="loggedout-nav" class="loggedout navbar-right">
         <ul class="nav">
           <li>
-            <a href="signup.html" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
+            <a href="/signup" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
             <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
           </li>
           <li>
-            <a href="signin.html" class="signintoggler"><i class="fa fa-user-plus"></i> Sign In</a>
+            <%= link_to signin_path do %>
+            <i class="fa fa-user-plus"></i>Login
+            <% end %>
           </li>
         </ul>
       </div>
@@ -277,21 +277,21 @@
         <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
       </form>
         <ul class="nav">
-          <li>
-            <a class="" href="index.html">Home</a>
-          </li>
-          <li>
-            <a class="" href="signup.html">Sign Up</a>
-          </li>
-          <li>
-            <a class="" href="signin.html">Sign In</a>
-          </li>
-          <li>
-            <a class="" href="privacy.html">Privacy</a>
-          </li>
-          <li>
-            <a class="" href="contact.html">Contact Us</a>
-          </li>
+        <li>
+          <%= link_to 'Home', root_path, class: '' %>
+        </li>
+        <li>
+          <%= link_to 'Sign Un', signup_path, class: '' %>
+        </li>
+        <li>
+          <%= link_to 'Sign In', signin_path, class: '' %>
+        </li>
+        <li>
+          <%= link_to 'Privacy', privacy_path, class: '' %>
+        </li>
+        <li>
+          <%= link_to 'Contact Us', new_contact_path, class: '' %>
+        </li>
         </ul>
       </div>
   </nav>
@@ -302,18 +302,18 @@
       <a id="menutoggler" href="#" class="loggedout">
         <i class="main-color fa fa-bars"></i>
       </a>
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/logo.png" alt="nfuselogo"/>
-      </a>
+      <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
       <!-- LOGGED OUT NAV -->
       <div id="loggedout-nav" class="loggedout navbar-right">
         <ul class="nav">
           <li>
-            <a href="signup.html" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
+            <a href="/signup" class="hidden-xs page-scroll animated"><i class="fa fa-user"></i> Sign Up</a>
             <a href="#" class="visible-xs signuptoggler"><i class="fa fa-user"></i> Sign Up</a>
           </li>
           <li>
-            <a href="signin.html" class="signintoggler"><i class="fa fa-user-plus"></i> Sign In</a>
+            <%= link_to signin_path do %>
+            <i class="fa fa-user-plus"></i>Login
+            <% end %>
           </li>
         </ul>
       </div>
@@ -339,19 +339,19 @@
       </form>
       <ul class="nav">
         <li>
-          <a class="" href="index.html">Home</a>
+          <%= link_to 'Home', root_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signup.html">Sign Up</a>
+          <%= link_to 'Sign Un', signup_path, class: '' %>
         </li>
         <li>
-          <a class="" href="signin.html">Sign In</a>
+          <%= link_to 'Sign In', signin_path, class: '' %>
         </li>
         <li>
-          <a class="" href="privacy.html">Privacy</a>
+          <%= link_to 'Privacy', privacy_path, class: '' %>
         </li>
         <li>
-          <a class="" href="contact.html">Contact Us</a>
+          <%= link_to 'Contact Us', new_contact_path, class: '' %>
         </li>
       </ul>
     </div>
