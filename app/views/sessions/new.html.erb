@@ -6,7 +6,16 @@
       <p class="intro-text">Discover what you've missed since last time.</p>
     </header>
     <!-- LOGIN FORM -->
-    <form id="signin" class="minimal loggedout col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6" accept-charset="UTF-8" action="/sessions" method="post">
+
+      <%= form_for(:session, url: sessions_path, html: { class: "minimal loggedout col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6", id:"signin", role: "form" }) do |f| %>
+        <div class="form-group">
+          <%= f.text_field :email, placeholder: "Email", class: "form-control input-bg", id: "email", type: "email" %>
+          <%= f.text_field :password, placeholder: "Password", class: "form-control input-bg", id: "password", type: "password" %>
+        </div>
+          <button type="submit" class="btn btn-default animated">Go!</button>
+          <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
+      <% end %>
+    <!-- <form id="signin" class="minimal loggedout col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6" accept-charset="UTF-8" action="/sessions" method="post">
       <div style="display:none">
         <input name="utf8" type="hidden" value="✓">
         <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
@@ -17,7 +26,7 @@
       </div>
       <button type="submit" class="btn btn-default animated">Go!</button>
       <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
-    </form>
+    </form> -->
   </div>
   <!-- Footer -->
 </section>

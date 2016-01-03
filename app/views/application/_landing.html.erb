@@ -1,14 +1,5 @@
 <!-- Updated 2:05 12/30/15 -->
-    <!-- LOGIN FORM -->
-    <style>
-
-  .gosearch {
-    background: transparent;
-    border: none !important;
-    outline: none;
-    margin-right: -6px;
-  }
-    </style>
+<!-- LOGIN FORM -->
 <form id="signin" class="loggedout col-xs-12 col-sm-6 slideout" accept-charset="UTF-8" action="/sessions" method="post">
   <a href="#" class="closeout signintoggler">x</a>
   <div style="display:none">
@@ -31,7 +22,7 @@
           <h1 class="brand-heading heavy">Share &amp; Discover</h1>
           <p class="intro-text">We brought together all the places that you have friends and made sharing as simple as it should be.</p>
           <%= form_tag search_path, method: 'get', id: "home-search", class: "search" do %>
-            <a class="randomize" href="/search"><img src="/assets/dice.png" alt="random search"/></a>
+            <a class="randomize" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
             <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
             <a><button type="submit" class="gosearch"><i class=" fa fa-search"></i></button></a>
             <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users &amp; Social Media" %>

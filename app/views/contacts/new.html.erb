@@ -6,18 +6,17 @@
       <p class="intro-text">Contact Nfuse for anything you need help with.</p>
     </header>
     <!-- LOGIN FORM -->
-    <form id="contact" class="minimal col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6" accept-charset="UTF-8" action="/sessions" method="post">
-      <div style="display:none">
-        <input name="utf8" type="hidden" value="✓">
-        <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
-      </div>
+    <%= form_for @contact, html: {id:"contact", class: "minimal col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6", role: "form"} do |f| %>
       <div class="form-group">
-        <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
-        <input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">
-        <textarea class="form-control input-lg" id="form-message" name="user[message]" placeholder="Message"></textarea>
+        <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-control input-lg", id:"form-full-name", type: "search" %>
+        <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
+        <%= f.text_area :message, :placeholder => "Message", class: "form-control input-lg", id:"form-message", type: "message" %>
+      </div>
+      <div style="display: none;">
+        <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
       </div>
       <button type="submit" class="btn btn-default animated">Send!</button>
-    </form>
+    <% end %> 
   </div>
  <!-- Footer -->
 </section>
