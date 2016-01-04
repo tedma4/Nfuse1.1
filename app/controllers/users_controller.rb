@@ -7,7 +7,10 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, :feed, :explore, :explore_users, :following, :followers, :nfuse_page, :vue, :biz_page_hub ]
+  before_action :user_from_params, only: [:show, :destroy, 
+                :feed, :explore, :explore_users, :following, 
+                :followers, :nfuse_page, :vue, :biz_page_hub, 
+                :all_users_and_pages ]
 
   def index
     #user = User.find(params[:id])
@@ -198,6 +201,52 @@ class UsersController < ApplicationController
 
   def vue
     @title = 'Vue'
+  end
+
+  def all_users_and_pages
+    @providers = Providers.for(current_user)
+    timeline = []
+    page_timeline = []
+    ids =  current_user.followed_users.collect(&:id)
+    pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+    if ids.any? && pids.any?
+      @users = User.where(id: ids)
+      @users.find_each do |user|
+        feed=Networks::Timeline.new(user)
+        timeline << feed.construct(params)
+        @unauthed_accounts = feed.unauthed_accounts
+      end
+      @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
+      @pages = Page.where(id: pids)
+      @pages.find_each do |page|
+        feed=Biz::Timeline.new(page.twitter_handle, page.youtube_handle, page.instagram_handle, page)
+        page_timeline << feed.construct(params)
+      end
+      @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
+      @timeline = (@page_timeline + @user_timeline).sort { |a, b| b.created_time <=> a.created_time}
+    elsif ids.any? && pids.empty?
+      unless ids.empty?
+        @users = User.where(id: ids)
+        @users.find_each do |user|
+          feed=Networks::Timeline.new(user)
+          timeline << feed.construct(params)
+          @unauthed_accounts = feed.unauthed_accounts
+        end
+      end
+      @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    elsif pids.any? && ids.empty?
+      unless pids.empty?
+        @pages = Page.where(id: pids)
+        @pages.find_each do |page|
+          feed=Biz::Timeline.new(page.twitter_handle, page.youtube_handle, page.instagram_handle, page)
+          page_timeline << feed.construct(params)
+        end
+      end    
+      @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    else
+      @user_timeline
+      @page_timeline
+    end
   end
 
   private
