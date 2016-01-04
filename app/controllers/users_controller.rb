@@ -233,7 +233,7 @@ class UsersController < ApplicationController
           @unauthed_accounts = feed.unauthed_accounts
         end
       end
-      @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
     elsif pids.any? && ids.empty?
       unless pids.empty?
         @pages = Page.where(id: pids)
@@ -242,10 +242,9 @@ class UsersController < ApplicationController
           page_timeline << feed.construct(params)
         end
       end    
-      @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+      @timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
     else
-      @user_timeline
-      @page_timeline
+      @timeline
     end
   end
 
