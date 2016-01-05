@@ -55,7 +55,12 @@ module Networks
               merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
             end
           end
-          merge.inject(:+)
+          if @user.shouts.any?
+            users_posts
+            (merge.inject(:+)) + users_posts
+          else
+            merge.inject(:+)
+          end
         rescue
           merge
         end
@@ -65,13 +70,7 @@ module Networks
     end
 
     def users_posts
-      users_posts = []
-      if @user.shouts.any? #User.includes(:shouts).find(@user.id).shouts.any?
-        users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
-      else
-        users_posts
-      end
-      users_posts
+      users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
     end
 
     def twitter_posts(*this)
