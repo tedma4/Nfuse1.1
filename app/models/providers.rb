@@ -34,7 +34,7 @@ class Providers
 
   #TODO Broken since user has no post association
   def nfuse?
-    @user.posts.where(provider: 'nfuse').count > 0 
+    @user.shouts.count > 0
   end
 
   def pinterest?
@@ -46,7 +46,7 @@ class Providers
   end
 
   def none?
-    !(twitter? || instagram? || youtube? || vimeo? || nfuse? || gplus? || tumblr?)# || pinterest? || facebook?
+    !(twitter? || instagram? || youtube? || vimeo? || nfuse? || gplus? || tumblr? || pinterest?)# || pinterest? || facebook?
   end
 
 end

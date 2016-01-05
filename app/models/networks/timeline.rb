@@ -36,6 +36,7 @@ module Networks
 
     def build_it
       threads = []
+      #Checking for just tokens isn't good because it ignores nfuse posts
       @token = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
         # hydra = Typhoeus::Hydra.hydra
       @token.each do |this|
@@ -46,7 +47,7 @@ module Networks
       # hydra.run
       posts = threads.each(&:join)
       merge = []
-      if @token.any?
+      if @token.any? || @user.shouts.any?
         begin
           @token.each do |it|
             if @unauthed_accounts.include?(it.first)
@@ -58,11 +59,17 @@ module Networks
           if @user.shouts.any?
             users_posts
             (merge.inject(:+)) + users_posts
+          elsif merge.empty?
+            users_posts
           else
             merge.inject(:+)
           end
         rescue
+          if @user.shouts.any?
+            users_posts
+          else
           merge
+          end
         end
       else
         merge
