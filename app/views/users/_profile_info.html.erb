@@ -14,6 +14,71 @@
         display: none;
     }
 }
+button.btn {
+    margin-left: 30px;
+}
+.container {
+    padding: 0;
+    display: inline-block;
+    margin-left: 13%;
+}
+</style>
+<style>
+.onoffswitch {
+    position: absolute; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "Feed";
+    padding-left: 0;
+    background-color: #2FCCFF; color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "Exclusive";
+    padding-right: 3px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    border: 2px solid #999999; border-radius: 20px;
+    position: absolute; top: 0; bottom: 0; right: 56px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
 </style>
 <div><%= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
@@ -158,21 +223,23 @@
                                   </div>
                                 </div>
                               </div> -->
-                              <div class="row">
-                                <div class="col-sm-5 section-bottom-button wow fadeInUp">
-                                  <div id="target"></div>
-                                  <div id="profilePostTarget"></div>
-                                  <div id="profileUrlPostPreview"></div>
-                                  <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                <div class="row">
+                                  <div class="col-sm-5 section-bottom-button wow fadeInUp">
+                                    <div id="target"></div>
+                                    <div id="profilePostTarget"></div>
+                                    <div id="profileUrlPostPreview"></div>
+                                    <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="row">
-                                <%= f.label "Do you want to send this to only your followers?" %>
-                              </div>
-                              <div class="row">
                                 <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
                                   <% if current_user.followers.any? %>
-                                    <%= f.check_box :is_exclusive %>
+                                    <div class="onoffswitch">
+                                      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                      <label class="onoffswitch-label" for="myonoffswitch">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                      </label>
+                                    </div>
                                   <% end %>
                                   <button type="submit" class="btn">
                                    Post!
