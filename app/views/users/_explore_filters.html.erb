@@ -1,12 +1,17 @@
-<div class="top-big-link wow fadeInUp landingbottompush center">
+<style>
+form {
+    display: inline-block;
+    margin-top: 0em;
+}
+</style>
+<div class="center">
   <%= link_to 'Back', :back , class: "btn btn-link-2" %>
   <%= link_to 'Explore', explore_user_path(current_user), class: "btn btn-link-2" %>
-    <div id="follow_form">
       <% if current_user.following?(@page) %>
         <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
                                       html: { method: :delete },
                                       remote: true) do |f| %>
-          <%= f.submit "Unfollow", class: "unfollowBtn" %>
+          <%= f.submit "Unfollow", class: "btn btn-link-2" %>
         <% end %>
       <% else %>
         <%= form_for(current_user.relationships.build(followed_id: @page.id,
@@ -20,9 +25,8 @@
                instagram_handle: @incomp) %>
           <% end %>
           <div><%= f.hidden_field :followed_id %></div>
-          <%= f.submit "Follow", class: "followBtn" %>
+          <%= f.submit "Follow", class: "btn btn-link-2" %>
         <% end %>
       <% end %>
-    </div>
 
 </div><br>
