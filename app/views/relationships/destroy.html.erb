@@ -1,2 +1,4 @@
 $("#follow_form").html("<%= escape_javascript(render('users/follow')) %>")
-$("#followers").html('<%= @user.followers.count %>')
+<% if @_request.env['HTTP_REFERER'].include?('feed' && 'users') %>
+    $("#followers").html('<%= @user.followers.count %>')
+<% end %>
