@@ -24,19 +24,11 @@ module Biz
     end
 
     def username
-      case(@provider)
-        when 'instagram'
-          @post["user"]['username']
-        when 'twitter'
-          @post.attrs[:user][:screen_name]
-        when 'youtube'
-          'youtube user'
-      end
-
+      @page.thing_name
     end
 
     def page_link
-      @page.thing_name
+      @page.page_name
     end
 
     #-----------id----------

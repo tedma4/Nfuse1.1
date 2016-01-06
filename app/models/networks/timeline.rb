@@ -36,6 +36,7 @@ module Networks
 
     def build_it
       threads = []
+      #Checking for just tokens isn't good because it ignores nfuse posts
       @token = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
         # hydra = Typhoeus::Hydra.hydra
       @token.each do |this|
@@ -46,7 +47,7 @@ module Networks
       # hydra.run
       posts = threads.each(&:join)
       merge = []
-      if @token.any?
+      if @token.any? || @user.shouts.any?
         begin
           @token.each do |it|
             if @unauthed_accounts.include?(it.first)
@@ -55,9 +56,20 @@ module Networks
               merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
             end
           end
-          merge.inject(:+)
+          if @user.shouts.any?
+            users_posts
+            (merge.inject(:+)) + users_posts
+          elsif merge.empty?
+            users_posts
+          else
+            merge.inject(:+)
+          end
         rescue
+          if @user.shouts.any?
+            users_posts
+          else
           merge
+          end
         end
       else
         merge
@@ -65,13 +77,7 @@ module Networks
     end
 
     def users_posts
-      users_posts = []
-      if @user.shouts.any? #User.includes(:shouts).find(@user.id).shouts.any?
-        users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
-      else
-        users_posts
-      end
-      users_posts
+      users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
     end
 
     def twitter_posts(*this)
