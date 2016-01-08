@@ -58,7 +58,7 @@
     <%= javascript_include_tag 'jquery.easing.min.js' %>
     <!-- Custom Theme JavaScript 
     <script src="js/application.js"></script>-->
-    <% if params['controller'] == 'searches' %>
+    <% if params['controller'] == 'searches' || params['controller'] == 'pages' %>
       <%= javascript_include_tag 'resize_masonry.js' %>
       <%= javascript_include_tag 'nfuse.js' %>
       <!-- Masonary Script -->

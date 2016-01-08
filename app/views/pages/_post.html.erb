@@ -1,112 +1,78 @@
-<style>
-  .<%=post.provider%>_image {
-    width: 300px;
-  }
-</style>
-<div class="individual_post item <%=post.provider%>_post" data-id="<%=post.id%>" id="content-box-feed">
-  <div class="post_main">
-   <ul class="post_header">
-     <li>
-       <%= link_to image_tag("#{@comp}.jpg", :class => "user_profile_picture", size: "50x50"), root_path %>
-     </li>
-     <li class="user_name">
-       <%= link_to truncate(@compname, length: 15), "/#{@compname}" %>
-     </li>
-   </ul>
-  </div>
-  <div class="post_content">
-    <% case post.provider %>
-    <% when 'instagram' %>
-      <% if post.type == "image" %>
-        <div class="timeline-user-box">
-          <%= image_tag(post.image, :class => "image_post") %>
-        </div>
-        <% if post.text.present? %>
-          <div class="center">
-            <%= post.text %>
-          </div>
-        <% end %>
-      <% elsif post.type == "video" %>
-        <div class="center">
-          <video width="100%" controls autoload="none" poster=<%= post.image %> >
-            <source src="<%= post.video %>" type='video/mp4' />
-            <source src="<%= post.video %>" type='video/ogv' />
-          </video>
-        </div>
-        <% if post.text.present? %>
-          <div class="center">
-            <%= post.text %>
-          </div>
-        <% end %>
+  <article class="individual_post item <%= post.provider %>_post0" data-id="<%= post.id %>" id="content-box-feed">
+    <header class="post_header">
+      <div class="user">
+        <%= image_tag("#{@comp}.jpg", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+        <%= link_to truncate(@compname, length: 16), root_path %>
+      </div>
+      <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+      <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+       
+        <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
       <% end %>
-    <% when 'twitter' %>
-      <% if post.has_media? %>
-        <% if post.type == 'animated_gif' || post.type== 'video' %>
-          <div class="center">
+    </header>
+    <main class="post_content">
+      <% case post.provider %>
+      <% when 'instagram' %>
+        <div class="timeline-user-box">
+          <% if post.type == "image" %>
+            <%= image_tag(post.image, :class => "image_post") %>
+          <% elsif post.type == "video" %>
             <video width="100%" controls autoload="none" poster=<%= post.image %> >
               <source src="<%= post.video %>" type='video/mp4' />
               <source src="<%= post.video %>" type='video/ogv' />
             </video>
-          </div>
-        <% elsif post.type == 'photo' %>
-          <div class="timeline-user-box">
-            <%= image_tag(post.image, :class => "image_post") %>
-          </div>
-        <% end %>
-      <% end %>
-      <div class="center">
-        <%= post.text %>
-      </div>
-    <% when 'youtube' %>
-      <iframe
-        id="ytplayer"
-        type="text/html"
-        width="100%"
-        height="225"
-        src="https://www.youtube.com/embed/<%= post.video %>"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
-      <% if post.text.present? %>
-        <div class="center">
-          <%= post.text %>
+          <% end %>
         </div>
-      <% end %>
-    <%end%>
-        <br>
-  </div>
-  <div class="right">
-  </div>
-  <ul class="post_actions">
-    <li class="tilt">
-      <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-                  like_shout_path(id: post.id,
-                                  owner_id: post.user.id,
-                                  key: post.provider),
-                  method: :post, remote: true %>
-      <a id="shout-<%=post.id%>">
-        <%#= post.like_score(post.id) %>
-      </a>
-    </li>
-    <li class="vr"></li>
-    <li class="tilt">
-      <a data-toggle="modal" data-target="#<%=post.provider%>_modal_<%= post.id %>">
-        <%#= image_tag("commentgray.fw.png", size: "24x24") %>
-      </a>
-      <a id="post_<%=post.id%>_comment_count">
-        <%#= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
-      </a>
-    </li>
-    <li class="vr"></li>
-    <li class="tilt">
-      <%= link_to image_tag("#{post.provider}blue.fw.png",
-                            size: "24x24",
-                            :class => "#{post.provider}_provider_logo"),
-                  post.link_to_post,
-                  :target => "_blank" %>
-      <p class="timeStamp">
-        <%= time_ago_in_words(post.created_time) %> ago
-      </p>
-    </li>
-  </ul>
-</div>
+        <p>
+          <% if post.text.present? %>
+            <%= post.text %>
+          <% end %>
+        </p>
+      <% when 'twitter' %>
+        <div class="timeline-user-box">
+          <% if post.has_media? %>
+            <% if post.type == 'animated_gif' || post.type== 'video' %>
+                <video width="100%" controls autoload="none" poster=<%= post.image %> >
+                  <source src="<%= post.video %>" type='video/mp4' />
+                  <source src="<%= post.video %>" type='video/ogv' />
+                </video>
+            <% elsif post.type == 'photo' %>
+              <div class="timeline-user-box">
+                <%= image_tag(post.image, :class => "image_post") %>
+              </div>
+            <% end %>
+          <% elsif post.has_video_url? %>
+            <iframe
+            id="ytplayer"
+            type="text/html"
+            width="100%"
+            height="225"
+            src="https://www.youtube.com/embed/<%= post.twitter_url_video %>"
+            frameborder="0"
+            allowfullscreen>
+            </iframe>
+          <% end %>
+        </div>
+        <p>
+          <%= post.text %>
+        </p>
+      <% when 'youtube' %>
+        <div class="timeline-user-box">
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="100%"
+            height="225"
+            src="https://www.youtube.com/embed/<%= post.video %>"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p>
+          <% if post.text.present? %>
+            <%= post.text %>
+          <% end %>
+        </p>
+      <%end%>
+    </main>
+  </article>

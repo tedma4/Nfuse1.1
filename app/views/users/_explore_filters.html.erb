@@ -5,28 +5,30 @@ form {
 }
 </style>
 <div class="center">
-  <%= link_to 'Back', :back , class: "btn btn-link-2" %>
-  <%= link_to 'Explore', explore_user_path(current_user), class: "btn btn-link-2" %>
-      <% if current_user.following?(@page) %>
-        <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
-                                      html: { method: :delete },
-                                      remote: true) do |f| %>
-          <%= f.submit "Unfollow", class: "btn btn-link-2" %>
-        <% end %>
-      <% else %>
-        <%= form_for(current_user.relationships.build(followed_id: @page.id,
-                                        follow_type: @page.class.name),
-                                                      remote: true) do |f| %>
-          <% if Page.find_by(id: @page.id, thing_name: @compname).nil? %>
-            <% Page.find_by(id: @page.id).update_attributes(
-                       thing_name: @compname,
-               twitter_handle: @comp,
-               youtube_handle: @comp_url,
-               instagram_handle: @incomp) %>
-          <% end %>
-          <div><%= f.hidden_field :followed_id %></div>
-          <%= f.submit "Follow", class: "btn btn-link-2" %>
-        <% end %>
+  <% if signed_in? %>
+    <%= link_to 'Back', :back , class: "btn btn-link-2" %>
+    <%= link_to 'Explore', explore_user_path(current_user), class: "btn btn-link-2" %>
+    <% if current_user.following?(@page) %>
+      <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
+                                    html: { method: :delete },
+                                    remote: true) do |f| %>
+        <%= f.submit "Unfollow", class: "btn btn-link-2" %>
       <% end %>
+    <% else %>
+      <%= form_for(current_user.relationships.build(followed_id: @page.id,
+                                      follow_type: @page.class.name),
+                                                    remote: true) do |f| %>
+        <% if Page.find_by(id: @page.id, thing_name: @compname).nil? %>
+          <% Page.find_by(id: @page.id).update_attributes(
+                     thing_name: @compname,
+             twitter_handle: @comp,
+             youtube_handle: @comp_url,
+             instagram_handle: @incomp) %>
+        <% end %>
+        <div><%= f.hidden_field :followed_id %></div>
+        <%= f.submit "Follow", class: "btn btn-link-2" %>
+      <% end %>
+    <% end %>
+  <% end %>
 
 </div><br>

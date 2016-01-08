@@ -52,8 +52,10 @@ class PagesController < ApplicationController
   # end
 
   def set_page
-    @page = Page.where(page_name: params[:action]).first_or_create!
-    impressionist(@page)
+    if signed_in?
+      @page = Page.where(page_name: params[:action]).first_or_create!
+      impressionist(@page)
+    end
   end
 
   public

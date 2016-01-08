@@ -127,7 +127,7 @@ module Biz
         when 'instagram'
           @post["link"]
         when 'twitter'
-          "https://twitter.com/#{username}/status/#{id}"
+          "https://twitter.com/#{@post.attrs[:user][:name]}/status/#{@post.id}"
         when 'youtube'
           "https://www.youtube.com/watch?v=#{@post.id}"
     	end

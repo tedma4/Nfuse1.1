@@ -53,6 +53,7 @@
         </li>
         <li>
           <%= link_to 'Contact Us', new_contact_path, class: '' %>
+          <%= link_to "Log out", signout_path, method: :get %>
         </li>
       </ul>
     </div>
@@ -338,7 +339,7 @@
         </li>
         <li>
           <%= link_to 'Contact Us', new_contact_path, class: '' %>
-          <%#= link_to "Log out", signout_path, method: :get %>
+          <%= link_to "Log out", signout_path, method: :get %>
         </li>
       </ul>
     </div>
