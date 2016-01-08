@@ -14,11 +14,14 @@ class Shouts::LikesController < ApplicationController
         owner_id: params[:owner_id],
         provider: params[:key]
     }
+    # TODO Turn off PA when a user likes their own thing
+    if current_user.id != params[:owner_id].to_i
     current_user.create_activity(key: 'shout.like',
                                  parameters: {id:       @shout[:id],
                                               provider: @shout[:provider]},
                                  owner: current_user,
-                                 recipient: User.find(@shout[:owner_id]))
+                                 recipient: User.find(@shout[:owner_id]))# unless options[:owner]['id'] == options[:recipient]['id']
+    end
     respond_to do |format|
       format.js { render file: 'shouts/like.js.erb'} #'alert("like")' and return
     end
