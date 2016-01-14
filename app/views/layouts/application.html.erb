@@ -65,16 +65,14 @@
       <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
       <%= javascript_include_tag 'masonry.pkgd.js' %>
        <script>
+         $( document ).ready(function() {
+            resizeMasonry();
+            });
+         $( window ).resize(function() {
+            resizeMasonry();
+            });
 
-                   $( document ).ready(function() {
-                    resizeMasonry();
-                });
-                   $( window ).resize(function() {
-                    resizeMasonry();
-                });
-
-                   var msnry;
-
+          var msnry;
             function triggerMasonry() {
             // don't proceed if masonry has not been initialized
               if ( !msnry ) {
