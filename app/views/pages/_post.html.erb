@@ -79,13 +79,21 @@
   </div>
   <ul class="post_actions">
     <li class="tilt">
-      <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+      <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+      <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+                  dislike_shout_path(id: post.id,
+                                  owner_id: @page.id,
+                                  key: post.provider),
+                  method: :delete, remote: true %>
+      <% else %>
+      <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
                   like_shout_path(id: post.id,
-                                  owner_id: post.user.id,
+                                  owner_id: @page.id,
                                   key: post.provider),
                   method: :post, remote: true %>
+      <% end %>
       <a id="shout-<%=post.id%>">
-        <%#= post.like_score(post.id) %>
+        <%= post.like_score(post.id) %>
       </a>
     </li>
     <li class="vr"></li>

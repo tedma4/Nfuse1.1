@@ -1,4 +1,2 @@
-// $(document).ready(function() {
-//   alert('Liked');
-// })
+//$("#follow_form").html("<%#= escape_javascript(render('shouts/like')) %>")
 $("#shout-<%= @shout[:id]%>").text('<%=@shout[:like_score] %>');

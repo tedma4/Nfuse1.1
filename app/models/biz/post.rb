@@ -23,6 +23,10 @@ module Biz
       end 
     end
 
+    def like_score(id)
+      ActsAsVotable::Vote.where(votable_id: id).size
+    end
+
     def username
       @page.thing_name
     end

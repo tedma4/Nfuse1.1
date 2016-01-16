@@ -1,3 +1,2 @@
-$(document).ready(function() {
-  alert('Disliked');
-})
+//$("#shout").html("<%#= escape_javascript(render('users/follow')) %>")
+$("#shout-<%= @shout[:id]%>").text('<%=@shout[:like_score] %>');
