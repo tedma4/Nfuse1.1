@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'individual_post/:post_id', to: 'pages#individual_post'
+
   resources :shouts do
     resources :comments
   end

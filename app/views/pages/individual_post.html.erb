@@ -1,0 +1,86 @@
+<style>
+  .<%=post.provider%>_image {
+    width: 300px;
+  }
+</style>
+<div class="individual_post item" data-id="<%=post.id%>" id="content-box-feed">
+  <div class="post_main">
+   <ul class="post_header">
+     <li>
+       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
+     </li>
+     <li class="user_name">
+       <%= link_to "#{post.username}", feed_user_path(post.user) %>
+     </li>
+   </ul>
+  </div>
+  <div class="post_content">
+    <% if post.type == "image" %>
+      <div class="timeline-user-box">
+<!--         <%#= link_to image_tag(post.image, :class => "image_post"), individual_post_path(post.id, @provider, current_user.id) %>
+ -->      </div>
+      <% if post.text.present? %>
+        <div class="center">
+          <%= post.text %>
+        </div>
+      <% end %>
+    <% elsif post.type == "video" %>
+      <div class="center">
+        <video width="100%" controls preload="none" poster=<%= post.image %> >
+          <source src="<%= post.video %>" type='video/mp4' />
+          <source src="<%= post.video %>" type='video/ogv' />
+        </video>
+      </div>
+        <% if post.text.present? %>
+        <div class="center">
+          <%= post.text %>
+        </div>
+        <% end %>
+    <% end %>
+
+    <br>
+  </div>
+  <div class="right">
+  </div>
+  <ul class="post_actions">
+    <li class="tilt">
+      <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+      <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+                  dislike_shout_path(id: post.id,
+                                  owner_id: post.user.id,
+                                  key: post.provider),
+                  method: :delete, remote: true %>
+      <% else %>
+      <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+                  like_shout_path(id: post.id,
+                                  owner_id: post.user.id,
+                                  key: post.provider),
+                  method: :post, remote: true %>
+      <% end %>
+      <a id="shout-<%=post.id%>">
+        <%= post.like_score(post.id) %>
+      </a>
+    </li>
+<!--     <li class="vr"></li>
+    <li class="tilt">
+      <a data-toggle="modal" data-target="#<%#=post.provider%>_modal_<%= post.id %>">
+        <%#= image_tag("commentgray.fw.png", size: "24x24") %>
+      </a>
+      <a id="post_<%#=post.id%>_comment_count">
+        <%#= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
+      </a>
+    </li> -->
+    <li class="vr"></li>
+    <li class="tilt">
+      <%= link_to image_tag("#{post.provider}blue.fw.png",
+                            size: "24x24",
+                            :class => "#{post.provider}_provider_logo"),
+                  post.link_to_post,
+                  :target => "_blank" %>
+      <p class="timeStamp">
+        <%= time_ago_in_words(post.created_time) %> ago
+      </p>
+    </li>
+  </ul>
+</div>
+

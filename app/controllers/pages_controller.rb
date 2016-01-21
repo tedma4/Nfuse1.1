@@ -4,7 +4,7 @@ class PagesController < ApplicationController
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
                                    :travel_connector, :test_page, :mytop50, :mostpopular,
-                                   :random, :trending#, :wiredtestthing
+                                   :random, :trending, :individual_post#, :wiredtestthing
                                   ]
   # before_action :find_page, except:[:home, :help, :about, :feedback, :terms, 
   #                                  :privacy, :business_connector, :celebrity_connector, 
@@ -44,6 +44,14 @@ class PagesController < ApplicationController
       @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
     end
     # render 'home' is implicit.
+  end
+
+  def individual_post(post_id, provider, user)
+    post_id = params[:post_id]
+    provider = params[:provider]
+    user = params[:user]
+    post = Notification::Timeline.new(post_id, provider, user)
+    @timeline = post.construct(params)
   end
 
   private
