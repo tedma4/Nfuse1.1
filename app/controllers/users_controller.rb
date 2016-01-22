@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   before_action :user_from_params, only: [:show, :destroy, 
                 :feed, :explore, :explore_users, :following, 
                 :followers, :nfuse_page, :vue, :biz_page_hub, 
-                :all_users_and_pages ]
+                :all_users_and_pages, :user_likes ]
 
   def index
     #user = User.find(params[:id])
@@ -246,6 +246,9 @@ class UsersController < ApplicationController
     else
       @timeline
     end
+  end
+
+  def user_likes
   end
 
   private

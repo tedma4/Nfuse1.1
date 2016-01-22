@@ -10,7 +10,7 @@
   <% if current_user.following?(@user) %>
     <%= render 'unfollow' %>
   <% else %>
-    <%= render 'follow', locals:{a: @thing} %>
+    <%= render 'follow' %>
   <% end %>
   </div>
 <% end %>

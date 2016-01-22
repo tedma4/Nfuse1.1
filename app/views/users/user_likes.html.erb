@@ -1,0 +1,53 @@
+<div id="masonJar" class="clearfix masonJar">
+  <% @user_likes = ActsAsVotable::Vote.where(voter_id: current_user.id) %>
+  <% unless @user_likes.empty? %>
+    <% @user_likes.each do |this| %>
+      <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, User.find(this.owner_id)).construct %>
+          <% @this_user = User.find(this.owner_id) %>
+       <div class="individual_post item">
+         <div class="post_main">
+           <ul class="post_header">
+             <li>
+              <% if @this_user.avatar_file_name.present? && @this_user.avatar_file_name.include?('graph.facebook.com') %>
+                <%= link_to image_tag(@this_user.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ @this_user.first_name}"), feed_user_path(@this_user) %>
+              <% else %>
+               <%= link_to image_tag(@this_user.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ @this_user.first_name}"), feed_user_path(@this_user) %>
+              <% end %>
+             </li>
+             <li class="user_name_notifications">
+               <%= link_to @this_user.first_name.capitalize, feed_user_path(@this_user) %>
+             </li>
+           </ul>
+         </div>
+         <div class="post_content">
+           <% case this.social_flag %>
+            <% when nil %>
+              <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+            <% when "gplus" %>
+              <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+            <% when "tumblr" %>
+              <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+            <% when "facebook" %>
+              <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
+            <% when 'twitter' %>
+              <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
+            <% when 'youtube' %>
+              <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
+            <% when 'vimeo' %>
+              <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
+            <% when 'instagram' %>
+              <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
+            <% when 'pinterest' %>
+              <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
+            <% end %>
+           <div class="created-at">
+             <%= time_ago_in_words(@post_entry.created_time) %> ago
+           </div>
+         </div>
+       </div>
+       <% end %>
+  <% else %>
+    <P>Go Like Something</P>
+  <% end %>
+</div>
+

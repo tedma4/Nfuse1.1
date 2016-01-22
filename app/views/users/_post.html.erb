@@ -24,10 +24,10 @@
     <li class="tilt">
       <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
       <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-                  like_shout_path(id: post.id,
+                  dislike_shout_path(id: post.id,
                                   owner_id: post.user.id,
                                   key: post.provider),
-                  method: :post, remote: true %>
+                  method: :delete, remote: true %>
       <% else %>
       <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
                   like_shout_path(id: post.id,

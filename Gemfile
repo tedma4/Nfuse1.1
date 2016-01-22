@@ -29,7 +29,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'wicked'
 #This resizes a file uploaded by paperclip
 gem 'rmagick', '~> 2.13.2', :platforms => :ruby
-gem 'typhoeus', '~> 0.6.8'
+# gem 'typhoeus', '~> 0.6.8'
 gem 'httparty'
 gem 'cocaine', '0.5.5'
 #This allows the use of the facebook oauth
@@ -71,7 +71,7 @@ gem 'seed-fu', '~> 2.3'
 gem 'auto_html'
 gem 'faker', "~> 1.4.3"
 gem 'public_activity', '1.4.2'
-gem 'eventmachine', :github => 'eventmachine/eventmachine', :branch => 'master'
+# gem 'eventmachine', :github => 'eventmachine/eventmachine', :branch => 'master'
 # gem 'puma', '2.15.3'
 gem 'thin', '~> 1.6.4', group: :development
 group :development, :test do

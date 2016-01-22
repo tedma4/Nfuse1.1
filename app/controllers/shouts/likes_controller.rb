@@ -12,7 +12,7 @@ class Shouts::LikesController < ApplicationController
         id: params[:id],
         like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
         owner_id: params[:owner_id],
-        provider: params[:key]
+        provider: params[:key] || 'nfuse'
     }
     # TODO Turn off PA when a user likes their own thing
     if current_user.id != params[:owner_id].to_i
@@ -28,10 +28,19 @@ class Shouts::LikesController < ApplicationController
   end
 
   def destroy
-    if @like == ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
-      @like.destroy
+    @shout = {
+        id: params[:id],
+        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
+        owner_id: params[:owner_id],
+        provider: params[:key]
+    }
+    @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
+    @like.destroy
+    # activity = PublicActivity::Activity.find_by_trackable_id_and_trackable_type(params['id'], 'User')
+    # activity.destroy if activity.present?
+    respond_to do |format|
+      format.js { render file: 'shouts/dislike.js.erb'} #'alert("like")' and returnR
     end
-    render js: 'alert("dislike")' and return
   end
 
   private
@@ -87,3 +96,4 @@ class Shouts::LikesController < ApplicationController
   end
 
 end
+# attrs = {id: params[:id], provider: params[:key]}
