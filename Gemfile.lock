@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/eventmachine/eventmachine.git
-  revision: 076a526915dc1eb19bd6d349e7aaf8c92909ef2c
-  branch: master
-  specs:
-    eventmachine (1.0.8)
-
-GIT
   remote: https://github.com/ermacaz/vmo.git
   revision: d610542d4a743873e322b54a039ae381a9e44c4a
   specs:
@@ -125,8 +118,7 @@ GEM
       time_diff
     equalizer (0.0.11)
     erubis (2.7.0)
-    ethon (0.7.3)
-      ffi (>= 1.3.0)
+    eventmachine (1.0.9.1)
     excon (0.42.1)
     execjs (2.5.2)
     factory_girl (4.4.0)
@@ -413,8 +405,6 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-    typhoeus (0.6.9)
-      ethon (>= 0.7.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     tzinfo-data (1.2015.4)
@@ -455,7 +445,6 @@ DEPENDENCIES
   database_cleaner (~> 1.3.0)
   ejs (~> 1.1.1)
   elastic-beanstalk (~> 1.1.3)
-  eventmachine!
   excon (~> 0.42.1)
   factory_girl_rails (~> 4.4.1)
   faker (~> 1.4.3)
@@ -506,7 +495,6 @@ DEPENDENCIES
   tumblr_client
   turbolinks
   twitter (>= 5.14.0)
-  typhoeus (~> 0.6.8)
   tzinfo-data
   uglifier (>= 1.3.0)
   vimeo
@@ -515,4 +503,4 @@ DEPENDENCIES
   yt!
 
 BUNDLED WITH
-   1.10.5
+   1.11.2

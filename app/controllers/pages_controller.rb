@@ -46,12 +46,11 @@ class PagesController < ApplicationController
     # render 'home' is implicit.
   end
 
-  def individual_post(post_id, provider, user)
+  def individual_post
     post_id = params[:post_id]
     provider = params[:provider]
     user = params[:user]
     post = Notification::Timeline.new(post_id, provider, user)
-    @timeline = post.construct(params)
   end
 
   private
