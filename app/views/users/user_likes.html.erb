@@ -1,146 +1,150 @@
-<div id="masonJar" class="clearfix masonJar">
-  <% @user_likes = ActsAsVotable::Vote.where(voter_id: current_user.id) %>
-  <% unless @user_likes.empty? %>
-    <% @user_likes.each do |this| %>
-      <% if this.owner_type == 'User' %>
-      <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, User.find(this.owner_id)).construct %>
-        <% @this_user = User.find(this.owner_id) %>
-        <div class="individual_post item">
-         <div class="post_main">
-           <ul class="post_header">
-             <li>
-              <% if @this_user.avatar_file_name.present? && @this_user.avatar_file_name.include?('graph.facebook.com') %>
-                <%= link_to image_tag(@this_user.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ @this_user.first_name}"), feed_user_path(@this_user) %>
-              <% else %>
-               <%= link_to image_tag(@this_user.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ @this_user.first_name}"), feed_user_path(@this_user) %>
-              <% end %>
-             </li>
-             <li class="user_name_notifications">
-               <%= link_to @this_user.first_name.capitalize, feed_user_path(@this_user) %>
-             </li>
-           </ul>
-         </div>
-         <div class="post_content">
-           <% case this.social_flag %>
-            <% when nil %>
-              <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
-            <% when "gplus" %>
-              <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
-            <% when "tumblr" %>
-              <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
-            <% when "facebook" %>
-              <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
-            <% when 'twitter' %>
-              <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
-            <% when 'youtube' %>
-              <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
-            <% when 'vimeo' %>
-              <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
-            <% when 'instagram' %>
-              <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
-            <% when 'pinterest' %>
-              <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
-            <% end %>
-           <div class="created-at">
-             <%= time_ago_in_words(@post_entry.created_time) %> ago
+<div class="container_profile">
+  <%= render partial: "profile_info" %>
+  <div class="center">
+    <div id="masonJar" class="clearfix masonJar">
+      <% @user_likes = ActsAsVotable::Vote.where(voter_id: current_user.id) %>
+      <% unless @user_likes.empty? %>
+        <% @user_likes.each do |this| %>
+          <% if this.owner_type == 'User' %>
+          <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, User.find(this.owner_id)).construct %>
+            <% @this_user = User.find(this.owner_id) %>
+            <div class="individual_post item">
+             <div class="post_main">
+               <ul class="post_header">
+                 <li>
+                  <% if @this_user.avatar_file_name.present? && @this_user.avatar_file_name.include?('graph.facebook.com') %>
+                    <%= link_to image_tag(@this_user.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ @this_user.first_name}"), feed_user_path(@this_user) %>
+                  <% else %>
+                   <%= link_to image_tag(@this_user.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ @this_user.first_name}"), feed_user_path(@this_user) %>
+                  <% end %>
+                 </li>
+                 <li class="user_name_notifications">
+                   <%= link_to @this_user.first_name.capitalize, feed_user_path(@this_user) %>
+                 </li>
+               </ul>
+             </div>
+             <div class="post_content">
+               <% case this.social_flag %>
+                <% when nil %>
+                  <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+                <% when "gplus" %>
+                  <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+                <% when "tumblr" %>
+                  <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+                <% when "facebook" %>
+                  <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
+                <% when 'twitter' %>
+                  <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
+                <% when 'youtube' %>
+                  <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
+                <% when 'vimeo' %>
+                  <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
+                <% when 'instagram' %>
+                  <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
+                <% when 'pinterest' %>
+                  <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
+                <% end %>
+               <div class="created-at">
+                 <%= time_ago_in_words(@post_entry.created_time) %> ago
+               </div>
+             </div>
            </div>
-         </div>
-       </div>
-      <% else %>
-        <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, Page.find(this.owner_id)).construct %>
-        <% @this_user = Page.find(this.owner_id) %>
-        <div class="individual_post item" id="content-box-feed">
-          <div class="post_main">
-           <ul class="post_header">
-             <li>
-               <%= link_to image_tag("#{@post_entry.avatar}.jpg", :class => "user_profile_picture", size: "50x50"), "/#{@post_entry.page_link}" %>
-             </li>
-             <li class="user_name">
-               <%= link_to truncate(@post_entry.username, length: 15), "/#{@post_entry.page_link}" %>
-             </li>
-           </ul>
-          </div>
-          <div class="post_content">
-            <% case @post_entry.provider %>
-            <% when 'instagram' %>
-              <% if @post_entry.type == "image" %>
-                <div class="timeline-user-box">
-                  <%= image_tag(@post_entry.image, :class => "image_post") %>
-                </div>
-                <% if @post_entry.text.present? %>
-                  <div class="center">
-                    <%= @post_entry.text %>
-                  </div>
-                <% end %>
-              <% elsif @post_entry.type == "video" %>
-                <div class="center">
-                  <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
-                    <source src="<%= @post_entry.video %>" type='video/mp4' />
-                    <source src="<%= @post_entry.video %>" type='video/ogv' />
-                  </video>
-                </div>
-                <% if @post_entrytext.present? %>
-                  <div class="center">
-                    <%= @post_entry.text %>
-                  </div>
-                <% end %>
-              <% end %>
-            <% when 'twitter' %>
-              <% if @post_entry.has_media? %>
-                <% if @post_entry.type == 'animated_gif' || @post_entry.type== 'video' %>
-                  <div class="center">
-                    <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
-                      <source src="<%= @post_entry.video %>" type='video/mp4' />
-                      <source src="<%= @post_entry.video %>" type='video/ogv' />
-                    </video>
-                  </div>
-                <% elsif @post_entry.type == 'photo' %>
-                  <div class="timeline-user-box">
-                    <%= image_tag(@post_entry.image, :class => "image_post") %>
-                  </div>
-                <% end %>
-              <% end %>
-              <div class="center">
-                <%= @post_entrytext %>
+          <% else %>
+            <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, Page.find(this.owner_id)).construct %>
+            <% @this_user = Page.find(this.owner_id) %>
+            <div class="individual_post item" id="content-box-feed">
+              <div class="post_main">
+               <ul class="post_header">
+                 <li>
+                   <%= link_to image_tag("#{@post_entry.avatar}.jpg", :class => "user_profile_picture", size: "50x50"), "/#{@post_entry.page_link}" %>
+                 </li>
+                 <li class="user_name">
+                   <%= link_to truncate(@post_entry.username, length: 15), "/#{@post_entry.page_link}" %>
+                 </li>
+               </ul>
               </div>
-            <% when 'youtube' %>
-              <iframe
-                id="ytplayer"
-                type="text/html"
-                width="100%"
-                height="225"
-                src="https://www.youtube.com/embed/<%= @post_entry.video %>"
-                frameborder="0"
-                allowfullscreen>
-              </iframe>
-              <% if @post_entry.text.present? %>
-                <div class="center">
-                  <%= @post_entry.text %>
-                </div>
-              <% end %>
-            <%end%>
-                <br>
-          </div>
-          <div class="right">
-          </div>
-          <ul class="post_actions">
-            <li class="vr"></li>
-            <li class="tilt">
-              <%= link_to image_tag("#{@post_entry.provider}blue.fw.png",
-                                    size: "24x24",
-                                    :class => "#{@post_entry.provider}_provider_logo"),
-                          @post_entry.link_to_post,
-                          :target => "_blank" %>
-              <p class="timeStamp">
-                <%= time_ago_in_words(@post_entry.created_time) %> ago
-              </p>
-            </li>
-          </ul>
-        </div>
+              <div class="post_content">
+                <% case @post_entry.provider %>
+                <% when 'instagram' %>
+                  <% if @post_entry.type == "image" %>
+                    <div class="timeline-user-box">
+                      <%= image_tag(@post_entry.image, :class => "image_post") %>
+                    </div>
+                    <% if @post_entry.text.present? %>
+                      <div class="center">
+                        <%= @post_entry.text %>
+                      </div>
+                    <% end %>
+                  <% elsif @post_entry.type == "video" %>
+                    <div class="center">
+                      <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
+                        <source src="<%= @post_entry.video %>" type='video/mp4' />
+                        <source src="<%= @post_entry.video %>" type='video/ogv' />
+                      </video>
+                    </div>
+                    <% if @post_entrytext.present? %>
+                      <div class="center">
+                        <%= @post_entry.text %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% when 'twitter' %>
+                  <% if @post_entry.has_media? %>
+                    <% if @post_entry.type == 'animated_gif' || @post_entry.type== 'video' %>
+                      <div class="center">
+                        <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
+                          <source src="<%= @post_entry.video %>" type='video/mp4' />
+                          <source src="<%= @post_entry.video %>" type='video/ogv' />
+                        </video>
+                      </div>
+                    <% elsif @post_entry.type == 'photo' %>
+                      <div class="timeline-user-box">
+                        <%= image_tag(@post_entry.image, :class => "image_post") %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  <div class="center">
+                    <%= @post_entrytext %>
+                  </div>
+                <% when 'youtube' %>
+                  <iframe
+                    id="ytplayer"
+                    type="text/html"
+                    width="100%"
+                    height="225"
+                    src="https://www.youtube.com/embed/<%= @post_entry.video %>"
+                    frameborder="0"
+                    allowfullscreen>
+                  </iframe>
+                  <% if @post_entry.text.present? %>
+                    <div class="center">
+                      <%= @post_entry.text %>
+                    </div>
+                  <% end %>
+                <%end%>
+                    <br>
+              </div>
+              <div class="right">
+              </div>
+              <ul class="post_actions">
+                <li class="vr"></li>
+                <li class="tilt">
+                  <%= link_to image_tag("#{@post_entry.provider}blue.fw.png",
+                                        size: "24x24",
+                                        :class => "#{@post_entry.provider}_provider_logo"),
+                              @post_entry.link_to_post,
+                              :target => "_blank" %>
+                  <p class="timeStamp">
+                    <%= time_ago_in_words(@post_entry.created_time) %> ago
+                  </p>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <P>Go Like Something</P>
       <% end %>
-    <% end %>
-  <% else %>
-    <P>Go Like Something</P>
-  <% end %>
+    </div>
+  </div>
 </div>
-

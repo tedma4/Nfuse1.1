@@ -17,7 +17,7 @@ module Biz
    private
  
    def concurrency_test_with_thread
-     list = [['twitter', @comp], ['youtube', @comp_url], ['instagram', @incomp]]
+     list = [['twitter', @comp], ['google_oauth2', @comp_url], ['instagram', @incomp]]
      threads = []
      list.each do |this|
        if list.flatten[1].include?('blank') && list.flatten[3].include?('blank') && this.first == 'instagram'
@@ -68,7 +68,7 @@ module Biz
       end
     end
  
-    def youtube_setup(that = false, *this)#, that = false
+    def google_oauth2_setup(that = false, *this)#, that = false
       youtube_token
       begin
         channel = Yt::Channel.new url: this.second

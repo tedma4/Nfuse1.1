@@ -10,7 +10,7 @@
 		<% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
 	  	<%= render partial: "pages/post", locals: {post: post} %>
 	  <%end%>
-	<% when 'youtube' %>
+	<% when 'google_oauth2' %>
 	  <%= render partial: "pages/post", locals: {post: post} %>
 	<%end%>
   <% end %>

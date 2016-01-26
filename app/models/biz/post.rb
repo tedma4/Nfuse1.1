@@ -43,7 +43,7 @@ module Biz
           @post["id"]
         when 'twitter'
           @post.id
-        when 'youtube'
+        when 'google_oauth2'
           @post.id
       end
     end
@@ -132,7 +132,7 @@ module Biz
           @post["link"]
         when 'twitter'
           "https://twitter.com/#{username}/status/#{id}"
-        when 'youtube'
+        when 'google_oauth2'
           "https://www.youtube.com/watch?v=#{@post.id}"
     	end
     end
@@ -144,7 +144,7 @@ module Biz
           Time.at(@post['created_time'].to_i)
         when 'twitter'
           @post.created_at
-        when 'youtube'
+        when 'google_oauth2'
           @post.published_at
       end
     end

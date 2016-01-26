@@ -15,10 +15,19 @@ module Notification
     def single_post(post_id)
       case(@provider)
         when 'twitter'
-          token = @user.tokens.find_by(provider: 'twitter')
-          client = configure_twitter(token.access_token, token.access_token_secret)
-          entry = client.status(post_id).attrs
-          Notification::Entry.from(entry, 'twitter')
+          if @user.class.name == 'User'
+            token = @user.tokens.find_by(provider: 'twitter')
+            client = configure_twitter(token.access_token, token.access_token_secret)
+            entry = client.status(post_id).attrs
+            Notification::Entry.from(entry, 'twitter')
+          else
+            client = Twitter::REST::Client.new do |i|
+              i.consumer_key = ENV['twitter_api_key']
+              i.consumer_secret = ENV['twitter_api_secret']
+            end
+            entry = client.status(post_id)
+            Biz::Post.from(entry, 'twitter', @user)            
+          end
         when 'facebook'
           access_token = @user.tokens.find_by(provider: 'facebook').access_token
           app_secret = ENV['facebook_app_secret']
@@ -26,12 +35,20 @@ module Notification
           entry = client.get_object(post_id)
           Notification::Entry.from(entry, 'facebook')
         when 'youtube'
-          token = @user.tokens.find_by(provider: 'google_oauth2')
-          client = configure_youtube(token.access_token, token.refresh_token)
-          video = Yt::Video.new id: post_id, auth: client
-          video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
-          entry = video
-          Notification::Entry.from(entry, 'youtube')
+          if @user.class.name == 'User'
+            token = @user.tokens.find_by(provider: 'google_oauth2')
+            client = configure_youtube(token.access_token, token.refresh_token)
+            video = Yt::Video.new id: post_id, auth: client
+            video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
+            entry = video
+            Notification::Entry.from(entry, 'google_oauth2')
+          else
+            client = Yt.configuration.api_key = ENV['youtube_dev_key']
+            video = Yt::Video.new id: post_id, auth: client
+            video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
+            entry = video
+            Biz::Post.from(entry, 'google_oauth2', @user)            
+          end
         when 'gplus'
           uid = @user.tokens.find_by(provider: 'gplus').uid
           entry = configure_gplus(post_id)
