@@ -4,7 +4,8 @@ class Shouts::LikesController < ApplicationController
 
   def create
     unless ActsAsVotable::Vote.find_by(voter_id:   current_user.id,
-                                       owner_id:   params[:owner_id], 
+                                       owner_id:   params[:owner_id],
+                                       owner_type: params[:owner_type],
                                        votable_id: params[:id])
       send( params.fetch(:key, :basic).to_sym ) # Object.send
     end
@@ -12,10 +13,11 @@ class Shouts::LikesController < ApplicationController
         id: params[:id],
         like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
         owner_id: params[:owner_id],
+        owner_type: params[:owner_type],
         provider: params[:key] || 'nfuse'
     }
     # TODO Turn off PA when a user likes their own thing
-    if current_user.id != params[:owner_id].to_i
+    if current_user.id != params[:owner_id].to_i && @shout[:owner_type] != 'Page'
     current_user.create_activity(key: 'shout.like',
                                  parameters: {id:       @shout[:id],
                                               provider: @shout[:provider]},
@@ -28,12 +30,12 @@ class Shouts::LikesController < ApplicationController
   end
 
   def destroy
-    @shout = {
-        id: params[:id],
-        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
-        owner_id: params[:owner_id],
-        provider: params[:key]
-    }
+    # @shout = {
+    #     id: params[:id],
+    #     like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
+    #     owner_id: params[:owner_id],
+    #     provider: params[:key]
+    # }
     @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
     @like.destroy
     # activity = PublicActivity::Activity.find_by_trackable_id_and_trackable_type(params['id'], 'User')
@@ -91,8 +93,9 @@ class Shouts::LikesController < ApplicationController
 
   def vote_params
    {votable_id: params[:id],
-      voter_id: current_user.id, 
-      owner_id: params[:owner_id]}
+      voter_id: current_user.id,
+      owner_id: params[:owner_id],
+      owner_type: params[:owner_type]}
   end
 
 end

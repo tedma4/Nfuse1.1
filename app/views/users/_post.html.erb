@@ -26,12 +26,14 @@
       <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
                   dislike_shout_path(id: post.id,
                                   owner_id: post.user.id,
+                                  owner_type: post.user.class.name,
                                   key: post.provider),
                   method: :delete, remote: true %>
       <% else %>
       <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
                   like_shout_path(id: post.id,
                                   owner_id: post.user.id,
+                                  owner_type: post.user.class.name,
                                   key: post.provider),
                   method: :post, remote: true %>
       <% end %>

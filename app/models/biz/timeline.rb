@@ -110,7 +110,7 @@ module Biz
     end
 
     def instagram_token
-      client_id = ENV['instagram_client_id']
+      ENV['instagram_client_id']
     end
 
     def youtube_token

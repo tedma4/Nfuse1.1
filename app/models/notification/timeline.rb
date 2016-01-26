@@ -51,10 +51,16 @@ module Notification
           entry = client.posts("#{username}.tumblr.com", id: post_id)['posts'][0]
           Notification::Entry.from(entry, 'tumblr')
         when 'instagram'
-          token = @user.tokens.find_by(provider: 'instagram')
-          instagram_api = Instagram::Api.new(token.access_token, nil)
-          entry = instagram_api.get_post(post_id)['data']
-          Notification::Entry.from(entry, 'instagram')
+          if @user.class.name == 'User'
+            token = @user.tokens.find_by(provider: 'instagram')
+            instagram_api = Instagram::Api.new(token.access_token, nil)
+            entry = instagram_api.get_post(post_id)['data']
+            Notification::Entry.from(entry, 'instagram')
+          else
+            client_id = ENV['instagram_client_id']
+            entry = Oj.load(Faraday.get("https://api.instagram.com/v1/media/#{post_id}/?client_id=#{client_id}").body)['data']
+            Biz::Post.from(entry, 'instagram', @user)
+          end
         when 'pinterest'
           token = @user.tokens.find_by(provider: 'pinterest')
           pinterest_api = Pinterest::Api.new(token.access_token, nil)

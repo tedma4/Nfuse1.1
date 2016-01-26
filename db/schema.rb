@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222135126) do
+ActiveRecord::Schema.define(version: 20160125131439) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -320,6 +320,7 @@ ActiveRecord::Schema.define(version: 20151222135126) do
     t.datetime "updated_at"
     t.string   "social_flag"
     t.integer  "owner_id"
+    t.string   "owner_type"
   end
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"

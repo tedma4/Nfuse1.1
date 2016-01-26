@@ -28,5 +28,5 @@ form {
           <%= f.submit "Follow", class: "btn btn-link-2" %>
         <% end %>
       <% end %>
-
+  <%= link_to "Likes #{ActsAsVotable::Vote.where(owner_type: 'Page', owner_id: Page.find(@page.id)).count}", '#', class:"btn btn-link-2" %>   
 </div><br>
