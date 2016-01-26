@@ -43,8 +43,8 @@ module Notification
             entry = video
             Notification::Entry.from(entry, 'google_oauth2')
           else
-            client = Yt.configuration.api_key = ENV['youtube_dev_key']
-            video = Yt::Video.new id: post_id, auth: client
+            Yt.configuration.api_key = ENV['youtube_dev_key']
+            video = Yt::Video.new id: post_id
             video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
             entry = video
             Biz::Post.from(entry, 'google_oauth2', @user)            

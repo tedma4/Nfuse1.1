@@ -20,7 +20,7 @@ module Notification
       case(@provider)
         when 'twitter'
           @entry.id
-        when 'youtube'
+        when 'google_oauth2'
           @entry.id
         when 'instagram'
           @entry["id"]
@@ -80,7 +80,7 @@ module Notification
       case(@provider)
         when 'twitter'
           @entry[:text]
-        when 'youtube'
+        when 'google_oauth2'
           @entry.description
         when 'instagram'
           if @entry['caption'].present?
@@ -149,7 +149,7 @@ module Notification
           elsif type == "video"
             @entry[:extended_entities][:media][0][:video_info][:variants][2][:url]
           end
-        when 'youtube'
+        when 'google_oauth2'
           @entry.id
         when 'instagram'
           @entry["videos"]["standard_resolution"]["url"]
@@ -193,7 +193,7 @@ module Notification
       case(@provider)
         when 'twitter'
           @entry.created_at
-        when 'youtube'
+        when 'google_oauth2'
           @entry.published_at
         when 'instagram'
           Time.at(@entry['created_time'].to_i)
@@ -214,7 +214,7 @@ module Notification
       case(@provider)
         when 'twitter'
           "https://twitter.com/#{user_name}/status/#{id}"
-        when 'youtube'
+        when 'google_oauth2'
           "https://www.youtube.com/watch?v=#{@entry.id}"
         when 'instagram'
           @entry["link"]

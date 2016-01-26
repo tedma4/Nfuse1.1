@@ -82,7 +82,7 @@
                         <source src="<%= @post_entry.video %>" type='video/ogv' />
                       </video>
                     </div>
-                    <% if @post_entrytext.present? %>
+                    <% if @post_entry.text.present? %>
                       <div class="center">
                         <%= @post_entry.text %>
                       </div>
@@ -104,9 +104,9 @@
                     <% end %>
                   <% end %>
                   <div class="center">
-                    <%= @post_entrytext %>
+                    <%= @post_entry.text %>
                   </div>
-                <% when 'youtube' %>
+                <% when 'google_oauth2' %>
                   <iframe
                     id="ytplayer"
                     type="text/html"
