@@ -56,13 +56,13 @@ class PagesController < ApplicationController
     if post_type == 'User'
       @user = User.find(@post[:user])
       @post_entry = Notification::Timeline.new(@post[:post_id],
-                                                    @post[:provider],
-                                                    @user).construct
+                                               @post[:provider],
+                                               @user).construct
     else
       @page = Page.find(@post[:user])
       @post_entry = Notification::Timeline.new(@post[:post_id],
-                                                    @post[:provider],
-                                                    @page).construct
+                                               @post[:provider],
+                                               @page).construct
     end
   end
 

@@ -1,16 +1,25 @@
 <div class="individual_post item" id="content-box-feed">
   <div class="post_main">
    <ul class="post_header">
-     <li>
-      <% if @post_entry.user.avatar_file_name.present? && @post_entry.user.avatar_file_name.include?('graph.facebook.com') %>
-        <%= link_to image_tag(@post_entry.user.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ @post_entry.user.first_name}"), feed_user_path(@post_entry.user) %>
-      <% else %>
-       <%= link_to image_tag(@post_entry.user.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ @post_entry.user.first_name}"), feed_user_path(@post_entry.user) %>
-      <% end %>
-     </li>
-     <li class="user_name">
-       <%= link_to "#{@post_entry.user.user_name}", feed_user_path(@post_entry.user) %>
-     </li>
+     <% if @user.present? %>
+       <li>
+        <% if @post_entry.user.avatar_file_name.present? && @post_entry.user.avatar_file_name.include?('graph.facebook.com') %>
+          <%= link_to image_tag(@post_entry.user.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ @post_entry.user.first_name}"), feed_user_path(@post_entry.user) %>
+        <% else %>
+         <%= link_to image_tag(@post_entry.user.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ @post_entry.user.first_name}"), feed_user_path(@post_entry.user) %>
+        <% end %>
+       </li>
+       <li class="user_name">
+         <%= link_to "#{@post_entry.user.user_name}", feed_user_path(@post_entry.user) %>
+       </li>
+     <% else %>
+       <li>
+         <%= link_to image_tag("#{@post_entry.avatar}.jpg", :class => "user_profile_picture", size: "50x50"), "/#{@post_entry.page_link}" %>
+       </li>
+       <li class="user_name">
+         <%= link_to truncate(@post_entry.username, length: 15), "/#{@post_entry.page_link}" %>
+       </li>
+     <% end %>
    </ul>
   </div>
   <div class="post_content">
@@ -43,13 +52,13 @@
       <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
       <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
                   dislike_shout_path(id: @post_entry.id,
-                                  owner_id: @post_entry.user.id,
+                                  owner_id: (@user ? @post_entry.user.id : @post_entry.id),
                                   key: @post_entry.provider),
                   method: :delete, remote: true %>
       <% else %>
       <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
                   like_shout_path(id: @post_entry.id,
-                                  owner_id: @post_entry.user.id,
+                                  owner_id: (@user ? @post_entry.user.id : @post_entry.id),
                                   key: @post_entry.provider),
                   method: :post, remote: true %>
       <% end %>
