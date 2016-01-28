@@ -1,83 +1,77 @@
-<style>
-    width: 300px;
-  }
-</style>
-<div class="individual_post item" data-id="<%=post.id%>" id="content-box-feed">
+<div class="individual_post item" id="content-box-feed">
   <div class="post_main">
    <ul class="post_header">
      <li>
-       <%= link_to image_tag(post.avatar, :class => "user_profile_picture", size: "50x50"), feed_user_path(post.user) %>
+      <% if @individual_post.user.avatar_file_name.present? && @individual_post.user.avatar_file_name.include?('graph.facebook.com') %>
+        <%= link_to image_tag(@individual_post.user.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ @individual_post.user.first_name}"), feed_user_path(@individual_post.user) %>
+      <% else %>
+       <%= link_to image_tag(@individual_post.user.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ @individual_post.user.first_name}"), feed_user_path(@individual_post.user) %>
+      <% end %>
      </li>
      <li class="user_name">
-       <%= link_to "#{post.username}", feed_user_path(post.user) %>
+       <%= link_to "#{@individual_post.user.user_name}", feed_user_path(@individual_post.user) %>
      </li>
    </ul>
   </div>
   <div class="post_content">
-    <% if post.type == "image" %>
-      <div class="timeline-user-box">
-<!--         <%#= link_to image_tag(post.image, :class => "image_post"), individual_post_path(post.id, @provider, current_user.id) %>
- -->      </div>
-      <% if post.text.present? %>
-        <div class="center">
-          <%= post.text %>
-        </div>
-      <% end %>
-    <% elsif post.type == "video" %>
-      <div class="center">
-        <video width="100%" controls preload="none" poster=<%= post.image %> >
-          <source src="<%= post.video %>" type='video/mp4' />
-          <source src="<%= post.video %>" type='video/ogv' />
-        </video>
-      </div>
-        <% if post.text.present? %>
-        <div class="center">
-          <%= post.text %>
-        </div>
-        <% end %>
-    <% end %>
-
+    <% case @individual_post.provider %>
+     <% when nil %>
+       <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+     <% when "gplus" %>
+       <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+     <% when "tumblr" %>
+       <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+     <% when "facebook" %>
+       <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
+     <% when 'twitter' %>
+       <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
+     <% when 'youtube' %>
+       <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
+     <% when 'vimeo' %>
+       <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
+     <% when 'instagram' %>
+       <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
+     <% when 'pinterest' %>
+       <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
+     <% end %>
     <br>
   </div>
   <div class="right">
   </div>
   <ul class="post_actions">
     <li class="tilt">
-      <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+      <% if ActsAsVotable::Vote.where(votable_id: @individual_post.id).pluck(:voter_id).include?(current_user.id) %>
       <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-                  dislike_shout_path(id: post.id,
-                                  owner_id: post.user.id,
-                                  key: post.provider),
+                  dislike_shout_path(id: @individual_post.id,
+                                  owner_id: @individual_post.user.id,
+                                  key: @individual_post.provider),
                   method: :delete, remote: true %>
       <% else %>
       <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-                  like_shout_path(id: post.id,
-                                  owner_id: post.user.id,
-                                  key: post.provider),
+                  like_shout_path(id: @individual_post.id,
+                                  owner_id: @individual_post.user.id,
+                                  key: @individual_post.provider),
                   method: :post, remote: true %>
       <% end %>
-      <a id="shout-<%=post.id%>">
-        <%= post.like_score(post.id) %>
-      </a>
     </li>
 <!--     <li class="vr"></li>
     <li class="tilt">
-      <a data-toggle="modal" data-target="#<%#=post.provider%>_modal_<%= post.id %>">
+      <a data-toggle="modal" data-target="#<%#=@individual_post.provider%>_modal_<%= @individual_post.id %>">
         <%#= image_tag("commentgray.fw.png", size: "24x24") %>
       </a>
-      <a id="post_<%#=post.id%>_comment_count">
-        <%#= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
+      <a id="post_<%#=@individual_post.id%>_comment_count">
+        <%#= Comment.where(commentable_type: @individual_post.class.to_s, commentable_id: @individual_post.id).count %>
       </a>
     </li> -->
     <li class="vr"></li>
     <li class="tilt">
-      <%= link_to image_tag("#{post.provider}blue.fw.png",
+      <%= link_to image_tag("#{@individual_post.provider}blue.fw.png",
                             size: "24x24",
-                            :class => "#{post.provider}_provider_logo"),
-                  post.link_to_post,
+                            :class => "#{@individual_post.provider}_provider_logo"),
+                  @individual_post.link_to_entry,
                   :target => "_blank" %>
       <p class="timeStamp">
-        <%= time_ago_in_words(post.created_time) %> ago
+        <%= time_ago_in_words(@individual_post.created_time) %> ago
       </p>
     </li>
   </ul>

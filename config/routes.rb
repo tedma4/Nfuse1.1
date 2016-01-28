@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'individual_post', to: 'pages#individual_post'
+  get 'individual_post/:post_id', to: 'pages#individual_post'
 
   resources :shouts do
     resources :comments

@@ -1,6 +1,6 @@
 module Biz
 	class Post < TimelineEntry
-    attr_reader :page
+    attr_reader :page, :provider
     def self.from(post, provider, page)
       new(post, provider, page)
     end
@@ -10,11 +10,7 @@ module Biz
       @provider = provider
       @page = page
     end
-
-    def provider
-      @provider
-    end
-
+    
     def avatar
       if @page.twitter_handle == 'blank'
         'wired'

@@ -19,7 +19,7 @@ module Notification
             token = @user.tokens.find_by(provider: 'twitter')
             client = configure_twitter(token.access_token, token.access_token_secret)
             entry = client.status(post_id).attrs
-            Notification::Entry.from(entry, 'twitter')
+            Notification::Entry.from(entry, 'twitter', @user)
           else
             client = Twitter::REST::Client.new do |i|
               i.consumer_key = ENV['twitter_api_key']
@@ -33,7 +33,7 @@ module Notification
           app_secret = ENV['facebook_app_secret']
           client = Koala::Facebook::API.new(access_token, app_secret)
           entry = client.get_object(post_id)
-          Notification::Entry.from(entry, 'facebook')
+          Notification::Entry.from(entry, 'facebook', @user)
         when 'youtube'
           if @user.class.name == 'User'
             token = @user.tokens.find_by(provider: 'google_oauth2')
@@ -41,7 +41,7 @@ module Notification
             video = Yt::Video.new id: post_id, auth: client
             video.title #Leave this here. Youtube is weird. the first time the video is called you get an error but not the second time. WTF???
             entry = video
-            Notification::Entry.from(entry, 'google_oauth2')
+            Notification::Entry.from(entry, 'google_oauth2', @user)
           else
             Yt.configuration.api_key = ENV['youtube_dev_key']
             video = Yt::Video.new id: post_id
@@ -52,7 +52,7 @@ module Notification
         when 'gplus'
           uid = @user.tokens.find_by(provider: 'gplus').uid
           entry = configure_gplus(post_id)
-          Notification::Entry.from(entry, 'gplus')
+          Notification::Entry.from(entry, 'gplus', @user)
         when 'vimeo'
           access_token = @user.tokens.find_by(provider: 'vimeo').access_token
           user = Vmo::Request.get_user(access_token)
@@ -60,19 +60,19 @@ module Notification
           #Right now there is no way easy way to find the vimeo post by id but I do get an array of all vimeo videos
           #So, I need to look into how to match the liked post's id to the array of all videos and return the index value of that specific video
           # entry = Oj.load(Faraday.get("https://api.vimeo.com/me/#{post_id}").body)
-          Notification::Entry.from(entry, 'vimeo')
+          Notification::Entry.from(entry, 'vimeo', @user)
         when 'tumblr'
           token = @user.tokens.find_by(provider: 'tumblr')
           client = configure_tumblr(token.access_token, token.access_token_secret)
           username = client.info['user']['name']
           entry = client.posts("#{username}.tumblr.com", id: post_id)['posts'][0]
-          Notification::Entry.from(entry, 'tumblr')
+          Notification::Entry.from(entry, 'tumblr', @user)
         when 'instagram'
           if @user.class.name == 'User'
             token = @user.tokens.find_by(provider: 'instagram')
             instagram_api = Instagram::Api.new(token.access_token, nil)
             entry = instagram_api.get_post(post_id)['data']
-            Notification::Entry.from(entry, 'instagram')
+            Notification::Entry.from(entry, 'instagram', @user)
           else
             client_id = ENV['instagram_client_id']
             entry = Oj.load(Faraday.get("https://api.instagram.com/v1/media/#{post_id}/?client_id=#{client_id}").body)['data']
@@ -82,10 +82,10 @@ module Notification
           token = @user.tokens.find_by(provider: 'pinterest')
           pinterest_api = Pinterest::Api.new(token.access_token, nil)
           entry = pinterest_api.get_post(post_id)['data']
-          Notification::Entry.from(entry, 'pinterest')
+          Notification::Entry.from(entry, 'pinterest', @user)
         when nil
           entry = @user.shouts.find(post_id)
-          Notification::Entry.from(entry, 'nfuse')
+          Notification::Entry.from(entry, 'nfuse', @user)
       end
     end
 

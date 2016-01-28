@@ -47,10 +47,17 @@ class PagesController < ApplicationController
   end
 
   def individual_post
-    post_id = params[:post_id]
-    provider = params[:provider]
-    user = params[:user]
-    post = Notification::Timeline.new(post_id, provider, user)
+    post_id: params[:post_id],
+    provider: params[:provider],
+    user: params[:user]
+    post_type = params[:post_type]
+    if post_type == 'User'
+      @user = User.find(@post[:user])
+      @individual_post = Notification::Timeline.new(params[:post_id], params[:provider], @user).construct
+    else
+      @page = Page.find(@post[:user])
+      @individual_post = Notification::Timeline.new(params[:post_id], params[:provider], @page).construct
+    end
   end
 
   private

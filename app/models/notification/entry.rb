@@ -1,19 +1,15 @@
 module Notification
 	class Entry < TimelineEntry
-
-    def self.from(entry, provider)
-      new(entry, provider)
+    attr_reader :user, :provider, :entry
+    def self.from(entry, provider, user)
+      new(entry, provider, user)
     end
 
-    def initialize(entry, provider)
+    def initialize(entry, provider, user)
       @entry = entry
       @provider = provider
+      @user = user
     end
-
-    def provider
-      @provider
-    end
-
     #-----------id----------
 
     def id
