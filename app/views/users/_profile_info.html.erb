@@ -111,17 +111,22 @@ button.btn {
         <%= render 'follow_form' if signed_in? %>
       </li>
       <li>
-        <% unless !current_user?(@user) %>
+        <% if current_user?(@user) %>
         <li id="fadeshow2">
           <a data-toggle="modal" data-target="#new_post_modal">
             <%= image_tag('add50gray.fw.png', size: "26x26", class: "tilt edit_profile_link", title: "New Post") %>
           </a>
         </li>
-        <li id="fadeshow3">
-          <%= link_to edit_user_path(current_user) do %>
-            <%= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
-          <% end %>
-        </li>
+          <li id="fadeshow3">
+            <%= link_to edit_user_path(current_user) do %>
+                <%= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
+            <% end %>
+          </li>
+          <li id="fadeshow3">
+            <%= link_to user_likes_user_path(@user) do %>
+                <%= image_tag('smilinggray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
+            <% end %>
+          </li>
         <% end %>
       </li>
     </ul>

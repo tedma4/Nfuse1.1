@@ -221,6 +221,7 @@ module Notification
       end
     end
 
+    alias_method :link_to_post, :link_to_entry
     def name
       @entry['name']
     end
