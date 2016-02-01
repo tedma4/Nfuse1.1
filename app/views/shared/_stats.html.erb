@@ -5,7 +5,7 @@
     <li><%= link_to "Feed", feed_user_path(@user) %></li>
     <li><%= link_to "Vue", vue_user_path(@user) %></li>
     <!-- <li><%#= link_to "Nfused", nfuse_page_user_path(@user) %></li> -->
-    <li><%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %></li>
+    <li><%= link_to "Following: #{@user.relationships.where(follow_type: 'User').collect(&:id).count}", following_user_path(@user) %></li>
     <li><%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %></li>
     <li class="total_like_counter"> Likes: <%= @user.total_likes %></li>
   </ul>

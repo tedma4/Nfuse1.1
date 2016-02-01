@@ -6,7 +6,7 @@
 <div class="explore_filters">
   <%= render partial: "users/hub_filters" %>
 </div><br>
-<% if current_user.followed_users.any? %>
+<% if current_user.relationships.where(follow_type: 'User').collect(&:id).any? %>
   <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
     <% cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
     <% timeline.first(30).each do |post| %>

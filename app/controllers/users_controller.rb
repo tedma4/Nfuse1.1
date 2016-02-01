@@ -161,7 +161,7 @@ class UsersController < ApplicationController
     # else
     #   @token
     # end
-    ids =  current_user.followed_users.collect(&:id)
+    ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
     ids << current_user.id
     unless ids.empty?
       @users = User.where.not(id: ids)
@@ -181,7 +181,9 @@ class UsersController < ApplicationController
 
   def following
     @title = "Following"
-    @users = @user.followed_users
+    @users = @user.relationships.where(follow_type: 'User')
+    @pages = @user.relationships.where(follow_type: 'Page')
+    @thing = @users + @pages
     render 'show_follow'
   end
 
@@ -207,7 +209,7 @@ class UsersController < ApplicationController
     @providers = Providers.for(current_user)
     timeline = []
     page_timeline = []
-    ids =  current_user.followed_users.collect(&:id)
+    ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
     pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
     if ids.any? && pids.any?
       @users = User.where(id: ids)

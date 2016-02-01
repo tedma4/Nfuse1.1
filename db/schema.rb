@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125131439) do
+ActiveRecord::Schema.define(version: 20160131203016) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160125131439) do
     t.string   "commentable_id"
     t.string   "commentable_type"
     t.integer  "owner_id"
+    t.integer  "page_id"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"

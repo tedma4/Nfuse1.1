@@ -105,7 +105,7 @@ ul.c-controls li a:hover {
   <div class="">    
     <%= render partial: "profile_info" %>
   </div>
-  <% if @users.any? %>
+  <% if @thing.any? %>
   <div class="masonJar" id="masonJar">
   <div class="container following-followers-bottom">
     <div class="row">
@@ -125,7 +125,13 @@ ul.c-controls li a:hover {
               </div>
           </div>
           <ul class="list-group" id="contact-list">
-            <%= render @users %>
+            <% @thing.each do |this| %>
+              <% if this.class.name == 'User' s%>
+                <%= render @users %>
+              <% else %>
+                <%= render @pages %>
+              <% end %> 
+            <% end %> 
           </ul>
         </div>
       </div>

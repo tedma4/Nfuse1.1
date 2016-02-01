@@ -1,0 +1,25 @@
+<!-- *START* Views/pages/_page.html.erb  -->
+
+<li class="list-group-item">
+  <div class="col-xs-12 col-sm-3">
+    <% if page.avatar.present? %>
+      <%= link_to image_tag(page.avatar, size: '110'), "/#{page.page_link}", class: "img-responsive img-circle" %>
+    <% else %>
+      We might need a new image
+    <% end %>
+	</div>
+	<div class="col-xs-12 col-sm-9">
+    <span class="name"><%= page.username %></span><br/>
+    <h2>
+   	<span class="atpageName">@<%= link_to page.username, "/#{page.page_link}" %></span>
+ 		</h2><br>
+    <span class="text-muted c-info">Followers:<%= page.followers.count %></span>
+    <span class="text-muted c-info">Following:<%= page.followed_pages.count %></span>
+    <span class="text-muted c-info">Likes:<%= page.total_likes %></span>
+	</div>
+	<div class="clearfix"></div>
+</li>
+
+
+
+<!-- *END* Views/pages/_page.html.erb  -->

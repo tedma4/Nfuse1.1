@@ -14,12 +14,20 @@ Rails.application.routes.draw do
     resources :nfuse_pages
     resources :conversations
     resources :shouts
-    resources :comments
+    # resources :comments do
+    #   resources :comments
+    # end
     member do
       get :following, :followers, :bio, :feed, :settings, :explore, :explore_users, :nfuse_page, :vue, :biz_page_hub, :all_users_and_pages, :user_likes
     end
   end
+  resources :comments do
+    resources :comments
+  end
 
+  resources :pages do
+    resources :comments
+  end
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
 
   # on line 27 of routes file replace that block with this.
@@ -34,35 +42,35 @@ Rails.application.routes.draw do
 
   get 'individual_post', to: 'pages#individual_post'
 
-  resources :shouts do
-    resources :comments
-  end
+  # resources :shouts do
+  #   resources :comments
+  # end
 
   resources :nfuse_pages do
     resources :shouts
   end
 
-  scope '/comments' do
-    post '/twitter/:twitter_post_id',     to: 'comments#create'
-    post '/instagram/:instagram_post_id', to: 'comments#create'
-    post '/facebook/:facebook_post_id',   to: 'comments#create'
-    post '/youtube/:youtube_post_id',     to: 'comments#create'
-    post '/gplus/:gplus_post_id',         to: 'comments#create'
-    post '/vimeo/:vimeo_post_id',         to: 'comments#create'
-    post '/pinterest/:pinterest_post_id',       to: 'comments#create'
-    post '/tumblr/:tumblr_post_id',       to: 'comments#create'
+  # scope '/comments' do
+  #   post '/twitter/:twitter_post_id',     to: 'comments#create'
+  #   post '/instagram/:instagram_post_id', to: 'comments#create'
+  #   post '/facebook/:facebook_post_id',   to: 'comments#create'
+  #   post '/youtube/:youtube_post_id',     to: 'comments#create'
+  #   post '/gplus/:gplus_post_id',         to: 'comments#create'
+  #   post '/vimeo/:vimeo_post_id',         to: 'comments#create'
+  #   post '/pinterest/:pinterest_post_id',       to: 'comments#create'
+  #   post '/tumblr/:tumblr_post_id',       to: 'comments#create'
+  #
+  #   # Add others follow convention
+  #
+  # end
 
-    # Add others follow convention
-
-  end
-
-  resources :events do
-    resources :comments
-    member do
-      put "like",    to: "events#like"
-      put "dislike", to: "events#dislike"
-    end
-  end
+  # resources :events do
+  #   resources :comments
+  #   member do
+  #     put "like",    to: "events#like"
+  #     put "dislike", to: "events#dislike"
+  #   end
+  # end
   
   resources :contacts, path: 'contact_us', only: [:new, :create]
   resources :sessions,                  only: [:new, :create, :destroy]

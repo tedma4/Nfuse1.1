@@ -32,7 +32,7 @@ class PagesController < ApplicationController
       #   @token
       # end
       timeline = []
-      ids =  current_user.followed_users.collect(&:id)
+      ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
       unless ids.empty?
         @users = User.where(id: ids)
         @users.find_each do |user|
