@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160131203016) do
     t.string   "commentable_type"
     t.integer  "owner_id"
     t.integer  "page_id"
+    t.integer  "comment_id"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"

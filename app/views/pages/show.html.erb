@@ -1,0 +1,12 @@
+<div class="body">
+  Need soemthing here. 
+  <%#= @page.body %>  
+</div>
+ 
+<h2>Comments</h2>
+ 
+<p><%= link_to 'Add a Comment', new_page_comment_path(@page) %></p>
+ 
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @page.comments %>
+</ul>

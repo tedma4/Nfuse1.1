@@ -4,7 +4,7 @@ class PagesController < ApplicationController
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
                                    :travel_connector, :test_page, :mytop50, :mostpopular,
-                                   :random, :trending, :individual_post#, :wiredtestthing
+                                   :random, :trending, :individual_post, :show#, :wiredtestthing
                                   ]
   # before_action :find_page, except:[:home, :help, :about, :feedback, :terms, 
   #                                  :privacy, :business_connector, :celebrity_connector, 
@@ -14,7 +14,10 @@ class PagesController < ApplicationController
   #                                  :random, :trending, :wiredtestthing
   #                                 ]
   #Blank is gonna be a reservered word for now
-
+  def show
+    @page = Page.includes(:comments).find(params[:id])
+  end
+  
   def home
     if signed_in?
       @providers = Providers.for(current_user)

@@ -11,7 +11,7 @@
         <div class="panel-body" id="comment_list_<%#=page.id%>">
           <ul class="chat">
             This is where the list of comments go
-            <% Comment.where(commentable_type: @parent.class,name, commentable_id: @parent.id).each do |comment| %>
+            <% Comment.where(commentable_type: @parent.class.name, commentable_id: @parent.id).each do |comment| %>
               <%#= render partial: 'shared/comment', locals: {comment: comment } %>
 							<li class="left clearfix">
 							  <span class="chat-img pull-left">
@@ -40,7 +40,7 @@
 </div>
 <div>
   THis is for the new comment form
-  <%= form_tag(new_page_comment_path(@parent)) do %>
+  <%= form_tag(new_page_comment_path(@page.id) , method: :post, remote: true) do %>
   <div class="input-group">
   	<%= text_field_tag 'comment[body]', nil, id: "btn-input", class: "form-control input-sm", placeholder: "Comment here..." %>
   	<%= hidden_field_tag 'comment[user_id]', current_user.id  %>
@@ -71,12 +71,11 @@
 
 
 
-  <%= form_for new_comment_comment_path(@parent) do |f| %>
+  <%= form_tag [@parent, @comment] do %>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= text_field_tag :body %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag %>
   </div>
 <% end %>

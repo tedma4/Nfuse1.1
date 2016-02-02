@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   respond_to :js, :json, :html
 
   def index
-    @comments = @parent.comments.all
+    @comments = @parent.comments.includes(:comments).all
   end
 
   def new
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find(params[:id])
+    @comment = Comment.includes(:comments).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,6 +45,11 @@ class CommentsController < ApplicationController
     #
     #   @comments = Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id)
     # end
+    if @comment.save
+      redirect_to @comment.page
+    else
+      render :new
+    end
   end
 
   def update

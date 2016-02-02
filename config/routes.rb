@@ -42,27 +42,27 @@ Rails.application.routes.draw do
 
   get 'individual_post', to: 'pages#individual_post'
 
-  # resources :shouts do
-  #   resources :comments
-  # end
+  resources :shouts do
+    resources :comments
+  end
 
   resources :nfuse_pages do
     resources :shouts
   end
 
-  # scope '/comments' do
-  #   post '/twitter/:twitter_post_id',     to: 'comments#create'
-  #   post '/instagram/:instagram_post_id', to: 'comments#create'
-  #   post '/facebook/:facebook_post_id',   to: 'comments#create'
-  #   post '/youtube/:youtube_post_id',     to: 'comments#create'
-  #   post '/gplus/:gplus_post_id',         to: 'comments#create'
-  #   post '/vimeo/:vimeo_post_id',         to: 'comments#create'
-  #   post '/pinterest/:pinterest_post_id',       to: 'comments#create'
-  #   post '/tumblr/:tumblr_post_id',       to: 'comments#create'
-  #
-  #   # Add others follow convention
-  #
-  # end
+  scope '/comments' do
+    post '/twitter/:twitter_post_id',     to: 'comments#create'
+    post '/instagram/:instagram_post_id', to: 'comments#create'
+    post '/facebook/:facebook_post_id',   to: 'comments#create'
+    post '/youtube/:youtube_post_id',     to: 'comments#create'
+    post '/gplus/:gplus_post_id',         to: 'comments#create'
+    post '/vimeo/:vimeo_post_id',         to: 'comments#create'
+    post '/pinterest/:pinterest_post_id',       to: 'comments#create'
+    post '/tumblr/:tumblr_post_id',       to: 'comments#create'
+
+    # Add others follow convention
+
+  end
 
   # resources :events do
   #   resources :comments
