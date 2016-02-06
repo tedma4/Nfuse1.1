@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  include Poly::Commentable
+  
   before_action :set_page, except:[:home, :help, :about, :feedback, :terms, 
                                    :privacy, :business_connector, :celebrity_connector, 
                                    :tv_show_connector, :fashion_connector, :youtubers,

@@ -1,13 +1,21 @@
-<li class="comment">
-  <div class="body">
+<li>
+  <div>
     <%= comment.body %>
   </div>
    
-  <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
-   
-  <% unless comment.comments.includes(:comments).empty? %>
-    <ul class="comment_list">
-      <%= render :partial => 'comments/comment', :collection => comment.comments.includes(:comments) %>
-    </ul>
-  <% end %>
+  <p><%= link_to 'Add a Reply', new_polymorphic_path([@commentable, Comment.new], :parent_id => comment) %></p>
+   <%= comment.children %>
+
 </li>
+
+
+
+<!--%a.pull-left{:href=>"#"}-->
+  <!--%img.media-object{ :src => "/assets/anonuser.jpg", :style=> "width: 64px; height: 64px;" }-->
+<!--.media-body-->
+  <!--%h4.media-heading Anonymous User-->
+  <!--%i= comment.created_at.strftime('%b %d, %Y at %H:%M') -->
+  <!--%p= simple_format comment.content-->
+  <!--.actions-->
+    <!--= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment)-->
+  <!--= nested_comments comment.children-->

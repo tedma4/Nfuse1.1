@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 #This is the rails version we are using
-gem 'rails', '4.1.2'
+gem 'rails', '4.2.5'
 gem 'elastic-beanstalk', '~> 1.1.3'
-gem 'rack', '~>1.5.2'
+gem 'rack', '~>1.6.0'
 gem 'sqlite3'
 #This allows us to use bootstrap css file
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -11,6 +11,8 @@ gem 'sass-rails', '>= 3.2'
 gem 'sprockets', '~> 2.8'
 #This is used to encrypt a user's password
 gem 'bcrypt', '~> 3.1.7'
+gem 'ancestry'
+gem 'responders', '~> 2.0'
 #This adds pagination to pages that need it
 # gem 'will_paginate', '~> 3.0.4'
 # gem 'bootstrap-will_paginate', '~> 0.0.9'
@@ -21,6 +23,7 @@ gem 'mail_form'
 gem 'simple_form'
 #This allows the us to upload images, videos and files
 gem 'paperclip', "3.5.3"
+gem "nokogiri", ">= 1.6.7.rc"
 #gem 'panda'
 # Handles video upload
 gem 'paperclip-av-transcoder', "0.6.4"
@@ -34,9 +37,9 @@ gem 'httparty'
 gem 'cocaine', '0.5.5'
 #This allows the use of the facebook oauth
 # gem 'omniauth', '1.1.1'
-gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-facebook'
 #This allows the use of the twitter oauth
-gem 'omniauth-twitter', '~> 1.0.1'
+gem 'omniauth-twitter'
 gem 'omniauth-pinterest', '~> 2.0.1'
 gem 'omniauth-vimeo'
 gem 'omniauth-tumblr'
@@ -52,7 +55,7 @@ gem 'koala', "~> 2.0"
 gem 'yt', :git => 'https://github.com/ermacaz/yt.git'
 gem 'excon', '~> 0.42.1'
 #This allows the use of the instagram oauth
-gem 'omniauth-instagram', '~> 1.0.1'
+gem 'omniauth-instagram'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-gplus'
 gem 'google_plus'
