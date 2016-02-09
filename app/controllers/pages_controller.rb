@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   include Poly::Commentable
-  
+
   before_action :set_page, except:[:home, :help, :about, :feedback, :terms, 
                                    :privacy, :business_connector, :celebrity_connector, 
                                    :tv_show_connector, :fashion_connector, :youtubers,
@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   #                                 ]
   #Blank is gonna be a reservered word for now
   def show
-    @page = Page.includes(:comments).find(params[:id])
+    @page = Page.find(params[:id])
   end
   
   def home

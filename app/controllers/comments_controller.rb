@@ -109,23 +109,24 @@ class CommentsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   # before_action :correct_user,   only: :destroy
   # before_filter :get_parent
-  #before_filter :find_commentable
+  # before_action :find_commentable
   respond_to :js, :json, :html
 
   def new
     @parent_id = params.delete(:parent_id)
     @commentable = find_commentable
-    @comment = Comment.new( :parent_id => @parent_id, 
-                            :commentable_id => @commentable.id,
-                            :commentable_type => @commentable.class.to_s)
+    @comment = Comment.new( parent_id: @parent_id, 
+                            commentable_id: @commentable.id,
+                            commentable_type: @commentable.class.to_s, 
+                            user_id: current_user.id)
   end
   
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     if @comment.save
-      flash[:notice] = "Successfully created comment."
-      redirect_to @commentable
+      # flash[:notice] = "Successfully created comment."
+      redirect_to @commentable.page ? @commentable.page : @commentable.parent
     else
       flash[:error] = "Error adding comment."
     end
