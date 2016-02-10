@@ -25,7 +25,8 @@
         <% if comment.children.any? %>
           <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#<%= comment.id %>Comments"><span class="glyphicon glyphicon-comment"></span> <%= comment.children.count %> comment</a>
         <% end %>
-        <%= link_to "Reply", new_polymorphic_path([(@commentable = comment), Comment.new], :parent_id => comment), target: '_blank' %>
+        <%#= link_to "Commentable Reply", new_polymorphic_path([(@commentable = comment), Comment.new], :parent_id => comment), target: '_blank' %> |
+        <%#= link_to "Comment Reply", new_comment_path(:parent_id => comment), target: '_blank' %>
       </div>
     </div>
 
@@ -62,7 +63,8 @@
     </div>
     <div class="collapse" id="<%= comment.id %>Reply">
       <ul class="media-list">
-        <%= form_for [(@commentable = comment), Comment.new] do |f| %>
+        <%#= form_for(@comment, url: new_polymorphic_path([@commentablet, Comment.new], :parent_id => comment), html: {method: "get"}) do |f| %>
+        <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)] do |f| %>
         <%= f.hidden_field :parent_id %>
         <%= f.hidden_field :user_id %>
         <%= f.text_field :body, :rows => 4 %>
