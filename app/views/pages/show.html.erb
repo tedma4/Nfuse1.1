@@ -91,14 +91,12 @@ input[type="file"]{
 <p><%#= link_to 'Add a Comment', new_page_comment_path(@page) %></p>
 
 <br>
-<% if @page.comments.empty? %>
-  <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment)%>
-<% end %>
-
 <!-- http://127.0.0.1:3000/comments/new?parent_id=15
  -->
 <ul class="media-list">
-  <%= nested_comments @page.comments.arrange(order: :created_at) %>
+  <%# if @page.comments.any? %>
+  <%= nested_comments @page.comments.arrange(order: :created_at) if @page.comments %>
+  <%# end %>
 </ul>
 <%= render "comments/form" %>
 
