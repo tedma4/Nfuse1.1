@@ -23,7 +23,7 @@
 
 
 
-<%= form_for [@commentable, Comment.new] do |f| %>
+<%= form_for [@commentable, Comment.new(user_id: current_user.id)] do |f| %>
 <%= f.hidden_field :parent_id %>
 <%= f.hidden_field :user_id %>
 <%= f.text_field :body, :rows => 4 %>

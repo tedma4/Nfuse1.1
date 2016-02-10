@@ -95,7 +95,7 @@ input[type="file"]{
  -->
 <ul class="media-list">
   <%# if @page.comments.any? %>
-  <%= nested_comments @page.comments.arrange(order: :created_at) if @page.comments %>
+  <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
   <%# end %>
 </ul>
 <%= render "comments/form" %>
