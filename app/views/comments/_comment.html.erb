@@ -82,6 +82,34 @@
 
 
 
+<!-- <%# if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
+  <%#= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+      dislike_comment_path(id: comment.id,
+      owner_id: @page.id,
+      owner_type: @page.class.name,
+      key: comment.provider),
+      method: :delete, remote: true %>
+<%# else %>
+  <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+      like_comment_path(id: comment.id,
+      owner_id: @page.id,
+      owner_type: @page.class.name,
+      key: comment.provider),
+      method: :comment, remote: true %>
+<%# end %>
+<a id="shout-<%=comment.id%>">
+  <%#= comment.like_score(comment.id) %>
+</a> -->
+
+
+
+
+
+
+
+
+
+
 
 
 <!--%a.pull-left{:href=>"#"}-->

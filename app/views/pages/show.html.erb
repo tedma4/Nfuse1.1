@@ -93,15 +93,12 @@ li ul {
 
 <h2>What do you think about this page or brand?: <%= @page.page_name %></h2>
 
-
 <br>
 <!-- http://127.0.0.1:3000/comments/new?parent_id=15
  -->
 <ul class="media-list">
   <%# if @page.comments.any? %>
-  <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
+    <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
   <%# end %>
 </ul>
 <%= render "comments/form" %>
-
-

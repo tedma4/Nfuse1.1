@@ -1,0 +1,2 @@
+//$("#comment").html("<%#= escape_javascript(render('users/follow')) %>")
+$("#comment-<%= @comment[:id]%>").text('<%=@comment[:like_score] %>');

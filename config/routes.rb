@@ -39,6 +39,14 @@ Rails.application.routes.draw do
       delete "dislike", to: "likes#destroy", as: :dislike_shout
     end
   end
+  scope module: :comments do
+    # This was breaking the * routes 
+    #  Any character after shout/<c> it thinks is an id.
+    scope '/nfuse_commentss' do
+      post "like", to: "likes#create",       as: :like_comment
+      delete "dislike", to: "likes#destroy", as: :dislike_comment
+    end
+  end
 
   get 'individual_post', to: 'pages#individual_post'
 
