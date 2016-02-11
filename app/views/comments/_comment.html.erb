@@ -14,9 +14,7 @@
         <h4 class="media-heading text-uppercase reviews"><%= comment.user.user_name%></h4>
         <ul class="media-date text-uppercase reviews list-inline">
           <!-- timeago in words of the comment -->
-          <li class="dd">22</li>
-          <li class="mm">09</li>
-          <li class="aaaa">2014</li>
+          <li class="dd"><%= time_ago_in_words(comment.created_at) %></li>
         </ul>
 <!--         <div class="embed-responsive embed-responsive-16by9">
           This will be the media placement
@@ -53,9 +51,7 @@
             <div class="well well-lg">
               <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> <%= this.user.user_name%></h4>
               <ul class="media-date text-uppercase reviews list-inline">
-                <li class="dd">22</li>
-                <li class="mm">09</li>
-                <li class="aaaa">2014</li>
+                <li class="dd"><%= time_ago_in_words(this.created_at) %></li>
               </ul>
               <p class="media-comment">
                 <%= this.body %>

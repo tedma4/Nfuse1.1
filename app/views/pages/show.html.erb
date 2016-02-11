@@ -8,8 +8,7 @@
 }
 .page-header { position: relative; }
 .reviews {
-    color: #555;    
-    font-weight: bold;
+     font-weight: bold;
     margin: 10px auto 20px;
 }
 .notes {
@@ -85,10 +84,15 @@ input[type="file"]{
     cursor: pointer;
 }
 .custom-input-file:hover .uploadPhoto { display: block; }
+li ul {
+    display: block;
+    margin-top: 18px;
+    background-color: #fff; 
+}
 </style>
-<h2>What do you think about this page or brand?</h2>
- 
-<p><%#= link_to 'Add a Comment', new_page_comment_path(@page) %></p>
+
+<h2>What do you think about this page or brand?: <%= @page.page_name %></h2>
+
 
 <br>
 <!-- http://127.0.0.1:3000/comments/new?parent_id=15

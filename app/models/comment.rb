@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :page
   has_many :comments, as: :commentable, dependent: :destroy
+  acts_as_votable
   # belongs_to :commentable, polymorphic: true
   # belongs_to  :user
   # belongs_to  :page
