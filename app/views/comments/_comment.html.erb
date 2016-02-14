@@ -44,7 +44,7 @@
               method: :post, remote: true %>
         <% end %>
         <a id="comment-<%=comment.id%>">
-          <%= comment.get_likes.size %>
+          <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
         </a>
       </div>
     </div>
@@ -89,7 +89,7 @@
                     method: :post, remote: true %>
               <% end %>
               <a id="comment-<%=this.id%>">
-                <%= this.get_likes.size %>
+                <%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %>
               </a>
             </div>
           </div>
