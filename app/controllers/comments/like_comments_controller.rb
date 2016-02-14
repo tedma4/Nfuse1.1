@@ -1,4 +1,4 @@
-class Comments::LikesController < ApplicationController
+class Comments::LikeCommentsController < ApplicationController
 
   respond_to :json, :js, :html
 
@@ -44,7 +44,8 @@ class Comments::LikesController < ApplicationController
   end# Ruby magick
 
   def vote_params
-   {votable_id: params[:id],
+    {votable_id: params[:id],
+     votable_type: 'Comment',
       voter_id: current_user.id,
       owner_id: params[:owner_id],
       owner_type: params[:owner_type]}

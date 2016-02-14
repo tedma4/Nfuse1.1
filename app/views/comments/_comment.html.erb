@@ -28,8 +28,24 @@
         <% if comment.children.any? %>
           <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#<%= comment.id %>Comments"><span class="glyphicon glyphicon-comment"></span> <%= comment.children.count %> comment</a>
         <% end %>
-        <%#= link_to "Commentable Reply", new_polymorphic_path([(@commentable = comment), Comment.new], :parent_id => comment), target: '_blank' %>
-        <%#= link_to "Comment Reply", new_comment_path(:parent_id => comment), target: '_blank' %>
+        <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
+          <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+              dislike_this_comment_path(id: comment.id,
+              owner_id: comment.user_id,
+              comment_id: comment.id,
+              owner_type: 'User'),
+              method: :delete, remote: true %>
+        <% else %>
+            <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+              like_this_comment_path(id: comment.id,
+              owner_id: comment.user_id,
+              comment_id: comment.id,
+              owner_type: 'User'),
+              method: :post, remote: true %>
+        <% end %>
+        <a id="comment-<%=comment.id%>">
+          <%= comment.get_likes.size %>
+        </a>
       </div>
     </div>
 
@@ -57,6 +73,24 @@
                 <%= this.body %>
               </p>
               <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+              <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
+                <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+                    dislike_this_comment_path(id: this.id,
+                    owner_id: this.user_id,
+                    comment_id: this.id,
+                    owner_type: 'User'),
+                    method: :delete, remote: true %>
+              <% else %>
+                  <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+                    like_this_comment_path(id: this.id,
+                    owner_id: this.user_id,
+                    comment_id: this.id,
+                    owner_type: 'User'),
+                    method: :post, remote: true %>
+              <% end %>
+              <a id="comment-<%=this.id%>">
+                <%= this.get_likes.size %>
+              </a>
             </div>
           </div>
         </li>
@@ -77,29 +111,6 @@
   </li>
 
 
-
-
-
-
-
-<!-- <%# if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
-  <%#= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-      dislike_comment_path(id: comment.id,
-      owner_id: @page.id,
-      owner_type: @page.class.name,
-      key: comment.provider),
-      method: :delete, remote: true %>
-<%# else %>
-  <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-      like_comment_path(id: comment.id,
-      owner_id: @page.id,
-      owner_type: @page.class.name,
-      key: comment.provider),
-      method: :comment, remote: true %>
-<%# end %>
-<a id="shout-<%=comment.id%>">
-  <%#= comment.like_score(comment.id) %>
-</a> -->
 
 
 

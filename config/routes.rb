@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :pages do
     resources :comments
   end
+  
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
 
   # on line 27 of routes file replace that block with this.
@@ -40,12 +41,9 @@ Rails.application.routes.draw do
     end
   end
   scope module: :comments do
-    # This was breaking the * routes 
-    #  Any character after shout/<c> it thinks is an id.
-    scope '/nfuse_commentss' do
-      post "like", to: "likes#create",       as: :like_comment
-      delete "dislike", to: "likes#destroy", as: :dislike_comment
-    end
+
+    post "like", to: "like_comments#create",       as: :like_this_comment
+    delete "dislike", to: "like_comments#destroy", as: :dislike_this_comment
   end
 
   get 'individual_post', to: 'pages#individual_post'
