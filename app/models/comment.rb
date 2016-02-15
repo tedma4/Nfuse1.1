@@ -16,4 +16,14 @@ class Comment < ActiveRecord::Base
 	  return @page if defined?(@page)
 	  @page = commentable.is_a?(Page) ? commentable : commentable.page
 	end
+
+  auto_html_for :url do
+    html_escape
+    image
+    youtube(:width => '100%', :height => 225, :autoplay => false)
+    vimeo(:width => '100%', :height => 225, :autoplay => false)
+    soundcloud
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
+  end
 end

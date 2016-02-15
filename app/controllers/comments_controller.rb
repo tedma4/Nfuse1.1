@@ -97,7 +97,7 @@
 #   #         _rs = $1.split('_')
 #   #         return $1.classify.constantize.find(value) if (_rs.length == 1)
 #   #         return Commented.set(_rs[0..1].map(&:capitalize).join('::').classify.constantize, value)
-#   #         # @commenentable = Shout.find(1)
+#   #         # @commenentable = Shout.find(1)  
 #   #     end #|| raise ActiveRecord:NoRecord.new("Couldn\'t find it captain!")
 #   #   end
 #   # end
@@ -125,6 +125,11 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     if @comment.save
+      if @commentable.is_a?(Page)
+        OurAwesomeMailer.forum_post(@comment.user, @comment, @commentable).deliver
+      else
+        OurAwesomeMailer.forum_post(@comment.user, @comment).deliver
+      end
       # flash[:notice] = "Successfully created comment."
         redirect_to @commentable
     else

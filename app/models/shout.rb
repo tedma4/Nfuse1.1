@@ -64,17 +64,17 @@ class Shout < ActiveRecord::Base
     simple_format
   end
 
-  def self.my_nfuses(nfuse_page_id)
-    self.where(nfuse_page_id: nfuse_page_id)
-  end
+  # def self.my_nfuses(nfuse_page_id)
+  #   self.where(nfuse_page_id: nfuse_page_id)
+  # end
   
-  def self.nfuse_page_owner(nfuse_page_user_id)
-    User.find_by id: nfuse_page_user_id
-  end
+  # def self.nfuse_page_owner(nfuse_page_user_id)
+  #   User.find_by id: nfuse_page_user_id
+  # end
 
-  def reshout_post(sid, uid, oid)
-   nf_page = NfusePage.new(shout_id: sid, user_id: uid, owner_id: oid)
-   nf_page.save
-  end
+  # def reshout_post(sid, uid, oid)
+  #  nf_page = NfusePage.new(shout_id: sid, user_id: uid, owner_id: oid)
+  #  nf_page.save
+  # end
 
  end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131203016) do
+ActiveRecord::Schema.define(version: 20160214212704) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -37,12 +37,18 @@ ActiveRecord::Schema.define(version: 20160131203016) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "commentable_id",   limit: 255
-    t.string   "commentable_type", limit: 255
+    t.string   "commentable_id",            limit: 255
+    t.string   "commentable_type",          limit: 255
     t.integer  "owner_id"
     t.integer  "page_id"
     t.integer  "comment_id"
     t.string   "ancestry"
+    t.string   "image_upload_file_name"
+    t.string   "image_upload_content_type"
+    t.integer  "image_upload_file_size"
+    t.datetime "image_upload_updated_at"
+    t.text     "url"
+    t.text     "url_html"
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"

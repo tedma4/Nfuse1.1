@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>This user <%= @user.first_name %></h1>
+    <p>
+      Made a forum post<br/>
+    </p>
+    <p>
+      <%= @comment.body %><br/>
+    </p>
+    <% unless @page.nil? %>
+      <p><%= @page.page_name %></p>
+    <% end %>
+    <p>
+      <%= @comment.body %><br/>
+    </p>
+    <p>Have a great day!</p>
+  </body>
+</html>
