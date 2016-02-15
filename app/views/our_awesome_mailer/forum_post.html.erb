@@ -12,7 +12,7 @@
       <%= @comment.body %><br/>
     </p>
     <% unless @page.nil? %>
-      <p><%= @page.page_name %></p>
+      <p>ULR: <%= link_to "#{@page.page_name}", page_url(@page)  %></p><br>
     <% end %>
     <p>
       <%= @comment.body %><br/>
