@@ -19,13 +19,88 @@
       <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
     </div>
   </div>            
-</form> -->
+</form>
+ -->
 
 
 
+
+<div id="forumUrlPostPreview"></div>
 <%= form_for [@commentable, Comment.new(user_id: current_user.id)] do |f| %>
 <%= f.hidden_field :parent_id %>
 <%= f.hidden_field :user_id %>
-<%= f.text_field :body, :rows => 4 %>
+<%= f.text_area :url, id: 'forum_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+<%= f.text_field :body%>
 <%= f.submit "Post Comment" %>
 <% end %>
+
+
+
+<!-- 
+
+<form class="new_comment" id="new_comment" action="/pages/2/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="NO+IQhOHbS/gQdfy6pXBLaWSyGMpZqDbYN4R1ETNaTKmkQBO/rj9Wzxi18Y3Ge4nfFgeQYAofVQOrOhB8v4ZsA==">
+<input type="hidden" name="comment[parent_id]" id="comment_parent_id">
+<input type="hidden" value="1" name="comment[user_id]" id="comment_user_id">
+<input rows="4" type="text" name="comment[body]" id="comment_body">
+<input type="submit" name="commit" value="Post Comment">
+</form>
+
+
+
+
+
+ -->
+
+
+
+
+
+<%#= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
+
+<script>
+function load(request) {
+  $('#code').text(request);
+  $('#forumUrlPostPreview').html(request);
+}
+
+function preview(value) {
+  console.log("preview; value = " + value);
+
+  /*
+  $.getJSON("/preview?callback=?", value, function(data){
+    load(data);
+    console.log("preview callback\n" + data);
+  });
+  */
+
+  $.ajax({
+    dataType: "html",
+    url: "/preview?url=" + value['url']
+  })
+  .done( function(data){
+    load(data);
+    console.log("preview callback\n" + data);
+  });
+}
+
+function previewUrl() {
+  preview({'url':$('#forum_post_url_body').val()});
+}
+
+$('#examples a').click(function() {
+  $('#forum_post_url_body').focus(); 
+  $('#forum_post_url_body').val( $(this).attr('href'));
+  previewUrl();
+});
+
+$(function () { 
+  $("#forum_post_url_body").focus();
+  previewUrl();
+});
+
+//$('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
+//$('#forum_post_url_body').keydown(function() { alert("hi"); previewUrl() });
+//$('#forum_post_url_body').bind('input propertychange', function() { alert("hi"); previewUrl() });  
+
+
+</script>

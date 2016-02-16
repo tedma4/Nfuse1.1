@@ -125,11 +125,11 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     if @comment.save
-      if @commentable.is_a?(Page)
-        OurAwesomeMailer.forum_post(@comment.user, @comment, @commentable).deliver
-      else
-        OurAwesomeMailer.forum_post(@comment.user, @comment).deliver
-      end
+      # if @commentable.is_a?(Page)
+      #   OurAwesomeMailer.forum_post(@comment.user, @comment, @commentable).deliver
+      # else
+      #   OurAwesomeMailer.forum_post(@comment.user, @comment).deliver
+      # end
       # flash[:notice] = "Successfully created comment."
         redirect_to @commentable
     else
@@ -140,7 +140,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id )
+    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html )
   end
 
   def find_commentable

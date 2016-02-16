@@ -20,9 +20,14 @@
           This will be the media placement
           <iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" allowfullscreen></iframe>
         </div> -->
-        <p class="media-comment">
-          <%= comment.body %>
-        </p>
+        <% unless comment.url.blank? %>
+          <p> <%= comment.url_html %></p>
+        <% end %>
+        <% unless comment.body.blank? %>
+          <p class="media-comment">
+            <%= comment.body %>
+          </p>
+        <% end %>
         <%#= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class="btn btn-info btn-circle text-uppercase"  %>
         <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
         <% if comment.children.any? %>
@@ -69,9 +74,14 @@
               <ul class="media-date text-uppercase reviews list-inline">
                 <li class="dd"><%= time_ago_in_words(this.created_at) %></li>
               </ul>
-              <p class="media-comment">
-                <%= this.body %>
-              </p>
+              <% unless this.url.blank? %>
+                <p> <%= this.url_html %></p>
+              <% end %>
+              <% unless this.body.blank? %>
+                <p class="media-comment">
+                  <%= this.body %>
+                </p>
+              <% end %>
               <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
               <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
                 <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
@@ -103,6 +113,7 @@
         <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)] do |f| %>
         <%= f.hidden_field :parent_id %>
         <%= f.hidden_field :user_id %>
+        <%= f.text_area :url, id: 'forum_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
         <%= f.text_field :body, :rows => 4 %>
         <%= f.submit "Post Comment" %>
         <% end %>
