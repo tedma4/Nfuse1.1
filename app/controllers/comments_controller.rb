@@ -140,7 +140,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html )
+    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html, :image_upload )
   end
 
   def find_commentable

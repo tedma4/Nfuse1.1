@@ -17,6 +17,16 @@ class Comment < ActiveRecord::Base
 	  @page = commentable.is_a?(Page) ? commentable : commentable.page
 	end
 
+  has_attached_file :image_upload,
+                    :styles => {
+                      :thumb => "600x600#",
+                      :medium => "300x300#",
+                      :small => "160x160#"
+                    }
+  
+  validates_attachment_content_type :image_upload,
+                                    :content_type => ["image/jpg", "image/jpeg", "image/png" ], allow_blank:true
+
   auto_html_for :url do
     html_escape
     image

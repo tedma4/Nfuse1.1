@@ -24,12 +24,14 @@
 
 
 
+<div id="profilePostTarget"></div>
 
 <div id="forumUrlPostPreview"></div>
 <%= form_for [@commentable, Comment.new(user_id: current_user.id)] do |f| %>
 <%= f.hidden_field :parent_id %>
 <%= f.hidden_field :user_id %>
 <%= f.text_area :url, id: 'forum_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+<%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
 <%= f.text_field :body%>
 <%= f.submit "Post Comment" %>
 <% end %>
@@ -56,6 +58,26 @@
 
 
 <%#= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
+
+
+
+<script>
+  $(function() {
+    $('#newPostPictureInput').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#profilePostTarget').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+</script>
 
 <script>
 function load(request) {

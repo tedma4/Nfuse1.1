@@ -8,15 +8,19 @@
     <p>
       Made a forum post<br/>
     </p>
-    <p>
-      <%= @comment.body %><br/>
-    </p>
     <% unless @page.nil? %>
       <p>ULR: <%= link_to "#{@page.page_name}", page_url(@page)  %></p><br>
     <% end %>
-    <p>
-      <%= @comment.body %><br/>
-    </p>
+    <% unless @comment.url.blank? %>
+      <p>
+        <%= @comment.url_html %>
+      </p>
+    <% end %>
+    <% unless @comment.body.blank? %>
+      <p>
+        <%= @comment.body %>
+      </p>
+    <% end %>
     <p>Have a great day!</p>
   </body>
 </html>
