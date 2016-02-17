@@ -182,9 +182,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.2)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     koala (2.0.0)
       addressable
       faraday
@@ -202,6 +199,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mimemagic (0.3.0)
     mini_portile2 (2.1.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -254,11 +252,12 @@ GEM
       omniauth-oauth (~> 1.0)
     omniauth-vimeo (2.0.0)
       omniauth-oauth2
-    paperclip (3.5.3)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
+    paperclip (4.3.5)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
       mime-types
+      mimemagic (= 0.3.0)
     paperclip-av-transcoder (0.6.4)
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
@@ -478,7 +477,6 @@ DEPENDENCIES
   impressionist (= 1.5.1)
   jbuilder (~> 2.0)
   jquery-rails
-  kaminari
   koala (~> 2.0)
   launchy (~> 2.4.2)
   mail_form
@@ -494,7 +492,7 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   omniauth-vimeo
-  paperclip (= 3.5.3)
+  paperclip (= 4.3.5)
   paperclip-av-transcoder (= 0.6.4)
   pry
   pry-rails

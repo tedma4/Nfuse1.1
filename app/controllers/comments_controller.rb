@@ -134,6 +134,7 @@ class CommentsController < ApplicationController
         redirect_to @commentable
     else
       flash[:error] = "Error adding comment."
+      redirect_to @commentable
     end
   end
  

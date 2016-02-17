@@ -38,8 +38,9 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.9.1-Q16/convert.exe"
-  Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.9.1-Q16/ffmpeg.exe"
+  # Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.9.1-Q16/convert.exe"
+  Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.9.3-Q16/convert.exe"
+  # Paperclip.options[:command_path] = "C:/Program Files/ImageMagick-6.9.1-Q16/ffmpeg.exe"
   # Paperclip.options[:command_path] = "/usr/local/bin/"
   # Paperclip.options[:command_path] = "C:/ffmpeg/bin/ffmpeg.exe"
   # Raises error for missing translations

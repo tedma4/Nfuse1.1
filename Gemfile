@@ -16,13 +16,13 @@ gem 'responders', '~> 2.0'
 #This adds pagination to pages that need it
 # gem 'will_paginate', '~> 3.0.4'
 # gem 'bootstrap-will_paginate', '~> 0.0.9'
-gem 'kaminari'
+# gem 'kaminari'
 #This allows us to send an email
 gem 'mail_form'
 #This allows us to simplify the form making process
 gem 'simple_form'
 #This allows the us to upload images, videos and files
-gem 'paperclip', "3.5.3"
+gem 'paperclip', "4.3.5"
 gem "nokogiri", ">= 1.6.7.rc"
 #gem 'panda'
 # Handles video upload
