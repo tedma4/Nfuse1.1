@@ -20,10 +20,10 @@
           This will be the media placement
           <iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" allowfullscreen></iframe>
         </div> -->
-        <% unless comment.url.blank? %>
+        <% if !comment.url.blank? %>
           <p> <%= comment.url_html %></p>
         <% elsif !comment.image_upload.blank? %>
-          <%= comment.image_upload(:medium) %>
+          <%= image_tag comment.image_upload(:medium) %>
         <% else %>
         <% end %>
         <% unless comment.body.blank? %>
@@ -80,7 +80,7 @@
               <% if !this.url.blank? %>
                 <p> <%= this.url_html %></p>
               <% elsif !this.image_upload.blank? %>
-                <%= this.image_upload(:medium) %>
+                <%= image_tag this.image_upload(:medium) %>
               <% else %>
               <% end %>
               <% unless this.body.blank? %>

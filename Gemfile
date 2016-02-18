@@ -16,7 +16,6 @@ gem 'responders', '~> 2.0'
 #This adds pagination to pages that need it
 # gem 'will_paginate', '~> 3.0.4'
 # gem 'bootstrap-will_paginate', '~> 0.0.9'
-# gem 'kaminari'
 #This allows us to send an email
 gem 'mail_form'
 #This allows us to simplify the form making process
