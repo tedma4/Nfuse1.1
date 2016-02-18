@@ -22,6 +22,9 @@
         </div> -->
         <% unless comment.url.blank? %>
           <p> <%= comment.url_html %></p>
+        <% elsif !comment.image_upload.blank? %>
+          <%= comment.image_upload(:medium) %>
+        <% else %>
         <% end %>
         <% unless comment.body.blank? %>
           <p class="media-comment">
@@ -74,8 +77,11 @@
               <ul class="media-date text-uppercase reviews list-inline">
                 <li class="dd"><%= time_ago_in_words(this.created_at) %></li>
               </ul>
-              <% unless this.url.blank? %>
+              <% if !this.url.blank? %>
                 <p> <%= this.url_html %></p>
+              <% elsif !this.image_upload.blank? %>
+                <%= this.image_upload(:medium) %>
+              <% else %>
               <% end %>
               <% unless this.body.blank? %>
                 <p class="media-comment">
