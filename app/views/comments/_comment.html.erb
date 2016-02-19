@@ -120,8 +120,11 @@
         <%= f.hidden_field :parent_id %>
         <%= f.hidden_field :user_id %>
         <%= f.text_area :url, id: 'forum_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
-        <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
-        <%= f.text_field :body, :rows => 4 %>
+        <div class="fileUpload btn-link-1">
+          <span>Upload Pic</span>
+            <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: 'upload'  %>
+        </div>
+        <%= f.text_field :body%>
         <%= f.submit "Post Comment" %>
         <% end %>
       </ul>
