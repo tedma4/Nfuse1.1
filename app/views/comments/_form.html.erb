@@ -1,60 +1,45 @@
-<!-- <form action="#" methosd="post" class="form-horizontal" id="commentForm" role="form"> 
-  <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">Comment</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
-    <div class="col-sm-10">                    
-      <div class="input-group">
-        <div class="input-group-addon">http://</div>
-          <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">                    
-      <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
-    </div>
-  </div>            
-</form>
- -->
-
+<style>
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0 0 17%;
+}
+</style>
 
 
 <div id="profilePostTarget"></div>
 
 <div id="forumUrlPostPreview"></div>
-<%= form_for [@commentable, Comment.new(user_id: current_user.id)] do |f| %>
+<%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'} do |f| %>
 <%= f.hidden_field :parent_id %>
 <%= f.hidden_field :user_id %>
-<%= f.text_area :url, id: 'forum_post_url_body', placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
-<div class="fileUpload btn-link-1">
-  <span>Upload Pic</span>
-    <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: 'upload'  %>
-</div>
-<%= f.text_field :body%>
-<%= f.submit "Post Comment" %>
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Comment</label>
+    <div class="col-sm-4">
+      <%= f.text_field :body, id: 'uploadMedia', onChange: 'previewUrl()', class: 'form-control', rows: 5, placeholder: 'Comment' %>
+      <!-- <input class="form-control" name="addComment" id="addComment" rows="5"></input> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
+    <div class="col-sm-4">
+      <div class="input-group">
+        <div class="input-group-addon">http://</div>
+          <%= f.text_field :url, class: 'form-control', id: 'forum_post_url_body', placeholder: "URL of everything" %>
+          <!-- <input type="text" class="form-control" name="uploadMedia" id="uploadMedia"> -->
+      </div>
+    </div>
+  </div>
+  <div class="fileUpload btn-link-1">
+    <span>Upload Pic</span>
+      <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: 'upload'  %>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">                    
+      <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span>Submit</button>
+    </div>
+  </div>
 <% end %>
-
-
-
-<!-- 
-
-<form class="new_comment" id="new_comment" action="/pages/2/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="NO+IQhOHbS/gQdfy6pXBLaWSyGMpZqDbYN4R1ETNaTKmkQBO/rj9Wzxi18Y3Ge4nfFgeQYAofVQOrOhB8v4ZsA==">
-<input type="hidden" name="comment[parent_id]" id="comment_parent_id">
-<input type="hidden" value="1" name="comment[user_id]" id="comment_user_id">
-<input rows="4" type="text" name="comment[body]" id="comment_body">
-<input type="submit" name="commit" value="Post Comment">
-</form>
-
-
-
-
-
- -->
 
 
 
