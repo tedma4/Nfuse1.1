@@ -56,6 +56,9 @@
         </a>
       </div>
     </div>
+
+
+
 <div id="<%= comment.id %>Comments" class="modal fade">
   <div class="modal-fade">
     <div class="modal-dialog">
@@ -138,6 +141,9 @@
           </div>
         </div>
       </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
     </div>
   </div>
 
@@ -166,6 +172,8 @@
                             <div class="form-top-new-post">
                               <div class="form-bottom">
                               <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
+                                <%= f.hidden_field :parent_id %>
+                                <%= f.hidden_field :user_id %>
                                 <div class="Alignthisorelse">
                                   <div class="container">
                                     <div class="row">
