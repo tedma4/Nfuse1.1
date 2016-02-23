@@ -1,3 +1,50 @@
+<style>
+.popup-messages-footer > textarea {
+    border-bottom: 1px solid #b2b2b2 !important;
+    height: 34px !important;
+    margin: 7px;
+    padding: 5px !important;
+     border: medium none;
+    width: 95% !important;
+    overflow: hidden !important;
+}
+.popup-messages-footer {
+    background: #fff none repeat scroll 0 0;
+    bottom: 0;
+    position: absolute;
+    width: 83%;
+}
+.popup-messages-footer .btn-footer {
+    overflow: hidden;
+    padding: 2px 5px 10px 6px;
+    width: 100%;
+}
+.bg_none i {
+    border: 1px solid #ff6701;
+    border-radius: 25px;
+    color: #ff6701;
+    font-size: 17px;
+    height: 33px;
+    line-height: 30px;
+    width: 33px;
+}
+.bg_none:hover i {
+    border: 1px solid #000;
+    border-radius: 25px;
+    color: #000;
+    font-size: 17px;
+    height: 33px;
+    line-height: 30px;
+    width: 33px;
+}
+.bg_none {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+}
+</style>
+
+
+
   <li class="media">
     <a class="pull-left" href="#">
       <!-- Needs to be user image with link to profile -->
@@ -32,7 +79,7 @@
           </p>
         <% end %>
         <%#= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class="btn btn-info btn-circle text-uppercase"  %>
-        <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+        <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Comments" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
         <% if comment.children.any? %>
           <a class="btn btn-warning btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Comments"><span class="glyphicon glyphicon-comment"></span> <%= comment.children.count %> comment</a>
         <% end %>
@@ -141,7 +188,21 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer"></div>
+      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
+        <%= f.hidden_field :parent_id %>
+        <%= f.hidden_field :user_id %>
+        <div class="modal-footer">
+          <div class="popup-messages-footer">
+            <%= f.text_area :body,  id: "status_message",  placeholder: "Type a message...", rows: "10", cols: "40" %>
+            <div class="btn-footer">
+              <button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
+              <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
+              <button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"></i> </button>
+              <button type="submit" class="bg_none pull-right"><i class="glyphicon glyphicon-submit"></i> </button>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
     </div>
@@ -154,7 +215,7 @@
 
 
 
-    <div id="<%= comment.id %>Reply" class="modal fade">
+    <div id="absolute_postition_test" class="modal fade">
       <div class="modal-fade">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -171,7 +232,7 @@
                           <div class="col-sm-6 form-box wow fadeInUp">
                             <div class="form-top-new-post">
                               <div class="form-bottom">
-                              <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
+                              <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'} do |f| %>
                                 <%= f.hidden_field :parent_id %>
                                 <%= f.hidden_field :user_id %>
                                 <div class="Alignthisorelse">

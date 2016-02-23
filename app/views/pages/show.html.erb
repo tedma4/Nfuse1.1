@@ -89,6 +89,11 @@ li ul {
     margin-top: 18px;
     background-color: #fff; 
 }
+.absolute_postition_test {
+    position: fixed;
+    left: 95%;
+    top: 90%;    
+}
 </style>
 
 <h2>What do you think about this page or brand?: <%= @page.page_name %></h2>
@@ -101,4 +106,7 @@ li ul {
     <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
   <%# end %>
 </ul>
-<%= render "comments/form" %>
+<%#= render "comments/form" %>
+<a data-toggle= "modal" href="#absolute_postition_test">
+<button id='forum_post_modal' class='bg_none absolute_postition_test'><i class="glyphicon glyphicon-plus"></i>  </button>
+</a>
