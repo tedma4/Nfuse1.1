@@ -149,10 +149,21 @@
         <div class="modal-footer">
           <div class="popup-messages-footer">
             <%= f.text_area :body,  id: "status_message",  placeholder: "Type a message...", rows: "10", cols: "40" %>
+            <div id="open_url_field" class="collapse ">
+              <%= f.text_area :url,  id: "status_message",  placeholder: "Enter link.", rows: "10", cols: "40" %>
+            </div>
             <div class="btn-footer">
-              <button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
-              <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
-              <button type="submit" class="bg_none pull-right"><i class="glyphicon glyphicon-ok-sign"></i> </button>
+              <button class="bg_none">
+                <i class="glyphicon glyphicon-camera replyUpload">
+                  <input id="newPostPictureInput" placeholder="Pic" type="file" class="upload" name="comment[image_upload]">
+                </i> 
+              </button>
+              <a data-toggle="collapse" href="#open_url_field">
+                <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
+              </a>
+              <button type="submit" class="bg_none pull-right">
+                <i class="glyphicon glyphicon-ok-sign"></i>   
+              </button>
             </div>
           </div>
         </div>
