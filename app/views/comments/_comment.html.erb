@@ -154,7 +154,7 @@
                                         <%= this.body %>
                                       </p>
                                     <% end %>
-                                    <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                    <!-- <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a> -->
                                     <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
                                       <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
                                           dislike_this_comment_path(id: this.id,
@@ -197,8 +197,7 @@
             <div class="btn-footer">
               <button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
               <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
-              <button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"></i> </button>
-              <button type="submit" class="bg_none pull-right"><i class="glyphicon glyphicon-submit"></i> </button>
+              <button type="submit" class="bg_none pull-right"><i class="glyphicon glyphicon-ok-sign"></i> </button>
             </div>
           </div>
         </div>
