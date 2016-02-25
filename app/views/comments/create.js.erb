@@ -1,14 +1,29 @@
-$("a#post_<%=@commentable.id%>_comment_count").text("<%=@comments.count%>");
-$("div#comment_list_<%= @commentable.id %>").html(' \
-  <ul class="chat">' +
-    <% if @commentable.is_a? Shout %>
-      <% Comment.where(commentable_type: @commentable.class.to_s, commentable_id: @commentable.id).each do |comment| %>
-      '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
-      <% end %>
-    <% else %>
-      <% Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id).each do |comment| %>
-      '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
-      <% end %>
-    <% end%>
-  '</ul>'
-);
+// $("a#post_<%=@commentable.id%>_comment_count").text("<%=@comments.count%>");
+// $("div#comment_list_<%= @commentable.id %>").html(' \
+//   <ul class="chat">' +
+//     <% if @commentable.is_a? Shout %>
+//       <% Comment.where(commentable_type: @commentable.class.to_s, commentable_id: @commentable.id).each do |comment| %>
+//       '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
+//       <% end %>
+//     <% else %>
+//       <% Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id).each do |comment| %>
+//       '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
+//       <% end %>
+//     <% end%>
+//   '</ul>'
+// );
+
+
+
+// publisher = client.publish('/comments', {
+//   message: '<%= j render @comment %>'
+// });
+
+// publisher.callback(function() {
+//   $('#comment_body').val('');
+//   $('#new_comment').find("input[type='submit']").val('Submit').prop('disabled', false)
+// });
+
+// publisher.errback(function() {
+//   alert('There was an error while posting your comment.');
+// });

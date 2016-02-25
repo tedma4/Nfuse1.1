@@ -14,6 +14,8 @@ module Nfuse11
   class Application < Rails::Application
     config.assets.initialize_on_precompile = false
     config.use_ssl = false
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
 
 
     config.after_initialize do |app|

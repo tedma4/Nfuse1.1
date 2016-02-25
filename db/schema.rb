@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214212704) do
+ActiveRecord::Schema.define(version: 20160224004737) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -137,17 +137,25 @@ ActiveRecord::Schema.define(version: 20160214212704) do
   add_index "nfuse_pages", ["social_id"], name: "index_nfuse_pages_on_social_id", unique: true
 
   create_table "pages", force: :cascade do |t|
-    t.integer "page_counter_cache",             default: 0
-    t.string  "page_name",          limit: 255
-    t.string  "thing_name",         limit: 255
-    t.string  "twitter_handle",     limit: 255
-    t.string  "youtube_handle",     limit: 255
-    t.string  "instagram_handle",   limit: 255
-    t.string  "facebook_handle",    limit: 255
-    t.string  "pinterest_handle",   limit: 255
-    t.string  "tumblr_handle",      limit: 255
-    t.string  "gplus_handle",       limit: 255
+    t.integer  "page_counter_cache",                   default: 0
+    t.string   "page_name",                limit: 255
+    t.string   "thing_name",               limit: 255
+    t.string   "twitter_handle",           limit: 255
+    t.string   "youtube_handle",           limit: 255
+    t.string   "instagram_handle",         limit: 255
+    t.string   "facebook_handle",          limit: 255
+    t.string   "pinterest_handle",         limit: 255
+    t.string   "tumblr_handle",            limit: 255
+    t.string   "gplus_handle",             limit: 255
+    t.string   "metatag_title"
+    t.text     "description"
+    t.string   "page_avatar_file_name"
+    t.string   "page_avatar_content_type"
+    t.integer  "page_avatar_file_size"
+    t.datetime "page_avatar_updated_at"
   end
+
+  add_index "pages", ["page_name"], name: "index_pages_on_page_name"
 
   create_table "pics", force: :cascade do |t|
     t.string   "image_file_name",    limit: 255

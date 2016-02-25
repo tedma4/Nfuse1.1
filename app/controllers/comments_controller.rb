@@ -131,10 +131,12 @@ class CommentsController < ApplicationController
       #   OurAwesomeMailer.forum_post(@comment.user, @comment).deliver
       # end
       # flash[:notice] = "Successfully created comment."
-        redirect_to @commentable
+      format.html {redirect_to @commentable}
+      format.js
     else
       flash[:error] = "Error adding comment."
-      redirect_to @commentable
+      format.html {redirect_to @commentable}
+      format.js
     end
   end
  

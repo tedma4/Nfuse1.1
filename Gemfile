@@ -75,6 +75,7 @@ gem 'faker', "~> 1.4.3"
 gem 'public_activity', '1.4.2'
 # gem 'eventmachine', :github => 'eventmachine/eventmachine', :branch => 'master'
 # gem 'puma', '2.15.3'
+gem 'faye-rails', '2.0'
 gem 'thin', '~> 1.6.4', group: :development
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -115,6 +116,7 @@ gem 'jquery-rails'
 gem 'ejs', '~> 1.1.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 gem 'impressionist', '1.5.1'
@@ -128,6 +130,7 @@ end
 #These are the gems used in the production enviornment
 group :production do
   gem 'mysql2'
+  gem 'thin', '~> 1.6.4'
   # gem 'rails_12factor', '~> 0.0.3'
 end
 #These are the gems used in the development enviornment
