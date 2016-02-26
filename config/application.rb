@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+require File.expand_path('../csrf_protection', __FILE__)
 
 
 require "active_model/railtie"
@@ -15,7 +16,7 @@ module Nfuse11
     config.assets.initialize_on_precompile = false
     config.use_ssl = false
     config.middleware.delete Rack::Lock
-    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+    config.middleware.use FayeRails::Middleware, extensions: [CsrfProtection.new], mount: '/faye', :timeout => 25
 
 
     config.after_initialize do |app|

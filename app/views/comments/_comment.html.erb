@@ -1,6 +1,4 @@
-
-
-  <li class="media">
+  <li class="media comment">
     <a class="pull-left" href="#">
       <!-- Needs to be user image with link to profile -->
       <% if comment.user.avatar_file_name.present? && comment.user.avatar_file_name.include?('graph.facebook.com') %>
@@ -59,8 +57,6 @@
       </div>
     </div>
 
-
-
 <div id="<%= comment.id %>Comments" class="modal fade">
   <div class="modal-fade">
     <div class="modal-dialog">
@@ -81,7 +77,7 @@
                             <% comment.children.each do |this| %>
                             <%# comment.children.includes(:user).each do |this| %>
                             <%# user = User.find(this.user_id) %>
-                            <ul class="media-list">
+                            <ul class="media-list sub_comments">
                               <li class="media media-replied">
 
                                 <div class="media-body">
@@ -143,7 +139,7 @@
           </div>
         </div>
       </div>
-      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
+      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: true do |f| %>
         <%= f.hidden_field :parent_id %>
         <%= f.hidden_field :user_id %>
         <div class="modal-footer">
@@ -161,7 +157,7 @@
               <a data-toggle="collapse" href="#open_url_field">
                 <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
               </a>
-              <button type="submit" class="bg_none pull-right">
+              <button type="submit" class="bg_none pull-right submit_sub_comment">
                 <i class="glyphicon glyphicon-ok-sign"></i>   
               </button>
             </div>
@@ -176,25 +172,36 @@
 
   </li>
 
-<%#= render partial: 'comments/new_comment_modal', locals: {commantable: @commentable, this: this} %>
 
+<script>
+$( "#<%= comment.id unless comment.nil? %>Comments" ).on('shown.bs.modal', function(e){
+  var client = new Faye.Client('"http://#{ request.host }:9292/faye"');
 
+client.addExtension({
+  outgoing: function(message, callback) {
+    message.ext = message.ext || {};
+    message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
+    return callback(message);
+  }
+});
 
+jQuery(function() {
+  $('#submit_sub_comment').submit(function() {
+    return $(this).find("button[type='submit']").val('Sending...').prop('disabled', true);
+  });
+  try {
+    client.unsubscribe('/comments');
+  } catch (_error) {
+    if (typeof console !== "undefined" && console !== null) {
+      console.log("Can't unsubscribe.");
+    }
+  }
+  return client.subscribe('/comments', function(payload) {
+    if (payload.message) {
+      return $('.sub_comments').prepend(payload.message);
+    }
+  });
+});
+});
 
-
-
-
-
-
-
-
-
-<!--%a.pull-left{:href=>"#"}-->
-  <!--%img.media-object{ :src => "/assets/anonuser.jpg", :style=> "width: 64px; height: 64px;" }-->
-<!--.media-body-->
-  <!--%h4.media-heading Anonymous User-->
-  <!--%i= comment.created_at.strftime('%b %d, %Y at %H:%M') -->
-  <!--%p= simple_format comment.content-->
-  <!--.actions-->
-    <!--= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment)-->
-  <!--= nested_comments comment.children-->
+</script>

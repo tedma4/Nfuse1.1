@@ -124,19 +124,21 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
-    if @comment.save
-      # if @commentable.is_a?(Page)
-      #   OurAwesomeMailer.forum_post(@comment.user, @comment, @commentable).deliver
-      # else
-      #   OurAwesomeMailer.forum_post(@comment.user, @comment).deliver
-      # end
-      # flash[:notice] = "Successfully created comment."
-      format.html {redirect_to @commentable}
-      format.js
-    else
-      flash[:error] = "Error adding comment."
-      format.html {redirect_to @commentable}
-      format.js
+    respond_to do |format|
+      if @comment.save
+        # if @commentable.is_a?(Page)
+        #   OurAwesomeMailer.forum_post(@comment.user, @comment, @commentable).deliver
+        # else
+        #   OurAwesomeMailer.forum_post(@comment.user, @comment).deliver
+        # end
+        # flash[:notice] = "Successfully created comment."
+        format.html {redirect_to @commentable}
+        format.js
+      else
+        flash[:error] = "Error adding comment."
+        format.html {redirect_to @commentable}
+        format.js
+      end
     end
   end
  

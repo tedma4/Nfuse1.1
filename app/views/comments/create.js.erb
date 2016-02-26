@@ -1,29 +1,24 @@
-// $("a#post_<%=@commentable.id%>_comment_count").text("<%=@comments.count%>");
-// $("div#comment_list_<%= @commentable.id %>").html(' \
-//   <ul class="chat">' +
-//     <% if @commentable.is_a? Shout %>
-//       <% Comment.where(commentable_type: @commentable.class.to_s, commentable_id: @commentable.id).each do |comment| %>
-//       '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
-//       <% end %>
-//     <% else %>
-//       <% Comment.where(commentable_type: @commentable.type, commentable_id: @commentable.id).each do |comment| %>
-//       '<%= escape_javascript(render partial: 'shared/comment', locals: {comment: comment }) %>' +
-//       <% end %>
-//     <% end%>
-//   '</ul>'
-// );
 
+<% if @comment.parent.nil? %>
+  <% if @comment.new_record? %>
+    alert('Your comment cannot be saved.');
+  <% else %>
+    $('#absolute_postition_test').modal('toggle');
+    $('.media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
+    $('#comment_body').val('');
+  <% end %>
+<% else %>
 
+  var publisher = client.publish('/comments', {
+    message: "<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>"
+  });
 
-// publisher = client.publish('/comments', {
-//   message: '<%= j render @comment %>'
-// });
+  publisher.callback(function() {
+    $('#comment_body').val('');
+    $('#submit_sub_comment').find("button[type='submit']").val('Submit').prop('disabled', false)
+  });
 
-// publisher.callback(function() {
-//   $('#comment_body').val('');
-//   $('#new_comment').find("input[type='submit']").val('Submit').prop('disabled', false)
-// });
-
-// publisher.errback(function() {
-//   alert('There was an error while posting your comment.');
-// });
+  publisher.errback(function() {
+    alert('There was an error while posting your comment.');
+  });
+<% end %>

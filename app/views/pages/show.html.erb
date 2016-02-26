@@ -163,6 +163,9 @@ li ul {
     <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
   <%# end %>
 </ul>
+
+
+
 <%#= render "comments/form" %>
 <a data-toggle= "modal" href="#absolute_postition_test">
 <button id='forum_post_modal' class='bg_none absolute_postition_test'><i class="glyphicon glyphicon-plus"></i>  </button>
@@ -172,7 +175,7 @@ li ul {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button class="close" data-dismiss="modal">×</button>
+              <button class="close close_comment_form" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body-new-post">
               <div class="row-fluid">
@@ -184,7 +187,7 @@ li ul {
                           <div class="col-sm-6 form-box wow fadeInUp">
                             <div class="form-top-new-post">
                               <div class="form-bottom">
-                              <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'} do |f| %>
+                              <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'}, remote: true do |f| %>
                                 <%= f.hidden_field :parent_id %>
                                 <%= f.hidden_field :user_id %>
                                 <div class="Alignthisorelse">

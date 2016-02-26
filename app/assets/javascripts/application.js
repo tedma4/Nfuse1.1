@@ -21,7 +21,6 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require faye
-//= require comments
 //= require resize_masonry
 //= require imagesloaded.pkgd
 //= require jquery-1.11.1.min
