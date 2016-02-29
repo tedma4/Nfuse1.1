@@ -139,7 +139,7 @@
           </div>
         </div>
       </div>
-      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: true do |f| %>
+      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: false do |f| %>
         <%= f.hidden_field :parent_id %>
         <%= f.hidden_field :user_id %>
         <div class="modal-footer">
@@ -172,36 +172,38 @@
 
   </li>
 
-
 <script>
-$( "#<%= comment.id unless comment.nil? %>Comments" ).on('shown.bs.modal', function(e){
-  var client = new Faye.Client('"http://#{ request.host }:9292/faye"');
+$( "#<%= comment.id unless comment.nil? %>Comments" ).on('click', function(e){
+  console.log('Setting up faye client')
+  client = new Faye.Client('/faye');
 
-client.addExtension({
-  outgoing: function(message, callback) {
-    message.ext = message.ext || {};
-    message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
-    return callback(message);
-  }
-});
-
-jQuery(function() {
-  $('#submit_sub_comment').submit(function() {
-    return $(this).find("button[type='submit']").val('Sending...').prop('disabled', true);
-  });
-  try {
-    client.unsubscribe('/comments');
-  } catch (_error) {
-    if (typeof console !== "undefined" && console !== null) {
-      console.log("Can't unsubscribe.");
-    }
-  }
-  return client.subscribe('/comments', function(payload) {
-    if (payload.message) {
-      return $('.sub_comments').prepend(payload.message);
+  client.addExtension({
+    outgoing: function(message, callback) {
+      message.ext = message.ext || {};
+      message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
+      return callback(message);
     }
   });
-});
+
+  jQuery(function() {
+    console.log('test r')
+    $('.submit_sub_comment').submit(function() {
+      console.log('sub comment submit')
+      return $(this).find("button[type='submit']").val('Sending...').prop('disabled', true);
+    });
+    try {
+      client.unsubscribe('/comments');
+    } catch (_error) {
+      if (typeof console !== "undefined" && console !== null) {
+        console.log("Can't unsubscribe.");
+      }
+    }
+    return client.subscribe('/comments', function(payload) {
+      if (payload.message) {
+        return $('.sub_comments').prepend(payload.message);
+      }
+    });
+  });
 });
 
 </script>

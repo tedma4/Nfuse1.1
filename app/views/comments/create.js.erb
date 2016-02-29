@@ -12,7 +12,7 @@
   var publisher = client.publish('/comments', {
     message: "<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>"
   });
-
+  // console.log()
   publisher.callback(function() {
     $('#comment_body').val('');
     $('#submit_sub_comment').find("button[type='submit']").val('Submit').prop('disabled', false)
