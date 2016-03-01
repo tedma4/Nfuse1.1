@@ -74,61 +74,13 @@
                       <div class="col-sm-6 form-box wow fadeInUp">
                         <div class="form-top-new-post">
                           <div class="form-bottom">
+                            <ul class="media-list sub_<%= comment.id %>_comments">
                             <% comment.children.each do |this| %>
                             <%# comment.children.includes(:user).each do |this| %>
                             <%# user = User.find(this.user_id) %>
-                            <ul class="media-list sub_comments">
-                              <li class="media media-replied">
-
-                                <div class="media-body">
-                                  <div class="well well-lg">
-                                  <a class="pull-left" href="#">
-                                    <% if this.user.avatar_file_name.present? && this.user.avatar_file_name.include?('graph.facebook.com') %>
-                                      <%= image_tag this.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
-                                    <% else %>
-                                      <%= image_tag this.user.avatar(:thumb), class: "media-object img-circle", title: "Edit Image" %>
-                                    <% end %>
-                                    <!--<img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jackiesaik/128.jpg" alt="profile">-->
-                                  </a>
-                                    <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> <%= this.user.user_name%></h4>
-                                    <ul class="media-date text-uppercase reviews list-inline">
-                                      <li class="dd"><%= time_ago_in_words(this.created_at) %></li>
-                                    </ul>
-                                    <% if !this.url.blank? %>
-                                      <p> <%= this.url_html %></p>
-                                    <% elsif !this.image_upload.blank? %>
-                                      <%= image_tag this.image_upload(:medium) %>
-                                    <% else %>
-                                    <% end %>
-                                    <% unless this.body.blank? %>
-                                      <p class="media-comment">
-                                        <%= this.body %>
-                                      </p>
-                                    <% end %>
-                                    <!-- <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a> -->
-                                    <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
-                                      <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-                                          dislike_this_comment_path(id: this.id,
-                                          owner_id: this.user_id,
-                                          comment_id: this.id,
-                                          owner_type: 'User'),
-                                          method: :delete, remote: true %>
-                                    <% else %>
-                                        <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-                                          like_this_comment_path(id: this.id,
-                                          owner_id: this.user_id,
-                                          comment_id: this.id,
-                                          owner_type: 'User'),
-                                          method: :post, remote: true %>
-                                    <% end %>
-                                    <a id="comment-<%=this.id%>">
-                                      <%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %>
-                                    </a>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
+                              <%= render partial: 'comments/sub_comment', locals: {this: this} %>
                             <% end %>
+                            </ul>
                         </div>
                       </div>
                     </div>
@@ -139,7 +91,7 @@
           </div>
         </div>
       </div>
-      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: false do |f| %>
+      <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: true do |f| %>
         <%= f.hidden_field :parent_id %>
         <%= f.hidden_field :user_id %>
         <div class="modal-footer">
@@ -157,7 +109,7 @@
               <a data-toggle="collapse" href="#open_url_field">
                 <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
               </a>
-              <button type="submit" class="bg_none pull-right submit_sub_comment">
+              <button type="submit" class="bg_none pull-right submit_<%= comment.id unless comment.nil? %>_sub_comment">
                 <i class="glyphicon glyphicon-ok-sign"></i>   
               </button>
             </div>
@@ -173,37 +125,41 @@
   </li>
 
 <script>
-$( "#<%= comment.id unless comment.nil? %>Comments" ).on('click', function(e){
-  console.log('Setting up faye client')
-  client = new Faye.Client('/faye');
+// $( "#<%= comment.id unless comment.nil? %>Comments" ).on('shown.bs.modal', function(e){
+//   // console.log('Setting up faye client');
+//   client = new Faye.Client('/faye');
 
-  client.addExtension({
-    outgoing: function(message, callback) {
-      message.ext = message.ext || {};
-      message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
-      return callback(message);
-    }
-  });
+//   // client.addExtension({
+//   //   outgoing: function(message, callback) {
+//   //     message.ext = message.ext || {};
+//   //     message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
+//   //     return callback(message);
+//   //   }
+//   // });
 
-  jQuery(function() {
-    console.log('test r')
-    $('.submit_sub_comment').submit(function() {
-      console.log('sub comment submit')
-      return $(this).find("button[type='submit']").val('Sending...').prop('disabled', true);
-    });
-    try {
-      client.unsubscribe('/comments');
-    } catch (_error) {
-      if (typeof console !== "undefined" && console !== null) {
-        console.log("Can't unsubscribe.");
-      }
-    }
-    return client.subscribe('/comments', function(payload) {
-      if (payload.message) {
-        return $('.sub_comments').prepend(payload.message);
-      }
-    });
-  });
-});
+//   jQuery(function() {
+//     // console.log('test r');
+//     $('.submit_<%= comment.id unless comment.nil? %>_sub_comment').submit(function() {
+//       // console.log('sub comment submit')
+//       return $("button[type='submit']").val('Sending...').prop('disabled', true);
+//     });
+//     // try {
+//     //   client.unsubscribe('/comments');
+//     // } catch (_error) {
+//     //   if (typeof console !== "undefined" && console !== null) {
+//     //     console.log("Can't unsubscribe.");
+//     //   }
+//     // }
+//     return client.subscribe('/comments', function(payload) {
+//       if (payload.message) {
+//         return $('.sub_comments').prepend(payload.message);
+//       }
+//     });
+
+//     if ($( "#<%= comment.id unless comment.nil? %>Comments" ).modal('toggle')) {
+//       client.unsubscribe('/comments');
+//     }
+//   });
+// });
 
 </script>

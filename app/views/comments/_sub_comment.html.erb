@@ -1,0 +1,48 @@
+<li class="media media-replied">
+  <div class="media-body">
+    <div class="well well-lg">
+    <a class="pull-left" href="#">
+      <% if this.user.avatar_file_name.present? && this.user.avatar_file_name.include?('graph.facebook.com') %>
+        <%= image_tag this.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
+      <% else %>
+        <%= image_tag this.user.avatar(:thumb), class: "media-object img-circle", title: "Edit Image" %>
+      <% end %>
+      <!--<img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jackiesaik/128.jpg" alt="profile">-->
+    </a>
+      <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> <%= this.user.user_name%></h4>
+      <ul class="media-date text-uppercase reviews list-inline">
+        <li class="dd"><%= time_ago_in_words(this.created_at) %></li>
+      </ul>
+      <% if !this.url.blank? %>
+        <p> <%= this.url_html %></p>
+      <% elsif !this.image_upload.blank? %>
+        <%= image_tag this.image_upload(:medium) %>
+      <% else %>
+      <% end %>
+      <% unless this.body.blank? %>
+        <p class="media-comment">
+          <%= this.body %>
+        </p>
+      <% end %>
+      <!-- <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%#= comment.id %>Reply" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a> -->
+      <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
+        <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
+            dislike_this_comment_path(id: this.id,
+            owner_id: this.user_id,
+            comment_id: this.id,
+            owner_type: 'User'),
+            method: :delete, remote: true %>
+      <% else %>
+          <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
+            like_this_comment_path(id: this.id,
+            owner_id: this.user_id,
+            comment_id: this.id,
+            owner_type: 'User'),
+            method: :post, remote: true %>
+      <% end %>
+      <a id="comment-<%=this.id%>">
+        <%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %>
+      </a>
+    </div>
+  </div>
+</li>

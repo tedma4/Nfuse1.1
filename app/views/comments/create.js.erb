@@ -8,17 +8,8 @@
     $('#comment_body').val('');
   <% end %>
 <% else %>
-
-  var publisher = client.publish('/comments', {
-    message: "<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>"
-  });
-  // console.log()
-  publisher.callback(function() {
+    $('ul.sub_<%= @comment.parent.id %>_comments').prepend("<%= j render(partial: 'comments/sub_comment', locals: {this: @comment}) %>");
     $('#comment_body').val('');
-    $('#submit_sub_comment').find("button[type='submit']").val('Submit').prop('disabled', false)
-  });
 
-  publisher.errback(function() {
-    alert('There was an error while posting your comment.');
-  });
+
 <% end %>
