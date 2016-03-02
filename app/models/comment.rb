@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :page
   has_many :comments, as: :commentable, dependent: :destroy
+  include PublicActivity::Model
+  # tracked only: [:create], owner: ->(controller, model) { controller.current_user }, user_recipients: ->(controller, model) {model && model.user.where()}
   acts_as_votable
   # belongs_to :commentable, polymorphic: true
   # belongs_to  :user

@@ -1,10 +1,10 @@
-development:
-  server: "http://localhost:9292/faye"
-  secret_token: "secret"
-test:
-  server: "http://localhost:9292/faye"
-  secret_token: "secret"
-production:
- server: "http://nfuseserver.herokuapp.com/faye"
- secret_token: "batkaro"
- signature_expiration: 3600 # one hour
+# development:
+#   server: "http://localhost:9292/faye"
+#   secret_token: "secret"
+# test:
+#   server: "http://localhost:9292/faye"
+#   secret_token: "secret"
+# production:
+#  server: "http://nfuseserver.herokuapp.com/faye"
+#  secret_token: "batkaro"
+#  signature_expiration: 3600 # one hour

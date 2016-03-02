@@ -33,6 +33,8 @@
        </div>
      </div>
     <% end %> 
+   <% when 'Comment' %>
+   Some mentioned you in a forum post
    <% when 'User' %>
      <% if activity.owner.nil? %>
      <% else %>

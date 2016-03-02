@@ -110,6 +110,7 @@ class CommentsController < ApplicationController
   # before_action :correct_user,   only: :destroy
   # before_filter :get_parent
   before_filter :find_commentable
+  after_filter :get_tags, only: :create
   respond_to :js, :json, :html
 
   def new
@@ -143,6 +144,23 @@ class CommentsController < ApplicationController
   end
  
   private
+
+  def get_tags
+    # @comment = Comment.find(params[:id])
+    hashtags = @comment.body.scan(/\B#\w+/).map { |s| s.gsub('#', '')}
+    users = @comment.body.scan(/\B@\w+/).map { |s| s.gsub('@', '')}
+    unless hashtags.empty?
+      @comment.update_attributes(hashtag: hashtags.join(', '))
+    end
+
+    unless users.empty?
+      @comment.update_attributes(tagged_user: users.join(', '))
+      @comment.create_activity(key: 'comment.tagged',
+                                   owner: current_user, 
+                                   user_recipients: User.where(user_name: users).pluck(:id).join(', ')
+                                  ) if User.where(user_name: users).any?
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html, :image_upload )
