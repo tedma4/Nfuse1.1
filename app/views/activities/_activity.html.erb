@@ -34,7 +34,37 @@
      </div>
     <% end %> 
    <% when 'Comment' %>
-   Some mentioned you in a forum post
+    <% if activity.owner.nil? %>
+    <% else %>
+     <div class="individual_post item">
+       <div class="post_main">
+         <ul class="post_header">
+           <li>
+            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+              <%= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% else %>
+             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% end %>
+           </li>
+           <li class="user_name_notifications">
+             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+           </li>
+         </ul>
+       </div>
+         <% if activity.trackable %>
+           Tagged you in 
+           <%= link_to activity.trackable.page.page_name, page_path(activity.trackable.page) %>'s 
+           <%= link_to 'page post', comment_path(activity.trackable) %>
+         <% else %>
+           Unfollowed You
+         <% end %>
+       <div class="post_content">
+         <div class="created-at">
+           <%= time_ago_in_words(activity.created_at) %> ago
+         </div>
+       </div>
+     </div>
+    <% end %> 
    <% when 'User' %>
      <% if activity.owner.nil? %>
      <% else %>
