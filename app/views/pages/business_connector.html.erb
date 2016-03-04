@@ -8,5 +8,4 @@
 
 <% m = Page.where(page_name: w).pluck(:page_name)%>
 
-
 <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>

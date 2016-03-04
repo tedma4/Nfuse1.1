@@ -5,30 +5,8 @@
   }
 </style>
 
-<% m = {} %>
-<% m[:armanifashion] = {image: 'armani', full_name: 'Armani', path: '/armanifashion'} %>
-<% m[:burberryfashion] = {image: 'Burberry', full_name: 'Burberry', path: '/burberryfashion'} %>
-<% m[:calvinkleinfashion] = {image: 'CalvinKlein', full_name: 'Calvin Klein', path: '/calvinkleinfashion'} %>
-<% m[:chanel] = {image: 'CHANEL', full_name: 'CHANEL', path: '/chanel'} %>
-<% m[:christiandior] = {image: 'Dior', full_name: 'Dior', path: '/christiandior'} %>
-<% m[:christianlouboutin] = {image: 'LouboutinWorld', full_name: 'Christian Louboutin', path: '/christianlouboutin'} %>
-<% m[:dolceandgabbana] = {image: 'dolcegabbana', full_name: 'Dolce and Gabbana', path: '/dolceandgabbana'} %>
-<% m[:dkny] = {image: 'dkny', full_name: 'DKNY', path: '/dkny'} %>
-<% m[:escada] = {image: 'ESCADA', full_name: 'ESCADA', path: '/escada'} %>
-<% m[:fendi] = {image: 'Fendi', full_name: 'Fendi', path: '/fendi'} %>
-<% m[:guccifashion] = {image: 'gucci', full_name: 'Gucci', path: '/guccifashion'} %>
-<% m[:prada] = {image: 'Prada', full_name: 'Prada', path: '/prada'} %>
-<% m[:hugobossfashion] = {image: 'HUGOBOSS', full_name: 'HUGO BOSS', path: '/hugobossfashion'} %>
-<% m[:johnvarvatos] = {image: 'johnvarvatos', full_name: 'John Varvatos', path: '/johnvarvatos'} %>
-<% m[:laperlalingerie] = {image: 'LaPerlaLingerie', full_name: 'La Perla Lingerie', path: '/laperlalingerie'} %>
-<% m[:louisvuitton] = {image: 'LouisVuitton', full_name: 'Louis Vuitton', path: '/louisvuitton'} %>
-<% m[:manoloblahnik] = {image: 'ManoloBlahnik', full_name: 'Manolo Blahnik', path: '/manoloblahnik'} %>
-<% m[:missoni] = {image: 'Missoni', full_name: 'Missoni', path: '/missoni'} %>
-<% m[:ralphlaurenfashion] = {image: 'RalphLauren', full_name: 'Ralph Lauren', path: '/ralphlaurenfashion'} %>
-<% m[:rolandmouret] = {image: 'RolandMouret', full_name: 'Roland Mouret', path: '/rolandmouret'} %>
-<% m[:stellamccartney] = {image: 'StellaMcCartney', full_name: 'Stella McCartney', path: '/stellamccartney'} %>
-<% m[:tomford] = {image: 'TOMFORD', full_name: 'TOM FORD', path: '/tomford'} %>
-<% m[:versace] = {image: 'Versace', full_name: 'Versace', path: '/versace'} %>
-<% m[:michaelkors] = {image: 'MichaelKors', full_name: 'Michael Kors', path: '/michaelkors'} %>
+<% w = ['armanifashion', 'burberryfashion', 'calvinkleinfashion', 'chanel', 'christiandior', 'christianlouboutin', 'dolceandgabbana', 'dkny', 'escada', 'fendi', 'guccifashion', 'prada', 'hugobossfashion', 'johnvarvatos', 'laperlalingerie', 'louisvuitton', 'manoloblahnik', 'missoni', 'ralphlaurenfashion', 'rolandmouret', 'stellamccartney', 'tomford', 'versace', 'michaelkors' ] %>
+
+<% m = Page.where(page_name: w).pluck(:page_name)%>
 
 <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>

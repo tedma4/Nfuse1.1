@@ -5,54 +5,8 @@
   }
 </style>
 
-<% m = {} %>
-<% m[:lastweektonight] = {image: 'LastWeekTonight', full_name: 'Last Week Tonight', path: '/lastweektonight'} %>
-<% m[:gameofthrones] = {image: 'GameOfThrones', full_name: 'Game Of Thrones', path: '/gameofthrones'} %>
-<% m[:bettercallsaul] = {image: 'BetterCallSaul', full_name: 'BetterCallSaul', path: '/bettercallsaul'} %>
-<% m[:orangeisthenewblack] = {image: 'OITNB', full_name: 'Orange Is The New Black', path: '/orangeisthenewblack'} %>
-<% m[:empire] = {image: 'EmpireFox', full_name: 'Empir', path: '/empire'} %>
-<% m[:howimetyourmother] = {image: 'OfficialHIMYM', full_name: 'HIMYM', path: '/howimetyourmother'} %>
-<% m[:madmen] = {image: 'MadMen_AMC', full_name: 'Mad Men', path: '/madmen'} %>
-<% m[:theamericans] = {image: 'TheAmericansFX', full_name: 'The Americans', path: '/theamericans'} %>
-<% m[:thetonightshow] = {image: 'FallonTonight', full_name: 'THe Tonight Show', path: '/thetonightshow'} %>
-<% m[:truedetective] = {image: 'TrueDetective', full_name: 'True Detective', path: '/truedetective'} %>
-<% m[:justified] = {image: 'JustifiedFX', full_name: 'Justified', path: '/justified'} %>
-<% m[:sense8] = {image: 'sense8', full_name: 'Sense8', path: '/sense8'} %>
-<% m[:izombie] = {image: 'CWiZombie', full_name: 'iZombie', path: '/izombie'} %>
-<% m[:theflash] = {image: 'CW_TheFlash', full_name: 'The Flash', path: '/theflash'} %>
-<% m[:thebachelor] = {image: 'BachelorABC', full_name: 'The Bachelor', path: '/thebachelor'} %>
-<% m[:suits] = {image: 'Suits_USA', full_name: 'Suits', path: '/suits'} %>
-<% m[:theellenshow] = {image: 'TheEllenShow', full_name: 'The Ellen Show', path: '/theellenshow'} %>
-<% m[:greysanatomy] = {image: 'GreysABC', full_name: 'Greys Annotomy', path: '/greysanatomy'} %>
-<% m[:thewalkingdead] = {image: 'WalkingDead_AMC', full_name: 'The Walking Dead', path: '/thewalkingdead'} %>
-<% m[:americanhorrorstory] = {image: 'AmericanHorrorStory', full_name: 'American Horror Story', path: '/americanhorrorstory'} %>
-<% m[:sharktank] = {image: 'ABCSharkTank', full_name: 'Shark Tank', path: '/sharktank'} %>
-<% m[:gotham] = {image: 'Gotham', full_name: 'Gotham', path: '/gotham'} %>
-<% m[:thegoodwife] = {image: 'TheGoodWife_CBS', full_name: 'The Good Wife', path: '/thegoodwife'} %>
-<% m[:thebigbangtheory] = {image: 'BigBang_CBS', full_name: 'The Big Bang Theory', path: '/thebigbangtheory'} %>
-<% m[:theblacklist] = {image: 'NBCBlacklist', full_name: 'Blacklist', path: '/theblacklist'} %>
-<% m[:howtogetawaywithmurder] = {image: 'HowToGetAwayABC', full_name: 'How To Get Away With Murder', path: '/howtogetawaywithmurder'} %>
-<% m[:thevoice] = {image: 'NBCTheVoice', full_name: 'The Voice', path: '/thevoice'} %>
-<% m[:bachelorette] = {image: 'BacheloretteABC', full_name: 'Bachelorette', path: '/bachelorette'} %>
-<% m[:scandal] = {image: 'ScandalABC', full_name: 'Scandal', path: '/scandal'} %>
-<% m[:downtonabbey] = {image: 'DowntonAbbey', full_name: 'Downton Abbey', path: '/downtonabbey'} %>
-<% m[:dancingwiththestars] = {image: 'DancingABC', full_name: 'Dancing With the Stars', path: '/dancingwiththestars'} %>
-<% m[:americanidol] = {image: 'AmericanIdol', full_name: 'AmericanIdol', path: '/americanidol'} %>
-<% m[:thementalist] = {image: 'Mentalist_CBS', full_name: 'Mentalist', path: '/thementalist'} %>
-<% m[:houseofcards] = {image: 'HouseofCards', full_name: 'House of Cards', path: '/houseofcards'} %>
-<% m[:transparent] = {image: 'transparent_tv', full_name: 'Transparent', path: '/transparent'} %>
-<% m[:louie] = {image: 'LouieFX', full_name: 'Louie', path: '/louie'} %>
-<% m[:community] = {image: 'CommunityTV', full_name: 'Community', path: '/community'} %>
-<% m[:parksandrecreation] = {image: 'parksandrecnbc', full_name: 'Parks and Recreation', path: '/parksandrecreation'} %>
-<% m[:sonsofanarchy] = {image: 'SonsofAnarchy', full_name: 'Sons of Anarchy', path: '/sonsofanarchy'} %>
-<% m[:brooklynninenine] = {image: 'Brooklyn99FOX', full_name: 'Brooklyn 99', path: '/brooklynninenine'} %>
-<% m[:janethevirgin] = {image: 'CWJaneTheVirgin', full_name: 'Jane The Virgin', path: '/janethevirgin'} %>
-<% m[:fargo] = {image: 'FargoFX', full_name: 'Fargo', path: '/fargo'} %>
-<% m[:saturdaynightlive] = {image: 'nbcsnl', full_name: 'Saturday Night Live', path: '/saturdaynightlive'} %>
-<% m[:mrrobot] = {image: 'whoismrrobot', full_name: 'Mr. Robot', path: '/mrrobot'} %>
-<% m[:newgirl] = {image: 'NewGirlonFOX', full_name: 'New Girl', path: '/newgirl'} %>
-<% m[:scorpion] = {image: 'ScorpionCBS', full_name: 'Scorpion', path: '/scorpion'} %>
-<% m[:modernfamily] = {image: 'ModernFam', full_name: 'Modern Family', path: '/modernfamily'} %>
-<% m[:themindyproject] = {image: 'TheMindyProject', full_name: 'The Mindy Project', path: '/themindyproject'} %>
+<% w = ['lastweektonight', 'gameofthrones', 'bettercallsaul', 'orangeisthenewblack', 'empire', 'howimetyourmother', 'madmen', 'theamericans', 'thetonightshow', 'truedetective', 'justified', 'sense8', 'izombie', 'theflash', 'thebachelor', 'suits', 'theellenshow', 'greysanatomy', 'thewalkingdead', 'americanhorrorstory', 'sharktank', 'gotham', 'thegoodwife', 'thebigbangtheory', 'theblacklist', 'howtogetawaywithmurder', 'thevoice', 'bachelorette', 'scandal', 'downtonabbey', 'dancingwiththestars', 'americanidol', 'thementalist', 'houseofcards', 'transparent', 'louie', 'community', 'parksandrecreation', 'sonsofanarchy', 'brooklynninenine', 'janethevirgin', 'fargo', 'saturdaynightlive', 'mrrobot', 'newgirl', 'scorpion', 'modernfamily', 'themindyproject'] %>
+
+<% m = Page.where(page_name: w).pluck(:page_name)%>
 
 <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
