@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   #Blank is gonna be a reservered word for now
   def show
     # byebug
-    page     = Biz::Timeline.new(@page.twitter_handle, @page.youtube_handle, @page.instagram_handle, @page)
+    page     = Biz::Timeline.new(@page)
     @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
     # render 'comp'
   end
@@ -112,7 +112,6 @@ class PagesController < ApplicationController
   def trending; end
 
   end
-end
 # #####FASHION
 
 

@@ -135,7 +135,7 @@ class UsersController < ApplicationController
       unless ids.empty?
         @pages = Page.where(id: ids)
         @pages.find_each do |page|
-          feed=Biz::Timeline.new(page.twitter_handle, page.youtube_handle, page.instagram_handle, page)
+          feed=Biz::Timeline.new(page)
           timeline << feed.construct(params)
         end
       end
@@ -221,7 +221,7 @@ class UsersController < ApplicationController
       @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
       @pages = Page.where(id: pids)
       @pages.find_each do |page|
-        feed=Biz::Timeline.new(page.twitter_handle, page.youtube_handle, page.instagram_handle, page)
+        feed=Biz::Timeline.new(page)
         page_timeline << feed.construct(params)
       end
       @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
@@ -240,7 +240,7 @@ class UsersController < ApplicationController
       unless pids.empty?
         @pages = Page.where(id: pids)
         @pages.find_each do |page|
-          feed=Biz::Timeline.new(page.twitter_handle, page.youtube_handle, page.instagram_handle, page)
+          feed=Biz::Timeline.new(page)
           page_timeline << feed.construct(params)
         end
       end    

@@ -2,10 +2,7 @@ module Biz
 	class Timeline
   attr_accessor :params
   require 'thread'
-    def initialize(comp, comp_url, incomp, page)
-      @comp = comp
-      @comp_url = comp_url
-      @incomp = incomp
+    def initialize(page)
       @page = page
     end
     
@@ -17,7 +14,7 @@ module Biz
    private
  
    def concurrency_test_with_thread
-     list = [['twitter', @comp], ['google_oauth2', @comp_url], ['instagram', @incomp]]
+     list = [['twitter', @page.twitter_handle], ['google_oauth2', @page.youtube_handle], ['instagram', @page.instagram_handle]]
      threads = []
      list.each do |this|
        if list.flatten[1].include?('blank') && list.flatten[3].include?('blank') && this.first == 'instagram'
