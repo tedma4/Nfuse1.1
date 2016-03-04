@@ -164,7 +164,23 @@ li ul {
   <%# end %>
 </ul>
 
-
+<div class="explore_filters">
+  <%= render partial: "users/explore_filters" %>
+</div><br>
+<div id="masonJar" class="center clearfix masonJar">
+  <% @timeline.first(50).each do |post| %>
+  <% case post.provider %>
+  <% when 'instagram' %>
+    <%= render partial: "pages/post", locals: {post: post} %>
+  <% when 'twitter' %>
+    <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
+      <%= render partial: "pages/post", locals: {post: post} %>
+    <%end%>
+  <% when 'google_oauth2' %>
+    <%= render partial: "pages/post", locals: {post: post} %>
+  <%end%>
+  <% end %>
+</div>
 
 <%#= render "comments/form" %>
 <a data-toggle= "modal" href="#absolute_postition_test">

@@ -85,6 +85,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rails-erd'
   gem 'simplecov'
+  gem 'byebug', '8.2.2'
 
   # ^-- Used in both dev and testing.
 end
