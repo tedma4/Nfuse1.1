@@ -1,3 +1,8 @@
+<% content_for :for_head do %>
+<title><%= @page.metatag_title%></title>
+<meta name="description" content="<%= @page.description %>">
+<% end %>
+
 <style>
 #login { display: none; }
 .login,
