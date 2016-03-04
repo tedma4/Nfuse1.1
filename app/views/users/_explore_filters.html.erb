@@ -5,7 +5,6 @@ form {
 }
 </style>
 <div class="center">
-  <% if signed_in? %>
     <%= link_to 'Back', :back , class: "btn btn-link-2" %>
     <%= link_to 'Explore', explore_user_path(current_user), class: "btn btn-link-2" %>
         <% if current_user.following?(@page) %>
@@ -29,5 +28,4 @@ form {
         <% end %>
     <%= link_to "Likes #{ActsAsVotable::Vote.where(owner_type: 'Page', owner_id: Page.find(@page.id)).count}", '#', class:"btn btn-link-2" %>   
     <%= link_to 'Forum', page_path(@page), class: "btn btn-link-2" %>
-  <% end %>
 </div><br>

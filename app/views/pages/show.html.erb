@@ -1,6 +1,6 @@
 <% content_for :for_head do %>
-<title><%= @page.metatag_title%></title>
-<meta name="description" content="<%= @page.description %>">
+  <title><%= @page.metatag_title%></title>
+  <meta name="description" content="<%= @page.description %>">
 <% end %>
 
 <style>
@@ -170,7 +170,9 @@ li ul {
 </ul>
 
 <div class="explore_filters">
+  <% if signed_in? %>
   <%= render partial: "users/explore_filters" %>
+  <% end %>
 </div><br>
 <div id="masonJar" class="center clearfix masonJar">
   <% @timeline.first(50).each do |post| %>
@@ -208,47 +210,49 @@ li ul {
                           <div class="col-sm-6 form-box wow fadeInUp">
                             <div class="form-top-new-post">
                               <div class="form-bottom">
-                              <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'}, remote: true do |f| %>
-                                <%= f.hidden_field :parent_id %>
-                                <%= f.hidden_field :user_id %>
-                                <div class="Alignthisorelse">
-                                  <div class="container">
-                                    <div class="row">
-                                      <div class="col-sm-2 how-it-works-box wow fadeInUp">
-                                        <div class="how-it-works-box-icon">
-                                          <a href="#"><%= image_tag("circlephoto.fw.png", size: "175x175") %></a>
-                                        </div>
-                                        <div class="fileUpload btn-link-1">
-                                          <span>Upload Pic</span>
-                                           <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                                        <div class="how-it-works-box-icon">
-                                          <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
-                                        </div>
-                                        <div class="form-grouP">
-                                          <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", type:"search" %>
-                                        </div>
-                                      </div>
-                                    </div>
+                              <% if signed_in? %>  
+                                <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'}, remote: true do |f| %>
+                                  <%= f.hidden_field :parent_id %>
+                                  <%= f.hidden_field :user_id %>
+                                  <div class="Alignthisorelse">
+                                    <div class="container">
                                       <div class="row">
-                                        <div class="col-sm-5 section-bottom-button wow fadeInUp">
-                                          <div id="target"></div>
-                                          <div id="profilePostTarget"></div>
-                                          <div id="profileUrlPostPreview"></div>
-                                          <%= f.text_area :body, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                        <div class="col-sm-2 how-it-works-box wow fadeInUp">
+                                          <div class="how-it-works-box-icon">
+                                            <a href="#"><%= image_tag("circlephoto.fw.png", size: "175x175") %></a>
+                                          </div>
+                                          <div class="fileUpload btn-link-1">
+                                            <span>Upload Pic</span>
+                                             <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
+                                          <div class="how-it-works-box-icon">
+                                            <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
+                                          </div>
+                                          <div class="form-grouP">
+                                            <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", type:"search" %>
+                                          </div>
                                         </div>
                                       </div>
-                                      <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
-                                        <button type="submit" class="btn">
-                                         Post!
-                                        </button>
+                                        <div class="row">
+                                          <div class="col-sm-5 section-bottom-button wow fadeInUp">
+                                            <div id="target"></div>
+                                            <div id="profilePostTarget"></div>
+                                            <div id="profileUrlPostPreview"></div>
+                                            <%= f.text_area :body, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
+                                          <button type="submit" class="btn">
+                                           Post!
+                                          </button>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                                <% end %>
                               <% end %>
                             </div>
                           </div>
