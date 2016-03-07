@@ -1,0 +1,667 @@
+
+    <!-- MODALS -->
+    <!-- NOTIFICATIONS -->
+    <% if signed_in? %>
+    <div class="modal fade" id="notificationsmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="notificationslabel">Notifications</h4>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div id="notifications-list" class="">
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/AmericanIdol.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@AmericanIdol</a> liked your photo! <span class="timer">just now</span></p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification followed">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/BrunoMars.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@BrunoMars</a> followed you! <span class="timer">1m</span></p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <a href="#"><i class="fa"></i></a>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/CW_TheFlash.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@CW_TheFlash</a> liked your video! <span class="timer">2m</span></p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/MapleLeafs.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+
+                        <!-- EXCLUSIVE NOTIFICATION -->
+                        <div class="row notification exclusive">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/JayZClassicBars.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@JayZClassicBars</a> send you an exclusive post! <span class="timer">1d</span></p>
+                            </div>
+                            <button type="button" class="col-xs-1 notification-action" data-toggle="modal" data-target="#exclusivemodal">
+                                <a href="#"><i class="fa"></i></a>
+                            </button>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification followed">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/kungfury.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> followed you! <span class="timer">1w</span></p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <a href="#"><i class="fa"></i></a>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification followed">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/jimmyfallon.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@aReallyLongName2seeWhatHappensNow6969696</a> Liked your photo <span class="timer">1m</span></p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <a href="#"><i class="fa"></i></a>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                        <!-- NOTIFICATION -->
+                        <div class="row notification">
+                            <div class="col-xs-1 user-img">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                            <div class="col-xs-10 notification-body">
+                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
+                            </div>
+                            <div class="col-xs-1 notification-action">
+                                <img src="/assets/users/default.jpg" alt="User Image"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EXCLUSIVE POST MODAL -->
+    <div class="modal fade" id="exclusivemodal" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <article class="individual_post item instagram_post0">
+                    <header class="post_header">
+                        <div class="user">
+                            <img alt="11820660 1609991055932652 2099461914 a" class="user_profile_picture" height="45" src="https://scontent.cdninstagram.com/hphotos-xtf1/t51.2885-19/11820660_1609991055932652_2099461914_a.jpg" width="45">
+                            <a href="/">collegehumor</a>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <a class="timeStamp" href="#" target="_blank" title="Go To Entry">
+                            <i class="fa"></i> 6d
+                        </a>
+                        
+                    </header>
+                    <main class="post_content">
+                        <div class="timeline-user-box">
+                            <video width="100%" controls="" preload="none" autoload="none" poster="https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/s320x320/e15/12317708_1495632684073251_1251927360_n.jpg">
+                                <source src="https://scontent.cdninstagram.com/hphotos-xtf1/t50.2886-16/12344669_921793924563268_479938280_n.mp4" type="video/mp4">
+                                <source src="https://scontent.cdninstagram.com/hphotos-xtf1/t50.2886-16/12344669_921793924563268_479938280_n.mp4" type="video/ogv">
+                            </video>
+                        </div>
+                        <p>
+                            The Force Awakens Is Just Like Phantom Menace - Full video link in profile - #starwars #forceawakens #dejavu #collegehumor
+                        </p>
+                    </main>
+                    <footer class="post_actions">
+                        <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                            <i class="fa"></i><span>666</span>
+                        </a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+    <!-- EDIT MODAL -->
+    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="editlabel">Upload a New Profile Pic or Banner</h4>
+                </div>
+                <form role="form" class="edit_user" id="edit_user_3" enctype="multipart/form-data" action="/users/pra" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="q4NOxgjCo4faeARoqnQezR69hG0nBuO48RWsYU04hxVC6VdpQ2iVlDOI9hEeaS6JYFkhcJQ3CMvpu+wfQfBW+w==">
+                <div id="profile-images" class="modal-body">
+                    <!--<form accept-charset="UTF-8" action="" class="edit_user" enctype="multipart/form-data" id="edit_user_25" method="post" role="form">
+                        <div class="row">
+                            <div style="display:none">
+                                <input name="utf8" type="hidden" value="✓">
+                                <input name="_method" type="hidden" value="patch">
+                                <input name="authenticity_token" type="hidden" value="FrlkDdP+NzUYe427H4dK+voP107vcgDcOOMz3/0nlTs=">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-4 col-md-4">
+                                <h5>Profile Picture</h5>
+                                <small>At least 200 x 200</small>
+                                <div class="image-upload">
+                                    <label for="file-input">
+                                        <img id="profilepic" alt="Default medium" src="/assets/users/default.jpg">
+                                    </label>
+                                    <input type='file' id="inputprof" />
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-8 col-md-8">
+                                <h5>Profile Banner</h5>
+                                <small>At least 1440 x 787</small>
+                                <div class="image-upload"> 
+                                    <output id="userbanner"></output>
+                                    <label for="file-input">
+                                        <img id="profilebann" alt="Defaultbanner medium" src="/assets/users/default-banner.jpg">
+                                    </label>
+                                    <input type="file" id="inputbann" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>-->
+                        <div class="row">
+                            <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
+                                <h5>Profile Picture</h5>
+                                <small>At least 200 x 200</small>
+                                <div id="target">
+                                    <label for="pictureInput">
+                                        <img id="profilepic" alt="Default medium" src="/assets/users/default.jpg">
+                                    </label>
+                                </div>
+                                <div class="fileUpload btn-link-1">
+                                    <input id="pictureInput" placeholder="Snip" type="file" class="upload" name="user[avatar]">
+                                </div>
+                            </div>
+                            <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
+                                <h5>Profile Banner</h5>
+                                <small>At least 1440 x 787</small>
+                                <div id="target2">
+                                    <label for="pictureInput2">
+                                        <img id="profilebann" alt="Defaultbanner medium" src="/assets/users/default-banner.jpg">
+                                    </label>
+                                </div>
+                                <div class="fileUpload btn-link-1">
+                                    <input id="pictureInput2" placeholder="Snip" type="file" class="upload" name="user[banner]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- SHARE MODAL -->
+    <div class="modal fade" id="sharemodal" tabindex="-1" role="dialog" aria-labelledby="sharelabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="sharelabel">Share a Picture or URL</h4>
+                </div>
+                <form accept-charset="UTF-8" action="/shouts" class="minimal new_shout" enctype="multipart/form-data" id="upload_form" method="post" role="form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div style="display:none">
+                                <input name="utf8" type="hidden" value="✓">
+                                <input name="authenticity_token" type="hidden" value="FrlkDdP+NzUYe427H4dK+voP107vcgDcOOMz3/0nlTs=">
+                            </div>
+                            <div class="image-upload col-xs-12 col-sm-6">
+                                <label for="newPostPictureInput">
+                                    <button type="button" class="btn btn-default">Upload Picture</button>
+                                </label>
+                                <input class="upload" id="newPostPictureInput" name="shout[pic]" placeholder="Pic" type="file">
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <textarea class="form-control" id="profile_post_url_body" name="shout[url]" onchange="previewUrl()" placeholder="URL of everything" type="search"></textarea>
+                            </div>
+                            <div class="col-xs-12">
+                                <div id="target"></div>
+                                <div id="profilePostTarget"></div>
+                                <div id="profileUrlPostPreview"></div>
+                                <textarea class="form-control" id="shout_content" name="shout[content]" placeholder="Write a description for your post..." type="search" data-gramm="" data-txt_gramm_id="881f363a-4e5f-b5bd-dac5-10a581168008"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Share</button>
+                        <select class="c-select">
+                            <option selected>Feed</option>
+                            <option value="1">Exclusive</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- FOLLOWERS MODAL -->
+    <div class="modal fade" id="followersmodal" tabindex="-1" role="dialog" aria-labelledby="followerslabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="followerslabel">Followers</h4>
+                </div>
+                <div class="modal-body">
+
+                    <!-- FOLLOWER -->
+                    <div class="row follower">
+                        <div class="col-xs-2 user-img">
+                            <img src="/assets/users/default.jpg" alt="User Image"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <ul id="user-info">
+                                <li id="user-name">Kung Fury</li>
+                                <li id="user-link"><a href="">@KungFury</a></li>
+                            </ul>
+                            <ul id="user-stats">
+                                <li id="user-following">Following: <span>0</span></li>
+                                <li id="user-followers">Followers: <span>981,732</span></li>
+                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FOLLOWER -->
+                    <div class="row follower">
+                        <div class="col-xs-2 user-img">
+                            <img src="/assets/users/BrunoMars.jpg" alt="User Image"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <ul id="user-info">
+                                <li id="user-name">BrunoMars</li>
+                                <li id="user-link"><a href="">@BrunoMars</a></li>
+                            </ul>
+                            <ul id="user-stats">
+                                <li id="user-following">Following: <span>50</span></li>
+                                <li id="user-followers">Followers: <span>9,172</span></li>
+                                <li id="user-likes">Likes: <span>34,723</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FOLLOWER -->
+                    <div class="row follower">
+                        <div class="col-xs-2 user-img">
+                            <img src="/assets/users/taylorswift.jpg" alt="User Image"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <ul id="user-info">
+                                <li id="user-name">taylorswift</li>
+                                <li id="user-link"><a href="">@taylorswift</a></li>
+                            </ul>
+                            <ul id="user-stats">
+                                <li id="user-following">Following: <span>678</span></li>
+                                <li id="user-followers">Followers: <span>946,732</span></li>
+                                <li id="user-likes">Likes: <span>345,000</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOLLOWING MODAL -->
+    <div class="modal fade" id="followingmodal" tabindex="-1" role="dialog" aria-labelledby="followinglabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="followinglabel">Following</h4>
+                </div>
+                <div class="modal-body">
+
+                    <!-- FOLLOWING -->
+                    <div class="row following">
+                        <div class="col-xs-2 user-img">
+                            <img src="/assets/users/default.jpg" alt="User Image"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <ul id="user-info">
+                                <li id="user-name">Kung Fury</li>
+                                <li id="user-link"><a href="">@KungFury</a></li>
+                            </ul>
+                            <ul id="user-stats">
+                                <li id="user-following">Following: <span>0</span></li>
+                                <li id="user-followers">Followers: <span>981,732</span></li>
+                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FOLLOWING -->
+                    <div class="row following">
+                        <div class="col-xs-2 user-img">
+                            <img src="/assets/users/default.jpg" alt="User Image"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <ul id="user-info">
+                                <li id="user-name">Kung Fury</li>
+                                <li id="user-link"><a href="">@KungFury</a></li>
+                            </ul>
+                            <ul id="user-stats">
+                                <li id="user-following">Following: <span>0</span></li>
+                                <li id="user-followers">Followers: <span>981,732</span></li>
+                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FOLLOWING -->
+                    <div class="row following">
+                        <div class="col-xs-2 user-img">
+                            <img src="/assets/users/default.jpg" alt="User Image"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <ul id="user-info">
+                                <li id="user-name">Kung Fury</li>
+                                <li id="user-link"><a href="">@KungFury</a></li>
+                            </ul>
+                            <ul id="user-stats">
+                                <li id="user-following">Following: <span>0</span></li>
+                                <li id="user-followers">Followers: <span>981,732</span></li>
+                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <% else %>
+    <!-- LOGIN FORM -->
+    <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="signinlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="signinlabel">Sign In</h4>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="row">
+                        <form id="signin" class="minimal col-xs-12 col-sm-6" accept-charset="UTF-8" action="/sessions" method="post">
+                            <div style="display:none">
+                                <input name="utf8" type="hidden" value="✓">
+                                <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
+                                <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">
+                            </div>
+                            <button type="submit" class="btn btn-default animated">Go!</button>
+                            <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN FORM -->
+    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signuplabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="signuplabel">Sign Up</h4>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="row">
+                        <!-- Signup Form -->
+                        <form id="signup" class="minimal new_user col-xs-12 col-sm-6" accept-charset="UTF-8" action="/users" method="post">
+
+                            <div style="display:none">
+                                <input name="utf8" type="hidden" value="✓">
+                                <input name="authenticity_token" type="hidden" value="ZMVoG5HOzAz037/T/tt6ny9aNdTZEabMChxdUdPk3eE=">
+                            </div>
+                            <div class="error_messages">
+                                <div class="form-group">
+                                    <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
+                                    <input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">
+                                    <input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">
+                                    <input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">
+                                    <input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">
+                                    <input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
+                                </div>
+                                <button type="submit" class="btn btn-default">Go!</button>
+                                <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+    <!-- NAV -->
+    <div class="modal fade" id="navmodal" tabindex="-1" role="dialog" aria-labelledby="navlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <a id="navlabel" class="navbar-brand" href="index.html">
+                            <img src="/assets/logo.png" alt="nfuselogo"/>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 modal-body">
+                        <form accept-charset="UTF-8" action="/search" id="slide-search" class="search drk" method="get">
+                            <div style="display:none">
+                                <input name="utf8" type="hidden" value="✓">
+                            </div>
+                            <!-- DROP DOWN -->
+                            <div class="dropdown loggedin">
+                                <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                    Nfusers
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="searchdrop">
+                                    <li><a href="#">Nfuse</a></li>
+                                    <li><a href="#">Nfusers</a></li>
+                                </ul>
+                            </div>
+                            <!-- RANDOM -->
+                            <a class="ilink randomize loggedout" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
+                            <!-- SEARCH LINK -->
+                            <a class="ilink gosearch" href="explore.html"><i class="fa fa-search"></i></a>
+                            <!-- SEARCH INPUT -->
+                            <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
+                        </form>
+                    
+                        <div id="slide-nav">
+                            <!-- LOGGED OUT -->
+                            <ul class="nav loggedout">
+                                <li>
+                                    <a class="" href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a class="" href="signup.html">Sign Up</a>
+                                </li>
+                                <li>
+                                    <a class="" href="signin.html">Sign In</a>
+                                </li>
+                                <li>
+                                    <a class="" href="privacy.html">Privacy</a>
+                                </li>
+                                <li>
+                                    <a class="" href="contact.html">Contact Us</a>
+                                </li>
+                            </ul>
+                            <!-- LOGGED IN -->
+                            <ul class="nav loggedin">
+                                <li>
+                                    <a class="" href="settings.html">Settings</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#">Help</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#">Feedback</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#">Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

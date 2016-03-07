@@ -23,3 +23,59 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
+"en":
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a M"
+      less_than_x_seconds:
+        one:   "1 S"
+        other: "%{count} S"
+      x_seconds:
+        one:   "1 S"
+        other: "%{count} S"
+      less_than_x_minutes:
+        one:   "a M"
+        other: "%{count} M"
+      x_minutes:
+        one:   "1 M"
+        other: "%{count} M"
+      about_x_hours:
+        one:   "1 H"
+        other: "%{count} H"
+      x_days:
+        one:   "1 D"
+        other: "%{count} D"
+      about_x_months:
+        one:   "1 Mo"
+        other: "%{count} Mo"
+      x_months:
+        one:   "1 Mo"
+        other: "%{count} Mo"
+      about_x_years:
+        one:   "1 Y"
+        other: "%{count} Y"
+      over_x_years:
+        one:   "1 Y"
+        other: "%{count} Y"
+      almost_x_years:
+        one:   "1 Y"
+        other: "%{count} Y"
+    prompts:
+      year:   "Year"
+      month:  "Month"
+      day:    "Day"
+      hour:   "Hour"
+      minute: "Minute"
+      second: "Seconds"
+
+  helpers:
+    select:
+      # Default value for :prompt => true in FormOptionsHelper
+      prompt: "Please select"
+
+    # Default translation keys for submit and button FormHelper
+    submit:
+      create: 'Create %{model}'
+      update: 'Update %{model}'
+      submit: 'Save %{model}'

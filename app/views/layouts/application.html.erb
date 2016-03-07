@@ -1,93 +1,135 @@
 <!DOCTYPE html>
 <!-- *Start* Views/layouts/application.html -->
-<html>
+<html lang="en">
   <head>
     <% if content_for? :for_head %>
-    <%= yield :for_head %>
-  <% end %>
+      <%= yield :for_head %>
+    <% end %>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- <title><%#= full_title(yield(:title)) %></title> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="description" content="Nfuse, Share all your social media in on place, one feed for all your social media, easy way to share with your friends" />
+    <meta name="author" content="">
+    <meta name="keywords" content="Nfuse, Nfuse.it, wwww.nfuse.it, infuse.it, Social Media, Social Agregate, all in one social media, one social site, sharing social media, social media in one, social share, one feed" /> -->
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
-    <%#= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' %>
-    <script async src="https://www.google.com/jsapi" type="text/javascript"></script>
-    <script async src="https://www.youtube.com/iframe_api"></script>
-    <%= javascript_include_tag 'masonry.pkgd.js' %>
-    <%#= javascript_include_tag 'resize_masonry.js', async: true %>
-    <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,900,300,700' rel='stylesheet' type='text/css'>
+
     <%= favicon_link_tag 'Nfuselogopurple.fw.png'%>
     <%= render 'layouts/shim' %>
     <%= csrf_meta_tags %>
   </head>
-  <body><!--app.html body start-->
+    <!-- Updated at 1:57 12/30/15 -->
+    <% if !signed_in? %>
+      <body id="nfuse" class="loggedout searchbar" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% else %>
+      <body id="nfuse" class="loggedin searchbar" data-spy="scroll" data-target=".navbar-fixed-top">
+    <% end %>
+    <div id="scrollwrap">
     
     <%= render 'layouts/header' %>
-    <div class="container_app_html">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= value %>
-        </div>
-      <% end %>
-      <div class="content_container_app_html">
-        <%= yield %>
-      </div>
+    <%# flash.each do |key, value| %>
+<!--       <div class="alert alert-<%#= key %>">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%#= value %>
+      </div> -->
+    <%# end %>
+      <%= yield %>
     </div>
-   <script>
-   
-     $( document ).ready(function() {
-        resizeMasonry();
-      });
-     $( window ).resize(function() {
-        resizeMasonry();
-      });
-
-var msnry;
-
-function triggerMasonry() {
-  // don't proceed if masonry has not been initialized
-  if ( !msnry ) {
-    return;
-  }
-  msnry.layout();
-}
-
-function initMasonry() {
-  var container = document.querySelector('#masonJar');
-  msnry = new Masonry( container, {
-      itemSelector: '.item',
-      isAnimated: true,
-      isResizable: true,
-      gutter: 25
-     
-      
-    });
-}
-
-// initialize masonry on document ready
-docReady( function() {
-  initMasonry();
-});
 
 
-var $container = $('#masonJar');
-// initialize Masonry after all images have loaded  
-$container.imagesLoaded( function() {
-     $container.masonry({
-      itemSelector: '.item',
-      isAnimated: true,
-      isResizable: true,
-      gutter: 25
-     
-      
-    });
 
-});
-    
+
+    <a id="backtotop" title="back to top" class="page-scroll animation" href="#nfuse" ><i class="fa fa-long-arrow-up"></i></a>
+
+    <%= render partial: 'layouts/modals' %>
+
+    <%= render partial: 'layouts/footer' %>
+
+
+    <!-- jQuery -->
+    <%#= javascript_include_tag 'jquery.js' %>
+
+    <!-- Custom Theme JavaScript-->
+      <%= javascript_include_tag 'resize_masonry.js' %>
+      <!-- Masonary Script -->
+      <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
+      <%= javascript_include_tag 'masonry.pkgd.js' %>
+
+    <script>
+        $( document ).ready(function() {
+            resizeMasonry();
+        });
+        $( window ).resize(function() {
+            resizeMasonry();
+        });
+
+        var msnry;
+
+        function triggerMasonry() {
+        // don't proceed if masonry has not been initialized
+        if ( !msnry ) {
+            return;
+        }
+        msnry.layout();
+        }
+
+        function initMasonry() {
+            var container = document.querySelector('#masonJar');
+            msnry = new Masonry( container, {
+                itemSelector: '.item',
+                isAnimated: true,
+                isResizable: true,
+                gutter: 25
+            });
+        }
+        // initialize masonry on document ready
+        docReady( function() {
+            initMasonry();
+        });
+
+        var $container = $('#masonJar');
+        // initialize Masonry after all images have loaded  
+        $container.imagesLoaded( function() {
+            $container.masonry({
+                itemSelector: '.item',
+                isAnimated: true,
+                isResizable: true,
+                gutter: 25
+
+            });
+
+        });
+
     </script>
-  <%= render partial: 'layouts/footer' %>
+    <!-- Bootstrap Core JavaScript 
+    <script src="js/bootstrap.min.js"></script>-->
+
+    <!-- Plugin JavaScript -->
+    <%= javascript_include_tag 'bootstrap.min.js' %>
+    <%= javascript_include_tag 'jquery.easing.min.js' %>
+
+    <!-- SCROLLBAR -->
+    <%= javascript_include_tag 'jquery.slimscroll.min.js' %>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('#scrsdollwrap').slimScroll({
+                height: 'auto',
+                size: '8px',
+                position: 'right',
+                color: '#fff',
+                alwaysVisible: false,
+                distance: '0px',
+                railVisible: false,
+                wheelStep: 3,
+                allowPageScroll: false,
+                disableFadeOut: false 
+            });
+        });
+    </script>
+    <%= javascript_include_tag 'nfuse.js' %>
   </body>
-  <!-- *End* Views/layouts/application.html -->
 </html>

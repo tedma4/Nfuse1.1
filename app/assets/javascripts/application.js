@@ -12,14 +12,4 @@
 //
 //***************
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require faye
-//= require npm
-//= require wow
-//= require jquery.magnific-popup
-//= require scripts
-//= require jquery.turbolinks
-//= require turbolinks
-//= require resize_masonry
-//= require imagesloaded.pkgd

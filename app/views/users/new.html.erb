@@ -1,4 +1,4 @@
-<% provide(:title, 'Sign up') %>
+<!-- <%# provide(:title, 'Sign up') %>
 <style type="text/css">
   .signup-padding {
     margin-top: 4vh;
@@ -17,46 +17,83 @@
           <p>Nfuse is free as long as the infinite exists.</p>
       </div>
       <div class="form-top-right signup_header">
-        <a href="#"><%= image_tag("pencilgray.fw.png", size: "65x65") %></a>
+        <a href="#"><%#= image_tag("pencilgray.fw.png", size: "65x65") %></a>
       </div>
     </div>
     <div class="form-bottom">
-        <%= form_for(@user, html: { role: "form"}) do |f| %>
+        <%#= form_for(@user, html: { role: "form"}) do |f| %>
           <div class="error_messages">
             <div>
-              <%= render 'shared/error_messages', object: f.object %>
+              <%#= render 'shared/error_messages', object: f.object %>
             </div>
             <div class="form-group">
-              <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+              <%#= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
             </div>
             <div class="form-group">
-              <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
+              <%#= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
             </div>
             <div class="form-group">
-              <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
+              <%#= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
             </div>
             <div class="form-group">
-              <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
+              <%#= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
             </div>
             <div class="form-group">
-              <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
+              <%#= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
             </div>
             <div class="form-group">
-              <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+              <%#= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
             </div>
             <button type="submit" class="btn">
             Sign Up!
             </button>
           </div>
-        <% end %>
+        <%# end %>
           <div class="form-links">
-            <%= link_to 'Privacy', privacy_path %>
-            <!-- <a href="#" class="launch-modal" data-modal-id="modal-privacy">Privacy</a> -->
+            <%#= link_to 'Privacy', privacy_path %>
           </div>
     </div>
   </div>
 </div>
-</div>
+</div> -->
 
 
 
+    <!-- START CONTENT -->
+    <section id="" class="content-section container picbg">
+        <div class="row">
+            <header class="col-xs-12 center">
+                <h1 class="heavy">Sign Up</h1>
+                <p class="intro-text">Nfuse is free as long as the infinite exists.</p>
+            </header>
+
+            <!-- Signup Form -->
+            <form id="signup" class="new_user col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6" accept-charset="UTF-8" action="/users" method="post">
+
+                <div style="display:none">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input name="authenticity_token" type="hidden" value="ZMVoG5HOzAz037/T/tt6ny9aNdTZEabMChxdUdPk3eE=">
+                </div>
+                <div class="error_messages">
+                    <div class="form-group">
+                        <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
+                        <input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">
+                        <input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">
+                        <input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">
+                        <input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">
+                        <input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
+                    </div>
+                    <button type="submit" class="btn btn-default animated">Go!</button>
+                    <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
+                </div>
+            </form>
+        </div>
+        <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+        <div class="random bg"></div>
+    </section>
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
+            </div>
+        </footer>

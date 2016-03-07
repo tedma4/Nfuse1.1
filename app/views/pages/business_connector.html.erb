@@ -1,11 +1,342 @@
 <style>
-  .containerThingy {
+/*  .containerThingy {
     margin-top: 10px;
     padding-bottom: 100px;
-  }
+  }*/
 </style>
-<% w = ['wired', 'national_geographic', 'people_magazine', 'time_magazine', 'sports_illustrated', 'cosmopolitan', 'redbull', 'espn', 'us_weekly', 'entertainment_weekly', 'newsweek', 'popular_science', 'vogue', 'bloomberg_businessweekly', 'gq', 'hgtv', 'forbes_magazine', 'fortune', 'e_news', 'google', 'tedtalks', 'tesla', 'victorias_secret', 'cnn', 'hbo', 'showtime', 'marvel', 'syfy', 'netflix', 'buzzfeed', 'reddit', 'collegehumor', 'microsoft', 'nike', 'imdb', 'vevo', 'starwars', 'nasa', 'bravo', 'mtv', 'golfdigest', 'nba', 'nfl', 'mlb', 'nhl', 'inc', 'makerbot', 'olympics', 'tmz', 'tiffany', 'playboy', 'maxim', 'elle', 'vanityfair', 'brides', 'usatoday', 'sciencechannel', 'fifa', 'gucci', 'handm', 'generalelectric', 'armani', 'ibm', 'foxsports', 'cnbc', 'amazon', 'food', 'sony', 'gap', 'history', 'ralph', 'tlc', 'xbox', 'playstation', 'nordstrom', 'entrepreneur', 'bananarepublic', 'calvinklein', 'underarmour', 'facebook', 'burberry', 'abc', 'nbc', 'cbs', 'thecw', 'hugoboss', 'cbsnews', 'foxnews', 'nbcnews', 'abcnews', 'cbssports', 'fox', 'uber', 'forever21', 'mls', 'urbanoutfitters', 'allure', 'wmagazine', 'thescene', 'youtube' ] %>
+<%# w = ['wired', 'national_geographic', 'people_magazine', 'time_magazine', 'sports_illustrated', 'cosmopolitan', 'redbull', 'espn', 'us_weekly', 'entertainment_weekly', 'newsweek', 'popular_science', 'vogue', 'bloomberg_businessweekly', 'gq', 'hgtv', 'forbes_magazine', 'fortune', 'e_news', 'google', 'tedtalks', 'tesla', 'victorias_secret', 'cnn', 'hbo', 'showtime', 'marvel', 'syfy', 'netflix', 'buzzfeed', 'reddit', 'collegehumor', 'microsoft', 'nike', 'imdb', 'vevo', 'starwars', 'nasa', 'bravo', 'mtv', 'golfdigest', 'nba', 'nfl', 'mlb', 'nhl', 'inc', 'makerbot', 'olympics', 'tmz', 'tiffany', 'playboy', 'maxim', 'elle', 'vanityfair', 'brides', 'usatoday', 'sciencechannel', 'fifa', 'gucci', 'handm', 'generalelectric', 'armani', 'ibm', 'foxsports', 'cnbc', 'amazon', 'food', 'sony', 'gap', 'history', 'ralph', 'tlc', 'xbox', 'playstation', 'nordstrom', 'entrepreneur', 'bananarepublic', 'calvinklein', 'underarmour', 'facebook', 'burberry', 'abc', 'nbc', 'cbs', 'thecw', 'hugoboss', 'cbsnews', 'foxnews', 'nbcnews', 'abcnews', 'cbssports', 'fox', 'uber', 'forever21', 'mls', 'urbanoutfitters', 'allure', 'wmagazine', 'thescene', 'youtube' ] %>
 
-<% m = Page.where(page_name: w).pluck(:page_name)%>
+<%# m = Page.where(page_name: w).pluck(:page_name)%>
 
-<%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+<%#= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+
+
+
+
+
+
+    <section id="profile-grid" class="container-fluid">
+
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>troyesivan</p>
+                </div>
+                <img src="/assets/users/troyesivan.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>taylorswift</p>
+            </div>
+            <img src="/assets/users/taylorswift.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>ScandalABC</p>
+            </div>
+            <img src="/assets/users/ScandalABC.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>RollingStones</p>
+            </div>
+            <img src="/assets/users/RollingStones.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>RedSox</p>
+            </div>
+            <img src="/assets/users/RedSox.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>NicoandVinz</p>
+            </div>
+            <img src="/assets/users/NicoandVinz.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>MapleLeafs</p>
+            </div>
+            <img src="/assets/users/MapleLeafs.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>LouisVuitton</p>
+            </div>
+            <img src="/assets/users/LouisVuitton.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>jimmyfallon</p>
+                </div>
+                <img src="/assets/users/jimmyfallon.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>JayZClassicBars</p>
+            </div>
+            <img src="/assets/users/JayZClassicBars.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>Jason_Aldean</p>
+            </div>
+            <img src="/assets/users/Jason_Aldean.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>HuffPostFood</p>
+            </div>
+            <img src="/assets/users/HuffPostFood.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>Enews</p>
+            </div>
+            <img src="/assets/users/Enews.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>ddlovato</p>
+            </div>
+            <img src="/assets/users/ddlovato.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>CW_TheFlash</p>
+            </div>
+            <img src="/assets/users/CW_TheFlash.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>BrunoMars</p>
+            </div>
+            <img src="/assets/users/BrunoMars.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>AmericanIdol</p>
+            </div>
+            <img src="/assets/users/AmericanIdol.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>troyesivan</p>
+            </div>
+            <img src="/assets/users/troyesivan.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>taylorswift</p>
+            </div>
+            <img src="/assets/users/taylorswift.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>ScandalABC</p>
+            </div>
+            <img src="/assets/users/ScandalABC.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>RollingStones</p>
+            </div>
+            <img src="/assets/users/RollingStones.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>RedSox</p>
+            </div>
+            <img src="/assets/users/RedSox.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>NicoandVinz</p>
+            </div>
+            <img src="/assets/users/NicoandVinz.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>MapleLeafs</p>
+            </div>
+            <img src="/assets/users/MapleLeafs.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>LouisVuitton</p>
+            </div>
+            <img src="/assets/users/LouisVuitton.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>jimmyfallon</p>
+            </div>
+            <img src="/assets/users/jimmyfallon.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>JayZClassicBars</p>
+            </div>
+            <img src="/assets/users/JayZClassicBars.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>Jason_Aldean</p>
+            </div>
+            <img src="/assets/users/Jason_Aldean.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>HuffPostFood</p>
+            </div>
+            <img src="/assets/users/HuffPostFood.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>Enews</p>
+            </div>
+            <img src="/assets/users/Enews.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>ddlovato</p>
+            </div>
+            <img src="/assets/users/ddlovato.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>CW_TheFlash</p>
+            </div>
+            <img src="/assets/users/CW_TheFlash.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>BrunoMars</p>
+            </div>
+            <img src="/assets/users/BrunoMars.jpg"/>
+            </a>
+        </div>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#">
+                <div class="profile-head">
+                    <p>AmericanIdol</p>
+                </div>
+                <img src="/assets/users/AmericanIdol.jpg"/>
+            </a>
+        </div>
+
+        <!-- REQUEST ADDITIONAL -->    
+        <div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-4">
+            <div class="vcenter">
+                <div class="vcell">
+                    <button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
+            </div>
+        </footer>
