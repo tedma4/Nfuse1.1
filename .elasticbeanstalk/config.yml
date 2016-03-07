@@ -3,7 +3,7 @@ branch-defaults:
     environment: nfuse-env
 global:
   application_name: Nfuse
-  default_ec2_keyname: null
+  default_ec2_keyname: Nfuse_key
   default_platform: RUBY
   default_region: us-west-1
   profile: eb-cli

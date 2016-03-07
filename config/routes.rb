@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   
+  get 'show_forum', to: "pages#show_forum"
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
 
   # on line 27 of routes file replace that block with this.

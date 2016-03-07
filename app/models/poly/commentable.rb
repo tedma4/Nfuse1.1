@@ -18,6 +18,7 @@ module Poly::Commentable
   def find_commentable
     if params[:controller] == 'pages'
       @page = Page.find_by_page_name(params[:id])
+      # byebug
       return params[:controller].singularize.classify.constantize.find(@page.id)
     else
       return params[:controller].singularize.classify.constantize.find(params[:id])

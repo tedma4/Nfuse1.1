@@ -52,6 +52,8 @@
               owner_type: 'User'),
               method: :post, remote: true %>
           <% end %>
+        <% else %>
+          <%= image_tag("smilinggray.fw.png", size: "24x24") %>
         <% end %>
         <a id="comment-<%=comment.id%>">
           <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>

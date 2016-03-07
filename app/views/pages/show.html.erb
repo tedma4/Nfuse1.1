@@ -157,21 +157,14 @@ li ul {
     border: medium none;
 }
 </style>
-
-<h2>What do you think about this page or brand?: <%= @page.page_name %></h2>
-
 <br>
-<!-- http://127.0.0.1:3000/comments/new?parent_id=15
- -->
-<ul class="media-list">
-  <%# if @page.comments.any? %>
-    <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
-  <%# end %>
-</ul>
 
 <div class="explore_filters">
   <% if signed_in? %>
-  <%= render partial: "users/explore_filters" %>
+    <%= render partial: "users/explore_filters" %>
+  <% else %>
+    <%#= link_to 'Forum', @page.page_name, remote: true, class: "btn btn-link-2 load_forum" %>
+    <%= link_to 'Forum', '#', class: "btn btn-link-2 load_forum" %>
   <% end %>
 </div><br>
 <div id="masonJar" class="center clearfix masonJar">
@@ -189,10 +182,16 @@ li ul {
   <% end %>
 </div>
 
-<%#= render "comments/form" %>
-<a data-toggle= "modal" href="#absolute_postition_test">
-<button id='forum_post_modal' class='bg_none absolute_postition_test'><i class="glyphicon glyphicon-plus"></i>  </button>
-</a>
+<div class='hidden_comments' style="display:hidden;">
+  <ul class="media-list">
+    <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
+  </ul>
+
+  <%#= render "comments/form" %>
+  <a data-toggle= "modal" href="#absolute_postition_test">
+  <button id='forum_post_modal' class='bg_none absolute_postition_test'><i class="glyphicon glyphicon-plus"></i>  </button>
+  </a>
+</div>
     <div id="absolute_postition_test" class="modal fade">
       <div class="modal-fade">
         <div class="modal-dialog">
@@ -266,3 +265,20 @@ li ul {
           </div>
         </div>
       </div>
+
+
+<script>
+$('a.load_forum').click( function() {
+  if ($('a.load_forum').text() == 'Forum') {
+    $('div#masonJar').hide();
+    $('a.load_forum').text('Feed');
+    $('div.hidden_comments').show()
+  }else if ($('a.load_forum').text() == 'Feed') {
+    $('div.hidden_comments').hide()
+    $('a.load_forum').text('Forum');
+    $('div#masonJar').show();
+  };
+});
+</script>
+
+
