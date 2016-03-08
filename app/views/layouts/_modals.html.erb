@@ -28,7 +28,7 @@
                         <!-- NOTIFICATION -->
                         <div class="row notification followed">
                             <div class="col-xs-1 user-img">
-                                <img src="/assets/users/BrunoMars.jpg" alt="User Image"/>
+                                <img src="/assets/users/brunomars.jpg" alt="User Image"/>
                             </div>
                             <div class="col-xs-10 notification-body">
                                 <p><a href="#" class="user-link">@BrunoMars</a> followed you! <span class="timer">1m</span></p>
@@ -413,7 +413,7 @@
                     <!-- FOLLOWER -->
                     <div class="row follower">
                         <div class="col-xs-2 user-img">
-                            <img src="/assets/users/BrunoMars.jpg" alt="User Image"/>
+                            <img src="/assets/users/brunomars.jpg" alt="User Image"/>
                         </div>
                         <div class="col-xs-10">
                             <ul id="user-info">
@@ -602,11 +602,10 @@
                         </a>
                     </div>
                     <div class="col-xs-12 modal-body">
-                        <form accept-charset="UTF-8" action="/search" id="slide-search" class="search drk" method="get">
+                        <!-- <form accept-charset="UTF-8" action="/search" id="slide-search" class="search drk" method="get">
                             <div style="display:none">
                                 <input name="utf8" type="hidden" value="✓">
                             </div>
-                            <!-- DROP DOWN -->
                             <div class="dropdown loggedin">
                                 <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                     Nfusers
@@ -617,48 +616,76 @@
                                     <li><a href="#">Nfusers</a></li>
                                 </ul>
                             </div>
-                            <!-- RANDOM -->
                             <a class="ilink randomize loggedout" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
-                            <!-- SEARCH LINK -->
                             <a class="ilink gosearch" href="explore.html"><i class="fa fa-search"></i></a>
-                            <!-- SEARCH INPUT -->
                             <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
-                        </form>
+                        </form> -->
+                        <%= form_tag search_path, method: 'get', id: "slide-search", class: "search drk" do %>
+                          <% if signed_in? %>
+                            <div class="dropdown loggedin">
+                                <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                    Nfusers
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="searchdrop">
+                                    <li><a href="#">Nfuse</a></li>
+                                    <li><a href="#">Nfusers</a></li>
+                                </ul>
+                            </div>
+                          <% else %>
+                            <a class="ilink randomize loggedout" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
+                          <% end %>
+                          <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
+                          <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+                          <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users &amp; Social Media" %>
+                        <% end %>
                     
                         <div id="slide-nav">
+                          <% if !signed_in? %>
                             <!-- LOGGED OUT -->
                             <ul class="nav loggedout">
                                 <li>
-                                    <a class="" href="index.html">Home</a>
+                                  <%= link_to 'Home', root_path, class: '' %>
+                                    <!-- <a class="" href="index.html">Home</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="signup.html">Sign Up</a>
+                                  <%= link_to 'Sign Up', signup_path, class: '' %>
+                                    <!-- <a class="" href="signup.html">Sign Up</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="signin.html">Sign In</a>
+                                  <%= link_to 'Sign In', signin_path, class: '' %>
+                                    <!-- <a class="" href="signin.html">Sign In</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="privacy.html">Privacy</a>
+                                  <%= link_to 'Privacy', privacy_path, class: '' %>
+                                    <!-- <a class="" href="privacy.html">Privacy</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="contact.html">Contact Us</a>
+                                  <%= link_to 'Contact Us', new_contact_path, class: '' %>
+                                    <!-- <a class="" href="contact.html">Contact Us</a> -->
                                 </li>
                             </ul>
+                          <% else %>  
                             <!-- LOGGED IN -->
                             <ul class="nav loggedin">
                                 <li>
-                                    <a class="" href="settings.html">Settings</a>
+                                  <%= link_to 'Settings', edit_user_path(current_user), class: '' %>
+                                    <!-- <a class="" href="settings.html">Settings</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="#">Help</a>
+                                  <%= link_to 'Help', help_path, class: '' %>
+                                    <!-- <a class="" href="#">Help</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="#">Feedback</a>
+                                  <%= link_to 'Feedback', new_contact_path, class: '' %>
+                                    <!-- <a class="" href="#">Feedback</a> -->
                                 </li>
                                 <li>
-                                    <a class="" href="#">Log Out</a>
+                                  <%= link_to 'Log Out', signout_path, method: :get, class: '' %>
+                                    <!-- <a class="" href="#">Log Out</a> -->
                                 </li>
                             </ul>
+                          <% end %>  
                         </div>
                     </div>
                 </div>

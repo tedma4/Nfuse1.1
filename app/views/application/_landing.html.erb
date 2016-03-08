@@ -6,28 +6,12 @@
                     <div class="col-sm-10 col-sm-offset-1 col-md-12 col-md-offset-0">
                         <h1 class="brand-heading heavy">Share &amp; Discover</h1>
                         <p class="intro-text">We brought together all the places that you have friends and made sharing as simple as it should be.</p>
-                        <form accept-charset="UTF-8" action="/search" id="home-search" class="search" method="get">
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                            </div>
-                            <!-- DROP DOWN -->
-                            <div class="dropdown loggedin">
-                                <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                    Nfusers
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="searchdrop">
-                                    <li><a href="#">Nfuse</a></li>
-                                    <li><a href="#">Nfusers</a></li>
-                                </ul>
-                            </div>
-                            <!-- RANDOM -->
-                            <a class="ilink randomize loggedout" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
-                            <!-- SEARCH LINK -->
-                            <a class="ilink gosearch" href="explore.html"><i class="fa fa-search"></i></a>
-                            <!-- SEARCH INPUT -->
-                            <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
-                        </form>
+                        <%= form_tag search_path, method: 'get', id: "home-search", class: "search" do %>
+                          <a class="ilink randomize loggedout" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
+                          <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
+                          <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+                          <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users &amp; Social Media" %>
+                        <% end %>
                     </div>
                 </div>
             </div>
@@ -127,18 +111,18 @@
 
     <!-- Feed Section -->
     <section id="feed" class="container-fluid">
-        <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/brunomars.jpg"></a>
-        <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/ddlovato.jpg"></a>
-        <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/Enews.jpg"></a>
-        <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/HuffPostFood.jpg"></a>
-        <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/Jason_Aldean.jpg"></a>
-        <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/JayZClassicBars.jpg"></a>
-        <div class="visible-lg">
-            <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/LouisVuitton.jpg"></a>
-            <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/MapleLeafs.jpg"></a>
-            <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/RollingStones.jpg"></a>
-            <a class="user-block col-xs-6 col-sm-2 col-lg-1"><img src="/assets/users/taylorswift.jpg"></a>
-        </div>
+      <%= link_to image_tag('wired.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('SCENE.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('TIME.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('people.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('Enews.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('CNN.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <div class="visible-lg">
+        <%= link_to image_tag('HBO.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('Buzzfeed.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('Newsweek.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('EW.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      </div>
     </section>
 
     <!-- Signup Section -->

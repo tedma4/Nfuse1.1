@@ -17,45 +17,56 @@
         <a id="menutoggler" href="#" data-toggle="modal" data-target="#navmodal">
             <i class="main-color fa fa-bars"></i>
         </a>
-        <a class="navbar-brand" href="index.html">
-            <img src="/assets/logo.png" alt="nfuselogo"/>
-        </a>
+        <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
         <div id="top-nav" class="">
+          <% if !signed_in? %>
             <!-- LOGGED OUT -->
             <ul class="nav loggedout">
                 <li>
-                    <a href="#" class="hidden-xs page-scroll animated"><i class="fa fa-user-plus"></i> Sign Up</a>
-                    <a href="#" data-toggle="modal" data-target="#signupmodal" class="visible-xs"><i class="fa fa-user-plus"></i> Sign Up</a>
+                  <%= link_to signup_path, class: 'signintoggler' do %>
+                    <i class="fa fa-user-plus"></i>Sign Up
+                  <% end %>
+                    <!-- <a href="#" class="hidden-xs page-scroll animated"><i class="fa fa-user-plus"></i> Sign Up</a>
+                    <a href="#" data-toggle="modal" data-target="#signupmodal" class="visible-xs"><i class="fa fa-user-plus"></i> Sign Up</a> -->
                 </li>
                 <li>
-                    <a href="signin.html" class="hidden-xs"><i class="fa fa-user"></i> Sign In</a>
-                    <a href="#" data-toggle="modal" data-target="#signinmodal" class="visible-xs"><i class="fa fa-user"></i> Sign In</a>
+                  <%= link_to signin_path, class: 'signintoggler' do %>
+                    <i class="fa fa-user"></i>Login
+                  <% end %>
+                   <!--  <a href="signin.html" class="hidden-xs"><i class="fa fa-user"></i> Sign In</a>
+                    <a href="#" data-toggle="modal" data-target="#signinmodal" class="visible-xs"><i class="fa fa-user"></i> Sign In</a> -->
                 </li>
             </ul>
+          <% else %>
             <!-- LOGGED IN -->
             <div class="nav loggedin">
-                <a id="user" href="profile.html">
+              <%= link_to image_tag("logo.png", alt: "nfuselogo"), feed_user_path(current_user), id: 'user' %>
+                <!-- <a id="user" href="profile.html">
                     <img src="/assets/users/default.jpg" alt="User Image"/>
-                </a>
-                <a id="explore" href="explore-loggedin.html" class="icon-link" alt="Explore">
+                </a> -->
+              <%= link_to explore_user_path(current_user), class: 'icon-link', id: 'explore' do %>
                     <i class="main-color fa fa-compass"></i>
-                </a> 
+              <% end %>
+                <!-- <a id="explore" href="explore-loggedin.html" class="icon-link" alt="Explore">
+                    <i class="main-color fa fa-compass"></i>
+                </a>  -->
                 <a id="notifications" href="#" class="icon-link" data-toggle="modal" data-target="#notificationsmodal" alt="Notifications">
                     <i class="main-color fa fa-bell"></i>
                     <span id="count">8</span>
                 </a>
-                <a id="home" href="profile.html" class="icon-link" alt="The Hub">
+              <%= link_to root_path, class: 'icon-link', id: 'home' do %>
                     <i class="main-color fa fa-home"></i>
-                </a>
+              <% end %>
+                <!-- <a id="home" href="profile.html" class="icon-link" alt="The Hub">
+                    <i class="main-color fa fa-home"></i>
+                </a> -->
             </div>
+          <% end %>
         </div>
     </div>
     <!-- TOP SEARCH FORM -->
-    <form accept-charset="UTF-8" action="/search" id="head-search" class="down search drk" method="get">
-        <div style="display:none">
-            <input name="utf8" type="hidden" value="✓">
-        </div>
-        <!-- DROP DOWN -->
+    <%= form_tag search_path, method: 'get', id: "head-search", class: "down search drk" do %>
+      <% if signed_in? %>
         <div class="dropdown loggedin">
             <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                 Nfusers
@@ -66,11 +77,11 @@
                 <li><a href="#">Nfusers</a></li>
             </ul>
         </div>
-        <!-- RANDOM -->
-        <a class="ilink randomize loggedout" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
-        <!-- SEARCH LINK -->
-        <a class="ilink gosearch" href="explore.html"><i class="fa fa-search"></i></a>
-        <!-- SEARCH INPUT -->
-        <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
-    </form>
+      <% else %>
+        <a class="ilink randomize loggedout" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
+      <% end %>
+      <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
+      <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+      <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users &amp; Social Media" %>
+    <% end %>
 </nav>
