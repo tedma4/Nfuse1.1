@@ -16,8 +16,9 @@ class SearchesController < ApplicationController
 	end
   def random_search
     getbeginning = ['@', '#', '']
-    choosefromlist = Page.pluck(page_name)
+    choosefromlist = Page.pluck(:page_name)
     @searched = getbeginning.shuffle.first + choosefromlist.shuffle.first
     page     = Search::Timeline.new(@searched)
     @timeline = page.construct(params)
+  end
 end

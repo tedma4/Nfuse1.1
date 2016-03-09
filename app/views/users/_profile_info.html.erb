@@ -1,4 +1,4 @@
-<style>
+<style>/*
 @media only screen and (max-width: 900px) {
     #fadeshow1 {
         display: none;
@@ -78,60 +78,60 @@ button.btn {
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
-}
+}*/
 </style>
-<div><%= image_tag @user.banner.url(:larger), class: "banner" %>
+<!-- <div><%#= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
 <div class="main-avatar">
-  <% if current_user?(@user) %>
+  <%# if current_user?(@user) %>
     <a data-toggle="modal" data-target="#profile_pic_upload_modal">
-      <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-        <%= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %>
-      <% else %>
-        <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %> 
-      <% end %>
+      <%# if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+        <%#= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %>
+      <%# else %>
+        <%#= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %> 
+      <%# end %>
     </a>
-  <%else%>
-    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-      <%= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture"%>
-    <% else %>
-      <%= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
-    <% end %>
-  <%end%>
+  <%#else%>
+    <%# if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+      <%#= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture"%>
+    <%# else %>
+      <%#= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
+    <%# end %>
+  <%#end%>
 </div>
 <div class="profile_bar">
   <div class="inLineLeft" id="fadeshow1">
-    <h2 class="user-full-name"><%= @user.full_name%><br> 
-      <span class="atUserName">@<%= link_to @user.user_name, feed_user_path(@user)%></span>
+    <h2 class="user-full-name"><%#= @user.full_name%><br> 
+      <span class="atUserName">@<%#= link_to @user.user_name, feed_user_path(@user)%></span>
     </h2>
   </div>
   <div class="inLineRight">
     <ul>
       <li>
-        <%= render 'follow_form' if signed_in? %>
+        <%#= render 'follow_form' if signed_in? %>
       </li>
       <li>
-        <% if current_user?(@user) %>
+        <%# if current_user?(@user) %>
         <li id="fadeshow2">
           <a data-toggle="modal" data-target="#new_post_modal">
-            <%= image_tag('add50gray.fw.png', size: "26x26", class: "tilt edit_profile_link", title: "New Post") %>
+            <%#= image_tag('add50gray.fw.png', size: "26x26", class: "tilt edit_profile_link", title: "New Post") %>
           </a>
         </li>
           <li id="fadeshow3">
-            <%= link_to edit_user_path(current_user) do %>
-                <%= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
-            <% end %>
+            <%#= link_to edit_user_path(current_user) do %>
+                <%#= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
+            <%# end %>
           </li>
           <li id="fadeshow3">
-            <%= link_to user_likes_user_path(@user) do %>
-                <%= image_tag('smilinggray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
-            <% end %>
+            <%#= link_to user_likes_user_path(@user) do %>
+                <%#= image_tag('smilinggray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
+            <%# end %>
           </li>
-        <% end %>
+        <%# end %>
       </li>
     </ul>
   </div>
-    <%= render 'shared/stats' %>
+    <%#= render 'shared/stats' %>
 </div>
 
 <div id="profile_pic_upload_modal" class="modal fade">
@@ -148,7 +148,7 @@ button.btn {
               <div class="span6">
                 <div class="logowrapper">
                   <div class="Alignthisorelse">
-                    <%= render partial: 'users/upload_pics_form' %>
+                    <%#= render partial: 'users/upload_pics_form' %>
                   </div>
                 </div>
               </div>
@@ -182,62 +182,62 @@ button.btn {
                               <p>Share a picture or url</p>
                           </div>
                           <div class="form-top-right">
-                            <a href="#"><%#= image_tag("postlightgray.fw.png", size: "50x50") %></a>
+                            <a href="#"><%##= image_tag("postlightgray.fw.png", size: "50x50") %></a>
                           </div>
-                        </div> -->
+                        </div> 
                         <div class="form-bottom">
-                        <%= form_for Shout.new, :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
+                        <%#= form_for Shout.new, :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
                           <div class="Alignthisorelse">
                             <div class="container">
                               <div class="row">
                                 <div class="col-sm-2 how-it-works-box wow fadeInUp">
                                   <div class="how-it-works-box-icon">
-                                    <a href="#"><%= image_tag("circlephoto.fw.png", size: "175x175") %></a>
+                                    <a href="#"><%#= image_tag("circlephoto.fw.png", size: "175x175") %></a>
                                   </div>
                                   <div class="fileUpload btn-link-1">
                                     <span>Upload Pic</span>
-                                     <%= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
+                                     <%#= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
                                   </div>
                                 </div>
                                 <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
                                   <div class="how-it-works-box-icon">
-                                    <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
+                                    <a href="#"><%#= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
                                   </div>
                                   <div class="form-grouP">
-                                    <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+                                    <%#= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
                                   </div>
                                 </div>
                               </div>
                   <!--        <div class="row">
                                 <div class="col-sm-3 how-it-works-box wow fadeInUp">
                                   <div class="how-it-works-box-icon">
-                                    <a href="#"><%#= image_tag("circlevideo.fw.png", size: "160x160") %></a>
+                                    <a href="#"><%##= image_tag("circlevideo.fw.png", size: "160x160") %></a>
                                   </div>
                                   <div class="fileUpload btn-link-1">
                                     <span>Upload Video</span>
-                                    <%#= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                                    <%##= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
                                   </div>
                                 </div>
                                 <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
                                   <div class="how-it-works-box-icon">
-                                    <%#= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
+                                    <%##= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
                                   </div>
                                   <div class="fileUpload btn-link-1">
                                     <span>Upload Snip</span>
-                                      <%#= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
+                                      <%##= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
                                   </div>
                                 </div>
-                              </div> -->
+                              </div> 
                                 <div class="row">
                                   <div class="col-sm-5 section-bottom-button wow fadeInUp">
                                     <div id="target"></div>
                                     <div id="profilePostTarget"></div>
                                     <div id="profileUrlPostPreview"></div>
-                                    <%= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
+                                    <%#= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
                                   </div>
                                 </div>
                                 <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
-                                  <% if current_user.followers.any? %>
+                                  <%# if current_user.followers.any? %>
                                     <div class="onoffswitch">
                                       <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                       <label class="onoffswitch-label" for="myonoffswitch">
@@ -245,7 +245,7 @@ button.btn {
                                         <span class="onoffswitch-switch"></span>
                                       </label>
                                     </div>
-                                  <% end %>
+                                  <%# end %>
                                   <button type="submit" class="btn">
                                    Post!
                                   </button>
@@ -253,7 +253,7 @@ button.btn {
                               </div>
                             </div>
                           </div>
-                        <% end %>
+                        <%# end %>
                         </div>
                       </div>
                     </div>
@@ -267,103 +267,43 @@ button.btn {
     </div>
   </div>
 </div>
-</div>
-<script>
-  $(function() {
-    $('#pictureInput').on('change', function(event) {
-      var files = event.target.files;
-      var image = files[0]
-      var reader = new FileReader();
-      reader.onload = function(file) {
-        var img = new Image();
-        console.log(file);
-        img.src = file.target.result;
-        $('#target').html(img);
-      }
-      reader.readAsDataURL(image);
-      console.log(files);
-    });
-  });
-</script>
-<script>
-  $(function() {
-    $('#pictureInput2').on('change', function(event) {
-      var files = event.target.files;
-      var image = files[0]
-      var reader = new FileReader();
-      reader.onload = function(file) {
-        var img = new Image();
-        console.log(file);
-        img.src = file.target.result;
-        $('#target2').html(img);
-      }
-      reader.readAsDataURL(image);
-      console.log(files);
-    });
-  });
-</script>
-<script>
-  $(function() {
-    $('#newPostPictureInput').on('change', function(event) {
-      var files = event.target.files;
-      var image = files[0]
-      var reader = new FileReader();
-      reader.onload = function(file) {
-        var img = new Image();
-        console.log(file);
-        img.src = file.target.result;
-        $('#profilePostTarget').html(img);
-      }
-      reader.readAsDataURL(image);
-      console.log(files);
-    });
-  });
-</script>
-
-<script>
-function load(request) {
-  $('#code').text(request);
-  $('#profileUrlPostPreview').html(request);
-}
-
-function preview(value) {
-  console.log("preview; value = " + value);
-
-  /*
-  $.getJSON("/preview?callback=?", value, function(data){
-    load(data);
-    console.log("preview callback\n" + data);
-  });
-  */
-
-  $.ajax({
-    dataType: "html",
-    url: "/preview?url=" + value['url']
-  })
-  .done( function(data){
-    load(data);
-    console.log("preview callback\n" + data);
-  });
-}
-
-function previewUrl() {
-  preview({'url':$('#profile_post_url_body').val()});
-}
-
-$('#examples a').click(function() {
-  $('#profile_post_url_body').focus(); 
-  $('#profile_post_url_body').val( $(this).attr('href'));
-  previewUrl();
-});
-
-$(function () { 
-  $("#profile_post_url_body").focus();
-  previewUrl();
-});
-
-//$('#upload_form').delayedObserver(1, function(element, value) { previewUrl() });
-//$('#profile_post_url_body').keydown(function() { alert("hi"); previewUrl() });
-//$('#profile_post_url_body').bind('input propertychange', function() { alert("hi"); previewUrl() });  
+</div> -->
 
 
-</script>
+        
+        <!-- BIG BANNER -->
+        <div id="user-banner">
+            <a data-toggle="modal" data-target="#editmodal">
+                <i class="edit-pic fa fa-camera"></i>
+                <div class="shadow"></div>
+                <img src="/assets/users/default-banner.jpg" alt="User Banner"/>
+            </a>
+        </div>
+        <a id="user" data-toggle="modal" data-target="#editmodal" class="mobile">
+            <img src="/assets/users/default.jpg" alt="User Image"/>
+        </a>
+        <ul id="user-info" class="user-left">
+            <li id="user-name">Default User</li>
+            <li id="user-link"><a href="">@Default</a></li>
+        </ul>
+        <ul id="user-stats" class="user-right">
+            <li id="user-following">Following: <a href="#" data-toggle="modal" data-target="#followingmodal">0</a></li>
+            <li id="user-followers">Followers:  <a href="#" data-toggle="modal" data-target="#followersmodal">981,732</a></li>
+            <li id="user-likes">Likes: <a href="">1,000,000,000</a></li>
+        </ul>
+        <!-- USER NAVBAR -->
+        <nav id="user-nav" class="center navbar">
+            <ul>
+                <li><a href="">Feed</a></li>
+                <li><a href="">Vue</a></li>
+                <li id="user-spacer">
+                <!-- PROFILE PIC -->
+                    <a id="user" data-toggle="modal" data-target="#editmodal" class="desk">
+                        <i class="edit-pic fa fa-camera"></i>
+                        <img src="/assets/users/default.jpg" alt="User Image"/>
+                    </a>
+                </li>
+                <li><a href="#" data-toggle="modal" data-target="#sharemodal">Share</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
+            </ul>
+        </nav>

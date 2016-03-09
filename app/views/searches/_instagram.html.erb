@@ -1,23 +1,15 @@
-
-<% if post.type == "image" %>
-  <div class="timeline-user-box">
+<div class="timeline-user-box">
+  <% if post.type == "image" %>
     <%= image_tag(post.image, :class => "image_post") %>
-  </div>
-  <% if post.text.present? %>
-    <div class="center">
-      <%= post.text %>
-    </div>
-  <% end %>
-<% elsif post.type == "video" %>
-  <div class="center">
+  <% elsif post.type == "video" %>
     <video width="100%" controls autoload="none" poster=<%= post.image %> >
       <source src="<%= post.video %>" type='video/mp4' />
       <source src="<%= post.video %>" type='video/ogv' />
     </video>
-  </div>
-  <% if post.text.present? %>
-    <div class="center">
-      <%= post.text %>
-    </div>
   <% end %>
-<% end %>
+</div>
+<p>
+  <% if post.text.present? %>
+    <%= post.text %>
+  <% end %>
+</p>
