@@ -1,85 +1,3 @@
-<style>/*
-@media only screen and (max-width: 900px) {
-    #fadeshow1 {
-        display: none;
-    }
-}
-@media only screen and (max-width: 1050px) {
-    #fadeshow2 {
-        display: none;
-    }
-}
-@media only screen and (max-width: 1050px) {
-    #fadeshow3 {
-        display: none;
-    }
-}
-button.btn {
-    margin-left: 30px;
-}
-.container {
-    padding: 0;
-    display: inline-block;
-    margin-left: 13%;
-}
-</style>
-<style>
-.onoffswitch {
-    position: absolute; width: 90px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-}
-
-.onoffswitch-checkbox {
-    display: none;
-}
-
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
-}
-
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
-    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
-    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
-
-.onoffswitch-inner:before {
-    content: "Feed";
-    padding-left: 0;
-    background-color: #2FCCFF; color: #FFFFFF;
-}
-
-.onoffswitch-inner:after {
-    content: "Exclusive";
-    padding-right: 3px;
-    background-color: #EEEEEE; color: #999999;
-    text-align: right;
-}
-
-.onoffswitch-switch {
-    display: block; width: 18px; margin: 6px;
-    background: #FFFFFF;
-    border: 2px solid #999999; border-radius: 20px;
-    position: absolute; top: 0; bottom: 0; right: 56px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
-}*/
-</style>
 <!-- <div><%#= image_tag @user.banner.url(:larger), class: "banner" %>
 </div>
 <div class="main-avatar">
@@ -270,40 +188,41 @@ button.btn {
 </div> -->
 
 
-        
-        <!-- BIG BANNER -->
-        <div id="user-banner">
-            <a data-toggle="modal" data-target="#editmodal">
-                <i class="edit-pic fa fa-camera"></i>
-                <div class="shadow"></div>
-                <img src="/assets/users/default-banner.jpg" alt="User Banner"/>
-            </a>
-        </div>
-        <a id="user" data-toggle="modal" data-target="#editmodal" class="mobile">
-            <img src="/assets/users/default.jpg" alt="User Image"/>
-        </a>
-        <ul id="user-info" class="user-left">
-            <li id="user-name">Default User</li>
-            <li id="user-link"><a href="">@Default</a></li>
-        </ul>
-        <ul id="user-stats" class="user-right">
-            <li id="user-following">Following: <a href="#" data-toggle="modal" data-target="#followingmodal">0</a></li>
-            <li id="user-followers">Followers:  <a href="#" data-toggle="modal" data-target="#followersmodal">981,732</a></li>
-            <li id="user-likes">Likes: <a href="">1,000,000,000</a></li>
-        </ul>
-        <!-- USER NAVBAR -->
-        <nav id="user-nav" class="center navbar">
-            <ul>
-                <li><a href="">Feed</a></li>
-                <li><a href="">Vue</a></li>
-                <li id="user-spacer">
-                <!-- PROFILE PIC -->
-                    <a id="user" data-toggle="modal" data-target="#editmodal" class="desk">
-                        <i class="edit-pic fa fa-camera"></i>
-                        <img src="/assets/users/default.jpg" alt="User Image"/>
-                    </a>
-                </li>
-                <li><a href="#" data-toggle="modal" data-target="#sharemodal">Share</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
-            </ul>
-        </nav>
+
+
+<!-- BIG BANNER -->
+<div id="user-banner">
+  <a data-toggle="modal" data-target="#editmodal">
+    <i class="edit-pic fa fa-camera"></i>
+    <div class="shadow"></div>
+    <img src="/assets/users/default-banner.jpg" alt="User Banner"/>
+  </a>
+</div>
+<a id="user" data-toggle="modal" data-target="#editmodal" class="mobile">
+  <img src="/assets/users/default.jpg" alt="User Image"/>
+</a>
+<ul id="user-info" class="user-left">
+  <li id="user-name">Default User</li>
+  <li id="user-link"><a href="">@Default</a></li>
+</ul>
+<ul id="user-stats" class="user-right">
+  <li id="user-following">Following: <a href="#" data-toggle="modal" data-target="#followingmodal">0</a></li>
+  <li id="user-followers">Followers:  <a href="#" data-toggle="modal" data-target="#followersmodal">981,732</a></li>
+  <li id="user-likes">Likes: <a href="">1,000,000,000</a></li>
+</ul>
+<!-- USER NAVBAR -->
+<nav id="user-nav" class="center navbar">
+  <ul>
+    <li><a href="">Feed</a></li>
+    <li><a href="">Vue</a></li>
+    <li id="user-spacer">
+      <!-- PROFILE PIC -->
+      <a id="user" data-toggle="modal" data-target="#editmodal" class="desk">
+        <i class="edit-pic fa fa-camera"></i>
+        <img src="/assets/users/default.jpg" alt="User Image"/>
+      </a>
+    </li>
+    <li><a href="#" data-toggle="modal" data-target="#sharemodal">Share</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
+  </ul>
+</nav>

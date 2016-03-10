@@ -1,62 +1,71 @@
-<style>
-/*  .timeline-user-box img {
-    min-width: 150px;
-    min-height: 150px;
-  }*/
-</style>
   <%## unless @unauthed_accounts.empty? %>
     <%##= render partial: "unauthed_accounts" %>
   <%## end %>
-<!-- masonJar js-masonry -->
-<!-- <div id="masonJar" class="feed_container clearfix masonJar" >
-  <%# if @timeline.present? %>
-    <%# cache(["users_feed", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
-    <%# @timeline.each do |post| %>
-    <%# cache(post) do %>
-      <%# case post.provider %>
-      <%# when "nfuse" %>
-        <%# unless post.exclusive == true %>
-          <%#=  render partial: 'users/shout', locals: {shout: post} %>
-        <%# end %>
-      <%# when "gplus" %>
-        <%# if post.type != 'hiddenType' %>
-          <%#= render partial: "users/post", locals: {post: post} %>
-        <%# end %>
-      <%# when "tumblr" %>
-        <%# unless post.type == 'chat' || post.type == 'audio' %>
-          <%#= render partial: "users/post", locals: {post: post} %>
-        <%# end %>
-      <%# when "facebook" %>
-        <%# unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-          <%#= render partial: "users/post", locals: {post: post} %>
-        <%# end %>
-      <%# when "twitter" %>
-        <%# unless post.retweeted == true %>
-          <%#= render partial: "users/post", locals: {post: post} %>
-        <%# end %>
-      <%# else %>
-        <%#= render partial: "users/post", locals: {post: post} %>
-      <%# end %>
-    <%# end %>
-    <%# end %>
-    <%# end %>
-<!--   <div class="load_posts_link">
-    <%##= link_to "Load more posts", @load_more_url, id: "load-more" %>
-  </div>
-  <%# elsif @timeline.blank? && @unauthed_accounts.empty? %>
-    <div id="empty_feed_container">
-      <%# if current_user?(@user) %>
-        <%#= render partial: "link_networks" %>
-      <%# else %>
-      <p> <%#= @user.user_name %> has not Nfused any networks. </p>
-      <%#= image_tag("sadface.fw.png", size:"100x100") %>
-      <%# end %>
-    </div>
-  <%# end %>
+<% if @timeline.present? %>
+  <% cache(["users_feed", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
+    <% @timeline.each do |post| %>
+      <% cache(post) do %>
+        <article class="individual_post item <%= post.provider %>_post0">
+          <header class="post_header">
+            <div class="user">
+              <%= image_tag("#{post.avatar}", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+              <%= link_to truncate(post.user_name, length: 16), root_path %>
+            </div>
+            <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+            <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+             
+              <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
+            <% end %>
+          </header>
+          <main class="post_content">
+            <% case post.provider %>
+            <% when "nfuse" %>
+              <% unless post.exclusive == true %>
+                <%=  render partial: 'users/shout', locals: {shout: post} %>
+              <% end %>
+            <% when "gplus" %>
+              <% if post.type != 'hiddenType' %>
+                <%= render partial: "users/post", locals: {post: post} %>
+              <% end %>
+            <% when "tumblr" %>
+              <% unless post.type == 'chat' || post.type == 'audio' %>
+                <%= render partial: "users/post", locals: {post: post} %>
+              <% end %>
+            <% when "facebook" %>
+              <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+                <%= render partial: "users/post", locals: {post: post} %>
+              <% end %>
+            <% when "twitter" %>
+              <% unless post.retweeted == true %>
+                <%= render partial: "users/post", locals: {post: post} %>
+              <% end %>
+            <% else %>
+              <%= render partial: "users/post", locals: {post: post} %>
+            <% end %>
+          </main>
+          <footer class="post_actions">
+            <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+              <i class="fa"></i><span>666</span>
+            </a>
+          </footer>
+        </article>
+      <% end %>
+    <% end %>
+  <% end %>
+<!--    <div class="load_posts_link">
+    <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>
   </div> -->
+<% elsif @timeline.blank? && @unauthed_accounts.empty? %>
+  <div id="empty_feed_container">
+    <% if current_user?(@user) %>
+      <%= render partial: "link_networks" %>
+    <% else %>
+      <p> <%= @user.user_name %> has not Nfused any networks. </p>
+      <%= image_tag("sadface.fw.png", size:"100x100") %>
+    <% end %>
+  </div>
+<% end %>
 
-
-        <!-- POST -->
         <article class="individual_post item instagram_post0">
             <header class="post_header">
                 <div class="user">
@@ -85,7 +94,6 @@
             </footer>
         </article>
 
-        <!-- POST -->
         <article class="individual_post item youtube_post0">
             <header class="post_header">
                 <div class="user">
@@ -111,7 +119,6 @@
             </footer>
         </article>
 
-        <!-- POST -->
         <article class="individual_post item twitter_post0" data-id="677134541241339904">
             <header class="post_header">
                 <div class="user">
@@ -143,8 +150,6 @@
             </footer>
         </article>
 
-
-        <!-- POST -->
         <article class="individual_post item vine_post0" data-id="676993942966034432" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
@@ -170,7 +175,6 @@
             </footer>
         </article>
 
-        <!-- POST -->
         <article class="individual_post item tumblr_post0" data-id="676992690148495361" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
@@ -193,7 +197,6 @@
             </footer>
         </article>
 
-        <!-- POST -->
         <article class="individual_post item instagram_post0" data-id="676987043197665281" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
@@ -221,7 +224,7 @@
                 </a>
             </footer>
         </article>
-        <!-- POST -->
+
         <article class="individual_post item twitter_post0" data-id="677134541241339904">
             <header class="post_header">
                 <div class="user">
@@ -245,7 +248,7 @@
             </footer>
         </article>
 
-        <!-- POST -->
+
         <article class="individual_post item youtube_post0" data-id="677121950934802432" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
@@ -271,7 +274,7 @@
             </footer>
         </article>
 
-        <!-- POST -->
+
         <article class="individual_post item vine_post0" data-id="676993942966034432" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
@@ -297,7 +300,7 @@
             </footer>
         </article>
 
-        <!-- POST -->
+
         <article class="individual_post item tumblr_post0" data-id="676992690148495361" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
@@ -320,7 +323,7 @@
             </footer>
         </article>
 
-        <!-- POST -->
+
         <article class="individual_post item instagram_post0" data-id="676987043197665281" id="content-box-feed">
             <header class="post_header">
                 <div class="user">
