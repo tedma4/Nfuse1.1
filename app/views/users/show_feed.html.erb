@@ -30,7 +30,6 @@
               <% when "gplus" %>
                 <% if post.type != 'hiddenType' %>
                   <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
-                  <%= render partial: "users/post", locals: {post: post} %>
                 <% end %>
               <% when "tumblr" %>
                 <% unless post.type == 'chat' || post.type == 'audio' %>
@@ -45,7 +44,7 @@
                   <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
                 <% end %>
               <% else %>
-                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
               <% end %>
             </main>
             <footer class="post_actions">
@@ -56,22 +55,10 @@
                 <%= link_to dislike_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
-              <%#= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-                          dislike_shout_path(id: post.id,
-                                          owner_id: post.user.id,
-                                          owner_type: post.user.class.name,
-                                          key: post.provider),
-                          method: :delete, remote: true %>
               <% else %>
                 <%= link_to like_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
-                <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-                          like_shout_path(id: post.id,
-                                          owner_id: post.user.id,
-                                          owner_type: post.user.class.name,
-                                          key: post.provider),
-                          method: :post, remote: true %>
               <% end %>
                 <%#= post.like_score(post.id) %>
             </footer>

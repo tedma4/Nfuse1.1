@@ -1,209 +1,33 @@
-<!-- <div><%#= image_tag @user.banner.url(:larger), class: "banner" %>
-</div>
-<div class="main-avatar">
-  <%# if current_user?(@user) %>
-    <a data-toggle="modal" data-target="#profile_pic_upload_modal">
-      <%# if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-        <%#= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %>
-      <%# else %>
-        <%#= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture-current-user", title: "Edit Image" %> 
-      <%# end %>
-    </a>
-  <%#else%>
-    <%# if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-      <%#= image_tag @user.avatar_file_name, class: "avatar-picture-main", id: "profile-picture"%>
-    <%# else %>
-      <%#= image_tag @user.avatar(:larger), class: "avatar-picture-main", id: "profile-picture"%> 
-    <%# end %>
-  <%#end%>
-</div>
-<div class="profile_bar">
-  <div class="inLineLeft" id="fadeshow1">
-    <h2 class="user-full-name"><%#= @user.full_name%><br> 
-      <span class="atUserName">@<%#= link_to @user.user_name, feed_user_path(@user)%></span>
-    </h2>
-  </div>
-  <div class="inLineRight">
-    <ul>
-      <li>
-        <%#= render 'follow_form' if signed_in? %>
-      </li>
-      <li>
-        <%# if current_user?(@user) %>
-        <li id="fadeshow2">
-          <a data-toggle="modal" data-target="#new_post_modal">
-            <%#= image_tag('add50gray.fw.png', size: "26x26", class: "tilt edit_profile_link", title: "New Post") %>
-          </a>
-        </li>
-          <li id="fadeshow3">
-            <%#= link_to edit_user_path(current_user) do %>
-                <%#= image_tag('settingsgray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
-            <%# end %>
-          </li>
-          <li id="fadeshow3">
-            <%#= link_to user_likes_user_path(@user) do %>
-                <%#= image_tag('smilinggray.fw.png', size: "26x26", class: "tilt edit_profile_link") %>
-            <%# end %>
-          </li>
-        <%# end %>
-      </li>
-    </ul>
-  </div>
-    <%#= render 'shared/stats' %>
-</div>
-
-<div id="profile_pic_upload_modal" class="modal fade">
-  <div class="modal-fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" data-dismiss="modal">×</button>
-          <h3>Upload a new profile pic or banner</h3>
-        </div>
-        <div class="modal-body">
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="span6">
-                <div class="logowrapper">
-                  <div class="Alignthisorelse">
-                    <%#= render partial: 'users/upload_pics_form' %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="new_post_modal" class="modal fade">
-  <div class="modal-fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" data-dismiss="modal">×</button>
-          <h3>Share a picture or url</h3>
-        </div>
-        <div class="modal-body-new-post">
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="span6">
-                <div class="logowrapper">
-                  <div class="Alignthisorelse">
-                    <div class="container post-padding">
-                      <div class="col-sm-6 form-box wow fadeInUp">
-                        <div class="form-top-new-post">
-                <!--      <div class="form-top-left">
-                            <h2><strong>Create A Post<strong></h2>
-                              <p>Share a picture or url</p>
-                          </div>
-                          <div class="form-top-right">
-                            <a href="#"><%##= image_tag("postlightgray.fw.png", size: "50x50") %></a>
-                          </div>
-                        </div> 
-                        <div class="form-bottom">
-                        <%#= form_for Shout.new, :html => { :multipart => true, id: "upload_form", role:"form" } do |f| %>
-                          <div class="Alignthisorelse">
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-sm-2 how-it-works-box wow fadeInUp">
-                                  <div class="how-it-works-box-icon">
-                                    <a href="#"><%#= image_tag("circlephoto.fw.png", size: "175x175") %></a>
-                                  </div>
-                                  <div class="fileUpload btn-link-1">
-                                    <span>Upload Pic</span>
-                                     <%#= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                                  <div class="how-it-works-box-icon">
-                                    <a href="#"><%#= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
-                                  </div>
-                                  <div class="form-grouP">
-                                    <%#= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
-                                  </div>
-                                </div>
-                              </div>
-                  <!--        <div class="row">
-                                <div class="col-sm-3 how-it-works-box wow fadeInUp">
-                                  <div class="how-it-works-box-icon">
-                                    <a href="#"><%##= image_tag("circlevideo.fw.png", size: "160x160") %></a>
-                                  </div>
-                                  <div class="fileUpload btn-link-1">
-                                    <span>Upload Video</span>
-                                    <%##= f.file_field :video, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
-                                  </div>
-                                </div>
-                                <div class="col-sm-3 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                                  <div class="how-it-works-box-icon">
-                                    <%##= image_tag("circlesnipdarkgray.fw.png", size: "160x160") %>
-                                  </div>
-                                  <div class="fileUpload btn-link-1">
-                                    <span>Upload Snip</span>
-                                      <%##= f.file_field :snip, id: 'pictureInput2', placeholder: "Snip", type: "file", class: "upload" %>
-                                  </div>
-                                </div>
-                              </div> 
-                                <div class="row">
-                                  <div class="col-sm-5 section-bottom-button wow fadeInUp">
-                                    <div id="target"></div>
-                                    <div id="profilePostTarget"></div>
-                                    <div id="profileUrlPostPreview"></div>
-                                    <%#= f.text_area :content, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
-                                  </div>
-                                </div>
-                                <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
-                                  <%# if current_user.followers.any? %>
-                                    <div class="onoffswitch">
-                                      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                      <label class="onoffswitch-label" for="myonoffswitch">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch"></span>
-                                      </label>
-                                    </div>
-                                  <%# end %>
-                                  <button type="submit" class="btn">
-                                   Post!
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        <%# end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
-
-
-
-
 <!-- BIG BANNER -->
 <div id="user-banner">
-  <a data-toggle="modal" data-target="#editmodal">
+  <% if current_user?(@user) %>
+    <a data-toggle="modal" data-target="#editmodal">
     <i class="edit-pic fa fa-camera"></i>
+  <% else %>
+    <a>
+  <% end %>
     <div class="shadow"></div>
-    <img src="/assets/users/default-banner.jpg" alt="User Banner"/>
+    <%= image_tag @user.banner.url(:larger), class: "banner" %>
+    <!-- <img src="/assets/users/default-banner.jpg" alt="User Banner"/> -->
   </a>
 </div>
-<a id="user" data-toggle="modal" data-target="#editmodal" class="mobile">
+<!-- <a id="user" data-toggle="modal" data-target="#editmodal" class="mobile">
   <img src="/assets/users/default.jpg" alt="User Image"/>
+</a> -->
+<% if current_user?(@user) %>
+  <a id= 'user' data-toggle="modal" data-target="#editmodal" class='mobile'>
+<% else %>
+  <a id= 'user' class='mobile'>
+<% end %>
+  <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+    <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
+  <% else %>
+    <%= image_tag @user.avatar(:larger) %> 
+  <% end %>
 </a>
 <ul id="user-info" class="user-left">
-  <li id="user-name">Default User</li>
-  <li id="user-link"><a href="">@Default</a></li>
+  <li id="user-name"><%= @user.full_name %></li>
+  <li id="user-link"><a href="">@<%= @user.user_name%></a></li>
 </ul>
 <ul id="user-stats" class="user-right">
   <li id="user-following">Following: <a href="#" data-toggle="modal" data-target="#followingmodal">0</a></li>
@@ -213,16 +37,29 @@
 <!-- USER NAVBAR -->
 <nav id="user-nav" class="center navbar">
   <ul>
-    <li><a href="">Feed</a></li>
-    <li><a href="">Vue</a></li>
+    <li><%= link_to "Feed", feed_user_path(@user) %></li>
+    <li><%= link_to "Vue", vue_user_path(@user) %></li>
     <li id="user-spacer">
       <!-- PROFILE PIC -->
-      <a id="user" data-toggle="modal" data-target="#editmodal" class="desk">
+      <% if current_user?(@user) %>
+        <a id="user" data-toggle="modal" data-target="#editmodal" class="desk">
         <i class="edit-pic fa fa-camera"></i>
-        <img src="/assets/users/default.jpg" alt="User Image"/>
+      <% else %>
+        <a id="user" class='desk'>
+      <% end %>
+      <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+        <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
+      <% else %>
+        <%= image_tag @user.avatar(:larger) %> 
+      <% end %>
+       <!--  <img src="/assets/users/default.jpg" alt="User Image"/> -->
       </a>
     </li>
-    <li><a href="#" data-toggle="modal" data-target="#sharemodal">Share</a></li>
-    <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
+    <% if current_user?(@user) %>
+      <li><a href="#" data-toggle="modal" data-target="#sharemodal">+ Post</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
+    <% else %>
+      <%= render 'follow_form' if signed_in? %>
+    <% end  %>
   </ul>
 </nav>
