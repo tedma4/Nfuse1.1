@@ -5,9 +5,10 @@
     <i class="edit-pic fa fa-camera"></i>
   <% else %>
     <a>
+    <i class="edit-pic"></i>
   <% end %>
     <div class="shadow"></div>
-    <%= image_tag @user.banner.url(:larger), class: "banner" %>
+    <%= image_tag @user.banner.url(:larger)%>
     <!-- <img src="/assets/users/default-banner.jpg" alt="User Banner"/> -->
   </a>
 </div>
@@ -15,24 +16,26 @@
   <img src="/assets/users/default.jpg" alt="User Image"/>
 </a> -->
 <% if current_user?(@user) %>
-  <a id= 'user' data-toggle="modal" data-target="#editmodal" class='mobile'>
+  <%# byebug %>
+  <a id= "user" data-toggle="modal" data-target="#editmodal" class="mobile">
 <% else %>
-  <a id= 'user' class='mobile'>
+  <a id= "user" class="mobile">
 <% end %>
   <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
     <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
   <% else %>
-    <%= image_tag @user.avatar(:larger) %> 
+    <%= image_tag @user.avatar.url(:larger) %> 
   <% end %>
 </a>
+
 <ul id="user-info" class="user-left">
   <li id="user-name"><%= @user.full_name %></li>
   <li id="user-link"><a href="">@<%= @user.user_name%></a></li>
 </ul>
 <ul id="user-stats" class="user-right">
-  <li id="user-following">Following: <a href="#" data-toggle="modal" data-target="#followingmodal">0</a></li>
-  <li id="user-followers">Followers:  <a href="#" data-toggle="modal" data-target="#followersmodal">981,732</a></li>
-  <li id="user-likes">Likes: <a href="">1,000,000,000</a></li>
+  <li id="user-following"><a href="#" data-toggle="modal" data-target="#followingmodal">Following: <%= @user.followed_users.count %></a></li>
+  <li id="user-followers"><a href="#" data-toggle="modal" data-target="#followersmodal">Followers: <%= @user.followers.count %></a></li>
+  <li id="user-likes"><a href="">Likes: <%= ActsAsVotable::Vote.where(voter_id: @user.id).count %></a></li>
 </ul>
 <!-- USER NAVBAR -->
 <nav id="user-nav" class="center navbar">
@@ -46,11 +49,13 @@
         <i class="edit-pic fa fa-camera"></i>
       <% else %>
         <a id="user" class='desk'>
+        <i class="edit-pic"></i>
       <% end %>
       <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
         <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
       <% else %>
-        <%= image_tag @user.avatar(:larger) %> 
+        <%#= image_tag @user.avatar.url(:larger) %> <img src="/assets/users/default.jpg" alt="User Image"/>
+
       <% end %>
        <!--  <img src="/assets/users/default.jpg" alt="User Image"/> -->
       </a>
@@ -59,7 +64,16 @@
       <li><a href="#" data-toggle="modal" data-target="#sharemodal">+ Post</a></li>
       <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
     <% else %>
-      <%= render 'follow_form' if signed_in? %>
+      <li>
+        <a>
+        <%= render 'follow_form' if signed_in? %>
+        </a>
+      </li>
+      <li>
+        <a>
+        <%= render 'follow_form' if signed_in? %>
+        </a>
+      </li>
     <% end  %>
   </ul>
 </nav>

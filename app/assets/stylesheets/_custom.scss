@@ -474,9 +474,9 @@
       transition: all .3s ease-in-out;
       min-height: 1px;
   }
-  #nfuse .top-nav-collapse .navbar-brand {
+/*  #nfuse .top-nav-collapse .navbar-brand {
       width: 0; 
-  }
+  }*/
   #nfuse .top-nav-collapse .navbar-toggle {
       margin: 0px;
       padding: 5px 10px;
@@ -601,7 +601,7 @@
     font-size: 14px;
   }
   .top-nav-collapse #top-nav{
-    padding: 0;
+    /*padding: 0;*/
   }
   .icon-link, #menutoggler{
       padding: 10px 5px;
@@ -648,7 +648,7 @@
     width:100%;
   }
   .offcanvas{
-    width: 0;
+    /*width: 0;*/
   }
   .slide-out{
     width: calc(100vw - 60px);
@@ -693,11 +693,11 @@
       z-index: 9999;
   }
   .canvas-block{
-    position: 0;
+/*    position: 0;
     height: 0;
     width: 0;
     z-index: 0;
-    top: 0;
+    top: 0;*/
 
   }
 
@@ -724,12 +724,12 @@
     }
     #notifications-list,
     #slide-nav{
-      width:0;
+      /*width:0;*/
     }
     #notifications-list.open,
     #slide-nav.open{
-      left:0;
-      width:0;
+      /*left:0;
+      width:0;*/
     }
     #slide-nav .nav li a{
     font-size: 21px;
@@ -758,7 +758,7 @@
 /* ------- NOTIFICATIONS */
   button.notification-action {
       background: transparent;
-      border: 0;
+      /*border: 0;*/
   }
   #notifications-list {
       z-index: 10;
@@ -878,7 +878,7 @@
 }
 @media(min-width:768px) {
   #notifications-list {
-    width:0;
+    /*width: 0;*/
   }
   .slide-out{
     padding-top: 100px;
@@ -2119,7 +2119,7 @@
     background-color: #292929;
   }
   #user-spacer{
-      width: 0;
+     /* width: 0;*/
       height: auto;
       z-index: 3;
   }
@@ -2222,7 +2222,7 @@
     height: 140px;
   }
   #userarea #user-banner {
-      max-height: 0;
+      /*max-height: 0;*/
   }
   
   #user.mobile{
@@ -2289,7 +2289,7 @@
       height: 0px;
   }
   #user-banner .shadow{
-    height: 0;
+    /*height: 0;*/
   }
   .user-left,
   .user-right{
@@ -2450,7 +2450,7 @@
 }
 @media(min-width:768px){
   #profile-grid{
-    padding: 0;
+   /* padding: 0;*/
   }
 }
 @media(min-width:992px){
@@ -2831,7 +2831,7 @@
   .form-group,
   #editmodal img, 
   #profile-images img{
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
   }
 
   #networks .network:nth-child(odd){

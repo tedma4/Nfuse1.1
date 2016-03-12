@@ -393,58 +393,24 @@
                 <div class="modal-body">
 
                     <!-- FOLLOWER -->
+                    <% @user.followers.each do |user| %>
                     <div class="row follower">
                         <div class="col-xs-2 user-img">
                             <img src="/assets/users/default.jpg" alt="User Image"/>
                         </div>
                         <div class="col-xs-10">
                             <ul id="user-info">
-                                <li id="user-name">Kung Fury</li>
-                                <li id="user-link"><a href="">@KungFury</a></li>
+                                <li id="user-name"><%= user.full_name %></li>
+                                <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
                             </ul>
                             <ul id="user-stats">
-                                <li id="user-following">Following: <span>0</span></li>
-                                <li id="user-followers">Followers: <span>981,732</span></li>
-                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
+                                <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                                <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                                <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
                             </ul>
                         </div>
                     </div>
-                    
-                    <!-- FOLLOWER -->
-                    <div class="row follower">
-                        <div class="col-xs-2 user-img">
-                            <img src="/assets/users/brunomars.jpg" alt="User Image"/>
-                        </div>
-                        <div class="col-xs-10">
-                            <ul id="user-info">
-                                <li id="user-name">BrunoMars</li>
-                                <li id="user-link"><a href="">@BrunoMars</a></li>
-                            </ul>
-                            <ul id="user-stats">
-                                <li id="user-following">Following: <span>50</span></li>
-                                <li id="user-followers">Followers: <span>9,172</span></li>
-                                <li id="user-likes">Likes: <span>34,723</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- FOLLOWER -->
-                    <div class="row follower">
-                        <div class="col-xs-2 user-img">
-                            <img src="/assets/users/taylorswift.jpg" alt="User Image"/>
-                        </div>
-                        <div class="col-xs-10">
-                            <ul id="user-info">
-                                <li id="user-name">taylorswift</li>
-                                <li id="user-link"><a href="">@taylorswift</a></li>
-                            </ul>
-                            <ul id="user-stats">
-                                <li id="user-following">Following: <span>678</span></li>
-                                <li id="user-followers">Followers: <span>946,732</span></li>
-                                <li id="user-likes">Likes: <span>345,000</span></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <% end %>
 
                 </div>
             </div>
@@ -463,58 +429,24 @@
                 <div class="modal-body">
 
                     <!-- FOLLOWING -->
+                    <% @user.followed_users.each do |user| %>
                     <div class="row following">
                         <div class="col-xs-2 user-img">
                             <img src="/assets/users/default.jpg" alt="User Image"/>
                         </div>
                         <div class="col-xs-10">
                             <ul id="user-info">
-                                <li id="user-name">Kung Fury</li>
-                                <li id="user-link"><a href="">@KungFury</a></li>
+                                <li id="user-name"><%= user.full_name %></li>
+                                <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
                             </ul>
                             <ul id="user-stats">
-                                <li id="user-following">Following: <span>0</span></li>
-                                <li id="user-followers">Followers: <span>981,732</span></li>
-                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
+                                <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                                <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                                <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
                             </ul>
                         </div>
                     </div>
-
-                    <!-- FOLLOWING -->
-                    <div class="row following">
-                        <div class="col-xs-2 user-img">
-                            <img src="/assets/users/default.jpg" alt="User Image"/>
-                        </div>
-                        <div class="col-xs-10">
-                            <ul id="user-info">
-                                <li id="user-name">Kung Fury</li>
-                                <li id="user-link"><a href="">@KungFury</a></li>
-                            </ul>
-                            <ul id="user-stats">
-                                <li id="user-following">Following: <span>0</span></li>
-                                <li id="user-followers">Followers: <span>981,732</span></li>
-                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- FOLLOWING -->
-                    <div class="row following">
-                        <div class="col-xs-2 user-img">
-                            <img src="/assets/users/default.jpg" alt="User Image"/>
-                        </div>
-                        <div class="col-xs-10">
-                            <ul id="user-info">
-                                <li id="user-name">Kung Fury</li>
-                                <li id="user-link"><a href="">@KungFury</a></li>
-                            </ul>
-                            <ul id="user-stats">
-                                <li id="user-following">Following: <span>0</span></li>
-                                <li id="user-followers">Followers: <span>981,732</span></li>
-                                <li id="user-likes">Likes: <span>1,000,000,000</span></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <% end %>
 
                 </div>
             </div>
@@ -602,24 +534,6 @@
                         </a>
                     </div>
                     <div class="col-xs-12 modal-body">
-                        <!-- <form accept-charset="UTF-8" action="/search" id="slide-search" class="search drk" method="get">
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                            </div>
-                            <div class="dropdown loggedin">
-                                <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                    Nfusers
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="searchdrop">
-                                    <li><a href="#">Nfuse</a></li>
-                                    <li><a href="#">Nfusers</a></li>
-                                </ul>
-                            </div>
-                            <a class="ilink randomize loggedout" href="explore.html"><img src="/assets/dice.png" alt="random search"/></a>
-                            <a class="ilink gosearch" href="explore.html"><i class="fa fa-search"></i></a>
-                            <input class="searchform" name="search" placeholder="#tags, @Users &amp; Social Media" type="text">
-                        </form> -->
                         <%= form_tag search_path, method: 'get', id: "slide-search", class: "search drk" do %>
                           <% if signed_in? %>
                             <div class="dropdown loggedin">

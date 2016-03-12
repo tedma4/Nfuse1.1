@@ -94,24 +94,25 @@
 <section id="explorelist" class="container-fluid clearfix">
   <div class="row">
     <article id="users" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <a href="#">
+      <%= link_to explore_users_user_path(current_user) do %>
         <h3>Nfusers</h3>
         <p>All users throughout Nfuse.</p>
         <div class="bg"></div>
-      </a>
+      <% end %>
     </article>
     <article id="vue" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <h3>My Vue</h3>
-      <p>Pages you've followed.</p>
-      <div class="bg"></div>
-    </a>
+      <%= link_to my_top_50_path do %>
+        <h3>My Vue</h3>
+        <p>Pages you've followed.</p>
+        <div class="bg"></div>
+      <% end %>
     </article>
     <article id="random" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <a href="#">
+      <%= link_to random_path do %>
         <h3>Random</h3>
         <p>Discover new content.</p>
         <div class="bg"></div>
-      </a>
+      <% end %>
     </article>
     <article id="trending" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
       <a href="#">
