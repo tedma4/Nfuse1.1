@@ -9,81 +9,32 @@
 <% m = Page.where(page_name: w).pluck(:page_name)%>
 
 <% this_is_it = m.sort_by {|a, b| -Impression.where(action_name: a.to_s).count} %>
-<div class="containerThingy">
-  <div id="masonJar" class="center clearfix masonJar">
-    <% this_is_it.each do |this| %>
-    <% page = Page.find_by_page_name(this) %>
-        <div class="col-sm-2 col-sm-offset-1 individual_post item">
-          <div class="features-box-icon">
-            <%= link_to image_tag("#{page.twitter_handle}.jpg", size: "150x150", title: "#{page.thing_name}"), page_path(page.page_name) %>
-          </div>
-        </div>
-    <% end %>
-      <div class="col-sm-2 col-sm-offset-1 individual_post item">
-        <div class="features-box-icon">
-          <a data-toggle="modal" data-target="#new_request_modal">
-            <%= image_tag('requestmore.png', title: "New Request", id: "request_more_hover") %>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div id="new_request_modal" class="modal fade">
-  <div class="modal-fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" data-dismiss="modal">×</button>
-          <h3>Let us know which Businesses are missing?</h3>
-        </div>
-        <div class="modal-body-new-post">
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="span6">
-                <div class="logowrapper">
-                  <div class="Alignthisorelse">
-                    <div class="container post-padding">
-                      <div class="col-sm-6 form-box wow fadeInUp"><!-- 
-                        <div class="form-top-contacts">
-                          <div class="form-top-left">
-                            <h3><strong>Nprove Nfuse<strong></h3>
-                            <p> Any advice you can give us about Nfuse would be awesome, Thank you. </p>
-                          </div>
-                          <div class="form-top-right">
-                            <a href="#"><%#= image_tag("contactfeedbackgray.fw.png", size: "65x65") %></a>
-                          </div>
-                        </div> -->
-                        <div class="form-bottom">
-                          <%= form_for Contact.new, html: {role: "form"} do |f| %>
-                            <div class="form-group">
-                              <%= f.text_field :full_name, :placeholder => "Full Name", class: "form-control input-lg", id:"form-full-name", type: "search" %>
-                            </div>
-                            <div class="form-group">
-                              <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
-                            </div>
-                            <div class="form-group">
-                              <%= f.text_area :message, :placeholder => "Message", class: "form-control input-lg", id:"form-message", type: "message" %>
-                            </div>
-                            <div style="display: none;">
-                              <%= f.text_field :nickname, :hint => 'Leave this field blank!' %><!-- this text box needs to be hidden-->
-                            </div>
-                            <p class ="center fb-par-btm"> Nfuse wants to give you the best experience possible, any feedback on what to add or change will be greatly appreciated </p>
-                            <button type= "submit" class="btn center">
-                              Send!
-                            </button>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<section id="profile-grid" class="container-fluid">
+  <% this_is_it.each do |this| %>
+  <% page = Page.find_by_page_name(this) %>
+  <!-- PROFILE -->
+  <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+    <a href="/pages/<%= page.page_name %>">
+      <div class="profile-head">
+        <p><%= page.thing_name %></p>
       </div>
+      <%= image_tag("#{page.twitter_handle}.jpg") %>
+    </a>
+  </div>
+<% end %>
+<!-- REQUEST ADDITIONAL -->    
+<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-">
+  <div class="vcenter">
+    <div class="vcell">
+      <button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button>
     </div>
   </div>
 </div>
+</section>
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+   <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
+  </div>
+</footer>

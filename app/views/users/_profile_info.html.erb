@@ -54,10 +54,9 @@
       <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
         <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
       <% else %>
-        <%#= image_tag @user.avatar.url(:larger) %> <img src="/assets/users/default.jpg" alt="User Image"/>
+        <%= image_tag @user.avatar.url(:larger) %> <!-- <img src="/assets/users/default.jpg" alt="User Image"/> -->
 
       <% end %>
-       <!--  <img src="/assets/users/default.jpg" alt="User Image"/> -->
       </a>
     </li>
     <% if current_user?(@user) %>

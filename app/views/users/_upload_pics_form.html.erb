@@ -1,30 +1,40 @@
-<%= form_for @user, html:{role: "form", multipart: true} do |f| %>
-  <h2>Upload a Profile Picture</h2>
-  <div id="target">
-    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-      <%= image_tag @user.avatar_file_name, size: '50x50' %>
-    <% else %>
-      <%= image_tag @user.avatar(:medium) %>
-    <% end %>
+<%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
+  <div id="profile-images" class="modal-body">
+    <div class="row">
+      <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
+        <h5>Profile Picture</h5>
+        <small>At least 200 x 200</small>
+        <div id="target">
+          <label for="pictureInput">
+            <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+              <%= image_tag @user.avatar_file_name, size: '50x50' %>
+            <% else %>
+              <%= image_tag @user.avatar(:medium) %>
+            <% end %>
+          </label>
+        </div>
+        <div class="fileUpload btn-link-1">
+          <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
+        </div>
+      </div>
+      <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
+        <h5>Profile Banner</h5>
+        <small>At least 1440 x 787</small>
+        <div id="target2">
+          <label for="pictureInput2">
+            <%= image_tag @user.banner(:medium), id: "profilebann" %>
+          </label>
+        </div>
+        <div class="fileUpload btn-link-1">
+          <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="fileUpload btn-link-1">
-    <span>Upload Image</span>
-  <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default">Save</button>
   </div>
-  <h2>Upload a Profile Banner</h2>
-  <div id="target2"> 
-    <%= image_tag @user.banner(:medium) %>
-  </div>
-  <div class="fileUpload btn-link-1">
-    <span>Upload Banner</span>
-    <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
-  </div> &nbsp;
-  <div>
-    <button type="submit" class="btn btn-link-1">
-      Save
-    </button>
-    <% if controller_name == 'callback_links' %>
-      <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
-    <%end%>
-  </div>
+  <% if controller_name == 'callback_links' %>
+    <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+  <% end %>
 <% end %>
