@@ -3,262 +3,205 @@
     <!-- NOTIFICATIONS -->
     <% if signed_in? && !@user.nil?%>
     <div class="modal fade" id="notificationsmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="notificationslabel">Notifications</h4>
-                </div>
-                <div class="modal-body container-fluid">
-                    <div id="notifications-list" class="">
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/AmericanIdol.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@AmericanIdol</a> liked your photo! <span class="timer">just now</span></p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification followed">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/brunomars.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@BrunoMars</a> followed you! <span class="timer">1m</span></p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <a href="#"><i class="fa"></i></a>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/CW_TheFlash.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@CW_TheFlash</a> liked your video! <span class="timer">2m</span></p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/MapleLeafs.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-
-                        <!-- EXCLUSIVE NOTIFICATION -->
-                        <div class="row notification exclusive">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/JayZClassicBars.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@JayZClassicBars</a> send you an exclusive post! <span class="timer">1d</span></p>
-                            </div>
-                            <button type="button" class="col-xs-1 notification-action" data-toggle="modal" data-target="#exclusivemodal">
-                                <a href="#"><i class="fa"></i></a>
-                            </button>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification followed">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/kungfury.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> followed you! <span class="timer">1w</span></p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <a href="#"><i class="fa"></i></a>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification followed">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/jimmyfallon.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@aReallyLongName2seeWhatHappensNow6969696</a> Liked your photo <span class="timer">1m</span></p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <a href="#"><i class="fa"></i></a>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
-                        <!-- NOTIFICATION -->
-                        <div class="row notification">
-                            <div class="col-xs-1 user-img">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                            <div class="col-xs-10 notification-body">
-                                <p><a href="#" class="user-link">@KungFury</a> Liked your photo</p>
-                            </div>
-                            <div class="col-xs-1 notification-action">
-                                <img src="/assets/users/default.jpg" alt="User Image"/>
-                            </div>
-                        </div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="notificationslabel">Notifications</h4>
+          </div>
+          <div class="modal-body container-fluid">
+            <div id="notifications-list" class="">
+              <% activity1 = PublicActivity::Activity.includes(:owner).where(recipient_id: current_user.id, recipient_type: 'User')%>
+              <% activity2 = PublicActivity::Activity.includes(:owner).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id) %>
+              <%  @activities = (activity1 + activity2).sort_by{|t| - t.created_at.to_i}.take(20)
+              %>
+              <% @activities.each do |activity| %>
+              <%# byebug %>
+                <% case activity.trackable_type %>
+                <% when 'Relationship' %>
+                  <% if activity.owner.nil? %>
+                  <% else %>
+                    <div class="row notification followed">
+                      <div class="col-xs-1 user-img">
+                        <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                          <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                        <% else %>
+                          <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                        <% end %>
+                        <!-- <img src="/assets/users/brunomars.jpg" alt="User Image"/> -->
+                      </div>
+                      <div class="col-xs-10 notification-body">
+                        <p>
+                          <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
+                          followed you! 
+                          <span class="timer">
+                            <%= time_ago_in_words(activity.created_at) %> 
+                          </span></p>
+                      </div>
+                      <div class="col-xs-1 notification-action">
+                        <a href="#"><i class="fa"></i></a>
+                      </div>
                     </div>
-                </div>
+                  <% end %>
+                <% when 'Comment' %>
+                  <% if activity.owner.nil? %>
+                  <% else %>
+                   <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
+                    <div class="row notification">
+                      <div class="col-xs-1 user-img">
+                          <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                            <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                          <% else %>
+                           <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                          <% end %>
+                      </div>
+                      <div class="col-xs-10 notification-body">
+                        <p>
+                          <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                          liked your forum post photo! 
+                          <span class="timer">
+                            <%= time_ago_in_words(activity.created_at) %>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-xs-1 notification-action">
+                        <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
+                      </div>
+                    </div>
+                  <% end %>
+                <% when 'User' %>
+                <%# buybug %>
+                  <% if activity.owner.nil? %>
+                  <% else %>
+                   <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
+                    <div class="row notification">
+                      <div class="col-xs-1 user-img">
+                          <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                            <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                          <% else %>
+                           <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                          <% end %>
+                      </div>
+                      <div class="col-xs-10 notification-body">
+                        <p>
+                          <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                          liked your photo! 
+                          <span class="timer">
+                            <%= time_ago_in_words(activity.created_at) %>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-xs-1 notification-action">
+                        <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
+                      </div>
+                    </div>
+                  <% end %>
+                <% when 'Shout' %>
+                  <% if activity.owner.nil? %>
+                  <% else %>
+                  <% end %>
+                    <div class="row notification exclusive">
+                      <div class="col-xs-1 user-img">
+                        <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                          <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                        <% else %>
+                          <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                        <% end %>
+                      </div>
+                      <div class="col-xs-10 notification-body">
+                        <p><%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner, class: 'user-link') %> 
+                          send you an exclusive post!
+                          <span class="timer">
+                            <%= time_ago_in_words(activity.created_at) %> 
+                          </span>
+                        </p>
+                      </div>
+                      <button type="button" class="col-xs-1 notification-action" data-toggle="modal" data-target="#exclusivemodal<%= activity.id %>">
+                        <a href="#"><i class="fa"></i></a>
+                      </button>
+                    </div>
+                <% else %>
+                <% end %>
+              <%# end %>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- EXCLUSIVE POST MODAL -->
-    <div class="modal fade" id="exclusivemodal" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <article class="individual_post item instagram_post0">
-                    <header class="post_header">
-                        <div class="user">
-                            <img alt="11820660 1609991055932652 2099461914 a" class="user_profile_picture" height="45" src="https://scontent.cdninstagram.com/hphotos-xtf1/t51.2885-19/11820660_1609991055932652_2099461914_a.jpg" width="45">
-                            <a href="/">collegehumor</a>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a class="timeStamp" href="#" target="_blank" title="Go To Entry">
-                            <i class="fa"></i> 6d
-                        </a>
-                        
-                    </header>
-                    <main class="post_content">
-                        <div class="timeline-user-box">
-                            <video width="100%" controls="" preload="none" autoload="none" poster="https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/s320x320/e15/12317708_1495632684073251_1251927360_n.jpg">
-                                <source src="https://scontent.cdninstagram.com/hphotos-xtf1/t50.2886-16/12344669_921793924563268_479938280_n.mp4" type="video/mp4">
-                                <source src="https://scontent.cdninstagram.com/hphotos-xtf1/t50.2886-16/12344669_921793924563268_479938280_n.mp4" type="video/ogv">
-                            </video>
-                        </div>
-                        <p>
-                            The Force Awakens Is Just Like Phantom Menace - Full video link in profile - #starwars #forceawakens #dejavu #collegehumor
-                        </p>
-                    </main>
-                    <footer class="post_actions">
-                        <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
-                            <i class="fa"></i><span>666</span>
-                        </a>
-                    </footer>
-                </article>
-            </div>
+  <% if activity.trackable_type == 'Shout' %>
+    <div class="modal fade" id="exclusivemodal<%= activity.id %>" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <article class="individual_post item instagram_post0">
+            <header class="post_header">
+              <div class="user">
+                <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                  <%= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                <% else %>
+                  <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                <% end %>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <a class="timeStamp" href="#" target="_blank" title="Go To Entry">
+                <i class="fa"></i> <%= time_ago_in_words(activity.created_at) %>
+              </a>
+            </header>
+            <main class="post_content">
+              <% if !activity.trackable.url.blank? %>
+                <p> <%= activity.trackable.url_html %></p>
+              <% elsif activity.trackable.is_pic? %>
+                <div class="timeline-user-box image_post">
+                  <%= image_tag activity.trackable.pic_url %>
+                </div>
+              <% elsif activity.trackable.is_video? %>
+                <div class="timeline-user-box">
+                  <video 
+                    preload="none"
+                    id="ytplayer" 
+                    type="video/mp4" 
+                    width="100%" 
+                    height="225" 
+                    src="<%= activity.trackable.video_url %>" 
+                    frameborder="0"
+                    allowfullscreen
+                    controls>
+                  </video>
+                </div>
+              <% elsif activity.trackable.is_full_video? %>
+                <div class="timeline-user-box">
+                  <video 
+                    preload="none"
+                    autoload="none"
+                    type="video/flv" 
+                    width="100%" 
+                    src="<%= activity.trackable.full_video_url %>" 
+                    frameborder="0"
+                    allowfullscreen
+                    controls>
+                  </video>
+                </div>
+              <% end %>
+              <% if activity.trackable.content.present? %>
+                <p>
+                  <%= activity.trackable.content %>
+                </p>
+              <% end %>
+            </main>
+            <footer class="post_actions">
+              <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                <i class="fa"></i><span>666</span>
+              </a>
+            </footer>
+          </article>
         </div>
+      </div>
     </div>
+  <% end %>
+<% end %>
     <!-- EDIT MODAL -->
     <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editlabel">
         <div class="modal-dialog" role="document">
@@ -322,38 +265,36 @@
                     </button>
                     <h4 class="modal-title" id="sharelabel">Share a Picture or URL</h4>
                 </div>
-                <form accept-charset="UTF-8" action="/shouts" class="minimal new_shout" enctype="multipart/form-data" id="upload_form" method="post" role="form">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                                <input name="authenticity_token" type="hidden" value="FrlkDdP+NzUYe427H4dK+voP107vcgDcOOMz3/0nlTs=">
-                            </div>
-                            <div class="image-upload col-xs-12 col-sm-6">
-                                <label for="newPostPictureInput">
-                                    <button type="button" class="btn btn-default">Upload Picture</button>
-                                </label>
-                                <input class="upload" id="newPostPictureInput" name="shout[pic]" placeholder="Pic" type="file">
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <textarea class="form-control" id="profile_post_url_body" name="shout[url]" onchange="previewUrl()" placeholder="URL of everything" type="search"></textarea>
-                            </div>
-                            <div class="col-xs-12">
-                                <div id="target"></div>
-                                <div id="profilePostTarget"></div>
-                                <div id="profileUrlPostPreview"></div>
-                                <textarea class="form-control" id="shout_content" name="shout[content]" placeholder="Write a description for your post..." type="search" data-gramm="" data-txt_gramm_id="881f363a-4e5f-b5bd-dac5-10a581168008"></textarea>
-                            </div>
-                        </div>
+                <%= form_for Shout.new, :html => { :multipart => true, id: "upload_form", role:"form",class: "minimal new_shout" } do |f| %>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="image-upload col-xs-12 col-sm-6">
+                        <label for="newPostPictureInput">
+                          <button type="button" class="btn btn-default">Upload Picture</button>
+                        </label>
+                        <%= f.file_field :pic, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
+                      </div>
+                      <div class="col-xs-12 col-sm-6">
+                        <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+                      </div>
+                      <div class="col-xs-12">
+                        <div id="target"></div>
+                        <div id="profilePostTarget"></div>
+                        <div id="profileUrlPostPreview"></div>
+                        <%= f.text_area :content, class: "form-control", id: "shout_content", placeholder: "Write a description for your post...", type:"search" %>
+                      </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default">Share</button>
-                        <select class="c-select">
-                            <option selected>Feed</option>
-                            <option value="1">Exclusive</option>
-                        </select>
-                    </div>
-                </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-default">Share</button>
+                    <% if current_user.followers.any? %>
+                      <select class="c-select">
+                        <option selected>Feed</option>
+                        <option value="1">Exclusive</option>
+                      </select>
+                    <% end %>
+                  </div>
+                <% end %>
             </div>
         </div>
     </div>
