@@ -1,55 +1,58 @@
- <!-- *Start* Views/pages/help.html -->
-<style type="text/css">
-	.help-padding {
-		margin-top: 2%;
-	}
-
-	h3 {
-		color: #fff;
-	}
-
-	strong {
-		font-weight: 600;
-	}
-</style>
-
-<% provide(:title, 'Help') %>
-
-<div class="Alignthisorelse">
-  <div class="container help-padding">
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3 form-box wow fadeInUp">
-        <div class="form-top-help">
-          <div class="form-top-left">
-            <h3><strong>Nfuse Help Page</strong></h3>
-              <p>We're here to help you with any Questions.</p>
-          </div>
-          <div class="form-top-right">
-          	<a href="#"><%= image_tag("privacywarninggray.fw.png", size: "65x65") %></a>
-          </div>
-        </div>
-        <div class="form-bottom">
-					<form role="form">
-						<p>
-						<strong>Nfuse</strong> is a social content interface that makes sharing and discovering way to easy. Our goal is to make social media as simple as possible. We have already removed the barriers of social media and we have a lot more planned. Currently we have three main sections...
-						</p>
-						<p>
-						<strong>Hub-</strong> One page, one place, one stop to see all your friends social media from eight different sites.
-						</p>
-						<p>
-						<strong>Explore-</strong> Discover more content than ever before, find interesting post from people, categories, and our search.
-						</p>
-						<p>
-						<strong>Profile-</strong> Nfuse your social media and view your entire digital life. Feed is the accumulation of all your social media post.
-						</p>
-						<p>
-						Here at Nfuse we try to make your experience the best possible. If this page can not answer your questions, please contact us and we will personally respond to you. Thank you for using Nfuse. <%= link_to "contact us", new_contact_path %>.
-						</p>
-					</form>
-      	</div>
-      </div>
-    </div>
+    <!-- START CONTENT -->
+<section id="privacy" class="container picbg">
+  <div class="row">
+  <!-- PRIVACY -->
+    <header class="page-title col-xs-12 center">
+      <h1 class="heavy">Privacy</h1>
+      <p class="intro-text">You are responsible for reading all of the privacy/terms.</p>
+    </header>
+    <article class="content col-xs-12">
+      <h4>Help</h4>
+			<p>
+			<strong>Nfuse</strong> is a social content interface that makes sharing and discovering way to easy. Our goal is to make social media as simple as possible. We have already removed the barriers of social media and we have a lot more planned. Currently we have three main sections...
+			</p>
+			<p>
+			<strong>Hub-</strong> One page, one place, one stop to see all your friends social media from eight different sites.
+			</p>
+			<p>
+			<strong>Explore-</strong> Discover more content than ever before, find interesting post from people, categories, and our search.
+			</p>
+			<p>
+			<strong>Profile-</strong> Nfuse your social media and view your entire digital life. Feed is the accumulation of all your social media post.
+			</p>
+			<p>
+			Here at Nfuse we try to make your experience the best possible. If this page can not answer your questions, please contact us and we will personally respond to you. Thank you for using Nfuse. <%= link_to "contact us", new_contact_path %>.
+			</p>
+      <h4>Contacting us</h4>
+      <p>If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at:
+      <br>https://nfuse.it
+      <br><a href="mailto:ower@cerebralhq.com">ower@cerebralhq.com</a> or <a href="mailto:tedma4@yahoo.com">tedma4@yahoo.com</a>
+      <br>This document was last updated on 4/14/2015</p>
+    </article>
   </div>
-</div>
+  <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+  <div class="random bg"></div>
+</section>
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
+  </div>
+</footer>
 
-<!-- *End* Views/pages/help.html -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

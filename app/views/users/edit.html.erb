@@ -1,275 +1,4 @@
-<!-- <%# provide(:title, "Edit user") %>
-<style>
-
-/*  setting tab */
-div.setting-tab-container{
-  z-index: 4;
-  background-color: #ffffff;
-  padding: 0 !important;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  border:1px solid #ddd;
-  margin-top: 20px;
-  margin-left: 50px;
-  -webkit-box-shadow: 0 6px 12px #87ceeb;
-  box-shadow: 0 6px 12px #87ceeb;
-  -moz-box-shadow: 0 6px 12px #87ceeb;
-  background-clip: padding-box;
-  opacity: 0.97;
-  filter: alpha(opacity=97);
-}
-div.setting-tab-menu{
-  padding-right: 0;
-  padding-left: 0;
-  padding-bottom: 0;
-}
-div.setting-tab-menu div.list-group{
-  margin-bottom: 0;
-}
-div.setting-tab-menu div.list-group>a{
-  margin-bottom: 0;
-}
-div.setting-tab-menu div.list-group>a .glyphicon,
-div.setting-tab-menu div.list-group>a .fa {
-  color: #87ceeb;
-}
-div.setting-tab-menu div.list-group>a:first-child{
-  border-top-right-radius: 0;
-  -moz-border-top-right-radius: 0;
-}
-div.setting-tab-menu div.list-group>a:last-child{
-  border-bottom-right-radius: 0;
-  -moz-border-bottom-right-radius: 0;
-}
-div.setting-tab-menu div.list-group>a.active,
-div.setting-tab-menu div.list-group>a.active .glyphicon,
-div.setting-tab-menu div.list-group>a.active .fa{
-  background-color: #87ceeb;
-  background-image: #87ceeb;
-  color: #ffffff;
-}
-div.setting-tab-menu div.list-group>a.active:after{
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-top: -13px;
-  border-left: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  border-left: 10px solid #87ceeb;
-}
-
-div.setting-tab-content{
-  background-color: #ffffff;
-  /* border: 1px solid #eeeeee; */
-  padding-left: 20px;
-  padding-top: 10px;
-}
-
-div.setting-tab div.setting-tab-content:not(.active){
-  display: none;
-}
-
-  .pro-pics-padding {
-    margin-top: 8vh;
-}
-
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-}
-.fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-
-</style>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-14 col-md-12 col-md-offset-1 col-sm-8 col-xs-9 setting-tab-container">
-      <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 setting-tab-menu">
-        <div class="list-group">
-          <a href="#" class="list-group-item active text-center">
-            <%#= image_tag("minimalistbeakerbluet.fw.png", size: "60x60") %><br>Networks
-          </a>
-          <a href="#" class="list-group-item text-center">
-            <%#= image_tag("pencilblue.fw.png", size: "60x60") %><br>Account Info
-          </a>
-          <a href="#" class="list-group-item text-center">
-            <%#= image_tag("createprofileblue.fw.png", size: "60x60") %><br>Profile Images
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 setting-tab">
-        <div class="setting-tab-content active">
-          <div class="Alignthisorelse sup-padding">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-10  form-box wow fadeInUp">
-                  <div class="form-top">
-                    <div class="form-top-left">
-                      <h2>Network Nfusion.</h2>
-                        <p>Add more networks to share with everyone.</p>
-                    </div>
-                    <div class="form-top-right">
-                      <a href="#"><%#= image_tag("Nfuselogogray.fw.png", size: "65x65") %></a>
-                    </div>
-                  </div>
-                  <div class="form-bottom-sup-nfusion">
-                    <%#= render partial: 'users/network_authentications' %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="setting-tab-content">
-          <div class="Alignthisorelse">
-            <div class="container signup-padding">
-              <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
-                <div class="form-top">
-                  <div class="form-top-left">
-                    <h3>Account Info</h3>
-                    <p>Update or change your account info.</p>
-                  </div>
-                  <div class="form-top-right">
-                    <a href="#"><%#= image_tag("pencilgray.fw.png", size: "65x65") %></a>
-                  </div>
-                </div>
-                <div class="form-bottom">
-                  <%#= form_for(@user, html: { role: "form"}) do |f| %>
-                    <div class="error_messages">
-                      <div>
-                        <%#= render 'shared/error_messages', object: f.object %>
-                      </div>
-                      <div class="form-group">
-                        <%#= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
-                      </div>
-                      <div class="form-group">
-                        <%#= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
-                      </div>
-                      <div class="form-group">
-                        <%#= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
-                      </div>
-                      <div class="form-group">
-                        <%#= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
-                      </div>
-                      <div class="form-group">
-                        <%#= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
-                      </div>
-                      <div class="form-group">
-                        <%#= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
-                      </div>
-                      <button type="submit" class="btn">
-                      Save
-                      </button>
-                      <%#= link_to 'delete', destroyuser_path %>
-                    </div>
-                  <%# end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="setting-tab-content">
-          <div class="Alignthisorelse">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-6 col-sm-offset-2 form-box wow fadeInUp">
-                  <div class="form-top">
-                    <div class="form-top-left">
-                      <h3>Choose you profile images</h3>
-                        <p>Update or change your profile images.</p>
-                    </div>
-                    <div class="form-top-right">
-                      <a href="#"><%#= image_tag("createprofilegray.fw.png", size: "60x60") %></a>
-                    </div>
-                  </div>
-                  <div class="form-bottom">
-                    <div class="Alignthisorelse">
-                      <%#= render partial: 'users/upload_pics_form' %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <script>
-    $(function() {
-      $('#pictureInput').on('change', function(event) {
-        var files = event.target.files;
-        var image = files[0]
-        var reader = new FileReader();
-        reader.onload = function(file) {
-          var img = new Image();
-          console.log(file);
-          img.src = file.target.result;
-          $('#target').html(img);
-        }
-        reader.readAsDataURL(image);
-        console.log(files);
-      });
-    });
-  </script>
-
-  <script>
-    $(function() {
-      $('#pictureInput2').on('change', function(event) {
-        var files = event.target.files;
-        var image = files[0]
-        var reader = new FileReader();
-        reader.onload = function(file) {
-          var img = new Image();
-          console.log(file);
-          img.src = file.target.result;
-          $('#target2').html(img);
-        }
-        reader.readAsDataURL(image);
-        console.log(files);
-      });
-    });
-  </script>
-
-
-  <script>
-  $(document).ready(function() {
-      $("div.setting-tab-menu>div.list-group>a").click(function(e) {
-          e.preventDefault();
-          $(this).siblings('a.active').removeClass("active");
-          $(this).addClass("active");
-          var index = $(this).index();
-          $("div.setting-tab>div.setting-tab-content").removeClass("active");
-          $("div.setting-tab>div.setting-tab-content").eq(index).addClass("active");
-      });
-  });
-  </script>
-*End* Views/users/edit.html.erb  -->
-
-
-
-
-
-
-
-
-    <!-- START CONTENT -->
+   <!-- START CONTENT -->
     <section id="settings" class="container">
         <div class="row">
         
@@ -303,44 +32,53 @@ div.setting-tab div.setting-tab-content:not(.active){
                 
                 <!-- PANEL ONE -->
                 <div role="tabpanel" class="tab-pane active" id="profile-images">
-                    <form accept-charset="UTF-8" action="" class="edit_user" enctype="multipart/form-data" id="edit_user_25" method="post" role="form">
+                  <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
                         <div class="row">
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                                <input name="_method" type="hidden" value="patch">
-                                <input name="authenticity_token" type="hidden" value="FrlkDdP+NzUYe427H4dK+voP107vcgDcOOMz3/0nlTs=">
-                            </div>
                             <div class="form-group col-xs-12 col-sm-4 col-md-4">
                                 <h5>Profile Picture</h5>
                                 <small>At least 200 x 200</small>
+                               <!--  <div id="target">
+                                    <img alt="Default medium" src="img/users/default.jpg">
+                                </div> -->
                                 <div id="target">
-                                    <img alt="Default medium" src="/assets/users/default.jpg">
+                                  <label for="pictureInput">
+                                    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+                                      <%= image_tag @user.avatar_file_name %>
+                                    <% else %>
+                                      <%= image_tag @user.avatar(:medium) %>
+                                    <% end %>
+                                  </label>
+                                </div>
+                                <div class="fileUpload btn-link-1">
+                                  <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
                                 </div>
                             </div>
                             <div class="form-group col-xs-12 col-sm-8 col-md-8">
                                 <h5>Profile Banner</h5>
                                 <small>At least 2400 x 1000</small>
-                                <div id="target2"> 
+                                <!-- <div id="target2"> 
                                     <img alt="Default2 medium" src="/assets/users/default-banner.jpg">
+                                </div> -->
+                                <div id="target2">
+                                  <label for="pictureInput2">
+                                    <%= image_tag @user.banner(:larger), id: "profilebann" %>
+                                  </label>
+                                </div>
+                                <div class="fileUpload btn-link-1">
+                                  <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <% end %>
                 </div>
 
                 <!-- PANEL TWO -->
                 <div role="tabpanel" class="tab-pane" id="account-info">
-                    <form accept-charset="UTF-8" action="" class="minimal edit_user" id="" method="post" role="form">
-                        <div style="display:none">
-                            <input name="utf8" type="hidden" value="✓">
-                            <input name="_method" type="hidden" value="patch">
-                            <input name="authenticity_token" type="hidden" value="FrlkDdP+NzUYe427H4dK+voP107vcgDcOOMz3/0nlTs=">
-                        </div>
+                  <%= form_for(@user, html: {class: 'minimal edit_user', id: ''}) do |f| %>
                         <div class="error_messages">
-                            <div>
-                                <!-- *Start* Views/shared/_error_messages.html -->
-                                <!-- *End* Views/shared/_error_messages.html -->
-                            </div>
+                          <div>
+                            <%= render 'shared/error_messages', object: f.object %>
+                          </div>
                             <div class="form-group">
                                 <div class="col-xs-12 col-md-6">
                                     <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
@@ -354,7 +92,7 @@ div.setting-tab div.setting-tab-content:not(.active){
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <%end%>
                 </div>
 
                 <!-- PANEL THREE -->
@@ -365,9 +103,26 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-twitter"></i>
                         <h3>Twitter</h3>
                         <p>Share your Twitter posts.</p>
-                        <button type="button" id="nfuseTw" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('twitter') %>
+                          <p class="nfused_network">
+                            <%= link_to "/auth/twitter?origin=#{request.original_url}" do %>
+                              <button type="button" id="nfuseTw" >
+                                  You've Nfused Twitter
+                              </button>
+                            <% end %> | 
+                            <%= link_to remove_token_path(provider: 'twitter') do %>
+                              <button type="button" id="nfuseTw" >
+                                  Remove Twitter
+                              </button>
+                            <% end %>
+                          </p>
+                        <% else %>
+                          <%= link_to "/auth/twitter?origin=#{request.original_url}"  do %>
+                            <button type="button" id="nfuseTw" >
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
                     
                     <!-- INSTAGRAM -->
@@ -375,9 +130,27 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-instagram"></i>
                         <h3>Instagram</h3>
                         <p>Share your Instagram posts.</p>
-                        <button type="button" id="nfuseIn" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('instagram') %>
+                          <p class="nfused_network">
+                            <%= link_to "/auth/instagram?origin=#{request.original_url}" do %>
+                              <button type="button" id="nfuseIn" >
+                                  You've Nfused Instagram
+                              </button>
+                            <% end %>
+                             | 
+                            <%= link_to remove_token_path(provider: 'instagram') do %>
+                              <button type="button" id="nfuseTbl">
+                                  Remove Instagram
+                              </button>
+                            <% end %>
+                          </p>
+                        <% else %>
+                          <%= link_to "/auth/instagram?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseIn" >
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
 
                     <!-- TUMBLR -->
@@ -385,9 +158,26 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-tumblr"></i>
                         <h3>Tumblr</h3>
                         <p>Share your Tumblr posts.</p>
-                        <button type="button" id="nfuseTbl" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('tumblr') %>
+                          <p class="nfused_network">
+                            <%= link_to "/auth/tumblr?origin=#{request.original_url}" do %>
+                              <button type="button" id="nfuseTbl">
+                                  You've Nfused Tumblr
+                              </button>
+                            <% end %> | 
+                            <%= link_to remove_token_path(provider: 'tumblr') do %>
+                              <button type="button" id="nfuseTbl">
+                                  Remove Tumblr
+                              </button>
+                            <% end %>
+                          </p>
+                        <% else %>
+                          <%= link_to "/auth/tumblr?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseTbl">
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
 
                     <!-- YOUTUBE -->
@@ -395,9 +185,26 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-youtube-play"></i>
                         <h3>Youtube</h3>
                         <p>Share your Youtube posts.</p>
-                        <button type="button" id="nfuseYt" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('google_oauth2') %>
+                          <p class="nfused_network">
+                          <%= link_to "/auth/google_oauth2?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseYt">
+                                You've Nfused Youtube
+                            </button>
+                          <% end %> | 
+                          <%= link_to remove_token_path(provider: 'youtube') do %>
+                            <button type="button" id="nfuseYt">
+                                Remove Youtube
+                            </button>
+                          <% end %>
+                          </p>
+                        <% else %>
+                          <%= link_to "/auth/google_oauth2?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseYt">
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
 
                     <!-- G PLUS -->
@@ -405,9 +212,26 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-google-plus"></i>
                         <h3>Google Plus</h3>
                         <p>Share your Google Plus posts.</p>
-                        <button type="button" id="nfuseGp" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('gplus') %>
+                          <p class="nfused_network">
+                          <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseGp">
+                                You've Nfused Google Plus
+                            </button>
+                          <% end %> | 
+                          <%= link_to remove_token_path(provider: 'gplus') do %>
+                            <button type="button" id="nfuseGp">
+                                Remove Google Plus
+                            </button>
+                          <% end %>
+                          </p>
+                        <% else %>
+                          <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseGp">
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
 
                     <!-- VIMEO -->
@@ -415,9 +239,24 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-vimeo"></i>
                         <h3>Vimeo</h3>
                         <p>Share your Vimeo posts.</p>
-                        <button type="button" id="nfuseVm" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('vimeo') %>
+                          <%= link_to "/auth/vimeo?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseVm">
+                                You've Nfused Vimeo
+                            </button>
+                          <% end %> | 
+                          <%= link_to remove_token_path(provider: 'vimeo') do %>
+                            <button type="button" id="nfuseVm">
+                                Remove Vimeo
+                            </button>
+                          <% end %>
+                        <% else %>
+                          <%= link_to "/auth/vimeo?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseVm">
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
 
                     <!-- PINTEREST -->
@@ -425,9 +264,24 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-pinterest-p"></i>
                         <h3>Pinterest</h3>
                         <p>Share your Pinterest posts.</p>
-                        <button type="button" id="nfusePn" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('pinterest') %>
+                          <%= link_to "/auth/pinterest" do %>
+                            <button type="button" id="nfusePn">
+                                You've Nfused Pinterest
+                            </button>
+                          <% end %> | 
+                          <%= link_to remove_token_path(provider: 'pinterest') do %>
+                            <button type="button" id="nfusePn">
+                                Remove Pinterest
+                            </button>
+                          <% end %>
+                        <% else %>
+                          <%= link_to "/auth/pinterest" do %>
+                            <button type="button" id="nfusePn">
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
 
                     <!-- FACEBOOK -->
@@ -435,23 +289,37 @@ div.setting-tab div.setting-tab-content:not(.active){
                         <i class="fa fa-facebook"></i>
                         <h3>Facebook</h3>
                         <p>Share your Facebook posts.</p>
-                        <button type="button" id="nfuseFb" data-loading-text="Syncing..." class="nfuseit" autocomplete="off">
-                            Nfuse it
-                        </button>
+                        <% if current_user && user_has_provider?('facebook') %>
+                          <%= link_to "/auth/facebook?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseFb">
+                                You've Nfused Facebook
+                            </button>
+                          <% end %> | 
+                          <%= link_to remove_token_path(provider: 'facebook') do %>
+                            <button type="button" id="nfuseFb">
+                                Remove Facebook
+                            </button>
+                          <% end %>
+                        <% else %>
+                          <%= link_to "/auth/facebook?origin=#{request.original_url}" do %>
+                            <button type="button" id="nfuseFb">
+                                Nfuse it
+                            </button>
+                          <% end %>
+                        <% end %>
                     </div>
                 </div>
             </article>
 
             <!-- SAVE ALL -->
             <div id="saveall" class="col-xs-12 content">
-                <button type="button" class="fullw btn btn-default">Finished</button>
+                <button type="submit" class="fullw btn btn-default">Finished</button>
             </div>
         </div>
     </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container text-center">
-                <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
-            </div>
-        </footer>
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
+  </div>
+</footer>

@@ -124,40 +124,40 @@
                     </div>
                 <% else %>
                 <% end %>
-              <%# end %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- EXCLUSIVE POST MODAL -->
-  <% if activity.trackable_type == 'Shout' %>
-    <div class="modal fade" id="exclusivemodal<%= activity.id %>" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
+<!--   <%# if activity.trackable_type == 'Shout' %>
+    <div class="modal fade" id="exclusivemodal<%#= activity.id %>" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <article class="individual_post item instagram_post0">
             <header class="post_header">
               <div class="user">
-                <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                  <%= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                <% else %>
-                  <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                <% end %>
-                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+                <%# if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                  <%#= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                <%# else %>
+                  <%#= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+                <%# end %>
+                <%#= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
               </div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <a class="timeStamp" href="#" target="_blank" title="Go To Entry">
-                <i class="fa"></i> <%= time_ago_in_words(activity.created_at) %>
+                <i class="fa"></i> <%#= time_ago_in_words(activity.created_at) %>
               </a>
             </header>
             <main class="post_content">
-              <% if !activity.trackable.url.blank? %>
-                <p> <%= activity.trackable.url_html %></p>
-              <% elsif activity.trackable.is_pic? %>
+              <%# if !activity.trackable.url.blank? %>
+                <p> <%#= activity.trackable.url_html %></p>
+              <%# elsif activity.trackable.is_pic? %>
                 <div class="timeline-user-box image_post">
-                  <%= image_tag activity.trackable.pic_url %>
+                  <%#= image_tag activity.trackable.pic_url %>
                 </div>
-              <% elsif activity.trackable.is_video? %>
+              <%# elsif activity.trackable.is_video? %>
                 <div class="timeline-user-box">
                   <video 
                     preload="none"
@@ -165,31 +165,31 @@
                     type="video/mp4" 
                     width="100%" 
                     height="225" 
-                    src="<%= activity.trackable.video_url %>" 
+                    src="<%#= activity.trackable.video_url %>" 
                     frameborder="0"
                     allowfullscreen
                     controls>
                   </video>
                 </div>
-              <% elsif activity.trackable.is_full_video? %>
+              <%# elsif activity.trackable.is_full_video? %>
                 <div class="timeline-user-box">
                   <video 
                     preload="none"
                     autoload="none"
                     type="video/flv" 
                     width="100%" 
-                    src="<%= activity.trackable.full_video_url %>" 
+                    src="<%#= activity.trackable.full_video_url %>" 
                     frameborder="0"
                     allowfullscreen
                     controls>
                   </video>
                 </div>
-              <% end %>
-              <% if activity.trackable.content.present? %>
+              <%# end %>
+              <%# if activity.trackable.content.present? %>
                 <p>
-                  <%= activity.trackable.content %>
+                  <%#= activity.trackable.content %>
                 </p>
-              <% end %>
+              <%# end %>
             </main>
             <footer class="post_actions">
               <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
@@ -200,8 +200,8 @@
         </div>
       </div>
     </div>
-  <% end %>
-<% end %>
+  <%# end %>
+<%# end %> -->
     <!-- EDIT MODAL -->
     <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editlabel">
         <div class="modal-dialog" role="document">
