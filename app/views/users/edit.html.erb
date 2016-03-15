@@ -104,18 +104,16 @@
                         <h3>Twitter</h3>
                         <p>Share your Twitter posts.</p>
                         <% if current_user && user_has_provider?('twitter') %>
-                          <p class="nfused_network">
                             <%= link_to "/auth/twitter?origin=#{request.original_url}" do %>
                               <button type="button" id="nfuseTw" >
-                                  You've Nfused Twitter
+                                  Re-Nfuse Twitter
                               </button>
                             <% end %> | 
                             <%= link_to remove_token_path(provider: 'twitter') do %>
                               <button type="button" id="nfuseTw" >
-                                  Remove Twitter
+                                  Remove Network
                               </button>
                             <% end %>
-                          </p>
                         <% else %>
                           <%= link_to "/auth/twitter?origin=#{request.original_url}"  do %>
                             <button type="button" id="nfuseTw" >
@@ -131,19 +129,17 @@
                         <h3>Instagram</h3>
                         <p>Share your Instagram posts.</p>
                         <% if current_user && user_has_provider?('instagram') %>
-                          <p class="nfused_network">
                             <%= link_to "/auth/instagram?origin=#{request.original_url}" do %>
                               <button type="button" id="nfuseIn" >
-                                  You've Nfused Instagram
+                                  Re-Nfuse Instagram
                               </button>
                             <% end %>
                              | 
                             <%= link_to remove_token_path(provider: 'instagram') do %>
                               <button type="button" id="nfuseTbl">
-                                  Remove Instagram
+                                  Remove Network
                               </button>
                             <% end %>
-                          </p>
                         <% else %>
                           <%= link_to "/auth/instagram?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseIn" >
@@ -159,18 +155,16 @@
                         <h3>Tumblr</h3>
                         <p>Share your Tumblr posts.</p>
                         <% if current_user && user_has_provider?('tumblr') %>
-                          <p class="nfused_network">
                             <%= link_to "/auth/tumblr?origin=#{request.original_url}" do %>
                               <button type="button" id="nfuseTbl">
-                                  You've Nfused Tumblr
+                                  Re-Nfuse Tumblr
                               </button>
                             <% end %> | 
                             <%= link_to remove_token_path(provider: 'tumblr') do %>
                               <button type="button" id="nfuseTbl">
-                                  Remove Tumblr
+                                  Remove Network
                               </button>
                             <% end %>
-                          </p>
                         <% else %>
                           <%= link_to "/auth/tumblr?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseTbl">
@@ -186,18 +180,16 @@
                         <h3>Youtube</h3>
                         <p>Share your Youtube posts.</p>
                         <% if current_user && user_has_provider?('google_oauth2') %>
-                          <p class="nfused_network">
                           <%= link_to "/auth/google_oauth2?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseYt">
-                                You've Nfused Youtube
+                                Re-Nfuse Youtube
                             </button>
                           <% end %> | 
                           <%= link_to remove_token_path(provider: 'youtube') do %>
                             <button type="button" id="nfuseYt">
-                                Remove Youtube
+                                Remove Network
                             </button>
                           <% end %>
-                          </p>
                         <% else %>
                           <%= link_to "/auth/google_oauth2?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseYt">
@@ -213,18 +205,16 @@
                         <h3>Google Plus</h3>
                         <p>Share your Google Plus posts.</p>
                         <% if current_user && user_has_provider?('gplus') %>
-                          <p class="nfused_network">
                           <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseGp">
-                                You've Nfused Google Plus
+                                Re-Nfuse Google Plus
                             </button>
                           <% end %> | 
                           <%= link_to remove_token_path(provider: 'gplus') do %>
                             <button type="button" id="nfuseGp">
-                                Remove Google Plus
+                                Remove Network Plus
                             </button>
                           <% end %>
-                          </p>
                         <% else %>
                           <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseGp">
@@ -242,12 +232,12 @@
                         <% if current_user && user_has_provider?('vimeo') %>
                           <%= link_to "/auth/vimeo?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseVm">
-                                You've Nfused Vimeo
+                                Re-Nfuse Vimeo
                             </button>
                           <% end %> | 
                           <%= link_to remove_token_path(provider: 'vimeo') do %>
                             <button type="button" id="nfuseVm">
-                                Remove Vimeo
+                                Remove Network
                             </button>
                           <% end %>
                         <% else %>
@@ -267,12 +257,12 @@
                         <% if current_user && user_has_provider?('pinterest') %>
                           <%= link_to "/auth/pinterest" do %>
                             <button type="button" id="nfusePn">
-                                You've Nfused Pinterest
+                                Re-Nfuse Pinterest
                             </button>
                           <% end %> | 
                           <%= link_to remove_token_path(provider: 'pinterest') do %>
                             <button type="button" id="nfusePn">
-                                Remove Pinterest
+                                Remove Network
                             </button>
                           <% end %>
                         <% else %>
@@ -292,12 +282,12 @@
                         <% if current_user && user_has_provider?('facebook') %>
                           <%= link_to "/auth/facebook?origin=#{request.original_url}" do %>
                             <button type="button" id="nfuseFb">
-                                You've Nfused Facebook
+                                Re-Nfuse Facebook
                             </button>
                           <% end %> | 
                           <%= link_to remove_token_path(provider: 'facebook') do %>
                             <button type="button" id="nfuseFb">
-                                Remove Facebook
+                                Remove Network
                             </button>
                           <% end %>
                         <% else %>

@@ -3,8 +3,8 @@
   <div class="row">
   <!-- PRIVACY -->
     <header class="page-title col-xs-12 center">
-      <h1 class="heavy">Privacy</h1>
-      <p class="intro-text">You are responsible for reading all of the privacy/terms.</p>
+      <h1 class="heavy">Help</h1>
+      <p class="intro-text">Heres the help page.</p>
     </header>
     <article class="content col-xs-12">
       <h4>Help</h4>
@@ -30,8 +30,10 @@
       <br>This document was last updated on 4/14/2015</p>
     </article>
   </div>
-  <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
-  <div class="random bg"></div>
+  <% unless signed_in? %>
+    <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+    <div class="random bg"></div>
+  <% end %>
 </section>
 <!-- Footer -->
 <footer>
