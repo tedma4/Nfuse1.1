@@ -60,13 +60,12 @@
       </a>
     </li>
     <% if current_user?(@user) %>
+      <li><%= link_to 'Likes', user_likes_user_path(@user) %></li>
       <li><a href="#" data-toggle="modal" data-target="#sharemodal">+ Post</a></li>
-      <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li>
+      <!-- <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li> -->
     <% else %>
       <li>
-        <a>
-        <%= render 'follow_form' if signed_in? %>
-        </a>
+        <%= link_to 'Likes', user_likes_user_path(@user) %>
       </li>
       <li>
         <a>

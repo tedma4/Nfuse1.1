@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     #   resources :comments
     # end
     member do
-      get :following, :followers, :bio, :feed, :settings, :explore, :explore_users, :nfuse_page, :vue, :biz_page_hub, :all_users_and_pages, :user_likes
+      get :following, :followers, :bio, :feed, 
+      :settings, :explore, :explore_users, :nfuse_page, 
+      :vue, :biz_page_hub, :all_users_and_pages, :user_likes
     end
   end
   resources :comments do
