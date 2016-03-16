@@ -7,7 +7,7 @@
                         <h1 class="brand-heading heavy">Share & Discover</h1>
                         <p class="intro-text">We brought together all the places that you have friends and made sharing as simple as it should be.</p>
                         <%= form_tag search_path, method: 'get', id: "home-search", class: "search" do %>
-                          <a class="ilink randomize loggedout" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
+                          <a class="ilink randomize loggedout" href="/randoms"><img src="/assets/dice.png" alt="random search"/></a>
                           <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
                           <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
                           <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
@@ -112,16 +112,16 @@
     <!-- Feed Section -->
     <section id="feed" class="container-fluid">
       <%= link_to image_tag('wired.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
-      <%= link_to image_tag('SCENE.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
-      <%= link_to image_tag('TIME.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('SCENE.jpg'), page_path('time_magazine'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('TIME.jpg'), page_path('time_magazine'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <%= link_to image_tag('people.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <%= link_to image_tag('Enews.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <%= link_to image_tag('CNN.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <div class="visible-lg">
-        <%= link_to image_tag('HBO.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('HBO.jpg'), page_path('hbo'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
         <%= link_to image_tag('Buzzfeed.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
         <%= link_to image_tag('Newsweek.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
-        <%= link_to image_tag('EW.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('EW.jpg'), pages_path, class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       </div>
     </section>
 
@@ -189,5 +189,3 @@
                 <p>&copy; Nfuse LLC. 2015. Made with <a href="#"><i class="fa fa-heart-o"></i> by Fyresite.com</a></p>
             </div>
         </footer>
-
-

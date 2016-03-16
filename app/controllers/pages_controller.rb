@@ -17,6 +17,10 @@ class PagesController < ApplicationController
   #                                  :random, :trending, :wiredtestthing
   #                                 ]
   #Blank is gonna be a reservered word for now
+  def index
+    @pages = Page.all
+  end
+
   def show
     # byebug
     page     = Biz::Timeline.new(@page)
