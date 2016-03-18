@@ -3,23 +3,54 @@
   <!-- Do something else when logged in now -->
   <%#= render partial: "searches/show"%>
 <% end %>
-<% if @timeline.present? %>
-  <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
-    <div class="grid-sizer"></div>
-    <div class="gutter-sizer"></div>
-    <% @timeline.each do |post| %>
-      <%= render partial: "searches/post", locals: {post: post} %>
-    <% end %>
-    <% if !signed_in? %>
-      <div class="item">
-        <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+<% case params[:selected_option] %>
+<% when "Nfusers" %>
+  <section id="profile-grid" class="container-fluid">
+    <% @users.each do |user| %>
+      <!-- PROFILE -->
+      <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <a href="/users/<%= user.user_name %>">
+          <div class="profile-head">
+            <p><%= user.user_name %></p>
+          </div>
+          <%= image_tag(user.avatar) %>
+        </a>
       </div>
     <% end %>
   </section>
-<% else %>
-  <div class="center no_timeline_padding">
-    <p> Sorry, We couldn't find anything like that </p>
-    <p> Try searching again </p>
-    <%= link_to image_tag("sadface.fw.png", size:"100x100"), root_path %>
-  </div>
+<% when "Pages" %>
+  <section id="profile-grid" class="container-fluid">
+    <% @pages.each do |page| %>
+      <!-- PROFILE -->
+      <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <a href="/pages/<%= page.page_name %>">
+          <div class="profile-head">
+            <p><%= page.thing_name %></p>
+          </div>
+          <%= image_tag("#{page.twitter_handle}.jpg") %>
+        </a>
+      </div>
+    <% end %>
+  </section>
+<% when "Posts" %>
+  <% unless @timeline.nil? %>
+    <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+      <% @timeline.each do |post| %>
+        <%= render partial: "searches/post", locals: {post: post} %>
+      <% end %>
+      <% if !signed_in? %>
+        <div class="item">
+          <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+        </div>
+      <% end %>
+    </section>
+  <% else %>
+    <div class="center no_timeline_padding">
+      <p> Sorry, We couldn't find anything like that </p>
+      <p> Try searching again </p>
+      <%= link_to image_tag("sadface.fw.png", size:"100x100"), root_path %>
+    </div>
+  <% end %>
 <% end %>

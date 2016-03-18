@@ -11,8 +11,27 @@ class SearchesController < ApplicationController
 
   def searchcontent
 	  @search = params[:search]
-	  page     = Search::Timeline.new(@search)
-	  @timeline = page.construct(params)
+    case params[:selected_option]
+    when "Nfusers"
+      if @search
+        @users = User.search(@search).order("created_at DESC")
+      else
+        @users = User.all.order('created_at DESC')
+      end
+    when "Pages"
+      if @search
+        @pages = Page.search(@search).order("id DESC")
+      else
+        @pages = Pages.all.order('id DESC')
+      end
+    when "Posts" || nil
+      unless @search.empty?
+        page     = Search::Timeline.new(@search)
+        @timeline = page.construct(params)
+      else
+        @timeline = nil
+      end
+    end
 	end
   def random_search
     getbeginning = ['@', '#', '']
