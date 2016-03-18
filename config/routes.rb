@@ -110,7 +110,6 @@ Rails.application.routes.draw do
   get '/contacts', to: 'contacts#new'
 
   get '/feed_content', to: 'users#feed_content', as: :feed_content
-  get "searchuser" => "searches#index"
   get '/search', to: 'searches#searchcontent'
   get '/randoms', to: 'searches#random_search'
 
