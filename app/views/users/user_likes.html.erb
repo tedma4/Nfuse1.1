@@ -24,7 +24,6 @@
             <% end %>
           </header>
           <main class="post_content">
-            <%# byebug %>
             <% case this.social_flag %>
              <% when nil %>
                <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>

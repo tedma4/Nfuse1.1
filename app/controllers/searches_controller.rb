@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
       else
         @pages = Pages.all.order('id DESC')
       end
-    when "Posts" || nil
+    when "Posts", ""
       unless @search.empty?
         page     = Search::Timeline.new(@search)
         @timeline = page.construct(params)

@@ -10,6 +10,7 @@
                           <a class="ilink randomize loggedout" href="/randoms"><img src="/assets/dice.png" alt="random search"/></a>
                           <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
                           <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+                          <%= hidden_field_tag "selected_option" %>
                           <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
                         <% end %>
                     </div>

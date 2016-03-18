@@ -22,7 +22,6 @@ class PagesController < ApplicationController
   end
 
   def show
-    # byebug
     page     = Biz::Timeline.new(@page)
     @timeline = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
     respond_to do |format|
@@ -33,7 +32,6 @@ class PagesController < ApplicationController
   end
 
   def show_forum
-    byebug
     @page = Page.find_by_page_name(params[:id])
     respond_to do |format|
       format.js
