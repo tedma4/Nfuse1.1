@@ -7,9 +7,12 @@
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
   <% if @timeline.present? %>
-    <% cache(["users_feed", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
+    <%# cache(["users_feed", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
       <% @timeline.each do |post| %>
-        <% cache(post) do %>
+      <%# byebug %>
+        <% if (post.class.to_s == "Nfuse::Post" && post.try(:is_exclusive) == true) %>
+        <% else %>
+        <%# cache(post) do %>
           <article class="individual_post item <%= post.provider %>_post0">
             <header class="post_header">
               <div class="user">
@@ -64,7 +67,8 @@
             </footer>
           </article>
         <% end %>
-      <% end %>
+        <%# end %>
+      <%# end %>
     <% end %>
   <!--    <div class="load_posts_link">
       <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>

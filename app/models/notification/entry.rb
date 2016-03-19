@@ -15,7 +15,7 @@ module Notification
     def id
       case(@provider)
         when 'twitter'
-          @entry.id
+          @entry[:id]
         when 'google_oauth2'
           @entry.id
         when 'instagram'
@@ -188,7 +188,7 @@ module Notification
     def created_time
       case(@provider)
         when 'twitter'
-          @entry.created_at
+          @entry[:created_at]
         when 'google_oauth2'
           @entry.published_at
         when 'instagram'
@@ -209,7 +209,8 @@ module Notification
     def link_to_entry
       case(@provider)
         when 'twitter'
-          "https://twitter.com/#{user_name}/status/#{id}"
+          # s
+          "https://twitter.com/#{@entry[:user][:screen_name]}/status/#{@entry['id']}"
         when 'google_oauth2'
           "https://www.youtube.com/watch?v=#{@entry.id}"
         when 'instagram'

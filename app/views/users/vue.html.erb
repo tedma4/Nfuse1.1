@@ -7,5 +7,17 @@
 <% m = Page.where(page_name: w).pluck(:page_name)%>
 
 <section id="profile-grid" class="container-fluid">
-  <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+	<% this_is_it = m.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count} %>
+	<% this_is_it.each do |this| %>
+	  <% page = Page.find_by_page_name(this) %>
+	  <!-- PROFILE -->
+	  <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+	    <a href="/pages/<%= page.page_name %>">
+	      <div class="profile-head">
+	        <p><%= page.thing_name %></p>
+	      </div>
+	      <%= image_tag("#{page.twitter_handle}.jpg") %>
+	    </a>
+	  </div>
+	<% end %>
 </section>

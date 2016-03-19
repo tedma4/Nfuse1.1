@@ -39,17 +39,21 @@
                 <!-- <a id="user" href="profile.html">
                     <img src="/assets/users/default.jpg" alt="User Image"/>
                 </a> -->
-              <%= link_to explore_user_path(current_user), class: 'icon-link', id: 'explore' do %>
+              <%= link_to explore_user_path(current_user), class: 'icon-link', id: 'explore', title: 'Explore' do %>
                     <i class="main-color fa fa-compass"></i>
               <% end %>
                 <!-- <a id="explore" href="explore-loggedin.html" class="icon-link" alt="Explore">
                     <i class="main-color fa fa-compass"></i>
                 </a>  -->
-                <a id="notifications" href="#" class="icon-link" data-toggle="modal" data-target="#notificationsmodal" alt="Notifications">
+                <a id="notifications" href="#" class="icon-link" data-toggle="modal" data-target="#notificationsmodal" alt="Notifications" title="Notifications">
                     <i class="main-color fa fa-bell"></i>
-                    <span id="count">8</span>
+                    <span id="count">
+                      <% activity1 = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+                      <% activity2 = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).where(read: false).count %>
+                      <%= activity1 + activity2 %>
+                    </span>
                 </a>
-              <%= link_to root_path, class: 'icon-link', id: 'home' do %>
+              <%= link_to root_path, class: 'icon-link', id: 'home', title: 'Home' do %>
                     <i class="main-color fa fa-home"></i>
               <% end %>
                 <!-- <a id="home" href="profile.html" class="icon-link" alt="The Hub">

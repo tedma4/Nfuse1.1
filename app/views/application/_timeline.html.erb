@@ -1,13 +1,10 @@
-<div class="explore_filters">
-  <%= render partial: "users/hub_filters" %>
-</div><br>
-<% if current_user.relationships.where(follow_type: 'User').collect(&:id).any? %>
+<% if current_user.relationships.where(follow_type: 'User').collect(&:followed_id).any? %>
 <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
-  <% cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
+  <%# cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
     <% timeline.first(30).each do |post| %>
-      <% cache(post) do %>
+      <%# cache(post) do %>
           <article class="individual_post item <%= post.provider %>_post0">
             <header class="post_header">
               <div class="user">
@@ -63,8 +60,8 @@
             </footer>
           </article>
       <% end %>
-    <% end %>
-    <% end %>
+    <%# end %>
+    <%# end %>
   </div>
 <% else %>
   <div class="center hub_padding">
@@ -74,3 +71,4 @@
     <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
   </div>
 <% end %>
+</section>
