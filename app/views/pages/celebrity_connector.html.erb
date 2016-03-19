@@ -13,3 +13,9 @@
 <section id="profile-grid" class="container-fluid">
   <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
 </section>
+
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>
