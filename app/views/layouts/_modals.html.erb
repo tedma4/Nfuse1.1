@@ -1,260 +1,58 @@
-
-    <!-- MODALS -->
-    <!-- NOTIFICATIONS -->
-    <% if signed_in? && !@user.nil?%>
-    <div class="modal fade" id="notificationsmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="notificationslabel">Notifications</h4>
-          </div>
-          <div class="modal-body container-fluid">
-            <div id="notifications-list" class="">
-              <% activity1 = PublicActivity::Activity.includes(:owner).where(recipient_id: current_user.id, recipient_type: 'User')%>
-              <% activity2 = PublicActivity::Activity.includes(:owner).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id) %>
-              <%  @activities = (activity1 + activity2).sort_by{|t| - t.created_at.to_i}.take(20)
-              %>
-              <% @activities.each do |activity| %>
-                <% case activity.trackable_type %>
-                <% when 'Relationship' %>
-                  <% if activity.owner.nil? %>
-                  <% else %>
-                    <div class="row notification followed">
-                      <div class="col-xs-1 user-img">
-                        <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                          <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                        <% else %>
-                          <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                        <% end %>
-                        <!-- <img src="/assets/users/brunomars.jpg" alt="User Image"/> -->
-                      </div>
-                      <div class="col-xs-10 notification-body">
-                        <p>
-                          <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
-                          followed you! 
-                          <span class="timer">
-                            <%= time_ago_in_words(activity.created_at) %> 
-                          </span></p>
-                      </div>
-                      <div class="col-xs-1 notification-action">
-                        <a href="#"><i class="fa"></i></a>
-                      </div>
-                    </div>
-                  <% end %>
-                <% when 'Comment' %>
-                  <% if activity.owner.nil? %>
-                  <% else %>
-                   <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
-                    <div class="row notification">
-                      <div class="col-xs-1 user-img">
-                          <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                            <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                          <% else %>
-                           <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                          <% end %>
-                      </div>
-                      <div class="col-xs-10 notification-body">
-                        <p>
-                          <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
-                          liked your forum post photo! 
-                          <span class="timer">
-                            <%= time_ago_in_words(activity.created_at) %>
-                          </span>
-                        </p>
-                      </div>
-                      <div class="col-xs-1 notification-action">
-                        <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
-                      </div>
-                    </div>
-                  <% end %>
-                <% when 'User' %>
-                <%# buybug %>
-                  <% if activity.owner.nil? %>
-                  <% else %>
-                   <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
-                    <div class="row notification">
-                      <div class="col-xs-1 user-img">
-                          <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                            <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                          <% else %>
-                           <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                          <% end %>
-                      </div>
-                      <div class="col-xs-10 notification-body">
-                        <p>
-                          <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
-                          liked your photo! 
-                          <span class="timer">
-                            <%= time_ago_in_words(activity.created_at) %>
-                          </span>
-                        </p>
-                      </div>
-                      <div class="col-xs-1 notification-action">
-                        <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
-                      </div>
-                    </div>
-                  <% end %>
-                <% when 'Shout' %>
-                  <% if activity.owner.nil? %>
-                  <% else %>
-                  <% end %>
-                    <div class="row notification exclusive">
-                      <div class="col-xs-1 user-img">
-                        <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                          <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                        <% else %>
-                          <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                        <% end %>
-                      </div>
-                      <div class="col-xs-10 notification-body">
-                        <p><%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner, class: 'user-link') %> 
-                          send you an exclusive post!
-                          <span class="timer">
-                            <%= time_ago_in_words(activity.created_at) %> 
-                          </span>
-                        </p>
-                      </div>
-                      <button type="button" class="col-xs-1 notification-action" data-toggle="modal" data-target="#exclusivemodal<%= activity.id %>">
-                        <a href="#"><i class="fa"></i></a>
-                      </button>
-                    </div>
-                <% else %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
+<% if signed_in? && !@user.nil?%>
+  <!-- EDIT MODAL -->
+  <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editlabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="editlabel">Upload a New Profile Pic or Banner</h4>
         </div>
-      </div>
-    </div>
-    <!-- EXCLUSIVE POST MODAL -->
-<!--   <%# if activity.trackable_type == 'Shout' %>
-    <div class="modal fade" id="exclusivemodal<%#= activity.id %>" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <article class="individual_post item instagram_post0">
-            <header class="post_header">
-              <div class="user">
-                <%# if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                  <%#= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                <%# else %>
-                  <%#= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: '45', title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-                <%# end %>
-                <%#= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
+        <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
+          <div id="profile-images" class="modal-body">
+            <div class="row">
+              <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
+                <h5>Profile Picture</h5>
+                <small>At least 200 x 200</small>
+                <div id="target">
+                  <label for="pictureInput">
+                    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+                      <%= image_tag @user.avatar_file_name, size: '50x50' %>
+                    <% else %>
+                      <%= image_tag @user.avatar(:medium) %>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
+                </div>
               </div>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <a class="timeStamp" href="#" target="_blank" title="Go To Entry">
-                <i class="fa"></i> <%#= time_ago_in_words(activity.created_at) %>
-              </a>
-            </header>
-            <main class="post_content">
-              <%# if !activity.trackable.url.blank? %>
-                <p> <%#= activity.trackable.url_html %></p>
-              <%# elsif activity.trackable.is_pic? %>
-                <div class="timeline-user-box image_post">
-                  <%#= image_tag activity.trackable.pic_url %>
+              <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
+                <h5>Profile Banner</h5>
+                <small>At least 1440 x 787</small>
+                <div id="target2">
+                  <label for="pictureInput2">
+                    <%= image_tag @user.banner(:medium), id: "profilebann" %>
+                  </label>
                 </div>
-              <%# elsif activity.trackable.is_video? %>
-                <div class="timeline-user-box">
-                  <video 
-                    preload="none"
-                    id="ytplayer" 
-                    type="video/mp4" 
-                    width="100%" 
-                    height="225" 
-                    src="<%#= activity.trackable.video_url %>" 
-                    frameborder="0"
-                    allowfullscreen
-                    controls>
-                  </video>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
                 </div>
-              <%# elsif activity.trackable.is_full_video? %>
-                <div class="timeline-user-box">
-                  <video 
-                    preload="none"
-                    autoload="none"
-                    type="video/flv" 
-                    width="100%" 
-                    src="<%#= activity.trackable.full_video_url %>" 
-                    frameborder="0"
-                    allowfullscreen
-                    controls>
-                  </video>
-                </div>
-              <%# end %>
-              <%# if activity.trackable.content.present? %>
-                <p>
-                  <%#= activity.trackable.content %>
-                </p>
-              <%# end %>
-            </main>
-            <footer class="post_actions">
-              <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
-                <i class="fa"></i><span>666</span>
-              </a>
-            </footer>
-          </article>
-        </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="sumbit" class="btn btn-default">Save</button>
+          </div>
+          <% if controller_name == 'callback_links' %>
+            <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
-  <%# end %>
-<%# end %> -->
-    <!-- EDIT MODAL -->
-    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editlabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="editlabel">Upload a New Profile Pic or Banner</h4>
-                </div>
-                <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
-                  <div id="profile-images" class="modal-body">
-                    <div class="row">
-                      <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
-                        <h5>Profile Picture</h5>
-                        <small>At least 200 x 200</small>
-                        <div id="target">
-                          <label for="pictureInput">
-                            <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-                              <%= image_tag @user.avatar_file_name, size: '50x50' %>
-                            <% else %>
-                              <%= image_tag @user.avatar(:medium) %>
-                            <% end %>
-                          </label>
-                        </div>
-                        <div class="fileUpload btn-link-1">
-                          <%= f.file_field :avatar, id: "pictureInput", placeholder: "Snip", type: "file", class: "upload" %>
-                        </div>
-                      </div>
-                      <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
-                        <h5>Profile Banner</h5>
-                        <small>At least 1440 x 787</small>
-                        <div id="target2">
-                          <label for="pictureInput2">
-                            <%= image_tag @user.banner(:medium), id: "profilebann" %>
-                          </label>
-                        </div>
-                        <div class="fileUpload btn-link-1">
-                          <%= f.file_field :banner, id: "pictureInput2", placeholder: "Snip", type: "file", class: "upload" %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="sumbit" class="btn btn-default">Save</button>
-                  </div>
-                  <% if controller_name == 'callback_links' %>
-                    <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
-                  <% end %>
-                <% end %>
-            </div>
-        </div>
-    </div>
-    <!-- SHARE MODAL -->
+  </div>
+    <!-- NEW SHOUT MODAL -->
     <div class="modal fade" id="sharemodal" tabindex="-1" role="dialog" aria-labelledby="sharelabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -308,7 +106,6 @@
                     <h4 class="modal-title" id="followerslabel">Followers</h4>
                 </div>
                 <div class="modal-body">
-
                     <!-- FOLLOWER -->
                     <% @user.followers.each do |user| %>
                     <div class="row follower">
@@ -317,18 +114,17 @@
                         </div>
                         <div class="col-xs-10">
                             <ul id="user-info">
-                                <li id="user-name"><%= user.full_name %></li>
-                                <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
-                            </ul>
-                            <ul id="user-stats">
-                                <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
-                                <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
-                                <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                              <li id="user-name"><%= user.full_name %></li>
+                              <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                                                      </ul>
+                                                      <ul id="user-stats">
+                              <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                              <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                              <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
                             </ul>
                         </div>
                     </div>
                     <% end %>
-
                 </div>
             </div>
         </div>
@@ -344,183 +140,28 @@
                     <h4 class="modal-title" id="followinglabel">Following</h4>
                 </div>
                 <div class="modal-body">
-
                     <!-- FOLLOWING -->
                     <% @user.followed_users.each do |user| %>
-                    <div class="row following">
-                        <div class="col-xs-2 user-img">
-                            <img src="/assets/users/def.jpg" alt="User Image"/>
-                        </div>
-                        <div class="col-xs-10">
-                            <ul id="user-info">
+                      <div class="row following">
+                          <div class="col-xs-2 user-img">
+                              <img src="/assets/users/def.jpg" alt="User Image"/>
+                          </div>
+                          <div class="col-xs-10">
+                              <ul id="user-info">
                                 <li id="user-name"><%= user.full_name %></li>
                                 <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
-                            </ul>
-                            <ul id="user-stats">
+                                                        </ul>
+                                                        <ul id="user-stats">
                                 <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
                                 <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
                                 <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
-                            </ul>
-                        </div>
-                    </div>
+                              </ul>
+                          </div>
+                      </div>
                     <% end %>
-
                 </div>
             </div>
         </div>
     </div>
     <% else %>
-    <!-- LOGIN FORM -->
-    <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="signinlabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="signinlabel">Sign In</h4>
-                </div>
-                <div class="modal-body container-fluid">
-                    <div class="row">
-                        <form id="signin" class="minimal col-xs-12 col-sm-6" accept-charset="UTF-8" action="/sessions" method="post">
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                                <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
-                                <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">
-                            </div>
-                            <button type="submit" class="btn btn-default animated">Go!</button>
-                            <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- LOGIN FORM -->
-    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signuplabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="signuplabel">Sign Up</h4>
-                </div>
-                <div class="modal-body container-fluid">
-                    <div class="row">
-                        <!-- Signup Form -->
-                        <form id="signup" class="minimal new_user col-xs-12 col-sm-6" accept-charset="UTF-8" action="/users" method="post">
-
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                                <input name="authenticity_token" type="hidden" value="ZMVoG5HOzAz037/T/tt6ny9aNdTZEabMChxdUdPk3eE=">
-                            </div>
-                            <div class="error_messages">
-                                <div class="form-group">
-                                    <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
-                                    <input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">
-                                    <input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">
-                                    <input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">
-                                    <input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">
-                                    <input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
-                                </div>
-                                <button type="submit" class="btn btn-default">Go!</button>
-                                <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <% end %>
-    <!-- NAV -->
-    <div class="modal fade" id="navmodal" tabindex="-1" role="dialog" aria-labelledby="navlabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <a id="navlabel" class="navbar-brand" href="/">
-                            <img src="/assets/logo.png" alt="nfuselogo"/>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 modal-body">
-                        <%= form_tag search_path, method: 'get', id: "slide-search", class: "search drk" do %>
-                          <% if signed_in? %>
-                            <div class="dropdown loggedin">
-                              <!-- <a id="searchdrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" name="select_option">
-                                Nfusers
-                                <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu" aria-labelledby="searchdrop">
-                                <li><a href="#">Nfuse</a></li>
-                                <li><a href="#">Nfusers</a></li>
-                              </ul> -->
-                              <%= select_tag "selected_option", options_for_select([ "Nfusers", "Pages", "Posts" ], params[:selected_option]), id:"searchdrop" %>  
-                            </div>
-                          <% else %>
-                            <a class="ilink randomize loggedout" href="/randoms"><img src="/assets/dice.png" alt="random search"/></a>
-                          <% end %>
-                          <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
-                          <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
-                          <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
-                        <% end %>
-                    
-                        <div id="slide-nav">
-                          <% if !signed_in? %>
-                            <!-- LOGGED OUT -->
-                            <ul class="nav loggedout">
-                                <li>
-                                  <%= link_to 'Home', root_path, class: '' %>
-                                    <!-- <a class="" href="index.html">Home</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Sign Up', signup_path, class: '' %>
-                                    <!-- <a class="" href="signup.html">Sign Up</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Sign In', signin_path, class: '' %>
-                                    <!-- <a class="" href="signin.html">Sign In</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Privacy', privacy_path, class: '' %>
-                                    <!-- <a class="" href="privacy.html">Privacy</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Contact Us', new_contact_path, class: '' %>
-                                    <!-- <a class="" href="contact.html">Contact Us</a> -->
-                                </li>
-                            </ul>
-                          <% else %>  
-                            <!-- LOGGED IN -->
-                            <ul class="nav loggedin">
-                                <li>
-                                  <%= link_to 'Settings', edit_user_path(current_user), class: '' %>
-                                    <!-- <a class="" href="settings.html">Settings</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Help', help_path, class: '' %>
-                                    <!-- <a class="" href="#">Help</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Feedback', new_contact_path, class: '' %>
-                                    <!-- <a class="" href="#">Feedback</a> -->
-                                </li>
-                                <li>
-                                  <%= link_to 'Log Out', signout_path, method: :get, class: '' %>
-                                    <!-- <a class="" href="#">Log Out</a> -->
-                                </li>
-                            </ul>
-                          <% end %>  
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>

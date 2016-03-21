@@ -111,29 +111,31 @@
 
 // OFF CANVAS
     
-   /* $(document).ready(function(){
+    $(document).ready(function(){
         
-        $(".signintoggler").click(function(){
-            $("#signin").toggleClass("open");
-            return false;
-        });
-        $(".signuptoggler").on('click', function(event){
-            $("#foot-signup").toggleClass("open");
-            return false;
-        });
+        // $(".signintoggler").click(function(){
+        //     $("#signin").toggleClass("open");
+        //     return false;
+        // });
+        // $(".signuptoggler").on('click', function(event){
+        //     $("#foot-signup").toggleClass("open");
+        //     return false;
+        // });
 
-        $("#menutoggler").click(function(){
-            $('#slide-nav').offcanvas({ 
-                autohide: true,
-                toggle: true,
-                placement: 'right',
-                recalc: false,
-                disableScrolling: false
-            }).offcanvas('toggle');
+        // $("#menutoggler").click(function(){
+        //     $('#slide-nav').offcanvas({ 
+        //         autohide: true,
+        //         toggle: true,
+        //         placement: 'right',
+        //         recalc: false,
+        //         disableScrolling: false
+        //     }).offcanvas('toggle');
 
-            $('.slide-out').offcanvas('hide');
-            return false;
-        });
+        //     $('.slide-out').offcanvas('hide');
+        //     return false;
+        // });
+    });
+    $(document).ready(function(){
         $("#notifications").click(function(){
             $('#notifications-list').offcanvas({ 
                 autohide: true,
@@ -147,7 +149,7 @@
             return false;
         });
 
-    });*/
+    });
 
 
     // HEADER APPEAR ON SCROLL
