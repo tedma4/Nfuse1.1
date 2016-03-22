@@ -99,10 +99,16 @@
           <div class="modal-body">
             <div class="row">
               <div class="image-upload col-xs-12 col-sm-6">
-                <label for="shout_pic_upload">
-                  <button type="button" class="btn btn-default">Upload Picture</button>
-                </label>
-                <%= f.file_field :pic, id: 'shout_pic_upload', placeholder: "Pic", type: "file", class: "upload"  %>
+                <div>
+                  <label for="shout_pic_upload">
+                    <a class="btn btn-default">
+                      Upload Picture
+                    </a>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :pic, id: 'shout_pic_upload', placeholder: "Pic", type: "file", class: "upload"  %>
+                </div>
               </div>
               <div class="col-xs-12 col-sm-6">
                 <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
