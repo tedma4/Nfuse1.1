@@ -122,32 +122,32 @@
         //     return false;
         // });
 
-        $("#menutoggler").click(function(){
-            $('#slide-nav').offcanvas({ 
-                autohide: true,
-                toggle: true,
-                placement: 'right',
-                recalc: false,
-                disableScrolling: false
-            }).offcanvas('toggle');
+        // $("#menutoggler").click(function(){
+        //     $('#slide-nav').offcanvas({ 
+        //         autohide: true,
+        //         toggle: true,
+        //         placement: 'right',
+        //         recalc: false,
+        //         disableScrolling: false
+        //     }).offcanvas('toggle');
 
-            $('.slide-out').offcanvas('hide');
-            return false;
-        });
+        //     $('.slide-out').offcanvas('hide');
+        //     return false;
+        // });
     });
     $(document).ready(function(){
-        $("#notifications").click(function(){
-            $('#notifications-list').offcanvas({ 
-                autohide: true,
-                toggle: true,
-                placement: 'right',
-                recalc: false,
-                disableScrolling: false
-            }).offcanvas('toggle');
+        // $("#notifications").click(function(){
+        //     $('#notifications-list').offcanvas({ 
+        //         autohide: true,
+        //         toggle: true,
+        //         placement: 'right',
+        //         recalc: false,
+        //         disableScrolling: false
+        //     }).offcanvas('toggle');
 
-            $('.slide-out').offcanvas('hide');
-            return false;
-        });
+        //     $('.slide-out').offcanvas('hide');
+        //     return false;
+        // });
 
     });
 

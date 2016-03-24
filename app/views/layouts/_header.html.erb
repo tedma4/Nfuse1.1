@@ -1,13 +1,13 @@
 <nav class="navbar navbar-custom navbar-fixed-top">
    <!-- NAVBAR -->
     <div class="navbar-header">
-        <a id="menutoggler" href="#" class="" data-toggle="offcanvas" data-target="#slide-nav">
+        <a id="menutoggler" href="#" class="" data-toggle="offcanvas" data-target="#slide-nav" title="Menu">
             <i class="main-color fa fa-bars"></i>
         </a>
 <!--         <a id="menutoggler" href="#" data-toggle="modal" data-target="#navmodal">
             <i class="main-color fa fa-bars"></i>
         </a> -->
-        <%= link_to image_tag("logo.png", alt: "nfuselogo"), root_path, class: 'navbar-brand' %>
+        <%= link_to image_tag("logo.png", alt: "nfuselogo", title: 'Illuminate'), root_path, class: 'navbar-brand' %>
         <div id="top-nav" class="">
           <% if !signed_in? %>
             <!-- LOGGED OUT -->
@@ -44,16 +44,15 @@
               <% end %>
                 <!-- <a id="explore" href="explore-loggedin.html" class="icon-link" alt="Explore">
                     <i class="main-color fa fa-compass"></i>
-                </a>  -->
-
-                <a id="notifications" href="#" class="icon-link" data-toggle="offcanvas" data-target="#notifications-list" alt="Notifications">
-                  <i class="main-color fa fa-bell"></i>
-                  <span id="count">
-                    <% activity1 = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
-                    <% activity2 = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).where(read: false).count %>
-                    <%= activity1 + activity2 %>
-                  </span>
-                </a>
+                </a>  --> 
+              <%= link_to activities_path, id: "notifications", class: "icon-link", data: {toggle: 'offcanvas', target: '#notifications-list'}, alt: "Notifications", title: "Notifications", remote: true do %>
+                <i class="main-color fa fa-bell"></i>
+                <span id="count">
+                  <% activity1 = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+                  <% activity2 = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).where(read: false).count %>
+                  <%= activity1 + activity2 %>
+                </span>
+              <% end %>
               <%= link_to root_path, class: 'icon-link', id: 'home', title: 'Home' do %>
                     <i class="main-color fa fa-home"></i>
               <% end %>
