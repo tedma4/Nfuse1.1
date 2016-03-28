@@ -16,6 +16,15 @@ class ActivitiesController < ApplicationController
 		PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).update_all(:read => true)
 		redirect_to :activities
 	end
+
+	def individual_activity
+		# byebug
+		@shout = Shout.find(params[:shout_id])
+		respond_to do |format|
+			format.js
+		end
+	end
+
 end
 
 
