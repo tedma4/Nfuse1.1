@@ -32,20 +32,35 @@
        <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
         <div class="row notification">
           <div class="col-xs-1 user-img">
-              <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-                <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-              <% else %>
-               <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-              <% end %>
+            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+              <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% else %>
+             <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% end %>
           </div>
           <div class="col-xs-10 notification-body">
-            <p>
-              <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
-              liked your forum post photo! 
-              <span class="timer">
-                <%= time_ago_in_words(activity.created_at) %>
-              </span>
-            </p>
+            <% if activity.key == 'comment.tagged' %>
+              <% comment_type = Comment.find(activity.trackable_id) %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                <% if comment_type.parent.nil? %>
+                  Taggged you in a forum post! 
+                <% else %>
+                  Tagged you in a forum comment!
+                <% end %>
+                <span class="timer">
+                  <%= time_ago_in_words(activity.created_at) %>
+                </span>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                liked your forum post photo! 
+                <span class="timer">
+                  <%= time_ago_in_words(activity.created_at) %>
+                </span>
+              </p>
+            <% end %>
           </div>
           <div class="col-xs-1 notification-action">
             <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>

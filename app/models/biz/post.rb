@@ -15,7 +15,7 @@ module Biz
       if @page.twitter_handle == 'blank'
         'wired'
       else
-        @page.twitter_handle
+        @post['user']['profile_picture']
       end 
     end
 
