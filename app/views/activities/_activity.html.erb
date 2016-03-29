@@ -1,4 +1,5 @@
   <%# byebug %>
+  
   <% @activities.each do |activity| %>
     <% case activity.trackable_type %>
     <% when 'Relationship' %>
@@ -115,7 +116,7 @@
             </p>
           </div>
           <button type="button" class="col-xs-1 notification-action" data-toggle="modal" data-target="#exclusivemodal">
-            <%= link_to activities_individual_activity_path(params: {shout_id: activity.trackable_id}), remote: true do %>
+            <%= link_to activities_individual_activity_path(params: {shout: activity.id}), remote: true do %>
               <i class="fa"></i>
             <% end %>
            <!--  <a href="#"><i class="fa"></i></a> -->

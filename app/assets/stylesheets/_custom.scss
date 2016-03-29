@@ -1573,8 +1573,8 @@
   }
   #steps{
       text-align: left;
-      padding: 20px 20px 0px 15px;
-  }
+/*      padding: 20px 20px 0px 15px;
+*/  }
   form.minimal input,
   #signin input,
   #signup input {
@@ -1696,9 +1696,9 @@
 }
 @media(min-width:768px) {
   
-  #steps{
+/*  #steps{
     border-right: 1px solid rgba(255,255,255,0.6);
-  }
+  }*/
   #signup .fa-exchange{
     font-size: 80px;
   }
@@ -1729,11 +1729,17 @@
   #steps{
     padding: 20px 60px 20px 60px;
   }
+
   #foot-signup{
     padding: 20px 60px 0px 60px;
   }
   .home #signup {
       padding-top: 150px;
+  }
+}
+@media(min-width: 768px){
+  #steps.col-sm-6 {
+    width: 100%;
   }
 }
 

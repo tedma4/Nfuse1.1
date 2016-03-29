@@ -19,7 +19,7 @@ class ActivitiesController < ApplicationController
 
 	def individual_activity
 		# byebug
-		@shout = Shout.find(params[:shout_id])
+		@activity = PublicActivity::Activity.find(params[:shout])
 		respond_to do |format|
 			format.js
 		end

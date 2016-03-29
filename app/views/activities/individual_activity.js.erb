@@ -1,1 +1,3 @@
-$('<%= escape_javascript( render(partial: 'activities/individual' ) ) %>').appendTo('#exclusivemodal .modal-content');
+<%# byebug %>
+$('#exclusivemodal').modal('toggle')
+$('<%= escape_javascript( render(partial: 'activities/individual', locals: {activity: @activity} ) ) %>').appendTo('#exclusivemodal .modal-content');
