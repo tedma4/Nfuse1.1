@@ -13,5 +13,9 @@
   // }).offcanvas('toggle');
   <%# byebug %>
   // console.log('it got to the end');
-  $('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');
+if ($('#notifications-list .row').length == 0)  {
+  $('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');  
+} else {
+  
+}
 // }

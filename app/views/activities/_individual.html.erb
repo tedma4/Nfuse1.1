@@ -1,4 +1,4 @@
-          <!-- EXCLUSIVE POST MODAL -->
+<!-- EXCLUSIVE POST MODAL -->
 <article class="individual_post item instagram_post0">
   <header class="post_header">
     <div class="user">
@@ -19,7 +19,6 @@
       <p> <%= activity.trackable.url_html %></p>
     <% elsif activity.trackable.is_pic? %>
       <div class="timeline-user-box image_post">
-        <% byebug %>
         <%= image_tag activity.trackable.pic.url %>
            </div>
     <% elsif activity.trackable.is_video? %>
@@ -35,7 +34,7 @@
           allowfullscreen
           controls>
         </video>
-           </div>
+      </div>
     <% elsif activity.trackable.is_full_video? %>
       <div class="timeline-user-box">
         <video 

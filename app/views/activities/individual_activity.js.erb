@@ -1,3 +1,7 @@
 <%# byebug %>
-$('#exclusivemodal').modal('toggle')
-$('<%= escape_javascript( render(partial: 'activities/individual', locals: {activity: @activity} ) ) %>').appendTo('#exclusivemodal .modal-content');
+if ($('#exclusivemodal .modal-content article').length == 0 ) {
+	$('#exclusivemodal').modal('toggle')
+	$('<%= escape_javascript( render(partial: 'activities/individual', locals: {activity: @activity} ) ) %>').appendTo('#exclusivemodal .modal-content');
+} else {
+	$('#exclusivemodal').modal('toggle')
+}
