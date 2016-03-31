@@ -120,7 +120,7 @@
               <% end %> | 
               <%= link_to remove_token_path(provider: 'gplus') do %>
                 <button type="button" id="nfuseGp">
-                    Remove Network Plus
+                    Remove Network
                 </button>
               <% end %>
             <% else %>
@@ -209,8 +209,15 @@
       </div>
     </article>
     <!-- SAVE ALL -->
-    <div id="saveall" class="col-xs-12 content">
-      <button type="submit" class="fullw btn btn-default">Finished</button>
-    </div>
+    <% if controller_name == 'callback_links' %>
+      <div id="saveall" class="col-xs-12 content">
+        <%= link_to "Skip", next_wizard_path, class: "btn btn-default" %>
+      </div>
+    <% elsif controller_name == 'users' && action_name == 'edit' %>
+      <div id="saveall" class="col-xs-12 content">
+        <button type="submit" class="fullw btn btn-default">Finished</button>
+      </div>
+    <% else %>
+    <%end%>
   </div>
 </section>

@@ -3110,3 +3110,12 @@
     background: transparent;
     border: none;
 }
+
+/*Post image width fix*/
+.timeline-user-box img {
+    vertical-align: middle;
+    width: 100%;
+}
+video {
+  background-size: 100%;
+}
