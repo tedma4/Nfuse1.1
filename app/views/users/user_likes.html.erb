@@ -1,159 +1,183 @@
+<% content_for :for_head do %>
+  <title>Likes</title>
+<% end %>
 <!-- USER AREA -->
 <section id="userarea">
   <%= render partial: "profile_info" %>
 </section>
 <!-- MASON JAR -->
-<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
-  <div class="grid-sizer"></div>
-  <div class="gutter-sizer"></div>
-  <% @user_likes = ActsAsVotable::Vote.where(voter_id: @user.id) %>
-  <% unless @user_likes.empty? %>
-    <% @user_likes.each do |this| %>
-      <% if this.owner_type == 'User' %>
-        <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, User.find(this.owner_id)).construct %>
-        <% @this_user = User.find(this.owner_id) %>
-        <article class="individual_post item <%= @post_entry.provider %>_post0">
-          <header class="post_header">
-            <div class="user">
-              <%= image_tag(@this_user.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-              <%= link_to truncate(@this_user.user_name, length: 16), root_path %>
-            </div>
-            <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
-            <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-              <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
-            <% end %>
-          </header>
-          <main class="post_content">
-            <% case this.social_flag %>
-             <% when nil %>
-               <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
-             <% when "gplus" %>
-               <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
-             <% when "tumblr" %>
-               <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
-             <% when "facebook" %>
-               <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
-             <% when 'twitter' %>
-               <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
-             <% when 'youtube' %>
-               <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
-             <% when 'vimeo' %>
-               <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
-             <% when 'instagram' %>
-               <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
-             <% when 'pinterest' %>
-               <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
-             <% end %>
-          </main>
-          <footer class="post_actions">
-            <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
-              <i class="fa"></i><span>666</span>
-            </a> -->
-            <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
-              <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.user.id, owner_type: @post_entry.user.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost'} do %>
-                <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+<% @user_likes = ActsAsVotable::Vote.where(voter_id: @user.id) %>
+<% if @user_likes.any? %>
+  <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <% unless @user_likes.empty? %>
+      <% @user_likes.each do |this| %>
+        <% if this.owner_type == 'User' %>
+          <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, User.find(this.owner_id)).construct %>
+          <% @this_user = User.find(this.owner_id) %>
+          <article class="individual_post item <%= @post_entry.provider %>_post0">
+            <header class="post_header">
+              <div class="user">
+                <%= image_tag(@this_user.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= link_to truncate(@this_user.user_name, length: 16), root_path %>
+              </div>
+              <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+                <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
               <% end %>
-            <% else %>
-              <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.user.id, owner_type: @post_entry.user.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
-              <% end %>
-            <% end %>
-              <%#= post.like_score(post.id) %>
-          </footer>
-        </article>
-      <% else %>
-        <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, Page.find(this.owner_id)).construct %>
-        <% @this_user = Page.find(this.owner_id) %>
-        <article class="individual_post item <%= @post_entry.provider %>_post0">
-          <header class="post_header">
-            <div class="user">
-              <%= image_tag("#{@post_entry.avatar}.jpg", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-              <%= link_to truncate(@post_entry.username, length: 16), page_path(@post_entry.username) %>
-            </div>
-            <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
-            <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-              <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
-            <% end %>
-          </header>
-          <main class="post_content">
-            <% case @post_entry.provider %>
-            <% when 'instagram' %>
-              <% if @post_entry.type == "image" %>
-                <div class="timeline-user-box">
-                  <%= image_tag(@post_entry.image, :class => "image_post") %>
-                </div>
-                <% if @post_entry.text.present? %>
-                  <div class="center">
-                    <%= @post_entry.text %>
-                  </div>
+            </header>
+            <main class="post_content">
+              <% case this.social_flag %>
+               <% when nil %>
+                 <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+               <% when "gplus" %>
+                 <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+               <% when "tumblr" %>
+                 <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+               <% when "facebook" %>
+                 <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
+               <% when 'twitter' %>
+                 <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
+               <% when 'youtube' %>
+                 <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
+               <% when 'vimeo' %>
+                 <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
+               <% when 'instagram' %>
+                 <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
+               <% when 'pinterest' %>
+                 <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
+               <% end %>
+            </main>
+            <footer class="post_actions">
+              <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                <i class="fa"></i><span>666</span>
+              </a> -->
+              <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
+                <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.user.id, owner_type: @post_entry.user.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost'} do %>
+                  <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
                 <% end %>
-              <% elsif @post_entry.type == "video" %>
-                <div class="center">
-                  <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
-                    <source src="<%= @post_entry.video %>" type='video/mp4' />
-                    <source src="<%= @post_entry.video %>" type='video/ogv' />
-                  </video>
-                </div>
-                <% if @post_entry.text.present? %>
-                  <div class="center">
-                    <%= @post_entry.text %>
-                  </div>
+              <% else %>
+                <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.user.id, owner_type: @post_entry.user.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                  <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
                 <% end %>
               <% end %>
-            <% when 'twitter' %>
-              <% if @post_entry.has_media? %>
-                <% if @post_entry.type == 'animated_gif' || @post_entry.type== 'video' %>
+                <%#= post.like_score(post.id) %>
+            </footer>
+          </article>
+        <% else %>
+          <% @post_entry = Notification::Timeline.new(this.votable_id, this.social_flag, Page.find(this.owner_id)).construct %>
+          <% @this_user = Page.find(this.owner_id) %>
+          <article class="individual_post item <%= @post_entry.provider %>_post0">
+            <header class="post_header">
+              <div class="user">
+                <%= image_tag("#{@post_entry.avatar}.jpg", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= link_to truncate(@post_entry.username, length: 16), page_path(@post_entry.username) %>
+              </div>
+              <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+                <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
+              <% end %>
+            </header>
+            <main class="post_content">
+              <% case @post_entry.provider %>
+              <% when 'instagram' %>
+                <% if @post_entry.type == "image" %>
+                  <div class="timeline-user-box">
+                    <%= image_tag(@post_entry.image, :class => "image_post") %>
+                  </div>
+                  <% if @post_entry.text.present? %>
+                    <div class="center">
+                      <%= @post_entry.text %>
+                    </div>
+                  <% end %>
+                <% elsif @post_entry.type == "video" %>
                   <div class="center">
                     <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
                       <source src="<%= @post_entry.video %>" type='video/mp4' />
                       <source src="<%= @post_entry.video %>" type='video/ogv' />
                     </video>
                   </div>
-                <% elsif @post_entry.type == 'photo' %>
-                  <div class="timeline-user-box">
-                    <%= image_tag(@post_entry.image, :class => "image_post") %>
-                  </div>
+                  <% if @post_entry.text.present? %>
+                    <div class="center">
+                      <%= @post_entry.text %>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <div class="center">
-                <%= @post_entry.text %>
-              </div>
-            <% when 'google_oauth2' %>
-              <iframe
-                id="ytplayer"
-                type="text/html"
-                width="100%"
-                height="225"
-                src="https://www.youtube.com/embed/<%= @post_entry.video %>"
-                frameborder="0"
-                allowfullscreen>
-              </iframe>
-              <% if @post_entry.text.present? %>
+              <% when 'twitter' %>
+                <% if @post_entry.has_media? %>
+                  <% if @post_entry.type == 'animated_gif' || @post_entry.type== 'video' %>
+                    <div class="center">
+                      <video width="100%" controls autoload="none" poster=<%= @post_entry.image %> >
+                        <source src="<%= @post_entry.video %>" type='video/mp4' />
+                        <source src="<%= @post_entry.video %>" type='video/ogv' />
+                      </video>
+                    </div>
+                  <% elsif @post_entry.type == 'photo' %>
+                    <div class="timeline-user-box">
+                      <%= image_tag(@post_entry.image, :class => "image_post") %>
+                    </div>
+                  <% end %>
+                <% end %>
                 <div class="center">
                   <%= @post_entry.text %>
                 </div>
+              <% when 'google_oauth2' %>
+                <iframe
+                  id="ytplayer"
+                  type="text/html"
+                  width="100%"
+                  height="225"
+                  src="https://www.youtube.com/embed/<%= @post_entry.video %>"
+                  frameborder="0"
+                  allowfullscreen>
+                </iframe>
+                <% if @post_entry.text.present? %>
+                  <div class="center">
+                    <%= @post_entry.text %>
+                  </div>
+                <% end %>
+              <%end%>
+            </main>
+            <footer class="post_actions">
+              <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                <i class="fa"></i><span>666</span>
+              </a> -->
+              <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
+                  <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost'} do %>
+                      <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+                  <% end %>
+              <% else %>
+                  <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                      <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+                  <% end %>
               <% end %>
-            <%end%>
-          </main>
-          <footer class="post_actions">
-            <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
-              <i class="fa"></i><span>666</span>
-            </a> -->
-            <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
-                <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost'} do %>
-                    <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
-                <% end %>
-            <% else %>
-                <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                    <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
-                <% end %>
-            <% end %>
-            <%#= post.like_score(post.id) %>
-          </footer>
-        </article>
+              <%#= post.like_score(post.id) %>
+            </footer>
+          </article>
+        <% end %>
       <% end %>
+    <% else %>
+      <p>Go like something</p>
     <% end %>
-  <% else %>
-    <p>Go like something</p>
-  <% end %>
-</section>
+  </section>
+<% else %>
+
+  <section id="profile-grid" class="container-fluid">
+    <% User.all.each do |user| %>
+      <!-- PROFILE -->
+      <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <a href="/pages/<%= user.user_name %>">
+          <div class="profile-head">
+            <p><%= user.user_name %></p>
+          </div>
+            <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
+              <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
+            <% else %>
+              <%= link_to image_tag(user.avatar(:small), title: "#{ user.first_name}"), feed_user_path(user) %>
+            <% end %>
+        </a>
+      </div>
+    <% end %>
+  </section>
+<% end %>

@@ -1,3 +1,6 @@
+<% content_for :for_head do %>
+  <title>Feed</title>
+<% end %>
 <!-- USER AREA -->
 <section id="userarea">
   <%= render partial: "profile_info" %>
@@ -76,7 +79,7 @@
   <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
     <div id="empty_feed_container">
       <% if current_user?(@user) %>
-        <%= render partial: "link_networks" %>
+        <%= render partial: "users/network_authentications" %>
       <% else %>
         <p> <%= @user.user_name %> has not Nfused any networks. </p>
         <%= image_tag("sadface.fw.png", size:"100x100") %>

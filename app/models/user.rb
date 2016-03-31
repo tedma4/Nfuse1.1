@@ -80,16 +80,15 @@ class User < ActiveRecord::Base
   # ? methods are meant to return a boolean
 
   def self.omniauth(auth)
- 
-    where(auth.slice(:providers, :uid)).first_or_initialize.tap do |user|
+    User.where(providers: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.providers = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.user_name =  auth.info.email.split('@').shift + [*('a'..'z')].sample(4).join
-      user.password = auth.credentials.token
-      user.password_confirmation = auth.credentials.token
+      user.password = auth.credentials.token.to_s.first(70)
+      user.password_confirmation = auth.credentials.token.to_s.first(70)
       user.avatar_file_name = auth.info.image.gsub('square', 'large')
       # user.expires_at = Time.at(auth.credentials.expires_at)
       user.save!
