@@ -30,7 +30,7 @@
       <div role="tabpanel" class="tab-pane active" id="profile-images">
         <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
           <div class="row">
-            <div class="form-group col-xs-12 col-sm-4 col-md-4">
+            <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
               <h5>Profile Picture</h5>
               <small>At least 200 x 200</small>
               <!--  <div id="target">
@@ -49,7 +49,7 @@
                 <%= f.file_field :avatar, id: "user_avatar_upload", placeholder: "Snip", type: "file", class: "upload" %>
               </div>
             </div>
-            <div class="form-group col-xs-12 col-sm-8 col-md-8">
+            <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
               <h5>Profile Banner</h5>
               <small>At least 2400 x 1000</small>
               <!-- <div id="target2"> 

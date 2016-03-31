@@ -77,7 +77,7 @@
       <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>
     </div> -->
   <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
-    <div id="empty_feed_container">
+    <div class="center">
       <% if current_user?(@user) %>
         <%= render partial: "users/network_authentications" %>
       <% else %>

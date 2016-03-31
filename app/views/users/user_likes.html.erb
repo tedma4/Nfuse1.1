@@ -162,22 +162,28 @@
     <% end %>
   </section>
 <% else %>
-
-  <section id="profile-grid" class="container-fluid">
-    <% User.all.each do |user| %>
-      <!-- PROFILE -->
-      <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-        <a href="/pages/<%= user.user_name %>">
-          <div class="profile-head">
-            <p><%= user.user_name %></p>
-          </div>
+  <% if current_user?(@user) %>
+    <section id="profile-grid" class="container-fluid">
+      <% User.all.each do |user| %>
+        <!-- PROFILE -->
+        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="/pages/<%= user.user_name %>">
+            <div class="profile-head">
+              <p><%= user.user_name %></p>
+            </div>
             <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
               <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
             <% else %>
               <%= link_to image_tag(user.avatar(:small), title: "#{ user.first_name}"), feed_user_path(user) %>
             <% end %>
-        </a>
-      </div>
-    <% end %>
-  </section>
+          </a>
+        </div>
+      <% end %>
+    </section>
+  <% else %>
+    <div class="center">
+      <p> <%= @user.user_name.capitalize %> has not liked anything. </p>
+      <%= image_tag("sadface.fw.png", size:"100x100") %>
+    </div>
+  <% end %>
 <% end %>
