@@ -13,7 +13,13 @@
           <div class="profile-head">
             <p><%= user.user_name %></p>
           </div>
-          <%= image_tag(user.avatar) %>
+          <div>
+          <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
+            <%= image_tag user.avatar_file_name %>
+          <% else %>
+            <%= image_tag user.avatar.url(:larger) %> 
+          <% end %>
+          </div>
         </a>
       </div>
     <% end %>

@@ -1,171 +1,115 @@
-  <li class="media comment">
-    <a class="pull-left" href="#">
-      <!-- Needs to be user image with link to profile -->
-      <% if comment.user.avatar_file_name.present? && comment.user.avatar_file_name.include?('graph.facebook.com') %>
-        <%= image_tag comment.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
-      <% else %>
-        <%= image_tag comment.user.avatar(:thumb), class: "media-object img-circle",  title: "Edit Image" %>
-      <% end %>
-      <!--<img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/kurafire/128.jpg" alt="profile">-->
-    </a>
-    <div class="media-body">
-      <div class="well well-lg">
-        <!-- Username goes here -->
-        <h4 class="media-heading text-uppercase reviews"><%= comment.user.user_name%></h4>
-        <ul class="media-date text-uppercase reviews list-inline">
-          <!-- timeago in words of the comment -->
-          <li class="dd"><%= time_ago_in_words(comment.created_at) %></li>
-        </ul>
-<!--         <div class="embed-responsive embed-responsive-16by9">
-          This will be the media placement
-          <iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" allowfullscreen></iframe>
-        </div> -->
-        <% if !comment.url.blank? %>
-          <p> <%= comment.url_html %></p>
-        <% elsif !comment.image_upload.blank? %>
-          <%= image_tag comment.image_upload(:medium) %>
-        <% else %>
-        <% end %>
-        <% unless comment.body.blank? %>
-          <p class="media-comment">
-            <%= comment.body %>
-          </p>
-        <% end %>
-        <%#= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class="btn btn-info btn-circle text-uppercase"  %>
-        <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Comments" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-        <% if comment.children.any? %>
-          <a class="btn btn-warning btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Comments"><span class="glyphicon glyphicon-comment"></span> <%= comment.children.count %> comment</a>
-        <% end %>
-        <% if signed_in? %>
-          <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
-            <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-              dislike_this_comment_path(id: comment.id,
-              owner_id: comment.user_id,
-              comment_id: comment.id,
-              owner_type: 'User'),
-              method: :delete, remote: true %>
+<!-- TOPIC -->
+<li class="media comment item">
+    <header class="post_header">
+        <div class="user">
+          <!-- Needs to be user image with link to profile -->
+          <% if comment.user.avatar_file_name.present? && comment.user.avatar_file_name.include?('graph.facebook.com') %>
+            <%= image_tag comment.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
           <% else %>
-            <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-              like_this_comment_path(id: comment.id,
-              owner_id: comment.user_id,
-              comment_id: comment.id,
-              owner_type: 'User'),
-              method: :post, remote: true %>
+            <%= image_tag comment.user.avatar(:thumb), class: "media-object img-circle",  title: "Edit Image" %>
           <% end %>
-        <% else %>
-          <%= image_tag("smilinggray.fw.png", size: "24x24") %>
-        <% end %>
-        <a id="comment-<%=comment.id%>">
-          <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+            <a href="#"><%= comment.user.user_name%></a>
+        </div>
+        <h5 class="media-heading reviews">Test title
+        </h5>
+    </header>
+    <main class="post_content">
+        <div class="timeline-user-box">
+          <% if !comment.url.blank? %>
+            <p> <%= comment.url_html %></p>
+          <% elsif !comment.image_upload.blank? %>
+            <%= image_tag comment.image_upload(:medium) %>
+          <% else %>
+          <% end %>
+          <% unless comment.body.blank? %>
+            <p class="media-comment">
+              <%= comment.body %>
+            </p>
+          <% end %>
+        </div>
+    </main>
+    <footer class="post_actions">
+        <a class="commentPost" data-toggle="modal" data-target="#commentmodal" href="#" rel="nofollow">
+            <i class="fa"></i><span>2</span>
         </a>
-      </div>
-    </div>
+        <a class="likePost" href="#" rel="nofollow">
+          <% if signed_in? %>
+            <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
+              <%= link_to dislike_this_comment_path(id: comment.id,
+                owner_id: comment.user_id,
+                comment_id: comment.id,
+                owner_type: 'User'),
+                method: :delete, remote: true do %>
 
-<div id="<%= comment.id %>Comments" class="modal fade">
-  <div class="modal-fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" data-dismiss="modal">×</button>
-        </div>
-        <div class="modal-body-new-post">
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="span6">
-                <div class="logowrapper">
-                  <div class="Alignthisorelse">
-                    <div class="container post-padding">
-                      <div class="col-sm-6 form-box wow fadeInUp">
-                        <div class="form-top-new-post">
-                          <div class="form-bottom">
-                            <ul class="media-list sub_<%= comment.id %>_comments">
-                            <% comment.children.each do |this| %>
-                            <%# comment.children.includes(:user).each do |this| %>
-                            <%# user = User.find(this.user_id) %>
-                              <%= render partial: 'comments/sub_comment', locals: {this: this} %>
-                            <% end %>
-                            </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <i class="fa"></i>
+                <span>
+                  <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+                </span>
+                <% end %>
+            <% else %>
+              <%= link_to like_this_comment_path(id: comment.id,
+                owner_id: comment.user_id,
+                comment_id: comment.id,
+                owner_type: 'User'),
+                method: :post, remote: true do %>
+
+                <i class="fa"></i>
+                <span>
+                  <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+                </span>
+                <% end %>
+            <% end %>
+          <% else %>
+            <i class="fa"></i>
+              <span>
+                <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+              </span>
+          <% end %>
+        </a>
+        <a id="flagpost" class="flagPost" data-toggle="modal" data-target="#flagmodal" href="#" rel="nofollow">
+            <i class="fa"></i><span>Flag</span>
+        </a>
+        <a class="timeStamp" href="javascript:void(0)">
+            <i class="fa"></i><span><%= time_ago_in_words(comment.created_at) %></span>
+        </a>
+    </footer>
+
+
+    <!-- COMMENTS MODAL -->
+    <div class="modal fade" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="notificationslabel">Comments: Cool Topic</h4>
                 </div>
-              </div>
+                <div class="modal-body container-fluid">
+                    <!-- COMMENT -->
+                    <ul id="comments-list sub_<%= comment.id %>_comments" class="row">
+                      <% comment.children.each do |this| %>
+                      <%# comment.children.includes(:user).each do |this| %>
+                      <%# user = User.find(this.user_id) %>
+                        <%= render partial: 'comments/sub_comment', locals: {this: this} %>
+                      <% end %>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a class="user">
+                        <img src="/assets/default.jpg" alt="User Image"/> 
+                    </a>
+                    <form id="upload_form" role="form" class="dropup minimal new_comment" enctype="multipart/form-data" action="/pages/4/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+                        <a href="#"><i class="fa fa-photo"></i></a>
+                        <a id="link-drop-link" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" href="#"><i class="fa fa-link"></i></a>
+                        
+                        <div id="link-drop" class="dropdown-menu" aria-labelledby="link-drop-link">
+                            <textarea class="form-control" name="shout[url]" onchange="previewUrl()" placeholder="Paste URL Here" type="search"></textarea>
+                        </div>
+                        <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="comment[body]"></textarea>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <% if signed_in? %>
-        <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: true do |f| %>
-          <%= f.hidden_field :parent_id %>
-          <%= f.hidden_field :user_id %>
-          <div class="modal-footer">
-            <div class="popup-messages-footer">
-              <%= f.text_area :body,  id: "status_message",  placeholder: "Type a message...", rows: "10", cols: "40" %>
-              <div id="open_url_field" class="collapse ">
-                <%= f.text_area :url,  id: "status_message",  placeholder: "Enter link.", rows: "10", cols: "40" %>
-              </div>
-              <div class="btn-footer">
-                <button class="bg_none">
-                  <i class="glyphicon glyphicon-camera replyUpload">
-                    <input id="newPostPictureInput" placeholder="Pic" type="file" class="upload" name="comment[image_upload]">
-                  </i> 
-                </button>
-                <a data-toggle="collapse" href="#open_url_field">
-                  <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
-                </a>
-                <button type="submit" class="bg_none pull-right submit_<%= comment.id unless comment.nil? %>_sub_comment">
-                  <i class="glyphicon glyphicon-ok-sign"></i>   
-                </button>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
-  </div>
-    </div>
-  </div>
-
-
-  </li>
-
-<script>
-// $( "#<%= comment.id unless comment.nil? %>Comments" ).on('shown.bs.modal', function(e){
-//   // console.log('Setting up faye client');
-//   client = new Faye.Client('/faye');
-
-//   // client.addExtension({
-//   //   outgoing: function(message, callback) {
-//   //     message.ext = message.ext || {};
-//   //     message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
-//   //     return callback(message);
-//   //   }
-//   // });
-
-//   jQuery(function() {
-//     // console.log('test r');
-//     $('.submit_<%= comment.id unless comment.nil? %>_sub_comment').submit(function() {
-//       // console.log('sub comment submit')
-//       return $("button[type='submit']").val('Sending...').prop('disabled', true);
-//     });
-//     // try {
-//     //   client.unsubscribe('/comments');
-//     // } catch (_error) {
-//     //   if (typeof console !== "undefined" && console !== null) {
-//     //     console.log("Can't unsubscribe.");
-//     //   }
-//     // }
-//     return client.subscribe('/comments', function(payload) {
-//       if (payload.message) {
-//         return $('.sub_comments').prepend(payload.message);
-//       }
-//     });
-
-//     if ($( "#<%= comment.id unless comment.nil? %>Comments" ).modal('toggle')) {
-//       client.unsubscribe('/comments');
-//     }
-//   });
-// });
-
-</script>
+</li>

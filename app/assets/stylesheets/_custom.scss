@@ -1,6 +1,10 @@
 /* STYLES FOR NFUSE.IT */
 
 /* GLOBAL */
+  .slimScrollDiv,
+  #scrollwrap{
+    min-height: 100vh !important;
+  }
   body {
       width: 100%;
      
@@ -88,16 +92,16 @@
     outline:0;
   }
   .searchbar{
-    padding-top: 0;
+    /*padding-top: 0;*/
   }
   .searchbar #search-head{
-    display: 0;
+    /*display: 0;*/
   }
   .nosearchbar #search-head{
-    display: 0;
+    /*display: 0;*/
   }
   .nosearchbar{
-    padding-top: 0;
+   /* padding-top: 0;*/
   }
 
 /*----------  FONTS */
@@ -203,7 +207,9 @@
 }
 
 /*----------  COLORS */
-  
+
+  .media-heading,
+  .followUser .fa,
   #notifications-header,
   #networks .network button,
   #networks .network i,
@@ -223,6 +229,7 @@
   .white{
     color:#fff;
   }
+  .post_actions a span,
   #settings-tab li a,
   .explorebox p,
   .form-control{
@@ -277,6 +284,9 @@
     -webkit-transition: all .3s ease-in-out;
       -moz-transition: all .3s ease-in-out;
       transition: all .3s ease-in-out;    
+  }
+  .explore_filters .btn{
+    margin-bottom: 1em;
   }
   
   .btn-default:hover,
@@ -495,7 +505,7 @@
   }
   #top-nav{
     float: right;
-    padding:0;
+    /*padding:0;*/
     font-size: 12px;
   }
   .navbar-toggle{
@@ -724,12 +734,12 @@
     }
     #notifications-list,
     #slide-nav{
-      /*width: 50%;*/
+      /*width: 50%;         ------------------------------*/
     }
     #notifications-list.open,
     #slide-nav.open{
       /*left:0;*/
-      width: 50%;
+      /*width: 50%;*/
     }
     #slide-nav .nav li a{
     font-size: 21px;
@@ -779,7 +789,7 @@
       position: relative;
   }
   .notification:nth-child(odd){
-    background-color: #252525;
+    /*background-color: #252525;*/
   }
   .notification:last-of-type{
     border: 0px;
@@ -919,7 +929,7 @@
   }
   #nfuse .navbar{
     min-height:0px;
-    border-bottom: 1px solid #333;
+    /*border-bottom: 1px solid #333;*/
   }
   #head-search.fixed{
     bottom: 0;
@@ -1011,7 +1021,7 @@
     border:0;
     font-weight: 100;
     font-size: 12px;
-        padding:10px 20px 10px 0px;
+    padding:10px 10px 10px 0px;
   }
   .dropdown-menu {
       min-width: 0;
@@ -1079,6 +1089,7 @@
       padding: 0px;
       z-index: -1;
       top:0;
+      border-bottom: 1px solid #333;
       transition: top 0.3s ease;
       -moz-transition: top 0.3s ease;
       -webkit-transition: top 0.3s ease;
@@ -1186,11 +1197,17 @@
   .explorefeed{
     padding-top:90px;
   }
+  .post_content {
+      float: left;
+      width: 100%;
+  }
   .item .post_header{
     padding: 5px 10px;
     background: #333;
     z-index: 2;
     position: relative;
+    float: left;
+      width: 100%;
   }
   .image_post:before{
     content:" ";
@@ -1215,29 +1232,43 @@
     bottom: -2px;
     position: absolute;
   }
+  #commentmodal .user,
+  .comment .user a,
+  .comment .user,
   .item .user{
     display: inline-block;
+    float: left;
   }
+  .comment .user a,
+  .item .user a{
+    display: none;
+  }
+  .post_actions .user img,
+  #commentmodal .user img,
+  .comment .user img,
   .item .user img{
     width: 30px;
     height: 30px;
     border-radius: 100%;
-        padding: 2px;
+    padding: 2px;
   }
-  .item .timeStamp{
-    font-size: 16px;
+  .timeStamp{
+    /*font-size: 16px;
     line-height: 34px;
-    background: #333;
     height:34px;
+    background: #333;*/
     text-align: right;
     display: inline-block;
     float: right;
     z-index: 1;
     padding: 0px 5px;
   }
-  .item .timeStamp i{
+  .timeStamp i{
     font-size: 21px;
     line-height: 31px;
+  }
+  .timeStamp i:before{
+    content:'\f017';
   }
   .item .post_content iframe,
   .item .post_content video{
@@ -1348,6 +1379,23 @@
   .likePost.liked .fa:before{
     content: "\f004";
   }
+  .followUser.followed:after,
+  .followUser.followed span,
+  .followUser .fa{
+    float: left;
+  }
+  .followUser .fa:before{
+    content: " ";
+  }
+  .followUser.followed .fa:before{
+    content: "\f00c";
+  }
+/*  .followUser span:before{
+    content: "Follow";
+  }*/
+  .followUser.followed span:after{
+    content:"ed";
+  }
 
   /* POST FOOTER */
   .post_actions{
@@ -1356,20 +1404,41 @@
     padding: 2px;
       width: 100%;
   }
+  .post_actions a,
   .likePost{
-    float: right;
+    float: left;
     text-align: right;
     padding: 5px 10px;
   }
-  .likePost i{
-    font-size: 24px;
-    line-height: 24px;
+  .post_actions a.timeStamp{
+    float: right;
   }
+  .post_actions a span{
+    
+  }
+  .comment .post_actions a{
+    padding: 5px;
+  }
+  #commentmodal .post_actions{
+    border-top:0px;
+  }
+  .post_actions i,
+  .likePost i{
+    font-size: 21px;
+    line-height: 21px;
+  }
+  .post_actions a span,
   .likePost span{
     color:#ccc;
     margin-left: 5px;
-    font-size: 16px;
-    line-height: 24px;
+  
+    line-height: 21px;
+  }
+  .commentPost .fa:before{
+    content: "\f086";
+  }
+  .flagPost .fa:before{
+    content: "\f024";
   }
 
 @media(max-width:480px) {
@@ -1397,6 +1466,9 @@
   }
   #masonJar{
     margin: 25px 1% 0 3%;
+  }
+  .user a{
+    display: inline-block;
   }
 }
 @media(min-width:992px) {
@@ -1544,6 +1616,346 @@
   }
 }
 
+/* FORUM */
+
+  #media-list{
+      padding: 0;
+      float: left;
+  }
+  .adbar ul.adlist{
+    padding: 10px;
+    border-radius: 2px;
+    background: #333333;
+    list-style: none;
+    float: left;
+     width: 100%;
+  }
+  .adbar .adlist img{
+    max-width: 300px;
+    width: 100%;
+    display: block;
+      margin: auto;
+  }
+  .adbar .adlist li{
+    margin-bottom: 10px;
+  }
+  .adbar .adlist li:last-of-type{
+    margin-bottom: 0;
+  }
+  h5.media-heading {
+      text-transform: capitalize;
+      font-weight: 100;
+      line-height: 2rem;
+      float: left;
+      margin: 5px 0 0px 5px;
+      width: calc(100% - 37px);
+  }
+  #addTopic{
+    position: fixed;
+    border:1px solid #00eebc;
+    border-radius: 100%;
+    bottom: 10px;
+    left:10px;
+    font-size: 16px;
+    padding: 10px 14px;
+    z-index: 99;
+  }
+  #forum{
+    padding-left: 15px;
+      padding-right: 15px;
+      max-width: 1440px; 
+      display: block;
+      margin: auto;
+  }
+  #userarea.forum #user-bio{
+    font-size: 14px;
+      line-height: 20px;
+  }
+
+/* -------- COMMENTS */
+
+  .comment p{
+    padding: 10px 15px 15px;
+    float: left;
+    margin-bottom: 0;
+  }
+  .comment header.post_actions{
+    padding: 5px 5px 0px 5px;
+  }
+  .comment .user img{
+    float: left;
+  }
+  #upload_form {
+      /*width: calc(100% - 40px);
+      float: left;*/
+      position: relative;
+  }
+  #upload_form a{
+    position: absolute; 
+    right: 10px;
+    font-size: 21px; 
+    line-height: 21px;
+  }
+  #upload_form a:first-of-type{
+    right:45px; 
+  }
+  #status_message{
+    width: calc(100% - 40px);
+    margin:0px;
+    padding-right: 70px;
+    font-size: 12px;
+    height: 40px;
+  }
+  #comments-list{
+    padding: 0px;
+    list-style: none;
+  }
+  #comments-list ul{
+    padding-left: 10px;
+  }
+  #comments-list .comment .post_actions{
+    border-top: 1px solid #333;
+  }
+  #comments-list .comment:first-of-type .post_actions{
+    border-top:0px;
+  }
+  #link-drop {
+      background: #333;
+      padding: 10px;
+      margin-bottom: 0px;
+  }
+  #link-drop textarea{
+    margin-bottom: 0;
+  }
+
+
+@media(min-width:480px) {
+  #userarea.forum #user-banner {
+      margin: 0px 0 0px;
+  }
+
+  #userarea.forum #user.desk{
+    display: none;
+  }
+  #userarea.forum #user.mobile{
+    display: block;
+    margin: auto;
+  }
+  
+  #userarea.forum li#user-spacer{
+    width: 0px;
+  }
+  #userarea.forum  #user-nav li a{
+    width: 100%;
+  }
+  #userarea.forum #user-nav li{
+    float: left;
+  }
+  #userarea.forum #user{
+    top: -15px;
+  }
+  .followUser.followed:after, 
+  .followUser.followed span, 
+  .followUser .fa{
+    float: none;
+  }
+  .user-left,
+  .user-right{
+    margin:auto;
+  }
+  #userarea.forum .user-left,
+  #userarea.forum .user-right{
+    position: relative;
+    text-align: center;
+    bottom: 0;
+    padding: 0px 15px 15px;
+  }
+}
+@media(min-width:650px) and (max-width: 767px) {
+  .adbar .adlist li{
+    float: left;
+  }
+  .adbar .adlist li:last-of-type{
+    float: right;
+  } 
+}
+@media(min-width:650px){
+  #userarea.forum .user-left,
+  #userarea.forum .user-right{
+    position: absolute;
+    padding: 15px;
+  }
+  #userarea.forum .user-left{ 
+    text-align: right;
+  }
+  #userarea.forum .user-right{
+    text-align: left;
+  }
+  #userarea.forum #user-bio{
+    bottom: 70px;
+      word-wrap: break-word;
+  }
+  #userarea.forum #user-stats,
+  #userarea.forum #user-bio{
+    width: calc(50% - 80px);
+  }
+  #userarea.forum #user-stats{
+    bottom: 85px;
+  }
+}
+@media(min-width:768px) {
+  
+  .adbar:first-of-type{
+    /*padding-right: ;*/
+  }
+  .adbar:last-of-type{
+    display: none;
+  }
+  #userarea.forum #user-nav ul li:last-of-type{
+    border-right: 0px;
+  }
+  #userarea.forum  #user-nav li{
+    margin:0px;
+  }
+  #userarea.forum #user-bio,
+  #userarea.forum #user-stats{
+    width: calc( 50% - 90px);
+    /*max-width: ;*/
+  }
+  #userarea.forum #user-bio {
+      bottom: 90px;
+  }
+  #userarea.forum #user-stats {
+     /*left: ;*/
+  }
+  #userarea.forum #user.desk{
+    /*display: ;*/
+  }
+  #userarea.forum #user.mobile{
+    /*display: ;*/
+  }
+  #userarea.forum #user-stats {
+      bottom: 100px;
+  }
+}
+@media(min-width:992px) {
+  #forum {
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+  #userarea.forum #user-nav ul li:last-of-type{
+    border-right: 1px solid #333;
+  }
+  #nfuse #userarea.forum #user-nav li {
+      width: auto;
+      min-width: 130px;
+      float: none;
+      margin-left: -5px;
+      display: inline-block;
+  }
+  #userarea.forum #user-bio {
+      bottom: 80px;
+      right: 90px;
+  }
+  #userarea.forum #user.desk{
+    display: block;
+      top: -201px;
+  }
+  #userarea.forum #user.mobile{
+    display:none;
+  }
+  #userarea.forum #user-banner{
+    height: 140px;
+  }
+  #userarea.forum #user-stats{
+    bottom: 80px;
+    left: 75px;
+  }
+  #userarea.forum #user-bio,
+  #userarea.forum #user-stats{
+    width: calc( 50% - 210px);
+    /*max-width: ;*/
+  }
+  #userarea.forum #user-nav ul{
+    padding-right: 135px;
+  }
+
+  #forum .item .post_actions,
+  #forum .item .post_header {
+      padding: 15px;
+  }
+  .comment header.post_actions {
+      padding: 15px 10px 0px 30px;
+  }
+  .comment p{
+      padding: 10px 30px 30px;
+  }
+  #userarea.forum{
+    margin-bottom: 30px;
+  }
+}
+@media(min-width:1200px) {
+  .adbar:last-of-type {
+      display: block;
+  }
+  .adbar:first-of-type {
+      padding-right: 15px;
+  }
+  #userarea.forum #user-stats {
+    
+  }
+  #userarea.forum #user-bio{
+      font-size: 16px;
+          max-width: 400px;
+      line-height: 24px;
+      left: 620px;
+      right: 0;
+  }
+  .comment .post_actions a{
+    font-size: 16px;
+  }
+  #userarea.forum #user-bio {
+      bottom: 75px;
+  }
+  #userarea.forum #user-stats{
+    left: 80px;
+  }
+}
+
+/* FORUM OVERRIDES - DELETE FOR ADS */
+
+  .adbar ul.adlist{
+    display: none;
+  }
+
+@media(min-width:480px) {
+  .adbar:first-of-type {
+      width: 20%;
+  }
+} 
+@media(min-width:768px) {
+
+  #userarea.forum {
+    margin-bottom: 30px;
+  }
+  .adbar:first-of-type {
+      width: 20%;
+  }
+}
+@media(min-width:992px) {
+
+  .adbar:first-of-type {
+      width: 16.666666%;
+  }
+}
+@media(min-width:1200px) {
+
+  .adbar:first-of-type {
+      width: 25%;
+  }
+}
+
+
 /* SIGNUP/SIGNIN */
   .home #signup{
       padding-top: 100px;
@@ -1592,6 +2004,7 @@
       width: 100%;
       letter-spacing: 3px;
       margin-bottom: 25px;
+      padding: 10px;
   }
   form.minimal .form-group,
   #signin .form-group,
@@ -1782,7 +2195,6 @@
     color:#999;
   }
   body.pagetrans footer {
-
       position: relative;
       bottom: 0px;
       width: 100%;
@@ -2080,6 +2492,9 @@
     margin-bottom: -40px;
 
   }
+  #userarea.forum #user-banner{
+    margin:0px 0 30px;
+  }
   #userarea #user-banner img{
     top: 0px;
       margin-top: 0;
@@ -2116,16 +2531,31 @@
       float: left;
       width: 25%;
   }
+  #userarea.forum #user-nav li{
+      width: 33.33%;
+  }
   #user-nav ul li:first-of-type{
     border-left: 0px solid #333;
   }
-  #user-nav li a{
+/*  #user-nav li a{
     color:#ccc;
     font-weight: 100;
     display: block;
     font-size: 16px;
     padding: 15px 0px;
       line-height: 18px;
+  }*/
+  #user-nav li a{
+    color:#ccc;
+    font-weight: 100;
+    display: block;
+    font-size: 16px;
+    padding: 15px 10px;
+      line-height: 18px;
+
+      float: left;
+      text-align: center;
+      width: 100%;
   }
   #user-nav li:hover{
     background-color: #292929;
@@ -2172,7 +2602,7 @@
     left: 0;
     
   }
-  #user-stats,
+  /*#user-stats,*/
   .user-right{
     right: 0;
     font-size: 16px;
@@ -2181,8 +2611,10 @@
   #user-likes a{
     color:#ccc;
   }
-  #user-name{
+  #user-name h1{
     font-size: 26px;
+    letter-spacing: 0;
+    margin-bottom: 10px;
   }
   #user-link{
     font-size: 18px;
@@ -2190,6 +2622,10 @@
   }
   #user.desk{
     display: none;
+  }
+  #user-bio{
+    padding: 0 15px;
+    font-weight: 100;
   }
 
 @media(min-width:480px){
@@ -2209,6 +2645,9 @@
     margin-left: -5px;
       float: none;
       width: auto;
+  }
+  #userarea.forum #user-nav li {
+    margin-left: 0px;
   }
   #userarea #user{
       top: -131px;
@@ -2263,7 +2702,7 @@
   #userarea #user {
       width: 150px;
       height: 150px;
-      top: -126px;
+      top: -199px;
   }
 
   #userarea #user-banner{
@@ -2344,7 +2783,7 @@
   #userarea #user {
       width: 200px;
       height: 200px;
-      top: -176px;
+      top: -199px;
   }
   .user-left{
     padding-right: 30px;
@@ -2537,6 +2976,8 @@
   .image-upload{
     position: relative;
     overflow: hidden;
+    margin-bottom: 15px;
+
   }
   .modal form .image-upload button{
     float: left;
@@ -3103,9 +3544,6 @@
     margin-top: 2px;
   }
 
-  
-
-
   button, input, select, textarea {
     font-family: inherit;
     font-size: inherit;
@@ -3121,4 +3559,33 @@
 }
 video {
   background-size: 100%;
+}
+
+/* HUB */
+
+  .thehub {
+      padding:0 0px;
+      min-height: calc(100vh - 160px);
+  }
+  .thehub #user-nav{
+    margin-bottom: 30px;
+    margin-top: 0;
+    text-align: center;
+  }
+  .thehub #user-nav li{
+    width: auto;
+    float: none;
+  }
+  .thehub #user-nav li a{
+    width: 100%;
+    padding: 15px 30px;
+  }
+
+@media (min-width: 480px){
+  #user-nav ul li:first-of-type{
+    border-left: 1px solid #333;
+  }
+  #user-nav ul li:last-of-type{
+    border-right: 1px solid #333;
+  }
 }

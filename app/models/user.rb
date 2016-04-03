@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include UserOptions
   include Authentication
   include PublicActivity::Model
+  # attr_reader :avatar_remote_url
   # tracked except: :destroy, owner: ->(controller, model) { controller && controller.current_user }, recipient: ->(controller, model) {model && model.user}
 
   # 
@@ -33,7 +34,7 @@ class User < ActiveRecord::Base
   before_create :downcase_email
   before_create :create_remember_token
 
-  has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "512x512#", small: "32x32#" }, 
+  has_attached_file :avatar, styles: { regular: "250x250#", large: "300x300#", small: "50x50#"}, 
                                 default_url: "def.jpg"
                                 # storage: :s3,
                                 # s3_host_name: 'aa1cee2z3awja3v.c97qscmi7euu.us-west-1.rds.amazonaws.com',
@@ -89,7 +90,8 @@ class User < ActiveRecord::Base
       user.user_name =  auth.info.email.split('@').shift + [*('a'..'z')].sample(4).join
       user.password = auth.credentials.token.to_s.first(70)
       user.password_confirmation = auth.credentials.token.to_s.first(70)
-      user.avatar_file_name = auth.info.image.gsub('square', 'large')
+      byebug
+      user.avatar_remote_url = auth.info.image.gsub('square', 'large')
       # user.expires_at = Time.at(auth.credentials.expires_at)
       user.save!
       Token.create(provider: auth.provider, uid: auth.uid, access_token: auth.credentials.token, user_id: user.id)
@@ -138,6 +140,16 @@ class User < ActiveRecord::Base
   def self.all_except(other_user)
     result = where.not("id = ?",other_user.id).order("created_at DESC")
     result.nil? ? [] : result
+  end
+
+  def avatar_remote_url=(url_value)
+    byebug
+    first_do = URI.parse(url_value)
+    self.avatar = first_do
+    # Assuming url_value is http://example.com/photos/face.png
+    # avatar_file_name == "face.png"
+    # avatar_content_type == "image/png"
+    @avatar_remote_url = url_value
   end
 
   private

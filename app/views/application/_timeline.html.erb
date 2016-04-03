@@ -1,7 +1,19 @@
+
 <% if current_user.relationships.where(follow_type: 'User').collect(&:followed_id).any? %>
-<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+<section id="thehub" class="container-fluid clearfix"> 
+
+  <nav id="user-nav" class="hub center navbar">
+    <ul>
+      <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
+      <li><%= link_to 'Users', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
+    </ul>
+  </nav>
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
+</section>
+<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+
   <%# cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
     <% timeline.first(30).each do |post| %>
       <%# cache(post) do %>
@@ -63,12 +75,21 @@
     <%# end %>
     <%# end %>
   </div>
-<% else %>
-  <div class="center hub_padding">
-    <p> Can't display posts because you aren't following anyone... </p>
-    <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
-    <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
-    <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
-  </div>
-<% end %>
 </section>
+<% else %>
+  <section id="thehub" class="container-fluid clearfix"> 
+    <nav id="user-nav" class="hub center navbar">
+    <ul>
+      <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
+      <li><%= link_to 'Users', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
+    </ul>
+    </nav>
+    <div class="row">
+      <div class="explore_filters col-xs-12 center">
+        <p>Can't display posts because you aren't following anyone... <%= current_user.first_name %>, Why aren't you following someone yet?</p>
+          <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
+      </div>
+    </div>
+  </section>
+<% end %>
