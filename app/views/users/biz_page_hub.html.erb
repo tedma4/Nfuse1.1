@@ -1,6 +1,6 @@
 
 <% if current_user.relationships.where(follow_type: 'Page').collect(&:followed_id).any? %>
-<section id="thehub" class="container-fluid clearfix"> 
+<section id="thehub" class="container-fluid clearfix">
 
   <nav id="user-nav" class="hub center navbar">
     <ul>
@@ -21,11 +21,11 @@
             <header class="post_header">
               <div class="user">
                 <%= image_tag("#{post.avatar}", size:'45x45', alt: 'P6pl2kfg normal') %>
-                <%= link_to truncate(post.user.user_name, length: 16), root_path %>
+                <%= link_to truncate(post.username, length: 16), root_path %>
               </div>
               <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
               <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-                <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
+                <i class="fa"></i> <%= time_ago_in_words(post.created_time) %>
               <% end %>
             </header>
             <main class="post_content">
@@ -95,24 +95,23 @@
                 <i class="fa"></i><span>666</span>
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
-                <%= link_to dislike_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost'} do %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
               <% else %>
-                <%= link_to like_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                <%= link_to like_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
               <% end %>
-                <%#= post.like_score(post.id) %>
             </footer>
           </article>
       <% end %>
     <%# end %>
     <%# end %>
-  </div>
+
 </section>
 <% else %>
-  <section id="thehub" class="container-fluid clearfix"> 
+  <section id="thehub" class="container-fluid clearfix">
     <nav id="user-nav" class="hub center navbar">
     <ul>
       <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
