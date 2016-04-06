@@ -1,53 +1,52 @@
 <li class="comment col-xs-12">
-    <header class="post_actions">
-        <div class="user">
-          <% if this.user.avatar_file_name.present? && this.user.avatar_file_name.include?('graph.facebook.com') %>
-            <%= image_tag this.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
-          <% else %>
-            <%= image_tag this.user.avatar(:thumb), class: "media-object img-circle", title: "Edit Image" %>
-          <% end %>
-            <a href="#"> <%= this.user.user_name%></a>
-        </div>
-        <a class="likePost" href="#" rel="nofollow">
-        <% if signed_in? %>
-          <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
-            <%= link_to dislike_this_comment_path(id: this.id,
+  <header class="post_actions">
+    <div class="user">
+      <% if this.user.avatar_file_name.present? && this.user.avatar_file_name.include?('graph.facebook.com') %>
+        <%= image_tag this.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
+      <% else %>
+        <%= image_tag this.user.avatar(:thumb), class: "media-object img-circle", title: "Edit Image" %>
+      <% end %>
+      <a href="#"> <%= this.user.user_name %></a>
+    </div>
+    <a class="likePost" href="#" rel="nofollow">
+      <% if signed_in? %>
+        <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
+          <%= link_to dislike_this_comment_path(id: this.id,
                 owner_id: this.user_id,
                 comment_id: this.id,
                 owner_type: 'User'),
                 method: :delete, remote: true do %>
-              <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
-              <% end %>
-          <% else %>
-              <%= link_to  like_this_comment_path(id: this.id,
+            <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
+          <% end %>
+        <% else %>
+          <%= link_to  like_this_comment_path(id: this.id,
                 owner_id: this.user_id,
                 comment_id: this.id,
                 owner_type: 'User'),
                 method: :post, remote: true do %>
-              <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
-              <% end %>
+            <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>
-        <% else %>
-          <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
         <% end %>
-        </a>
-        <a class="flagPost" data-toggle="modal" data-target="#flagmodal" href="#" rel="nofollow">
-            <i class="fa"></i><span>Flag</span>
-        </a>
-        <a class="timeStamp" href="#">
-            <i class="fa"></i><span><%= time_ago_in_words(this.created_at) %></span>
-        </a>
-    </header>
-      <% if !this.url.blank? %>
-        <p> <%= this.url_html %></p>
-      <% elsif !this.image_upload.blank? %>
-        <%= image_tag this.image_upload(:medium) %>
       <% else %>
+        <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
       <% end %>
-      <% unless this.body.blank? %>
-        <p class="media-comment">
-          <%= this.body %>
-        </p>
-      <% end %>
-
+    </a>
+    <a class="flagPost" data-toggle="modal" data-target="#flagmodal" href="#" rel="nofollow">
+      <i class="fa"></i><span>Flag</span>
+    </a>
+    <a class="timeStamp" href="#">
+      <i class="fa"></i><span><%= time_ago_in_words(this.created_at) %></span>
+    </a>
+  </header>
+  <% if !this.url.blank? %>
+    <p> <%= this.url_html %></p>
+  <% elsif !this.image_upload.blank? %>
+    <%= image_tag this.image_upload(:medium) %>
+  <% else %>
+  <% end %>
+  <% unless this.body.blank? %>
+    <p class="media-comment">
+      <%= this.body %>
+    </p>
+  <% end %>
 </li>

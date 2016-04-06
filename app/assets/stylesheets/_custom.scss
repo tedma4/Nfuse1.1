@@ -1241,7 +1241,7 @@
   }
   .comment .user a,
   .item .user a{
-    display: none;
+    /*display: none;*/
   }
   .post_actions .user img,
   #commentmodal .user img,
@@ -1692,12 +1692,19 @@
   }
   #upload_form a{
     position: absolute; 
-    right: 10px;
+    right: 33px;
     font-size: 21px; 
     line-height: 21px;
   }
   #upload_form a:first-of-type{
-    right:45px; 
+    right:63px; 
+  }
+  #upload_form button.submit{
+    color: #00eebc;
+    position: absolute; 
+    right: -5px; 
+    font-size: 21px; 
+    line-height: 21px;
   }
   #status_message{
     width: calc(100% - 40px);
@@ -2976,8 +2983,8 @@
   .image-upload{
     position: relative;
     overflow: hidden;
-    margin-bottom: 15px;
-
+/*    margin-bottom: 15px;
+*/
   }
   .modal form .image-upload button{
     float: left;
@@ -3563,20 +3570,20 @@ video {
 
 /* HUB */
 
-  .thehub {
+  #thehub {
       padding:0 0px;
-      min-height: calc(100vh - 160px);
+      /*min-height: calc(100vh - 160px);*/
   }
-  .thehub #user-nav{
-    margin-bottom: 30px;
+  #thehub #user-nav{
+    margin-bottom: 0px;
     margin-top: 0;
     text-align: center;
   }
-  .thehub #user-nav li{
+  #thehub #user-nav li{
     width: auto;
     float: none;
   }
-  .thehub #user-nav li a{
+  #thehub #user-nav li a{
     width: 100%;
     padding: 15px 30px;
   }

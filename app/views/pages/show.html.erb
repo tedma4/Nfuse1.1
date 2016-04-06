@@ -7,11 +7,11 @@
   </a>
   <ul id="user-stats" class="user-left">
     <li id="user-name"><h1><%= @page.thing_name %></h1></li>
-    <li id="user-followers">Followers:  <a href="#" data-toggle="modal" data-target="#followersmodal"><%= Relationship.where(follow_type: 'Page', followed_id: 2).count %></a></li>
+    <li id="user-followers"><a href="#" data-toggle="modal" data-target="#followersmodal">Followers:  <%= Relationship.where(follow_type: 'Page', followed_id: 2).count %></a></li>
     <li id="user-likes">Likes: <a href=""><%= ActsAsVotable::Vote.where(owner_type: 'Page', owner_id: @page.id).count %></a></li>
   </ul>
   <p id="user-bio" class="user-right">
-    <%= @page.description %>
+    @<%= @page.thing_name %> <%= @page.description %>
   </p>
   <!-- USER NAVBAR -->
   <nav id="user-nav" class="center navbar">
@@ -21,28 +21,30 @@
       <li id="user-spacer">
         <!-- PROFILE PIC -->
         <a id="user" class="desk">
-          <img src="<%= @page.profile_pic %>" alt="User Image"/>
+          <img src="<%= @page.profile_pic %>" style="width:200px;" alt="User Image"/>
         </a>
       </li>
       <li>
         <a class="followUser" href="#">
-          <% if current_user.following?(@page) %>
-            <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
-                                                    html: { method: :delete },
-                                                    remote: true) do |f| %>
-              <%= f.submit "Unfollow", class: "btn btn-link-2" %>
-            <% end %>
-          <% else %>
-            <%= form_for(current_user.relationships.build(followed_id: @page.id, follow_type: @page.class.name), remote: true) do |f| %>
-                        <%# if Page.find_by(id: @page.id, thing_name: @compname).nil? %>
-                          <%# Page.find_by(id: @page.id).update_attributes(
-                                     thing_name: @compname,
-                             twitter_handle: @comp,
-                             youtube_handle: @comp_url,
-                             instagram_handle: @incomp) %>
-                        <%# end %>
-              <div><%= f.hidden_field :followed_id %></div>
-                <%= f.submit "Follow", class: "btn btn-link-2" %>
+          <% if signed_in? %>
+            <% if current_user.following?(@page) %>
+              <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
+                                                      html: { method: :delete },
+                                                      remote: true) do |f| %>
+                <%= f.submit "Unfollow", class: "btn btn-link-2" %>
+              <% end %>
+            <% else %>
+              <%= form_for(current_user.relationships.build(followed_id: @page.id, follow_type: @page.class.name), remote: true) do |f| %>
+                          <%# if Page.find_by(id: @page.id, thing_name: @compname).nil? %>
+                            <%# Page.find_by(id: @page.id).update_attributes(
+                                       thing_name: @compname,
+                               twitter_handle: @comp,
+                               youtube_handle: @comp_url,
+                               instagram_handle: @incomp) %>
+                          <%# end %>
+                <div><%= f.hidden_field :followed_id %></div>
+                  <%= f.submit "Follow", class: "btn btn-link-2" %>
+              <% end %>
             <% end %>
           <% end %>
         </a>
@@ -58,7 +60,7 @@
       <header class="post_header">
         <div class="user">
           <%= image_tag("#{@page.twitter_handle}.jpg", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-          <%= link_to truncate(@page.thing_name, length: 16), root_path %>
+          <%= link_to truncate(@page.page_name, length: 16), root_path %>
         </div>
         <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
         <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
@@ -135,13 +137,14 @@
           <%end%>
         <%end%>
       </main>
+        <% if signed_in? %>
       <footer class="post_actions">
         <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
           <%= link_to dislike_shout_path(id: post.id, 
-          owner_id: @page.id, 
-          owner_type: @page.class.name, 
-          key: post.provider), 
-          {method: :delete, remote: true, class: 'likePost'} do %>
+            owner_id: @page.id, 
+            owner_type: @page.class.name, 
+            key: post.provider), 
+            {method: :delete, remote: true, class: 'likePost'} do %>
             <i class="fa"></i><span><%= post.like_score(post.id) %></span>
           <% end %>
         <% else %>
@@ -150,6 +153,7 @@
           <% end %>
         <% end %>
       </footer>
+        <% end %>
     </article>
   <% end %>
 </section>
@@ -165,7 +169,9 @@
     </aside>
   <!-- FORUM FEED -->
     <div id="" class="col-xs-12 col-sm-7 col-md-8 col-lg-6">
-      <a id="addTopic" title="Add New Topic" href="#" data-toggle="modal" data-target="#new-topic"><i class="fa fa-plus"></i></a> 
+      <% if signed_in? %>
+        <a id="addTopic" title="Add New Topic" href="#" data-toggle="modal" data-target="#new-topic"><i class="fa fa-plus"></i></a> 
+      <% end %>
         <ul id="media-list">
           <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
         </ul>
@@ -190,24 +196,30 @@
         <h4 class="modal-title" id="sharelabel">Start New Topic</h4>
       </div>
       <% if signed_in? %>  
-        <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'upload_form'}, remote: true do |f| %>
+        <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'minimal new_shout', id: 'upload_form'}, remote: true do |f| %>
           <%= f.hidden_field :parent_id %>
           <%= f.hidden_field :user_id %>
           <div class="modal-body container-fluid">
             <div class="row">
               <div class="image-upload col-xs-12 col-sm-6">
-                <label for="newPostPictureInput">
-                  <button type="button" class="btn btn-default">Upload Picture</button>
+                <label for="newForumPicUpload">
+                  <button type='button' class="btn btn-default">
+                    Upload Picture
+                  </button>
                 </label>
-                <input class="upload" id="newPostPictureInput" name="comment[image_upload]" placeholder="Pic" type="file">
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :image_upload, id: 'newForumPicUpload', placeholder: "Pic", type: "file", class: "upload"  %>
+                </div>
+                <!-- <input class="upload" id="newForumPicUpload" name="comment[image_upload]" placeholder="Pic" type="file"> -->
               </div>
               <div class="col-xs-12 col-sm-6">
-                <textarea class="form-control" id="profile_post_url_body" name="comment[url]" onchange="previewUrl()" placeholder="URL of everything" type="search"></textarea>
+                <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+                <!-- <textarea class="form-control" id="url_body" name="comment[url]" onchange="previewUrl()" placeholder="URL of everything" type="search"></textarea> -->
               </div>
               <div class="col-xs-12">
                 <div id="target"></div>
-                <div id="profilePostTarget"></div>
-                <div id="profileUrlPostPreview"></div>
+                <div id="forum_post_pic_preview"></div>
+                <div id="preview"></div>
                 <!-- <input type="text" placeholder="Topic Title"> -->
                 <textarea class="form-control" id="shout_content" name="comment[body]" placeholder="Your Message" type="search" data-gramm="" data-txt_gramm_id="881f363a-4e5f-b5bd-dac5-10a581168008"></textarea>
               </div>
@@ -221,6 +233,40 @@
     </div>
   </div>
 </div>
+    <!-- FOLLOWERS MODAL -->
+  <div class="modal fade" id="followersmodal" tabindex="-1" role="dialog" aria-labelledby="followerslabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="followerslabel">Followers</h4>
+        </div>
+        <div class="modal-body">
+          <!-- FOLLOWER -->
+          <% Relationship.where(followed_id: @page.id, follow_type: 'Page').each do |user| %>
+            <div class="row follower">
+              <div class="col-xs-2 user-img">
+                <img src="/assets/def.jpg" alt="User Image"/>
+              </div>
+              <div class="col-xs-10">
+                <ul id="user-info">
+                  <li id="user-name"><%= user.full_name %></li>
+                  <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                </ul>
+                <ul id="user-stats">
+                  <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                  <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                  <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <script>
@@ -238,3 +284,56 @@ $('a.show_feed').click( function() {
     $('section#masonJar').show();
 });
 </script>
+
+ <script>
+    $(function() {
+      $('#newForumPicUpload').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#forum_post_pic_preview').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+  <script>
+  function load(request) {
+    $('#code').text(request);
+    $('#preview').html(request);
+  }
+
+  function preview(value) {
+    console.log("preview; value = " + value);
+
+    $.ajax({
+      dataType: "html",
+      url: "/preview?url=" + value['url']
+    })
+    .done( function(data){
+      load(data);
+      console.log("preview callback\n" + data);
+    });
+  }
+
+  function previewUrl() {
+    preview({'url':$('#url_body').val()});
+  }
+
+  $('#examples a').click(function() {
+    $('#url_body').focus(); 
+    $('#url_body').val( $(this).attr('href'));
+    previewUrl();
+  });
+
+  $(function () { 
+    $("#url_body").focus();
+    previewUrl();
+  });
+
+  </script>

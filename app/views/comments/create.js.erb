@@ -3,8 +3,8 @@
   <% if @comment.new_record? %>
     alert('Your comment cannot be saved.');
   <% else %>
-    $('#absolute_postition_test').modal('toggle');
-    $('.media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
+    $('#new-topic').modal('toggle');
+    $('#media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
     $('#comment_body').val('');
   <% end %>
 <% else %>
