@@ -15,12 +15,12 @@
 <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
 
   <%# cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
-    <% timeline.first(30).each do |post| %>
+    <% @timeline.first(30).each do |post| %>
       <%# cache(post) do %>
           <article class="individual_post item <%= post.provider %>_post0">
             <header class="post_header">
               <div class="user">
-                <%= image_tag("#{post.avatar}", size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= image_tag("#{post.avatar}.jpg", size:'45x45', alt: 'P6pl2kfg normal') %>
                 <%= link_to truncate(post.username, length: 16), root_path %>
               </div>
               <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
@@ -95,11 +95,11 @@
                 <i class="fa"></i><span>666</span>
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
-                <%= link_to dislike_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost'} do %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
               <% else %>
-                <%= link_to like_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                <%= link_to like_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
               <% end %>
