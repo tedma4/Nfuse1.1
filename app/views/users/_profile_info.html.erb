@@ -23,7 +23,7 @@
   <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
     <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
   <% else %>
-    <%= image_tag @user.avatar.url(:larger) %> 
+    <%= image_tag @user.avatar.url(:large) %> 
   <% end %>
 </a>
 
@@ -53,7 +53,7 @@
       <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
         <%= image_tag @user.avatar_file_name, title: "Edit Image" %>
       <% else %>
-        <%= image_tag @user.avatar.url(:larger) %>
+        <%= image_tag @user.avatar.url(:large) %>
       <% end %>
       </a>
     </li>

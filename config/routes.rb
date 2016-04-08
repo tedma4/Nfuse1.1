@@ -27,9 +27,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :pages do
+  resources :pages, except: :index do
     resources :comments
   end
+    get 'all_pages', to: 'pages#index', as: 'all_pages'
   
   get 'show_forum', to: "pages#show_forum"
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
@@ -81,7 +82,8 @@ Rails.application.routes.draw do
   #   end
   # end
   
-  resources :contacts, path: 'contact_us', only: [:new, :create]
+  resources :contacts, path: 'contact_us', only: [:create]
+  get 'contact_us', to: 'contacts#new'
   resources :sessions,                  only: [:new, :create, :destroy]
   resources :relationships,             only: [:create, :destroy]
   resources :password_resets
@@ -101,7 +103,7 @@ Rails.application.routes.draw do
   
   # Static pages
   get '/help',              to: 'pages#help'
-  get '/about',             to: 'pages#about'
+  # get '/about',             to: 'pages#about'
   get '/feedback',          to: 'pages#feedback'
   get '/terms',             to: 'pages#terms'
   get '/privacy',           to: 'pages#privacy'
@@ -112,7 +114,7 @@ Rails.application.routes.draw do
 
   get '/feed_content', to: 'users#feed_content', as: :feed_content
   get '/search', to: 'searches#searchcontent'
-  get '/randoms', to: 'searches#random_search'
+  get '/random_search', to: 'searches#random_search'
 
   #  OmniAuth * Registrations
   # if user.id.present?

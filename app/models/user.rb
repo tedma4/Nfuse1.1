@@ -90,8 +90,7 @@ class User < ActiveRecord::Base
       user.user_name =  auth.info.email.split('@').shift + [*('a'..'z')].sample(4).join
       user.password = auth.credentials.token.to_s.first(70)
       user.password_confirmation = auth.credentials.token.to_s.first(70)
-      byebug
-      user.avatar_remote_url = auth.info.image.gsub('square', 'large')
+      user.avatar_file_name = auth.info.image.gsub('square', 'large')
       # user.expires_at = Time.at(auth.credentials.expires_at)
       user.save!
       Token.create(provider: auth.provider, uid: auth.uid, access_token: auth.credentials.token, user_id: user.id)

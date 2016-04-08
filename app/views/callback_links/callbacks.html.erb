@@ -1,3 +1,7 @@
+<% content_for :for_head do %>
+  <title>Nfuse | Connect all your social media accounts to Nfuse</title>
+  <meta name="description" content="Add your social media to your profile and share all your post with other Nfusers.">
+<% end %>
 <!-- *Start* Views/callback_links/callbacks.html -->
 <% if current_user.providers.nil? %>
   <% provide(:title, "Step 2") %>

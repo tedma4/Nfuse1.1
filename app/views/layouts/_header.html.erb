@@ -70,7 +70,7 @@
           <%= select_tag "selected_option", options_for_select([ "Nfusers", "Pages", "Posts" ], params[:selected_option]), id:"searchdrop" %> 
         </div>
       <% else %>
-        <a class="ilink randomize loggedout" href="/randoms"><img src="/assets/dice.png" alt="random search"/></a>
+        <a class="ilink randomize loggedout" href="/random_search"><img src="/assets/dice.png" alt="random search"/></a>
       <% end %>
       <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
       <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
@@ -86,7 +86,7 @@
             <%= select_tag "selected_option", options_for_select([ "Nfusers", "Pages", "Posts" ], params[:selected_option]), id:"searchdrop" %>  
           </div>
         <% else %>
-          <a class="ilink randomize loggedout" href="/randoms"><img src="/assets/dice.png" alt="random search"/></a>
+          <a class="ilink randomize loggedout" href="/random_search"><img src="/assets/dice.png" alt="random search"/></a>
         <% end %>
         <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
         <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
@@ -104,7 +104,7 @@
               <!-- <a class="" href="signup.html">Sign Up</a> -->
           </li>
           <li>
-            <%= link_to 'Sign In', signin_path, class: '' %>
+            <%= link_to 'Log In', signin_path, class: '' %>
               <!-- <a class="" href="signin.html">Sign In</a> -->
           </li>
           <li>
@@ -112,7 +112,7 @@
               <!-- <a class="" href="privacy.html">Privacy</a> -->
           </li>
           <li>
-            <%= link_to 'Contact Us', new_contact_path, class: '' %>
+            <%= link_to 'Contact Us', contact_us_path, class: '' %>
               <!-- <a class="" href="contact.html">Contact Us</a> -->
           </li>
         </ul>
@@ -128,7 +128,7 @@
               <!-- <a class="" href="#">Help</a> -->
           </li>
           <li>
-            <%= link_to 'Feedback', new_contact_path, class: '' %>
+            <%= link_to 'Feedback', contact_us_path, class: '' %>
               <!-- <a class="" href="#">Feedback</a> -->
           </li>
           <li>
