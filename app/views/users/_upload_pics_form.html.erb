@@ -9,7 +9,7 @@
             <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
               <%= image_tag @user.avatar_file_name, size: '50x50' %>
             <% else %>
-              <%= image_tag @user.avatar(:medium) %>
+              <%= image_tag @user.avatar(:large) %>
             <% end %>
           </label>
         </div>

@@ -1,13 +1,13 @@
 class PagesController < ApplicationController
   include Poly::Commentable
 
-  # before_action :c, except:[:home, :help, :about, :feedback, :terms, 
-  #                                  :privacy, :business_connector, :celebrity_connector, 
-  #                                  :tv_show_connector, :fashion_connector, :youtubers,
-  #                                  :sports_connector, :music_connector, :food_connector,
-  #                                  :travel_connector, :test_page, :mytop50, :mostpopular,
-  #                                  :random, :trending, :individual_post, :show#, :wiredtestthing
-  #                                 ]
+  before_action :set_page, except:[:home, :help, :about, :feedback, :terms, 
+                                   :privacy, :business_connector, :celebrity_connector, 
+                                   :tv_show_connector, :fashion_connector, :youtubers,
+                                   :sports_connector, :music_connector, :food_connector,
+                                   :travel_connector, :test_page, :mytop50, :mostpopular,
+                                   :random, :trending, :individual_post, #:show#, :wiredtestthing
+                                  ]
   before_action :page_from_params, only: :show
   # before_action :find_page, except:[:home, :help, :about, :feedback, :terms, 
   #                                  :privacy, :business_connector, :celebrity_connector, 
@@ -98,10 +98,9 @@ class PagesController < ApplicationController
   #   @page = Page.find_by(page_name: params[:action])
   # end
 
-  # def set_page
-  #   @page = Page.where(page_name: params[:action]).first_or_create!
-  #   impressionist(@page)
-  # end
+  def set_page
+    impressionist(@page)
+  end
 
   public
 

@@ -19,7 +19,7 @@ module Networks
       if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com')
         @user.avatar_file_name
       else
-        @user.avatar(:thumb)
+        @user.avatar(:small)
       end 
     end
 

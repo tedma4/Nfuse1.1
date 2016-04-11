@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
     self.where(conditions)
   end
 
-  def  profile_pic
+  def profile_pic
     client_id = ENV['instagram_client_id']
     thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{self.instagram_handle}&client_id=#{client_id}").body)
     if thing['data'][0]['username'] == self.instagram_handle

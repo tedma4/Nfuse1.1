@@ -20,7 +20,7 @@
                     <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
                       <%= image_tag @user.avatar_file_name, size: '50x50' %>
                     <% else %>
-                      <%= image_tag @user.avatar(:medium) %>
+                      <%= image_tag @user.avatar(:large) %>
                     <% end %>
                   </label>
                 </div>
@@ -200,23 +200,33 @@
         </div>
         <div class="modal-body">
           <!-- FOLLOWER -->
-          <% @user.followers.each do |user| %>
-            <div class="row follower">
-              <div class="col-xs-2 user-img">
-                <img src="/assets/def.jpg" alt="User Image"/>
+          <% if @user.followers.any? %>
+            <% @user.followers.each do |user| %>
+              <div class="row follower">
+                <div class="col-xs-2 user-img">
+                  <img src="/assets/def.jpg" alt="User Image"/>
+                </div>
+                <div class="col-xs-10">
+                  <ul id="user-info">
+                    <li id="user-name"><%= user.full_name %></li>
+                    <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                  </ul>
+                  <ul id="user-stats">
+                    <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                    <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                    <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-xs-10">
-                <ul id="user-info">
-                  <li id="user-name"><%= user.full_name %></li>
-                  <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
-                </ul>
-                <ul id="user-stats">
-                  <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
-                  <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
-                  <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
-                </ul>
-              </div>
-            </div>
+            <% end %>
+          <% else %>
+            <% if current_user?(@user) %>
+              <p class='center explore_filters'>Sorry <%= @user.first_name %>, no one is following you yet</p>
+              <p class='center explore_filters'>Try making some posts and see what happens</p>
+            <% else %>
+              <p class='center explore_filters'>Sorry <%= @user.first_name %>, doesn't have and followers yet.</p>
+              <p class='center explore_filters'>How about you be the first</p>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -235,23 +245,31 @@
         </div>
         <div class="modal-body">
         <!-- FOLLOWING -->
-          <% @user.followed_users.each do |user| %>
-            <div class="row following">
-              <div class="col-xs-2 user-img">
-                <img src="/assets/users/def.jpg" alt="User Image"/>
+          <% if @user.followed_users.any? %>
+            <% @user.followed_users.each do |user| %>
+              <div class="row following">
+                <div class="col-xs-2 user-img">
+                  <img src="/assets/users/def.jpg" alt="User Image"/>
+                </div>
+                <div class="col-xs-10">
+                  <ul id="user-info">
+                    <li id="user-name"><%= user.full_name %></li>
+                    <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                  </ul>
+                  <ul id="user-stats">
+                    <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                    <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                    <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-xs-10">
-                <ul id="user-info">
-                  <li id="user-name"><%= user.full_name %></li>
-                  <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
-                </ul>
-                <ul id="user-stats">
-                  <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
-                  <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
-                  <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
-                </ul>
-              </div>
-            </div>
+            <% end %>
+          <% else %>
+            <% if current_user?(@user) %>
+              <p class='center explore_filters'><%= @user.first_name %>. Why arean't following anyone yet?</p>
+            <% else %>
+              <p class='center explore_filters'>Sorry <%= @user.first_name %>, isn't following anyone yet.</p>
+            <% end %>
           <% end %>
         </div>
       </div>

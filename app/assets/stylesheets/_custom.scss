@@ -2982,8 +2982,8 @@
   }
   .image-upload{
     position: relative;
-    overflow: hidden;
-/*    margin-bottom: 15px;
+    /* overflow: hidden;
+    margin-bottom: 15px;
 */
   }
   .modal form .image-upload button{
@@ -3571,7 +3571,7 @@ video {
 /* HUB */
 
   #thehub {
-      padding:0 0px;
+      width: 100%;
       /*min-height: calc(100vh - 160px);*/
   }
   #thehub #user-nav{
@@ -3601,4 +3601,13 @@ video {
 
 .signintoggler {
   /*color: #3B5998;*/
+}
+
+/*Posts*/
+
+.likedPost .fa{
+  content: "\f004";
+}
+.explore_filters {
+  margin-top: 10px;
 }

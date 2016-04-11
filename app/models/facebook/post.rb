@@ -19,7 +19,7 @@ module Facebook
     # User Object * because delegate is not working.
 
     def avatar
-      @user.avatar(:thumb)
+      @user.avatar(:small)
     end
 
     def username

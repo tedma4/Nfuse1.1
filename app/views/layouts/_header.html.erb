@@ -71,6 +71,7 @@
         </div>
       <% else %>
         <a class="ilink randomize loggedout" href="/random_search"><img src="/assets/dice.png" alt="random search"/></a>
+        <%= hidden_field_tag "selected_option" %>
       <% end %>
       <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
       <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
@@ -87,6 +88,7 @@
           </div>
         <% else %>
           <a class="ilink randomize loggedout" href="/random_search"><img src="/assets/dice.png" alt="random search"/></a>
+          <%= hidden_field_tag "selected_option" %>
         <% end %>
         <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
         <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>

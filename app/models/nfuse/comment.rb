@@ -15,7 +15,7 @@ module Nfuse
     end
     
     def avatar
-      @comment.user.avatar
+      @comment.user.avatar(:small)
     end
 
     def profile

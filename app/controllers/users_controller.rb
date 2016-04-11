@@ -130,16 +130,16 @@ class UsersController < ApplicationController
   end
 
   def biz_page_hub
-      timeline = []
-      ids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
-      unless ids.empty?
-        @pages = Page.where(id: ids)
-        @pages.find_each do |page|
-          feed=Biz::Timeline.new(page)
-          timeline << feed.construct(params)
-        end
+    timeline = []
+    ids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+    unless ids.empty?
+      @pages = Page.where(id: ids)
+      @pages.find_each do |page|
+        feed=Biz::Timeline.new(page)
+        timeline << feed.construct(params)
       end
-      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    end
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 
   def explore

@@ -34,7 +34,7 @@ module Nfuse
       if @shout.user.avatar_file_name.present? && @shout.user.avatar_file_name.include?('graph.facebook.com')
         @shout.user.avatar_file_name
       else
-        @shout.user.avatar
+        @shout.user.avatar(:small)
       end 
     end
 

@@ -1,11 +1,26 @@
-
+<style>
+.tab-content {
+    border-radius: 0px;
+    padding: 0px 30px;
+}
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+</style>
 <% if current_user.relationships.where(follow_type: 'Page').collect(&:followed_id).any? %>
 <section id="thehub" class="container-fluid clearfix">
 
   <nav id="user-nav" class="hub center navbar">
     <ul>
       <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
-      <li><%= link_to 'Users', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
       <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
     </ul>
   </nav>
@@ -20,7 +35,7 @@
           <article class="individual_post item <%= post.provider %>_post0">
             <header class="post_header">
               <div class="user">
-                <%= image_tag("#{post.avatar}.jpg", size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= image_tag("#{post.page.twitter_handle}.jpg", size:'45x45', alt: 'P6pl2kfg normal') %>
                 <%= link_to truncate(post.username, length: 16), root_path %>
               </div>
               <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
@@ -95,7 +110,7 @@
                 <i class="fa"></i><span>666</span>
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
-                <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost'} do %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost .likedPost'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
               <% else %>
@@ -115,7 +130,7 @@
     <nav id="user-nav" class="hub center navbar">
     <ul>
       <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
-      <li><%= link_to 'Users', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
       <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
     </ul>
     </nav>
@@ -124,6 +139,25 @@
         <p>Can't display posts because you aren't following anyone... <%= current_user.first_name %>, Why aren't you following someone yet?</p>
           <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
       </div>
-    </div>
-  </section>
+    <!-- SWITCHABLE CONTENT -->
+    <article class="col-xs-12 tab-content">
+      <!-- PANEL THREE -->
+      <div id="networks">
+        <% m=  Page.all %>
+        <% m.each do |this| %>
+          <!-- PROFILE -->
+          <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="/pages/<%= this.page_name %>">
+              <div class="profile-head">
+                <p><%= this.thing_name.capitalize %></p>
+              </div>
+              <%= image_tag(this.profile_pic) %>
+            </a>
+          </div>
+        <% end %>
+
+      </div>
+    </article>
+  </div>
+</section>
 <% end %>

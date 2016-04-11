@@ -1,6 +1,12 @@
 <% content_for :for_head do %>
   <title>Likes</title>
 <% end %>
+<style>
+.tab-content {
+    border-radius: 0px;
+    padding: 0px 30px;
+}
+</style>
 <!-- USER AREA -->
 <section id="userarea">
   <%= render partial: "profile_info" %>
@@ -163,22 +169,33 @@
   </section>
 <% else %>
   <% if current_user?(@user) %>
-    <section id="profile-grid" class="container-fluid">
-      <% User.all.each do |user| %>
-        <!-- PROFILE -->
-        <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <a href="/pages/<%= user.user_name %>">
-            <div class="profile-head">
-              <p><%= user.user_name %></p>
-            </div>
-            <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
-              <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
-            <% else %>
-              <%= link_to image_tag(user.avatar(:small), title: "#{ user.first_name}"), feed_user_path(user) %>
-            <% end %>
-          </a>
+    <section id="settings" class="container">
+      <div class="row">    
+        <div class="center col-xs-12 content">
+          <h3>Here are some people you might like to see</h3>
         </div>
-      <% end %>
+        <!-- SWITCHABLE CONTENT -->
+        <article class="content col-xs-12 tab-content">
+          <!-- PANEL THREE -->
+          <div id="networks">
+            <% User.all.each do |user| %>
+              <!-- PROFILE -->
+              <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <a href="/pages/<%= user.user_name %>">
+                  <div class="profile-head">
+                    <p><%= user.user_name %></p>
+                  </div>
+                  <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
+                    <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
+                  <% else %>
+                  <%= link_to image_tag(user.avatar(:regular), title: "#{ user.first_name}"), feed_user_path(user) %>
+                  <% end %>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </article>
+      </div>
     </section>
   <% else %>
     <div class="center">

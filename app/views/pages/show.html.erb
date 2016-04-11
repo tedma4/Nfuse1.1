@@ -245,6 +245,7 @@
         </div>
         <div class="modal-body">
           <!-- FOLLOWER -->
+          <% if Relationship.where(followed_id: @page.id, follow_type: 'Page').any? %>
           <% Relationship.where(followed_id: @page.id, follow_type: 'Page').each do |user| %>
             <div class="row follower">
               <div class="col-xs-2 user-img">
@@ -252,16 +253,17 @@
               </div>
               <div class="col-xs-10">
                 <ul id="user-info">
-                  <li id="user-name"><%= user.full_name %></li>
-                  <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                  <li id="user-name"><%= user.follower.full_name %></li>
+                  <li id="user-link"><%= link_to "@#{user.follower.user_name}", feed_user_path(user) %></li>
                 </ul>
                 <ul id="user-stats">
-                  <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
-                  <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
-                  <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                  <li id="user-following">Following: <span><%= user.follower.followed_users.count %></span></li>
+                  <li id="user-followers">Followers: <span><%= user.follower.followers.count %></span></li>
+                  <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.follower.id).count %></span></li>
                 </ul>
               </div>
             </div>
+          <% end %>
           <% end %>
         </div>
       </div>

@@ -1,11 +1,26 @@
-
+<style>
+.tab-content {
+    border-radius: 0px;
+    padding: 0px 30px;
+}
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+</style>
 <% if current_user.relationships.where(follow_type: 'User').collect(&:followed_id).any? %>
 <section id="thehub" class="container-fluid clearfix">
 
   <nav id="user-nav" class="hub center navbar">
     <ul>
       <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
-      <li><%= link_to 'Users', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
       <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
     </ul>
   </nav>
@@ -173,7 +188,7 @@
     <nav id="user-nav" class="hub center navbar">
     <ul>
       <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
-      <li><%= link_to 'Users', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
       <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
     </ul>
     </nav>
@@ -182,6 +197,42 @@
         <p>Can't display posts because you aren't following anyone... <%= current_user.first_name %>, Why aren't you following someone yet?</p>
           <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
       </div>
-    </div>
-  </section>
+    <!-- SWITCHABLE CONTENT -->
+    <article class="col-xs-12 tab-content">
+      <!-- PANEL THREE -->
+      <div id="networks">
+        <% m = Page.last(25) %>
+        <% m << (User.last(25)) %>
+        <% m.flatten.shuffle.each do |this| %>
+          <% if this.class.name == 'Page'%>
+          <!-- PROFILE -->
+          <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="/pages/<%= this.page_name %>">
+              <div class="profile-head">
+                <p><%= this.thing_name.capitalize %></p>
+              </div>
+              <%= image_tag(this.profile_pic) %>
+            </a>
+          </div>
+          <% else %>
+              <!-- PROFILE -->
+              <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <a href="/pages/<%= this.user_name %>">
+                  <div class="profile-head">
+                    <p><%= this.user_name %></p>
+                  </div>
+                  <% if this.avatar_file_name.present? && this.avatar_file_name.include?('graph.facebook.com') %>
+                    <%= link_to image_tag(this.avatar_file_name, title: "#{ this.first_name}"), feed_user_path(this) %>
+                  <% else %>
+                  <%= link_to image_tag(this.avatar(:regular), title: "#{ this.first_name}"), feed_user_path(this) %>
+                  <% end %>
+                </a>
+              </div>
+          <% end %>
+        <% end %>
+
+      </div>
+    </article>
+  </div>
+</section>
 <% end %>
