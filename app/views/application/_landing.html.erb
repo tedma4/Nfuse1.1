@@ -116,7 +116,7 @@
 
     <!-- Feed Section -->
     <section id="feed" class="container-fluid">
-      <%= link_to image_tag('wired.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('connector.jpg'), all_pages_path, class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <%= link_to image_tag('SCENE.jpg'), page_path('time_magazine'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <%= link_to image_tag('TIME.jpg'), page_path('time_magazine'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       <%= link_to image_tag('people.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
@@ -126,7 +126,7 @@
         <%= link_to image_tag('HBO.jpg'), page_path('hbo'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
         <%= link_to image_tag('Buzzfeed.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
         <%= link_to image_tag('Newsweek.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
-        <%= link_to image_tag('connector.jpg'), all_pages_path, class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('wired.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       </div>
     </section>
 
@@ -158,14 +158,13 @@
                         <h3 class="light">Njoy!</h3>
                         <p>Sit back, relax, grab a beer and scroll for days or just enjoy the site.</p>
                     </div>
-                    <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Sign Up</a>
                     <!-- 
                     <div class="visible-xs col-xs-12 text-center">
                         <a href="#"  data-toggle="modal" data-target="#signupmodal" class="btn btn-lg btn-default animated">Sign Up</a>
                     </div> -->
                 </div>
                 <!-- Signup Form -->
-                <!-- <form id="foot-signup" class="new_user col-xs-12 col-sm-6" accept-charset="UTF-8" action="/users" method="post">
+                <form id="foot-signup" class="new_user col-xs-12 col-sm-6" accept-charset="UTF-8" action="/users" method="post">
                     <div style="display:none">
                         <input name="utf8" type="hidden" value="✓">
                         <input name="authenticity_token" type="hidden" value="ZMVoG5HOzAz037/T/tt6ny9aNdTZEabMChxdUdPk3eE=">
@@ -180,8 +179,9 @@
                             <input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
                         </div>
                         <button type="submit" class="btn btn-default">Go!</button>
+                        <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Sign Up</a>
                     </div>
-                </form> -->
+                </form>
             </div>
         </div>
         <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>

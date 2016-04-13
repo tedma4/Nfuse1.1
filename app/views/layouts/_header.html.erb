@@ -13,20 +13,20 @@
             <!-- LOGGED OUT -->
             <ul class="nav loggedout">
                 <li>
-                  <!-- <%#= link_to signup_path, class: 'signintoggler' do %>
-                    <i class="fa fa-user-plus"></i>Sign Up
+                  <%#= link_to signup_path, class: 'signintoggler' do %>
+                    <!-- <i class="fa fa-user-plus"></i>Sign Up -->
                   <%# end %>
- -->                    <!-- <a href="#" class="hidden-xs page-scroll animated"><i class="fa fa-user-plus"></i> Sign Up</a>
-                    <a href="#" data-toggle="modal" data-target="#signupmodal" class="visible-xs"><i class="fa fa-user-plus"></i> Sign Up</a> -->
-                    <a href="/auth/facebook" class="signintoggler"><i class="fa fa-facebook"></i>Sign Up/Log In</a>
+                  <a href="#" data-toggle="modal" data-target="#signupmodal"><i class="fa fa-user-plus"></i> Sign Up</a>
                 </li>
-                <!-- <li>
+                <li>
                   <%#= link_to signin_path, class: 'signintoggler' do %>
-                    <i class="fa fa-user"></i>Login
+                    <!-- <i class="fa fa-user"></i>Log In -->
                   <%# end %>
-                    <a href="signin.html" class="hidden-xs"><i class="fa fa-user"></i> Sign In</a>
-                    <a href="#" data-toggle="modal" data-target="#signinmodal" class="visible-xs"><i class="fa fa-user"></i> Sign In</a>
-                </li> -->
+                    <a href="#" data-toggle="modal" data-target="#signinmodal"><i class="fa fa-user"></i> Log In</a>
+                </li>
+                <li>
+                  <a href="/auth/facebook" class="signintoggler"><i class="fa fa-facebook"></i>Connect</a>
+                </li>
             </ul>
           <% else %>
             <!-- LOGGED IN -->

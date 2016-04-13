@@ -1995,8 +1995,8 @@
   }
   #steps{
       text-align: left;
-/*      padding: 20px 20px 0px 15px;
-*/  }
+      padding: 20px 20px 0px 15px;
+  }
   form.minimal input,
   #signin input,
   #signup input {
@@ -2119,9 +2119,9 @@
 }
 @media(min-width:768px) {
   
-/*  #steps{
+  #steps{
     border-right: 1px solid rgba(255,255,255,0.6);
-  }*/
+  }
   #signup .fa-exchange{
     font-size: 80px;
   }
@@ -2160,11 +2160,11 @@
       padding-top: 150px;
   }
 }
-@media(min-width: 768px){
+/*@media(min-width: 768px){
   #steps.col-sm-6 {
     width: 100%;
   }
-}
+}*/
 
 /* GENERAL PAGES */
   
@@ -3610,4 +3610,16 @@ video {
 }
 .explore_filters {
   margin-top: 10px;
+}
+
+/*log in modal*/
+@media (min-width: 992px) {
+  .loginmodal.modal-dialog {
+      width: 650px;
+  } 
+}
+@media (min-width: 768px){
+  .loginmodal.modal-dialog {
+      width: 550px;
+  }
 }
