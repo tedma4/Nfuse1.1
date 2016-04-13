@@ -1,59 +1,31 @@
 <!-- *Start* Views/callback_links/avatar_pic.html -->
-<% provide(:title, "Step 3") %>
-<style type="text/css">
-  .pro-pics-padding {
-    margin-top: 2%;
-}
-
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-}
-.fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-
-  h3 {
-      color: #fff;
-  }
-</style>
-
-<div class="Alignthisorelse">
-  <div class="container pro-pics-padding">
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3 form-box wow fadeInUp">
-        <div class="form-top-pro-pic">
-          <div class="form-top-left">
-            <h3><strong>Choose you profile images</strong></h3>
-              <p>Almost there!!! Last step to create your profile.</p>
-          </div>
-          <div class="form-top-right">
-            <a href="#"><%= image_tag("createprofilegray.fw.png", size: "60x60") %></a>
-          </div>
-        </div>
-        <div class="form-bottom">
-          <div class="Alignthisorelse">
-            <%= render partial: 'users/upload_pics_form' %>
-          </div>
-        </div>
+<% content_for :for_head do %>
+  <title>Nfuse | Normal Sign Up Avatar/Banner Change</title>
+  <meta name="description" content="Create a new username for your new profle on Nfuse or keep your Facebook username.">
+<% end %>
+<section id="" class="content-section container picbg">
+  <div class="row">
+    <header class="col-xs-12 center">
+      <h1 class="heavy"><%= current_user.user_name %>: Step 2</h1>
+      <p>Add a Profile Picture and Banner below</p>
+    </header>
+    <%= render partial: 'users/upload_pics_form' %>
+</section>
+  <!-- Footer -->
+  <footer>
+      <div class="container text-center">
+          <p>&copy; Nfuse LLC. 2016. Made with <a href="#"><i class="fa fa-heart-o"></i> by Taylor and Ted</a></p>
       </div>
-    </div>
-  </div>
-</div>
+  </footer>
+<script>
+// $(document).ready(function() {
+//   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+// });
+</script>
 
   <script>
     $(function() {
-      $('#pictureInput').on('change', function(event) {
+      $('#user_avatar_upload').on('change', function(event) {
         var files = event.target.files;
         var image = files[0]
         var reader = new FileReader();
@@ -70,7 +42,7 @@
   </script>
   <script>
     $(function() {
-      $('#pictureInput2').on('change', function(event) {
+      $('#user_banner_change').on('change', function(event) {
         var files = event.target.files;
         var image = files[0]
         var reader = new FileReader();

@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
   def create
     #This creats a new user
+    byebug
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -130,13 +131,15 @@ class UsersController < ApplicationController
   end
 
   def biz_page_hub
-    timeline = []
-    ids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+    timeline = {}
+    @timeline = {}
+    ids = current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
     unless ids.empty?
       @pages = Page.where(id: ids)
       @pages.find_each do |page|
+        timeline[:page_avatar] = page.profile_pic
         feed=Biz::Timeline.new(page)
-        timeline << feed.construct(params)
+        timeline[:page_feed] = feed.construct(params)
       end
     end
     @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
