@@ -1,36 +1,5 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
-<% w = [  'wired', 'national_geographic', 'people_magazine', 'time_magazine', 'sports_illustrated', 'cosmopolitan', 'redbull', 'espn', 'us_weekly', 'entertainment_weekly', 'newsweek', 'popular_science', 'vogue', 'bloomberg_businessweekly', 'gq', 'hgtv', 'forbes_magazine', 'fortune', 'e_news', 'google', 'tedtalks', 'tesla', 'victorias_secret', 'cnn', 'hbo', 'showtime', 'marvel', 'syfy', 'netflix', 'buzzfeed', 'reddit', 'collegehumor', 'microsoft', 'nike', 'imdb', 'vevo', 'starwars', 'nasa', 'bravo', 'mtv', 'golfdigest', 'nba', 'nfl', 'mlb', 'nhl', 'inc', 'makerbot', 'olympics', 'tmz', 'tiffany', 'playboy', 'maxim', 'elle', 'vanityfair', 'brides', 'usatoday', 'sciencechannel', 'fifa', 'gucci', 'handm', 'generalelectric', 'armani', 'ibm', 'foxsports', 'cnbc', 'amazon', 'food', 'sony', 'gap', 'history', 'ralph', 'tlc', 'xbox', 'playstation', 'nordstrom', 'entrepreneur', 'bananarepublic', 'calvinklein', 'underarmour', 'facebook', 'burberry', 'abc', 'nbc', 'cbs', 'thecw', 'hugoboss', 'cbsnews', 'foxnews', 'nbcnews', 'abcnews', 'cbssports', 'fox', 'uber', 'forever21', 'mls', 'urbanoutfitters', 'allure', 'wmagazine', 'thescene', 'youtube', 'katyperry', 'barackobama', 'taylorswift', 'ladygaga', 'justintimberlake', 'britneyspears', 'kimkardashianwest', 'shakira', 'jenniferlopez', 'selenagomez', 'arianagrande', 'demilovato', 'jimmyfallon', 'lebronjames', 'adele', 'brunomars', 'aliciakeys', 'mileyraycyrus', 'nickiminaj', 'emmawatson', 'neilpatrickharris', 'davidguetta', 'conanobrien', 'khloekardashian', 'kourtneykardashian', 'christinaaguilera', 'beyonce', 'oprahwinfrey', 'johnnydepp', 'scarlettjohansson', 'madonna', 'tomhanks', 'jessicaalba', 'meganfox', 'tigerwoods', 'blakelively', 'leonardodicaprio', 'emmastone', 'jayz', 'ellendegeneres', 'sandrabullock', 'ashleygreene', 'natalieportman', 'jenniferlawrence', 'katebosworth', 'camerondiaz', 'milakunis', 'floydmayweather', 'reesewitherspoon', 'kateupton', 'peterdinklage', 'armanifashion', 'burberryfashion', 'calvinkleinfashion', 'chanel', 'christiandior', 'christianlouboutin', 'dolceandgabbana', 'dkny', 'escada', 'fendi', 'guccifashion', 'prada', 'hugobossfashion', 'johnvarvatos', 'laperlalingerie', 'louisvuitton', 'manoloblahnik', 'missoni', 'ralphlaurenfashion', 'rolandmouret', 'stellamccartney', 'tomford', 'versace', 'michaelkors', 'allrecipes', 'cookingdotcom', 'foodnetwork', 'thekitchn', 'opentable', 'tasteofhome', 'epicurious', 'grubhub', 'seamless', 'yummly', 'huffingtonpostfood', 'fooddotcom', 'bonappetit', 'weightwatchers', 'foodandwine', 'thechew', 'americastestkitchen', 'ironchefamerica', 'onedirection', 'katyperrymusic', 'beyoncemusic', 'taylorswiftmusic', 'justintimberlakemusic', 'iggyazalea', 'arianagrandemusic', 'mileycyrus', 'pharrelwilliams', 'eminem', 'lorde', 'lukebryan', 'samsmith', 'johnlegend', 'onerepublic', 'drake', 'jasonderulo', 'justinbieber', 'imaginedragons', 'floridageorgialine', 'nickiminajmusic', 'secondsofsummer', 'ladygagamusic', 'pitbull', 'brunomarsmusic', 'jasonaldean', 'maroon5', 'chrisbrown', 'meghantrainor', 'bastille', 'avicii', 'magic', 'demilovatomusic', 'blakeshelton', 'coldplay', 'charlixcx', 'nicoandvinz', 'therollingstones', 'shakiramusic', 'passenger', 'brantleygilbert', 'elliegoulding', 'ericchurch', 'idinamenzel', 'selenagomezmusic', 'calvinharris', 'michaelbuble', 'michaeljackson', 'britneyspearsmusic', 'kellyclarkson', 'christinaaguileramusic', 'realmadrid', 'dallascowboys', 'newyorkyankees', 'barcelona', 'manchesterunited', 'losangeleslakers', 'newenglandpatriots', 'newyorkknicks', 'losangelesdodgers', 'washingtonredskins', 'bayernmunich', 'bostonredsox', 'newyorkgiants', 'chicagobulls', 'sanfranciscogiants', 'houstontexans', 'chicagocubs', 'newyorkjets', 'philadelphiaeagles', 'bostonceltics', 'chicagobears', 'losangelesclippers', 'sanfrancisco49ers', 'baltimoreravens', 'brooklynnets', 'denverbroncos', 'indianapoliscolts', 'stlouiscardinals', 'greenbaypackers', 'manchestercity', 'chelsea', 'ferrari', 'newyorkmets', 'pittsburghsteelers', 'seattleseahawks', 'arsenal', 'goldenstatewarriors', 'losangelesangelsofanaheim', 'miamidolphins', 'torontomapleleafs', 'washingtonnationals', 'carolinapanthers', 'houstonrockets', 'philadelphiaphillies', 'tampabaybuccaneers', 'texasrangers', 'miamiheat', 'tennesseetitans', 'atlantabraves', 'minnesotavikings', 'arizonacardinals', 'drewbinsky', 'budgettravel', 'afar', 'travelandleisure', 'condenasttraveler', 'geographical', 'nationalgeographic', 'wanderlust', 'lastweektonight', 'gameofthrones', 'bettercallsaul', 'orangeisthenewblack', 'empire', 'howimetyourmother', 'madmen', 'theamericans', 'thetonightshow', 'truedetective', 'justified', 'sense8', 'izombie', 'theflash', 'thebachelor', 'suits', 'theellenshow', 'greysanatomy', 'thewalkingdead', 'americanhorrorstory', 'sharktank', 'gotham', 'thegoodwife', 'thebigbangtheory', 'theblacklist', 'howtogetawaywithmurder', 'thevoice', 'bachelorette', 'scandal', 'downtonabbey', 'dancingwiththestars', 'americanidol', 'thementalist', 'houseofcards', 'transparent', 'louie', 'community', 'parksandrecreation', 'sonsofanarchy', 'brooklynninenine', 'janethevirgin', 'fargo', 'saturdaynightlive', 'mrrobot', 'newgirl', 'scorpion', 'modernfamily', 'themindyproject', 'tyleroakley', 'troyesivan', 'zoella', 'connorfranta', 'ijustine', 'glozell', 'jennamarbles', 'alfiedeyes', 'shanedawson', 'joeygraceffa', 'rebeccablack', 'pewdiepie', 'smosh', 'nigahiga', 'tobuscus', 'sawyerhartman', 'annoyingorange', 'rhettandlink', 'itskingsleybitch', 'jimchapman', 'danisnotonfire', 'kickthepj', 'catrific', 'tayzonday', 'marcusbutler', 'benjamincook', 'olgakay', 'hannahhart', 'anthonypadilla', 'juliansmith', 'amazingphil', 'sampepper'] %>
-
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
-<% this_is_it = m.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count} %>
-
 <section id="profile-grid" class="container-fluid">
-  <% this_is_it.each do |this| %>
-  <% page = Page.find_by_page_name(this) %>
-  <!-- PROFILE -->
-  <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-    <a href="/pages/<%= page.page_name %>">
-      <div class="profile-head">
-        <p><%= page.thing_name %></p>
-      </div>
-      <%= image_tag(page.profile_pic) %>
-    </a>
-  </div>
-<% end %>
-<!-- REQUEST ADDITIONAL -->    
-<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-">
-  <div class="vcenter">
-    <div class="vcell">
-      <button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button>
-    </div>
-  </div>
-</div>
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
 </section>
 
 <script>

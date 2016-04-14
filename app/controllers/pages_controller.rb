@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   include Poly::Commentable
 
-  before_action :set_page, except:[:home, :help, :about, :feedback, :terms, 
+  before_action :set_page, except:[:home, :help, :about, :feedback, :terms, :index, 
                                    :privacy, :business_connector, :celebrity_connector, 
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
@@ -180,7 +180,12 @@ class PagesController < ApplicationController
 
 
   def mytop50
-
+    @pages = []
+    seen_pages = Page.where(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    non_seen_pages = Page.where.not(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    @pages << seen_pages 
+    @pages << non_seen_pages 
+    @pages.flatten!
   end
   
   def mostpopular
