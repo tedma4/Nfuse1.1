@@ -6,7 +6,9 @@ class PagesController < ApplicationController
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
                                    :travel_connector, :test_page, :mytop50, :mostpopular,
-                                   :random, :trending, :individual_post, #:show#, :wiredtestthing
+                                   :random, :trending, :individual_post, :news_connector, 
+                                   :fitness_connector, :nerdish_connector, :shopping_connector, 
+                                   :wedding_connector, :animals_connector, :instagramers_connector,#:show#, :wiredtestthing
                                   ]
   before_action :page_from_params, only: :show
   # before_action :find_page, except:[:home, :help, :about, :feedback, :terms, 
@@ -110,19 +112,89 @@ class PagesController < ApplicationController
   def qanda; end
   def terms; end
   def privacy; end
-  def business_connector; end
-  def celebrity_connector; end
-  def tv_show_connector; end
-  def fashion_connector; end
-  def youtubers; end
-  def sports_connector; end
-  def music_connector; end
-  def food_connector; end
-  def travel_connector; end
-  def mytop50; end
-  def mostpopular; end
-  def random; end
-  def trending; end
+  def business_connector
+    @pages = Page.where("page_category LIKE '%business%'")
+  end
+  
+  def celebrity_connector
+    @pages = Page.where("page_category LIKE '%celebrity%'")
+  end
+  
+  def tv_show_connector
+    @pages = Page.where("page_category LIKE '%tv%'")
+  end
+  
+  def fashion_connector
+    @pages = Page.where("page_category LIKE '%fashion%'")
+  end
+  
+  def youtubers
+    @pages = Page.where("page_category LIKE '%youtubers%'")
+  end
+  
+  def sports_connector
+    @pages = Page.where("page_category LIKE '%sports%'")
+  end
+  
+  def music_connector
+    @pages = Page.where("page_category LIKE '%music%'")
+  end
+  
+  def food_connector
+    @pages = Page.where("page_category LIKE '%food%'")
+  end
+  
+  def travel_connector
+    @pages = Page.where("page_category LIKE '%travel%'")
+  end
+
+  # Add The corresponding routes and views for these pages
+  def news_connector
+    @pages = Page.where("page_category LIKE '%news%'")
+  end
+
+  def fitness_connector
+    @pages = Page.where("page_category LIKE '%fitness%'")
+  end
+
+  def nerdish_connector
+    @pages = Page.where("page_category LIKE '%nerdish%'")
+  end
+
+  def shopping_connector
+    @pages = Page.where("page_category LIKE '%shopping%'")
+  end
+
+  def wedding_connector
+    @pages = Page.where("page_category LIKE '%wedding%'")
+  end
+
+  def animals_connector
+    @pages = Page.where("page_category LIKE '%animals%'")
+  end
+
+  def instagramers_connector
+    @pages = Page.where("page_category LIKE '%instagramers%'")
+  end
+  
+
+
+  def mytop50
+
+  end
+  
+  def mostpopular
+
+  end
+  
+  def random
+
+  end
+  
+  def trending
+
+  end
+
 
   end
 # #####FASHION

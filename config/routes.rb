@@ -164,6 +164,21 @@ Rails.application.routes.draw do
   get 'fashion', to: 'pages#fashion_connector'
   #####YOUTUBERS
   get 'youtubers', to: 'pages#youtubers'
+
+  #####YOUTUBERS
+  get 'news', to: 'pages#news_connector'
+  #####YOUTUBERS
+  get 'fitness', to: 'pages#fitness_connector'
+  #####YOUTUBERS
+  get 'nerdish', to: 'pages#nerdish_connector'
+  #####YOUTUBERS
+  get 'shopping', to: 'pages#shopping_connector'
+  #####YOUTUBERS
+  get 'wedding', to: 'pages#wedding_connector'
+  #####YOUTUBERS
+  get 'animals', to: 'pages#animals_connector'
+  #####YOUTUBERS
+  get 'instagramers', to: 'pages#instagramers_connector'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

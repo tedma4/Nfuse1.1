@@ -1,14 +1,9 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
-
-<% w = ['lastweektonight', 'gameofthrones', 'bettercallsaul', 'orangeisthenewblack', 'empire', 'howimetyourmother', 'madmen', 'theamericans', 'thetonightshow', 'truedetective', 'justified', 'sense8', 'izombie', 'theflash', 'thebachelor', 'suits', 'theellenshow', 'greysanatomy', 'thewalkingdead', 'americanhorrorstory', 'sharktank', 'gotham', 'thegoodwife', 'thebigbangtheory', 'theblacklist', 'howtogetawaywithmurder', 'thevoice', 'bachelorette', 'scandal', 'downtonabbey', 'dancingwiththestars', 'americanidol', 'thementalist', 'houseofcards', 'transparent', 'louie', 'community', 'parksandrecreation', 'sonsofanarchy', 'brooklynninenine', 'janethevirgin', 'fargo', 'saturdaynightlive', 'mrrobot', 'newgirl', 'scorpion', 'modernfamily', 'themindyproject'] %>
-
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
 <section id="profile-grid" class="container-fluid">
-  <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
 </section>
+
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>

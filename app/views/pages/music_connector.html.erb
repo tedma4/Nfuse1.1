@@ -1,16 +1,5 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
-
-<% w = ['onedirection', 'katyperrymusic', 'beyoncemusic', 'taylorswiftmusic', 'justintimberlakemusic', 'iggyazalea', 'arianagrandemusic', 'mileycyrus', 'pharrelwilliams', 'eminem', 'lorde', 'lukebryan', 'samsmith', 'johnlegend', 'onerepublic', 'drake', 'jasonderulo', 'justinbieber', 'imaginedragons', 'floridageorgialine', 'nickiminajmusic', 'secondsofsummer', 'ladygagamusic', 'pitbull', 'brunomarsmusic', 'jasonaldean', 'maroon5', 'chrisbrown', 'meghantrainor', 'bastille', 'avicii', 'magic', 'demilovatomusic', 'blakeshelton', 'coldplay', 'charlixcx', 'nicoandvinz', 'therollingstones', 'shakiramusic', 'passenger', 'brantleygilbert', 'elliegoulding', 'ericchurch', 'idinamenzel', 'selenagomezmusic', 'calvinharris', 'michaelbuble', 'michaeljackson', 'britneyspearsmusic', 'kellyclarkson', 'christinaaguileramusic' ] %>
-
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
 <section id="profile-grid" class="container-fluid">
-  <%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
 </section>
 
 <script>

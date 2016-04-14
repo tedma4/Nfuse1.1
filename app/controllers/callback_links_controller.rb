@@ -17,8 +17,7 @@ class CallbackLinksController < ApplicationController
 
 private
   def set_steps
-    byebug
-    if current_user.tokens.nil?
+    if current_user.tokens.empty?
       self.steps = [:callbacks, :avatar_pic]
     else
       self.steps = [:username, :callbacks]
