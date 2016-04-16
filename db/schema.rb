@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302131659) do
+ActiveRecord::Schema.define(version: 20160414234230) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20160302131659) do
   create_table "pages", force: :cascade do |t|
     t.integer  "page_counter_cache",                   default: 0
     t.string   "page_name",                limit: 255
-    t.string   "thing_name",               limit: 255
+    t.string   "full_name",                limit: 255
     t.string   "twitter_handle",           limit: 255
     t.string   "youtube_handle",           limit: 255
     t.string   "instagram_handle",         limit: 255

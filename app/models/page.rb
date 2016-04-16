@@ -18,11 +18,44 @@ class Page < ActiveRecord::Base
   def profile_pic
     client_id = ENV['instagram_client_id']
     thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{self.instagram_handle}&client_id=#{client_id}").body)
-    if thing['data'][0]['username'] == self.instagram_handle
-      usid = thing['data'][0]['id']
-      Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}?client_id=#{client_id}").body)['data']['profile_picture']
-    else
-       nil
+    profile_pic = nil
+    i = 0
+    num = 10
+    until i > num  do
+      # byebug
+      if thing['data'][i]['username'] == self.instagram_handle
+        usid = thing['data'][i]['id']
+        begin
+          profile_pic = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}?client_id=#{client_id}").body)['data']['profile_picture']
+        rescue
+          "#{self.twitter_handle}.jpg"
+        end
+        break
+      end
+      puts "wasn't number #{i}"
+      i += 1
     end
+    profile_pic
   end
 end
+
+
+# Until username matches instagram_handle
+# break if condition is met or excedes loop limit
+
+# # $i = 0
+# # $num = 5
+
+# # until $i > $num  do
+# #    puts("Inside the loop i = #$i" )
+# #    $i +=1;
+# # end
+
+# i = 0
+# num = 10
+# until i > num  do
+#   if thing['data'][$i]['username'] == 'armani'
+#     break
+#   end
+#   i += 1
+# end

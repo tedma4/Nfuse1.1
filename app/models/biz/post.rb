@@ -25,7 +25,7 @@ module Biz
     end
 
     def username
-      @page.thing_name
+      @page.full_name
     end
 
     def page_link

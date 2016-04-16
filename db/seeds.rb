@@ -5,6 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#   Page(id: integer, page_counter_cache: integer, page_name: string, thing_name: string, twitter_handle: string, 
+	# youtube_handle: string, instagram_handle: string, facebook_handle: string, pinterest_handle: string, 
+	# tumblr_handle: string, gplus_handle: string, metatag_title: string, description: text, 
+	# page_avatar_file_name: string, page_avatar_content_type: string, page_avatar_file_size: integer, 
+	# page_avatar_updated_at: datetime, page_category: string)
 
 
 pages = Page.create([

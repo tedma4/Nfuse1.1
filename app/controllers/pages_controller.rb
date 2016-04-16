@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   #                                 ]
   #Blank is gonna be a reservered word for now
   def index
-    @pages = Page.all
+    @pages = Page.where(id: 11)
   end
 
   def show
@@ -189,15 +189,31 @@ class PagesController < ApplicationController
   end
   
   def mostpopular
-
+    @pages = []
+    page_ids = Page.all.pluck(:id)
+    page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
+    page_ids.each do |id|
+      @pages << Page.find(id)
+    end
+    @pages
   end
+
+  # Pluck all id's
+  # m.sort_by {|a, b| -Impression.where(action_name: a.to_s).count}
+  #Impressions where 
   
   def random
-
+    @pages = Page.first(50).shuffle
   end
-  
-  def trending
 
+  def trending
+    @pages = []
+    page_ids = Page.all.pluck(:id)
+    page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
+    page_ids.each do |id|
+      @pages << Page.find(id)
+    end
+    @pages
   end
 
 

@@ -3,15 +3,19 @@
   <!-- BIG BANNER -->
   <div id="user-banner"></div>
   <a id="user" class="mobile">
-    <img src="<%= @page.profile_pic %>" alt="User Image"/>
+    <% if @page.profile_pic != nil %>
+     <img src="<%= @page.profile_pic %>" alt="User Image"/>
+    <% else %>
+     <img src="<%= @page.twitter_handle %>.jpg" alt="User Image"/>
+    <% end %>
   </a>
   <ul id="user-stats" class="user-left">
-    <li id="user-name"><h1><%= @page.thing_name %></h1></li>
+    <li id="user-name"><h1><%= @page.full_name %></h1></li>
     <li id="user-followers"><a href="#" data-toggle="modal" data-target="#followersmodal">Followers:  <%= Relationship.where(follow_type: 'Page', followed_id: 2).count %></a></li>
     <li id="user-likes">Likes: <a href=""><%= ActsAsVotable::Vote.where(owner_type: 'Page', owner_id: @page.id).count %></a></li>
   </ul>
   <p id="user-bio" class="user-right">
-    @<%= @page.thing_name %> <%= @page.description %>
+    @<%= @page.full_name %> <%= @page.description %>
   </p>
   <!-- USER NAVBAR -->
   <nav id="user-nav" class="center navbar">
@@ -21,7 +25,12 @@
       <li id="user-spacer">
         <!-- PROFILE PIC -->
         <a id="user" class="desk">
-          <img src="<%= @page.profile_pic %>" style="width:200px;" alt="User Image"/>
+          <%# byebug %>
+          <% if @page.profile_pic != nil %>
+            <img src="<%= @page.profile_pic %>" style="width:200px;" alt="User Image"/>
+          <% else %>
+            <img src="<%= @page.twitter_handle %>.jpg" alt="User Image"/>
+          <% end %>
         </a>
       </li>
       <li>
@@ -35,9 +44,9 @@
               <% end %>
             <% else %>
               <%= form_for(current_user.relationships.build(followed_id: @page.id, follow_type: @page.class.name), remote: true) do |f| %>
-                          <%# if Page.find_by(id: @page.id, thing_name: @compname).nil? %>
+                          <%# if Page.find_by(id: @page.id, full_name: @compname).nil? %>
                             <%# Page.find_by(id: @page.id).update_attributes(
-                                       thing_name: @compname,
+                                       full_name: @compname,
                                twitter_handle: @comp,
                                youtube_handle: @comp_url,
                                instagram_handle: @incomp) %>
