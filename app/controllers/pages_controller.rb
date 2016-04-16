@@ -24,13 +24,11 @@ class PagesController < ApplicationController
   end
 
   def show
-    page_stuff = {}
     page     = Biz::Timeline.new(@page)
-    page_stuff[:feed] = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
-    page_stuff[:profile_picture] = @page.profile_pic
-    @timeline = page_stuff[:feed]
-    @page_image = page_stuff[:profile_picture]
-    # render 'comp'
+    @timeline = page.construct(params).flatten
+    .sort {|a, b| b.created_time <=> a.created_time}
+
+    @page_image = @page.profile_pic
   end
 
   def show_forum
@@ -113,68 +111,196 @@ class PagesController < ApplicationController
   def terms; end
   def privacy; end
   def business_connector
-    @pages = Page.where("page_category LIKE '%business%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%business%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def celebrity_connector
-    @pages = Page.where("page_category LIKE '%celebrity%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%celebrity%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def tv_show_connector
-    @pages = Page.where("page_category LIKE '%tv%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%tv%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def fashion_connector
-    @pages = Page.where("page_category LIKE '%fashion%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%fashion%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def youtubers
-    @pages = Page.where("page_category LIKE '%youtubers%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%youtubers%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def sports_connector
-    @pages = Page.where("page_category LIKE '%sports%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%sports%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def music_connector
-    @pages = Page.where("page_category LIKE '%music%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%music%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def food_connector
-    @pages = Page.where("page_category LIKE '%food%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%food%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
   def travel_connector
-    @pages = Page.where("page_category LIKE '%travel%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%travel%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   # Add The corresponding routes and views for these pages
   def news_connector
-    @pages = Page.where("page_category LIKE '%news%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%news%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def fitness_connector
-    @pages = Page.where("page_category LIKE '%fitness%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%fitness%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def nerdish_connector
-    @pages = Page.where("page_category LIKE '%nerdish%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%nerdish%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def shopping_connector
-    @pages = Page.where("page_category LIKE '%shopping%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%shopping%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def wedding_connector
-    @pages = Page.where("page_category LIKE '%wedding%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%wedding%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def animals_connector
-    @pages = Page.where("page_category LIKE '%animals%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%animals%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def instagramers_connector
-    @pages = Page.where("page_category LIKE '%instagramers%'")
+    @pages = []
+    page_ids = Page.where("page_category LIKE '%instagramers%'").first(200)
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
   
 
@@ -192,8 +318,12 @@ class PagesController < ApplicationController
     @pages = []
     page_ids = Page.all.pluck(:id)
     page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
-    page_ids.each do |id|
-      @pages << Page.find(id)
+    page_ids.first(20).each do |id|
+      element = {}
+      page = Page.find(id)
+      element[:page] = page
+      element[:image] = page.profile_pic
+      @pages << element
     end
     @pages
   end
@@ -203,33 +333,37 @@ class PagesController < ApplicationController
   #Impressions where 
   
   def random
-    @pages = Page.first(50).shuffle
+    @pages = []
+    page_ids = Page.first(50).shuffle
+    page_ids.first(20).each do |insert_page|
+      element = {}
+      element[:page] = insert_page
+      element[:image] = insert_page.profile_pic
+      @pages << element
+    end
+    @pages
   end
 
   def trending
     @pages = []
     page_ids = Page.all.pluck(:id)
     page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
-    page_ids.each do |id|
-      @pages << Page.find(id)
+    page_ids.first(20).each do |id|
+      element = {}
+      page = Page.find(id)
+      element[:page] = page
+      element[:image] = page.profile_pic
+      @pages << element
     end
     @pages
   end
   end
+# @pages.first do |a, b| puts "#{a[:page].description},   #{b}" end
 
 
-
-# Amazon
-# Armani
-# Brides
-# Gucci
-# NASA
-# Newsweek
-# People Magazine
-# Ralph Lauren
-# Showtime
-# Starwars
-# Under Armour
-# Vanity Fair
-# YouTube
-# The Scene
+    # page_stuff = {}
+    # page     = Biz::Timeline.new(@page)
+    # page_stuff[:feed] = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
+    # page_stuff[:profile_picture] = @page.profile_pic
+    # @timeline = page_stuff[:feed]
+    # @page_image = page_stuff[:profile_picture]

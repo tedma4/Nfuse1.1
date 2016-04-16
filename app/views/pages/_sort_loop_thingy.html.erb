@@ -1,13 +1,14 @@
 <%# this_is_it = pages.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count} %>
-<% if @pages.any? %>
+<% unless @pages.empty? %>
   <% pages.each do |page| %>
+      <%# byebug %>
     <!-- PROFILE -->
     <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-      <a href="/pages/<%= page.page_name %>">
+      <a href="/pages/<%= page[:page].page_name %>">
         <div class="profile-head">
-          <p><%= page.full_name %></p>
+          <p><%= page[:page].full_name %></p>
         </div>
-        <%= image_tag(page.profile_pic) %>
+        <%= image_tag(page[:image]) %>
       </a>
     </div>
   <% end %>
