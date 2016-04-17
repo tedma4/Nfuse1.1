@@ -26,7 +26,7 @@ class Page < ActiveRecord::Base
       if thing['data'][i]['username'] == self.instagram_handle
         usid = thing['data'][i]['id']
         begin
-          profile_pic = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}?client_id=#{client_id}").body)['data']['profile_picture']
+          profile_pic = thing['data'][i]['profile_picture']
         rescue
           "#{self.twitter_handle}.jpg"
         end
@@ -38,24 +38,3 @@ class Page < ActiveRecord::Base
     profile_pic
   end
 end
-
-
-# Until username matches instagram_handle
-# break if condition is met or excedes loop limit
-
-# # $i = 0
-# # $num = 5
-
-# # until $i > $num  do
-# #    puts("Inside the loop i = #$i" )
-# #    $i +=1;
-# # end
-
-# i = 0
-# num = 10
-# until i > num  do
-#   if thing['data'][$i]['username'] == 'armani'
-#     break
-#   end
-#   i += 1
-# end

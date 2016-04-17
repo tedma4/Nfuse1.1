@@ -18,7 +18,7 @@ class PageFetcher
 
   def fetch_pages
     @fetched = Page.where("page_category LIKE '%#{@search_string}%'")
-      .first(self.count)
+      .first(@count)
   end
 
   def loop_pages(num=20)

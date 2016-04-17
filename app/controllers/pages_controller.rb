@@ -113,84 +113,83 @@ class PagesController < ApplicationController
 
   def business_connector
     page_fetcher = PageFetcher.new("business").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def celebrity_connector
     page_fetcher = PageFetcher.new("celebrity").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def tv_show_connector
     page_fetcher = PageFetcher.new("tv").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def fashion_connector
     page_fetcher = PageFetcher.new("fashion").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def youtubers
     page_fetcher = PageFetcher.new("tv").get!
-    @pages = page_fetcher.pages    
+    @pages = page_fetcher    
   end
   
   def sports_connector
     page_fetcher = PageFetcher.new("sports").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def music_connector
     page_fetcher = PageFetcher.new("music").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def food_connector
     page_fetcher = PageFetcher.new("food").get!
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def travel_connector
     page_fetcher = PageFetcher.new("tv").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
 
   # Add The corresponding routes and views for these pages
   def news_connector
     page_fetcher = PageFetcher.new("news").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
 
   def fitness_connector
     page_fetcher = PageFetcher.new("fitness").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
 
   def nerdish_connector
     page_fetcher = PageFetcher.new("nerdish").get!(20)
-    @pages = page_fetcher.pages
-
+    @pages = page_fetcher
   end
 
   def shopping_connector
     page_fetcher = PageFetcher.new("shopping").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
 
   def wedding_connector
     page_fetcher = PageFetcher.new("wedding").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
 
   def animals_connector
     page_fetcher = PageFetcher.new("animals").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
 
   def instagramers_connector
     page_fetcher = PageFetcher.new("instagrammers").get!(20)
-    @pages = page_fetcher.pages
+    @pages = page_fetcher
   end
   
   def mytop50
