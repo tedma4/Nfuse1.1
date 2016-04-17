@@ -13,6 +13,7 @@ class PageFetcher
   def initialize(search_string, count=200)
     @search_string = search_string
     @pages = []
+    @count = count
   end
 
   def fetch_pages
