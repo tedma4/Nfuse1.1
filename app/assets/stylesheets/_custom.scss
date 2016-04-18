@@ -1697,7 +1697,7 @@
     line-height: 21px;
   }
   #upload_form a:first-of-type{
-    right:63px; 
+    right:35px; 
   }
   #upload_form button.submit{
     color: #00eebc;
@@ -3627,4 +3627,67 @@ video {
 /*Signup image change*/
 #user_banner_change img {
   max-width: 500px;
+}
+
+/*forum posts*/
+@media (min-width: 768px){
+  .user a.topic_user {
+      display: inline-block;
+      margin: 10px 0px 0px 8px;
+  }
+  .item.topic_post {
+      min-width: 675px;
+      margin: 0 0 25px 0;
+  }
+}
+@media (max-width: 767px){
+  .item.topic_post {
+      margin: 0 0 15px 0;
+      min-width: 675px;
+  }
+}
+@media (max-width: 500px){
+  .item.topic_post {
+      min-width: 425px;
+      margin: 0 0 15px 0;
+  }
+}
+
+h5.media-heading {
+    text-transform: capitalize;
+    font-weight: 100;
+    line-height: 2rem;
+     float: none; 
+    margin: 5px 0px 0px 89px;
+    padding-left: 48px;
+    width: calc(100% - 37px);
+}
+
+
+/*  .forum-image-upload{
+    position: relative;
+     overflow: hidden;
+    margin-bottom: 15px;
+
+  }*/
+  .forum-image-upload label .fa-photo{
+    /*width: 100%;*/
+    color: #00eebc;
+    height: auto;
+    display: block;
+    margin: 0px;
+  }
+  .forum-image-upload input[type=file]{
+      position: absolute;
+      top: -9999px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  }
+  label.forum_image_upload {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 21px;
 }

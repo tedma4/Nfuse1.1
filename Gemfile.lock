@@ -343,6 +343,7 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     redcarpet (3.2.3)
+    remotipart (1.2.1)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.6.8)
@@ -529,6 +530,7 @@ DEPENDENCIES
   rack (~> 1.6.0)
   rails (= 4.2.5)
   rails-erd
+  remotipart (= 1.2.1)
   responders (~> 2.0)
   rmagick (~> 2.13.2)
   rspec-collection_matchers

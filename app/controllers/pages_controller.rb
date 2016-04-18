@@ -20,7 +20,16 @@ class PagesController < ApplicationController
   #                                 ]
   #Blank is gonna be a reservered word for now
   def index
-    @pages = Page.where(id: 11)
+    @pages = []
+    page_ids = Page.all
+    page_ids.each do |insert_page|
+      element = {
+        page: insert_page,
+        image: insert_page.profile_pic
+      }
+      @pages << element
+    end
+    @pages
   end
 
   def show
@@ -112,84 +121,68 @@ class PagesController < ApplicationController
   def privacy; end
 
   def business_connector
-    page_fetcher = PageFetcher.new("business").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("business").get!
   end
   
   def celebrity_connector
-    page_fetcher = PageFetcher.new("celebrity").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("celebrity").get!
   end
   
   def tv_show_connector
-    page_fetcher = PageFetcher.new("tv").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("tv").get!
   end
   
   def fashion_connector
-    page_fetcher = PageFetcher.new("fashion").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("fashion").get!
   end
   
   def youtubers
-    page_fetcher = PageFetcher.new("tv").get!
-    @pages = page_fetcher    
+    @pages = PageFetcher.new("tv").get!
   end
   
   def sports_connector
-    page_fetcher = PageFetcher.new("sports").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("sports").get!
   end
   
   def music_connector
-    page_fetcher = PageFetcher.new("music").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("music").get!
   end
   
   def food_connector
-    page_fetcher = PageFetcher.new("food").get!
-    @pages = page_fetcher
+    @pages = PageFetcher.new("food").get!
   end
   
   def travel_connector
-    page_fetcher = PageFetcher.new("tv").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("tv").get!(20)
   end
 
   # Add The corresponding routes and views for these pages
   def news_connector
-    page_fetcher = PageFetcher.new("news").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("news").get!(20)
   end
 
   def fitness_connector
-    page_fetcher = PageFetcher.new("fitness").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("fitness").get!(20)
   end
 
   def nerdish_connector
-    page_fetcher = PageFetcher.new("nerdish").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("nerdish").get!(20)
   end
 
   def shopping_connector
-    page_fetcher = PageFetcher.new("shopping").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("shopping").get!(20)
   end
 
   def wedding_connector
-    page_fetcher = PageFetcher.new("wedding").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("wedding").get!(20)
   end
 
   def animals_connector
-    page_fetcher = PageFetcher.new("animals").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("animals").get!(20)
   end
 
   def instagramers_connector
-    page_fetcher = PageFetcher.new("instagrammers").get!(20)
-    @pages = page_fetcher
+    @pages = PageFetcher.new("instagrammers").get!(20)
   end
   
   def mytop50

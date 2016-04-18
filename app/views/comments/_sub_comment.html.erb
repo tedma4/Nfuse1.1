@@ -8,14 +8,13 @@
       <% end %>
       <a href="#"> <%= this.user.user_name %></a>
     </div>
-    <a class="likePost" href="#" rel="nofollow">
       <% if signed_in? %>
         <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
           <%= link_to dislike_this_comment_path(id: this.id,
                 owner_id: this.user_id,
                 comment_id: this.id,
                 owner_type: 'User'),
-                method: :delete, remote: true do %>
+                method: :delete, remote: true, class: 'likePost' do %>
             <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>
         <% else %>
@@ -23,14 +22,15 @@
                 owner_id: this.user_id,
                 comment_id: this.id,
                 owner_type: 'User'),
-                method: :post, remote: true do %>
+                method: :post, remote: true, class: 'likePost' do %>
             <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>
         <% end %>
       <% else %>
-        <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
+        <a class="likePost" href="#" rel="nofollow">
+          <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
+        </a>
       <% end %>
-    </a>
     <a class="flagPost" data-toggle="modal" data-target="#flagmodal" href="#" rel="nofollow">
       <i class="fa"></i><span>Flag</span>
     </a>

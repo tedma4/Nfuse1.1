@@ -1,4 +1,4 @@
-xclass Comments::LikeCommentsController < ApplicationController
+class Comments::LikeCommentsController < ApplicationController
 
   respond_to :json, :js, :html
 
@@ -20,7 +20,6 @@ xclass Comments::LikeCommentsController < ApplicationController
     # vote_flag: nil, vote_scope: nil, vote_weight: nil, created_at: "2016-03-26 00:07:30", updated_at: "2016-03-26 00:07:30", 
     # social_flag: nil, owner_id: 1, owner_type: "User">
     # TODO Turn off PA when a user likes their own thing
-    byebug
     if current_user.id != params[:owner_id].to_i && @comment[:owner_type] != 'Page'
       current_user.create_activity(key: 'comment.like', parameters: {id: @comment[:id]},
                                     owner: current_user, recipient: User.find(@comment[:owner_id])

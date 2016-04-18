@@ -128,6 +128,8 @@ class UsersController < ApplicationController
     #     id: @user.id)
   end
 
+  # timeline needs a hash with an array of posts and 
+  # the corresponding picture to go with those posts
   def biz_page_hub
     timeline = {}
     @timeline = {}
@@ -140,7 +142,7 @@ class UsersController < ApplicationController
         timeline[:page_feed] = feed.construct(params)
       end
     end
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    @timeline[:feed]=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 
   def explore

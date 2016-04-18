@@ -125,6 +125,7 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
+    # byebug
     respond_to do |format|
       if @comment.save
         # if @commentable.is_a?(Page)
@@ -167,7 +168,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html, :image_upload )
+    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html, :image_upload, :topic )
   end
 
   def find_commentable

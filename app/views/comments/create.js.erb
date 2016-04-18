@@ -10,6 +10,4 @@
 <% else %>
     $('ul.sub_<%= @comment.parent.id %>_comments').prepend("<%= j render(partial: 'comments/sub_comment', locals: {this: @comment}) %>");
     $('#comment_body').val('');
-
-
 <% end %>

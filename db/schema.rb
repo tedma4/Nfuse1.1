@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414234230) do
+ActiveRecord::Schema.define(version: 20160417192951) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160414234230) do
     t.text     "url_html"
     t.string   "hashtag"
     t.string   "tagged_user"
+    t.string   "topic"
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"

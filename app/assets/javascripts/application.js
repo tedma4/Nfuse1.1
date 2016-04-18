@@ -12,4 +12,5 @@
 //
 //***************
 //= require jquery
+//= require jquery.remotipart
 //= require jquery_ujs

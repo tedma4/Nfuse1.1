@@ -182,7 +182,7 @@
         <a id="addTopic" title="Add New Topic" href="#" data-toggle="modal" data-target="#new-topic"><i class="fa fa-plus"></i></a> 
       <% end %>
         <ul id="media-list">
-          <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
+          <%= nested_comments @page.comments.includes(:user).arrange(order: 'created_at DESC') if @page.comments %>
         </ul>
     </div>
     <!-- AD SIDEBAR -->
@@ -205,7 +205,7 @@
         <h4 class="modal-title" id="sharelabel">Start New Topic</h4>
       </div>
       <% if signed_in? %>  
-        <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'minimal new_shout', id: 'upload_form'}, remote: true do |f| %>
+        <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => {class: 'minimal new_shout', id: 'upload_form', multipart: true}, remote: true do |f| %>
           <%= f.hidden_field :parent_id %>
           <%= f.hidden_field :user_id %>
           <div class="modal-body container-fluid">
@@ -219,18 +219,16 @@
                 <div class="fileUpload btn-link-1">
                   <%= f.file_field :image_upload, id: 'newForumPicUpload', placeholder: "Pic", type: "file", class: "upload"  %>
                 </div>
-                <!-- <input class="upload" id="newForumPicUpload" name="comment[image_upload]" placeholder="Pic" type="file"> -->
               </div>
               <div class="col-xs-12 col-sm-6">
                 <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
-                <!-- <textarea class="form-control" id="url_body" name="comment[url]" onchange="previewUrl()" placeholder="URL of everything" type="search"></textarea> -->
               </div>
               <div class="col-xs-12">
                 <div id="target"></div>
                 <div id="forum_post_pic_preview"></div>
                 <div id="preview"></div>
-                <!-- <input type="text" placeholder="Topic Title"> -->
-                <textarea class="form-control" id="shout_content" name="comment[body]" placeholder="Your Message" type="search" data-gramm="" data-txt_gramm_id="881f363a-4e5f-b5bd-dac5-10a581168008"></textarea>
+                <%= f.text_field :topic, placeholder: "Topic Title"%>
+                <textarea class="form-control" id="shout_content" name="comment[body]" placeholder="Your Message" type="search"></textarea>
               </div>
             </div>
           </div>

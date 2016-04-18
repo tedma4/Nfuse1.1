@@ -21,7 +21,7 @@ class PageFetcher
       .first(@count)
   end
 
-  def loop_pages(num=20)
+  def loop_pages(num=100)
     @pages = fetch_pages.first(num).map do |page| 
       { 
         page: page,
@@ -30,7 +30,7 @@ class PageFetcher
     end
   end
 
-  def get!(num=20)
+  def get!(num=100)
     loop_pages(num)
   end
 

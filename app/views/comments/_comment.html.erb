@@ -1,5 +1,5 @@
 <!-- TOPIC -->
-<li class="media comment item">
+<li class="media comment item topic_post">
   <header class="post_header">
     <div class="user">
       <!-- Needs to be user image with link to profile -->
@@ -8,15 +8,15 @@
       <% else %>
         <%= image_tag comment.user.avatar(:small), class: "media-object img-circle",  title: "Edit Image" %>
       <% end %>
-      <a href="#"><%= comment.user.user_name%></a>
+      <a href="#" class='topic_user'><%= comment.user.user_name%></a>
     </div>
-    <h5 class="media-heading reviews">Test title
+    <h5 class="media-heading reviews"><%= comment.topic.nil? ? 'I love Nfuse' : comment.topic.empty? ? 'I Love Nfuse' : comment.topic %>
     </h5>
   </header>
   <main class="post_content">
     <div class="timeline-user-box">
       <% if !comment.url.blank? %>
-        <p> <%= comment.url_html %></p>
+        <p><%= comment.url_html %></p>
       <% elsif !comment.image_upload.blank? %>
         <%= image_tag comment.image_upload(:medium) %>
       <% else %>
@@ -32,14 +32,13 @@
     <a class="commentPost" data-toggle="modal" data-target=".<%= comment.id %>Comments" href="#" rel="nofollow">
       <i class="fa"></i><span><%= comment.children.size %></span>
     </a>
-    <a class="likePost" href="#" rel="nofollow">
       <% if signed_in? %>
         <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
           <%= link_to dislike_this_comment_path(id: comment.id,
                 owner_id: comment.user_id,
                 comment_id: comment.id,
                 owner_type: 'User'),
-                method: :delete, remote: true do %>
+                method: :delete, remote: true, class: 'likePost' do %>
             <i class="fa"></i>
             <span>
               <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
@@ -50,7 +49,7 @@
                 owner_id: comment.user_id,
                 comment_id: comment.id,
                 owner_type: 'User'),
-                method: :post, remote: true do %>
+                method: :post, remote: true, class: 'likePost' do %>
             <i class="fa"></i>
             <span>
               <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
@@ -58,12 +57,13 @@
           <% end %>
         <% end %>
       <% else %>
-        <i class="fa"></i>
-        <span>
-          <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
-        </span>
+        <a class="likePost" href="#" rel="nofollow">
+          <i class="fa"></i>
+          <span>
+            <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+          </span>
+        </a>
       <% end %>
-    </a>
     <a id="flagpost" class="flagPost" data-toggle="modal" data-target="#flagmodal" href="#" rel="nofollow">
       <i class="fa"></i><span>Flag</span>
     </a>
@@ -80,7 +80,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="notificationslabel">Comments: Cool Topic</h4>
+          <h4 class="modal-title" id="notificationslabel"><%= comment.topic.nil? ? 'I love Nfuse' : (comment.topic.empty? ? 'I Love Nfuse' : comment.topic) %></h4>
         </div>
         <div class="modal-body container-fluid">
           <!-- COMMENT -->
@@ -101,16 +101,19 @@
                 <%= image_tag current_user.avatar(:small) %>
               <% end %>
             </a>
-              <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form", class: "dropup minimal new_comment"}, remote: true do |f| %>
+              <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form", class: "dropup minimal new_comment forum-image-upload"}, remote: true do |f| %>
                 <%= f.hidden_field :parent_id %>
                 <%= f.hidden_field :user_id %>
-                  <a><i class="fa fa-photo"></i></a>
+                <label for="forum_sub_comment_image_upload" class="forum_image_upload">
+                  <i class="fa fa-photo"></i>
+                  <%= f.file_field :image_upload, class: "upload" %>
+                </label>
                 <a id="link-drop-link" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" href="#"><i class="fa fa-link"></i></a>
                 <div id="link-drop" class="dropdown-menu" aria-labelledby="link-drop-link">
                   <textarea class="form-control" name="comment[url]" onchange="previewUrl()" placeholder="Paste URL Here" type="search"></textarea>
                 </div>
                   <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="comment[body]"></textarea>
-                <button type='submit' class='submit'><i class="fa fa-check"></i></button>
+                <button type='submit' class='submit'>Done</button>
               <% end %>
           </div>
         <% end %>
