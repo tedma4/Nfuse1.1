@@ -5,14 +5,14 @@ module Biz
     def initialize(page)
       @page = page
     end
-    
+
     def construct(params)
       self.params = params
       concurrency_test_with_thread
     end
 
    private
- 
+
    def concurrency_test_with_thread
      list = [['twitter', @page.twitter_handle], ['google_oauth2', @page.youtube_handle], ['instagram', @page.instagram_handle]]
      threads = []
@@ -45,7 +45,10 @@ module Biz
        end
      end
      merge.inject(:+)
-     merge
+     page_posts_and_image = {
+       page_feeds: merge,
+       page_image: @page.profile_pic
+       }
    end
 
     def twitter_setup(that = false, *this)#, that = false,
@@ -64,7 +67,7 @@ module Biz
         end
       end
     end
- 
+
     def google_oauth2_setup(that = false, *this)#, that = false
       youtube_token
       begin

@@ -1,18 +1,18 @@
 class PagesController < ApplicationController
   include Poly::Commentable
 
-  before_action :set_page, except:[:home, :help, :about, :feedback, :terms, :index, 
-                                   :privacy, :business_connector, :celebrity_connector, 
+  before_action :set_page, except:[:home, :help, :about, :feedback, :terms, :index,
+                                   :privacy, :business_connector, :celebrity_connector,
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
                                    :travel_connector, :test_page, :mytop50, :mostpopular,
-                                   :random, :trending, :individual_post, :news_connector, 
-                                   :fitness_connector, :nerdish_connector, :shopping_connector, 
+                                   :random, :trending, :individual_post, :news_connector,
+                                   :fitness_connector, :nerdish_connector, :shopping_connector,
                                    :wedding_connector, :animals_connector, :instagramers_connector,#:show#, :wiredtestthing
                                   ]
   before_action :page_from_params, only: :show
-  # before_action :find_page, except:[:home, :help, :about, :feedback, :terms, 
-  #                                  :privacy, :business_connector, :celebrity_connector, 
+  # before_action :find_page, except:[:home, :help, :about, :feedback, :terms,
+  #                                  :privacy, :business_connector, :celebrity_connector,
   #                                  :tv_show_connector, :fashion_connector, :youtubers,
   #                                  :sports_connector, :music_connector, :food_connector,
   #                                  :travel_connector, :test_page, :mytop50, :mostpopular,
@@ -33,11 +33,10 @@ class PagesController < ApplicationController
   end
 
   def show
-    page     = Biz::Timeline.new(@page)
-    @timeline = page.construct(params).flatten
-    .sort {|a, b| b.created_time <=> a.created_time}
+    page     = Biz::Timeline.new(@page).construct(params)
+    @timeline = page[:page_feeds].flatten.sort {|a, b| b.created_time <=> a.created_time}
 
-    @page_image = @page.profile_pic
+    @page_image = page[:page_image]
   end
 
   def show_forum
@@ -50,7 +49,7 @@ class PagesController < ApplicationController
   def page_from_params
     @page = Page.find_by_page_name(params[:id])
   end
-  
+
   def home
     if signed_in?
       @providers = Providers.for(current_user)
@@ -123,77 +122,77 @@ class PagesController < ApplicationController
   def business_connector
     @pages = PageFetcher.new("business").get!
   end
-  
+
   def celebrity_connector
     @pages = PageFetcher.new("celebrity").get!
   end
-  
+
   def tv_show_connector
     @pages = PageFetcher.new("tv").get!
   end
-  
+
   def fashion_connector
     @pages = PageFetcher.new("fashion").get!
   end
-  
+
   def youtubers
     @pages = PageFetcher.new("tv").get!
   end
-  
+
   def sports_connector
     @pages = PageFetcher.new("sports").get!
   end
-  
+
   def music_connector
     @pages = PageFetcher.new("music").get!
   end
-  
+
   def food_connector
     @pages = PageFetcher.new("food").get!
   end
-  
+
   def travel_connector
-    @pages = PageFetcher.new("tv").get!(20)
+    @pages = PageFetcher.new("tv").get!
   end
 
   # Add The corresponding routes and views for these pages
   def news_connector
-    @pages = PageFetcher.new("news").get!(20)
+    @pages = PageFetcher.new("news").get!
   end
 
   def fitness_connector
-    @pages = PageFetcher.new("fitness").get!(20)
+    @pages = PageFetcher.new("fitness").get!
   end
 
   def nerdish_connector
-    @pages = PageFetcher.new("nerdish").get!(20)
+    @pages = PageFetcher.new("nerdish").get!
   end
 
   def shopping_connector
-    @pages = PageFetcher.new("shopping").get!(20)
+    @pages = PageFetcher.new("shopping").get!
   end
 
   def wedding_connector
-    @pages = PageFetcher.new("wedding").get!(20)
+    @pages = PageFetcher.new("wedding").get!
   end
 
   def animals_connector
-    @pages = PageFetcher.new("animals").get!(20)
+    @pages = PageFetcher.new("animals").get!
   end
 
   def instagramers_connector
-    @pages = PageFetcher.new("instagrammers").get!(20)
+    @pages = PageFetcher.new("instagrammers").get!
   end
-  
+
   def mytop50
     @pages = []
     seen_pages = Page.where(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
     non_seen_pages = Page.where.not(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
-    @pages << seen_pages 
-    @pages << non_seen_pages 
+    @pages << seen_pages
+    @pages << non_seen_pages
     @pages.flatten!
   end
-  
+
   def mostpopular
     @pages = []
     page_ids = Page.all.pluck(:id)
@@ -210,12 +209,12 @@ class PagesController < ApplicationController
 
   # Pluck all id's
   # m.sort_by {|a, b| -Impression.where(action_name: a.to_s).count}
-  #Impressions where 
-  
+  #Impressions where
+
   def random
     @pages = []
     page_ids = Page.first(50).shuffle
-    page_ids.first(20).each do |insert_page|
+    Kaminari.paginate_array(page_ids).page(params[:page]).per(10).each do |insert_page|
       element = {}
       element[:page] = insert_page
       element[:image] = insert_page.profile_pic

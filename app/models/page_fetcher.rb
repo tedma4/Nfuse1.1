@@ -1,7 +1,7 @@
 class PageFetcher
 
-  ## Usage 
-  # obj = PageFetcher.new("youtube", 200) 
+  ## Usage
+  # obj = PageFetcher.new("youtube", 200)
   # obj = PageFetcher.new("youtube")
 
   ## Fetching data out of object
@@ -17,13 +17,12 @@ class PageFetcher
   end
 
   def fetch_pages
-    @fetched = Page.where("page_category LIKE '%#{@search_string}%'")
-      .first(@count)
+    @fetched = Page.where("page_category LIKE '%#{@search_string}%'").page(self.params[:page])
   end
 
   def loop_pages(num=100)
-    @pages = fetch_pages.first(num).map do |page| 
-      { 
+    @pages = fetch_pages.first(num).map do |page|
+      {
         page: page,
         image: page.profile_pic
       }
