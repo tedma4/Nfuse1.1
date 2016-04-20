@@ -1,23 +1,59 @@
 // NFUSE.JS
 
 // jQuery to collapse the navbar on scroll
+  function scroll_function(){
+
     $(window).scroll(function() {
+      console.log("scrolling!");
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav-collapse");
         } else {
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
-    });
-
-// jQuery scrolll to top
-    $(document).scroll(function() {
         var y = $(this).scrollTop();
         if (y > 800) {
             $('#backtotop').addClass("isvis");
         } else {
             $('#backtotop').removeClass("isvis");
         }
+
+
+          var url;
+
+          url = $('.pagination .next a').attr('href');
+          console.log(url);
+          if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
+            $('.pagination').text('Getting more things');
+            return $.getScript(url);
+          }
+
+
     });
+
+  }
+
+// jQuery scrolll to top
+//     $(document).scroll(function() {
+//         var y = $(this).scrollTop();
+//         if (y > 800) {
+//             $('#backtotop').addClass("isvis");
+//         } else {
+//             $('#backtotop').removeClass("isvis");
+//         }
+
+//       if ($('.pagination').length) {
+//         $(window).scroll(function() {
+//           var url;
+//           url = $('.pagination .next_page').attr('href');
+//           if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 100) {
+//             $('.pagination').text('Getting more things');
+//             return $.getScript(url);
+//           }
+//         });
+//       }
+//       return $(window).scroll();
+
+//     });
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
     // $(function() {
@@ -35,6 +71,7 @@
     // Change width value on page load
     $(document).ready(function(){
         responsive_resize();
+        scroll_function();
     });
 
     // Change width value on user resize, after DOM
@@ -47,7 +84,7 @@
         //do something with the width value here!
         if (current_width < 970)
             $('html').addClass("mobile").removeClass("desktop")
-     
+
         else if (current_width > 971)
             $('html').addClass("desktop").removeClass("mobile");
     }
@@ -62,7 +99,7 @@
         images = shuffle(images);
 
         $('html.desktop .random.bg').each(function(i){
-            $(this).css({'background-image': 'url(/assets/bgs/desktop/' + images[i] + ')'});  
+            $(this).css({'background-image': 'url(/assets/bgs/desktop/' + images[i] + ')'});
         });
     });
 
@@ -76,25 +113,25 @@
         images = shuffle(images);
 
         $('html.mobile .random.bg').each(function(i){
-            $(this).css({'background-image': 'url(/assets/bgs/mobile/' + images[i] + ')'});  
+            $(this).css({'background-image': 'url(/assets/bgs/mobile/' + images[i] + ')'});
         });
     });
-        
-// Hashtag Shuffle  
+
+// Hashtag Shuffle
     function Shuffle(o) {
         for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
         return o;
     };
 
     var testArray = ['explore', 'fun', 'roadtrip', 'awesome', 'travel', 'memories', 'traveling', 'vacation', 'trip', 'photooftheday', 'instatravel', 'instago', 'nature', 'photo', 'friends', 'amazing'];
-    
+
     Shuffle(testArray);
 
     $(function() {
        for (var i=15;i<testArray.length;i++) {
           $("a.corner-tag").each(function(i) {
             $(this).append(testArray[i]);
-        })       
+        })
        }
     });
 
@@ -106,13 +143,13 @@
 
         $('.user-block').each(function() {
             new $('<img src="/assets/users/' + users[Math.floor(Math.random() * users.length)] + '">').appendTo(this);
-        })       
+        })
     });*/
 
 // OFF CANVAS
-    
+
     $(document).ready(function(){
-        
+
         // $(".signintoggler").click(function(){
         //     $("#signin").toggleClass("open");
         //     return false;
@@ -123,7 +160,7 @@
         // });
 
         // $("#menutoggler").click(function(){
-        //     $('#slide-nav').offcanvas({ 
+        //     $('#slide-nav').offcanvas({
         //         autohide: true,
         //         toggle: true,
         //         placement: 'right',
@@ -137,7 +174,7 @@
     });
     $(document).ready(function(){
         // $("#notifications").click(function(){
-        //     $('#notifications-list').offcanvas({ 
+        //     $('#notifications-list').offcanvas({
         //         autohide: true,
         //         toggle: true,
         //         placement: 'right',
@@ -171,13 +208,13 @@
           }
         }, 150);
         function hasScrolled() {
-            
+
             var st = $(this).scrollTop();
-        
+
             // Make sure they scroll more than delta
             if(Math.abs(lastScrollTop - st) <= delta)
                 return;
-            
+
             // If they scrolled down and are past the navbar, add class .nav-up.
             // This is necessary so you never see what is "behind" the navbar.
             if (st > lastScrollTop && st > navbarHeight){
@@ -189,13 +226,13 @@
                     $('#head-search').removeClass('up').addClass('down');
                 }
             }
-    
+
             lastScrollTop = st;
         }
     });
 
 // Responsive Video
-    
+
     $(function() {
 
         var $allVideos = $("iframe[src^='//player.vimeo.com'], iframe[src^='//www.youtube.com'], object, embed"),

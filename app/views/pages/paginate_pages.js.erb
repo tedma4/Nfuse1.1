@@ -1,8 +1,8 @@
+<%# byebug %>
+$('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: @pages} %>')
 
-$('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: page} %>')
-<% byebug %>
 <% if @pages.next_page %>
-  $('.pagination').replaceWith('<%= j render partial: "pages/page", locals: {page: page} %>')
+  $('.pagination').replaceWith('<%= j render partial: "pages/page", locals: {page: @pages} %>')
 <% else %>
   $('.pagination').remove()
 <% end %>
