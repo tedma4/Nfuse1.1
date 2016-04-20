@@ -121,6 +121,12 @@ class PagesController < ApplicationController
 
   def business_connector
     @pages = PageFetcher.new("business").get!
+    # byebug
+    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def celebrity_connector
@@ -186,25 +192,43 @@ class PagesController < ApplicationController
 
   def mytop50
     @pages = []
+    page_ids = []
     seen_pages = Page.where(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
     non_seen_pages = Page.where.not(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
-    @pages << seen_pages
-    @pages << non_seen_pages
-    @pages.flatten!
+    page_ids << seen_pages
+    page_ids << non_seen_pages
+    page_ids.flatten.each do |id|
+      page = Page.find(id)
+      element = {
+        page: page,
+        image: page.profile_pic
+      }
+      @pages << element
+    end
+    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def mostpopular
     @pages = []
     page_ids = Page.all.pluck(:id)
     page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
-    page_ids.first(20).each do |id|
-      element = {}
+    page_ids.each do |id|
       page = Page.find(id)
-      element[:page] = page
-      element[:image] = page.profile_pic
+      element = {
+        page: page,
+        image: page.profile_pic
+      }
       @pages << element
     end
-    @pages
+    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   # Pluck all id's
@@ -214,13 +238,17 @@ class PagesController < ApplicationController
   def random
     @pages = []
     page_ids = Page.first(50).shuffle
-    Kaminari.paginate_array(page_ids).page(params[:page]).per(10).each do |insert_page|
+    page_ids.each do |insert_page|
       element = {}
       element[:page] = insert_page
       element[:image] = insert_page.profile_pic
       @pages << element
     end
-    @pages
+    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def trending
@@ -235,6 +263,12 @@ class PagesController < ApplicationController
         @pages << element
       end
      @pages
+  end
+
+  def paginate_pages
+    respond_to do |format|
+      format.js
+    end
   end
   # End of Controller
 end

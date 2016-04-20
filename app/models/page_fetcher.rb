@@ -17,7 +17,7 @@ class PageFetcher
   end
 
   def fetch_pages
-    @fetched = Page.where("page_category LIKE '%#{@search_string}%'").page(self.params[:page])
+    @fetched = Page.where("page_category LIKE '%#{@search_string}%'")
   end
 
   def loop_pages(num=100)

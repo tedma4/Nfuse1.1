@@ -1,0 +1,8 @@
+    <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+      <a href="/pages/<%= page[:page].page_name %>">
+        <div class="profile-head">
+          <p><%= truncate(page[:page].full_name, length: 19) %></p>
+        </div>
+        <%= image_tag(page[:image]) %>
+      </a>
+    </div>

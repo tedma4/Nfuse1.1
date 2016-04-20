@@ -18,7 +18,7 @@ class CallbackLinksController < ApplicationController
 private
   def set_steps
     if current_user.tokens.empty?
-      self.steps = [:callbacks, :avatar_pic]
+      self.steps = [:avatar_pic, :callbacks]
     else
       self.steps = [:username, :callbacks]
     end

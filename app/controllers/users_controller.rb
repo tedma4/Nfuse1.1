@@ -148,33 +148,34 @@ class UsersController < ApplicationController
   end
 
   def explore_users
-    @providers = Providers.for(@user)
-    timeline = []
-    # @token = []
-    # if current_user.followed_users.any?
-    #   current_user.followed_users.each do |i|
-    #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+    # @providers = Providers.for(@user)
+    # timeline = []
+    # # @token = []
+    # # if current_user.followed_users.any?
+    # #   current_user.followed_users.each do |i|
+    # #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+    # #   end
+    # #   unless @token.empty?
+    # #     @token = @token[0]
+    # #   else
+    # #     @token
+    # #   end
+    # # else
+    # #   @token
+    # # end
+    # ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
+    # ids << current_user.id
+    # unless ids.empty?
+    #   @users = User.where.not(id: ids)
+    #   @users.find_each do |user|
+    #     feed=Networks::Timeline.new(user)
+    #     timeline << feed.construct(params)
+    #     @unauthed_accounts = feed.unauthed_accounts
     #   end
-    #   unless @token.empty?
-    #     @token = @token[0]
-    #   else
-    #     @token
-    #   end
-    # else
-    #   @token
     # end
-    ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
-    ids << current_user.id
-    unless ids.empty?
-      @users = User.where.not(id: ids)
-      @users.find_each do |user|
-        feed=Networks::Timeline.new(user)
-        timeline << feed.construct(params)
-        @unauthed_accounts = feed.unauthed_accounts
-      end
-    end
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
-    render "explore_users"
+    # @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    # render "explore_users"
+    @users = User.where.not(id: current_user.id)
   end
 
   def bio
