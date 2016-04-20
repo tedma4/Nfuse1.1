@@ -108,6 +108,7 @@ class PagesController < ApplicationController
 
   def set_page
     impressionist(@page)
+    @page.increment!(:view_count)
   end
 
   public
@@ -205,7 +206,7 @@ class PagesController < ApplicationController
       }
       @pages << element
     end
-    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    @pages = Kaminari.paginate_array(@pages).page(1).per(10)
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -213,11 +214,9 @@ class PagesController < ApplicationController
   end
 
   def mostpopular
+    page_ids = Page.order('view_count desc').page(params[:page]).per(10)
     @pages = []
-    page_ids = Page.all.pluck(:id)
-    page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
-    page_ids.each do |id|
-      page = Page.find(id)
+    page_ids.each do |page|
       element = {
         page: page,
         image: page.profile_pic
@@ -265,11 +264,6 @@ class PagesController < ApplicationController
      @pages
   end
 
-  def paginate_pages
-    respond_to do |format|
-      format.js
-    end
-  end
   # End of Controller
 end
 

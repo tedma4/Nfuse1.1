@@ -574,7 +574,9 @@
       line-height: 20px;
   }
   .top-nav-collapse #top-nav li a{
-    padding: 0;
+    padding: 10px 3px;
+    margin-left: 5px;
+    line-height: 20px;
   }
   .top-nav-collapse{
     height: 40px;
@@ -1527,7 +1529,7 @@
 }
 @media(min-width:1200px) {
   #mission{
-    background-size: 0;
+    background-size: auto;
   }
 }
 @media(min-width:1400px) {

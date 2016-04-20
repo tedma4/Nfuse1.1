@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417192951) do
+ActiveRecord::Schema.define(version: 20160420140635) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160417192951) do
     t.integer  "page_avatar_file_size"
     t.datetime "page_avatar_updated_at"
     t.string   "page_category"
+    t.integer  "view_count"
   end
 
   add_index "pages", ["page_name"], name: "index_pages_on_page_name"
