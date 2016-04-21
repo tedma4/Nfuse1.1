@@ -214,7 +214,7 @@ class PagesController < ApplicationController
   end
 
   def mostpopular
-    page_ids = Page.order('view_count desc').page(params[:page]).per(10)
+    page_ids = Page.order('view_count desc').page(params[:page]).per(50)
     @pages = []
     page_ids.each do |page|
       element = {

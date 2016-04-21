@@ -3,12 +3,10 @@
   <meta name="description" content="Add your social media to your profile and share all your post with other Nfusers.">
 <% end %>
 <!-- *Start* Views/callback_links/callbacks.html -->
-<% if current_user.providers.nil? %>
-  <% provide(:title, "Step 2") %>
-<% else %>
-  <% provide(:title, "Step 3")%>
-<% end %>
-
-
+<%# if current_user.providers.nil? %>
+  <%# provide(:title, "Step 2") %>
+<%# else %>
+  <%# provide(:title, "Step 3")%>
+<%# end %>
 <%= render partial: 'users/network_authentications' %>
 <!-- *End* Views/callback_links/callbacks.html

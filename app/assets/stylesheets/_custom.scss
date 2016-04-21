@@ -562,7 +562,7 @@
       width: 100%;
       height: auto;
       border-radius: 100%;
-      border: 1px solid #333;
+      /*border: 1px solid #333;*/
   }
 
 @media(min-width:480px) {
@@ -620,9 +620,9 @@
       height: 50px;
   }
   nav #user {
-      padding: 8px 5px;
+      padding: 6px 5px;
       width: 42px;
-      height: 42px;
+  /*    height: 42px;*/
   }
   .navbar-header .nav.loggedin a i,
   #menutoggler i{
@@ -2659,7 +2659,7 @@
     margin-left: 0px;
   }
   #userarea #user{
-      top: -131px;
+      top: -150px;
       margin: 0;
   }
   .user-left, .user-right{
@@ -2711,7 +2711,7 @@
   #userarea #user {
       width: 150px;
       height: 150px;
-      top: -199px;
+      top: -150px;
   }
 
   #userarea #user-banner{
@@ -3692,4 +3692,16 @@ h5.media-heading {
     margin-bottom: 5px;
     font-weight: 700;
     font-size: 21px;
+}
+
+@media (max-width: 1000px){
+  #user_banner_change img {
+    max-width: 450px
+  }
+}
+
+@media (max-width: 500px){
+  #user_banner_change img {
+    max-width: 350px
+  }
 }

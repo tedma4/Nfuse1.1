@@ -3,13 +3,15 @@
   <title>Nfuse | Normal Sign Up Avatar/Banner Change</title>
   <meta name="description" content="Create a new username for your new profle on Nfuse or keep your Facebook username.">
 <% end %>
-<section id="" class="content-section container picbg">
-  <div class="row">
-    <header class="col-xs-12 center">
-      <h1 class="heavy"><%= current_user.user_name %>: Step 2</h1>
-      <p>Add a Profile Picture and Banner below</p>
-    </header>
-    <%= render partial: 'users/upload_pics_form' %>
+<section id="settings" class="container">
+  <div class="row">    
+    <div class="center col-xs-12 content">
+      <h3>Hey @<%= current_user.user_name %>, Add You Profile And Banner Images</h3>
+    </div>
+    <!-- SWITCHABLE CONTENT -->
+    <article class="content col-xs-12 tab-content">
+      <%= render partial: 'users/upload_pics_form' %>
+    </article>
 </section>
   <!-- Footer -->
   <footer>

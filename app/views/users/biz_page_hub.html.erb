@@ -110,7 +110,7 @@
                 <i class="fa"></i><span>666</span>
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
-                <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost .likedPost'} do %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
                   <i class="fa"></i><span><%= post.like_score(post.id) %></span>
                 <% end %>
               <% else %>

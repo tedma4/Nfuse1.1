@@ -4,7 +4,6 @@
   function scroll_function(){
 
     $(window).scroll(function() {
-      console.log("scrolling!");
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav-collapse");
         } else {
@@ -18,14 +17,11 @@
         }
 
 
-          var url;
-
-          url = $('.pagination .next a').attr('href');
-          console.log(url);
-          if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
-            $('.pagination').text('Getting more things');
-            return $.getScript(url);
-          }
+        var url = $('.pagination .next a').attr('href');
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
+          $('.pagination').text('Getting more things');
+          return $.getScript(url);
+        }
 
 
     });

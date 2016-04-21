@@ -211,7 +211,11 @@
     <!-- SAVE ALL -->
     <% if controller_name == 'callback_links' %>
       <div id="saveall" class="col-xs-12 content">
-        <%= link_to "Finish", next_wizard_path, class: "btn btn-default" %>
+        <% if @wizard_steps.first.to_s.include?('callbacks') %>
+          <%= link_to "Next", next_wizard_path, class: "btn btn-default" %>
+        <% else %>
+          <%= link_to "Finish", next_wizard_path, class: "btn btn-default" %>
+        <% end %>
       </div>
     <% elsif controller_name == 'users' && action_name == 'edit' %>
       <div id="saveall" class="col-xs-12 content">
