@@ -22,7 +22,6 @@ class Page < ActiveRecord::Base
     i = 0
     num = 10
     until i > num  do
-      # byebug
       if thing['data'][i]['username'] == self.instagram_handle
         usid = thing['data'][i]['id']
         begin

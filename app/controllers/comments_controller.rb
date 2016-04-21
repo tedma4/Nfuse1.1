@@ -125,7 +125,6 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
-    # byebug
     respond_to do |format|
       if @comment.save
         # if @commentable.is_a?(Page)

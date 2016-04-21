@@ -142,7 +142,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar_remote_url=(url_value)
-    byebug
     first_do = URI.parse(url_value)
     first_do.scheme = 'https'
     self.avatar = first_do.to_s

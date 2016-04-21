@@ -1,7 +1,6 @@
 <section id="profile-grid" class="container-fluid">
   <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
 </section>
-<%# byebug %>
 <%= paginate @pages %>
 
 <script>

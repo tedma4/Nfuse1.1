@@ -122,7 +122,6 @@ class PagesController < ApplicationController
 
   def business_connector
     @pages = PageFetcher.new("business").get!
-    # byebug
     @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
     respond_to do |format|
       format.html

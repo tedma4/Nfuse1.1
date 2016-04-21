@@ -1,5 +1,3 @@
-<%# byebug %>
-
 <% if @pages.next_page %>
 	<% @pages.each do |page| %>
 	  $('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: page} %>')

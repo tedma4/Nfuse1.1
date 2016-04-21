@@ -1,7 +1,6 @@
 <%# this_is_it = pages.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count} %>
 <% unless @pages.empty? %>
   <% pages.each do |page| %>
-      <%# byebug %>
     <!-- PROFILE -->
     <%= render partial: 'pages/page', locals: {page: page} %>
   <% end %>

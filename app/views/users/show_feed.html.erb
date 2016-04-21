@@ -12,7 +12,6 @@
   <% if @timeline.present? %>
     <%# cache(["users_feed", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
       <% @timeline.each do |post| %>
-      <%# byebug %>
         <% if (post.class.to_s == "Nfuse::Post" && post.try(:is_exclusive) == true) %>
         <% else %>
         <%# cache(post) do %>
