@@ -144,7 +144,7 @@
                     <%= post.text %>
                   </div>
                 <%end%>
-              <% when 'youtube' %>
+              <% when 'google_oauth2' %>
                 <iframe
                   id="ytplayer"
                   type="text/html"
@@ -216,7 +216,7 @@
           <% else %>
               <!-- PROFILE -->
               <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                <a href="/pages/<%= this.user_name %>">
+                <a href="/users/<%= this.user_name %>/feed">
                   <div class="profile-head">
                     <p><%= this.user_name %></p>
                   </div>

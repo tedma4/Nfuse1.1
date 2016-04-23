@@ -51,7 +51,7 @@ module Biz
 
     def is_not_retweeted?
       if @post.attrs.has_key? :retweeted_status
-      @post.attrs[:user][:screen_name] == @post.attrs[:retweeted_status][:user][:screen_name]
+        @post.attrs[:user][:screen_name] == @post.attrs[:retweeted_status][:user][:screen_name]
       else
         true
       end

@@ -16,9 +16,9 @@
   <main class="post_content">
     <div class="timeline-user-box">
       <% if !comment.url.blank? %>
-        <p><%= comment.url_html %></p>
+        <%= comment.url_html %>
       <% elsif !comment.image_upload.blank? %>
-        <%= image_tag comment.image_upload(:medium) %>
+        <%= image_tag comment.image_upload(:medium) %><br>
       <% else %>
       <% end %>
       <% unless comment.body.blank? %>
@@ -121,3 +121,8 @@
     </div>
   </div>
 </li>
+<script>
+    $('.timeline-user-box p').each(function(){
+      if($(this).text() === ''){$(this).remove()}
+    });
+</script>

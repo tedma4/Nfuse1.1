@@ -27,7 +27,6 @@
     });
 
   }
-
 // jQuery scrolll to top
 //     $(document).scroll(function() {
 //         var y = $(this).scrollTop();
@@ -68,6 +67,10 @@
     $(document).ready(function(){
         responsive_resize();
         scroll_function();
+        
+    $('.timeline-user-box p').each(function(){
+      if($(this).text() === ''){$(this).remove()}
+    });
     });
 
     // Change width value on user resize, after DOM

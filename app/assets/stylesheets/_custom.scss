@@ -1243,6 +1243,7 @@
   }
   .comment .user a,
   .item .user a{
+    margin: 4px 0 0 9px
     /*display: none;*/
   }
   .post_actions .user img,
@@ -3645,12 +3646,12 @@ video {
 @media (max-width: 767px){
   .item.topic_post {
       margin: 0 0 15px 0;
-      min-width: 675px;
+      min-width: 600px;
   }
 }
 @media (max-width: 500px){
   .item.topic_post {
-      min-width: 425px;
+      min-width: 350px;
       margin: 0 0 15px 0;
   }
 }

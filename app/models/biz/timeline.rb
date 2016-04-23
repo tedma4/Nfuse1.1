@@ -13,43 +13,52 @@ module Biz
 
    private
 
-   def concurrency_test_with_thread
-     list = [['twitter', @page.twitter_handle], ['google_oauth2', @page.youtube_handle], ['instagram', @page.instagram_handle]]
-     threads = []
-     list.each do |this|
-       if list.flatten[1].include?('blank') && list.flatten[3].include?('blank') && this.first == 'instagram'
-         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", true, *this))}
-       elsif this.second.include?('blank')
-          #Do nothing for blank biz accounts for now
-       else
-         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", false, *this))}
-       end
-     end
-     threads.each(&:join)
-     merge = []
-     list.each do |it|
-       if instance_variable_get("@#{it.first}").nil?
-         #leaving this blank for now
-       elsif it.first == 'instagram'
-         begin
-           merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}", @page)}
-         rescue
-          #Leaving blank till i find out what to do with it
-         end
-       else
-         begin
-           merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}", @page)}
-         rescue
-           # Same here
-         end
-       end
-     end
-     merge.inject(:+)
-     page_posts_and_image = {
-       page_feeds: merge,
-       page_image: @page.profile_pic
-       }
-   end
+  def concurrency_test_with_thread
+    threads = []
+    provider_list.each do |provider|
+       if provider_list.flatten[1].include?('blank') && provider_list.flatten[3].include?('blank') && provider.first == 'instagram'
+        threads << Thread.new { instance_variable_set("@#{provider.first}", self.send("#{provider.first}_setup", true, *provider))}
+      elsif provider.second.include?('blank')
+         #Do nothing for blank biz accounts for now
+      else
+        threads << Thread.new { instance_variable_set("@#{provider.first}", self.send("#{provider.first}_setup", false, *provider))}
+      end
+    end
+    threads.each(&:join)
+    merge = []
+    provider_list.each do |provider|
+      if instance_variable_get("@#{provider.first}").nil?
+        #leaving this blank for now
+      elsif provider.first == 'instagram'
+        begin
+          merge << instance_variable_get("@#{provider.first}")['data'].map { |post| Biz::Post.from(post, "#{provider.first}", @page)}
+        rescue
+         #Leaving blank till i find out what to do with it 
+        end
+      else
+        begin
+          if provider.first == 'twitter'
+            # twitter_post.attrs[:user][:screen_name] == (twitter_post.attrs[:retweeted_status] ? twitter_post[:retweeted_status][:user][:screen_name] : 'twitter'
+            @twitter = @twitter.delete_if { |twitter_post| twitter_post.attrs.has_key?(:retweeted_status) || twitter_post.attrs[:in_reply_to_status_id] != nil }
+            merge << @twitter.map { |post| Biz::Post.from(post, "#{provider.first}", @page) }
+          else
+            merge << instance_variable_get("@#{provider.first}").map { |post| Biz::Post.from(post, "#{provider.first}", @page)}
+          end
+        rescue
+          # Same here
+        end
+      end
+    end
+    merge.inject(:+)
+    page_posts_and_image = {
+      page_feeds: merge,
+      page_image: @page.profile_pic
+      }
+  end
+
+    def provider_list
+      [['twitter', @page.twitter_handle], ['google_oauth2', @page.youtube_handle], ['instagram', @page.instagram_handle]]
+    end
 
     def twitter_setup(that = false, *this)#, that = false,
       client = twitter_token
