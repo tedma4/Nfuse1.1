@@ -122,13 +122,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-default">Share</button>
               <% if current_user.followers.any? %>
-                <select class="c-select">
-                  <option selected>Feed</option>
+                <select name='shout[is_exclusive]' class="c-select">
+                  <option value='0' selected>Feed</option>
                   <option value="1">Exclusive</option>
                 </select>
               <% end %>
+            <button type="submit" class="btn btn-default">Share</button>
           </div>
         <% end %>
       </div>
@@ -329,6 +329,10 @@
         <div class="modal-body container-fluid">
           <div class="row">
             <form id="signin" class="minimal col-xs-12" accept-charset="UTF-8" action="/sessions" method="post">
+              <div style="display:none;">
+                <input name="utf8" type="hidden" value="✓">
+                <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
+              </div>
               <div class="form-group">
                 <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
                 <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">

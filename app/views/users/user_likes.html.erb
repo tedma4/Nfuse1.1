@@ -13,6 +13,7 @@
 </section>
 <!-- MASON JAR -->
 <% @user_likes = ActsAsVotable::Vote.where(voter_id: @user.id) %>
+<% @user_likes = @user_likes.reject {|liked| liked.votable_type == 'Comment'} %>
 <% if @user_likes.any? %>
   <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
     <div class="grid-sizer"></div>
@@ -28,9 +29,8 @@
                 <%= image_tag(@this_user.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
                 <%= link_to truncate(@this_user.user_name, length: 16), root_path %>
               </div>
-              <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
-              <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-                <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
+              <%= link_to @post_entry.link_to_entry, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+                <i class="fa"></i> <%= time_ago_in_words(@post_entry.created_time) %>
               <% end %>
             </header>
             <main class="post_content">
@@ -77,7 +77,7 @@
           <article class="individual_post item <%= @post_entry.provider %>_post0">
             <header class="post_header">
               <div class="user">
-                <%= image_tag("#{@post_entry.avatar}.jpg", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= image_tag(@this_user.profile_pic, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
                 <%= link_to truncate(@post_entry.username, length: 16), page_path(@post_entry.username) %>
               </div>
               <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>

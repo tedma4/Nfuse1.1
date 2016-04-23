@@ -1,20 +1,6 @@
-// , locals: {activity: activity}
 
-// if ($('#notifications-list.slide-out.in')[0]) {
-//   $('notifications-list.slide-out').offcanvas('hide');
-//   return false;
-// } else {
-  // $('#notifications-list').offcanvas({ 
-  //   autohide: true,
-  //   toggle: true,
-  //   placement: 'right',
-  //   recalc: false,
-  //   disableScrolling: false
-  // }).offcanvas('toggle');
-  // console.log('it got to the end');
 if ($('#notifications-list .row').length == 0)  {
   $('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');  
 } else {
   
 }
-// }

@@ -8,7 +8,6 @@ class ActivitiesController < ApplicationController
 		# @notification_count = @activities.where(:read => false).count
 		respond_to do |format|
 			format.js
-			# format.html
 		end
 	end
 	def read_all_notifications
@@ -23,8 +22,23 @@ class ActivitiesController < ApplicationController
 			format.js
 		end
 	end
-
 end
+# Regex to match serialized values in between quotes
+#   /(["'])((?:(?!\1)[^\\]|(?:\\\\)*\\[^\\])*)\1/
+
+# Example: 
+# string = "{:id=>\"1187467057945665_1072558892769816\", :provider=>\"facebook\"}"
+# regex = /(["'])((?:(?!\1)[^\\]|(?:\\\\)*\\[^\\])*)\1/
+# string.scan(regex)
+# => [["\"", "1187467057945665_1072558892769816"], ["\"", "facebook"]]
+
+# post_id = string.scan(regex)[0][1]
+# provider = string.scan(regex)[1][1]
+
+
+
+
+
 
 
 # .order(created_at: :desc)

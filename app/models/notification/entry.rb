@@ -28,6 +28,8 @@ module Notification
           @entry.id
         when 'pinterest'
           @entry['id']
+        when 'tumblr'
+          @entry['id']
       end
     end
 
@@ -196,7 +198,13 @@ module Notification
         when 'facebook'
           @entry['created_time']
         when 'pinterest'
-          @post['created_at']
+          @entry['created_at']
+        when 'tumblr'
+          @entry['date']
+        when 'gplus'
+          @entry['created_at']
+        when 'vimeo'
+          @entry['created_at']
       end
     end
 
@@ -209,16 +217,25 @@ module Notification
     def link_to_entry
       case(@provider)
         when 'twitter'
-          # s
           "https://twitter.com/#{@entry[:user][:screen_name]}/status/#{@entry['id']}"
         when 'google_oauth2'
           "https://www.youtube.com/watch?v=#{@entry.id}"
         when 'instagram'
           @entry["link"]
         when 'facebook'
-          @entry['actions'][0]['link']
+          begin
+            @entry['link']
+          rescue
+            @entry['actions'][0]['link']
+          end
         when 'pinterest'
-          @post['link']  
+          @entry['link']  
+        when 'tumblr'
+          @entry['short_url']
+        when 'gplus'
+          @entry['link']  
+        when 'vimeo'
+          @entry['link']  
       end
     end
 

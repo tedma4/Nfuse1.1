@@ -776,7 +776,7 @@
       z-index: 10;
       height:100%;
       /*height:auto;*/
-      overflow: hidden;
+      overflow-x: hidden;
   }
   #notifications-list img{
     width: auto;
@@ -3705,4 +3705,8 @@ h5.media-heading {
   #user_banner_change img {
     max-width: 350px
   }
+}
+
+#shout_pic_preview img {
+  max-width: 500px;
 }

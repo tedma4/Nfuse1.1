@@ -71,9 +71,10 @@ module Networks
             end
           end
           if @user.shouts.any?
-            users_posts
+            users_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
             (merge.inject(:+)) + users_posts
           elsif merge.empty?
+            users_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
             users_posts
           else
             merge.inject(:+)

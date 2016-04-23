@@ -75,7 +75,7 @@
   <!--    <div class="load_posts_link">
       <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>
     </div> -->
-  <% elsif @timeline.blank? && @unauthed_accounts.empty? %>
+  <% elsif @timeline.nil? || @unauthed_accounts.empty? %>
     <div class="center">
       <% if current_user?(@user) %>
         <%= render partial: "users/network_authentications" %>
