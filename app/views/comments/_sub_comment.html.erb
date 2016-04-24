@@ -1,27 +1,31 @@
 <li class="comment col-xs-12">
   <header class="post_actions">
-    <div class="user">
-      <% if this.user.avatar_file_name.present? && this.user.avatar_file_name.include?('graph.facebook.com') %>
-        <%= image_tag this.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
-      <% else %>
-        <%= image_tag this.user.avatar(:small), class: "media-object img-circle", title: "Edit Image" %>
-      <% end %>
-      <a href="#"> <%= this.user.user_name %></a>
+    <div class="user forum_post_header">
+      <a href="/users/<%= this.user.user_name %>/feed">
+        <% if this.user.avatar_file_name.present? && this.user.avatar_file_name.include?('graph.facebook.com') %>
+          <%= image_tag this.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
+        <% else %>
+          <%= image_tag this.user.avatar(:small), class: "media-object img-circle", title: "Edit Image" %>
+        <% end %>
+      </a>
+      <a href="/users/<%= this.user.user_name %>/feed"><%= this.user.user_name %></a>
     </div>
       <% if signed_in? %>
         <% if ActsAsVotable::Vote.where(votable_id: this.id).pluck(:voter_id).include?(current_user.id) %>
           <%= link_to dislike_this_comment_path(id: this.id,
                 owner_id: this.user_id,
                 comment_id: this.id,
-                owner_type: 'User'),
-                method: :delete, remote: true, class: 'likePost' do %>
+                owner_type: 'User',
+                has_parent: true),
+                method: :delete, remote: true, class: 'likePost liked' do %>
             <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>
         <% else %>
           <%= link_to  like_this_comment_path(id: this.id,
                 owner_id: this.user_id,
                 comment_id: this.id,
-                owner_type: 'User'),
+                owner_type: 'User',
+                has_parent: true),
                 method: :post, remote: true, class: 'likePost' do %>
             <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>

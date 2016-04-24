@@ -51,10 +51,18 @@
                   <%= time_ago_in_words(activity.created_at) %>
                 </span>
               </p>
-            <% else %>
+            <% elsif activity.key == 'comment.like' %>
               <p>
                 <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
                 liked your forum post!
+                <span class="timer">
+                  <%= time_ago_in_words(activity.created_at) %>
+                </span>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                liked your forum comment!
                 <span class="timer">
                   <%= time_ago_in_words(activity.created_at) %>
                 </span>

@@ -1246,6 +1246,11 @@
     margin: 4px 0 0 9px
     /*display: none;*/
   }
+  .comment .user a,
+  .item .user.forum_post_header a{
+    margin: 4px 11px 0 0px;
+    /*display: none;*/
+  }
   .post_actions .user img,
   #commentmodal .user img,
   .comment .user img,

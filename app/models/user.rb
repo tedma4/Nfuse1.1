@@ -149,7 +149,11 @@ class User < ActiveRecord::Base
     # avatar_file_name == "face.png"
     # avatar_content_type == "image/png"
     @avatar_remote_url = url_value
+  end
 
+  def self.set_notifications_to_true
+    PublicActivity::Activity.where(recipient_id: current_user.id).update_all(:read => true)
+    PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).update_all(:read => true)
   end
 
   private

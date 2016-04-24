@@ -1,3 +1,6 @@
+<% if current_user.activities.where(read: false).any? %>
+	<% current_user.set_notifications_to_true %>
+<% end %>
 
 if ($('#notifications-list .row').length == 0)  {
   $('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');  
