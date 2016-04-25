@@ -22,7 +22,7 @@ class Page < ActiveRecord::Base
     i = 0
     num = 10
     until i > num  do
-      if thing['data'][i]['username'] == self.instagram_handle
+      if thing.any? && thing['data'][i]['username'] == self.instagram_handle
         usid = thing['data'][i]['id']
         begin
           profile_pic = thing['data'][i]['profile_picture']
@@ -35,5 +35,9 @@ class Page < ActiveRecord::Base
       i += 1
     end
     profile_pic
+  end
+
+  def self.next_page
+    Page.all.shuffle.first.id
   end
 end

@@ -151,9 +151,9 @@ class User < ActiveRecord::Base
     @avatar_remote_url = url_value
   end
 
-  def self.set_notifications_to_true
-    PublicActivity::Activity.where(recipient_id: current_user.id).update_all(:read => true)
-    PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).update_all(:read => true)
+  def set_notifications_to_true(id)
+    PublicActivity::Activity.where(recipient_id: id).update_all(:read => true)
+    PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: id).update_all(:read => true)
   end
 
   private

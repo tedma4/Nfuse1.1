@@ -122,7 +122,7 @@ class PagesController < ApplicationController
 
   def business_connector
     @pages = PageFetcher.new("business").get!
-    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    # @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -142,7 +142,7 @@ class PagesController < ApplicationController
   end
 
   def youtubers
-    @pages = PageFetcher.new("tv").get!
+    @pages = PageFetcher.new("youtubers").get!
   end
 
   def sports_connector
@@ -158,7 +158,7 @@ class PagesController < ApplicationController
   end
 
   def travel_connector
-    @pages = PageFetcher.new("tv").get!
+    @pages = PageFetcher.new("travel").get!
   end
 
   # Add The corresponding routes and views for these pages
@@ -205,7 +205,7 @@ class PagesController < ApplicationController
       }
       @pages << element
     end
-    @pages = Kaminari.paginate_array(@pages).page(1).per(10)
+    @pages# = Kaminari.paginate_array(@pages).page(1).per(10)
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -222,7 +222,7 @@ class PagesController < ApplicationController
       }
       @pages << element
     end
-    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    @pages# = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -242,7 +242,7 @@ class PagesController < ApplicationController
       element[:image] = insert_page.profile_pic
       @pages << element
     end
-    @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    @pages# = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}

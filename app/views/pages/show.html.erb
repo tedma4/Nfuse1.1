@@ -37,8 +37,8 @@
         </a>
       </li>
       <li>
-        <a class="followUser" href="#">
-          <% if signed_in? %>
+        <% if signed_in? %>
+          <a class="followUser" href="#">
             <% if current_user.following?(@page) %>
               <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
                                                       html: { method: :delete },
@@ -58,8 +58,10 @@
                   <%= f.submit "Follow", class: "btn btn-link-2" %>
               <% end %>
             <% end %>
-          <% end %>
-        </a>
+          </a>
+        <% else %>
+          <a href="/pages/<%= Page.find(Page.next_page).page_name %>" class='followUser'>Next</a>
+        <% end %>
       </li>
     </ul>
   </nav>

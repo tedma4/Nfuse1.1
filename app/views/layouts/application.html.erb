@@ -49,13 +49,15 @@
 <% if signed_in? %>
 <div id="notifications-list" class="slide-out navmenu-fixed-right offcanvas">
   <div id="notifications-header">
-    <h5><i class="fa fa-bell"></i> Notifications</h5>
+    <h5><i class="fa fa-bell"></i>Notifications</h5>
   </div>
 </div>    <!-- EXCLUSIVE POST MODAL -->
 
 <div class="modal fade" id="exclusivemodal" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+
+      <%#= paginate @activities %>
     </div>
   </div>
 </div>

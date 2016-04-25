@@ -78,7 +78,7 @@ gem 'public_activity', '1.4.2'
 gem 'faye-rails', '2.0'
 gem 'thin', '~> 1.6.4', group: :development
 gem 'remotipart', '1.2.1'
-gem 'kaminari', '0.16.3'
+# gem 'kaminari', '0.16.3'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

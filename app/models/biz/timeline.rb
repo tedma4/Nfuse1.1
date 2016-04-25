@@ -16,9 +16,9 @@ module Biz
   def concurrency_test_with_thread
     threads = []
     provider_list.each do |provider|
-       if provider_list.flatten[1].include?('blank') && provider_list.flatten[3].include?('blank') && provider.first == 'instagram'
+       if provider_list.flatten[1].nil? && provider_list.flatten[3].nil? && provider.first == 'instagram'
         threads << Thread.new { instance_variable_set("@#{provider.first}", self.send("#{provider.first}_setup", true, *provider))}
-      elsif provider.second.include?('blank')
+      elsif provider.second.nil?
          #Do nothing for blank biz accounts for now
       else
         threads << Thread.new { instance_variable_set("@#{provider.first}", self.send("#{provider.first}_setup", false, *provider))}

@@ -17,12 +17,24 @@
         }
 
 
-        var url = $('.pagination .next a').attr('href');
-        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
-          $('.pagination').text('Getting more things');
-          return $.getScript(url);
-        }
+        // var url = $('.pagination .next a').attr('href'); //attr('href') = /pages/#
+        // if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
+        //   $('.pagination').text('Getting more things');
+        //   return $.getScript(url);
+        // }
 
+        // $(function() {
+        //   if ($('#notifications-list').length) {
+        //     $(window).scroll(function() {
+        //       var url = $('.next a').attr('href');
+        //       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
+        //         $('.next').text('Getting more things');
+        //         return $.getScript(url);
+        //       }
+        //     });
+        //   }
+        //   return $(window).scroll();
+        // });
 
     });
 
