@@ -64,9 +64,9 @@ module Biz
       client = twitter_token
       begin
         if that == false
-          client.user_timeline(this.second).take(15)
+          client.user_timeline(this.second)
         else
-          client.user_timeline(this.second).take(30)
+          client.user_timeline(this.second)
         end
       rescue
         if that == false
@@ -96,18 +96,29 @@ module Biz
       end
     end
 
-    def instagram_setup(that = false, *this)#, that = false
+    def instagram_setup(that = false, *this)
       client_id = instagram_token
       thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{this.second}&client_id=#{client_id}").body)
-      if thing['data'][0]['username'] == this.second
-        usid = thing['data'][0]['id']
-        if that == false
-          Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
-        else
-          Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=50").body)
+      feed = nil
+      begin
+        i = 0
+        num = 20
+        until i > num do
+          if thing['data'][i]['username'] == this.second
+            usid = thing['data'][i]['id']
+            if that == false
+              feed = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
+            else
+              feed = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=50").body)
+            end
+            break
+          end
+          puts "wasn't number #{i}, it was #{thing['data'][i]['username']}"
+          i += 1
         end
-       else
-         []
+        feed
+      rescue
+        []
       end
     end
 

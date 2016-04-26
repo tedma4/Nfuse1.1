@@ -316,73 +316,75 @@
     </div>
   </div>
 <% else %>
-  <!-- LOGIN FORM -->
-  <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="signinlabel">
-    <div class="loginmodal modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="signinlabel">Log In</h4>
-        </div>
-        <div class="modal-body container-fluid">
-          <div class="row">
-            <form id="signin" class="minimal col-xs-12" accept-charset="UTF-8" action="/sessions" method="post">
-              <div style="display:none;">
-                <input name="utf8" type="hidden" value="✓">
-                <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
-              </div>
-              <div class="form-group">
-                <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
-                <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">
-              </div>
-              <button type="submit" class="btn btn-default animated">Go!</button>
-              <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
-            </form>
+<% end %>
+<% unless signed_in? %>
+    <!-- LOGIN FORM -->
+    <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="signinlabel">
+      <div class="loginmodal modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="signinlabel">Log In</h4>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Sign up FORM -->
-  <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signuplabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="signuplabel">Sign Up</h4>
-        </div>
-        <div class="modal-body container-fluid">
-          <div class="row">
-            <!-- Signup Form -->
-            <%= form_for(User.new, html: {id: 'signup', class: 'minimal new_user col-xs-12'}) do |f| %>
-              <div class="error_messages">
-                <div>
-                  <%= render 'shared/error_messages', object: f.object %>
+          <div class="modal-body container-fluid">
+            <div class="row">
+              <form id="signin" class="minimal col-xs-12" accept-charset="UTF-8" action="/sessions" method="post">
+                <div style="display:none;">
+                  <input name="utf8" type="hidden" value="✓">
+                  <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
                 </div>
                 <div class="form-group">
-                  <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
-
-                  <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
-
-                  <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
-
-                  <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
-
-                  <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
-
-                  <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+                  <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
+                  <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">
                 </div>
-                <button type="submit" class="btn btn-default">Go!</button>
-                <a href="#" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Sign Up</a>
-              </div>
-            <% end %>
+                <button type="submit" class="btn btn-default animated">Go!</button>
+                <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Log in</a>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- Sign up FORM -->
+    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signuplabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="signuplabel">Sign Up</h4>
+          </div>
+          <div class="modal-body container-fluid">
+            <div class="row">
+              <!-- Signup Form -->
+              <%= form_for(User.new, html: {id: 'signup', class: 'minimal new_user col-xs-12'}) do |f| %>
+                  <div class="error_messages">
+                    <div>
+                      <%= render 'shared/error_messages', object: f.object %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+
+                      <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
+
+                      <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
+
+                      <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
+
+                      <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
+
+                      <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+                    </div>
+                    <button type="submit" class="btn btn-default">Go!</button>
+                    <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Sign Up</a>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>

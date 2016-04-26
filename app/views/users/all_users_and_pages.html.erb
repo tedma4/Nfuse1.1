@@ -113,7 +113,7 @@
                   <% end %>
                 <% elsif post.type == "video" %>
                   <div class="center">
-                    <video width="100%" controls autoload="none" poster=<%= post.image %> >
+                    <video controls autoload="none" poster='transparent' style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
                       <source src="<%= post.video %>" type='video/mp4' />
                       <source src="<%= post.video %>" type='video/ogv' />
                     </video>
@@ -129,7 +129,7 @@
                   <% if post.has_media? %>
                     <% if post.type == 'animated_gif' || post.type== 'video' %>
                       <div class="center">
-                        <video width="100%" controls autoload="none" poster=<%= post.image %> >
+                        <video controls autoload="none" poster='transparent' style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
                           <source src="<%= post.video %>" type='video/mp4' />
                           <source src="<%= post.video %>" type='video/ogv' />
                         </video>

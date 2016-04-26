@@ -20,7 +20,7 @@ class Page < ActiveRecord::Base
     thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{self.instagram_handle}&client_id=#{client_id}").body)
     profile_pic = nil
     i = 0
-    num = 10
+    num = 20
     until i > num  do
       if thing.any? && thing['data'][i]['username'] == self.instagram_handle
         usid = thing['data'][i]['id']
@@ -31,7 +31,7 @@ class Page < ActiveRecord::Base
         end
         break
       end
-      puts "wasn't number #{i}"
+      puts "wasn't number #{i}, it was #{thing['data'][i]['username']}"
       i += 1
     end
     profile_pic

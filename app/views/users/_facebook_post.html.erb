@@ -43,7 +43,7 @@
         <%end%>
       </div>
       <%else%>
-        <video width="100%" controls preload="none" poster=<%= post.image %> >
+        <video controls apreload="none" poster='transparent' style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
           <source src="<%= post.source %>" type='video/mp4' />
           <source src="<%= post.source %>" type='video/ogv' />
         </video>

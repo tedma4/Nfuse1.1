@@ -9,7 +9,7 @@
   <% end %>
 <% elsif post.type == "video" %>
   <div class="center">
-    <video width="100%" controls preload="none" poster=<%= post.image %> >
+    <video controls preload="none" poster='transparent' style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
       <source src="<%= post.video %>" type='video/mp4' />
       <source src="<%= post.video %>" type='video/ogv' />
     </video>
