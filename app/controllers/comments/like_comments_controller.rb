@@ -3,33 +3,19 @@ class Comments::LikeCommentsController < ApplicationController
   respond_to :json, :js, :html
 
   def create
-    unless ActsAsVotable::Vote.find_by(voter_id:   current_user.id,
-                                       owner_id:   params[:owner_id],
-                                       owner_type: params[:owner_type],
-                                       votable_id: params[:id])
+    unless vote_found?(current_user, params)
       send( params.fetch(:key, :basic).to_sym ) # Object.send
     end
-    @comment = {
-        id: params[:id],
-        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
-        owner_id: params[:owner_id],
-        owner_type: params[:owner_type],
-        parent: params[:has_parent]
-    }
-    # TODO Turn off PA when a user likes their own thing
-    if current_user.id != @comment[:owner_id].to_i && @comment[:owner_type] != 'Page'
+    @comment = set_comment(params)
+    if not_owner_and_not_page? current_user
       if @comment[:parent].nil?
-        current_user.create_activity(key: 'comment.like', parameters: {id: @comment[:id]},
-                                      owner: current_user, recipient: User.find_by_id(@comment[:owner_id])
-                                    )# unless options[:owner]['id'] == options[:recipient]['id']
-        PublicActivity::Activity.last.update_attributes(trackable_id: @comment[:id], trackable_type: 'Comment')
+        create_activity(current_user, 'comment.like')
       else
-        current_user.create_activity(key: 'comment.sub_comment_like', parameters: {id: @comment[:id]},
-                                     owner: current_user, recipient: User.find_by_id(@comment[:owner_id])
-        )# unless options[:owner]['id'] == options[:recipient]['id']
-        PublicActivity::Activity.last.update_attributes(trackable_id: @comment[:id], trackable_type: 'Comment')
+        create_activity(current_user, 'comment.sub_comment_like')
       end
+      update_activity(@comment[:id])
     end
+
     respond_to do |format|
       format.js { render file: 'comments/like.js.erb'} #'alert("like")' and return
     end
@@ -47,13 +33,46 @@ class Comments::LikeCommentsController < ApplicationController
 
   private
 
+  def update_activity(comment_id)
+    PublicActivity::Activity.last.update_attributes(trackable_id: comment_id, trackable_type: 'Comment')
+  end
+
+  def set_comment(params)
+    {
+      id: params[:id],
+      like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
+      owner_id: params[:owner_id],
+      owner_type: params[:owner_type],
+      parent: params[:has_parent]
+    }
+  end
+
+  def vote_found?(current_user, params)
+    ActsAsVotable::Vote.find_by( voter_id:   current_user.id,
+                                 owner_id:   params[:owner_id],
+                                 owner_type: params[:owner_type],
+                                 votable_id: params[:id])
+  end
+
+  def not_owner_and_not_page?(user)
+    user.id != @comment[:owner_id].to_i && @comment[:owner_type] != 'Page'
+  end
+
+  def create_activity(current_user, key)
+    current_user.create_activity( key: key,
+                                  parameters: {id: @comment[:id]},
+                                  owner: current_user,
+                                  recipient: User.find_by_id(@comment[:owner_id])
+                                  # unless options[:owner]['id'] == options[:recipient]['id']
+  end
+
   def basic
     ActsAsVotable::Vote.create(vote_params)
-  end# Ruby magick
+  end
 
   def vote_params
-    {votable_id: params[:id],
-     votable_type: 'Comment',
+    { votable_id: params[:id],
+      votable_type: 'Comment',
       voter_id: current_user.id,
       owner_id: params[:owner_id],
       owner_type: params[:owner_type]}
