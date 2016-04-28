@@ -3696,13 +3696,13 @@ h5.media-heading {
       left: 0;
       right: 0;
   }
-  label.forum_image_upload {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-weight: 700;
-    font-size: 21px;
-}
+
+  .forum-image-upload label{
+    width: 100%;
+      height: auto;
+      display: block;
+      margin: 0px;
+  }
 
 @media (max-width: 1000px){
   #user_banner_change img {

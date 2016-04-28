@@ -57,7 +57,7 @@
               </div> -->
               <div id="user_banner_change">
                 <label for="user_banner_upload">
-                  <%= image_tag @user.banner(:large), id: "profilebann" %>
+                  <%= image_tag @user.banner %>
                 </label>
               </div>
               <div class="fileUpload btn-link-1">
@@ -69,21 +69,27 @@
       </div>
       <!-- PANEL TWO -->
       <div role="tabpanel" class="tab-pane" id="account-info">
-        <%= form_for(@user, html: {class: 'minimal edit_user', id: ''}) do |f| %>
+        <%= form_for(@user, html: {class: 'minimal edit_user', id: 'edit_user_3'}) do |f| %>
           <div class="error_messages">
             <div>
               <%= render 'shared/error_messages', object: f.object %>
             </div>
             <div class="form-group">
               <div class="col-xs-12 col-md-6">
-                <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
-                <input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">
-                <input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">
+                <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+                <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search" %>
+                <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                <!--<input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">-->
+                <!--<input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">-->
+                <!--<input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">-->
               </div>
               <div class="col-xs-12 col-md-6">
-                <input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">
-                <input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">
-                <input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
+                <%= f.text_field :email, :placeholder => "email", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                <!--<input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">-->
+                <!--<input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">-->
+                <!--<input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">-->
               </div>
             </div>
           </div>
@@ -294,7 +300,7 @@
     </article>
     <!-- SAVE ALL -->
     <div id="saveall" class="col-xs-12 content">
-      <button type="submit" class="fullw btn btn-default">Finished</button>
+      <button type="submit" class="fullw btn btn-default" form='edit_user_3'>Finished</button>
     </div>
   </div>
 </section>

@@ -111,11 +111,11 @@
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
                 <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
-                  <i class="fa"></i><span><%= post.like_score(post.id) %></span>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
                 <% end %>
               <% else %>
                 <%= link_to like_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                  <i class="fa"></i><span><%= post.like_score(post.id) %></span>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
                 <% end %>
               <% end %>
             </footer>

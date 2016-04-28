@@ -30,12 +30,12 @@ class Shouts::LikesController < ApplicationController
   end
 
   def destroy
-    # @shout = {
-    #     id: params[:id],
-    #     like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
-    #     owner_id: params[:owner_id],
-    #     provider: params[:key]
-    # }
+    @shout = {
+        id: params[:id],
+        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
+        owner_id: params[:owner_id],
+        provider: params[:key]
+    }
     @like = ActsAsVotable::Vote.find_by(voter_id: current_user.id, votable_id: params[:id])
     @like.destroy
     # activity = PublicActivity::Activity.find_by_trackable_id_and_trackable_type(params['id'], 'User')
@@ -48,6 +48,10 @@ class Shouts::LikesController < ApplicationController
   private
 
   def basic
+    ActsAsVotable::Vote.create(vote_params)
+  end# Ruby magick
+
+  def nfuse
     ActsAsVotable::Vote.create(vote_params)
   end# Ruby magick
 

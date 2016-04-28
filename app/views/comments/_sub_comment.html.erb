@@ -18,7 +18,7 @@
                 owner_type: 'User',
                 has_parent: true),
                 method: :delete, remote: true, class: 'likePost liked' do %>
-            <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
+            <i class="fa"></i><span class="liked-comment-<%= this.id %>"><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>
         <% else %>
           <%= link_to  like_this_comment_path(id: this.id,
@@ -27,7 +27,7 @@
                 owner_type: 'User',
                 has_parent: true),
                 method: :post, remote: true, class: 'likePost' do %>
-            <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
+            <i class="fa"></i><span class="liked-comment-<%= this.id %>"><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
           <% end %>
         <% end %>
       <% else %>

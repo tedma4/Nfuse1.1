@@ -30,6 +30,8 @@ module Notification
           @entry['id']
         when 'tumblr'
           @entry['id']
+        else
+          @entry.id
       end
     end
 
@@ -205,6 +207,8 @@ module Notification
           @entry['created_at']
         when 'vimeo'
           @entry['created_at']
+        else
+          @entry.created_at
       end
     end
 

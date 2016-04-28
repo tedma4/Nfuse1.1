@@ -43,7 +43,7 @@
                 has_parent: false),
                 method: :delete, remote: true, class: 'likePost liked' do %>
             <i class="fa"></i>
-            <span>
+            <span class="liked-comment-<%= comment.id %>">
               <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
             </span>
           <% end %>
@@ -55,7 +55,7 @@
                 has_parent: false),
                 method: :post, remote: true, class: 'likePost' do %>
             <i class="fa"></i>
-            <span>
+            <span class="liked-comment-<%= comment.id %>">
               <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
             </span>
           <% end %>

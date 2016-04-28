@@ -1,2 +1,3 @@
 //$("#comment").html("<%#= escape_javascript(render('users/follow')) %>")
-$("#comment-<%= @comment[:id]%>").text('<%=@comment[:like_score] %>');
+// $("#comment-<%= @comment[:id]%>").text('<%=@comment[:like_score] %>');
+$('span.liked-comment-<%= @comment[:id] %>').html(parseInt($('span.liked-comment-<%= @comment[:id] %>').html(), 10)-1)

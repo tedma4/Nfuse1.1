@@ -105,18 +105,11 @@ class UsersController < ApplicationController
 
   def feed_builder
     @providers          = Providers.for(current_user)
-    # @token = []
-    # if @user.tokens.any?
-    #   @token              = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
-    # else
-    #   @token
-    # end
     @timeline = nil
     feed                = Networks::Timeline.new(@user)
-    unless feed.nil?
-      @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
-      @unauthed_accounts  = feed.unauthed_accounts
-    end
+    posts               = feed.construct(params)
+    @timeline           = posts.sort { |a, b| b.created_time <=> a.created_time } unless posts.nil?
+    @unauthed_accounts  = feed.unauthed_accounts
     @timeline
     # This is for pagination
     # @load_more_url = feed_content_path(

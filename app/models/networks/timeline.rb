@@ -71,17 +71,18 @@ module Networks
             end
           end
           if @user.shouts.any?
-            users_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
-            (merge.inject(:+)) + users_posts
+            nfuse_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
+            (merge.inject(:+)) + nfuse_posts
           elsif merge.empty?
-            users_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
-            users_posts
+            nfuse_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
+            nfuse_posts
           else
             merge.inject(:+)
           end
         rescue
           if @user.shouts.any?
-            users_posts
+            nfuse_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
+            nfuse_posts
           else
           merge
           end

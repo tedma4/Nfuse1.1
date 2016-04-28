@@ -61,11 +61,11 @@
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
                 <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.user.id, owner_type: @post_entry.user.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
-                  <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+                  <i class="fa"></i><span class="liked-<%= @post_entry.id %>"><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
                 <% end %>
               <% else %>
                 <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.user.id, owner_type: @post_entry.user.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                  <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+                  <i class="fa"></i><span class="liked-<%= @post_entry.id %>"><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
                 <% end %>
               <% end %>
                 <%#= post.like_score(post.id) %>
@@ -151,11 +151,11 @@
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
                   <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
-                      <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+                      <i class="fa"></i><span class="liked-<%= @post_entry.id %>"><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
                   <% end %>
               <% else %>
                   <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                      <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+                      <i class="fa"></i><span class="liked-<%= @post_entry.id %>"><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
                   <% end %>
               <% end %>
               <%#= post.like_score(post.id) %>

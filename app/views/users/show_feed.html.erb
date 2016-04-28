@@ -23,7 +23,7 @@
               </div>
               <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
               <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-                <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
+                <i class="fa"></i> <%= time_ago_in_words(post.created_time) %>
               <% end %>
             </header>
             <main class="post_content">
@@ -58,11 +58,11 @@
               </a> -->
               <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
                 <%= link_to dislike_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
-                  <i class="fa"></i><span><%= post.like_score(post.id) %></span>
+                  <i class="fa liked-<%= post.id %>"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
                 <% end %>
               <% else %>
                 <%= link_to like_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                  <i class="fa"></i><span><%= post.like_score(post.id) %></span>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
                 <% end %>
               <% end %>
                 <%#= post.like_score(post.id) %>

@@ -36,6 +36,13 @@ class Comments::LikeCommentsController < ApplicationController
   end
 
   def destroy
+    @comment = {
+        id: params[:id],
+        like_score: ActsAsVotable::Vote.where(votable_id: params[:id]).size,
+        owner_id: params[:owner_id],
+        owner_type: params[:owner_type],
+        parent: params[:has_parent]
+    }
     @like = ActsAsVotable::Vote.where(voter_id: current_user.id, votable_id: params[:id])
     @like.destroy
     # activity = PublicActivity::Activity.find_by_trackable_id_and_trackable_type(params['id'], 'User')
