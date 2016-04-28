@@ -670,6 +670,7 @@
     background:rgba(37,37,37,1);
     padding-top: 80px;
     overflow: scroll;
+    overflow-x: hidden;
     z-index: -2;
     border-left: 1px solid #333;
     /*transition: all 0.3s ease;
@@ -985,6 +986,9 @@
       height: 50px;
       font-size: 16px;
       padding: 5px 15px;
+  }
+  #searchdrop option{
+    background-color: rgb(34, 34, 34);
   }
   #home-search #searchdrop{
     height: 50px;
@@ -1698,13 +1702,13 @@
       float: left;*/
       position: relative;
   }
-  #upload_form a{
+  #upload_form a:not(.btn){
     position: absolute; 
     right: 33px;
     font-size: 21px; 
     line-height: 21px;
   }
-  #upload_form a:first-of-type{
+  #upload_form a:first-of-type:not(.btn){
     right:35px; 
   }
   #upload_form button.submit{

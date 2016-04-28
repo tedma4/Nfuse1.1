@@ -92,7 +92,7 @@ module Networks
     end
 
     def users_posts
-      users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
+      @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
     end
 
     def twitter_posts(*this)

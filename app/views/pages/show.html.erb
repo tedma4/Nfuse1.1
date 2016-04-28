@@ -38,26 +38,8 @@
       </li>
       <li>
         <% if signed_in? %>
-          <a class="followUser" href="#">
-            <% if current_user.following?(@page) %>
-              <%= form_for(current_user.relationships.find_by(followed_id: @page.id),
-                                                      html: { method: :delete },
-                                                      remote: true) do |f| %>
-                <%= f.submit "Unfollow", class: "btn btn-link-2" %>
-              <% end %>
-            <% else %>
-              <%= form_for(current_user.relationships.build(followed_id: @page.id, follow_type: @page.class.name), remote: true) do |f| %>
-                          <%# if Page.find_by(id: @page.id, full_name: @compname).nil? %>
-                            <%# Page.find_by(id: @page.id).update_attributes(
-                                       full_name: @compname,
-                               twitter_handle: @comp,
-                               youtube_handle: @comp_url,
-                               instagram_handle: @incomp) %>
-                          <%# end %>
-                <div><%= f.hidden_field :followed_id %></div>
-                  <%= f.submit "Follow", class: "btn btn-link-2" %>
-              <% end %>
-            <% end %>
+          <a class="follow_form">
+            <%= render 'follow_form' if signed_in? %>
           </a>
         <% else %>
           <a href="/pages/<%= Page.find(Page.next_page).page_name %>" class='followUser'>Next</a>

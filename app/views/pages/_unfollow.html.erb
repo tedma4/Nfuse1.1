@@ -1,0 +1,6 @@
+<%= form_for(current_user.relationships.find_by(followed_id: @page.id),
+                                        html: { method: :delete},
+                                        remote: true) do |f| %>
+  <input type="hidden" value="params[from][page]" />
+  <%= f.submit "Unfollow", class: "" %>
+<% end %>

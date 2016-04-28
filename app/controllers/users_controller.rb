@@ -113,7 +113,7 @@ class UsersController < ApplicationController
     # end
     @timeline = nil
     feed                = Networks::Timeline.new(@user)
-    unless feed.construct(params).nil?
+    unless feed.nil?
       @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
       @unauthed_accounts  = feed.unauthed_accounts
     end
@@ -215,7 +215,7 @@ class UsersController < ApplicationController
     @providers = Providers.for(current_user)
     timeline = []
     page_timeline = []
-    ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
+    ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
     pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
     if ids.any? && pids.any?
       @users = User.where(id: ids)
