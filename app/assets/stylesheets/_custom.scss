@@ -1771,7 +1771,7 @@
     float: left;
   }
   #userarea.forum #user{
-    top: -15px;
+    top: 0px;
   }
   .followUser.followed:after, 
   .followUser.followed span, 
@@ -1896,7 +1896,7 @@
     /*max-width: ;*/
   }
   #userarea.forum #user-nav ul{
-    padding-right: 135px;
+    /*padding-right: 135px;*/
   }
 
   #forum .item .post_actions,
@@ -2550,8 +2550,17 @@
       float: left;
       width: 25%;
   }
+ #userarea.forum #user-nav li a.arrow:hover{
+    background-color: #292929 !important;
+  }
   #userarea.forum #user-nav li{
-      width: 33.33%;
+      width: 25%;
+  }
+  #userarea.forum #user-nav li a.arrow{
+      width: 50%;
+  }
+  #userarea.forum #user-nav li a.arrow:first-of-type{
+      border-right: 1px solid #333
   }
   #user-nav ul li:first-of-type{
     border-left: 0px solid #333;
@@ -2576,7 +2585,7 @@
       text-align: center;
       width: 100%;
   }
-  #user-nav li:hover{
+  #user-nav li:not(.li-arrows):hover{
     background-color: #292929;
   }
   #user-spacer{

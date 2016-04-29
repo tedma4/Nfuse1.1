@@ -42,9 +42,27 @@
             <%= render 'follow_form' if signed_in? %>
           </a>
         <% else %>
-          <a href="/pages/<%= Page.find(Page.next_page).page_name %>" class='followUser'>Next</a>
+          <a href="<%= self.request.env['HTTP_REFERER'] %>">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </a>
         <% end %>
       </li>
+      <% if signed_in? %>
+        <li class="li-arrows">
+          <a href="<%= self.request.env['HTTP_REFERER'] %>" class="arrow">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </a>
+          <a href="/pages/<%= Page.find(Page.next_page).page_name %>" class="arrow">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </li>
+      <% else %>
+        <li>
+          <a href="/pages/<%= Page.find(Page.next_page).page_name %>">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </section>
