@@ -26,7 +26,7 @@ class Shout < ActiveRecord::Base
                     }
 
   validates_attachment_content_type :pic,
-                                    :content_type => ["image/jpg", "image/jpeg", "image/png" ]
+                                    :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif" ]
 
   has_attached_file :video,  
                     styles: {

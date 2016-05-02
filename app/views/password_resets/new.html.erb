@@ -1,42 +1,34 @@
-<!-- *Start* Views/password_resets/new.html -->
-
-<% provide(:title, "Password Reset") %>
-<style type="text/css">
-	.forgot-password-padding{
-		margin-top: 2%;
-	}
-
-  h3 {
-    color: #fff;
-  }
-</style>
-<div class="Alignthisorelse">
-  <div class="container forgot-password-padding">
-    <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
-      <div class="form-top-reset">
-        <div class="form-top-left">
-          <h3><strong>Forgot Password?<strong></h3>
-            <p>Please enter your email below.</p>
-        </div>
-        <div class="form-top-right">
-          <a href="#"><%= image_tag("lock27lightgray.fw.png", size: "65x65") %></a>
-        </div>
+<% content_for :for_head do %>
+  <title>Nfuse | Reset your password for your Nfuse account</title>
+  <meta name="description" content="Create a new password for your Nfuse accout. Having Problems? Contact Nfuse">
+<% end %>
+<section id="" class="content-section container picbg">
+  <div class="row">
+    <header class="col-xs-12 center">
+      <p class="intro-text">Did you forget your Password?</p>
+      <p>Enter your email below and we'll send you a link to change it.</p>
+    </header>
+    <!-- LOGIN FORM -->
+    <%= form_tag 'password_resets', class: 'minimal col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6' do %>
+      <div class="form-group">
+        <input type="email" name="email" id="form-first-name" placeholder="Email" class="form-control input-lg">
       </div>
-      <div class="form-bottom">
-				<%= form_tag password_resets_path, :method => :post, role: "form" do %>
-				  <div class="form-group">
-				    <%= text_field_tag :email, params[:email], :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email" %>
-				  </div>
-              <button type="submit" class="btn">
-                Submit
-              </button>
-        <% end %>
-      </div>
-    </div>
+      <button type="submit" class="btn btn-default animated">Submit</button>
+    <% end %>
   </div>
-</div>
-<!-- *End* Views/password_resets/new.html -->
-
-
-
-
+  <% unless signed_in? %>
+    <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+    <div class="random bg"></div>
+  <% end %>
+</section>
+  <!-- Footer -->
+  <footer>
+      <div class="container text-center">
+          <p>&copy; Nfuse LLC. 2016. Made with <a href="#"><i class="fa fa-heart-o"></i> by Taylor and Ted</a></p>
+      </div>
+  </footer>
+<script>
+// $(document).ready(function() {
+//   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+// });
+</script>

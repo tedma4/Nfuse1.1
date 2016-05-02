@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 #This says that the messages'resources are apart of the conversation
-  resources :conversations do
-    resources :messages, only: [:create]
-  end
+  # resources :conversations do
+  #   resources :messages, only: [:create]
+  # end
 
   resources :callback_links
 
@@ -87,6 +87,7 @@ Rails.application.routes.draw do
   resources :sessions,                  only: [:new, :create, :destroy]
   resources :relationships,             only: [:create, :destroy]
   resources :password_resets
+  get 'password_reset', to: 'password_resets#new'
   resources :activities, path: 'notifications'
   get 'activities/individual_activity'
   # Authentication and Settings
