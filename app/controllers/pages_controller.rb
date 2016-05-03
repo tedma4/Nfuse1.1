@@ -5,7 +5,7 @@ class PagesController < ApplicationController
                                    :privacy, :business_connector, :celebrity_connector,
                                    :tv_show_connector, :fashion_connector, :youtubers,
                                    :sports_connector, :music_connector, :food_connector,
-                                   :travel_connector, :test_page, :mytop50, :mostpopular,
+                                   :travel_connector, :mytop50, :mostpopular,
                                    :random, :trending, :individual_post, :news_connector,
                                    :fitness_connector, :nerdish_connector, :shopping_connector,
                                    :wedding_connector, :animals_connector, :instagramers_connector,#:show#, :wiredtestthing
@@ -213,7 +213,7 @@ class PagesController < ApplicationController
   end
 
   def mostpopular
-    page_ids = Page.order('view_count desc').page(params[:page]).per(50)
+    page_ids = Page.order('view_count desc')
     @pages = []
     page_ids.each do |page|
       element = {
@@ -235,7 +235,7 @@ class PagesController < ApplicationController
 
   def random
     @pages = []
-    page_ids = Page.first(50).shuffle
+    page_ids = Page.find_by_sql('select * from pages limit 50').shuffle
     page_ids.each do |insert_page|
       element = {}
       element[:page] = insert_page
