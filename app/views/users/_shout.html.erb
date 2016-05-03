@@ -14,7 +14,6 @@
 <% elsif shout.is_video? %>
   <div class="timeline-user-box">
     <video 
-      poster='transparent' 
       style="background:transparent url(<%= shout.pic_url %>) no-repeat 50% 50%;"
       preload="none"
       id="ytplayer" 
@@ -34,7 +33,6 @@
 <% elsif shout.is_full_video? %>
   <div class="timeline-user-box">
     <video 
-      poster='transparent' 
       style="background:transparent url(<%= shout.pic_url %>) no-repeat 50% 50%;"
       preload="none"
       id="ytplayer" 

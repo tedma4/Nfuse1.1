@@ -1355,9 +1355,12 @@
   }
 
   /* POST ICONS */
-  .twitter_post0 .fa:before{
-    content: "\f099";
-  }
+.twitter_post0 .fa:before{
+  content: "\f099";
+}
+.nfuse_post0 .fa:before{
+  content: "\f0c3";
+}
   .google_oauth2_post0 .fa:before{
     content: "\f16a";
   }

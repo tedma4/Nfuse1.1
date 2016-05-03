@@ -13,7 +13,7 @@
   <% end %>
 <% elsif post.type == "video" %>
   <div class="center">
-    <video controls preload="none" poster='transparent' style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+    <video controls preload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
       <source src="<%= post.video %>" type='video/mp4' />
       <source src="<%= post.video %>" type='video/ogv' />
     </video>

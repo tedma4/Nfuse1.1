@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
     # post to this new controller.
     resources :nfuse_pages
-    resources :conversations
+    # resources :conversations
     resources :shouts
     # resources :comments do
     #   resources :comments
@@ -141,7 +141,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   #COMPANIES
-  get'/testing_the_new_sortable_pages_per_user_for_some_category', to: 'pages#test_page'
   get'/my_top_50', to: 'pages#mytop50'
   get'/most_popular', to: 'pages#mostpopular'
   get'/random', to: 'pages#random'
