@@ -30,7 +30,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 # gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'
 #This resizes a file uploaded by paperclip
-gem 'rmagick', '~> 2.13.2', :platforms => :ruby
+gem 'rmagick', '2.13.2', :platforms => :ruby
 # gem 'typhoeus', '~> 0.6.8'
 gem 'httparty'
 gem 'cocaine', '0.5.5'
