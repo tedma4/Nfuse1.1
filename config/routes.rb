@@ -104,10 +104,7 @@ Rails.application.routes.draw do
   # Static pages
   get '/help',              to: 'pages#help'
   # get '/about',             to: 'pages#about'
-  get '/feedback',          to: 'pages#feedback'
-  get '/terms',             to: 'pages#terms'
   get '/privacy',           to: 'pages#privacy'
-  get '/qanda',             to: 'pages#qanda'
   get '/preview',           to: 'shouts#preview'
 
   get '/contacts', to: 'contacts#new'

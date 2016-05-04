@@ -201,7 +201,12 @@ class UsersController < ApplicationController
   end
 
   def vue
-    @title = 'Vue'
+    # all_pages = []
+    # seen_pages = Page.where(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    # non_seen_pages = Page.where.not(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    # all_pages << seen_pages 
+    # all_pages << non_seen_pages 
+    # all_pages.flatten.each do |page|
   end
 
   def all_users_and_pages

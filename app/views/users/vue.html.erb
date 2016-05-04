@@ -18,11 +18,11 @@
       <!-- PANEL THREE -->
       <div id="networks">
         <% all_pages = [] %>
-        <% seen_pages = Page.where(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq) %>
-        <% non_seen_pages = Page.where.not(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq) %>
+        <% seen_pages = Page.joins(:impressions).where("impressions.user_id = ?",current_user.id).group("pages.id") %>
+        <% non_seen_pages = Page.where("id not in (?)", seen_pages.pluck(:id)).order("view_count desc") %>
         <% all_pages << seen_pages  %>
         <% all_pages << non_seen_pages  %>
-        <% all_pages.flatten.each do |page| %>
+        <% all_pages.flatten.first(50).each do |page| %>
 
           <!-- PROFILE -->
           <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">

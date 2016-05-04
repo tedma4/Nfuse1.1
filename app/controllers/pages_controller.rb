@@ -20,15 +20,7 @@ class PagesController < ApplicationController
   #                                 ]
   #Blank is gonna be a reservered word for now
   def index
-    @pages = []
-    page_ids = Page.all
-    page_ids.each do |insert_page|
-      element = {
-        page: insert_page,
-        image: insert_page.profile_pic
-      }
-      @pages << element
-    end
+    @pages = Page.find_by_sql("select * from pages limit 50").map { |page| {page: page, image: page.profile_pic} }
     @pages
   end
 
@@ -114,10 +106,7 @@ class PagesController < ApplicationController
   public
 
   def help; end
-  def about; end
-  def feedback; end
-  def qanda; end
-  def terms; end
+  # def about; end
   def privacy; end
 
   def business_connector
@@ -161,7 +150,6 @@ class PagesController < ApplicationController
     @pages = PageFetcher.new("travel").get!
   end
 
-  # Add The corresponding routes and views for these pages
   def news_connector
     @pages = PageFetcher.new("news").get!
   end
@@ -193,11 +181,11 @@ class PagesController < ApplicationController
   def mytop50
     @pages = []
     page_ids = []
-    seen_pages = Page.where(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
-    non_seen_pages = Page.where.not(id: Impression.where(user_id: current_user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    seen_pages = Page.joins(:impressions).where("impressions.user_id = ?",current_user.id).group("pages.id")
+    non_seen_pages = Page.where("id not in (?)", seen_pages.pluck(:id)).order("view_count desc")
     page_ids << seen_pages
     page_ids << non_seen_pages
-    page_ids.flatten.each do |id|
+    page_ids.flatten.first(50).each do |id|
       page = Page.find(id)
       element = {
         page: page,
@@ -205,7 +193,7 @@ class PagesController < ApplicationController
       }
       @pages << element
     end
-    @pages# = Kaminari.paginate_array(@pages).page(1).per(10)
+    @pages
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -213,36 +201,17 @@ class PagesController < ApplicationController
   end
 
   def mostpopular
-    page_ids = Page.order('view_count desc')
-    @pages = []
-    page_ids.each do |page|
-      element = {
-        page: page,
-        image: page.profile_pic
-      }
-      @pages << element
-    end
-    @pages# = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    @pages = Page.order('view_count desc limit 50').map { |page| {page: page, image: page.profile_pic} }
+    @pages
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
     end
   end
 
-  # Pluck all id's
-  # m.sort_by {|a, b| -Impression.where(action_name: a.to_s).count}
-  #Impressions where
-
   def random
-    @pages = []
-    page_ids = Page.find_by_sql('select * from pages limit 50').shuffle
-    page_ids.each do |insert_page|
-      element = {}
-      element[:page] = insert_page
-      element[:image] = insert_page.profile_pic
-      @pages << element
-    end
-    @pages# = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    @pages = Page.find_by_sql('select * from pages limit 50').shuffle.map { |page| {page: page, image: page.profile_pic} }
+    @pages
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -250,26 +219,7 @@ class PagesController < ApplicationController
   end
 
   def trending
-    @pages = []
-    page_ids = Page.all.pluck(:id)
-      page_ids.sort_by {|a,b| -Impression.where(impressionable_id: a).count}
-      page_ids.first(20).each do |id|
-        element = {}
-        page = Page.find(id)
-        element[:page] = page
-        element[:image] = page.profile_pic
-        @pages << element
-      end
-     @pages
+    @pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page, image: page.profile_pic}}
+    @pages
   end
-
-  # End of Controller
 end
-
-# @pages.first do |a, b| puts "#{a[:page].description},   #{b}" end
-    # page_stuff = {}
-    # page     = Biz::Timeline.new(@page)
-    # page_stuff[:feed] = page.construct(params).flatten.sort {|a, b| b.created_time <=> a.created_time}
-    # page_stuff[:profile_picture] = @page.profile_pic
-    # @timeline = page_stuff[:feed]
-    # @page_image = page_stuff[:profile_picture]

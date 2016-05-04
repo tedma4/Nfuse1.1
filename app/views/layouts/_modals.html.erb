@@ -289,29 +289,22 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <form id="request-form" class="popupform minimal">
+            <%= form_for Contact.new, html: {id: 'request-form', class: "popupform minimal"} do |f| %>
               <div class="form-group col-xs-12 col-md-6">
-                <input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">
-                <input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">
-                <textarea  class="form-control input-lg" id="form-msg" name="user[msg]" placeholder="Message" ></textarea>
+                <div style='display:none;'>
+                  <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+                </div>
+                <input class="form-control input-lg" id="form-first-name" name="contact[full_name]" placeholder="First Name" type="search">
+                <input class="form-control input-lg" id="form-email" name="contact[email]" placeholder="Email" type="email">
+                <textarea  class="form-control input-lg" id="form-msg" name="contact[message]" placeholder="Message" ></textarea>
                 <p>Nfuse wants to give you the best experience possible, any feedback on what to add or change will be greatly appreciated.</p>
               </div>
-              <div class="form-group col-xs-12 col-md-6">
-                <input class="form-control input-lg" id="twitter-url" name="user[twitter]" placeholder="Twitter URL" type="text">
-                <input class="form-control input-lg" id="instagram-url" name="user[instagram]" placeholder="Instagram URL" type="text">
-                <input class="form-control input-lg" id="tumblr-url" name="user[tumblr]" placeholder="Tumblr URL" type="text">
-                <input class="form-control input-lg" id="youtube-url" name="user[youtube]" placeholder="Youtube URL" type="text">
-                <input class="form-control input-lg" id="gplus-url" name="user[gplus]" placeholder="Google Plus URL" type="text">
-                <input class="form-control input-lg" id="vimeo-url" name="user[vimeo]" placeholder="Vimeo URL" type="text">
-                <input class="form-control input-lg" id="pintrests-url" name="user[pintrests]" placeholder="Pintrests URL" type="text">
-                <input class="form-control input-lg" id="facebook-url" name="user[facebook]" placeholder="Facebook URL" type="text">
-              </div>
-            </form>
+            <% end %>
           </div>
         </div>
         <div class="modal-footer">
           <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
-          <button type="button" class="btn btn-default">Send</button>
+          <button type="sumbit" class="btn btn-default">Send</button>
         </div>
       </div>
     </div>
