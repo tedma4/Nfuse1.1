@@ -230,7 +230,7 @@
               </div>
               <div class="col-xs-12">
                 <div id="target"></div>
-                <div id="forum_post_pic_preview"></div>
+                <div id="forum_post_pic_preview" class='center'></div>
                 <div id="preview"></div>
                 <%= f.text_field :topic, placeholder: "Topic Title"%>
                 <textarea class="form-control" id="shout_content" name="comment[body]" placeholder="Your Message" type="search"></textarea>
@@ -258,24 +258,27 @@
         <div class="modal-body">
           <!-- FOLLOWER -->
           <% if Relationship.where(followed_id: @page.id, follow_type: 'Page').any? %>
-          <% Relationship.where(followed_id: @page.id, follow_type: 'Page').each do |user| %>
-            <div class="row follower">
-              <div class="col-xs-2 user-img">
-                <img src="/assets/def.jpg" alt="User Image"/>
+            <% Relationship.where(followed_id: @page.id, follow_type: 'Page').each do |user| %>
+              <div class="row follower">
+                <div class="col-xs-2 user-img">
+                  <img src="/assets/def.jpg" alt="User Image"/>
+                </div>
+                <div class="col-xs-10">
+                  <ul id="user-info">
+                    <li id="user-name"><%= user.follower.full_name %></li>
+                    <li id="user-link"><%= link_to "@#{user.follower.user_name}", feed_user_path(user) %></li>
+                  </ul>
+                  <ul id="user-stats">
+                    <li id="user-following">Following: <span><%= user.follower.followed_users.count %></span></li>
+                    <li id="user-followers">Followers: <span><%= user.follower.followers.count %></span></li>
+                    <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.follower.id).count %></span></li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-xs-10">
-                <ul id="user-info">
-                  <li id="user-name"><%= user.follower.full_name %></li>
-                  <li id="user-link"><%= link_to "@#{user.follower.user_name}", feed_user_path(user) %></li>
-                </ul>
-                <ul id="user-stats">
-                  <li id="user-following">Following: <span><%= user.follower.followed_users.count %></span></li>
-                  <li id="user-followers">Followers: <span><%= user.follower.followers.count %></span></li>
-                  <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.follower.id).count %></span></li>
-                </ul>
-              </div>
-            </div>
-          <% end %>
+            <% end %>
+          <% else %>
+            <p class='center explore_filters'><%= @page.full_name %> doesn't have and followers yet.</p>
+            <p class='center explore_filters'>How about you be the first</p>          
           <% end %>
         </div>
       </div>

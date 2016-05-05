@@ -34,7 +34,7 @@
 <ul id="user-stats" class="user-right">
   <li id="user-following"><a href="#" data-toggle="modal" data-target="#followingmodal">Following: <%= @user.followed_users.count %></a></li>
   <li id="user-followers"><a href="#" data-toggle="modal" data-target="#followersmodal">Followers: <%= @user.followers.count %></a></li>
-  <li id="user-likes"><a href="">Likes: <%= ActsAsVotable::Vote.where(owner_id: @user.id).count %></a></li>
+  <li id="user-likes"><a href="">Likes: <%= ActsAsVotable::Vote.where(owner_type: 'User', owner_id: @user.id).count %></a></li>
 </ul>
 <!-- USER NAVBAR -->
 <nav id="user-nav" class="center navbar">

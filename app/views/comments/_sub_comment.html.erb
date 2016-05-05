@@ -35,15 +35,12 @@
           <i class="fa"></i><span><%= ActsAsVotable::Vote.where(votable_id: this.id, votable_type: 'Comment').size %></span>
         </a>
       <% end %>
-    <a class="flagPost" data-toggle="modal" data-target="#flagmodal" href="#" rel="nofollow">
-      <i class="fa"></i><span>Flag</span>
-    </a>
     <a class="timeStamp" href="#">
       <i class="fa"></i><span><%= time_ago_in_words(this.created_at) %></span>
     </a>
   </header>
   <% if !this.url.blank? %>
-    <p> <%= this.url_html %></p>
+    <%= this.url_html %>
   <% elsif !this.image_upload.blank? %>
     <%= image_tag this.image_upload(:medium) %>
   <% else %>

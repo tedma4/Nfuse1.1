@@ -1453,7 +1453,7 @@
     content: "\f086";
   }
   .flagPost .fa:before{
-    content: "\f024";
+    content: "\f11d";
   }
 
 @media(max-width:480px) {
@@ -3709,12 +3709,12 @@ h5.media-heading {
       right: 0;
   }
 
-  .forum-image-upload label{
+/*  .forum-image-upload label{
     width: 100%;
       height: auto;
       display: block;
       margin: 0px;
-  }
+  }*/
 
 @media (max-width: 1000px){
   #user_banner_change img {
@@ -3727,7 +3727,10 @@ h5.media-heading {
     max-width: 350px
   }
 }
-
+/*IMAGE UPLOAD PREVIEW*/
 #shout_pic_preview img {
+  max-width: 500px;
+}
+#forum_post_pic_preview img {
   max-width: 500px;
 }

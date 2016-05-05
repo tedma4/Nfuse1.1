@@ -5,9 +5,11 @@
   <% else %>
     $('#new-topic').modal('toggle');
     $('#media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
-    $('#comment_body').val('');
+    this.reset;
   <% end %>
 <% else %>
     $('ul.sub_<%= @comment.parent.id %>_comments').prepend("<%= j render(partial: 'comments/sub_comment', locals: {this: @comment}) %>");
-    $('#comment_body').val('');
+    $('.sub_comment_image_upload_<%= @comment.parent.id %>').val('');
+    $('.sub_comment_url_upload_<%= @comment.parent.id %>').val('');
+    $('.sub_comment_message_<%= @comment.parent.id %>').val('');
 <% end %>

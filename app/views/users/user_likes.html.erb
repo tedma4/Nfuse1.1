@@ -12,7 +12,8 @@
   <%= render partial: "profile_info" %>
 </section>
 <!-- MASON JAR -->
-<% @user_likes = ActsAsVotable::Vote.where(voter_id: @user.id) %>
+<% users_own_posts = ActsAsVotable::Vote.where('owner_id = ?', @user.id) %>
+<% @user_likes = ActsAsVotable::Vote.where("voter_id = ? and  votable_id not in (?)", @user.id, users_own_posts.pluck(:votable_id)) %>
 <% @user_likes = @user_likes.reject {|liked| liked.votable_type == 'Comment'} %>
 <% if @user_likes.any? %>
   <section id="masonJar" class="clearfix masonJar yes_timeline_padding">

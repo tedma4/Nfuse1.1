@@ -294,8 +294,6 @@
                 <div style='display:none;'>
                   <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
                 </div>
-                <input class="form-control input-lg" id="form-first-name" name="contact[full_name]" placeholder="First Name" type="search">
-                <input class="form-control input-lg" id="form-email" name="contact[email]" placeholder="Email" type="email">
                 <textarea  class="form-control input-lg" id="form-msg" name="contact[message]" placeholder="Message" ></textarea>
                 <p>Nfuse wants to give you the best experience possible, any feedback on what to add or change will be greatly appreciated.</p>
               </div>
@@ -304,7 +302,7 @@
         </div>
         <div class="modal-footer">
           <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
-          <button type="sumbit" class="btn btn-default">Send</button>
+          <button type="sumbit" class="btn btn-default" form="request-form">Send</button>
         </div>
       </div>
     </div>
