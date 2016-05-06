@@ -232,13 +232,13 @@
                 <div id="target"></div>
                 <div id="forum_post_pic_preview" class='center'></div>
                 <div id="preview"></div>
-                <%= f.text_field :topic, placeholder: "Topic Title"%>
+                <%= f.text_field :topic, placeholder: "Topic Title", id: 'comment_topic_title' %>
                 <textarea class="form-control" id="shout_content" name="comment[body]" placeholder="Your Message" type="search"></textarea>
               </div>
             </div>
           </div>
           <div class="modal-footer container-fluid">
-            <button type="submit" class="btn btn-default">Share</button>
+            <button type="submit" class="btn btn-default" form="upload_form">Share</button>
           </div>
         <% end %>
       <% end %>
@@ -354,3 +354,16 @@ $('a.show_feed').click( function() {
   });
 
   </script>
+
+<script>
+ $('#upload_form').submit(function(event){
+    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
+    if (forum_form_is_not_be_blank){
+      return true;
+    } else {
+    event.preventDefault();
+    alert('NOPE')
+    return false;
+    }
+  });
+</script>

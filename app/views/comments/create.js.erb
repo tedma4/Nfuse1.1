@@ -5,7 +5,12 @@
   <% else %>
     $('#new-topic').modal('toggle');
     $('#media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
-    this.reset;
+    $('#newForumPicUpload').val('')
+    $('#url_body').val('')
+    $('#shout_content').val('')
+    $('#comment_topic_title').val('')
+    $('#preview').empty()
+    $('#forum_post_pic_preview').empty()
   <% end %>
 <% else %>
     $('ul.sub_<%= @comment.parent.id %>_comments').prepend("<%= j render(partial: 'comments/sub_comment', locals: {this: @comment}) %>");
