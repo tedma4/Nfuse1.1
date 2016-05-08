@@ -1,16 +1,17 @@
 class ActivitiesController < ApplicationController
-	activity_count = current_user.activity_count
+	# activity_count = current_user.activity_count
 
 	def index
 		activity1 = PublicActivity::Activity.includes(:recipient, :owner, :trackable).where(recipient_id: current_user.id, recipient_type: 'User')
 
 		activity2 = PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id)
 		@activities = (activity1 + activity2).sort_by{|t| - t.created_at.to_i}
-		if params[:page]
-			@activities.get_page_and_offset(count, offset_by, params[:page])
-		else
-			@activities.get_page_and_offset(count, offset_by, 1)
-		end
+		@activities
+		# if params[:page]
+		# 	@activities.get_page_and_offset(count, offset_by, params[:page])
+		# else
+		# 	@activities.get_page_and_offset(count, offset_by, 1)
+		# end
 
 		respond_to do |format|
 			format.js

@@ -857,8 +857,14 @@
   .notification.followed i:before{
     content: "\f234";
   }
+  .notification.post_was_liked i:before{
+    content: "\f164";
+  }
   .notification.exclusive i:before{
       content: "\f06e";
+  }
+  .notification.form_post_action i:before{
+      content: "\f087";
   }
   .modal-content .individual_post{
     width: 100% !important;
@@ -1357,9 +1363,6 @@
   /* POST ICONS */
 .twitter_post0 .fa:before{
   content: "\f099";
-}
-.nfuse_post0 .fa:before{
-  content: "\f0c3";
 }
   .google_oauth2_post0 .fa:before{
     content: "\f16a";
@@ -3733,4 +3736,14 @@ h5.media-heading {
 }
 #forum_post_pic_preview img {
   max-width: 500px;
+}
+
+.page_feed_cursor_icon {
+    cursor: pointer;
+
+}
+
+.page_forum_cursor_icon {
+    cursor: pointer;
+
 }

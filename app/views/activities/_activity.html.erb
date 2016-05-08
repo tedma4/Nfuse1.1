@@ -29,7 +29,7 @@
       <% if activity.owner.nil? %>
       <% else %>
        <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
-        <div class="row notification">
+        <div class="row notification form_post_action">
           <div class="col-xs-1 user-img">
             <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
               <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
@@ -43,9 +43,9 @@
               <p>
                 <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
                 <% if comment_type.parent.nil? %>
-                  Taggged you in a forum post! 
+                  taggged you in a forum post!
                 <% else %>
-                  Tagged you in a forum comment!
+                  tagged you in a forum comment!
                 <% end %>
                 <span class="timer">
                   <%= time_ago_in_words(activity.created_at) %>
@@ -53,16 +53,24 @@
               </p>
             <% elsif activity.key == 'comment.like' %>
               <p>
-                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
-                liked your forum post!
-                <span class="timer">
-                  <%= time_ago_in_words(activity.created_at) %>
-                </span>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
+                liked your forum comment!
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %>
+              </span>
+              </p>
+            <% elsif activity.key == 'comment.new_comment' %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
+                commented your forum post!
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %>
+              </span>
               </p>
             <% else %>
               <p>
                 <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
-                liked your forum comment!
+                liked your forum post!
                 <span class="timer">
                   <%= time_ago_in_words(activity.created_at) %>
                 </span>
@@ -70,7 +78,7 @@
             <% end %>
           </div>
           <div class="col-xs-1 notification-action">
-            <img src="/assets/users/LouisVuitton.jpg" alt="User Image"/>
+            <a><i class="fa"></i></a>
           </div>
         </div>
       <% end %>
@@ -78,7 +86,7 @@
       <% if activity.owner.nil? %>
       <% else %>
        <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
-        <div class="row notification">
+        <div class="row notification post_was_liked">
           <div class="col-xs-1 user-img">
               <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
                 <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
@@ -96,7 +104,7 @@
             </p>
           </div>
           <div class="col-xs-1 notification-action">
-            <img src="/assets/minimalistbeakert.fw.png" alt="User Image"/>
+            <a><i class="fa"></i></a>
           </div>
         </div>
       <% end %>

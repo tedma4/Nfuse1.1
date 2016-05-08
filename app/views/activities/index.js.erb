@@ -2,7 +2,7 @@
   <% current_user.set_notifications_to_true(current_user.id) %>
 <% end %>
 
-<% if params[:page] %>
+<%# if params[:page] %>
 	if ($('#notifications-list .row').length == 0) {
 	  $('#my-link').html('<a href="/activities?params=1"');
 	  $('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');
@@ -11,7 +11,7 @@
 	  $('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');
 	  
 	}
-<% else %>
-<% end %>
+<%# else %>
+<%# end %>
 
 //Update the current page after each scroll event

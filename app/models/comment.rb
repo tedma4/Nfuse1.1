@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
                     :styles => {
                       :thumb => "600",
                       :medium => "300",
-                      :small => "160x160#"
+                      :small => "160"
                     }
   
   validates_attachment_content_type :image_upload,

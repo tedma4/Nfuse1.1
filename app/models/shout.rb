@@ -20,9 +20,9 @@ class Shout < ActiveRecord::Base
 
   has_attached_file :pic, 
                     :styles => { 
-                      :thumb => "600x600#",
-                      :medium => "300x300#",
-                      :small => "160x160#"
+                      :thumb => "600",
+                      :medium => "300",
+                      :small => "160"
                     }
 
   validates_attachment_content_type :pic,

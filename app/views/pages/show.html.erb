@@ -24,8 +24,8 @@
   <!-- USER NAVBAR -->
   <nav id="user-nav" class="center navbar">
     <ul>
-      <li><a class='show_feed'>Feed</a></li>
-      <li><a class='show_forum'>Forum</a></li>
+      <li class="page_feed_cursor_icon"><a class='show_feed'>Feed</a></li>
+      <li class="page_forum_cursor_icon"><a class='show_forum'>Forum</a></li>
       <li id="user-spacer">
         <!-- PROFILE PIC -->
         <a id="user" class="desk">
@@ -356,14 +356,14 @@ $('a.show_feed').click( function() {
   </script>
 
 <script>
- $('#upload_form').submit(function(event){
-    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
-    if (forum_form_is_not_be_blank){
-      return true;
-    } else {
-    event.preventDefault();
-    alert('NOPE')
-    return false;
-    }
-  });
+ // $('#upload_form').submit(function(event){
+ //    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
+ //    if (forum_form_is_not_be_blank){
+ //      return true;
+ //    } else {
+ //    event.preventDefault();
+ //    alert('NOPE')
+ //    return false;
+ //    }
+ //  });
 </script>
