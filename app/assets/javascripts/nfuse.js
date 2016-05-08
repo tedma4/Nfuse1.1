@@ -2,7 +2,6 @@
 
 // jQuery to collapse the navbar on scroll
   function scroll_function(){
-
     $(window).scroll(function() {
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav-collapse");
@@ -16,62 +15,26 @@
             $('#backtotop').removeClass("isvis");
         }
 
-
-        // var url = $('.pagination .next a').attr('href'); //attr('href') = /pages/#
+        // var url = $('.next a').attr('href'); //attr('href') = /pages/#
         // if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
         //   $('.pagination').text('Getting more things');
         //   return $.getScript(url);
         // }
 
-        // $(function() {
-        //   if ($('#notifications-list').length) {
-        //     $(window).scroll(function() {
-        //       var url = $('.next a').attr('href');
-        //       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
-        //         $('.next').text('Getting more things');
-        //         return $.getScript(url);
-        //       }
-        //     });
-        //   }
-        //   return $(window).scroll();
-        // });
+
 
     });
 
   }
-// jQuery scrolll to top
-//     $(document).scroll(function() {
-//         var y = $(this).scrollTop();
-//         if (y > 800) {
-//             $('#backtotop').addClass("isvis");
-//         } else {
-//             $('#backtotop').removeClass("isvis");
-//         }
-
-//       if ($('.pagination').length) {
-//         $(window).scroll(function() {
-//           var url;
-//           url = $('.pagination .next_page').attr('href');
-//           if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 100) {
-//             $('.pagination').text('Getting more things');
-//             return $.getScript(url);
-//           }
-//         });
-//       }
-//       return $(window).scroll();
-
-//     });
-
-// jQuery for page scrolling feature - requires jQuery Easing plugin
-    // $(function() {
-    //     $('a.page-scroll').bind('click', function(event) {
-    //         var $anchor = $(this);
-    //         $('html, body').stop().animate({
-    //             scrollTop: $($anchor.attr('href')).offset()
-    //         }, 1500, 'easeInOutExpo');
-    //         event.preventDefault();
-    //     });
-    // });
+ 
+  function notifications_scrolling () {
+    $('#notifications-list').on('scroll', function  () {
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            console.log('works');
+            $('.next')[0].click();
+        }
+    });
+  }
 
 // JQUERY RESPONSIVE
 
@@ -79,6 +42,7 @@
     $(document).ready(function(){
         responsive_resize();
         scroll_function();
+        notifications_scrolling();
         
     $('.timeline-user-box p').each(function(){
       if($(this).text() === ''){$(this).remove()}
@@ -319,3 +283,42 @@
     $("#inputbann").change(function () {
         readURL(this);
     });
+
+
+
+
+
+
+// jQuery scrolll to top
+//     $(document).scroll(function() {
+//         var y = $(this).scrollTop();
+//         if (y > 800) {
+//             $('#backtotop').addClass("isvis");
+//         } else {
+//             $('#backtotop').removeClass("isvis");
+//         }
+
+//       if ($('.pagination').length) {
+//         $(window).scroll(function() {
+//           var url;
+//           url = $('.pagination .next_page').attr('href');
+//           if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 100) {
+//             $('.pagination').text('Getting more things');
+//             return $.getScript(url);
+//           }
+//         });
+//       }
+//       return $(window).scroll();
+
+//     });
+
+// jQuery for page scrolling feature - requires jQuery Easing plugin
+    // $(function() {
+    //     $('a.page-scroll').bind('click', function(event) {
+    //         var $anchor = $(this);
+    //         $('html, body').stop().animate({
+    //             scrollTop: $($anchor.attr('href')).offset()
+    //         }, 1500, 'easeInOutExpo');
+    //         event.preventDefault();
+    //     });
+    // });
