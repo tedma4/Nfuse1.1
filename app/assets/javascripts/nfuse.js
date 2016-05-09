@@ -31,7 +31,17 @@
     $('#notifications-list').on('scroll', function  () {
         if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
             if ($('#notifications-list .next').length ) {
-            $('.next')[0].click();   
+              $('.next')[0].click();   
+            }
+        }
+    });
+  }
+ 
+  function biz_pages_scrolling () {
+    $('#profile-grid').on('scroll', function  () {
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            if ($('#profile-grid .nextBizPage').length ) {
+              $('.nextBizPage')[0].click();   
             }
         }
     });
@@ -44,6 +54,7 @@
         responsive_resize();
         scroll_function();
         notifications_scrolling();
+        biz_pages_scrolling();
         
     $('.timeline-user-box p').each(function(){
       if($(this).text() === ''){$(this).remove()}

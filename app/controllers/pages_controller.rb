@@ -210,8 +210,13 @@ class PagesController < ApplicationController
   end
 
   def random
-    @pages = Page.find_by_sql('select * from pages limit 50').shuffle.map { |page| {page: page, image: page.profile_pic} }
-    @pages
+    pages = Page.find_by_sql('select * from pages limit 50').shuffle.map { |page| {page: page, image: page.profile_pic} }
+    if params[:page]
+      @pages = get_page_and_offset(12, params[:page], pages)
+    else
+      @pages = get_page_and_offset(12, 1, pages)
+    end
+    
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -219,35 +224,44 @@ class PagesController < ApplicationController
   end
 
   def trending
-    @pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page, image: page.profile_pic}}
-    @pages
+    pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page, image: page.profile_pic}}
+    if params[:page]
+      @pages = get_page_and_offset(12, params[:page], pages)
+    else
+      @pages = get_page_and_offset(12, 1, pages)
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
-  def get_page_and_offset(per_page, page = 1, activities)
-    total = activities.length
+  def get_page_and_offset(per_page, page = 1, pages)
+    total = pages.length
     if total > 0
       if per_page >= total # 10 or 11
-        result = activities.first(total)
+        result = pages.first(total)
         params[:last_page] = page
         return result
       elsif per_page < total # 23
 
         if ( page * per_page ) < total # 2 * 11 < 23
           if page == 1
-            result = activities[0..(per_page - 1)]
+            result = pages[0..(per_page - 1)]
             params[:first_page] = page
             return result
           else
             offset_by = ( page - 1 ) * per_page # 1 * 11
             next_page = (page * per_page) - 1
-            result = activities[offset_by..next_page]
+            result = pages[offset_by..next_page]
             params[:middle_page] = page
             return result
           end
         elsif ( page * per_page ) >= total # 3 * 11 > 23
           offset_by = ( page - 1 ) * per_page
           to_end = total - 1
-          result = activities[offset_by..to_end]
+          result = pages[offset_by..to_end]
           params[:last_page] = page
           return result
         else

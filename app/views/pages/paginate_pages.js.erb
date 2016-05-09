@@ -1,10 +1,17 @@
-<% if @pages.next_page %>
+<% if params[:last_page] %>
+  $('#profile-grid .nextBizPage').remove();
 	<% @pages.each do |page| %>
-	  $('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: page} %>')
+    $('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: page}  %>');
   <% end %>
+<% elsif params[:middle_page] %>
+  $('#profile-grid .nextBizPage').remove();
 	<% @pages.each do |page| %>
-	  $('.pagination').replaceWith('<%= j render partial: "pages/page", locals: {page: page} %>')
+	  $('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: page}  %>');
   <% end %>
+  $('#profile-grid').append('<a href="/<%= params[:action] %>?page=<%= params[:page] + 1 %>" data-remote="true" class="nextBizPage"></a>');
 <% else %>
-  $('.pagination').remove()
+	<% @pages.each do |page| %>
+	  $('#profile-grid').append('<%= j render partial: "pages/page", locals: {page: page}  %>');
+  <% end %>
+  $('#profile-grid').append('<a href="/<%= params[:action] %>?page=2" data-remote="true" class="nextBizPage"></a>');
 <% end %>
