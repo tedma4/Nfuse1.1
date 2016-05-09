@@ -222,4 +222,43 @@ class PagesController < ApplicationController
     @pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page, image: page.profile_pic}}
     @pages
   end
+
+  def get_page_and_offset(per_page, page = 1, activities)
+    total = activities.length
+    if total > 0
+      if per_page >= total # 10 or 11
+        result = activities.first(total)
+        params[:last_page] = page
+        return result
+      elsif per_page < total # 23
+
+        if ( page * per_page ) < total # 2 * 11 < 23
+          if page == 1
+            result = activities[0..(per_page - 1)]
+            params[:first_page] = page
+            return result
+          else
+            offset_by = ( page - 1 ) * per_page # 1 * 11
+            next_page = (page * per_page) - 1
+            result = activities[offset_by..next_page]
+            params[:middle_page] = page
+            return result
+          end
+        elsif ( page * per_page ) >= total # 3 * 11 > 23
+          offset_by = ( page - 1 ) * per_page
+          to_end = total - 1
+          result = activities[offset_by..to_end]
+          params[:last_page] = page
+          return result
+        else
+          # Noting more to do
+        end
+
+      else
+        # Nothing more to do
+      end
+    else
+      # Do Nothing
+    end
+  end
 end

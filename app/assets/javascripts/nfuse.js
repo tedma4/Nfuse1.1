@@ -30,8 +30,9 @@
   function notifications_scrolling () {
     $('#notifications-list').on('scroll', function  () {
         if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            console.log('works');
-            $('.next')[0].click();
+            if ($('#notifications-list .next').length ) {
+            $('.next')[0].click();   
+            }
         }
     });
   }
