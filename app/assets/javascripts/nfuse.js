@@ -2,7 +2,7 @@
 
 // jQuery to collapse the navbar on scroll
   function scroll_function(){
-    $(window).scroll(function() {
+    $(window).scroll(function(event) {
       if ($(".navbar").offset().top > 50) {
           $(".navbar-fixed-top").addClass("top-nav-collapse");
       } else {
@@ -15,15 +15,17 @@
           $('#backtotop').removeClass("isvis");
       }
 
-      // var url = $('.next a').attr('href'); //attr('href') = /pages/#
+      // var url = $('.next a').attr('href');
       // if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
       //   $('.pagination').text('Getting more things');
       //   return $.getScript(url);
         // }
       if ($('#profile-grid')) {
-        if ( $(window).scrollTop() + $(this).innerHeight() >= $('#profile-grid')[0].scrollHeight ) {
-          if ($('#profile-grid .nextBizPage').length ) {
-            $('.nextBizPage')[0].click();   
+        var url = $('.nextBizPage').attr('href')
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() -25 ) {
+          if ($('.nextBizPage').length ) {
+            $('#paginate_only_once').text('Adding more pages');
+            $.getScript(url)
           }
         }
       }

@@ -3,15 +3,12 @@
   <meta name="description" content="Discover some of the top trending pages on the new social media mashup.">
 <% end %>
 
-
-
-
-
 <section id="profile-grid" class="container-fluid">
   <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
-  <a href="/all_pages?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
 </section>
-
+<div id="paginate_only_once">
+  <a href="/all_pages?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
 
 <script>
   $(document).ready(function() {

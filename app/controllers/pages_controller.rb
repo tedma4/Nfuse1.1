@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   #                                 ]
   #Blank is gonna be a reservered word for now
   def index
-    pages = Page.find_by_sql("select * from pages limit 50").map { |page| {page: page} }
+    pages = Page.find_by_sql("select * from pages").map { |page| {page: page} }
     if params[:page]
       @pages = get_page_and_offset(13, params[:page].to_i, pages)
     else
