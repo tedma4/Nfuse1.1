@@ -2,30 +2,20 @@
   <title>Nfuse | All Pages For Social Media | Discover and Explore</title>
   <meta name="description" content="Discover some of the top trending pages on the new social media mashup.">
 <% end %>
-<section id="profile-grid" class="container-fluid">  
-	<% @pages.each do |page| %>
-	  <!-- PROFILE -->
-	  <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-	    <a href="/pages/<%= page[:page].page_name %>">
-	      <div class="profile-head">
-	        <p><%= page[:page].full_name %></p>
-	      </div>
-	      <%= image_tag(page[:image]) %>
-	    </a>
-	  </div>
-	<% end %>
-	<!-- REQUEST ADDITIONAL -->    
-	<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-">
-	  <div class="vcenter">
-	    <div class="vcell">
-	      <button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button>
-	    </div>
-	  </div>
-	</div>
+
+
+
+
+
+<section id="profile-grid" class="container-fluid">
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+  <a href="/all_pages?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
 </section>
 
+
 <script>
-$(document).ready(function() {
-  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
-});
+  $(document).ready(function() {
+    $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+  });
 </script>
+

@@ -3,26 +3,30 @@
 // jQuery to collapse the navbar on scroll
   function scroll_function(){
     $(window).scroll(function() {
-        if ($(".navbar").offset().top > 50) {
-            $(".navbar-fixed-top").addClass("top-nav-collapse");
-        } else {
-            $(".navbar-fixed-top").removeClass("top-nav-collapse");
-        }
-        var y = $(this).scrollTop();
-        if (y > 800) {
-            $('#backtotop').addClass("isvis");
-        } else {
-            $('#backtotop').removeClass("isvis");
-        }
+      if ($(".navbar").offset().top > 50) {
+          $(".navbar-fixed-top").addClass("top-nav-collapse");
+      } else {
+          $(".navbar-fixed-top").removeClass("top-nav-collapse");
+      }
+      var y = $(this).scrollTop();
+      if (y > 800) {
+          $('#backtotop').addClass("isvis");
+      } else {
+          $('#backtotop').removeClass("isvis");
+      }
 
-        // var url = $('.next a').attr('href'); //attr('href') = /pages/#
-        // if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
-        //   $('.pagination').text('Getting more things');
-        //   return $.getScript(url);
+      // var url = $('.next a').attr('href'); //attr('href') = /pages/#
+      // if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1) {
+      //   $('.pagination').text('Getting more things');
+      //   return $.getScript(url);
         // }
-
-
-
+      if ($('#profile-grid')) {
+        if ( $(window).scrollTop() + $(this).innerHeight() >= $('#profile-grid')[0].scrollHeight ) {
+          if ($('#profile-grid .nextBizPage').length ) {
+            $('.nextBizPage')[0].click();   
+          }
+        }
+      }
     });
 
   }
@@ -36,16 +40,6 @@
         }
     });
   }
- 
-  function biz_pages_scrolling () {
-    $('#profile-grid').on('scroll', function  () {
-        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            if ($('#profile-grid .nextBizPage').length ) {
-              $('.nextBizPage')[0].click();   
-            }
-        }
-    });
-  }
 
 // JQUERY RESPONSIVE
 
@@ -54,7 +48,6 @@
         responsive_resize();
         scroll_function();
         notifications_scrolling();
-        biz_pages_scrolling();
         
     $('.timeline-user-box p').each(function(){
       if($(this).text() === ''){$(this).remove()}

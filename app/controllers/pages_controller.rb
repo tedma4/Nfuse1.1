@@ -20,8 +20,17 @@ class PagesController < ApplicationController
   #                                 ]
   #Blank is gonna be a reservered word for now
   def index
-    @pages = Page.find_by_sql("select * from pages limit 50").map { |page| {page: page, image: page.profile_pic} }
-    @pages
+    pages = Page.find_by_sql("select * from pages limit 50").map { |page| {page: page} }
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def show
@@ -212,7 +221,7 @@ class PagesController < ApplicationController
   def random
     pages = Page.find_by_sql('select * from pages limit 50').shuffle.map { |page| {page: page, image: page.profile_pic} }
     if params[:page]
-      @pages = get_page_and_offset(12, params[:page], pages)
+      @pages = get_page_and_offset(12, params[:page].to_i, pages)
     else
       @pages = get_page_and_offset(12, 1, pages)
     end
@@ -224,11 +233,11 @@ class PagesController < ApplicationController
   end
 
   def trending
-    pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page, image: page.profile_pic}}
+    pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page}}
     if params[:page]
-      @pages = get_page_and_offset(12, params[:page], pages)
+      @pages = get_page_and_offset(12, params[:page].to_i, pages)
     else
-      @pages = get_page_and_offset(12, 1, pages)
+      @pages = get_page_and_offset(13, 1, pages)
     end
     
     respond_to do |format|

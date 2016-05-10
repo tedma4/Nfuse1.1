@@ -1,6 +1,8 @@
 <section id="profile-grid" class="container-fluid">
   <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+  <a href="/trending?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
 </section>
+
 
 <script>
 $(document).ready(function() {
