@@ -119,8 +119,13 @@ class PagesController < ApplicationController
   def privacy; end
 
   def business_connector
-    @pages = PageFetcher.new("business").get!
-    # @pages = Kaminari.paginate_array(@pages).page(params[:page]).per(10)
+    pages = PageFetcher.new("business").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -128,67 +133,217 @@ class PagesController < ApplicationController
   end
 
   def celebrity_connector
-    @pages = PageFetcher.new("celebrity").get!
+    pages = PageFetcher.new("celebrity").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def tv_show_connector
-    @pages = PageFetcher.new("tv").get!
+    pages = PageFetcher.new("tv").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def fashion_connector
-    @pages = PageFetcher.new("fashion").get!
+    pages = PageFetcher.new("fashion").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def youtubers
-    @pages = PageFetcher.new("youtubers").get!
+    pages = PageFetcher.new("youtubers").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def sports_connector
-    @pages = PageFetcher.new("sports").get!
+    pages = PageFetcher.new("sports").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def music_connector
-    @pages = PageFetcher.new("music").get!
+    pages = PageFetcher.new("music").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def food_connector
-    @pages = PageFetcher.new("food").get!
+    pages = PageFetcher.new("food").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def travel_connector
-    @pages = PageFetcher.new("travel").get!
+    pages = PageFetcher.new("travel").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def news_connector
-    @pages = PageFetcher.new("news").get!
+    pages = PageFetcher.new("news").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def fitness_connector
-    @pages = PageFetcher.new("fitness").get!
+    pages = PageFetcher.new("fitness").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def nerdish_connector
-    @pages = PageFetcher.new("nerdish").get!
+    pages = PageFetcher.new("nerdish").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def shopping_connector
-    @pages = PageFetcher.new("shopping").get!
+    pages = PageFetcher.new("shopping").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def wedding_connector
-    @pages = PageFetcher.new("wedding").get!
+    pages = PageFetcher.new("wedding").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def animals_connector
-    @pages = PageFetcher.new("animals").get!
+    pages = PageFetcher.new("animals").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def instagramers_connector
-    @pages = PageFetcher.new("instagrammers").get!
+    pages = PageFetcher.new("instagrammers").get!
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_pages.js.erb'}
+    end
   end
 
   def mytop50
-    @pages = []
+    pages = []
     page_ids = []
     seen_pages = Page.joins(:impressions).where("impressions.user_id = ?",current_user.id).group("pages.id")
     non_seen_pages = Page.where("id not in (?)", seen_pages.pluck(:id)).order("view_count desc")
@@ -197,12 +352,16 @@ class PagesController < ApplicationController
     page_ids.flatten.first(50).each do |id|
       page = Page.find(id)
       element = {
-        page: page,
-        image: page.profile_pic
+        page: page
       }
-      @pages << element
+      pages << element
     end
-    @pages
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -210,8 +369,13 @@ class PagesController < ApplicationController
   end
 
   def mostpopular
-    @pages = Page.order('view_count desc limit 50').map { |page| {page: page, image: page.profile_pic} }
-    @pages
+    pages = Page.order('view_count desc limit 50').map { |page| {page: page} }
+    if params[:page]
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
+    else
+      @pages = get_page_and_offset(13, 1, pages)
+    end
+
     respond_to do |format|
       format.html
       format.js {render 'paginate_pages.js.erb'}
@@ -219,11 +383,11 @@ class PagesController < ApplicationController
   end
 
   def random
-    pages = Page.find_by_sql('select * from pages limit 50').shuffle.map { |page| {page: page, image: page.profile_pic} }
+    pages = Page.find_by_sql('select * from pages limit 50').shuffle.map { |page| {page: page} }
     if params[:page]
-      @pages = get_page_and_offset(12, params[:page].to_i, pages)
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
     else
-      @pages = get_page_and_offset(12, 1, pages)
+      @pages = get_page_and_offset(13, 1, pages)
     end
     
     respond_to do |format|
@@ -235,7 +399,7 @@ class PagesController < ApplicationController
   def trending
     pages = Page.joins(:impressions).where("impressions.created_at >= ?", 1.week.ago).group("pages.id").map { |page| {page: page}}
     if params[:page]
-      @pages = get_page_and_offset(12, params[:page].to_i, pages)
+      @pages = get_page_and_offset(13, params[:page].to_i, pages)
     else
       @pages = get_page_and_offset(13, 1, pages)
     end

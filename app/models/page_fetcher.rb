@@ -23,8 +23,7 @@ class PageFetcher
   def loop_pages(num=100)
     @pages = fetch_pages.first(num).map do |page|
       {
-        page: page,
-        image: page.profile_pic
+        page: page
       }
     end
   end

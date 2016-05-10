@@ -1,11 +1,12 @@
 <section id="profile-grid" class="container-fluid">
   <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
 </section>
-<%#= paginate @pages %>
+<div id="paginate_only_once">
+  <a href="/random?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
+
 <script>
 $(document).ready(function() {
   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
-
 });
 </script>
-<%#= javascript_include_tag 'pages.js' %>
