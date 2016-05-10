@@ -23,7 +23,7 @@ class Page < ActiveRecord::Base
       save =  thing['data'].keep_if { |page| page['username'] == self.instagram_handle }
       profile_pic = save[0]['profile_picture']
     rescue
-      profile_pic = "#{self.twitter_handle}.jpg"
+      profile_pic = nil
     end
     # i = 0
     # num = 20

@@ -3,6 +3,7 @@
     <div class="profile-head">
       <p><%= truncate(page[:page].full_name, length: 19) %></p>
     </div>
-    <%= image_tag(page[:page].profile_pic) %>
+    <%#= page[:page].profile_pic ? image_tag(page[:page].profile_pic) : image_tag("FargoFX.jpg") %>
+    <%= image_tag(page[:page].profile_pic || "FargoFX.jpg")%>
   </a>
 </div>
