@@ -349,7 +349,6 @@ GEM
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
     rinku (1.5.1)
-    rmagick (2.13.4)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.1.7)
@@ -530,7 +529,7 @@ DEPENDENCIES
   rails-erd
   remotipart (= 1.2.1)
   responders (~> 2.0)
-  rmagick (~> 2.13.2)
+  rmagick (= 2.13.2)
   rspec-collection_matchers
   rspec-rails (~> 3.1.0)
   sass-rails (>= 3.2)
