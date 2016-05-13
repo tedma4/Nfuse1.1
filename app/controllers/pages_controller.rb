@@ -329,7 +329,7 @@ class PagesController < ApplicationController
   end
 
   def instagramers_connector
-    pages = PageFetcher.new("instagrammers").get!
+    pages = PageFetcher.new("instagramers").get!
     if params[:page]
       @pages = get_page_and_offset(13, params[:page].to_i, pages)
     else

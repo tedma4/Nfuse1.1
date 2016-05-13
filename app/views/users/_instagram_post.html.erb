@@ -1,10 +1,6 @@
 <% if post.type == "image" %>
   <div class="timeline-user-box">
-    <%=link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-      post_id: post.id, 
-      provider: post.provider, 
-      user: post.user.id,
-      post_type: post.user.class), target: '_blank' %>
+    <%= image_tag(post.image, :class => "image_post") %>
   </div>
   <% if post.text.present? %>
     <div class="center">

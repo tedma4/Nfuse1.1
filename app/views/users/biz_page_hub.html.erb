@@ -36,7 +36,7 @@
             <header class="post_header">
               <div class="user">
                 <%= image_tag("#{post.page.twitter_handle}.jpg", size:'45x45', alt: 'P6pl2kfg normal') %>
-                <%= link_to truncate(post.username, length: 16), root_path %>
+                <%= link_to truncate(post.username, length: 16), "/pages/#{post.username}" %>
               </div>
               <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
               <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->

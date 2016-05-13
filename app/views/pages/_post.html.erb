@@ -10,7 +10,7 @@
        <%= link_to image_tag("#{@page.twitter_handle}.jpg", :class => "user_profile_picture", size: "50x50"), root_path %>
      </li>
      <li class="user_name">
-       <%= link_to truncate(@page.full_name, length: 15), "/#{@page.page_name}" %>
+       <%= link_to truncate(@page.full_name, length: 15), "/pages/#{@page.page_name}" %>
      </li>
    </ul>
   </div>
@@ -19,11 +19,7 @@
     <% when 'instagram' %>
       <% if post.type == "image" %>
         <div class="timeline-user-box">
-          <%= link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-            post_id: post.id, 
-            provider: post.provider, 
-            user: @page.id,
-            post_type: @page.class.name), target: '_blank' %>
+          <%= image_tag(post.image, :class => "image_post") %>
         </div>
         <% if post.text.present? %>
           <div class="center">
@@ -54,11 +50,7 @@
           </div>
         <% elsif post.type == 'photo' %>
           <div class="timeline-user-box">
-            <%= link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-            post_id: post.id, 
-            provider: post.provider, 
-            user: @page.id,
-            post_type: @page.class.name), target: '_blank' %>
+            <%= image_tag(post.image, :class => "image_post") %>
           </div>
         <% end %>
       <% end %>
