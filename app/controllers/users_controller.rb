@@ -27,8 +27,11 @@ class UsersController < ApplicationController
   end
 
   def destroyuser
-     Token.where(provider: 'flickr').destroy_all
-     redirect_to root_path
+    User.destroy_all
+    Page.destroy_all
+    require 'rake'
+    Nfuse11::Application.load_tasks # <-- MISSING LINE
+    Rake::Task['db:seed'].invoke
   end
 
   def remove_token
