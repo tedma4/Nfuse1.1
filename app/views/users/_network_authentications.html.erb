@@ -162,25 +162,24 @@
             <i class="fa fa-pinterest-p"></i>
             <h3>Pinterest</h3>
             <p>Share your Pinterest posts.</p>
-            COMMING SOON!!!
-            <!-- <%# if current_user && user_has_provider?('pinterest') %>
-              <%#= link_to "/auth/pinterest" do %>
+            <% if current_user && user_has_provider?('pinterest') %>
+              <%= link_to "/auth/pinterest" do %>
                 <button type="button" id="nfusePn">
                     Re-Nfuse Pinterest
                 </button>
-              <%# end %> | 
-              <%#= link_to remove_token_path(provider: 'pinterest') do %>
+              <% end %> | 
+              <%= link_to remove_token_path(provider: 'pinterest') do %>
                 <button type="button" id="nfusePn">
                     Remove Network
                 </button>
-              <%# end %>
-            <%# else %>
-              <%#= link_to "/auth/pinterest" do %>
+              <% end %>
+            <% else %>
+              <%= link_to "/auth/pinterest" do %>
                 <button type="button" id="nfusePn">
                     Nfuse it
                 </button>
-              <%# end %>
-            <%# end %> -->
+              <% end %>
+            <% end %>
         </div>
 
         <!-- FACEBOOK -->
