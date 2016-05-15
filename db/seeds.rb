@@ -976,7 +976,7 @@ pages = Page.create([
 
 {page_name: 'lululemonmen', full_name: 'Lululemon Men', twitter_handle: 'lululemonmen', youtube_handle: nil, instagram_handle: 'lululemonmen', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'Lululemon Men | Top health and fitness trends', description: 'The official Nfuse page for Lululemon Men. Explore the top social media post and join the conversation on forum.', page_category: 'fitness'},
 
-{page_name: 'mr.murrrph', full_name: 'Mr. Murrrph', twitter_handle: nil, youtube_handle: nil, instagram_handle: 'mr.murrrph', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'Mr. Murrrph | Best and Cutest Cat | Nfuse', description: 'The official Nfuse page for Mr. Murrrph. Explore the top social media post and join the conversation on forum.', page_category: 'animals'},
+{page_name: 'mrmurrrph', full_name: 'Mr. Murrrph', twitter_handle: nil, youtube_handle: nil, instagram_handle: 'mr.murrrph', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'Mr. Murrrph | Best and Cutest Cat | Nfuse', description: 'The official Nfuse page for Mr. Murrrph. Explore the top social media post and join the conversation on forum.', page_category: 'animals'},
 
 {page_name: 'biddythehedgehog', full_name: 'Biddy', twitter_handle: nil, youtube_handle: nil, instagram_handle: 'biddythehedgehog', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'Biddy | Cutest pets on social media', description: 'The official Nfuse page for Biddy. Explore the top social media post and join the conversation on forum.', page_category: 'animals'},
 
