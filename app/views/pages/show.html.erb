@@ -1,284 +1,361 @@
 <% content_for :for_head do %>
-  <title><%= @page.metatag_title%></title>
+  <title><%= @page.metatag_title %></title>
   <meta name="description" content="<%= @page.description %>">
 <% end %>
-
-<style>
-#login { display: none; }
-.login,
-.logout { 
-    position: absolute; 
-    top: -3px;
-    right: 0;
-}
-.page-header { position: relative; }
-.reviews {
-     font-weight: bold;
-    margin: 10px auto 20px;
-}
-.notes {
-    color: #999;      
-    font-size: 12px;
-}
-.media .media-object { max-width: 120px; }
-.media-body { position: relative; }
-.media-date { 
-    position: absolute; 
-    right: 25px;
-    top: 25px;
-}
-.media-date li { padding: 0; }
-.media-date li:first-child:before { content: ''; }
-.media-date li:before { 
-    content: '.'; 
-    margin-left: -2px; 
-    margin-right: 2px;
-}
-.media-comment { margin-bottom: 20px; }
-.media-replied { margin: 0 0 0 0; }
-.media-replied .media-heading { padding-left: 6px; }
-
-.btn-circle {
-    font-weight: bold;
-    font-size: 12px;
-    padding: 6px 15px;
-    border-radius: 20px;
-}
-.btn-circle span { padding-right: 6px; }
-.embed-responsive { margin-bottom: 20px; }
-.tab-content {
-    padding: 50px 15px;
-    border: 1px solid #ddd;
-    border-top: 0;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
-.custom-input-file {
-    overflow: hidden;
-    position: relative;
-    width: 120px;
-    height: 120px;
-    background: #eee url('https://s3.amazonaws.com/uifaces/faces/twitter/walterstephanie/128.jpg');    
-    background-size: 120px;
-    border-radius: 120px;
-}
-input[type="file"] {
-    z-index: 999;
-    line-height: 0;
-    font-size: 0;
-    position: absolute;
-    opacity: 0;
-    filter: alpha(opacity = 0);
-    -ms-filter: "alpha(opacity=0)";
-    margin: 0;
-    padding: 0;
-    /* left: 0; */
-    width: 73px;
-    height: 49px;
-}
-.replyUpload input.upload {
-    position: absolute;
-    top: -10px;
-    /* bottom: 0px; */
-    right: -21px;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-.uploadPhoto {
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    display: none;
-    width: 50%;
-    height: 50%;
-    color: #fff;    
-    text-align: center;
-    line-height: 60px;
-    text-transform: uppercase;    
-    background-color: rgba(0,0,0,.3);
-    border-radius: 50px;
-    cursor: pointer;
-}
-.custom-input-file:hover .uploadPhoto { display: block; }
-li ul {
-    display: block;
-    margin-top: 18px;
-    background-color: #fff; 
-}
-.absolute_postition_test {
-    position: fixed;
-    left: 95%;
-    top: 90%;    
-}
-.popup-messages-footer > textarea {
-    border-bottom: 1px solid #b2b2b2 !important;
-    height: 34px !important;
-    margin: 7px;
-    padding: 5px !important;
-     border: medium none;
-    width: 95% !important;
-    overflow: hidden !important;
-}
-.popup-messages-footer {
-    background: #fff none repeat scroll 0 0;
-    bottom: 0;
-    position: absolute;
-    width: 83%;
-}
-.popup-messages-footer .btn-footer {
-    overflow: hidden;
-    padding: 2px 5px 10px 6px;
-    width: 100%;
-}
-.bg_none i {
-    border: 1px solid #ff6701;
-    border-radius: 25px;
-    color: #ff6701;
-    font-size: 17px;
-    height: 33px;
-    line-height: 30px;
-    width: 33px;
-}
-.bg_none:hover i {
-    border: 1px solid #000;
-    border-radius: 25px;
-    color: #000;
-    font-size: 17px;
-    height: 33px;
-    line-height: 30px;
-    width: 33px;
-}
-.bg_none {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: medium none;
-}
-</style>
-<br>
-
-<div class="explore_filters">
-  <% if signed_in? %>
-    <%= render partial: "users/explore_filters" %>
-  <% else %>
-    <%#= link_to 'Forum', @page.page_name, remote: true, class: "btn btn-link-2 load_forum" %>
-    <%= link_to 'Forum', '#', class: "btn btn-link-2 load_forum" %>
-  <% end %>
-</div><br>
-<div id="masonJar" class="center clearfix masonJar">
-  <% @timeline.first(50).each do |post| %>
-  <% case post.provider %>
-  <% when 'instagram' %>
-    <%= render partial: "pages/post", locals: {post: post} %>
-  <% when 'twitter' %>
-    <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
-      <%= render partial: "pages/post", locals: {post: post} %>
-    <%end%>
-  <% when 'google_oauth2' %>
-    <%= render partial: "pages/post", locals: {post: post} %>
-  <%end%>
-  <% end %>
-</div>
-
-<div class='hidden_comments' style="display:hidden;">
-  <ul class="media-list">
-    <%= nested_comments @page.comments.includes(:user).arrange(order: :created_at) if @page.comments %>
-  </ul>
-
-  <%#= render "comments/form" %>
-  <a data-toggle= "modal" href="#absolute_postition_test">
-  <button id='forum_post_modal' class='bg_none absolute_postition_test'><i class="glyphicon glyphicon-plus"></i>  </button>
+    <!-- USER AREA -->
+<section id="userarea" class="forum">
+  <!-- BIG BANNER -->
+  <div id="user-banner"></div>
+  <a id="user" class="mobile">
+    <% if @page.profile_pic != nil %>
+     <img src="<%= @page_image %>" alt="User Image"/>
+    <% else %>
+     <img src="<%= @page.twitter_handle %>.jpg" alt="User Image"/>
+    <% end %>
   </a>
-</div>
-    <div id="absolute_postition_test" class="modal fade">
-      <div class="modal-fade">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button class="close close_comment_form" data-dismiss="modal">×</button>
+  <ul id="user-stats" class="user-left">
+    <li id="user-name"><h1><%= @page.full_name %></h1></li>
+    <li id="user-followers"><a href="#" data-toggle="modal" data-target="#followersmodal">Followers:  <%= Relationship.where(follow_type: 'Page', followed_id: 2).count %></a></li>
+    <li id="user-likes">Likes: <a href=""><%= ActsAsVotable::Vote.where(owner_type: 'Page', owner_id: @page.id).count %></a></li>
+  </ul>
+  <p id="user-bio" class="user-right">
+    @<%= @page.full_name %> <%= @page.description %>
+  </p>
+  <!-- USER NAVBAR -->
+  <nav id="user-nav" class="center navbar">
+    <ul>
+      <li class="page_feed_cursor_icon"><a class='show_feed'>Feed</a></li>
+      <li class="page_forum_cursor_icon"><a class='show_forum'>Forum</a></li>
+      <li id="user-spacer">
+        <!-- PROFILE PIC -->
+        <a id="user" class="desk">
+          <% if @page.profile_pic != nil %>
+            <img src="<%= @page_image %>" style="width:200px;" alt="User Image"/>
+          <% else %>
+            <img src="<%= @page.twitter_handle %>.jpg" alt="User Image"/>
+          <% end %>
+        </a>
+      </li>
+      <li>
+        <% if signed_in? %>
+          <a class="follow_form">
+            <%= render 'follow_form' if signed_in? %>
+          </a>
+        <% else %>
+          <a href="<%= self.request.env['HTTP_REFERER'] %>" title="Back">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </a>
+        <% end %>
+      </li>
+      <% if signed_in? %>
+        <li class="li-arrows">
+          <a href="<%= self.request.env['HTTP_REFERER'] %>" class="arrow" title="Back">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </a>
+          <a href="/pages/<%= Page.find(Page.next_page).page_name %>" class="arrow" title="Next">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </li>
+      <% else %>
+        <li>
+          <a href="/pages/<%= Page.find(Page.next_page).page_name %>" title="Next">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</section>
+<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+  <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
+  <% @timeline.each do |post| %>
+    <article class="individual_post item <%= post.provider %>_post0">
+      <header class="post_header">
+        <div class="user">
+          <%= image_tag(@page_image, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+          <%= link_to truncate(@page.page_name, length: 16), "/pages/#{@page.page_name}" %>
+        </div>
+        <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+        <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+          <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
+        <% end %>
+      </he ader>
+      <main class="post_content">
+        <% case post.provider %>
+        <% when 'instagram' %>
+          <% if post.type == "image" %>
+            <div class="timeline-user-box">
+              <%= image_tag(post.image, :class => "image_post") %>
             </div>
-            <div class="modal-body-new-post">
-              <div class="row-fluid">
-                <div class="span12">
-                  <div class="span6">
-                    <div class="logowrapper">
-                      <div class="Alignthisorelse">
-                        <div class="container post-padding">
-                          <div class="col-sm-6 form-box wow fadeInUp">
-                            <div class="form-top-new-post">
-                              <div class="form-bottom">
-                              <% if signed_in? %>  
-                                <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => { multipart: true, class: 'form-horizontal', id: 'commentForm'}, remote: true do |f| %>
-                                  <%= f.hidden_field :parent_id %>
-                                  <%= f.hidden_field :user_id %>
-                                  <div class="Alignthisorelse">
-                                    <div class="container">
-                                      <div class="row">
-                                        <div class="col-sm-2 how-it-works-box wow fadeInUp">
-                                          <div class="how-it-works-box-icon">
-                                            <a href="#"><%= image_tag("circlephoto.fw.png", size: "175x175") %></a>
-                                          </div>
-                                          <div class="fileUpload btn-link-1">
-                                            <span>Upload Pic</span>
-                                             <%= f.file_field :image_upload, id: 'newPostPictureInput', placeholder: "Pic", type: "file", class: "upload"  %>
-                                          </div>
-                                        </div>
-                                        <div class="col-sm-2 col-sm-offset-1 how-it-works-box wow fadeInDown">
-                                          <div class="how-it-works-box-icon">
-                                            <a href="#"><%= image_tag("circlein2darkgray.fw.png", size: "175x175") %></a>
-                                          </div>
-                                          <div class="form-grouP">
-                                            <%= f.text_area :url, id: 'profile_post_url_body', class: "form-control", placeholder: "URL of everything", type:"search" %>
-                                          </div>
-                                        </div>
-                                      </div>
-                                        <div class="row">
-                                          <div class="col-sm-5 section-bottom-button wow fadeInUp">
-                                            <div id="target"></div>
-                                            <div id="profilePostTarget"></div>
-                                            <div id="profileUrlPostPreview"></div>
-                                            <%= f.text_area :body, class: "form-control", placeholder: "Write a description for your post...", type:"search" %>
-                                          </div>
-                                        </div>
-                                        <div class="col-sm-3 col-sm-offset-1 section-bottom-button wow fadeInUp">
-                                          <button type="submit" class="btn">
-                                           Post!
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <% end %>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <% if post.text.present? %>
+              <div class="center">
+                <%= post.text %>
+              </div>
+            <% end %>
+          <% elsif post.type == "video" %>
+            <div class="center">
+              <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+                <source src="<%= post.video %>" type='video/mp4' />
+                <source src="<%= post.video %>" type='video/ogv' />
+              </video>
+            </div>
+            <% if post.text.present? %>
+              <div class="center">
+                <%= post.text %>
+              </div>
+            <% end %>
+          <% end %>
+        <% when 'twitter' %>
+          <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
+            <% if post.has_media? %>
+              <% if post.type == 'animated_gif' || post.type== 'video' %>
+                <div class="center">
+                  <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+                    <source src="<%= post.video %>" type='video/mp4' />
+                    <source src="<%= post.video %>" type='video/ogv' />
+                  </video>
                 </div>
+              <% elsif post.type == 'photo' %>
+                <div class="timeline-user-box">
+                  <%= image_tag(post.image, :class => "image_post") %>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="center">
+              <%= post.text %>
+            </div>
+          <%end%>
+        <% when 'google_oauth2' %>
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="100%"
+            height="225"
+            src="https://www.youtube.com/embed/<%= post.video %>"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+          <% if post.text.present? %>
+            <div class="center">
+              <%= post.text %>
+            </div>
+          <%end%>
+        <%end%>
+      </main>
+        <% if signed_in? %>
+      <footer class="post_actions">
+        <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+          <%= link_to dislike_shout_path(id: post.id, 
+            owner_id: @page.id, 
+            owner_type: @page.class.name, 
+            key: post.provider), 
+            {method: :delete, remote: true, class: 'likePost liked'} do %>
+            <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+          <% end %>
+        <% else %>
+          <%= link_to like_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+            <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+          <% end %>
+        <% end %>
+      </footer>
+        <% end %>
+    </article>
+  <% end %>
+</section>
+<!-- FORUM -->
+<section id="forum" class="" style="display:none;">
+  <div class="row">
+  <!-- AD SIDEBAR -->
+    <aside class="adbar col-xs-12 col-sm-5 col-md-4 col-lg-3">
+      <ul class="adlist">
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ad-MediumRectangle-300x250.jpg"/></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ad-MediumRectangle-300x250.jpg"/></li>
+      </ul>
+    </aside>
+  <!-- FORUM FEED -->
+    <div id="" class="col-xs-12 col-sm-7 col-md-8 col-lg-6">
+      <% if signed_in? %>
+        <a id="addTopic" title="Add New Topic" href="#" data-toggle="modal" data-target="#new-topic"><i class="fa fa-plus"></i></a> 
+      <% end %>
+        <ul id="media-list">
+          <%= nested_comments @page.comments.includes(:user).arrange(order: 'created_at DESC') if @page.comments %>
+        </ul>
+    </div>
+    <!-- AD SIDEBAR -->
+    <aside class="adbar col-xs-12 col-sm-5 col-lg-3">
+      <ul class="adlist">
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ad-MediumRectangle-300x250.jpg"/></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ad-MediumRectangle-300x250.jpg"/></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<div class="modal fade" id="new-topic" tabindex="-1" role="dialog" aria-labelledby="sharelabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="sharelabel">Start New Topic</h4>
+      </div>
+      <% if signed_in? %>  
+        <%= form_for [@commentable, Comment.new(user_id: current_user.id)], :html => {class: 'minimal new_shout', id: 'upload_form', multipart: true}, remote: true do |f| %>
+          <%= f.hidden_field :parent_id %>
+          <%= f.hidden_field :user_id %>
+          <div class="modal-body container-fluid">
+            <div class="row">
+              <div class="image-upload col-xs-12 col-sm-6">
+                <label for="newForumPicUpload">
+                  <a class="btn btn-default">
+                    Upload Picture
+                  </a>
+                </label>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :image_upload, id: 'newForumPicUpload', placeholder: "Pic", type: "file", class: "upload"  %>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+              </div>
+              <div class="col-xs-12">
+                <div id="target"></div>
+                <div id="forum_post_pic_preview" class='center'></div>
+                <div id="preview"></div>
+                <%= f.text_field :topic, placeholder: "Topic Title", id: 'comment_topic_title' %>
+                <textarea class="form-control" id="shout_content" name="comment[body]" placeholder="Your Message" type="search"></textarea>
               </div>
             </div>
           </div>
+          <div class="modal-footer container-fluid">
+            <button type="submit" class="btn btn-default" form="upload_form">Share</button>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+    <!-- FOLLOWERS MODAL -->
+  <div class="modal fade" id="followersmodal" tabindex="-1" role="dialog" aria-labelledby="followerslabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="followerslabel">Followers</h4>
+        </div>
+        <div class="modal-body">
+          <!-- FOLLOWER -->
+          <% if Relationship.where(followed_id: @page.id, follow_type: 'Page').any? %>
+            <% Relationship.where(followed_id: @page.id, follow_type: 'Page').each do |user| %>
+              <div class="row follower">
+                <div class="col-xs-2 user-img">
+                  <img src="/assets/def.jpg" alt="User Image"/>
+                </div>
+                <div class="col-xs-10">
+                  <ul id="user-info">
+                    <li id="user-name"><%= user.follower.full_name %></li>
+                    <li id="user-link"><%= link_to "@#{user.follower.user_name}", feed_user_path(user) %></li>
+                  </ul>
+                  <ul id="user-stats">
+                    <li id="user-following">Following: <span><%= user.follower.followed_users.count %></span></li>
+                    <li id="user-followers">Followers: <span><%= user.follower.followers.count %></span></li>
+                    <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.follower.id).count %></span></li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p class='center explore_filters'><%= @page.full_name %> doesn't have and followers yet.</p>
+            <p class='center explore_filters'>How about you be the first</p>          
+          <% end %>
         </div>
       </div>
+    </div>
+  </div>
 
 
 <script>
-$('a.load_forum').click( function() {
-  if ($('a.load_forum').text() == 'Forum') {
-    $('div#masonJar').hide();
-    $('a.load_forum').text('Feed');
-    $('div.hidden_comments').show()
-  }else if ($('a.load_forum').text() == 'Feed') {
-    $('div.hidden_comments').hide()
-    $('a.load_forum').text('Forum');
-    $('div#masonJar').show();
-  };
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>
+<script>
+$('a.show_forum').click( function() {
+    $('section#masonJar').hide();
+    $('#forum').show()
+});
+$('a.show_feed').click( function() {
+    $('#forum').hide()
+    $('section#masonJar').show();
 });
 </script>
 
+ <script>
+    $(function() {
+      $('#newForumPicUpload').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#forum_post_pic_preview').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+  <script>
+  function load(request) {
+    $('#code').text(request);
+    $('#preview').html(request);
+  }
 
+  function preview(value) {
+    console.log("preview; value = " + value);
+
+    $.ajax({
+      dataType: "html",
+      url: "/preview?url=" + value['url']
+    })
+    .done( function(data){
+      load(data);
+      console.log("preview callback\n" + data);
+    });
+  }
+
+  function previewUrl() {
+    preview({'url':$('#url_body').val()});
+  }
+
+  $('#examples a').click(function() {
+    $('#url_body').focus(); 
+    $('#url_body').val( $(this).attr('href'));
+    previewUrl();
+  });
+
+  $(function () { 
+    $("#url_body").focus();
+    previewUrl();
+  });
+
+  </script>
+
+<script>
+ // $('#upload_form').submit(function(event){
+ //    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
+ //    if (forum_form_is_not_be_blank){
+ //      return true;
+ //    } else {
+ //    event.preventDefault();
+ //    alert('NOPE')
+ //    return false;
+ //    }
+ //  });
+</script>

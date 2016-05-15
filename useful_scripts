@@ -1,0 +1,7 @@
+Page.all.each do |page|
+	begin
+		puts "#{page.profile_pic}"
+	rescue
+		puts "#{page.page_name}" 
+	end
+end

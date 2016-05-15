@@ -1,7 +1,5 @@
 <% if signed_in? %>
-  <div class="center">
-  	<%= render partial: 'timeline', locals: { timeline: @timeline }%>
-  </div>
+  <%= render partial: 'timeline', locals: { timeline: @timeline }%>
 <% else %>
   <%= render partial: 'landing'%>
 <% end %>

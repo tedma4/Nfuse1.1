@@ -1,158 +1,237 @@
 <style>
-  .hub_padding{
-    margin: 15px 0 0 0;
-  }
+.tab-content {
+    border-radius: 0px;
+    padding: 0px 30px;
+}
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
 </style>
-<div class="explore_filters">
-  <%= render partial: "users/hub_filters" %>
-</div><br>
-<% unless @timeline.empty? %>
-  <div id="masonJar" class="hub_container clearfix masonJar hub_padding">
-    <% @timeline.each do |post| %>
-      <% if post.class.name == 'Networks::Post' %>
-        <% case post.provider %>
-        <% when "nfuse" %>
-          <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-          <% unless post.exclusive == true %>
-            <%=  render partial: 'users/shout', locals: {shout: post} %>
-          <% end %>
-        <% when "gplus" %>
-          <% if post.type != 'hiddenType' %>
-            <%= render partial: "users/post", locals: {post: post} %>
-          <% end %>
-        <% when "tumblr" %>
-          <% unless post.type == 'chat' || post.type == 'audio' %>
-            <%= render partial: "users/post", locals: {post: post} %>
-          <% end %>
-        <% when "facebook" %>
-          <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-            <%= render partial: "users/post", locals: {post: post} %>
-          <% end %>
-        <% when "twitter" %>
-          <% unless post.retweeted == true %>
-            <%= render partial: "users/post", locals: {post: post} %>
-          <% end %>
-        <% else %>
-          <%= render partial: "users/post", locals: {post: post} %>
-        <% end %>
-      <% else %>
-        <div class="individual_post item <%=post.provider%>_post" data-id="<%=post.id%>" id="content-box-feed">
-          <div class="post_main">
-           <ul class="post_header">
-             <li>
-               <%= link_to image_tag("#{post.avatar}.jpg", :class => "user_profile_picture", size: "50x50"), "/#{post.page_link}" %>
-             </li>
-             <li class="user_name">
-               <%= link_to truncate("#{post.username}", length: 15), "/#{post.page_link}" %>
-             </li>
-           </ul>
-          </div>
-          <div class="post_content">
-        <% case post.provider %>
-        <% when 'instagram' %>
-          <% if post.type == "image" %>
-            <div class="timeline-user-box">
-              <%= image_tag(post.image, :class => "image_post") %>
-            </div>
-            <% if post.text.present? %>
-              <div class="center">
-                <%= post.text %>
+<% if current_user.relationships.any? %>
+<section id="thehub" class="container-fluid clearfix">
+
+  <nav id="user-nav" class="hub center navbar">
+    <ul>
+      <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
+      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
+    </ul>
+  </nav>
+  <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
+</section>
+<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+
+  <%# cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
+    <% @timeline.first(30).each do |post| %>
+      <%# cache(post) do %>
+        <% if ['Networks::Post', 'Nfuse::Post'].include?(post.class.name) %>
+          <article class="individual_post item <%= post.provider %>_post0">
+            <header class="post_header">
+              <div class="user">
+                <%= image_tag("#{post.avatar}", size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= link_to truncate(post.user.user_name, length: 16), "/users/#{post.user.user_name}" %>
               </div>
-            <% end %>
-          <% elsif post.type == "video" %>
-            <div class="center">
-              <video width="100%" controls autoload="none" poster=<%= post.image %> >
-                <source src="<%= post.video %>" type='video/mp4' />
-                <source src="<%= post.video %>" type='video/ogv' />
-              </video>
-            </div>
-            <% if post.text.present? %>
-              <div class="center">
-                <%= post.text %>
-              </div>
-            <% end %>
-          <% end %>
-        <% when 'twitter' %>
-          <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
-            <% if post.has_media? %>
-              <% if post.type == 'animated_gif' || post.type== 'video' %>
-                <div class="center">
-                  <video width="100%" controls autoload="none" poster=<%= post.image %> >
-                    <source src="<%= post.video %>" type='video/mp4' />
-                    <source src="<%= post.video %>" type='video/ogv' />
-                  </video>
-                </div>
-              <% elsif post.type == 'photo' %>
-                <div class="timeline-user-box">
-                  <%= image_tag(post.image, :class => "image_post") %>
-                </div>
+              <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+              <i class="fa"></i> <%= time_ago_in_words(post.created_time) %>
               <% end %>
-            <% end %>
-            <div class="center">
-              <%= post.text %>
-            </div>
-          <%end%>
-        <% when 'youtube' %>
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="100%"
-            height="225"
-            src="https://www.youtube.com/embed/<%= post.video %>"
-            frameborder="0"
-            allowfullscreen>
-          </iframe>
-          <% if post.text.present? %>
-            <div class="center">
-              <%= post.text %>
-            </div>
-          <% end %>
-        <%end%>
-            <br>
-          </div>
-          <div class="right">
-          </div>
-          <ul class="post_actions">
-            <li class="tilt">
-              <%#= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-                          like_shout_path(id: post.id,
-                                          owner_id: post.user.id,
-                                          key: post.provider),
-                          method: :post, remote: true %>
-              <a id="shout-<%=post.id%>">
+            </header>
+            <main class="post_content">
+              <% case post.provider %>
+              <% when "nfuse" %>
+                <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
+                <% unless post.exclusive == true %>
+                  <%=  render partial: 'users/shout', locals: {shout: post} %>
+                <% end %>
+              <% when "gplus" %>
+                <% if post.type != 'hiddenType' %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% when "tumblr" %>
+                <% unless post.type == 'chat' || post.type == 'audio' %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% when "facebook" %>
+                <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% when "twitter" %>
+                <% unless post.retweeted == true %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% else %>
+                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+              <% end %>
+            </main>
+            <footer class="post_actions">
+              <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                <i class="fa"></i><span>666</span>
+              </a> -->
+              <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+                <% end %>
+              <% else %>
+                <%= link_to like_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+                <% end %>
+              <% end %>
                 <%#= post.like_score(post.id) %>
-              </a>
-            </li>
-            <li class="vr"></li>
-            <li class="tilt">
-              <a data-toggle="modal" data-target="#<%=post.provider%>_modal_<%= post.id %>">
-                <%#= image_tag("commentgray.fw.png", size: "24x24") %>
-              </a>
-              <a id="post_<%=post.id%>_comment_count">
-                <%#= Comment.where(commentable_type: post.class.to_s, commentable_id: post.id).count %>
-              </a>
-            </li>
-            <li class="vr"></li>
-            <li class="tilt">
-              <%= link_to image_tag("#{post.provider}blue.fw.png",
-                                    size: "24x24",
-                                    :class => "#{post.provider}_provider_logo"),
-                          post.link_to_post,
-                          :target => "_blank" %>
-              <p class="timeStamp">
-                <%= time_ago_in_words(post.created_time) %> ago
-              </p>
-            </li>
-          </ul>
-        </div>
+            </footer>
+          </article>
+       <% else %>
+          <article class="individual_post item <%= post.provider %>_post0">
+            <header class="post_header">
+              <div class="user">
+                <%= image_tag("#{post.avatar}.jpg", size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= link_to truncate(post.username, length: 16), "/pages/#{post.username}" %>
+              </div>
+              <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+              <i class="fa"></i> <%= time_ago_in_words(post.created_time) %>
+              <% end %>
+            </header>
+            <main class="post_content">
+              <% case post.provider %>
+              <% when 'instagram' %>
+                <% if post.type == "image" %>
+                  <div class="timeline-user-box">
+                    <%= image_tag(post.image, :class => "image_post") %>
+                  </div>
+                  <% if post.text.present? %>
+                    <div class="center">
+                      <%= post.text %>
+                    </div>
+                  <% end %>
+                <% elsif post.type == "video" %>
+                  <div class="center">
+                    <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+                      <source src="<%= post.video %>" type='video/mp4' />
+                      <source src="<%= post.video %>" type='video/ogv' />
+                    </video>
+                  </div>
+                  <% if post.text.present? %>
+                    <div class="center">
+                      <%= post.text %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% when 'twitter' %>
+                <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
+                  <% if post.has_media? %>
+                    <% if post.type == 'animated_gif' || post.type== 'video' %>
+                      <div class="center">
+                        <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+                          <source src="<%= post.video %>" type='video/mp4' />
+                          <source src="<%= post.video %>" type='video/ogv' />
+                        </video>
+                      </div>
+                    <% elsif post.type == 'photo' %>
+                      <div class="timeline-user-box">
+                        <%= image_tag(post.image, :class => "image_post") %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  <div class="center">
+                    <%= post.text %>
+                  </div>
+                <%end%>
+              <% when 'google_oauth2' %>
+                <iframe
+                  id="ytplayer"
+                  type="text/html"
+                  width="100%"
+                  height="225"
+                  src="https://www.youtube.com/embed/<%= post.video %>"
+                  frameborder="0"
+                  allowfullscreen>
+                </iframe>
+                <% if post.text.present? %>
+                  <div class="center">
+                    <%= post.text %>
+                  </div>
+                <% end %>
+              <%end%>
+            </main>
+            <footer class="post_actions">
+              <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                <i class="fa"></i><span>666</span>
+              </a> -->
+              <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+                <% end %>
+              <% else %>
+                <%= link_to like_shout_path(id: post.id, owner_id: post.page.id, owner_type: post.page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+                <% end %>
+              <% end %>
+                <%#= post.like_score(post.id) %>
+            </footer>
+          </article>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    <%# end %>
+    <%# end %>
+</section>
 <% else %>
-  <div class="center hub_padding">
-    <p> Can't display posts because you aren't following anyone... </p>
-    <p> <%= current_user.first_name %>, Why aren't you following someone yet? </p>
-    <%= link_to image_tag("sadface.fw.png", size:"100x100"), explore_user_path(current_user) %>
-    <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
+  <section id="thehub" class="container-fluid clearfix">
+    <nav id="user-nav" class="hub center navbar">
+    <ul>
+      <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
+      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
+    </ul>
+    </nav>
+    <div class="row">
+      <div class="explore_filters col-xs-12 center">
+        <p>Can't display posts because you aren't following anyone... <%= current_user.first_name %>, Why aren't you following someone yet?</p>
+          <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
+      </div>
+    <!-- SWITCHABLE CONTENT -->
+    <article class="col-xs-12 tab-content">
+      <!-- PANEL THREE -->
+      <div id="networks">
+        <% m = Page.last(25) %>
+        <% m << (User.last(25)) %>
+        <% m.flatten.shuffle.each do |this| %>
+          <% if this.class.name == 'Page'%>
+          <!-- PROFILE -->
+          <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="/pages/<%= this.page_name %>">
+              <div class="profile-head">
+                <p><%= truncate this.full_name.capitalize, length:  %></p>
+              </div>
+              <%= image_tag(this.profile_pic) %>
+            </a>
+          </div>
+          <% else %>
+              <!-- PROFILE -->
+              <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <a href="/users/<%= this.user_name %>/feed">
+                  <div class="profile-head">
+                    <p><%= this.user_name %></p>
+                  </div>
+                  <% if this.avatar_file_name.present? && this.avatar_file_name.include?('graph.facebook.com') %>
+                    <%= link_to image_tag(this.avatar_file_name, title: "#{ this.first_name}"), feed_user_path(this) %>
+                  <% else %>
+                  <%= link_to image_tag(this.avatar(:regular), title: "#{ this.first_name}"), feed_user_path(this) %>
+                  <% end %>
+                </a>
+              </div>
+          <% end %>
+        <% end %>
+
+      </div>
+    </article>
   </div>
+</section>
 <% end %>

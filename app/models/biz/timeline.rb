@@ -5,56 +5,68 @@ module Biz
     def initialize(page)
       @page = page
     end
-    
+
     def construct(params)
       self.params = params
       concurrency_test_with_thread
     end
 
    private
- 
-   def concurrency_test_with_thread
-     list = [['twitter', @page.twitter_handle], ['google_oauth2', @page.youtube_handle], ['instagram', @page.instagram_handle]]
-     threads = []
-     list.each do |this|
-       if list.flatten[1].include?('blank') && list.flatten[3].include?('blank') && this.first == 'instagram'
-         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", true, *this))}
-       elsif this.second.include?('blank')
-          #Do nothing for blank biz accounts for now
-       else
-         threads << Thread.new { instance_variable_set("@#{this.first}", self.send("#{this.first}_setup", false, *this))}
-       end
-     end
-     threads.each(&:join)
-     merge = []
-     list.each do |it|
-       if instance_variable_get("@#{it.first}").nil?
-         #leaving this blank for now
-       elsif it.first == 'instagram'
-         begin
-           merge << instance_variable_get("@#{it.first}")['data'].map { |post| Biz::Post.from(post, "#{it.first}", @page)}
-         rescue
-          #Leaving blank till i find out what to do with it
-         end
-       else
-         begin
-           merge << instance_variable_get("@#{it.first}").map { |post| Biz::Post.from(post, "#{it.first}", @page)}
-         rescue
-           # Same here
-         end
-       end
-     end
-     merge.inject(:+)
-     merge
-   end
+
+  def concurrency_test_with_thread
+    threads = []
+    provider_list.each do |provider|
+       if provider_list.flatten[1].nil? && provider_list.flatten[3].nil? && provider.first == 'instagram'
+        threads << Thread.new { instance_variable_set("@#{provider.first}", self.send("#{provider.first}_setup", true, *provider))}
+      elsif provider.second.nil?
+         #Do nothing for blank biz accounts for now
+      else
+        threads << Thread.new { instance_variable_set("@#{provider.first}", self.send("#{provider.first}_setup", false, *provider))}
+      end
+    end
+    threads.each(&:join)
+    merge = []
+    provider_list.each do |provider|
+      if instance_variable_get("@#{provider.first}").nil?
+        #leaving this blank for now
+      elsif provider.first == 'instagram'
+        begin
+          merge << instance_variable_get("@#{provider.first}")['data'].map { |post| Biz::Post.from(post, "#{provider.first}", @page)}
+        rescue
+         #Leaving blank till i find out what to do with it 
+        end
+      else
+        begin
+          if provider.first == 'twitter'
+            # twitter_post.attrs[:user][:screen_name] == (twitter_post.attrs[:retweeted_status] ? twitter_post[:retweeted_status][:user][:screen_name] : 'twitter'
+            @twitter = @twitter.delete_if { |twitter_post| twitter_post.attrs.has_key?(:retweeted_status) || twitter_post.attrs[:in_reply_to_status_id] != nil }
+            merge << @twitter.map { |post| Biz::Post.from(post, "#{provider.first}", @page) }
+          else
+            merge << instance_variable_get("@#{provider.first}").map { |post| Biz::Post.from(post, "#{provider.first}", @page)}
+          end
+        rescue
+          # Same here
+        end
+      end
+    end
+    merge.inject(:+)
+    page_posts_and_image = {
+      page_feeds: merge,
+      page_image: @page.profile_pic
+      }
+  end
+
+    def provider_list
+      [['twitter', @page.twitter_handle], ['google_oauth2', @page.youtube_handle], ['instagram', @page.instagram_handle]]
+    end
 
     def twitter_setup(that = false, *this)#, that = false,
       client = twitter_token
       begin
         if that == false
-          client.user_timeline(this.second).take(15)
+          client.user_timeline(this.second)
         else
-          client.user_timeline(this.second).take(30)
+          client.user_timeline(this.second)
         end
       rescue
         if that == false
@@ -64,7 +76,7 @@ module Biz
         end
       end
     end
- 
+
     def google_oauth2_setup(that = false, *this)#, that = false
       youtube_token
       begin
@@ -84,18 +96,29 @@ module Biz
       end
     end
 
-    def instagram_setup(that = false, *this)#, that = false
+    def instagram_setup(that = false, *this)
       client_id = instagram_token
       thing = Oj.load(Faraday.get("https://api.instagram.com/v1/users/search?q=#{this.second}&client_id=#{client_id}").body)
-      if thing['data'][0]['username'] == this.second
-        usid = thing['data'][0]['id']
-        if that == false
-          Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
-        else
-          Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=50").body)
+      feed = nil
+      begin
+        i = 0
+        num = 20
+        until i > num do
+          if thing['data'][i]['username'] == this.second
+            usid = thing['data'][i]['id']
+            if that == false
+              feed = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=20").body)
+            else
+              feed = Oj.load(Faraday.get("https://api.instagram.com/v1/users/#{usid}/media/recent/?client_id=#{client_id}&count=50").body)
+            end
+            break
+          end
+          puts "wasn't number #{i}, it was #{thing['data'][i]['username']}"
+          i += 1
         end
-       else
-         []
+        feed
+      rescue
+        []
       end
     end
 

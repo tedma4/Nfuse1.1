@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 #This says that the messages'resources are apart of the conversation
-  resources :conversations do
-    resources :messages, only: [:create]
-  end
+  # resources :conversations do
+  #   resources :messages, only: [:create]
+  # end
 
   resources :callback_links
 
@@ -12,22 +12,25 @@ Rails.application.routes.draw do
     end
     # post to this new controller.
     resources :nfuse_pages
-    resources :conversations
+    # resources :conversations
     resources :shouts
     # resources :comments do
     #   resources :comments
     # end
     member do
-      get :following, :followers, :bio, :feed, :settings, :explore, :explore_users, :nfuse_page, :vue, :biz_page_hub, :all_users_and_pages, :user_likes
+      get :following, :followers, :bio, :feed, 
+      :settings, :explore, :explore_users, :nfuse_page, 
+      :vue, :biz_page_hub, :all_users_and_pages, :user_likes
     end
   end
   resources :comments do
     resources :comments
   end
 
-  resources :pages do
+  resources :pages, except: :index do
     resources :comments
   end
+    get 'all_pages', to: 'pages#index', as: 'all_pages'
   
   get 'show_forum', to: "pages#show_forum"
   post 'nfuse_post/:id', to: 'shouts#nfuse_post', as: 'nfuse_post'
@@ -79,12 +82,14 @@ Rails.application.routes.draw do
   #   end
   # end
   
-  resources :contacts, path: 'contact_us', only: [:new, :create]
+  resources :contacts, path: 'contact_us', only: [:create]
+  get 'contact_us', to: 'contacts#new'
   resources :sessions,                  only: [:new, :create, :destroy]
   resources :relationships,             only: [:create, :destroy]
   resources :password_resets
+  get 'password_reset', to: 'password_resets#new'
   resources :activities, path: 'notifications'
-  post 'activities/read_all_notifications'
+  get 'activities/individual_activity'
   # Authentication and Settings
   get '/signup',       to: 'users#new'
   get '/login',        to: 'sessions#new', as: :signin
@@ -98,18 +103,15 @@ Rails.application.routes.draw do
   
   # Static pages
   get '/help',              to: 'pages#help'
-  get '/about',             to: 'pages#about'
-  get '/feedback',          to: 'pages#feedback'
-  get '/terms',             to: 'pages#terms'
+  # get '/about',             to: 'pages#about'
   get '/privacy',           to: 'pages#privacy'
-  get '/qanda',             to: 'pages#qanda'
   get '/preview',           to: 'shouts#preview'
 
   get '/contacts', to: 'contacts#new'
 
   get '/feed_content', to: 'users#feed_content', as: :feed_content
-  get "searchuser" => "searches#index"
   get '/search', to: 'searches#searchcontent'
+  get '/random_search', to: 'searches#random_search'
 
   #  OmniAuth * Registrations
   # if user.id.present?
@@ -136,7 +138,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   #COMPANIES
-  get'/testing_the_new_sortable_pages_per_user_for_some_category', to: 'pages#test_page'
   get'/my_top_50', to: 'pages#mytop50'
   get'/most_popular', to: 'pages#mostpopular'
   get'/random', to: 'pages#random'
@@ -159,6 +160,21 @@ Rails.application.routes.draw do
   get 'fashion', to: 'pages#fashion_connector'
   #####YOUTUBERS
   get 'youtubers', to: 'pages#youtubers'
+
+  #####YOUTUBERS
+  get 'news', to: 'pages#news_connector'
+  #####YOUTUBERS
+  get 'fitness', to: 'pages#fitness_connector'
+  #####YOUTUBERS
+  get 'nerdish', to: 'pages#nerdish_connector'
+  #####YOUTUBERS
+  get 'shopping', to: 'pages#shopping_connector'
+  #####YOUTUBERS
+  get 'wedding', to: 'pages#wedding_connector'
+  #####YOUTUBERS
+  get 'animals', to: 'pages#animals_connector'
+  #####YOUTUBERS
+  get 'instagramers', to: 'pages#instagramers_connector'
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 

@@ -3,13 +3,18 @@
   <% if @comment.new_record? %>
     alert('Your comment cannot be saved.');
   <% else %>
-    $('#absolute_postition_test').modal('toggle');
-    $('.media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
-    $('#comment_body').val('');
+    $('#new-topic').modal('toggle');
+    $('#media-list').prepend("<%= j render(partial: 'comments/comment', locals: {comment: @comment}) %>");
+    $('#newForumPicUpload').val('')
+    $('#url_body').val('')
+    $('#shout_content').val('')
+    $('#comment_topic_title').val('')
+    $('#preview').empty()
+    $('#forum_post_pic_preview').empty()
   <% end %>
 <% else %>
     $('ul.sub_<%= @comment.parent.id %>_comments').prepend("<%= j render(partial: 'comments/sub_comment', locals: {this: @comment}) %>");
-    $('#comment_body').val('');
-
-
+    $('.sub_comment_image_upload_<%= @comment.parent.id %>').val('');
+    $('.sub_comment_url_upload_<%= @comment.parent.id %>').val('');
+    $('.sub_comment_message_<%= @comment.parent.id %>').val('');
 <% end %>

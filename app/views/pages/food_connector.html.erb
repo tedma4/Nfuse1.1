@@ -1,12 +1,12 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
+<section id="profile-grid" class="container-fluid">
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+</section>
+<div id="paginate_only_once">
+  <a href="/food?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
 
-<% w = ['allrecipes', 'cookingdotcom', 'foodnetwork', 'thekitchn', 'opentable', 'tasteofhome', 'epicurious', 'grubhub', 'seamless', 'yummly', 'huffingtonpostfood', 'fooddotcom', 'bonappetit', 'weightwatchers', 'foodandwine', 'thechew', 'americastestkitchen', 'ironchefamerica'] %>
-
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
-<%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>

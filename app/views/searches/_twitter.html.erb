@@ -1,27 +1,27 @@
-<% if post.has_media? %>
-  <% if post.type == 'animated_gif' || post.type== 'video' %>
-    <div class="center">
-      <video width="100%" controls autoload="none" poster=<%= post.image %> >
-        <source src="<%= post.video %>" type='video/mp4' />
-        <source src="<%= post.video %>" type='video/ogv' />
-      </video>
-    </div>
-  <% elsif post.type == 'photo' %>
-    <div class="timeline-user-box">
-      <%= image_tag(post.image, :class => "image_post") %>
-    </div>
+<div class="timeline-user-box">
+  <% if post.has_media? %>
+    <% if post.type == 'animated_gif' || post.type== 'video' %>
+        <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+          <source src="<%= post.video %>" type='video/mp4' />
+          <source src="<%= post.video %>" type='video/ogv' />
+        </video>
+    <% elsif post.type == 'photo' %>
+      <div class="timeline-user-box">
+        <%= image_tag(post.image, :class => "image_post") %>
+      </div>
+    <% end %>
+  <% elsif post.has_video_url? %>
+    <iframe
+    id="ytplayer"
+    type="text/html"
+    width="100%"
+    height="225"
+    src="https://www.youtube.com/embed/<%= post.twitter_url_video %>"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
   <% end %>
-<% elsif post.has_video_url? %>
-  <iframe
-  id="ytplayer"
-  type="text/html"
-  width="100%"
-  height="225"
-  src="https://www.youtube.com/embed/<%= post.twitter_url_video %>"
-  frameborder="0"
-  allowfullscreen>
-  </iframe>
-<% end %>
-<div class="center">
-  <%= post.text %>
 </div>
+<p>
+  <%= post.text %>
+</p>

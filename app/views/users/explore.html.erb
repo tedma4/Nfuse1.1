@@ -1,90 +1,181 @@
-<style>
-.centering_search {
-  margin-top: 10%;
-}
-.row_top_padding {
-	padding-top: 10px
-}
-
-#search_explore {
-
-}
-
-#search_explore input[type="text"] {
-    background-color: rgba(19, 19, 19, 0.11);
-    border: 0 none;
-    font: bold 22px Arial,Helvetica,Sans-serif;
-    margin-top: 2px;
-    color: #fff;
-    width: 620px;
-    height: 40px;
-    padding: 6px 15px 6px 10px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    }
-</style>
-<div calss="container">
-	<div class="centering_search">
-		<div class="row">
-			<div class="col-sm-12 center">
-				<div class="col-sm-4 col-sm-offset-4">
-					<%= image_tag('Nfuseexplorebanner.png')%>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-      <div class="col-sm-12 center" >
-        <%= form_tag search_path, method: 'get', id: "search_explore" do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search #Hashtags @Users and Popular Media" %>
+<!-- TOP SEARCH AREA -->
+<section id="explorehead" class="vcenter center container-fluid">
+  <div class="vcell">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="brand-heading heavy">Explore</h1>
+        <%= form_tag search_path, method: 'get', id: "home-search", class: "down search" do %>
+          <% if signed_in? %>
+            <div class="dropdown loggedin">
+              <%= select_tag "selected_option", options_for_select([ "Nfusers", "Pages", "Posts" ], params[:selected_option]), id:"searchdrop" %>  
+            </div>
+          <% else %>
+            <a class="ilink randomize loggedout" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
+          <% end %>
+          <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
+          <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+          <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
         <% end %>
       </div>
-		</div>
+    </div>
+  </div>
+  <div class="bg"></div>
+</section>
+<section id="explorelist" class="container-fluid clearfix">
+  <div class="row">
+    <article id="users" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to explore_users_user_path(current_user) do %>
+        <h3>Nfusers</h3>
+        <p>All users throughout Nfuse.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="vue" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to my_top_50_path do %>
+        <h3>My Vue</h3>
+        <p>Pages you've followed.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="random" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to random_path do %>
+        <h3>Random</h3>
+        <p>Discover new content.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="trending" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to trending_path do %>
+        <h3>Trending</h3>
+        <p>What's being seached today.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="popular" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to most_popular_path do %>
+        <h3>Popular</h3>
+        <p>The most popular content, ever.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="business" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to businessconnector_path do %>
+        <h3>Businesses</h3>
+        <p>Content from the top companies.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="youtubers" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to youtubers_path do %>
+        <h3>youtubers</h3>
+        <p>The best of YouTube</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="celebrities" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to celebrities_path do %>
+        <h3>celebrities</h3>
+        <p>The most popular people</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="fashion" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to fashion_path do %>
+        <h3>fashion</h3>
+        <p>For the fashion conscious</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="music" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to music_path do %>
+        <h3>music</h3>
+        <p>All the top artist</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="food" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to food_path do %>
+        <h3>food</h3>
+        <p>For all the foodies out there</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="tv" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to tv_shows_path do %>
+        <h3>tv</h3>
+        <p>What's hot on TV</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="travel" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to travel_path do %>
+        <h3>travel</h3>
+        <p>Top travel destinations</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="sports" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to sports_path do %>
+        <h3>sports</h3>
+        <p>The best teams and athletes</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="news" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to news_path do %>
+        <h3>news</h3>
+        <p>What's new in the world</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="health" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to fitness_path do %>
+        <h3>health / Fitness</h3>
+        <p>Eat right & stay fit</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="animals" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to animals_path do %>
+        <h3>animals</h3>
+        <p>Lions, tigers & house cats</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="nerdish" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to nerdish_path do %>
+        <h3>nerdish</h3>
+        <p>Science & History</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="instagram" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to instagramers_path do %>
+        <h3>instagram</h3>
+        <p>The top content from Instagram</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="wedding" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to wedding_path do %>
+        <h3>wedding</h3>
+        <p>I do.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="shopping" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to shopping_path do %>
+        <h3>shopping</h3>
+        <p>Shopaholics beware</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
 
-		<div class="row">
-			<div class="col-sm-12 center">
-				<div class="row row_top_padding">
-					<div class="col-md-6 col-md-offset-3">
-					  <%= link_to 'Users', explore_users_user_path(current_user), class: "btn btn-link-2" %>
-            <%= link_to 'My Vue', my_top_50_path, class: "btn btn-link-2" %>
-            <%= link_to 'Trending', trending_path, class: "btn btn-link-2" %>
-            <%= link_to 'Most Popular', most_popular_path, class: "btn btn-link-2" %>
-            <%= link_to 'Random', random_path, class: "btn btn-link-2" %>
-					</div>
-				</div>
-        <div class="row row_top_padding">
-          <div class="col-md-6 col-md-offset-3">
-            <%= link_to 'Businesses', businessconnector_path, class: "btn btn-link-2" %>
-            <%= link_to 'Youtubers', youtubers_path, class: "btn btn-link-2" %>
-            <%= link_to 'Celebrities', celebrities_path, class: "btn btn-link-2" %>
-            <%= link_to 'Fashion', fashion_path, class: "btn btn-link-2" %>
-            <%= link_to 'Music', music_path, class: "btn btn-link-2" %>
-          </div>
-        </div>
-        <div class="row row_top_padding">
-          <div class="col-md-6 col-md-offset-3">
-            <%= link_to 'Food', food_path, class: "btn btn-link-2" %>
-            <%= link_to 'Tv', tv_shows_path, class: "btn btn-link-2" %>
-            <%= link_to 'Travel', travel_path, class: "btn btn-link-2" %>
-            <%= link_to 'Sports', sports_path, class: "btn btn-link-2" %>
-            <%= link_to 'News', travel_path, class: "btn btn-link-2" %>
-          </div>
-        </div>
-        <div class="row row_top_padding">
-          <div class="col-md-6 col-md-offset-3">
-            <%= link_to 'Health & Fitness', food_path, class: "btn btn-link-2" %>
-            <%= link_to 'Animals', tv_shows_path, class: "btn btn-link-2" %>
-            <%= link_to 'Nerdish', travel_path, class: "btn btn-link-2" %>
-            <%= link_to 'Best Instagram', sports_path, class: "btn btn-link-2" %>
-            <%= link_to 'Wedding', travel_path, class: "btn btn-link-2" %>
-            <%= link_to 'Shopping', sports_path, class: "btn btn-link-2" %>
-          </div>
-        </div>
-			</div>
-		</div>
-	</div>
 </div>
+</section>
+
+<script>
+// $(document).ready(function() {
+//   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+// });
+</script>

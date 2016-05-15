@@ -1,7 +1,7 @@
 <% if @post_entry.has_media? %>
   <% if @post_entry.type == 'video' || @post_entry.type == "animated_gif" %>
     <div class="center">
-      <video width="100%" controls preload="none" poster=<%= @post_entry.image %> >
+      <video controls preload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
         <source src="<%= @post_entry.video %>" type='video/mp4' />
         <source src="<%= @post_entry.video %>" type='video/ogv' />
       </video>

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include UserOptions
   include Authentication
   include PublicActivity::Model
+  # attr_reader :avatar_remote_url
   # tracked except: :destroy, owner: ->(controller, model) { controller && controller.current_user }, recipient: ->(controller, model) {model && model.user}
 
   # 
@@ -33,14 +34,14 @@ class User < ActiveRecord::Base
   before_create :downcase_email
   before_create :create_remember_token
 
-  has_attached_file :avatar, styles: { larger: "280x280#", medium: "300x300#", thumb: "50x50#", followp: "512x512#", small: "32x32#" }, 
-                                default_url: "default_:style.png"#,
+  has_attached_file :avatar, styles: { regular: "250x250#", large: "300x300#", small: "50x50#"}, 
+                                default_url: "def.jpg"
                                 # storage: :s3,
                                 # s3_host_name: 'aa1cee2z3awja3v.c97qscmi7euu.us-west-1.rds.amazonaws.com',
                                 # s3_credentials: 'config/s3.yml'
 
   has_attached_file :banner, styles: { larger: "851x315#", medium: "300x154#" }, 
-                                default_url: "default2_:style.png"
+                                default_url: "def_banner.jpg"
   # 
   # Validations
   # 
@@ -80,17 +81,16 @@ class User < ActiveRecord::Base
   # ? methods are meant to return a boolean
 
   def self.omniauth(auth)
- 
-    where(auth.slice(:providers, :uid)).first_or_initialize.tap do |user|
+    User.where(providers: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.providers = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.user_name =  auth.info.email.split('@').shift + [*('a'..'z')].sample(4).join
-      user.password = auth.credentials.token
-      user.password_confirmation = auth.credentials.token
-      user.avatar_file_name = auth.info.image.gsub('square', 'large')
+      user.password = auth.credentials.token.to_s.first(70)
+      user.password_confirmation = auth.credentials.token.to_s.first(70)
+      user.avatar_remote_url= auth.info.image.gsub('square', 'large')
       # user.expires_at = Time.at(auth.credentials.expires_at)
       user.save!
       Token.create(provider: auth.provider, uid: auth.uid, access_token: auth.credentials.token, user_id: user.id)
@@ -139,6 +139,21 @@ class User < ActiveRecord::Base
   def self.all_except(other_user)
     result = where.not("id = ?",other_user.id).order("created_at DESC")
     result.nil? ? [] : result
+  end
+
+  def avatar_remote_url=(url_value)
+    first_do = URI.parse(url_value)
+    first_do.scheme = 'https'
+    self.avatar = first_do.to_s
+    # Assuming url_value is http://example.com/photos/face.png
+    # avatar_file_name == "face.png"
+    # avatar_content_type == "image/png"
+    @avatar_remote_url = url_value
+  end
+
+  def set_notifications_to_true(id)
+    PublicActivity::Activity.where(recipient_id: id).update_all(:read => true)
+    PublicActivity::Activity.includes(:owner, :trackable).where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: id).update_all(:read => true)
   end
 
   private

@@ -1,0 +1,35 @@
+<% content_for :for_head do %>
+  <title>Nfuse | Discover new social media post and pages</title>
+  <meta name="description" content="Explore and discover some of the most trendy post on multiple social media sites.">
+<% end %>
+<!-- MASON JAR -->
+<% if signed_in? %>
+  <!-- Do something else when logged in now -->
+  <%#= render partial: "searches/show"%>
+<% end %>
+<% if @timeline.present? %>
+  <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <% @timeline.each do |post| %>
+      <%= render partial: "searches/post", locals: {post: post} %>
+    <% end %>
+    <% if !signed_in? %>
+      <div class="item">
+        <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+      </div>
+    <% end %>
+  </section>
+<% else %>
+  <div class="center no_timeline_padding">
+    <p> Sorry, We couldn't find anything like that </p>
+    <p> Try searching again </p>
+    <%= image_tag("sadface.fw.png", size:"100x100") %>
+  </div>
+<% end %>
+
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>

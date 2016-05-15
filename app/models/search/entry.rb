@@ -19,7 +19,7 @@ module Search
         when 'twitter'
           @post.attrs[:user][:profile_image_url]
         when 'youtube'
-          "youtubeblue.fw.png"
+          "YouTube.jpg"
         when 'instagram'
           @post["user"]['profile_picture']
       end

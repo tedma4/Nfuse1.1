@@ -1,171 +1,141 @@
-  <li class="media comment">
-    <a class="pull-left" href="#">
+<!-- TOPIC -->
+<li class="media comment item topic_post">
+  <header class="post_header">
+    <div class="user forum_post_header">
       <!-- Needs to be user image with link to profile -->
-      <% if comment.user.avatar_file_name.present? && comment.user.avatar_file_name.include?('graph.facebook.com') %>
-        <%= image_tag comment.user.avatar_file_name, class:"media-object img-circle", title: "Edit Image" %>
-      <% else %>
-        <%= image_tag comment.user.avatar(:thumb), class: "media-object img-circle",  title: "Edit Image" %>
-      <% end %>
-      <!--<img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/kurafire/128.jpg" alt="profile">-->
-    </a>
-    <div class="media-body">
-      <div class="well well-lg">
-        <!-- Username goes here -->
-        <h4 class="media-heading text-uppercase reviews"><%= comment.user.user_name%></h4>
-        <ul class="media-date text-uppercase reviews list-inline">
-          <!-- timeago in words of the comment -->
-          <li class="dd"><%= time_ago_in_words(comment.created_at) %></li>
-        </ul>
-<!--         <div class="embed-responsive embed-responsive-16by9">
-          This will be the media placement
-          <iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" allowfullscreen></iframe>
-        </div> -->
-        <% if !comment.url.blank? %>
-          <p> <%= comment.url_html %></p>
-        <% elsif !comment.image_upload.blank? %>
-          <%= image_tag comment.image_upload(:medium) %>
+      <a href="/users/<%= comment.user.user_name %>/feed">
+        <% if comment.user.avatar_file_name.present? && comment.user.avatar_file_name.include?('graph.facebook.com') %>
+          <%= image_tag comment.user.avatar_file_name, class: "media-object img-circle", title: "Edit Image" %>
         <% else %>
+          <%= image_tag comment.user.avatar(:small), class: "media-object img-circle",  title: "Edit Image" %>
         <% end %>
-        <% unless comment.body.blank? %>
-          <p class="media-comment">
-            <%= comment.body %>
-          </p>
-        <% end %>
-        <%#= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class="btn btn-info btn-circle text-uppercase"  %>
-        <a class="btn btn-info btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Comments" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-        <% if comment.children.any? %>
-          <a class="btn btn-warning btn-circle text-uppercase" data-toggle="modal" href="#<%= comment.id %>Comments"><span class="glyphicon glyphicon-comment"></span> <%= comment.children.count %> comment</a>
-        <% end %>
-        <% if signed_in? %>
-          <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
-            <%= link_to image_tag("smilingpurple.fw.png", size: "24x24"),
-              dislike_this_comment_path(id: comment.id,
-              owner_id: comment.user_id,
-              comment_id: comment.id,
-              owner_type: 'User'),
-              method: :delete, remote: true %>
-          <% else %>
-            <%= link_to image_tag("smilinggray.fw.png", size: "24x24"),
-              like_this_comment_path(id: comment.id,
-              owner_id: comment.user_id,
-              comment_id: comment.id,
-              owner_type: 'User'),
-              method: :post, remote: true %>
+      </a>
+      <a href="/users/<%= comment.user.user_name %>/feed" class='topic_user'><%= comment.user.user_name%></a>
+    </div>
+    <h5 class="media-heading reviews"><%= comment.topic.nil? ? 'I love Nfuse' : comment.topic.empty? ? 'I Love Nfuse' : comment.topic %>
+    </h5>
+  </header>
+  <main class="post_content">
+    <div class="timeline-user-box">
+      <% if !comment.url.blank? %>
+        <%= comment.url_html %>
+      <% elsif !comment.image_upload.blank? %>
+        <%= image_tag comment.image_upload(:thumb) %><br>
+      <% else %>
+      <% end %>
+      <% unless comment.body.blank? %>
+        <p class="media-comment">
+          <%= comment.body %>
+        </p>
+      <% end %>
+    </div>
+  </main>
+  <footer class="post_actions">
+    <a class="commentPost" data-toggle="modal" data-target=".<%= comment.id %>Comments" href="#" rel="nofollow">
+      <i class="fa"></i><span><%= comment.children.size %></span>
+    </a>
+      <% if signed_in? %>
+        <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
+          <%= link_to dislike_this_comment_path(id: comment.id,
+                owner_id: comment.user_id,
+                comment_id: comment.id,
+                owner_type: 'User',
+                has_parent: false),
+                method: :delete, remote: true, class: 'likePost liked' do %>
+            <i class="fa"></i>
+            <span class="liked-comment-<%= comment.id %>">
+              <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+            </span>
           <% end %>
         <% else %>
-          <%= image_tag("smilinggray.fw.png", size: "24x24") %>
+          <%= link_to like_this_comment_path(id: comment.id,
+                owner_id: comment.user_id,
+                comment_id: comment.id,
+                owner_type: 'User',
+                has_parent: false),
+                method: :post, remote: true, class: 'likePost' do %>
+            <i class="fa"></i>
+            <span class="liked-comment-<%= comment.id %>">
+              <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+            </span>
+          <% end %>
         <% end %>
-        <a id="comment-<%=comment.id%>">
-          <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+      <% else %>
+        <a class="likePost" href="#" rel="nofollow">
+          <i class="fa"></i>
+          <span>
+            <%= ActsAsVotable::Vote.where(votable_id: comment.id, votable_type: 'Comment').size %>
+          </span>
         </a>
-      </div>
-    </div>
+      <% end %>
+    <a class="timeStamp" href="javascript:void(0)">
+      <i class="fa"></i><span><%= time_ago_in_words(comment.created_at) %></span>
+    </a>
+  </footer>
 
-<div id="<%= comment.id %>Comments" class="modal fade">
-  <div class="modal-fade">
-    <div class="modal-dialog">
+  <!-- COMMENTS MODAL -->
+  <div class="modal fade <%= comment.id %>Comments" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button class="close" data-dismiss="modal">×</button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="notificationslabel"><%= comment.topic.nil? ? 'I love Nfuse' : (comment.topic.empty? ? 'I Love Nfuse' : comment.topic) %></h4>
         </div>
-        <div class="modal-body-new-post">
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="span6">
-                <div class="logowrapper">
-                  <div class="Alignthisorelse">
-                    <div class="container post-padding">
-                      <div class="col-sm-6 form-box wow fadeInUp">
-                        <div class="form-top-new-post">
-                          <div class="form-bottom">
-                            <ul class="media-list sub_<%= comment.id %>_comments">
-                            <% comment.children.each do |this| %>
-                            <%# comment.children.includes(:user).each do |this| %>
-                            <%# user = User.find(this.user_id) %>
-                              <%= render partial: 'comments/sub_comment', locals: {this: this} %>
-                            <% end %>
-                            </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="modal-body container-fluid">
+          <!-- COMMENT -->
+          <ul id="comments-list" class="row sub_<%= comment.id %>_comments">
+            <% comment.children.each do |this| %>
+              <%# comment.children.includes(:user).each do |this| %>
+              <%# user = User.find(this.user_id) %>
+              <%= render partial: 'comments/sub_comment', locals: {this: this} %>
+            <% end %>
+          </ul>
         </div>
-      </div>
-      <% if signed_in? %>
-        <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form" }, remote: true do |f| %>
-          <%= f.hidden_field :parent_id %>
-          <%= f.hidden_field :user_id %>
+        <% if signed_in? %>
           <div class="modal-footer">
-            <div class="popup-messages-footer">
-              <%= f.text_area :body,  id: "status_message",  placeholder: "Type a message...", rows: "10", cols: "40" %>
-              <div id="open_url_field" class="collapse ">
-                <%= f.text_area :url,  id: "status_message",  placeholder: "Enter link.", rows: "10", cols: "40" %>
-              </div>
-              <div class="btn-footer">
-                <button class="bg_none">
-                  <i class="glyphicon glyphicon-camera replyUpload">
-                    <input id="newPostPictureInput" placeholder="Pic" type="file" class="upload" name="comment[image_upload]">
-                  </i> 
-                </button>
-                <a data-toggle="collapse" href="#open_url_field">
-                  <button class="bg_none"><i class="glyphicon glyphicon-link"></i> </button>
-                </a>
-                <button type="submit" class="bg_none pull-right submit_<%= comment.id unless comment.nil? %>_sub_comment">
-                  <i class="glyphicon glyphicon-ok-sign"></i>   
-                </button>
-              </div>
-            </div>
+            <a class="user">
+              <% if current_user.avatar_file_name.present? && current_user.avatar_file_name.include?('graph.facebook.com') %>
+                <%= image_tag current_user.avatar_file_name %>
+              <% else %>
+                <%= image_tag current_user.avatar(:small) %>
+              <% end %>
+            </a>
+              <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form", class: "dropup minimal new_comment forum-image-upload sub_comment_form-#{comment.id}"}, remote: true do |f| %>
+                <%= f.hidden_field :parent_id %>
+                <%= f.hidden_field :user_id %>
+                <label for="forum_sub_comment_image_upload" class="forum_image_upload">
+                  <i class="fa fa-photo"></i>
+                  <%= f.file_field :image_upload, class: "upload sub_comment_image_upload_#{comment.id}" %>
+                </label>
+                <a id="link-drop-link" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" href="#"><i class="fa fa-link"></i></a>
+                <div id="link-drop" class="dropdown-menu" aria-labelledby="link-drop-link">
+                  <textarea id="subcomment_url_upload" class="form-control sub_comment_url_upload_<%= comment.id %>" name="comment[url]" onchange="previewUrl()" placeholder="Paste URL Here" type="search"></textarea>
+                </div>
+                  <textarea id="status_message" class="sub_comment_message_<%= comment.id %>" placeholder="Type a message..." rows="10" cols="40" name="comment[body]"></textarea>
+                <button type='submit' class='submit'>Done</button>
+              <% end %>
           </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-    </div>
-  </div>
-
-
-  </li>
+</li>
+<script>
+    $('.timeline-user-box p').each(function(){
+      if($(this).text() === ''){$(this).remove()}
+    });
+</script>
 
 <script>
-// $( "#<%= comment.id unless comment.nil? %>Comments" ).on('shown.bs.modal', function(e){
-//   // console.log('Setting up faye client');
-//   client = new Faye.Client('/faye');
-
-//   // client.addExtension({
-//   //   outgoing: function(message, callback) {
-//   //     message.ext = message.ext || {};
-//   //     message.ext.csrfToken = $('meta[name=csrf-token]').attr('content');
-//   //     return callback(message);
-//   //   }
-//   // });
-
-//   jQuery(function() {
-//     // console.log('test r');
-//     $('.submit_<%= comment.id unless comment.nil? %>_sub_comment').submit(function() {
-//       // console.log('sub comment submit')
-//       return $("button[type='submit']").val('Sending...').prop('disabled', true);
-//     });
-//     // try {
-//     //   client.unsubscribe('/comments');
-//     // } catch (_error) {
-//     //   if (typeof console !== "undefined" && console !== null) {
-//     //     console.log("Can't unsubscribe.");
-//     //   }
-//     // }
-//     return client.subscribe('/comments', function(payload) {
-//       if (payload.message) {
-//         return $('.sub_comments').prepend(payload.message);
-//       }
-//     });
-
-//     if ($( "#<%= comment.id unless comment.nil? %>Comments" ).modal('toggle')) {
-//       client.unsubscribe('/comments');
-//     }
-//   });
-// });
-
+ $('.sub_comment_form-<%= comment.id %>').submit(function(event){
+    var form_cannot_be_blank = $('.sub_comment_image_upload_<%= comment.id %>').val() != '' || $('.sub_comment_url_upload_<%= comment.id %>').val() != '' || $('.sub_comment_message_<%= comment.id %>').val() != ''
+    if (form_cannot_be_blank){
+      return true;
+    } else {
+    event.preventDefault();
+    return false;
+    }
+  });
 </script>

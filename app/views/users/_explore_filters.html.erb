@@ -15,9 +15,9 @@ form {
     <% end %>
   <% else %>
     <%= form_for(current_user.relationships.build(followed_id: @page.id, follow_type: @page.class.name), remote: true) do |f| %>
-      <%# if Page.find_by(id: @page.id, thing_name: @compname).nil? %>
+      <%# if Page.find_by(id: @page.id, full_name: @compname).nil? %>
         <%# Page.find_by(id: @page.id).update_attributes(
-                   thing_name: @compname,
+                   full_name: @compname,
            twitter_handle: @comp,
            youtube_handle: @comp_url,
            instagram_handle: @incomp) %>

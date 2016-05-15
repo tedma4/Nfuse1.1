@@ -13,7 +13,7 @@
   <% elsif @post_entry.is_video? %>
     <div class="timeline-user-box">
       <video 
-        poster=<%= @post_entry.pic_url %>
+        style="background:transparent url(<%= @post_entry.pic_url %>) no-repeat 50% 50%;"
         preload="none"
         id="ytplayer" 
         type="video/mp4" 

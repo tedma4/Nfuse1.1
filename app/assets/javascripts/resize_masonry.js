@@ -8,7 +8,6 @@ function resizeMasonry() {
     }
     else if(box > 400 && 825 > box){
       $('.individual_post').css("width", "46.8%");
-      al
     }
     else if(box > 825 && 1250 > box){
       $('.individual_post').css("width", "31%");

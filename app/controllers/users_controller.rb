@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   #This ensures that a user is the correct user for a particilar profile
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :user_from_params, only: [:show, :destroy, 
-                :feed, :explore, :explore_users, :following, 
-                :followers, :nfuse_page, :vue, :biz_page_hub, 
+  before_action :user_from_params, only: [:show, :destroy,
+                :feed, :explore, :explore_users, :following,
+                :followers, :nfuse_page, :vue, :biz_page_hub,
                 :all_users_and_pages, :user_likes ]
 
   def index
@@ -42,7 +42,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    #This creats a new user
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -53,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def settings
-    #This allows a user to add a new network 
+    #This allows a user to add a new network
     @display_networks = false
   end
 
@@ -106,16 +105,12 @@ class UsersController < ApplicationController
 
   def feed_builder
     @providers          = Providers.for(current_user)
-    # @token = []
-    # if @user.tokens.any?
-    #   @token              = @user.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
-    # else
-    #   @token
-    # end
+    @timeline = nil
     feed                = Networks::Timeline.new(@user)
-    @timeline           = feed.construct(params).sort { |a, b| b.created_time <=> a.created_time }
+    posts               = feed.construct(params)
+    @timeline           = posts.sort { |a, b| b.created_time <=> a.created_time } unless posts.nil?
     @unauthed_accounts  = feed.unauthed_accounts
-
+    @timeline
     # This is for pagination
     # @load_more_url = feed_content_path(
     #     twitter_pagination:     feed.twitter_pagination_id,
@@ -129,50 +124,54 @@ class UsersController < ApplicationController
     #     id: @user.id)
   end
 
+  # timeline needs a hash with an array of posts and
+  # the corresponding picture to go with those posts
   def biz_page_hub
-      timeline = []
-      ids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
-      unless ids.empty?
-        @pages = Page.where(id: ids)
-        @pages.find_each do |page|
-          feed=Biz::Timeline.new(page)
-          timeline << feed.construct(params)
-        end
+    timeline = []
+    ids = current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+    unless ids.empty?
+      @pages = Page.where(id: ids)
+      @pages.find_each do |page|
+#         timeline[:page_avatar] = page.profile_pic
+        feed=Biz::Timeline.new(page)
+        timeline << feed.construct(params)[:page_feeds]
       end
-      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    end
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 
   def explore
   end
 
   def explore_users
-    @providers = Providers.for(@user)
-    timeline = []
-    # @token = []
-    # if current_user.followed_users.any?
-    #   current_user.followed_users.each do |i|
-    #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+    # @providers = Providers.for(@user)
+    # timeline = []
+    # # @token = []
+    # # if current_user.followed_users.any?
+    # #   current_user.followed_users.each do |i|
+    # #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+    # #   end
+    # #   unless @token.empty?
+    # #     @token = @token[0]
+    # #   else
+    # #     @token
+    # #   end
+    # # else
+    # #   @token
+    # # end
+    # ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
+    # ids << current_user.id
+    # unless ids.empty?
+    #   @users = User.where.not(id: ids)
+    #   @users.find_each do |user|
+    #     feed=Networks::Timeline.new(user)
+    #     timeline << feed.construct(params)
+    #     @unauthed_accounts = feed.unauthed_accounts
     #   end
-    #   unless @token.empty?
-    #     @token = @token[0]
-    #   else
-    #     @token
-    #   end
-    # else
-    #   @token
     # end
-    ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
-    ids << current_user.id
-    unless ids.empty?
-      @users = User.where.not(id: ids)
-      @users.find_each do |user|
-        feed=Networks::Timeline.new(user)
-        timeline << feed.construct(params)
-        @unauthed_accounts = feed.unauthed_accounts
-      end
-    end
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
-    render "explore_users"
+    # @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    # render "explore_users"
+    @users = User.where.not(id: current_user.id)
   end
 
   def bio
@@ -202,14 +201,19 @@ class UsersController < ApplicationController
   end
 
   def vue
-    @title = 'Vue'
+    # all_pages = []
+    # seen_pages = Page.where(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    # non_seen_pages = Page.where.not(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
+    # all_pages << seen_pages 
+    # all_pages << non_seen_pages 
+    # all_pages.flatten.each do |page|
   end
 
   def all_users_and_pages
     @providers = Providers.for(current_user)
     timeline = []
     page_timeline = []
-    ids =  current_user.relationships.where(follow_type: 'User').collect(&:id)
+    ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
     pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
     if ids.any? && pids.any?
       @users = User.where(id: ids)
@@ -222,7 +226,7 @@ class UsersController < ApplicationController
       @pages = Page.where(id: pids)
       @pages.find_each do |page|
         feed=Biz::Timeline.new(page)
-        page_timeline << feed.construct(params)
+        page_timeline << feed.construct(params)[:page_feeds]
       end
       @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
       @timeline = (@page_timeline + @user_timeline).sort { |a, b| b.created_time <=> a.created_time}
@@ -241,9 +245,9 @@ class UsersController < ApplicationController
         @pages = Page.where(id: pids)
         @pages.find_each do |page|
           feed=Biz::Timeline.new(page)
-          page_timeline << feed.construct(params)
+          page_timeline << feed.construct(params)[:page_feeds]
         end
-      end    
+      end
       @timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
     else
       @timeline
@@ -254,7 +258,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def update_error  
+  def update_error
     redirect_to feed_user_path(@user)
   end
 end

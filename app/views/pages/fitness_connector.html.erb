@@ -1,0 +1,12 @@
+<section id="profile-grid" class="container-fluid">
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+</section>
+<div id="paginate_only_once">
+  <a href="/fitness?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>

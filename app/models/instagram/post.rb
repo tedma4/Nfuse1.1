@@ -19,7 +19,7 @@ module Instagram
     end
 
     def avatar
-      @user.avatar(:thumb)
+      @user.avatar(:small)
     end
 
     def username

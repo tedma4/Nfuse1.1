@@ -1,0 +1,382 @@
+<% if signed_in? && !@user.nil?%>
+  <!-- EDIT MODAL -->
+  <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editlabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="editlabel">Upload a New Profile Pic or Banner</h4>
+        </div>
+        <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
+          <div id="profile-images" class="modal-body">
+            <div class="row">
+              <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
+                <h5>Profile Picture</h5>
+                <small>At least 200 x 200</small>
+                <div id="user_avatar_change">
+                  <label for="user_avatar_upload">
+                    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+                      <%= image_tag @user.avatar_file_name, size: '50x50' %>
+                    <% else %>
+                      <%= image_tag @user.avatar(:large) %>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :avatar, id: "user_avatar_upload", placeholder: "Snip", type: "file", class: "upload" %>
+                </div>
+              </div>
+              <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
+                <h5>Profile Banner</h5>
+                <small>At least 1440 x 787</small>
+                <div id="user_banner_change">
+                  <label for="user_banner_upload">
+                    <%= image_tag @user.banner(:medium), id: "profilebann" %>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :banner, id: "user_banner_upload", placeholder: "Snip", type: "file", class: "upload" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="sumbit" class="btn btn-default">Save</button>
+          </div>
+          <% if controller_name == 'callback_links' %>
+            <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<script>
+  $(function() {
+    $('#user_avatar_upload').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#user_avatar_change').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+  $(function() {
+    $('#user_banner_upload').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#user_banner_change').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+</script>
+    <!-- NEW SHOUT MODAL -->
+  <div class="modal fade" id="sharemodal" tabindex="-1" role="dialog" aria-labelledby="sharelabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="sharelabel">Share a Picture or URL</h4>
+        </div>
+        <%= form_for Shout.new, :html => { :multipart => true, id: "upload_form", role:"form",class: "minimal new_shout" } do |f| %>
+          <div class="modal-body">
+            <div class="row">
+              <div class="image-upload col-xs-12 col-sm-6">
+                <div>
+                  <label for="shout_pic_upload">
+                    <a class="btn btn-default">
+                      Upload Pic/Gif
+                    </a>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :pic, id: 'shout_pic_upload', placeholder: "Pic", type: "file", class: "upload"  %>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <%= f.text_area :url, id: 'url_body', class: "form-control", placeholder: "URL of everything", onChange: 'previewUrl()', type:"search" %>
+              </div>
+              <div class="col-xs-12">
+                <div id="target"></div>
+                <div id="shout_pic_preview"></div>
+                <div id="preview"></div>
+                <%= f.text_area :content, class: "form-control", id: "shout_content", placeholder: "Write a description for your post...", type:"search" %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <% if current_user.followers.any? %>
+                <select name='shout[is_exclusive]' class="c-select">
+                  <option value='0' selected>Feed</option>
+                  <option value="1">Exclusive</option>
+                </select>
+              <% end %>
+            <button type="submit" class="btn btn-default">Share</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function() {
+      $('#shout_pic_upload').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#shout_pic_preview').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+  <script>
+  function load(request) {
+    $('#code').text(request);
+    $('#preview').html(request);
+  }
+
+  function preview(value) {
+    console.log("preview; value = " + value);
+
+    $.ajax({
+      dataType: "html",
+      url: "/preview?url=" + value['url']
+    })
+    .done( function(data){
+      load(data);
+      console.log("preview callback\n" + data);
+    });
+  }
+
+  function previewUrl() {
+    preview({'url':$('#url_body').val()});
+  }
+
+  $('#examples a').click(function() {
+    $('#url_body').focus(); 
+    $('#url_body').val( $(this).attr('href'));
+    previewUrl();
+  });
+
+  $(function () { 
+    $("#url_body").focus();
+    previewUrl();
+  });
+
+  </script>
+
+    <!-- FOLLOWERS MODAL -->
+  <div class="modal fade" id="followersmodal" tabindex="-1" role="dialog" aria-labelledby="followerslabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="followerslabel">Followers</h4>
+        </div>
+        <div class="modal-body">
+          <!-- FOLLOWER -->
+          <% if @user.followers.any? %>
+            <% @user.followers.each do |user| %>
+              <div class="row follower">
+                <div class="col-xs-2 user-img">
+                  <%= image_tag user.avatar(:regular) %>
+                </div>
+                <div class="col-xs-10">
+                  <ul id="user-info">
+                    <li id="user-name"><%= user.full_name %></li>
+                    <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                  </ul>
+                  <ul id="user-stats">
+                    <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                    <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                    <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <% if current_user?(@user) %>
+              <p class='center explore_filters'>Sorry <%= @user.first_name %>, no one is following you yet</p>
+              <p class='center explore_filters'>Try making some posts and see what happens</p>
+            <% else %>
+              <p class='center explore_filters'>Sorry <%= @user.first_name %>, doesn't have and followers yet.</p>
+              <p class='center explore_filters'>How about you be the first</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- FOLLOWING MODAL -->
+  <div class="modal fade" id="followingmodal" tabindex="-1" role="dialog" aria-labelledby="followinglabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="followinglabel">Following</h4>
+        </div>
+        <div class="modal-body">
+        <!-- FOLLOWING -->
+          <% if @user.followed_users.any? %>
+            <% @user.followed_users.each do |user| %>
+              <div class="row following">
+                <div class="col-xs-2 user-img">
+                  <%= image_tag user.avatar(:regular) %>
+                  <img src="/assets/users/def.jpg" alt="User Image"/>
+                </div>
+                <div class="col-xs-10">
+                  <ul id="user-info">
+                    <li id="user-name"><%= user.full_name %></li>
+                    <li id="user-link"><%= link_to "@#{user.user_name}", feed_user_path(user) %></li>
+                  </ul>
+                  <ul id="user-stats">
+                    <li id="user-following">Following: <span><%= user.followed_users.count %></span></li>
+                    <li id="user-followers">Followers: <span><%= user.followers.count %></span></li>
+                    <li id="user-likes">Likes: <span><%= ActsAsVotable::Vote.where(voter_id: user.id).count %></span></li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <% if current_user?(@user) %>
+              <p class='center explore_filters'><%= @user.first_name %>. Why arean't following anyone yet?</p>
+            <% else %>
+              <p class='center explore_filters'>Sorry <%= @user.first_name %>, isn't following anyone yet.</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% elsif params[:controller] == 'pages' && params[:action] != 'home' %>
+  <!-- REQUEST MODAL -->
+  <div class="modal fade" id="requestmodal" tabindex="-1" role="dialog" aria-labelledby="requestlabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="requestlabel">Who or What is Missing?</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <%= form_for Contact.new, html: {id: 'request-form', class: "popupform minimal"} do |f| %>
+              <div class="form-group col-xs-12 col-md-6">
+                <div style='display:none;'>
+                  <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+                </div>
+                <textarea  class="form-control input-lg" id="form-msg" name="contact[message]" placeholder="Message" ></textarea>
+                <p>Nfuse wants to give you the best experience possible, any feedback on what to add or change will be greatly appreciated.</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+          <button type="sumbit" class="btn btn-default" form="request-form">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+<% end %>
+<% unless signed_in? %>
+    <!-- LOGIN FORM -->
+    <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="signinlabel">
+      <div class="loginmodal modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="signinlabel">Log In</h4>
+          </div>
+          <div class="modal-body container-fluid">
+            <div class="row">
+              <form id="signin" class="minimal col-xs-12" accept-charset="UTF-8" action="/sessions" method="post">
+                <div style="display:none;">
+                  <input name="utf8" type="hidden" value="✓">
+                  <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
+                </div>
+                <div class="form-group">
+                  <input class="form-control input-lg" id="email" name="session[email]" placeholder="Email" type="email">
+                  <input class="form-control input-lg" id="password" name="session[password]" placeholder="Password" type="password">
+                </div>
+                <button type="submit" class="btn btn-default animated">Log In!</button>
+                <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Connect</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sign up FORM -->
+    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signuplabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="signuplabel">Sign Up</h4>
+          </div>
+          <div class="modal-body container-fluid">
+            <div class="row">
+              <!-- Signup Form -->
+              <%= form_for(User.new, html: {id: 'signup', class: 'minimal new_user col-xs-12'}) do |f| %>
+                  <div class="error_messages">
+                    <div>
+                      <%= render 'shared/error_messages', object: f.object %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+
+                      <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
+
+                      <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
+
+                      <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
+
+                      <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
+
+                      <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign Up</button>
+                    <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Connect</a>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

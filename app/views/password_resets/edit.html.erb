@@ -1,47 +1,40 @@
-<% provide(:title, "Password Reset") %>
-<style type="text/css">
-  .reset-your-password-padding{
-    margin-top: 2%;
-  }
-  h3 {
-    color: #fff;
-  }
-</style>
-<div class="Alignthisorelse">
-  <div class="container reset-your-password-padding">
-    <div class="col-md-6 col-md-offset-3 form-box wow fadeInUp">
-      <div class="form-top-reset-edit">
-        <div class="form-top-left">
-          <h3><strong>Reset Password<strong></h3>
-            <p>Please enter your new password below</p>
+<% content_for :for_head do %>
+  <title>Nfuse | Login to the largest Mixed Social Media Site</title>
+  <meta name="description" content="Login to the one of the largest social mixers where you can explore new social media post.">
+<% end %>
+<!-- START CONTENT -->
+<section id="" class="content-section container picbg">
+  <div class="row">
+    <header class="col-xs-12 center">
+      <h1 class="heavy">Password Reset</h1>
+      <p class="intro-text">Discover what you've missed since last time.</p>
+    </header>
+    <!-- LOGIN FORM -->
+    <%= form_for @user, :url => password_reset_path(params[:id]), html: {id: "signin", class: "minimal loggedout col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6"} do |f| %>
+      <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @user.errors.full_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
-        <div class="form-top-right">
-          <a href="#"><%= image_tag("lock27lightgray.fw.png", size: "65x65") %></a>
-        </div>
+      <% end %>
+      <div style="display:none;">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token" type="hidden" value="lwP687g7e0wmQZatMtfkwvgC6nSxdruY7oBz2xm2sbs=">
       </div>
-      <div class="form-bottom">
-        <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-          <% if @user.errors.any? %>
-            <div class="error_messages">
-              <h2>Form is invalid</h2>
-              <ul>
-                <% for message in @user.errors.full_messages %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="form-group">
-            <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
-          </div>
-          <div class="form-group">
-            <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
-          </div>
-          <button type="submit" class="btn">
-            Log in!
-          </button>
-        <% end %>
+      <div class="form-group">
+        <input class="form-control input-lg" id="password" name="user[password]" placeholder="Password" type="Password">
+        <input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
       </div>
-    </div>
+      <button type="submit" class="btn btn-default animated">Reset!</button>
+    <% end %>
   </div>
-</div>
+  <!-- Footer -->
+  <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+  <div class="random bg"></div>
+</section>
+<!-- Footer -->
+

@@ -15,7 +15,8 @@ module Biz
       if @page.twitter_handle == 'blank'
         'wired'
       else
-        @page.twitter_handle
+        # @post['user']['profile_picture']
+        'wired'
       end 
     end
 
@@ -24,7 +25,7 @@ module Biz
     end
 
     def username
-      @page.thing_name
+      @page.full_name
     end
 
     def page_link
@@ -50,7 +51,7 @@ module Biz
 
     def is_not_retweeted?
       if @post.attrs.has_key? :retweeted_status
-      @post.attrs[:user][:screen_name] == @post.attrs[:retweeted_status][:user][:screen_name]
+        @post.attrs[:user][:screen_name] == @post.attrs[:retweeted_status][:user][:screen_name]
       else
         true
       end

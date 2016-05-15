@@ -1,203 +1,140 @@
-<div id="masonJar" class="clearfix masonJar">
-  <% cache(["user_activities", @activities.map(&:id)]) do %>
   <% @activities.each do |activity| %>
-  <% cache(activity) do %>
-   <% case activity.attributes['trackable_type'] %>
-   <% when 'Relationship' %>
-    <% if activity.owner.nil? %>
-    <% else %>
-     <div class="individual_post item">
-       <div class="post_main">
-         <ul class="post_header">
-           <li>
-            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-              <%= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-            <% else %>
-             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-            <% end %>
-           </li>
-           <li class="user_name_notifications">
-             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
-           </li>
-         </ul>
-       </div>
-         <% if activity.trackable %>
-           started following You
-         <% else %>
-           Unfollowed You
-         <% end %>
-       <div class="post_content">
-         <div class="created-at">
-           <%= time_ago_in_words(activity.created_at) %> ago
-         </div>
-       </div>
-     </div>
-    <% end %> 
-   <% when 'Comment' %>
-    <% if activity.owner.nil? %>
-    <% else %>
-     <div class="individual_post item">
-       <div class="post_main">
-         <ul class="post_header">
-           <li>
-            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-              <%= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-            <% else %>
-             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-            <% end %>
-           </li>
-           <li class="user_name_notifications">
-             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
-           </li>
-         </ul>
-       </div>
-         <% if activity.trackable %>
-           Tagged you in 
-           <%= link_to activity.trackable.page.page_name, page_path(activity.trackable.page) %>'s 
-           <%= link_to 'page post', comment_path(activity.trackable) %>
-         <% else %>
-           Unfollowed You
-         <% end %>
-       <div class="post_content">
-         <div class="created-at">
-           <%= time_ago_in_words(activity.created_at) %> ago
-         </div>
-       </div>
-     </div>
-    <% end %> 
-   <% when 'User' %>
-     <% if activity.owner.nil? %>
-     <% else %>
-     <% @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
-     <div class="individual_post item">
-       <div class="post_main">
-         <ul class="post_header">
-           <li>
-            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
-              <%= link_to image_tag(activity.owner.avatar_file_name, class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-            <% else %>
-             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-            <% end %>
-           </li>
-           <li class="user_name_notifications">
-             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>
-           </li>
-           <li class="user_name_li">
-             <strong>liked</strong> your post
-           </li>
-         </ul>
-       </div>
-       <div class="post_content">
-         <% if @post_entry.present? %>
-           <% if activity.trackable %>
-             <% case activity.parameters[:provider] %>
-             <% when nil %>
-               <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
-             <% when "gplus" %>
-               <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
-             <% when "tumblr" %>
-               <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
-             <% when "facebook" %>
-               <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
-             <% when 'twitter' %>
-               <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
-             <% when 'youtube' %>
-               <%= render partial: 'activities/youtube_entry', locals: {youtube_entry: @post_entry} %>
-             <% when 'vimeo' %>
-               <%= render partial: 'activities/vimeo_entry', locals: {vimeo_entry: @post_entry} %>
-             <% when 'instagram' %>
-               <%= render partial: 'activities/instagram_entry', locals: {instagram_entry: @post_entry} %>
-             <% when 'pinterest' %>
-               <%= render partial: 'activities/pinterest_entry', locals: {pinterest_entry: @post_entry} %>
-             <% end %>
-           <% end %>
-         <% end %>
-         <div class="created-at">
-           <%= time_ago_in_words(activity.created_at) %> ago
-         </div>
-       </div>
-     </div>
-     <% end %>
-   <% when 'Shout' %>
+    <% case activity.trackable_type %>
+    <% when 'Relationship' %>
       <% if activity.owner.nil? %>
       <% else %>
-     <div class="individual_post item exclusive_bgc">
-       <div class="post_main">
-         <ul class="post_header">
-           <li>
-             <%= link_to image_tag(activity.owner.avatar(:small), class: "user_profile_picture", size: "50", title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
-           </li>
-           <li class="user_name_notifications">
-             <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner) %>'s
-           </li>
-           <li class="user_name_li">
-             <strong>Exclusive</strong> Post
-           </li>
-         </ul>
-       </div>
-       <div class="post_content">
-         <% if !activity.trackable.url.blank? %>
-           <p> <%= activity.trackable.url_html %></p>
-           <div class="url_caption">
-             <%= truncate(activity.trackable.content, length: 30) %>
-             <!-- <p>Duration: <b><%#= activity.trackable.duration %></b></p> -->
-           </div>
-         <% elsif activity.trackable.is_pic? %>
-           <div class="timeline-user-box image_post">
-             <%= image_tag activity.trackable.pic_url %>
-           </div>
-           <div class="caption">
-               <%= truncate(activity.trackable.content, length: 30) %>
-           </div>
-         <% elsif activity.trackable.is_video? %>
-           <div class="timeline-user-box">
-             <video 
-               preload="none"
-               id="ytplayer" 
-               type="video/mp4" 
-               width="100%" 
-               height="225" 
-               src="<%= activity.trackable.video_url %>" 
-               frameborder="0"
-               allowfullscreen
-               controls>
-             </video>
-             <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
-           </div>
-           <div class="caption">
-               <%= truncate(activity.trackable.content, length: 30) %>
-           </div>
-         <% elsif activity.trackable.is_full_video? %>
-           <div class="timeline-user-box">
-             <video 
-               preload="none"
-               id="ytplayer" 
-               type="video/flv" 
-               width="100%" 
-               height="225" 
-               src="<%= activity.trackable.full_video_url %>" 
-               frameborder="0"
-               allowfullscreen
-               controls>
-             </video>
-             <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
-           </div>
-           <div class="caption">
-               <%= truncate(activity.trackable.content, length: 30) %>
-           </div>
-         <% else %>
-           <div class="caption">
-               <%= truncate(activity.trackable.content, length: 30) %>
-           </div>
-         <% end %>
-         <div class="created-at">
-           <%= time_ago_in_words(activity.created_at) %> ago
-         </div>
-       </div><br>
-     </div>
-     <% end %>
-   <% end %>
+        <div class="row notification followed">
+          <div class="col-xs-1 user-img">
+            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+              <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% else %>
+              <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% end %>
+            <!-- <img src="/assets/users/brunomars.jpg" alt="User Image"/> -->
+          </div>
+          <div class="col-xs-10 notification-body">
+            <p>
+              <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
+              followed you! 
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %> 
+              </span></p>
+          </div>
+          <div class="col-xs-1 notification-action">
+            <a><i class="fa"></i></a>
+          </div>
+        </div>
+      <% end %>
+    <% when 'Comment' %>
+      <% if activity.owner.nil? %>
+      <% else %>
+       <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
+        <div class="row notification form_post_action">
+          <div class="col-xs-1 user-img">
+            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+              <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% else %>
+             <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% end %>
+          </div>
+          <div class="col-xs-10 notification-body">
+            <% if activity.key == 'comment.tagged' %>
+              <% comment_type = Comment.find(activity.trackable_id) %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                <% if comment_type.parent.nil? %>
+                  taggged you in a forum post!
+                <% else %>
+                  tagged you in a forum comment!
+                <% end %>
+                <span class="timer">
+                  <%= time_ago_in_words(activity.created_at) %>
+                </span>
+              </p>
+            <% elsif activity.key == 'comment.like' %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
+                liked your forum comment!
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %>
+              </span>
+              </p>
+            <% elsif activity.key == 'comment.new_comment' %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %>
+                commented your forum post!
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %>
+              </span>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+                liked your forum post!
+                <span class="timer">
+                  <%= time_ago_in_words(activity.created_at) %>
+                </span>
+              </p>
+            <% end %>
+          </div>
+          <div class="col-xs-1 notification-action">
+            <a><i class="fa"></i></a>
+          </div>
+        </div>
+      <% end %>
+    <% when 'User' %>
+      <% if activity.owner.nil? %>
+      <% else %>
+       <%# @post_entry = Notification::Timeline.new(activity.parameters[:id], activity.parameters[:provider], activity.recipient ).construct unless nil? %>
+        <div class="row notification post_was_liked">
+          <div class="col-xs-1 user-img">
+              <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+                <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+              <% else %>
+               <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+              <% end %>
+          </div>
+          <div class="col-xs-10 notification-body">
+            <p>
+              <%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner), class: 'user-link' %> 
+              liked your post! 
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %>
+              </span>
+            </p>
+          </div>
+          <div class="col-xs-1 notification-action">
+            <a><i class="fa"></i></a>
+          </div>
+        </div>
+      <% end %>
+    <% when 'Shout' %>
+      <% if activity.owner.nil? %>
+      <% else %>
+      <% end %>
+        <div class="row notification exclusive">
+          <div class="col-xs-1 user-img">
+            <% if activity.owner.avatar_file_name.present? && activity.owner.avatar_file_name.include?('graph.facebook.com') %>
+              <%= link_to image_tag(activity.owner.avatar_file_name, title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% else %>
+              <%= link_to image_tag(activity.owner.avatar(:small), title: "#{ activity.owner.first_name}"), feed_user_path(activity.owner) %>
+            <% end %>
+          </div>
+          <div class="col-xs-10 notification-body">
+            <p><%= link_to activity.owner.first_name.capitalize, feed_user_path(activity.owner, class: 'user-link') %> 
+              send you an exclusive post!
+              <span class="timer">
+                <%= time_ago_in_words(activity.created_at) %> 
+              </span>
+            </p>
+          </div>
+          <button type="button" class="col-xs-1 notification-action" data-toggle="modal" data-target="#exclusivemodal">
+            <%= link_to activities_individual_activity_path(params: {shout: activity.id}), remote: true do %>
+              <i class="fa"></i>
+            <% end %>
+           <!--  <a href="#"><i class="fa"></i></a> -->
+          </button>
+        </div>
+    <% else %>
+    <% end %>
   <% end %>
-  <% end %>
-  <% end %>
-</div>

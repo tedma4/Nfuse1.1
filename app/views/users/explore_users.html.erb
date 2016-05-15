@@ -1,33 +1,34 @@
-<div id="masonJar" class="center explore_container clearfix masonJar">
-   <% cache(["explore_users", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
-   <% @timeline.first(30).each do |post| %>
-   <% cache(post) do %>
-    <% case post.provider %>
-    <% when "nfuse" %>
-      <!-- LEAVE OFF UNTIL PAGINATION WRITTEN FOR SHOUTS. -->
-      <% unless post.exclusive == true %>
-        <%=  render partial: 'users/shout', locals: {shout: post} %>
-      <% end %>
-    <% when "gplus" %>
-      <% if post.type != 'hiddenType' %>
-        <%= render partial: "users/post", locals: {post: post} %>
-      <% end %>
-    <% when "tumblr" %>
-      <% unless post.type == 'chat' || post.type == 'audio' %>
-        <%= render partial: "users/post", locals: {post: post} %>
-      <% end %>
-    <% when "facebook" %>
-      <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-        <%= render partial: "users/post", locals: {post: post} %>
-      <% end %>
-    <% when "twitter" %>
-      <% unless post.retweeted == true %>
-        <%= render partial: "users/post", locals: {post: post} %>
-      <% end %>
-    <% else %>
-      <%= render partial: "users/post", locals: {post: post} %>
-    <% end %>
+<section id="profile-grid" class="container-fluid">
+<%# this_is_it = pages.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count} %>
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <!-- PROFILE -->
+    <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+      <a href="/users/<%= user.user_name %>/feed">
+        <div class="profile-head">
+          <p><%= user.user_name %></p>
+        </div>
+        <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
+          <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
+        <% else %>
+        <%= link_to image_tag(user.avatar(:regular), title: "#{ user.first_name}"), feed_user_path(user) %>
+        <% end %>
+      </a>
+    </div>
   <% end %>
-  <% end %>
-  <% end %>
-</div>
+<% else %>
+<p>
+No more users to follow
+</p>
+<p>
+Check back later
+</p>
+<% end %>
+</section>
+<%#= paginate @pages %>
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+
+});
+</script>

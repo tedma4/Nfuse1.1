@@ -1,37 +1,12 @@
-<!-- *Start* Views/callback_links/callbacks.html -->
-<% if current_user.providers.nil? %>
-  <% provide(:title, "Step 2") %>
-<% else %>
-  <% provide(:title, "Step 3")%>
+<% content_for :for_head do %>
+  <title>Nfuse | Connect all your social media accounts to Nfuse</title>
+  <meta name="description" content="Add your social media to your profile and share all your post with other Nfusers.">
 <% end %>
-    <style type="text/css">
-  .sup-padding{
-    margin-top: 4%;
-  }
-
-  h2 {
-    color: #fff;
-  }
-</style>
-
-<div class="Alignthisorelse sup-padding">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1 form-box wow fadeInUp">
-        <div class="form-top-sup">
-          <div class="form-top-left">
-            <h2><strong>Network Nfusion.</strong></h2>
-              <p>Share your social life with everyone.</p>
-          </div>
-          <div class="form-top-right">
-              <a href="#"><%= image_tag("Nfuselogogray.fw.png", size: "65x65") %></a>
-          </div>
-        </div>
-        <div class="form-bottom-sup-nfusion">
-          <%= render partial: 'users/network_authentications' %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- *Start* Views/callback_links/callbacks.html -->
+<%# if current_user.providers.nil? %>
+  <%# provide(:title, "Step 2") %>
+<%# else %>
+  <%# provide(:title, "Step 3")%>
+<%# end %>
+<%= render partial: 'users/network_authentications' %>
 <!-- *End* Views/callback_links/callbacks.html

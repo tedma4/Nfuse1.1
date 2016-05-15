@@ -30,7 +30,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 # gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'
 #This resizes a file uploaded by paperclip
-gem 'rmagick', '~> 2.13.2', :platforms => :ruby
+gem 'rmagick', '2.13.2', :platforms => :ruby
 # gem 'typhoeus', '~> 0.6.8'
 gem 'httparty'
 gem 'cocaine', '0.5.5'
@@ -77,6 +77,8 @@ gem 'public_activity', '1.4.2'
 # gem 'puma', '2.15.3'
 gem 'faye-rails', '2.0'
 gem 'thin', '~> 1.6.4', group: :development
+gem 'remotipart', '1.2.1'
+# gem 'kaminari', '0.16.3'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -85,7 +87,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rails-erd'
   gem 'simplecov'
-  gem 'byebug', '8.2.2'
+  # gem 'byebug', '8.2.2'
 
   # ^-- Used in both dev and testing.
 end
@@ -117,7 +119,7 @@ gem 'jquery-rails'
 gem 'ejs', '~> 1.1.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-gem 'jquery-turbolinks'
+# gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 gem 'impressionist', '1.5.1'

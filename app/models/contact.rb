@@ -1,6 +1,6 @@
 class Contact < MailForm::Base
-  attribute :full_name,      :validate => true
-  attribute :email,     :validate => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
+  attribute :full_name, allow_blank: true#     :validate => true
+  attribute :email,     allow_blank: true #:validate => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
   attribute :message, presence: true
   attribute :nickname,  :captcha  => true
 
@@ -9,7 +9,7 @@ class Contact < MailForm::Base
     {
       :subject => "My Contact Form",
       :to => "ower@cerebralhq.com",
-      :from => %("#{full_name}" <#{email}>)
+      :from => %("#{full_name || 'Request'}" <#{email || 'nfuse@request.com'}>)
     }
   end
 end

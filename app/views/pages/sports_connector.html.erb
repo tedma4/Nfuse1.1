@@ -1,12 +1,12 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
+<section id="profile-grid" class="container-fluid">
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+</section>
+<div id="paginate_only_once">
+  <a href="/sports?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
 
-<% w = ['realmadrid', 'dallascowboys', 'newyorkyankees', 'barcelona', 'manchesterunited', 'losangeleslakers', 'newenglandpatriots', 'newyorkknicks', 'losangelesdodgers', 'washingtonredskins', 'bayernmunich', 'bostonredsox', 'newyorkgiants', 'chicagobulls', 'sanfranciscogiants', 'houstontexans', 'chicagocubs', 'newyorkjets', 'philadelphiaeagles', 'bostonceltics', 'chicagobears', 'losangelesclippers', 'sanfrancisco49ers', 'baltimoreravens', 'brooklynnets', 'denverbroncos', 'indianapoliscolts', 'stlouiscardinals', 'greenbaypackers', 'manchestercity', 'chelsea', 'ferrari', 'newyorkmets', 'pittsburghsteelers', 'seattleseahawks', 'arsenal', 'goldenstatewarriors', 'losangelesangelsofanaheim', 'miamidolphins', 'torontomapleleafs', 'washingtonnationals', 'carolinapanthers', 'houstonrockets', 'philadelphiaphillies', 'tampabaybuccaneers', 'texasrangers', 'miamiheat', 'tennesseetitans', 'atlantabraves', 'minnesotavikings', 'arizonacardinals'] %>
-
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
-<%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>

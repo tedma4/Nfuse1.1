@@ -160,14 +160,19 @@ class CommentsController < ApplicationController
     unless users.empty?
       @comment.update_attributes(tagged_user: users.join(', '))
       @comment.create_activity(key: 'comment.tagged',
-                                   owner: current_user, 
-                                   user_recipients: User.where(user_name: users).pluck(:id).join(', ')
-                                  ) if User.where(user_name: users).any?
+                               owner: current_user, 
+                               user_recipients: User.where(user_name: users).pluck(:id).join(', ')
+                              ) if User.where(user_name: users).any?
     end
+
+    @comment.create_activity(key: 'comment.new_comment',
+                             owner: current_user,
+                             user_recipients: @comment.parent.user_id
+                            )
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html, :image_upload )
+    params.require(:comment).permit(:body, :user_id, :commentable_type, :commentable_id, :page_id, :comment_id, :parent_id, :url, :url_html, :image_upload, :topic )
   end
 
   def find_commentable

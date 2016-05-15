@@ -1,16 +1,7 @@
-<style>
-@media only screen and (max-width: 1085px) {
-    .fadeshow_follow_form{
-        display: none;
-    }
-}
-</style>
 <% unless current_user?(@user) %>
-  <div id="follow_form" class="fadeshow_follow_form">
   <% if current_user.following?(@user) %>
     <%= render 'unfollow' %>
   <% else %>
     <%= render 'follow' %>
   <% end %>
-  </div>
 <% end %>

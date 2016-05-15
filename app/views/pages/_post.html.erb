@@ -7,10 +7,10 @@
   <div class="post_main">
    <ul class="post_header">
      <li>
-       <%= link_to image_tag("#{@page.twitter_handle}.jpg", :class => "user_profile_picture", size: "50x50"), root_path %>
+       <%= link_to image_tag("#{@page.twitter_handle}.jpg", :class => "user_profile_picture", size: "50x50"), "/pages/#{@page.page_name}" %>
      </li>
      <li class="user_name">
-       <%= link_to truncate(@page.thing_name, length: 15), "/#{@page.page_name}" %>
+       <%= link_to truncate(@page.full_name, length: 15), "/pages/#{@page.page_name}" %>
      </li>
    </ul>
   </div>
@@ -19,11 +19,7 @@
     <% when 'instagram' %>
       <% if post.type == "image" %>
         <div class="timeline-user-box">
-          <%= link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-            post_id: post.id, 
-            provider: post.provider, 
-            user: @page.id,
-            post_type: @page.class.name), target: '_blank' %>
+          <%= image_tag(post.image, :class => "image_post") %>
         </div>
         <% if post.text.present? %>
           <div class="center">
@@ -32,7 +28,7 @@
         <% end %>
       <% elsif post.type == "video" %>
         <div class="center">
-          <video width="100%" controls autoload="none" poster=<%= post.image %> >
+          <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
             <source src="<%= post.video %>" type='video/mp4' />
             <source src="<%= post.video %>" type='video/ogv' />
           </video>
@@ -47,18 +43,14 @@
       <% if post.has_media? %>
         <% if post.type == 'animated_gif' || post.type== 'video' %>
           <div class="center">
-            <video width="100%" controls autoload="none" poster=<%= post.image %> >
+            <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
               <source src="<%= post.video %>" type='video/mp4' />
               <source src="<%= post.video %>" type='video/ogv' />
             </video>
           </div>
         <% elsif post.type == 'photo' %>
           <div class="timeline-user-box">
-            <%= link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-            post_id: post.id, 
-            provider: post.provider, 
-            user: @page.id,
-            post_type: @page.class.name), target: '_blank' %>
+            <%= image_tag(post.image, :class => "image_post") %>
           </div>
         <% end %>
       <% end %>

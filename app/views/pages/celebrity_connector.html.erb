@@ -1,13 +1,12 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
+<section id="profile-grid" class="container-fluid">
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+</section>
+<div id="paginate_only_once">
+  <a href="/celebrity?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
 
-<% w = [
-'katyperry', 'barackobama', 'taylorswift', 'ladygaga', 'justintimberlake', 'britneyspears', 'kimkardashianwest', 'shakira', 'jenniferlopez', 'selenagomez', 'arianagrande', 'demilovato', 'jimmyfallon', 'lebronjames', 'adele', 'brunomars', 'aliciakeys', 'mileyraycyrus', 'nickiminaj', 'emmawatson', 'neilpatrickharris', 'davidguetta', 'conanobrien', 'khloekardashian', 'kourtneykardashian', 'christinaaguilera', 'beyonce', 'oprahwinfrey', 'johnnydepp', 'scarlettjohansson', 'madonna', 'tomhanks', 'jessicaalba', 'meganfox', 'tigerwoods', 'blakelively', 'leonardodicaprio', 'emmastone', 'jayz', 'ellendegeneres', 'sandrabullock', 'ashleygreene', 'natalieportman', 'jenniferlawrence', 'katebosworth', 'camerondiaz', 'milakunis', 'floydmayweather', 'reesewitherspoon', 'kateupton', 'peterdinklage'] %>
-
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
-<%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+<script>
+$(document).ready(function() {
+  $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+});
+</script>

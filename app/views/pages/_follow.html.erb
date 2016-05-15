@@ -1,0 +1,12 @@
+<%= form_for(current_user.relationships.build(followed_id: @page.id, follow_type: @page.class.name), html: {class: 'follow_form'}, remote: true) do |f| %>
+              <%# if Page.find_by(id: @page.id, full_name: @compname).nil? %>
+                <%# Page.find_by(id: @page.id).update_attributes(
+                           full_name: @compname,
+                   twitter_handle: @comp,
+                   youtube_handle: @comp_url,
+                   instagram_handle: @incomp) %>
+              <%# end %>
+  <input type="hidden" value="params[from][page]" />
+  <div><%= f.hidden_field :followed_id %></div>
+  <%= f.submit "Follow", class: "" %>
+<% end %>

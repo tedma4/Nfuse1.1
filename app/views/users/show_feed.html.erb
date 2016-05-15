@@ -1,14 +1,97 @@
-<% provide(:title, @title) %>
-  <div class="container_profile">
-    <%= render partial: "profile_info" %>
-    <div class="center">   
-      <%= render file: "users/feed" %>
+<% content_for :for_head do %>
+  <title>Feed</title>
+<% end %>
+<!-- USER AREA -->
+<section id="userarea">
+  <%= render partial: "profile_info" %>
+</section>
+<!-- MASON JAR -->
+<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+  <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
+  <% if @timeline.present? %>
+    <%# cache(["users_feed", @timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
+      <% @timeline.each do |post| %>
+        <% if (post.class.to_s == "Nfuse::Post" && post.try(:is_exclusive) == true) %>
+        <% else %>
+        <%# cache(post) do %>
+          <article class="individual_post item <%= post.provider %>_post0">
+            <header class="post_header">
+              <div class="user">
+                <%= image_tag("#{post.avatar}", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+                <%= link_to truncate(@user.user_name, length: 16), "/users/#{@user.user_name}" %>
+              </div>
+              <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
+                <i class="fa"></i> <%= time_ago_in_words(post.created_time) %>
+              <% end %>
+            </header>
+            <main class="post_content">
+              <% case post.provider %>
+              <% when "nfuse" %>
+                <% unless post.exclusive == true %>
+                  <%=  render partial: 'users/shout', locals: {shout: post} %>
+                <% end %>
+              <% when "gplus" %>
+                <% if post.type != 'hiddenType' %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% when "tumblr" %>
+                <% unless post.type == 'chat' || post.type == 'audio' %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% when "facebook" %>
+                <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% when "twitter" %>
+                <% unless post.retweeted == true %>
+                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% end %>
+              <% else %>
+                <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+              <% end %>
+            </main>
+            <footer class="post_actions">
+              <!-- <a class="likePost" data-method="post" data-remote="true" href="#" rel="nofollow">
+                <i class="fa"></i><span>666</span>
+              </a> -->
+              <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+                <%= link_to dislike_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
+                  <i class="fa liked-<%= post.id %>"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+                <% end %>
+              <% else %>
+                <%= link_to like_shout_path(id: post.id, owner_id: post.user.id, owner_type: post.user.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+                  <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+                <% end %>
+              <% end %>
+                <%#= post.like_score(post.id) %>
+            </footer>
+          </article>
+        <% end %>
+        <%# end %>
+      <%# end %>
+    <% end %>
+  <!--    <div class="load_posts_link">
+      <%#= link_to "Load more posts", @load_more_url, id: "load-more" %>
+    </div> -->
+  <% elsif @timeline.nil? || @unauthed_accounts.empty? %>
+    <div class="center">
+      <% if current_user?(@user) %>
+        <%= render partial: "users/network_authentications" %>
+      <% else %>
+        <p> <%= @user.user_name %> has not Nfused any networks. </p>
+        <%= image_tag("sadface.fw.png", size:"100x100") %>
+      <% end %>
     </div>
-  </div>
-
+  <% end %>
+</section>
+<!--
   // <script type="text/javascript">
-  //   FeedIndex.providers = {twitter: <%#= @providers.twitter? %>, instagram: <%#= @providers.instagram? %>};
+  //   FeedIndex.providers = {twitter: <%##= @providers.twitter? %>, instagram: <%##= @providers.instagram? %>};
   //   $(document).ready(function () {
   //     FeedIndex.initialize();
   //   });
   // </script>
+ -->
+

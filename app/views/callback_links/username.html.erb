@@ -1,38 +1,38 @@
-<% provide(:title, "Step 2") %>
-<style type="text/css">
-  .fb_username_change_padding {
-    margin-top: 2%;
-}
-</style>
-<div class="Alignthisorelse">
-  <div class="container fb_username_change_padding">
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3 form-box wow fadeInUp">
-        <div class="form-top-pro-pic">
-          <div class="form-top-left">
-            <h3><strong>Your User Name is gonna be <%= current_user.user_name %></strong></h3>
-              <p>If you don't like it go ahead and change it below</p>
-          </div>
-          <div class="form-top-right">
-            <a href="#"><%= image_tag("createprofilegray.fw.png", size: "60x60") %></a>
-          </div>
+<% content_for :for_head do %>
+  <title>Nfuse | Facebook Sign Up User Name Change</title>
+  <meta name="description" content="Create a new username for your new profle on Nfuse or keep your Facebook username.">
+<% end %>
+<section id="" class="content-section container picbg">
+  <div class="row">
+    <header class="col-xs-12 center">
+      <h1 class="heavy"><%= current_user.user_name %></h1>
+      <p class="intro-text">Is you new user name</p>
+      <p>If you don't like it go ahead and change it below</p>
+    </header>
+    <!-- LOGIN FORM -->
+    <%= form_for @user, html: {class: 'minimal col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6'} do |f| %>
+      <div class="form-group">
+        <div style='display:none;'>
+          <%= f.text_field :user_name %>
         </div>
-        <div class="form-bottom">
-          <div class="Alignthisorelse">
-            <%= form_for @user, html:{role: "form"} do |f| %>
-              <div class="form-group">
-                <%= f.text_field :user_name, :placeholder => "User name", class: "form-control input-lg", id:"form-user-name" %>
-              </div>
-              <div>
-                <button type="submit" class="btn btn-link-1">
-                  Save
-                </button>
-                <%#= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
+        <input class="form-control input-lg" id="form-first-name" name="user[user_nme]" placeholder="User Name" type="search">
       </div>
-    </div>
+      <button type="submit" class="btn btn-default animated">Next</button>
+    <% end %>
   </div>
-</div>
+  <% unless signed_in? %>
+    <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+    <div class="random bg"></div>
+  <% end %>
+</section>
+  <!-- Footer -->
+  <footer>
+      <div class="container text-center">
+          <p>&copy; Nfuse LLC. 2016. Made with <a href="#"><i class="fa fa-heart-o"></i> by Taylor and Ted</a></p>
+      </div>
+  </footer>
+<script>
+// $(document).ready(function() {
+//   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+// });
+</script>

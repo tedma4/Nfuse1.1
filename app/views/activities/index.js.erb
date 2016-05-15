@@ -1,0 +1,27 @@
+<% if current_user.activities.where(read: false).any? %>
+  <% current_user.set_notifications_to_true(current_user.id) %>
+<% end %>
+
+<% if params[:last_page] %>
+  $('#notifications-list .next').remove();
+  $('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
+<% elsif params[:middle_page] %>
+  $('#notifications-list .next').remove();
+	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
+  $('#notifications-list').append('<a href="/notifications?page=<%= params[:page] + 1 %>" data-remote="true" class="next"></a>');
+<% else %>
+	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
+  $('#notifications-list').append('<a href="/notifications?page=2" data-remote="true" class="next"></a>');
+<% end %>
+
+// <%# if params[:page] %>
+// 	if ($('#notifications-list .row').length == 0) {
+// 	  // $('<%#= j render(paginate @activities) %>').appendTo('#notifications-list');
+// 	} else if ("#{params[:page]}" > 1) {
+// 	  $('<%#= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>').appendTo('#notifications-list');
+	  
+// 	}
+<%# else %>
+<%# end %>
+
+//Update the current page after each scroll event

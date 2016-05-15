@@ -1,2 +1,3 @@
 //$("#follow_form").html("<%#= escape_javascript(render('shouts/like')) %>")
-$("#shout-<%= @shout[:id]%>").text('<%=@shout[:like_score] %>');
+// $("#shout-<%= @shout[:id]%>").text('<%=@shout[:like_score] %>');
+$('span.liked-<%= @shout[:id] %>').html(parseInt($('span.liked-<%= @shout[:id] %>').html(), 10)+1)

@@ -1,10 +1,6 @@
 <% if post.type == "image" %>
   <div class="timeline-user-box">
-    <%=link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-      post_id: post.id, 
-      provider: post.provider, 
-      user: post.user.id,
-      post_type: post.user.class), target: '_blank' %>
+    <%= image_tag(post.image, :class => "image_post") %>
   </div>
   <% if post.text.present? %>
     <div class="center">
@@ -13,7 +9,7 @@
   <% end %>
 <% elsif post.type == "video" %>
   <div class="center">
-    <video width="100%" controls preload="none" poster=<%= post.image %> >
+    <video controls preload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
       <source src="<%= post.video %>" type='video/mp4' />
       <source src="<%= post.video %>" type='video/ogv' />
     </video>

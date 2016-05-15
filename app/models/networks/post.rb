@@ -19,7 +19,7 @@ module Networks
       if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com')
         @user.avatar_file_name
       else
-        @user.avatar(:thumb)
+        @user.avatar(:small)
       end 
     end
 
@@ -270,7 +270,13 @@ module Networks
             @post['actions'][0]['link']
           end
         when 'pinterest'
-          @post['link']  
+          @post['link']
+        when 'tumblr'
+          @post['short_url']
+        when 'gplus'
+          @post['link']
+        when 'vimeo'
+          @post['link']
       end
     end
 
@@ -374,6 +380,10 @@ module Networks
 
     def has_content
       @post.has_content
+    end
+
+    def exclusive
+      @post.is_exclusive
     end
   end
 end

@@ -1,99 +1,195 @@
 <% content_for :for_head do %>
-
-<!--New head -->
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nfuse - Share All Your Social Media. </title>
-  <meta name="description" content="Nfuse, Share all your social media in on place, one feed for all your social media, easy way to share with your friends" />
-  <meta name="keywords" content="Nfuse, Nfuse.it, wwww.nfuse.it, infuse.it, Social Media, Social Agregate, all in one social media, one social site, sharing social media, social media in one, social share, one feed" />
-  <!-- CSS -->
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-  <!-- Javascript -->
-  <%= javascript_include_tag 'jquery-1.11.1.min.js' %>
-  <%= javascript_include_tag 'bootstrap.min.js' %>
-  <%= javascript_include_tag 'wow.min.js' %>
-  <%= javascript_include_tag 'jquery.magnific-popup.min.js' %>
-  <%= javascript_include_tag 'scripts.js' %>
+  <title>Nfuse | The Easiest Soical Media Site In The World</title>
+  <meta name="description" content="We brought together all the places that you have friends and made sharing as simple as it should be.">
 <% end %>
-<style type="text/css">
-    .bs-example{
-      margin-top: 20%;
-    }
-
-    .megajam {
-      font-size: 10em;
-      padding-top: 10%;
-      padding-bottom: 10px;
-    }
-
-    .megasmall {
-      font-size: 3em;
-      padding-top: 10px;
-    }
-
-    body {
-      background-color : #87ceeb;
-    }
-
-    .landingbottompush {
-      padding-bottom: 1%;
-    }
-
-#search {
-
-}
-
-#search input[type="text"] {
-    background-color: rgba(19, 19, 19, 0.11);
-    border: 0 none;
-    font: bold 22px Arial,Helvetica,Sans-serif;
-    color: #fff;
-    width: 620px;
-    height: 40px;
-    padding: 6px 15px 6px 10px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    }
-/*
-#search input[type="text"]:focus {
-    width: 660px;
-    }*/
-</style>
-<div class="Alignthisorelse">
-  <div class="top-content">
-    <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 text">
-            <h1 class="wow fadeInLeftBig megajam"><strong> Nfuse</strong></h1>
-            <div class="description wow fadeInLeftBig">
-              <p class="intro-par megasmall"><strong>
-               Share & Discover Social Media
-              </strong></p>
+    <!-- Intro Header -->
+    <header id="landing" class="fill vcenter intro">
+        <div class="vcell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-12 col-md-offset-0">
+                        <h1 class="brand-heading heavy">Share & Discover</h1>
+                        <p class="intro-text">We brought together all the places that you have friends and made sharing as simple as it should be.</p>
+                        <%= form_tag search_path, method: 'get', id: "home-search", class: "search" do %>
+                          <a class="ilink randomize loggedout" href="/random_search"><img src="/assets/dice.png" alt="random search"/></a>
+                          <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
+                          <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+                          <%= hidden_field_tag "selected_option" %>
+                          <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
+                        <% end %>
+                    </div>
+                </div>
             </div>
-            <div class="description">
-              <div class="col-sm-12 center" >
-                <%= form_tag search_path, method: 'get', id: "search" do %>
-                  <%= text_field_tag :search, params[:search], placeholder: "Search #Hashtags @Users and Social Media" %>
-                <% end %>
-              </div>
-            </div>
-          </div>
         </div>
+        <a id="top-tag" class="corner-tag"><span class="light main-color">#</span></a>
+        <a href="#mission" class="connector page-scroll animated">
+            <span>What is Nfuse?</span>
+            <i class="fa fa-circle animated"></i>
+            <i class="fa fa-circle animated"></i>
+            <i class="fa fa-circle animated"></i>
+            <i class="fa fa-circle animated"></i>
+        </a>
+        <div class="random bg"></div>
+    </header>
 
-        <div class="top-big-link landingbottompush">
-          <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
-          <%= link_to 'Learn More', about_path, class: "btn btn-link-2" %>
-          <%= link_to 'Facebook Signup', '/auth/facebook/', class: "btn btn-link-2" %>
-          <!-- <a class="btn btn-link-2 scroll-link" href="#features">Learn more</a> -->    
+    <!-- Mission Section -->
+    <section id="mission" class="fill vcenter">
+        <div class="vcell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                        <h2 class="heavy main-color">Our Mission</h2>
+                        <p>Our mission is to bring people and technology together in the easiest way possible. Nfuse is a brand new start up, so feel free to send us any questions or let us know if you'd like to join the team.</p>
+                        <a href="#steps" class="hidden-xs btn btn-lg btn-default page-scroll animated">Sign Up</a>
+                        <a href="#" class="visible-xs btn btn-lg btn-default signuptoggler animated">Sign Up</a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <a href="#about" class="connector page-scroll">
+            <i class="fa fa-circle animated"></i>
+            <i class="fa fa-circle animated"></i>
+            <i class="fa fa-circle animated"></i>
+            <i class="fa fa-circle animated"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-gears"></i>
+                    <h3 class="light">Easy to Use</h3>
+                    <p>The site is so simply you can use it while checking your other 20 sites or just use our site becuase we made it that easy.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-compass"></i>
+                    <h3 class="light">Discover Interest</h3>
+                    <p>Nfuse allows you to find all the things that you might find cool or discover new worlds that your missing out on.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-image"></i>
+                    <h3 class="light">Share Photos</h3>
+                    <p>Share a photo to the world of what you like or just post as many selfies as you possibly can for the rest of your life.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-users"></i>
+                    <h3 class="light">Follow Friends</h3>
+                    <p>Remove the digital walls and view what everyone is posting on all social media.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-star"></i>
+                    <h3 class="light">Popular Media</h3>
+                    <p>We have the most popular media from all different social media site.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-search"></i>
+                    <h3 class="light">Social Search</h3>
+                    <p>Use our powerful seach engine to discover trendy social media post.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-compress"></i>
+                    <h3 class="light">Content Mashup</h3>
+                    <p>We have over eight social media site that you can easily view in a single feed.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-eye"></i>
+                    <h3 class="light">Exclusive Posts</h3>
+                    <p>Follow someone a see exclusive post that you can not see anywhere else.</p>
+                </div>
+                <div class="about-icon col-xs-12 col-sm-6 col-lg-4">
+                    <i class="outlined fa fa-map-signs"></i>
+                    <h3 class="light">Explore Categories</h3>
+                    <p>We created popular categories so you can easily explore the most popular social media.</p>
+                </div>
+                <div class="hidden-xs col-xs-12">
+                    <a href="#steps" class="btn btn-lg btn-default page-scroll animated">Sign Up</a>
+                </div>
+                <div class="visible-xs col-xs-12 text-center">
+                    <a href="#" class="btn btn-lg btn-default signuptoggler animated">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </section>
+
+    <!-- Feed Section -->
+    <section id="feed" class="container-fluid">
+      <%= link_to image_tag('connector.jpg'), all_pages_path, class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('SCENE.jpg'), page_path('theScene'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('TIME.jpg'), page_path('time_magazine'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('people.jpg'), page_path('People'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('Enews.jpg'), page_path('enews'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <%= link_to image_tag('CNN.jpg'), page_path('CNN'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+      <div class="visible-lg">
+        <%= link_to image_tag('HBO.jpg'), page_path('HBO'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('Buzzfeed.jpg'), page_path('BuzzFeed'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('Newsweek.jpg'), page_path('Newsweek'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
+        <%= link_to image_tag('wired.jpg'), page_path('wired'), class: 'user-block col-xs-6 col-sm-2 col-lg-1' %>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 class="title main-color light">Ready in 4 Steps</h2>
+                </div>
+                <div id="steps" class="col-xs-12 col-sm-6">
+                    <div class="about-icon col-xs-12">
+                        <i class="outlined fa fa-pencil"></i>
+                        <h3 class="light">Sign Up</h3>
+                        <p>Sign Up with Facebook or come back later, we might be here.</p>
+                    </div>
+                    <div class="about-icon col-xs-12">
+                        <i class="outlined fa fa-exchange"></i>
+                        <h3 class="light">Nfuse Your Networks</h3>
+                        <p>Show off your cool post from other networks or create your own.</p>
+                    </div>
+                    <div class="about-icon col-xs-12">
+                        <i class="outlined fa fa-user"></i>
+                        <h3 class="light">Create Profile</h3>
+                        <p>Just upload your favorite picture of yourself or maybe a selfie.</p>
+                    </div>
+                    <div class="about-icon col-xs-12">
+                        <i class="outlined fa fa-smile-o"></i>
+                        <h3 class="light">Njoy!</h3>
+                        <p>Sit back, relax, grab a beer and scroll for days or just enjoy the site.</p>
+                    </div>
+                    <!-- 
+                    <div class="visible-xs col-xs-12 text-center">
+                        <a href="#"  data-toggle="modal" data-target="#signupmodal" class="btn btn-lg btn-default animated">Sign Up</a>
+                    </div> -->
+                </div>
+                <!-- Signup Form -->
+                <%= form_for(User.new, html: {id: 'foot-signup', class: 'minimal new_user col-xs-12 col-sm-6'}) do |f| %>
+                  <div class="error_messages">
+                    <div>
+                      <%= render 'shared/error_messages', object: f.object %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+                      <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search"  %>
+                      <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search"  %>
+                      <%= f.text_field :email, :placeholder => "Email", class: "form-control input-lg", id:"form-email", type: "email"  %>
+                      <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-password", type: "password" %>
+                      <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"inputPassword", type: "password" %>
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign Up!</button>
+                    <a href="/auth/facebook" class="facebooklogin btn btn-lg btn-default animated"><i class="fa fa-facebook"></i>Connect</a>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+        <a id="bottom-tag" class="corner-tag"><span class="light main-color">#</span></a>
+        <div class="random bg"></div>
+    </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p>&copy; Nfuse LLC. 2016. Made with <i class="fa fa-heart-o"></i> by Ted, Taylor, & <a href="https://www.fyresite.com/" target="_blank">Fyresite</a></p>
+            </div>
+        </footer>

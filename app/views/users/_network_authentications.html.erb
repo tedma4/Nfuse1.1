@@ -1,165 +1,228 @@
-<style>
-.nfused_network a{
-  color: #af9aee;
-}
-</style>
-<form role="form">
-  <div class="Alignthisorelse">
-    <div class="features-container section-container">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-            <!-- twitter -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("twitterblue.fw.png", size: "60x60"), "/auth/twitter?origin=#{request.original_url}" %>
-            </div>
-              <h3>Twitter</h3>
-              <p>Share your Twitter posts.</p>
+   <!-- START CONTENT -->
+<section id="settings" class="container">
+  <div class="row">    
+    <div class="center col-xs-12 content">
+      <h3>Nfuse All Your Social Media</h3>
+    </div>
+    <!-- SWITCHABLE CONTENT -->
+    <article class="content col-xs-12 tab-content">
+      <!-- PANEL THREE -->
+      <div id="networks">
+        <!-- TWITTER -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-twitter"></i>
+            <h3>Twitter</h3>
+            <p>Share your Twitter posts.</p>
             <% if current_user && user_has_provider?('twitter') %>
-              <p class="nfused_network">
-              <%= link_to "You've Nfused Twitter", "/auth/twitter?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'twitter') %>
-              </p>
+                <%= link_to "/auth/twitter?origin=#{request.original_url}" do %>
+                  <button type="button" id="nfuseTw" >
+                      Re-Nfuse Twitter
+                  </button>
+                <% end %> | 
+                <%= link_to remove_token_path(provider: 'twitter') do %>
+                  <button type="button" id="nfuseTw" >
+                      Remove Network
+                  </button>
+                <% end %>
             <% else %>
-              <%= link_to "Nfuse Twitter", "/auth/twitter?origin=#{request.original_url}" %>
-            <% end %>
-            <!-- twitter -->
-          </div>
-          <div class="col-sm-3 features-box wow fadeInDown">
-            <!-- instagram -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("instagramblue.fw.png", size: "60x60"), "/auth/instagram?origin=#{request.original_url}" %>
-            </div>
-              <h3>Instagram</h3>
-              <p>Share your Instagram posts.</p>
-            <% if current_user && user_has_provider?('instagram') %>
-              <p class="nfused_network">
-                <%= link_to "You've Nfused Instagram", "/auth/instagram?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'instagram') %>
-              </p>
-            <% else %>
-                <%= link_to "Nfuse Instagram", "/auth/instagram?origin=#{request.original_url}" %>
-            <% end %>
-            <!-- instagram -->
-          </div>
-          <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-            <!-- tumblr -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("tumblrblue.fw.png", size: "60x60"), "/auth/tumblr?origin=#{request.original_url}" %>
-            </div>
-              <h3>Tumblr</h3>
-              <p>Share your Tumblr posts.</p>
-              <% if current_user && user_has_provider?('tumblr') %>
-              <p class="nfused_network">
-                <%= link_to "You've Nfused Tumblr", "/auth/tumblr?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'tumblr') %>
-              </p>
-              <% else %>
-                <%= link_to "Nfuse Tumblr", "/auth/tumblr?origin=#{request.original_url}" %>
+              <%= link_to "/auth/twitter?origin=#{request.original_url}"  do %>
+                <button type="button" id="nfuseTw" >
+                    Nfuse it
+                </button>
               <% end %>
-              <!-- tumblr -->
-          </div>
+            <% end %>
         </div>
-        <div class="row">
-          <div class="col-sm-3 features-box wow fadeInUp">
-            <!-- youtube -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("youtubeblue.fw.png", size: "60x60"), "/auth/google_oauth2?origin=#{request.original_url}" %>
-            </div>
-              <h3>Youtube</h3>
-              <p>Share your Youtube posts.</p>
+        <!-- INSTAGRAM -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>Share your Instagram posts.</p>
+            <% if current_user && user_has_provider?('instagram') %>
+                <%= link_to "/auth/instagram?origin=#{request.original_url}" do %>
+                  <button type="button" id="nfuseIn" >
+                      Re-Nfuse Instagram
+                  </button>
+                <% end %>
+                 | 
+                <%= link_to remove_token_path(provider: 'instagram') do %>
+                  <button type="button" id="nfuseTbl">
+                      Remove Network
+                  </button>
+                <% end %>
+            <% else %>
+              <%= link_to "/auth/instagram?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseIn" >
+                    Nfuse it
+                </button>
+              <% end %>
+            <% end %>
+        </div>
+        <!-- TUMBLR -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-tumblr"></i>
+            <h3>Tumblr</h3>
+            <p>Share your Tumblr posts.</p>
+            <% if current_user && user_has_provider?('tumblr') %>
+                <%= link_to "/auth/tumblr?origin=#{request.original_url}" do %>
+                  <button type="button" id="nfuseTbl">
+                      Re-Nfuse Tumblr
+                  </button>
+                <% end %> | 
+                <%= link_to remove_token_path(provider: 'tumblr') do %>
+                  <button type="button" id="nfuseTbl">
+                      Remove Network
+                  </button>
+                <% end %>
+            <% else %>
+              <%= link_to "/auth/tumblr?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseTbl">
+                    Nfuse it
+                </button>
+              <% end %>
+            <% end %>
+        </div>
+
+        <!-- YOUTUBE -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-youtube-play"></i>
+            <h3>Youtube</h3>
+            <p>Share your Youtube posts.</p>
             <% if current_user && user_has_provider?('google_oauth2') %>
-              <p class="nfused_network">
-              <%= link_to "You've Nfused YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'youtube') %>
-              </p>
+              <%= link_to "/auth/google_oauth2?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseYt">
+                    Re-Nfuse Youtube
+                </button>
+              <% end %> | 
+              <%= link_to remove_token_path(provider: 'youtube') do %>
+                <button type="button" id="nfuseYt">
+                    Remove Network
+                </button>
+              <% end %>
             <% else %>
-              <%= link_to "Nfuse YouTube", "/auth/google_oauth2?origin=#{request.original_url}" %>
+              <%= link_to "/auth/google_oauth2?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseYt">
+                    Nfuse it
+                </button>
+              <% end %>
             <% end %>
-            <!-- youtube -->
-          </div>
-          <div class="col-sm-3 features-box features-box-gray wow fadeInDown">
-            <!-- gplus -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("gplusblue.fw.png", size: "60x60"), "/auth/gplus?origin=#{request.original_url}" %>
-            </div>
-            <h3>Google Plus</h3>
-            <p>Share your Google+ posts.</p>
-            <% if current_user && user_has_provider?('gplus') %>
-              <p class="nfused_network">
-              <%= link_to "You've Nfused Google Plus", "/auth/gplus?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'gplus') %>
-              </p>
-            <% else %>
-              <%= link_to "Nfuse Google Plus", "/auth/gplus?origin=#{request.original_url}" %>
-            <% end %>
-            <!-- gplus -->
-          </div>
-          <div class="col-sm-3 features-box wow fadeInUp">
-            <!-- vimeo -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("vimeoblue.fw.png", size: "60x60"), "/auth/vimeo?origin=#{request.original_url}" %>
-            </div>
-              <h3>Vimeo</h3>
-              <p>Share your Vimeo posts.</p>
-            <% if current_user && user_has_provider?('vimeo') %>
-              <p class="nfused_network">
-                <%= link_to "You've Nfused Vimeo", "/auth/vimeo?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'vimeo') %>
-              </p>
-            <% else %>
-                <%= link_to "Nfuse Vimeo", "/auth/vimeo?origin=#{request.original_url}" %>
-            <% end %>
-            <!-- vimeo -->
-          </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-            <!-- pinterest -->
-            <div class="features-box-icon">
-             <%= link_to image_tag("pinterestblue.fw.png", size: "60x60"), "/auth/pinterest?origin=#{request.original_url}" %>
-            </div>
-            <h3>pinterest</h3>
-            <p>Share your pinterest posts.</p>
-            <% if current_user && user_has_provider?('pinterest') %>
-              <p class="nfused_network">
-              <%= link_to "You've Nfused pinterest", "/auth/pinterest" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'pinterest') %>
-              </p>
+
+        <!-- G PLUS -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-google-plus"></i>
+            <h3>Google Plus</h3>
+            <p>Share your Google Plus posts.</p>
+            <% if current_user && user_has_provider?('gplus') %>
+              <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseGp">
+                    Re-Nfuse Google Plus
+                </button>
+              <% end %> | 
+              <%= link_to remove_token_path(provider: 'gplus') do %>
+                <button type="button" id="nfuseGp">
+                    Remove Network
+                </button>
+              <% end %>
             <% else %>
-              <%= link_to "Nfuse pinterest", "/auth/pinterest" %>
+              <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseGp">
+                    Nfuse it
+                </button>
+              <% end %>
             <% end %>
-            <!-- pinterest -->
-          </div>
-          <div class="col-sm-3 features-box wow fadeInDown">
-            <% if controller_name == 'callback_links' %>
-              <%= link_to "Skip", next_wizard_path, class: "btn btn-link-2" %>
-            <% elsif controller_name == 'users' && action_name == 'edit' %>
-              <h3><%= link_to "Done Nfusing?", root_path, class: "btn btn-link-2" %></h3>
+        </div>
+
+        <!-- VIMEO -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-vimeo"></i>
+            <h3>Vimeo</h3>
+            <p>Share your Vimeo posts.</p>
+            <% if current_user && user_has_provider?('vimeo') %>
+              <%= link_to "/auth/vimeo?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseVm">
+                    Re-Nfuse Vimeo
+                </button>
+              <% end %> | 
+              <%= link_to remove_token_path(provider: 'vimeo') do %>
+                <button type="button" id="nfuseVm">
+                    Remove Network
+                </button>
+              <% end %>
             <% else %>
-              <p>Whats up</p>
-            <%end%>
-          </div>
-          <div class="col-sm-3 features-box features-box-gray wow fadeInUp">
-            <!-- facebook -->
-            <div class="features-box-icon">
-              <%= link_to image_tag("facebookblue.fw.png", size: "60x60"), "/auth/facebook?origin=#{request.original_url}" %>
-              <%#= image_tag("Newpostin1.fw.png", size: "60x60") %>
-            </div>
-              <h3>Facebook</h3>
-              <p>Share your Facebook posts</p>
+              <%= link_to "/auth/vimeo?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseVm">
+                    Nfuse it
+                </button>
+              <% end %>
+            <% end %>
+        </div>
+
+        <!-- PINTEREST -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-pinterest-p"></i>
+            <h3>Pinterest</h3>
+            <p>Share your Pinterest posts.</p>
+            COMMING SOON!!!
+            <!-- <%# if current_user && user_has_provider?('pinterest') %>
+              <%#= link_to "/auth/pinterest" do %>
+                <button type="button" id="nfusePn">
+                    Re-Nfuse Pinterest
+                </button>
+              <%# end %> | 
+              <%#= link_to remove_token_path(provider: 'pinterest') do %>
+                <button type="button" id="nfusePn">
+                    Remove Network
+                </button>
+              <%# end %>
+            <%# else %>
+              <%#= link_to "/auth/pinterest" do %>
+                <button type="button" id="nfusePn">
+                    Nfuse it
+                </button>
+              <%# end %>
+            <%# end %> -->
+        </div>
+
+        <!-- FACEBOOK -->
+        <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <i class="fa fa-facebook"></i>
+            <h3>Facebook</h3>
+            <p>Share your Facebook posts.</p>
             <% if current_user && user_has_provider?('facebook') %>
-              <p class="nfused_network">
-              <%= link_to "You've Nfused Facebook", "/auth/facebook?origin=#{request.original_url}" %> | 
-              <%= link_to "Remove Network", remove_token_path(provider: 'facebook') %>
-              </p>
+              <%= link_to "/auth/facebook?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseFb">
+                    Re-Nfuse Facebook
+                </button>
+              <% end %> | 
+              <%= link_to remove_token_path(provider: 'facebook') do %>
+                <button type="button" id="nfuseFb">
+                    Remove Network
+                </button>
+              <% end %>
             <% else %>
-              <%= link_to "Nfuse Facebook", "/auth/facebook?origin=#{request.original_url}" %>
+              <%= link_to "/auth/facebook?origin=#{request.original_url}" do %>
+                <button type="button" id="nfuseFb">
+                    Nfuse it
+                </button>
+              <% end %>
             <% end %>
-              <!-- facebook -->
-          </div>
         </div>
       </div>
-    </div>
+    </article>
+    <!-- SAVE ALL -->
+    <% if controller_name == 'callback_links' %>
+      <div id="saveall" class="col-xs-12 content">
+        <% if @wizard_steps.first.to_s.include?('callbacks') %>
+          <%= link_to "Next", next_wizard_path, class: "btn btn-default" %>
+        <% else %>
+          <%= link_to "Finish", next_wizard_path, class: "btn btn-default" %>
+        <% end %>
+      </div>
+    <% elsif controller_name == 'users' && action_name == 'edit' %>
+      <div id="saveall" class="col-xs-12 content">
+        <button type="submit" class="fullw btn btn-default">Finished</button>
+      </div>
+    <% else %>
+    <%end%>
   </div>
-</form>
+</section>

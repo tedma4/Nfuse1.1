@@ -1,11 +1,12 @@
-<style>
-  .containerThingy {
-    margin-top: 10px;
-    padding-bottom: 100px;
-  }
-</style>
-<% w = ['wired', 'national_geographic', 'people_magazine', 'time_magazine', 'sports_illustrated', 'cosmopolitan', 'redbull', 'espn', 'us_weekly', 'entertainment_weekly', 'newsweek', 'popular_science', 'vogue', 'bloomberg_businessweekly', 'gq', 'hgtv', 'forbes_magazine', 'fortune', 'e_news', 'google', 'tedtalks', 'tesla', 'victorias_secret', 'cnn', 'hbo', 'showtime', 'marvel', 'syfy', 'netflix', 'buzzfeed', 'reddit', 'collegehumor', 'microsoft', 'nike', 'imdb', 'vevo', 'starwars', 'nasa', 'bravo', 'mtv', 'golfdigest', 'nba', 'nfl', 'mlb', 'nhl', 'inc', 'makerbot', 'olympics', 'tmz', 'tiffany', 'playboy', 'maxim', 'elle', 'vanityfair', 'brides', 'usatoday', 'sciencechannel', 'fifa', 'gucci', 'handm', 'generalelectric', 'armani', 'ibm', 'foxsports', 'cnbc', 'amazon', 'food', 'sony', 'gap', 'history', 'ralph', 'tlc', 'xbox', 'playstation', 'nordstrom', 'entrepreneur', 'bananarepublic', 'calvinklein', 'underarmour', 'facebook', 'burberry', 'abc', 'nbc', 'cbs', 'thecw', 'hugoboss', 'cbsnews', 'foxnews', 'nbcnews', 'abcnews', 'cbssports', 'fox', 'uber', 'forever21', 'mls', 'urbanoutfitters', 'allure', 'wmagazine', 'thescene', 'youtube' ] %>
+<section id="profile-grid" class="container-fluid">
+  <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+</section>
+<div id="paginate_only_once">
+  <a href="/businessconnector?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
 
-<% m = Page.where(page_name: w).pluck(:page_name)%>
-
-<%= render partial: 'pages/sort_loop_thingy', locals: {m: m} %>
+<script>
+// $(document).ready(function() {
+//   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+// });
+</script>

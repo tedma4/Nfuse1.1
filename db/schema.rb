@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302131659) do
+ActiveRecord::Schema.define(version: 20160420140635) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160302131659) do
     t.text     "url_html"
     t.string   "hashtag"
     t.string   "tagged_user"
+    t.string   "topic"
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"
@@ -141,7 +142,7 @@ ActiveRecord::Schema.define(version: 20160302131659) do
   create_table "pages", force: :cascade do |t|
     t.integer  "page_counter_cache",                   default: 0
     t.string   "page_name",                limit: 255
-    t.string   "thing_name",               limit: 255
+    t.string   "full_name",                limit: 255
     t.string   "twitter_handle",           limit: 255
     t.string   "youtube_handle",           limit: 255
     t.string   "instagram_handle",         limit: 255
@@ -156,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160302131659) do
     t.integer  "page_avatar_file_size"
     t.datetime "page_avatar_updated_at"
     t.string   "page_category"
+    t.integer  "view_count"
   end
 
   add_index "pages", ["page_name"], name: "index_pages_on_page_name"

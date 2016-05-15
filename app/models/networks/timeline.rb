@@ -49,24 +49,40 @@ module Networks
       merge = []
       if @token.any? || @user.shouts.any?
         begin
-          @token.each do |it|
-            if @unauthed_accounts.include?(it.first)
+          @token.each do |provider|
+            if @unauthed_accounts.include?(provider.first)
               #Leavin this blank for now
             else
-              merge << instance_variable_get("@#{it.first}").map { |post| Networks::Post.from(post, "#{it.first}", @user)}
+              if provider.first == 'twitter'
+                @twitter = @twitter.delete_if { |twitter_post| twitter_post.attrs.has_key?(:retweeted_status) || twitter_post.attrs[:in_reply_to_status_id] != nil }
+                merge << instance_variable_get("@#{provider.first}").map { |post| Networks::Post.from(post, "#{provider.first}", @user) }
+              elsif provider.first == 'facebook'
+                @facebook = @facebook.delete_if { |facebook_post| facebook_post['story'] ? (facebook_post['story'].include?('profile picture') || facebook_post['story'].include?('cover photo') ) : false }
+                merge << @facebook.map { |post| Networks::Post.from(post, "#{provider.first}", @user) }
+              # elsif provider.first == 'gplus'
+              #   @gplus = @gplus.delete_if { |gplus_post| gplus_post['story'] ? (gplus_post['story'].include?('profile picture') || gplus_post['story'].include?('cover photo') ) : false }
+              #   merge << @gplus.map { |post| Networks::Post.from(post, "#{provider.first}", @user) }
+              elsif provider.first == 'tumblr'
+                @tumblr = @tumblr.delete_if { |tumblr_post| ['chat', 'audio'].include?(tumblr_post['type'])}
+                merge << @tumblr.map { |post| Networks::Post.from(post, "#{provider.first}", @user) }
+              else
+                merge << instance_variable_get("@#{provider.first}").map { |post| Networks::Post.from(post, "#{provider.first}", @user)}
+              end
             end
           end
           if @user.shouts.any?
-            users_posts
-            (merge.inject(:+)) + users_posts
+            nfuse_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
+            (merge.inject(:+)) + nfuse_posts
           elsif merge.empty?
-            users_posts
+            nfuse_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
+            nfuse_posts
           else
             merge.inject(:+)
           end
         rescue
           if @user.shouts.any?
-            users_posts
+            nfuse_posts = users_posts.reject { |nfuse_post| nfuse_post.exclusive == true}
+            nfuse_posts
           else
           merge
           end
@@ -77,7 +93,7 @@ module Networks
     end
 
     def users_posts
-      users_posts = @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
+      @user.shouts.first(25).map { |post| Nfuse::Post.new(post) }
     end
 
     def twitter_posts(*this)

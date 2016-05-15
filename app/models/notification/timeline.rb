@@ -34,7 +34,7 @@ module Notification
           client = Koala::Facebook::API.new(access_token, app_secret)
           entry = client.get_object(post_id)
           Notification::Entry.from(entry, 'facebook', @user)
-        when 'youtube'
+        when 'google_oauth2'
           if @user.class.name == 'User'
             token = @user.tokens.find_by(provider: 'google_oauth2')
             client = configure_youtube(token.access_token, token.refresh_token)
