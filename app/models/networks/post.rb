@@ -276,7 +276,7 @@ module Networks
         when 'gplus'
           @post['link']
         when 'vimeo'
-          @post['link']
+          @post.link
       end
     end
 
