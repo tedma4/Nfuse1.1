@@ -27,11 +27,9 @@ class UsersController < ApplicationController
   end
 
   def destroyuser
-    # User.destroy_all
-    # Page.destroy_all
-    # require 'rake'
-    # Nfuse11::Application.load_tasks # <-- MISSING LINE
-    # Rake::Task['db:seed'].invoke
+    require 'rake'
+    Nfuse11::Application.load_tasks # <-- MISSING LINE
+    Rake::Task['db:seed'].invoke
   end
 
   def remove_token
