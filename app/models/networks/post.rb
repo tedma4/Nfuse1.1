@@ -274,7 +274,7 @@ module Networks
         when 'tumblr'
           @post['short_url']
         when 'gplus'
-          @post['link']
+          @post.attributes['url']
         when 'vimeo'
           @post.link
       end
