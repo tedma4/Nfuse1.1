@@ -184,7 +184,11 @@ module Networks
         when 'instagram'
           @post["videos"]["standard_resolution"]["url"]
         when 'facebook'
-          @post['source'].sub("?autoplay=1", "")
+          if @post['source'].include?('?autoplay=1')
+            @post['source'].sub!("?autoplay=1", "")
+          else
+            @post['source'].sub!("autoplay=1", "")
+          end
         when 'tumblr'
           if @post['video_type'] == 'tumblr'
             @post['video_url']
@@ -293,7 +297,11 @@ module Networks
     end
 
     def youtube_source
-      @post['source'].sub("?autoplay=1", "")
+      if @post['source'].include?('?autoplay=1')
+        @post['source'].sub!("?autoplay=1", "")
+      else
+        @post['source'].sub!("autoplay=1", "")
+      end
     end
 
     def description

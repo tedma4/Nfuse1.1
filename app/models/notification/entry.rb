@@ -154,7 +154,11 @@ module Notification
         when 'instagram'
           @entry["videos"]["standard_resolution"]["url"]
         when 'facebook'
-          @entry['source'].sub("?autoplay=1", "")
+          if @entry['source'].include?('?autoplay=1')
+            @entry['source'].sub!("?autoplay=1", "")
+          else
+            @entry['source'].sub!("autoplay=1", "")
+          end
         when 'tumblr'
           if @entry['video_type'] == 'tumblr'
             @entry['video_url']
@@ -257,7 +261,11 @@ module Notification
     end
 
     def youtube_source
-      @entry['source'].sub("?autoplay=1", "")
+      if @entry['source'].include?('?autoplay=1')
+        @entry['source'].sub!("?autoplay=1", "")
+      else
+        @entry['source'].sub!("autoplay=1", "")
+      end
     end
 
     def description
