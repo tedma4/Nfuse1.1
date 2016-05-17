@@ -32,7 +32,7 @@
           <% if @page.profile_pic != nil %>
             <img src="<%= @page_image %>" style="width:200px;" alt="User Image"/>
           <% else %>
-            <img src="<%= @page.prifile_pic %>" alt="User Image"/>
+            <img src="<%= @page.profile_pic || 'def.jpg' %>" alt="User Image"/>
           <% end %>
         </a>
       </li>

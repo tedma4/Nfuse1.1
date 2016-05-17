@@ -28,7 +28,7 @@
             <header class="post_header">
               <div class="user">
                 <%= image_tag(@this_user.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-                <%= link_to truncate(@this_user.user_name, length: 16), "/users/#{@this_user.user_name}" %>
+                <%= link_to truncate(@this_user.user_name, length: 16), "/users/#{@this_user.user_name}/feed" %>
               </div>
               <%= link_to @post_entry.link_to_entry, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
                 <i class="fa"></i> <%= time_ago_in_words(@post_entry.created_time) %>
