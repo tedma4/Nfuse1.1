@@ -243,7 +243,7 @@ module Notification
         when 'gplus'
           @entry['link']  
         when 'vimeo'
-          @entry['link']  
+          @entry.link 
       end
     end
 
