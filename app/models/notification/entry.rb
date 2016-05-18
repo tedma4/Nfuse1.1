@@ -210,7 +210,7 @@ module Notification
         when 'gplus'
           @entry['created_at']
         when 'vimeo'
-          @entry['created_at']
+          @entry.created_time
         else
           @entry.created_at
       end
