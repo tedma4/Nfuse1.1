@@ -80,7 +80,7 @@
         <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
           <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
         <% end %>
-      </he ader>
+      </header>
       <main class="post_content">
         <% case post.provider %>
         <% when 'instagram' %>
@@ -348,14 +348,14 @@ $('a.show_feed').click( function() {
   </script>
 
 <script>
- // $('#upload_form').submit(function(event){
- //    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
- //    if (forum_form_is_not_be_blank){
- //      return true;
- //    } else {
- //    event.preventDefault();
- //    alert('NOPE')
- //    return false;
- //    }
- //  });
+ $('#upload_form').submit(function(event){
+    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
+    if (forum_form_is_not_be_blank){
+      return true;
+    } else {
+    event.preventDefault();
+    alert('NOPE')
+    return false;
+    }
+  });
 </script>

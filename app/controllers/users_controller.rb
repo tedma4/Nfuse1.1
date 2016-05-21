@@ -211,48 +211,48 @@ class UsersController < ApplicationController
   end
 
   def all_users_and_pages
-    @providers = Providers.for(current_user)
-    timeline = []
-    page_timeline = []
-    ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
-    pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
-    if ids.any? && pids.any?
-      @users = User.where(id: ids)
-      @users.find_each do |user|
-        feed=Networks::Timeline.new(user)
-        timeline << feed.construct(params)
-        @unauthed_accounts = feed.unauthed_accounts
-      end
-      @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
-      @pages = Page.where(id: pids)
-      @pages.find_each do |page|
-        feed=Biz::Timeline.new(page)
-        page_timeline << feed.construct(params)[:page_feeds]
-      end
-      @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
-      @timeline = (@page_timeline + @user_timeline).sort { |a, b| b.created_time <=> a.created_time}
-    elsif ids.any? && pids.empty?
-      unless ids.empty?
-        @users = User.where(id: ids)
-        @users.find_each do |user|
-          feed=Networks::Timeline.new(user)
-          timeline << feed.construct(params)
-          @unauthed_accounts = feed.unauthed_accounts
-        end
-      end
-      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
-    elsif pids.any? && ids.empty?
-      unless pids.empty?
-        @pages = Page.where(id: pids)
-        @pages.find_each do |page|
-          feed=Biz::Timeline.new(page)
-          page_timeline << feed.construct(params)[:page_feeds]
-        end
-      end
-      @timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
-    else
-      @timeline
-    end
+    # @providers = Providers.for(current_user)
+    # timeline = []
+    # page_timeline = []
+    # ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
+    # pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+    # if ids.any? && pids.any?
+    #   @users = User.where(id: ids)
+    #   @users.find_each do |user|
+    #     feed=Networks::Timeline.new(user)
+    #     timeline << feed.construct(params)
+    #     @unauthed_accounts = feed.unauthed_accounts
+    #   end
+    #   @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
+    #   @pages = Page.where(id: pids)
+    #   @pages.find_each do |page|
+    #     feed=Biz::Timeline.new(page)
+    #     page_timeline << feed.construct(params)[:page_feeds]
+    #   end
+    #   @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
+    #   @timeline = (@page_timeline + @user_timeline).sort { |a, b| b.created_time <=> a.created_time}
+    # elsif ids.any? && pids.empty?
+    #   unless ids.empty?
+    #     @users = User.where(id: ids)
+    #     @users.find_each do |user|
+    #       feed=Networks::Timeline.new(user)
+    #       timeline << feed.construct(params)
+    #       @unauthed_accounts = feed.unauthed_accounts
+    #     end
+    #   end
+    #   @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
+    # elsif pids.any? && ids.empty?
+    #   unless pids.empty?
+    #     @pages = Page.where(id: pids)
+    #     @pages.find_each do |page|
+    #       feed=Biz::Timeline.new(page)
+    #       page_timeline << feed.construct(params)[:page_feeds]
+    #     end
+    #   end
+    #   @timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
+    # else
+    #   @timeline
+    # end
   end
 
   def user_likes

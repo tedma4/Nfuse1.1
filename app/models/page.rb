@@ -43,6 +43,26 @@ class Page < ActiveRecord::Base
     profile_pic
   end
 
+  def self.trending_user_posts
+    ActsAsVotable::Vote.where('created_at >= ? and owner_type = ?', 1.week.ago, 'User').group('votable_id')
+  end
+
+  def self.trending_page_posts
+    ActsAsVotable::Vote.where('created_at >= ? and owner_type = ?', 1.week.ago, 'Page').group('votable_id')
+  end
+
+  def self.trending_nfuse_posts
+    ActsAsVotable::Vote.where('created_at <= ? and owner_type = ? and votable_type is ?', 1.week.ago, 'User', nil).group('votable_id')
+  end
+  
+  def self.trending_twitter_posts
+    client = Twitter::REST::Client.new do |i|
+      i.consumer_key = ENV['twitter_api_key']
+      i.consumer_secret = ENV['twitter_api_secret']
+    end
+    client
+  end
+
   def self.next_page
     Page.all.shuffle.first.id
   end

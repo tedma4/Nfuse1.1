@@ -144,7 +144,7 @@
       <!-- PANEL THREE -->
       <div id="networks">
         <% m=  Page.all %>
-        <% m.each do |this| %>
+        <% m.first(10).each do |this| %>
           <!-- PROFILE -->
           <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <a href="/pages/<%= this.page_name %>">
