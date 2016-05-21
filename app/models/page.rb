@@ -52,7 +52,7 @@ class Page < ActiveRecord::Base
   end
 
   def self.trending_nfuse_posts
-    ActsAsVotable::Vote.where('created_at <= ? and owner_type = ? and votable_type is ?', 1.week.ago, 'User', nil).group('votable_id')
+    ActsAsVotable::Vote.where('created_at >= ? and owner_type = ? and votable_type is ?', 1.week.ago, 'User', nil).group('votable_id')
   end
   
   def self.trending_twitter_posts
@@ -60,7 +60,7 @@ class Page < ActiveRecord::Base
       i.consumer_key = ENV['twitter_api_key']
       i.consumer_secret = ENV['twitter_api_secret']
     end
-    client
+    client.search('news', lang: "en", result_type: "popular" )
   end
 
   def self.next_page
