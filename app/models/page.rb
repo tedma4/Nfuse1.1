@@ -60,7 +60,55 @@ class Page < ActiveRecord::Base
       i.consumer_key = ENV['twitter_api_key']
       i.consumer_secret = ENV['twitter_api_secret']
     end
-    client.search('news', lang: "en", result_type: "popular" )
+    client.search('news', lang: "en", result_type: "popular", limit: 5 ).map { |post| Search::Entry.from(post, 'twitter') }
+  end
+  
+  def self.trending_youtube_posts
+    Yt.configure do |config|
+      config.client_id = ENV['google_client_id']
+      config.client_secret = ENV['google_client_secret']
+      config.api_key = ENV['youtube_dev_key']
+    end
+     client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
+     videos = Yt::Collections::Videos.new
+     videos.where(q: 'news', order: "viewCount").first(15).map { |post| Search::Entry.from(post, 'youtube') }
+    # begin
+    #  client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
+    #   # if client['items'][0]['snippet']['channelTitle'].present?
+    #   begin
+    #     usid = client['items'][0]['snippet']['channelTitle']
+    #     channel = Yt::Channel.new url: "https://www.youtube.com/user/#{usid}"#can't search youtube channels with spaces in the search params 
+    #     posts = channel.videos.where(order: "viewCount").first(15).map { |post| Search::Entry.from(post, 'youtube') }
+    #   rescue
+    #     usid = client['items'][0]['id']['channelId']
+    #     channel = Yt::Channel.new url: "https://www.youtube.com/channel/#{usid}"
+    #     posts = channel.videos.where(order: "viewCount").first(15).map { |post| Search::Entry.from(post, 'youtube') }
+    #   end
+    # rescue
+    #   videos = Yt::Collections::Videos.new
+    #   videos.where(q: 'news', order: "viewCount").first(15).map { |post| Search::Entry.from(post, 'youtube') }
+    # end
+  end
+  
+  def self.trending_instagram_posts
+    client_id = ENV['instagram_client_id']
+    client = Oj.load(Faraday.get("https://api.instagram.com/v1/tags/search/media/recent?q=news&client_id=#{client_id}&count=5").body)['data'].map { |post| Search::Entry.from(post,'instagram') }
+    # begin
+    #   client = Oj.load(Faraday.get("https://api.instagram.com/v1/tags/search?q=news&client_id=#{client_id}").body)['data'].map { |post| Search::Entry.from(post,'instagram') }
+    #   begin
+    #     usid = client['data'][0]['id']
+    #     posts = Oj.load(Faraday.get("https://api.instagram.com/v1/media/#{usid}/media/recent/?client_id=#{client_id}&count=5").body)
+    #     posts['data'].map { |post| Search::Entry.from(post,'instagram') }
+    #   rescue
+    #     usid = client['data'][1]['id']
+    #     posts = Oj.load(Faraday.get("https://api.instagram.com/v1/media/#{usid}/media/recent/?client_id=#{client_id}&count=5").body)
+    #     posts['data'].map { |post| Search::Entry.from(post,'instagram') }
+    #   end
+    # rescue
+    #   search = @search.gsub(/[^0-9A-Za-z]/, '')
+    #   posts = Oj.load(Faraday.get("https://api.instagram.com/v1/tags/news/media/recent?client_id=#{client_id}&count=5").body)
+    #   posts['data'].map { |post| Search::Entry.from(post,'instagram') }
+    # end
   end
 
   def self.next_page

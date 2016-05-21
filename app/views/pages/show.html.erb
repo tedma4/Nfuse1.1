@@ -78,7 +78,7 @@
         </div>
         <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
         <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-          <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
+          <i class="fa"></i><%= time_ago_in_words(post.created_time) %>
         <% end %>
       </header>
       <main class="post_content">

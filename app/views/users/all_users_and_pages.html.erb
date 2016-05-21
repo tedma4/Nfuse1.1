@@ -94,7 +94,7 @@
               <a href="/"><%= @post_entry.page.full_name %></a>
             </div>
             <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
-              <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
+              <i class="fa"></i> <%= time_ago_in_words(@post_entry.created_time) %>
             <% end %>
           </header>
             <% case @post_entry.provider %>
@@ -204,52 +204,114 @@
     </div>
   </div>
 
-
-
   <div id="pages" class="row">
-    <h2 class="carousel-title"><a href="#">Pages</a></h2>
+    <h2 class="carousel-title"><a href="#">Twitter News</a></h2>
     <div class="carousel responsive">
-      <% Page.trending_page_posts.each do |post| %>
-        <% @post_entry = Notification::Timeline.new(post.votable_id, post.social_flag, Page.find(post.owner_id)).construct %>
+      <% Page.trending_twitter_posts.each do |post_entry| %>
         <!-- POST -->
-        <article class="item individual_post <%= @post_entry.provider %>_post0">
+        <article class="item individual_post <%= post_entry.provider %>_post0">
           <header class="post_header">
             <div class="user">
-              <%= image_tag(@post_entry.page.profile_pic, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-              <a href="/"><%= @post_entry.page.full_name %></a>
+              <%= image_tag(post_entry.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+              <a href="/"><%= post_entry.user_name %></a>
             </div>
-            <%= link_to @post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
-              <i class="fa"></i></i> <%= time_ago_in_words(@post_entry.created_time) %>
+            <%= link_to post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <i class="fa"></i> <%= time_ago_in_words(post_entry.created_time) %>
             <% end %>
           </header>
-            <% if @post_entry.has_media? %>
-              <% if @post_entry.type == 'animated_gif' || @post_entry.type== 'video' %>
+            <% if post_entry.has_media? %>
+              <% if post_entry.type == 'animated_gif' || post_entry.type== 'video' %>
                 <div class="center">
-                  <video controls autoload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
-                    <source src="<%= @post_entry.video %>" type='video/mp4' />
-                    <source src="<%= @post_entry.video %>" type='video/ogv' />
+                  <video controls autoload="none" style="background:transparent url(<%= post_entry.image %>) no-repeat 50% 50%;" >
+                    <source src="<%= post_entry.video %>" type='video/mp4' />
+                    <source src="<%= post_entry.video %>" type='video/ogv' />
                   </video>
                 </div>
-              <% elsif @post_entry.type == 'photo' %>
+              <% elsif post_entry.type == 'photo' %>
                 <div class="timeline-user-box">
-                  <%= image_tag(@post_entry.image, :class => "image_post") %>
+                  <%= image_tag(post_entry.image, :class => "image_post") %>
                 </div>
               <% end %>
             <% end %>
             <div class="center">
-              <%= @post_entry.text %>
+              <%= post_entry.text %>
             </div>
-          <footer class="post_actions">
-            <% if ActsAsVotable::Vote.where(votable_id: @post_entry.id).pluck(:voter_id).include?(current_user.id) %>
-                <%= link_to dislike_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :delete, remote: true, class: 'likePost liked'} do %>
-                    <i class="fa"></i><span class="liked-<%= @post_entry.id %>"><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
-                <% end %>
-            <% else %>
-              <%= link_to like_shout_path(id: @post_entry.id, owner_id: @post_entry.page.id, owner_type: @post_entry.page.class.name, key: @post_entry.provider), {method: :post, remote: true, class: 'likePost'} do %>
-                  <i class="fa"></i><span class="liked-<%= @post_entry.id %>"><%= ActsAsVotable::Vote.where(votable_id: @post_entry.id).count %></span>
+        </article>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="pages" class="row">
+    <h2 class="carousel-title"><a href="#">Youtube News</a></h2>
+    <div class="carousel responsive">
+      <% Page.trending_youtube_posts.each do |post_entry| %>
+        <!-- POST -->
+        <article class="item individual_post <%= post_entry.provider %>_post0">
+          <header class="post_header">
+            <div class="user">
+              <%= image_tag(post_entry.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+              <a href="/"><%= post_entry.user_name %></a>
+            </div>
+            <%= link_to post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <i class="fa"></i> <%= time_ago_in_words(post_entry.created_time) %>
+            <% end %>
+          </header>
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="100%"
+              height="225"
+              src="https://www.youtube.com/embed/<%= post_entry.video %>"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+            <% if post_entry.text.present? %>
+              <div class="center">
+                <%= post_entry.text %>
+              </div>
+            <% end %>
+        </article>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="pages" class="row">
+    <h2 class="carousel-title"><a href="#">Instagram News</a></h2>
+    <div class="carousel responsive">
+      <% Page.trending_instagram_posts.each do |post_entry| %>
+        <!-- POST -->
+        <article class="item individual_post <%= post_entry.provider %>_post0">
+          <header class="post_header">
+            <div class="user">
+              <%= image_tag(post_entry.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+              <a href="/"><%= post_entry.user_name %></a>
+            </div>
+            <%= link_to post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+              <i class="fa"></i> <%= time_ago_in_words(post_entry.created_time) %>
+            <% end %>
+          </header>
+            <% if post_entry.type == "image" %>
+              <div class="timeline-user-box">
+                <%= image_tag(post_entry.image, :class => "image_post") %>
+              </div>
+              <% if post_entry.text.present? %>
+                <div class="center">
+                  <%= post_entry.text %>
+                </div>
+              <% end %>
+            <% elsif post_entry.type == "video" %>
+              <div class="center">
+                <video controls autoload="none" style="background:transparent url(<%= post_entry.image %>) no-repeat 50% 50%;" >
+                  <source src="<%= post_entry.video %>" type='video/mp4' />
+                  <source src="<%= post_entry.video %>" type='video/ogv' />
+                </video>
+              </div>
+              <% if post_entry.text.present? %>
+                <div class="center">
+                  <%= post_entry.text %>
+                </div>
               <% end %>
             <% end %>
-          </footer>
         </article>
       <% end %>
     </div>
