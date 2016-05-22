@@ -56,58 +56,58 @@
     });
     
 
-        $('.responsive.carousel').slick({
-          dots: false,
-          infinite: false,
-          speed: 300,
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          variableWidth: false,
-          responsive: [
-            {
-              breakpoint: 2000,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 1200,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1
-              }
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-          ]
-        });
+        // $('.responsive.carousel').slick({
+        //   dots: false,
+        //   infinite: false,
+        //   speed: 300,
+        //   slidesToShow: 6,
+        //   slidesToScroll: 1,
+        //   variableWidth: false,
+        //   responsive: [
+        //     {
+        //       breakpoint: 2000,
+        //       settings: {
+        //         slidesToShow: 4,
+        //         slidesToScroll: 1,
+        //         infinite: true,
+        //         dots: true
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 1200,
+        //       settings: {
+        //         slidesToShow: 3,
+        //         slidesToScroll: 1,
+        //         infinite: true,
+        //         dots: true
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 992,
+        //       settings: {
+        //         slidesToShow: 2,
+        //         slidesToScroll: 1
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 768,
+        //       settings: {
+        //         slidesToShow: 1,
+        //         slidesToScroll: 1
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 480,
+        //       settings: {
+        //         slidesToShow: 1,
+        //         slidesToScroll: 1
+        //       }
+        //     }
+        //     // You can unslick at a given breakpoint now by adding:
+        //     // settings: "unslick"
+        //     // instead of a settings object
+        //   ]
+        // });
     });
 
     // Change width value on user resize, after DOM
@@ -131,7 +131,7 @@
         return o;
     };
     $(document).ready(function() {
-        var images = ['after-jogging.jpg', 'bearded-diving.jpg', 'bride-groom.jpg', 'couple-driving.jpg', 'examining-leaves.jpg', 'friends-walking.jpg', 'girl-photographing.jpg', 'hiking-couple.jpg', 'jumping-jetty.jpg', 'midair-bike.jpg', 'mountain-biker.jpg', 'ocean-gliding.jpg', 'surfer-girl.jpg'];
+        var images = ['Nfusebanner5dt.jpg', 'Nfusebanner6dt.jpg', 'Nfusebanner8dt.jpg', 'nfusebanner10dt.jpg','Nfusebanner1dt.jpg','Nfusebanner2DT.jpg','Nfusebanner3dt.jpg', 'after-jogging.jpg', 'bearded-diving.jpg', 'bride-groom.jpg', 'couple-driving.jpg', 'examining-leaves.jpg', 'friends-walking.jpg', 'girl-photographing.jpg', 'hiking-couple.jpg', 'jumping-jetty.jpg', 'midair-bike.jpg', 'mountain-biker.jpg', 'ocean-gliding.jpg', 'surfer-girl.jpg'];
         images = shuffle(images);
 
         $('html.desktop .random.bg').each(function(i){
@@ -145,7 +145,7 @@
         return o;
     };
     $(document).ready(function() {
-        var images = ['after-jogging.jpg', 'bearded-diving.jpg', 'bride-groom.jpg', 'couple-driving.jpg', 'examining-leaves.jpg', 'friends-walking.jpg', 'girl-photographing.jpg', 'hiking-couple.jpg', 'jumping-jetty.jpg', 'midair-bike.jpg', 'mountain-biker.jpg', 'ocean-gliding.jpg', 'surfer-girl.jpg'];
+        var images = ['Nfusebanner5mbl.jpg', 'Nfusebanner6mbl.jpg', 'Nfusebanner8mbl.jpg', 'nfusebanner10mbl.jpg', 'Nfusebanner1mbl.jpg', 'Nfusebanner2mbl.jpg', 'Nfusebanner3mbl.jpg', 'after-jogging.jpg', 'bearded-diving.jpg', 'bride-groom.jpg', 'couple-driving.jpg', 'examining-leaves.jpg', 'friends-walking.jpg', 'girl-photographing.jpg', 'hiking-couple.jpg', 'jumping-jetty.jpg', 'midair-bike.jpg', 'mountain-biker.jpg', 'ocean-gliding.jpg', 'surfer-girl.jpg'];
         images = shuffle(images);
 
         $('html.mobile .random.bg').each(function(i){
