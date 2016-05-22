@@ -24,10 +24,10 @@
       <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
     </ul>
   </nav>
+</section>
+<section id="masonJar" class="clearfix">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
-</section>
-<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
 
   <%# cache(["user_hub", timeline.map(&:id), ActsAsVotable::Vote.maximum(:updated_at)]) do %>
     <% @timeline.first(30).each do |post| %>
