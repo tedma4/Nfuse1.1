@@ -66,7 +66,7 @@
     </ul>
   </nav>
 </section>
-<section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+<section id="masonJar" class="clearfix">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
   <% @timeline.each do |post| %>
@@ -80,7 +80,7 @@
         <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
           <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
         <% end %>
-      </he ader>
+      </header>
       <main class="post_content">
         <% case post.provider %>
         <% when 'instagram' %>

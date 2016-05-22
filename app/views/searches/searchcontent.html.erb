@@ -40,14 +40,14 @@
   </section>
 <% when "Posts", "", nil %>
   <% unless @timeline.nil? %>
-    <section id="masonJar" class="clearfix masonJar yes_timeline_padding">
+    <section id="masonJar" class="clearfix">
       <div class="grid-sizer"></div>
       <div class="gutter-sizer"></div>
       <% @timeline.each do |post| %>
         <%= render partial: "searches/post", locals: {post: post} %>
       <% end %>
       <% if !signed_in? %>
-        <div class="item">
+        <div class="item individual_post center">
           <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
         </div>
       <% end %>

@@ -25,103 +25,38 @@
     <% else %>
       <body id="nfuse" class="loggedin nosearchbar" data-spy="scroll" data-target=".navbar-fixed-top">
     <% end %>
-<!--     <div id="scrollwrap">
- -->
     <%= render 'layouts/header' %>
-    <%# flash.each do |key, value| %>
-<!--       <div class="alert alert-<%#= key %>">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%#= value %>
-      </div> -->
-    <%# end %>
-      <%= yield %>
-<!--   </div>
- -->
-
-
+    <%= yield %>
 
     <a id="backtotop" title="back to top" class="page-scroll animation" href="#nfuse" ><i class="fa fa-long-arrow-up"></i></a>
     <%= render partial: 'layouts/modals', locals: {user: @user} %>
-
     <%= render partial: 'layouts/footer' %>
 
     <!-- NOTIFICATIONS -->
-<% if signed_in? %>
-<div id="notifications-list" class="slide-out navmenu-fixed-right offcanvas">
-  <div id="notifications-header">
-    <h5><i class="fa fa-bell"></i>Notifications</h5>
-  </div>
-</div>    <!-- EXCLUSIVE POST MODAL -->
+    <% if signed_in? %>
+      <div id="notifications-list" class="slide-out navmenu-fixed-right offcanvas">
+        <div id="notifications-header">
+          <h5><i class="fa fa-bell"></i>Notifications</h5>
+        </div>
+      </div>    <!-- EXCLUSIVE POST MODAL -->
 
-<div class="modal fade" id="exclusivemodal" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+      <div class="modal fade" id="exclusivemodal" tabindex="-1" role="dialog" aria-labelledby="exclusivelabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
 
-      <%#= paginate @activities %>
-    </div>
-  </div>
-</div>
+            <%#= paginate @activities %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
+    <!-- Masonary Script -->
+    <%= javascript_include_tag 'masonry.pkgd.js' %>
+    <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
 
-<% end %>
-
-    <!-- jQuery -->
-    <%#= javascript_include_tag 'jquery.js' %>
-
-    <!-- Custom Theme JavaScript-->
-      <%= javascript_include_tag 'resize_masonry.js' %>
-      <!-- Masonary Script -->
-      <%= javascript_include_tag 'imagesloaded.pkgd.js' %>
-      <%= javascript_include_tag 'masonry.pkgd.js' %>
-
-    <script>
-        $( document ).ready(function() {
-            resizeMasonry();
-        });
-        $( window ).resize(function() {
-            resizeMasonry();
-        });
-
-        var msnry;
-
-        function triggerMasonry() {
-        // don't proceed if masonry has not been initialized
-        if ( !msnry ) {
-            return;
-        }
-        msnry.layout();
-        }
-
-        function initMasonry() {
-            var container = document.querySelector('#masonJar');
-            msnry = new Masonry( container, {
-                itemSelector: '.item',
-                isAnimated: true,
-                isResizable: true,
-                gutter: 25
-            });
-        }
-        // initialize masonry on document ready
-        docReady( function() {
-            initMasonry();
-        });
-
-        var $container = $('#masonJar');
-        // initialize Masonry after all images have loaded  
-        $container.imagesLoaded( function() {
-            $container.masonry({
-                itemSelector: '.item',
-                isAnimated: true,
-                isResizable: true,
-                gutter: 25
-
-            });
-
-        });
-
-    </script>
-    <!-- Bootstrap Core JavaScript 
-    <script src="js/bootstrap.min.js"></script>-->
+    <!-- Bootstrap Core JavaScript -->
+    <%= javascript_include_tag 'nfuse.js' %>
+    <%= javascript_include_tag 'jasny-bootstrap.min.js' %>
 
     <!-- Plugin JavaScript -->
     <%= javascript_include_tag 'bootstrap.min.js' %>
@@ -130,22 +65,20 @@
     <!-- SCROLLBAR -->
     <%= javascript_include_tag 'jquery.slimscroll.min.js' %>
     <script type="text/javascript">
-        // jQuery(document).ready(function($) {
-        //     $('#scrsdollwrap').slimScroll({
-        //         height: 'auto',
-        //         size: '8px',
-        //         position: 'right',
-        //         color: '#fff',
-        //         alwaysVisible: false,
-        //         distance: '0px',
-        //         railVisible: false,
-        //         wheelStep: 3,
-        //         allowPageScroll: false,
-        //         disableFadeOut: false 
-        //     });
-        // });
+      var $grid = $('#masonJar').masonry({
+        itemSelector: '.individual_post',
+        columnWidth: '.grid-sizer',
+        gutter: 20
+      });
+
+      var theInterval = setInterval(function(){
+        $grid.masonry('layout'); 
+      }, 300);
+
+      $(window).bind("load", function() {
+         $grid.masonry('layout');
+         clearInterval(theInterval);
+      });
     </script>
-    <%= javascript_include_tag 'nfuse.js' %>
-    <%= javascript_include_tag 'jasny-bootstrap.min.js' %>
   </body>
 </html>
