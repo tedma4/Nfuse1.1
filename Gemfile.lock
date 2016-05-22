@@ -349,7 +349,6 @@ GEM
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
     rinku (1.5.1)
-    rmagick (2.13.2)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.1.7)
@@ -554,4 +553,4 @@ DEPENDENCIES
   yt!
 
 BUNDLED WITH
-   1.12.0
+   1.11.2

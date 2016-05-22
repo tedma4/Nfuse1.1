@@ -10,7 +10,7 @@
     <% if @page.profile_pic != nil %>
      <img src="<%= @page_image %>" alt="User Image"/>
     <% else %>
-     <img src="<%= @page.twitter_handle %>.jpg" alt="User Image"/>
+     <img src="<%= @page.profile_pic %>" alt="User Image"/>
     <% end %>
   </a>
   <ul id="user-stats" class="user-left">
@@ -32,7 +32,7 @@
           <% if @page.profile_pic != nil %>
             <img src="<%= @page_image %>" style="width:200px;" alt="User Image"/>
           <% else %>
-            <img src="<%= @page.twitter_handle %>.jpg" alt="User Image"/>
+            <img src="<%= @page.profile_pic || 'def.jpg' %>" alt="User Image"/>
           <% end %>
         </a>
       </li>
@@ -74,11 +74,11 @@
       <header class="post_header">
         <div class="user">
           <%= image_tag(@page_image, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-          <%= link_to truncate(@page.page_name, length: 16), root_path %>
+          <%= link_to truncate(@page.page_name, length: 16), "/pages/#{@page.page_name}" %>
         </div>
         <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
         <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->
-          <i class="fa"></i></i> <%= time_ago_in_words(post.created_time) %>
+          <i class="fa"></i><%= time_ago_in_words(post.created_time) %>
         <% end %>
       </header>
       <main class="post_content">
@@ -86,11 +86,7 @@
         <% when 'instagram' %>
           <% if post.type == "image" %>
             <div class="timeline-user-box">
-              <%= link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-                post_id: post.id, 
-                provider: post.provider, 
-                user: @page.id,
-                post_type: @page.class.name), target: '_blank' %>
+              <%= image_tag(post.image, :class => "image_post") %>
             </div>
             <% if post.text.present? %>
               <div class="center">
@@ -122,11 +118,7 @@
                 </div>
               <% elsif post.type == 'photo' %>
                 <div class="timeline-user-box">
-                  <%= link_to image_tag(post.image, :class => "image_post"), individual_post_path(
-                  post_id: post.id, 
-                  provider: post.provider, 
-                  user: @page.id,
-                  post_type: @page.class.name), target: '_blank' %>
+                  <%= image_tag(post.image, :class => "image_post") %>
                 </div>
               <% end %>
             <% end %>
@@ -356,14 +348,14 @@ $('a.show_feed').click( function() {
   </script>
 
 <script>
- // $('#upload_form').submit(function(event){
- //    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
- //    if (forum_form_is_not_be_blank){
- //      return true;
- //    } else {
- //    event.preventDefault();
- //    alert('NOPE')
- //    return false;
- //    }
- //  });
+ $('#upload_form').submit(function(event){
+    var forum_form_is_not_be_blank = $('#newForumPicUpload').val() != '' || $('#url_body').val() != '' || $('#shout_content').val() != '' || $('#comment_topic_title').val() != ''
+    if (forum_form_is_not_be_blank){
+      return true;
+    } else {
+    event.preventDefault();
+    alert('NOPE')
+    return false;
+    }
+  });
 </script>

@@ -164,11 +164,12 @@ class CommentsController < ApplicationController
                                user_recipients: User.where(user_name: users).pluck(:id).join(', ')
                               ) if User.where(user_name: users).any?
     end
-
-    @comment.create_activity(key: 'comment.new_comment',
-                             owner: current_user,
-                             user_recipients: @comment.parent.user_id
-                            )
+    unless @comment.parent.user_id.nil?
+      @comment.create_activity(key: 'comment.new_comment',
+                               owner: current_user,
+                               user_recipients: @comment.parent.user_id
+                              )
+    end
   end
 
   def comment_params

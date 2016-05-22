@@ -1,5 +1,5 @@
 <%# this_is_it = pages.sort_by {|a, b| -Impression.where(action_name: a.to_s, user_id: current_user.id).count} %>
-<% unless @pages.empty? %>
+<% if @pages %>
   <% pages.each do |page| %>
     <!-- PROFILE -->
     <%= render partial: 'pages/page', locals: {page: page} %>
@@ -11,5 +11,7 @@ There aren't any pages in this category yet.
 <p>
 Fill out the form and let us know what should go here
 </p>
+
+<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-"><div class="vcenter"><div class="vcell"><button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button></div></div></div>
 <% end %>
 <!-- REQUEST ADDITIONAL -->

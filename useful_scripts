@@ -1,6 +1,6 @@
-Page.where("page_category like '%celebrity%'").each do |page|
+Page.all.each do |page|
 	begin
-		page.profile_pic
+		puts "#{page.profile_pic}"
 	rescue
 		puts "#{page.page_name}" 
 	end

@@ -199,12 +199,12 @@
         <!-- G PLUS -->
         <div class="network center col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <i class="fa fa-google-plus"></i>
-            <h3>Google Plus</h3>
-            <p>Share your Google Plus posts.</p>
+            <h3>Google+</h3>
+            <p>Share your Google+ posts.</p>
             <% if current_user && user_has_provider?('gplus') %>
               <%= link_to "/auth/gplus?origin=#{request.original_url}" do %>
                 <button type="button" id="nfuseGp">
-                    Re-Nfuse Google Plus
+                    Re-Nfuse Google+
                 </button>
               <% end %> | 
               <%= link_to remove_token_path(provider: 'gplus') do %>
@@ -251,25 +251,24 @@
             <i class="fa fa-pinterest-p"></i>
             <h3>Pinterest</h3>
             <p>Share your Pinterest posts.</p>
-            COMMING SOON!!!
-            <!-- <%# if current_user && user_has_provider?('pinterest') %>
-              <%#= link_to "/auth/pinterest" do %>
+            <% if current_user && user_has_provider?('pinterest') %>
+              <%= link_to "/auth/pinterest" do %>
                 <button type="button" id="nfusePn">
                     Re-Nfuse Pinterest
                 </button>
-              <%# end %> | 
-              <%#= link_to remove_token_path(provider: 'pinterest') do %>
+              <% end %> | 
+              <%= link_to remove_token_path(provider: 'pinterest') do %>
                 <button type="button" id="nfusePn">
                     Remove Network
                 </button>
-              <%# end %>
-            <%# else %>
-              <%#= link_to "/auth/pinterest" do %>
+              <% end %>
+            <% else %>
+              <%= link_to "/auth/pinterest" do %>
                 <button type="button" id="nfusePn">
                     Nfuse it
                 </button>
-              <%# end %>
-            <%# end %> -->
+              <% end %>
+            <% end %>
         </div>
 
         <!-- FACEBOOK -->

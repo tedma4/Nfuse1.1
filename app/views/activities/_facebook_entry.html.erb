@@ -1,3 +1,4 @@
+<% begin %>
 <% case @post_entry.type %>
 <% when nil %>
   <div class="timeline-user-box">
@@ -60,4 +61,9 @@
       <%= truncate(@post_entry.message, lenght: 30) %>
     <%end%>
   </div>
+<% end %>
+<% rescue %>
+    <% if @post_entry.message.present? %>
+        <%= truncate(@post_entry.message, lenght: 30) %>
+    <%end%>
 <% end %>
