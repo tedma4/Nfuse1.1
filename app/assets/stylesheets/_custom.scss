@@ -870,7 +870,7 @@
   .modal-content .individual_post{
     width: 100% !important;
     max-width: 100%;
-        margin: 0;
+    margin: 0;
   }
   .modal-dialog button.close{
     float: right;
@@ -1211,16 +1211,16 @@
     padding-top:90px;
   }
   .post_content {
-      float: left;
-      width: 100%;
+    /*float: left;*/
+    width: 100%;
   }
   .item .post_header{
     padding: 5px 10px;
     background: #333;
-    z-index: 2;
+    /*z-index: 2;
     position: relative;
     float: left;
-      width: 100%;
+      width: 100%;*/
   }
   .image_post:before{
     content:" ";
@@ -1250,7 +1250,6 @@
   .comment .user,
   .item .user{
     display: inline-block;
-    float: left;
   }
   .comment .user a,
   .item .user a{
@@ -1291,7 +1290,7 @@
   }
   .item .post_content iframe,
   .item .post_content video{
-    margin-bottom: -5px;
+    /*margin-bottom: -5px;*/
   }
   .timeline-user-box{
 
@@ -1341,30 +1340,18 @@
       display: block;
       clear: both;
   }
-  .individual_post {
-      word-wrap: break-word;
-      max-width: 400px;
-  }
   .item{
     background: #333;
-      border-radius: 4px;
+    border-radius: 4px;
     overflow: hidden;
-      height: auto;
+    height: auto;
     z-index: 3;
-        float: left;
-  }
-  #masonJar{
-    padding: 0px;
-    height:auto;
-    display: block;
-    position: relative;
-    /*margin:0 0 0 1%;*/
   }
 
   /* POST ICONS */
-.twitter_post0 .fa:before{
-  content: "\f099";
-}
+  .twitter_post0 .fa:before{
+    content: "\f099";
+  }
   .google_oauth2_post0 .fa:before{
     content: "\f16a";
   }
@@ -1460,31 +1447,69 @@
     content: "\f11d";
   }
 
-@media(max-width:480px) {
+@media (max-width: 435px) {
+  .grid-sizer,
+  .individual_post{
+    width: 100%;
+  }
+}
+@media (min-width: 436px) and (max-width: 825px) {
+  .grid-sizer,
+  .individual_post{
+    width: 48.2%;
+  }
+}
+@media (min-width: 826px) and (max-width: 1250px) {
+  .grid-sizer,
+  .individual_post{
+    width: 32%;
+  }
+}
+@media (min-width: 1251px) and (max-width: 1496px) {
+  .grid-sizer,
+  .individual_post{
+    width: 23.8%;
+  }
+}
+
+@media (min-width: 1497px) and (max-width: 1700px) {
+  .grid-sizer,
+  .individual_post{
+    width: 24%;
+  }
+}
+@media (min-width: 1701px){
+  .grid-sizer,
+  .individual_post{
+    width: 19%;
+  }
+}
+
+.individual_post{
+  margin-bottom: 2rem;
+  word-wrap: break-word;
+  max-width: 400px;
+  float: left;
+}
+
+#masonJar{
+  margin: 1.5rem 1rem 0 1rem;
+}
+
+/*@media(max-width:480px) {
   #masonJar {
-    margin: 25px 4% 0 4%;
+    margin: 0 4% 0 4%;
   }
 }
 @media(max-width:767px) {
-  .item{
-    margin:0 0 15px 0;
-  }
   #masonJar{
-    margin:15px 2% 0 4%;
+    margin: 0 2% 0 4%;
   }
-}
+}*/
+
 @media(min-width:768px) {
-  .item .post_header {
-      padding: 5px;
-  }
   .explorefeed {
       padding-top: 125px;
-  }
-  .item{
-    margin:0 0 25px 0;
-  }
-  #masonJar{
-    margin: 25px 1% 0 3%;
   }
   .user a{
     display: inline-block;
@@ -1494,19 +1519,10 @@
   .explorefeed {
       padding-top: 130px;
   }
-  #masonJar{
-    margin: 25px 0% 0 2%;
-  }
-}
-@media(min-width:1200px) {
-  #masonJar{
-    margin: 25px 1% 0 2%;
-  }
 }
 @media(min-width:2200px) {
   #masonJar{
     max-width: 2100px;
-    margin: 30px auto;
   }
 }
 @media(min-width:2529px) {
@@ -1516,14 +1532,13 @@
 }
 
 /* MISSION */
+#mission{
+  background-image: url(/assets/social-bg.png);
+    background-size: 90% auto;
+    background-position: center 20%;
+    background-repeat: no-repeat;
 
-  #mission{
-    background-image: url(/assets/social-bg.png);
-      background-size: 90% auto;
-      background-position: center 20%;
-      background-repeat: no-repeat;
-
-  }
+}
 
 @media(min-width:480px) {
   #mission{
