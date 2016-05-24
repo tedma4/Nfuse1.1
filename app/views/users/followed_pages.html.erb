@@ -19,9 +19,9 @@
 
   <nav id="user-nav" class="hub center navbar">
     <ul>
-      <li><%= link_to 'All', all_users_and_pages_user_path(current_user) , class: "btn btn-link-2" %> </li>
-      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
-      <li><%= link_to 'Pages', biz_page_hub_user_path(current_user), class: "btn btn-link-2" %></li>
+      <li><%= link_to 'All', root_path , class: "btn btn-link-2" %> </li>
+      <li><%= link_to 'Nfusers', followed_nfusers_user_path(current_user) , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
     </ul>
   </nav>
 </section>

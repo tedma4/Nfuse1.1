@@ -1,0 +1,60 @@
+<style>
+.tab-content {
+    border-radius: 0px;
+    padding: 0px 30px;
+}
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+</style>
+<section id="thehub" class="container-fluid clearfix">
+  <nav id="user-nav" class="hub center navbar">
+    <ul>
+      <li><%= link_to 'All', root_path , class: "btn btn-link-2" %> </li>
+      <li><%= link_to 'Nfusers', followed_nfusers_user_path(current_user) , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
+    </ul>
+  </nav>
+</section>
+<section id="masonJar" class="clearfix">
+  <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
+  <% @posts.each do |post_entry| %>
+    <!-- POST -->
+    <article class="item individual_post <%= post_entry.provider %>_post0">
+      <header class="post_header">
+        <div class="user">
+          <%= image_tag(post_entry.avatar, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+          <a href="/"><%= post_entry.user_name %></a>
+        </div>
+        <%= link_to post_entry.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
+          <i class="fa"></i> <%= time_ago_in_words(post_entry.created_time) %>
+        <% end %>
+      </header>
+        <% if post_entry.has_media? %>
+          <% if post_entry.type == 'animated_gif' || post_entry.type== 'video' %>
+            <div class="center">
+              <video controls autoload="none" style="background:transparent url(<%= post_entry.image %>) no-repeat 50% 50%;" >
+                <source src="<%= post_entry.video %>" type='video/mp4' />
+                <source src="<%= post_entry.video %>" type='video/ogv' />
+              </video>
+            </div>
+          <% elsif post_entry.type == 'photo' %>
+            <div class="timeline-user-box">
+              <%= image_tag(post_entry.image, :class => "image_post") %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="center">
+          <%= post_entry.text %>
+        </div>
+    </article>
+  <% end %>
+</section>

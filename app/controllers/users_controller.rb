@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :user_from_params, only: [:show, :destroy,
                 :feed, :explore, :explore_users, :following,
-                :followers, :nfuse_page, :vue, :biz_page_hub,
-                :all_users_and_pages, :user_likes ]
+                :followers, :nfuse_page, :vue, :followed_pages,
+                :followed_nfusers, :user_likes ]
 
   def index
     #user = User.find(params[:id])
@@ -127,19 +127,6 @@ class UsersController < ApplicationController
 
   # timeline needs a hash with an array of posts and
   # the corresponding picture to go with those posts
-  def biz_page_hub
-    timeline = []
-    ids = current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
-    unless ids.empty?
-      @pages = Page.where(id: ids)
-      @pages.find_each do |page|
-#         timeline[:page_avatar] = page.profile_pic
-        feed=Biz::Timeline.new(page)
-        timeline << feed.construct(params)[:page_feeds]
-      end
-    end
-    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
-  end
 
   def explore
   end
@@ -210,49 +197,47 @@ class UsersController < ApplicationController
     # all_pages.flatten.each do |page|
   end
 
-  def all_users_and_pages
-    # @providers = Providers.for(current_user)
-    # timeline = []
-    # page_timeline = []
-    # ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
-    # pids =  current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
-    # if ids.any? && pids.any?
-    #   @users = User.where(id: ids)
-    #   @users.find_each do |user|
-    #     feed=Networks::Timeline.new(user)
-    #     timeline << feed.construct(params)
-    #     @unauthed_accounts = feed.unauthed_accounts
+  def followed_nfusers
+    @providers = Providers.for(current_user)
+    # @token = []
+    # if current_user.followed_users.any?
+    #   current_user.followed_users.each do |i|
+    #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
     #   end
-    #   @user_timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
-    #   @pages = Page.where(id: pids)
-    #   @pages.find_each do |page|
-    #     feed=Biz::Timeline.new(page)
-    #     page_timeline << feed.construct(params)[:page_feeds]
+    #   unless @token.empty?
+    #     @token = @token[0]
+    #   else
+    #     @token
     #   end
-    #   @page_timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.last(25)
-    #   @timeline = (@page_timeline + @user_timeline).sort { |a, b| b.created_time <=> a.created_time}
-    # elsif ids.any? && pids.empty?
-    #   unless ids.empty?
-    #     @users = User.where(id: ids)
-    #     @users.find_each do |user|
-    #       feed=Networks::Timeline.new(user)
-    #       timeline << feed.construct(params)
-    #       @unauthed_accounts = feed.unauthed_accounts
-    #     end
-    #   end
-    #   @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
-    # elsif pids.any? && ids.empty?
-    #   unless pids.empty?
-    #     @pages = Page.where(id: pids)
-    #     @pages.find_each do |page|
-    #       feed=Biz::Timeline.new(page)
-    #       page_timeline << feed.construct(params)[:page_feeds]
-    #     end
-    #   end
-    #   @timeline=page_timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}.first(50)
     # else
-    #   @timeline
+    #   @token
     # end
+    timeline = []
+    ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
+    unless ids.empty?
+      @users = User.where(id: ids)
+      @users.find_each do |user|
+        feed=Networks::Timeline.new(user)
+        timeline << feed.construct(params)
+        @unauthed_accounts = feed.unauthed_accounts
+      end
+    end
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+    # render 'home' is implicit.
+  end
+
+  def followed_pages
+    timeline = []
+    ids = current_user.relationships.where(follow_type: 'Page').collect(&:followed_id)
+    unless ids.empty?
+      @pages = Page.where(id: ids)
+      @pages.find_each do |page|
+#         timeline[:page_avatar] = page.profile_pic
+        feed=Biz::Timeline.new(page)
+        timeline << feed.construct(params)[:page_feeds]
+      end
+    end
+    @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
   end
 
   def user_likes

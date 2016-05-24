@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers, :bio, :feed, 
       :settings, :explore, :explore_users, :nfuse_page, 
-      :vue, :biz_page_hub, :all_users_and_pages, :user_likes
+      :vue, :followed_pages, :followed_nfusers, :user_likes
     end
   end
   resources :comments do
@@ -101,6 +101,14 @@ Rails.application.routes.draw do
   get '/remove_token',  to: 'users#remove_token'
   #get    '/nfuse_page', to: 'users#nfuse_page'
   
+  # New Hub and hub all pages
+
+  get '/hub/hq/nfusers',     to: 'pages#nfuse_user_posts'
+  get '/hub/hq/pages',       to: 'pages#nfuse_page_posts'
+  get '/hub/hq/nfuse',       to: 'pages#nfuse_posts'
+  get '/hub/hq/twitternews', to: 'pages#nfuse_trending_twitter_posts'
+  get '/hub/hq/youtube',     to: 'pages#nfuse_page_posts'
+
   # Static pages
   get '/help',              to: 'pages#help'
   # get '/about',             to: 'pages#about'

@@ -8,7 +8,10 @@ class PagesController < ApplicationController
                                    :travel_connector, :mytop50, :mostpopular,
                                    :random, :trending, :individual_post, :news_connector,
                                    :fitness_connector, :nerdish_connector, :shopping_connector,
-                                   :wedding_connector, :animals_connector, :instagramers_connector,#:show#, :wiredtestthing
+                                   :wedding_connector, :animals_connector, :instagramers_connector,
+                                   :nfuse_user_posts, :nfuse_page_posts, :nfuse_posts, 
+                                   :nfuse_trending_twitter_posts, :nfuse_trending_youtube_posts, 
+                                   #:show#, :wiredtestthing
                                   ]
   before_action :page_from_params, only: :show
   # before_action :find_page, except:[:home, :help, :about, :feedback, :terms,
@@ -52,34 +55,8 @@ class PagesController < ApplicationController
   end
 
   def home
-    if signed_in?
-      @providers = Providers.for(current_user)
-      # @token = []
-      # if current_user.followed_users.any?
-      #   current_user.followed_users.each do |i|
-      #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
-      #   end
-      #   unless @token.empty?
-      #     @token = @token[0]
-      #   else
-      #     @token
-      #   end
-      # else
-      #   @token
-      # end
-      timeline = []
-      ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
-      unless ids.empty?
-        @users = User.where(id: ids)
-        @users.find_each do |user|
-          feed=Networks::Timeline.new(user)
-          timeline << feed.construct(params)
-          @unauthed_accounts = feed.unauthed_accounts
-        end
-      end
-      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
-    end
-    # render 'home' is implicit.
+    #The home page has the landing page 
+    #and the logged in hq
   end
 
   def individual_post
@@ -113,6 +90,25 @@ class PagesController < ApplicationController
   end
 
   public
+  def nfuse_user_posts
+    @posts = Page.trending_user_posts
+  end
+
+  def nfuse_page_posts
+    @posts = Page.trending_page_posts
+  end
+
+  def nfuse_posts
+    @posts = Page.trending_nfuse_posts
+  end
+
+  def nfuse_trending_twitter_posts
+    @posts = Page.trending_twitter_posts
+  end
+
+  def nfuse_trending_youtube_posts
+    @posts = Page.trending_youtube_posts
+  end
 
   def help; end
   # def about; end
