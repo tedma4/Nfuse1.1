@@ -60,7 +60,7 @@ class Page < ActiveRecord::Base
       i.consumer_key = ENV['twitter_api_key']
       i.consumer_secret = ENV['twitter_api_secret']
     end
-    client.search('news', lang: "en", result_type: "popular", limit: 5 ).map { |post| Search::Entry.from(post, 'twitter') }
+    client.search('news', lang: "en", result_type: "popular", count: 5, include_entities: true ).map { |post| Search::Entry.from(post, 'twitter') }
   end
   
   def self.trending_youtube_posts
@@ -71,7 +71,7 @@ class Page < ActiveRecord::Base
     end
      client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
      videos = Yt::Collections::Videos.new
-     videos.where(q: 'news', order: "viewCount").first(15).map { |post| Search::Entry.from(post, 'youtube') }
+     videos.where(chart: 'mostPopular').first(5).map { |post| Search::Entry.from(post, 'youtube') }
     # begin
     #  client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
     #   # if client['items'][0]['snippet']['channelTitle'].present?
