@@ -1211,16 +1211,16 @@
     padding-top:90px;
   }
   .post_content {
-    /*float: left;*/
+    float: left;
     width: 100%;
   }
   .item .post_header{
     padding: 5px 10px;
     background: #333;
-    /*z-index: 2;
+    z-index: 2;
     position: relative;
     float: left;
-      width: 100%;*/
+    width: 100%;
   }
   .image_post:before{
     content:" ";
@@ -1250,10 +1250,11 @@
   .comment .user,
   .item .user{
     display: inline-block;
+    float: left;
   }
   .comment .user a,
   .item .user a{
-    margin: 4px 0 0 9px
+    margin: 4px 0 0 9px;
     /*display: none;*/
   }
   .comment .user a,
@@ -1346,6 +1347,7 @@
     overflow: hidden;
     height: auto;
     z-index: 3;
+    float: left;
   }
 
   /* POST ICONS */
