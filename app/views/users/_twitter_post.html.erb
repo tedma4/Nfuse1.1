@@ -1,16 +1,16 @@
 <div class="timeline-user-box">
-<% if post.has_media? %>
-  <% if post.type == 'video' || post.type == "animated_gif" %>
-      <video controls preload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+  <% if post.has_media? %>
+    <% if post.type == 'animated_gif' || post.type== 'video' %>
+      <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
         <source src="<%= post.video %>" type='video/mp4' />
         <source src="<%= post.video %>" type='video/ogv' />
       </video>
-  <% elsif post.type == 'photo' %>
-    <div class="timeline-user-box">
-      <%= image_tag(post.image, :class => "twitter_image") %>
-    </div>
-  <% end %>
-<% elsif post.has_video_url? %>
+    <% elsif post.type == 'photo' %>
+      <div class="timeline-user-box">
+        <%= image_tag(post.image, :class => "image_post") %>
+      </div>
+    <% end %>
+  <% elsif post.has_video_url? %>
     <iframe
     id="ytplayer"
     type="text/html"
@@ -20,6 +20,8 @@
     frameborder="0"
     allowfullscreen>
     </iframe>
-<% end %>
+  <% end %>
 </div>
-  <%= post.text %><br>
+<p>
+  <%= post.text %>
+</p>
