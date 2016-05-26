@@ -55,8 +55,34 @@ class PagesController < ApplicationController
   end
 
   def home
-    #The home page has the landing page 
-    #and the logged in hq
+    if signed_in?    
+      @providers = Providers.for(current_user)
+      # @token = []
+      # if current_user.followed_users.any?
+      #   current_user.followed_users.each do |i|
+      #     @token << i.tokens.pluck(:provider, :uid, :access_token, :access_token_secret, :refresh_token)
+      #   end
+      #   unless @token.empty?
+      #     @token = @token[0]
+      #   else
+      #     @token
+      #   end
+      # else
+      #   @token
+      # end
+      timeline = []
+      ids =  current_user.relationships.where(follow_type: 'User').collect(&:followed_id)
+      unless ids.empty?
+        @users = User.where(id: ids)
+        @users.find_each do |user|
+          feed=Networks::Timeline.new(user)
+          timeline << feed.construct(params)
+          @unauthed_accounts = feed.unauthed_accounts
+        end
+      end
+      @timeline=timeline.flatten.sort { |a, b| b.created_time <=> a.created_time}
+      # render 'home' is implicit.
+    end
   end
 
   def individual_post
