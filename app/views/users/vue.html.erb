@@ -11,57 +11,57 @@
 <section id="userarea">
   <%= render partial: "profile_info" %>
 </section>
-<% if Impression.where(user_id: @user.id, impressionable_type: 'Page').any? %>
 
-    <!-- SWITCHABLE CONTENT -->
+<article class="col-xs-12 tab-content">
+  <div id='networks'>
+    <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
+  </div>
+</article>
+<div id="paginate_only_once">
+  <a href="/users/<%= @user.user_name %>/vue?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+</div>
+
+<%# if Impression.where(user_id: @user.id, impressionable_type: 'Page').any? %>
+
+<!--  
     <article class="col-xs-12 tab-content">
-      <!-- PANEL THREE -->
       <div id="networks">
-        <% all_pages = [] %>
-        <% seen_pages = Page.joins(:impressions).where("impressions.user_id = ?",current_user.id).group("pages.id") %>
-        <% non_seen_pages = Page.where("id not in (?)", seen_pages.pluck(:id)).order("view_count desc") %>
-        <% all_pages << seen_pages  %>
-        <% all_pages << non_seen_pages  %>
-        <% all_pages.flatten.first(50).each do |page| %>
+        <%# @vued.each do |page| %>
 
-          <!-- PROFILE -->
           <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <a href="/pages/<%= page.page_name %>">
+            <a href="/pages/<%#= page.page_name %>">
               <div class="profile-head">
-                <p><%= truncate(page.full_name.capitalize, length: 19) %></p>
+                <p><%#= truncate(page.full_name.capitalize, length: 19) %></p>
               </div>
-              <%= image_tag(page.profile_pic) %>
+              <%#= image_tag(page.profile_pic) %>
             </a>
           </div>
-        <% end %>
+        <%# end %>
 
       </div>
     </article>
-<% else %>
-<% m = Page.first(20) %>
+<%# else %>
+<%# m = Page.first(20) %>
   <section id="settings" class="container">
     <div class="row">    
       <div class="center col-xs-12 content">
         <h3>Check out some of these pages</h3>
       </div>
-      <!-- SWITCHABLE CONTENT -->
       <article class="content col-xs-12 tab-content">
-        <!-- PANEL THREE -->
         <div id="networks">
-          <% m.each do |page| %>
-            <!-- PROFILE -->
+          <%# m.each do |page| %>
             <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-              <a href="/pages/<%= page.page_name %>">
+              <a href="/pages/<%#= page.page_name %>">
                 <div class="profile-head">
-                  <p><%= truncate(page.full_name.capitalize, length: 19) %></p>
+                  <p><%#= truncate(page.full_name.capitalize, length: 19) %></p>
                 </div>
-                <%= image_tag(page.profile_pic) %>
+                <%#= image_tag(page.profile_pic) %>
               </a>
             </div>
-          <% end %>
+          <%# end %>
 
         </div>
       </article>
     </div>
-  </section>
-<% end %>
+  </section> -->
+<%# end %>

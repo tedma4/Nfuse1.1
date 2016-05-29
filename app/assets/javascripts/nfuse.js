@@ -29,6 +29,15 @@
           }
         }
       }
+      if ($('article.tab-content #networks')) {
+        var url = $('.nextBizPage').attr('href')
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() -25 ) {
+          if ($('.nextBizPage').length ) {
+            $('#paginate_only_once').text('Adding more pages');
+            $.getScript(url)
+          }
+        }
+      }
     });
 
   }

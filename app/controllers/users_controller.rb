@@ -184,17 +184,32 @@ class UsersController < ApplicationController
     @user = User.find_by_user_name(params[:id])
   end
 
-  def nfuse_page
-    @nfuse_pages = NfusePage.where(user_id: @user.id).order('created_at DESC')
-  end
-
   def vue
-    # all_pages = []
-    # seen_pages = Page.where(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
-    # non_seen_pages = Page.where.not(id: Impression.where(user_id: @user.id, impressionable_type: 'Page').pluck(:impressionable_id).uniq)
-    # all_pages << seen_pages 
-    # all_pages << non_seen_pages 
-    # all_pages.flatten.each do |page|
+    if Impression.where(user_id: @user.id, impressionable_type: 'Page').any? 
+      all_pages = []
+      seen_pages = Page.joins(:impressions).where("impressions.user_id = ?", @user.id).group("pages.id")
+      non_seen_pages = Page.where("id not in (?)", seen_pages.pluck(:id)).order("view_count desc")
+      all_pages << seen_pages
+      all_pages << non_seen_pages
+      pages = all_pages.flatten.map { |page| {page: page}}
+      if params[:page]
+        @pages = get_page_and_offset(6, params[:page].to_i, pages)
+      else
+        @pages = get_page_and_offset(6, 1, pages)
+      end
+    else
+      pages = Page.first(24)
+      if params[:page]
+        @pages = get_page_and_offset(6, params[:page].to_i, pages)
+      else
+        @pages = get_page_and_offset(6, 1, pages)
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_vue.js.erb'}
+    end
   end
 
   def followed_nfusers
@@ -247,4 +262,44 @@ class UsersController < ApplicationController
   def update_error
     redirect_to feed_user_path(@user)
   end
+
+  def get_page_and_offset(per_page, page = 1, pages)
+    total = pages.length
+    if total > 0
+      if per_page >= total # 10 or 11
+        result = pages.first(total)
+        params[:last_page] = page
+        return result
+      elsif per_page < total # 23
+
+        if ( page * per_page ) < total # 2 * 11 < 23
+          if page == 1
+            result = pages[0..(per_page - 1)]
+            params[:first_page] = page
+            return result
+          else
+            offset_by = ( page - 1 ) * per_page # 1 * 11
+            next_page = (page * per_page) - 1
+            result = pages[offset_by..next_page]
+            params[:middle_page] = page
+            return result
+          end
+        elsif ( page * per_page ) >= total # 3 * 11 > 23
+          offset_by = ( page - 1 ) * per_page
+          to_end = total - 1
+          result = pages[offset_by..to_end]
+          params[:last_page] = page
+          return result
+        else
+          # Noting more to do
+        end
+
+      else
+        # Nothing more to do
+      end
+    else
+      # Do Nothing
+    end
+  end
+
 end
