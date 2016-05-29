@@ -1,11 +1,13 @@
 <% if !shout.url.blank? %>
-  <p> <%= shout.url_html %></p>
+  <div class="timeline-user-box center" style="iframe{width:100%;}">
+    <%= shout.url_html %>
+  </div>
   <div class="url_caption">
     <%= shout.content %>
     <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
   </div>
 <% elsif shout.is_pic? %>
-  <div class="timeline-user-box image_post">
+  <div class="timeline-user-box">
     <%= image_tag shout.pic_url %>
   </div>
   <div class="caption">

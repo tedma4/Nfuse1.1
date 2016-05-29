@@ -2,16 +2,27 @@
   <% current_user.set_notifications_to_true(current_user.id) %>
 <% end %>
 
+
 <% if params[:last_page] %>
   $('#notifications-list .next').remove();
   $('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
+  if($('#notifications').attr('href') == "/notifications"){
+  	$('#notifications').removeAttr('href')
+  }
 <% elsif params[:middle_page] %>
   $('#notifications-list .next').remove();
 	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
   $('#notifications-list').append('<a href="/notifications?page=<%= params[:page] + 1 %>" data-remote="true" class="next"></a>');
+  if($('#notifications').attr('href') == "/notifications"){
+  	$('#notifications').removeAttr('href')
+  }
 <% else %>
 	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
   $('#notifications-list').append('<a href="/notifications?page=2" data-remote="true" class="next"></a>');
+$('#notifications').removeAttr('href');
+  if($('#notifications').attr('href') == "/notifications"){
+  	$('#notifications').removeAttr('href')
+  }
 <% end %>
 
 // <%# if params[:page] %>
