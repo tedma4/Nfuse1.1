@@ -269,9 +269,9 @@ module Networks
           @post["link"]
         when 'facebook'
           begin
-            @post['link']
-          rescue
             @post['actions'][0]['link']
+          rescue
+            @post['link']
           end
         when 'pinterest'
           @post['link']
