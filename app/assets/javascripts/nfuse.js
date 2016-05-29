@@ -29,12 +29,13 @@
           }
         }
       }
+
       if ($('article.tab-content #networks')) {
-        var url = $('.nextBizPage').attr('href')
-        if (url && $(window).scrollTop() > $(document).height() - $(window).height() -25 ) {
-          if ($('.nextBizPage').length ) {
-            $('#paginate_only_once').text('Adding more pages');
-            $.getScript(url)
+        var next_vue_url = $('.nextVuePages').attr('href')
+        if (next_vue_url && $(window).scrollTop() > $(document).height() - $(window).height() -25 ) {
+          if ($('.nextVuePages').length ) {
+            $('#add_more_vue_pages').text('Adding more pages');
+            $.getScript(next_vue_url)
           }
         }
       }

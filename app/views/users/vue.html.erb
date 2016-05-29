@@ -17,51 +17,6 @@
     <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
   </div>
 </article>
-<div id="paginate_only_once">
-  <a href="/users/<%= @user.user_name %>/vue?page=2" class='nextBizPage' style="display:hidden;" data-remote= true></a>
+<div id="add_more_vue_pages">
+  <a href="/users/<%= @user.user_name %>/vue?page=2" class='nextVuePages' style="display:hidden;" data-remote= true></a>
 </div>
-
-<%# if Impression.where(user_id: @user.id, impressionable_type: 'Page').any? %>
-
-<!--  
-    <article class="col-xs-12 tab-content">
-      <div id="networks">
-        <%# @vued.each do |page| %>
-
-          <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <a href="/pages/<%#= page.page_name %>">
-              <div class="profile-head">
-                <p><%#= truncate(page.full_name.capitalize, length: 19) %></p>
-              </div>
-              <%#= image_tag(page.profile_pic) %>
-            </a>
-          </div>
-        <%# end %>
-
-      </div>
-    </article>
-<%# else %>
-<%# m = Page.first(20) %>
-  <section id="settings" class="container">
-    <div class="row">    
-      <div class="center col-xs-12 content">
-        <h3>Check out some of these pages</h3>
-      </div>
-      <article class="content col-xs-12 tab-content">
-        <div id="networks">
-          <%# m.each do |page| %>
-            <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-              <a href="/pages/<%#= page.page_name %>">
-                <div class="profile-head">
-                  <p><%#= truncate(page.full_name.capitalize, length: 19) %></p>
-                </div>
-                <%#= image_tag(page.profile_pic) %>
-              </a>
-            </div>
-          <%# end %>
-
-        </div>
-      </article>
-    </div>
-  </section> -->
-<%# end %>
