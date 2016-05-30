@@ -40,82 +40,14 @@
             </header>
             <main class="post_content">
               <% case this.social_flag %>
-               <% when nil %>
-                 <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
-               <% when "gplus" %>
-                 <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
-               <% when "tumblr" %>
-                 <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
-               <% when "facebook" %>
-                <% begin %>
-                  <% case @post_entry.type %>
-                  <% when nil %>
-                    <div class="timeline-user-box">
-                      <%= image_tag(@post_entry.image, class: 'facebook_image') %>
-                    </div>
-                    <div class="center">
-                      <% if @post_entry.name.present? %>
-                        <%= @post_entry.name %>
-                      <%elsif @post_entry.message.present? %>
-                        <%= truncate(@post_entry.message, lenght: 30) %>
-                      <%end%>
-                    </div>
-                  <% when 'link' %>
-                    <% if @post_entry.image.present? %>
-                      <div class="timeline-user-box">
-                        <%= image_tag(@post_entry.image, class: 'facebook_image') %>
-                      </div>
-                    <%end%>
-                    <div class="center">
-                      <% if @post_entry.description.present? %>
-                        <%= truncate(@post_entry.description, lenght: 30) %>
-                      <%end%>
-                    </div>
-                    <div class="center">
-                      <% if @post_entry.message.present? %>
-                        <%= truncate(@post_entry.message, lenght: 30)%>
-                      <%end%>
-                    </div>
-                  <% when 'video' %>
-                    <div class="center">
-                      <% if @post_entry.text == 'youtube.com' || @post_entry.source.include?('youtube') %>
-                        <iframe
-                        id="ytplayer"
-                        width="100%"
-                        autoplay=0
-                        src="<%= @post_entry.youtube_source %>"
-                        frameborder="0"
-                        allowfullscreen>
-                        </iframe>
-                        <div class="center">
-                          <% if @post_entry.message.present? %>
-                            <%= truncate(@post_entry.message, lenght: 30) %>
-                          <%end%>
-                        </div>
-                      <%else%>
-                        <video controls preload="none" poster=<%= @post_entry.image %> >
-                          <source src="<%= @post_entry.source %>" type='video/mp4' />
-                          <source src="<%= @post_entry.source %>" type='video/ogv' />
-                        </video>
-                        <div class="center">
-                          <% if @post_entry.message.present? %>
-                            <%= truncate(@post_entry.message, lenght: 30) %>
-                          <%end%>
-                        </div>
-                      <%end%>
-                    </div>
-                  <% when 'status' %>
-                    <div class="center">
-                      <% if @post_entry.message.present? %>
-                        <%= truncate(@post_entry.message, lenght: 30) %>
-                      <%end%>
-                    </div>
-                  <% end %>
-                <% rescue %>
-                  <% if @post_entry.message.present? %>
-                      <%= truncate(@post_entry.message, lenght: 30) %>
-                  <%end%>
-                <% end %>
+              <% when nil %>
+                <%= render partial: 'activities/nfuse_entry', locals: {nfuse_entry: @post_entry} %>
+              <% when "gplus" %>
+                <%= render partial: 'activities/gplus_entry', locals: {gplus_entry: @post_entry} %>
+              <% when "tumblr" %>
+                <%= render partial: 'activities/tumblr_entry', locals: {tumblr_entry: @post_entry} %>
+              <% when "facebook" %>
+                <%= render partial: 'activities/facebook_entry', locals: {facebook_entry: @post_entry} %>
               <% when 'twitter' %>
                 <%= render partial: 'activities/twitter_entry', locals: {twitter_entry: @post_entry} %>
               <% when 'youtube' %>
