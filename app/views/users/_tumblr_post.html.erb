@@ -10,7 +10,7 @@
 <% elsif post.type == 'video' %>
   <% if post.video_type == 'tumblr' %>
     <div class="timeline-user-box">
-      <video controls preload="none" style="background:transparent url(<%= post.video_thumbnail %>) no-repeat 50% 50%;" >
+      <video controls autoload="none" style="background:transparent url(<%= post.video_thumbnail %>) no-repeat 50% 50%;" >
         <source src="<%= post.video %>" type='video/mp4' />
         <source src="<%= post.video %>" type='video/ogv' />
       </video>
