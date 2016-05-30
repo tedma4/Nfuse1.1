@@ -1,6 +1,6 @@
 module Networks
   class Post < TimelineEntry
-    attr_reader :user
+    attr_reader :user, :post
     def self.from(post, provider, user)
       new(post, provider, user)
     end
@@ -133,7 +133,7 @@ module Networks
         when 'instagram'
           @post["images"]["low_resolution"]["url"]
         when 'facebook'
-          if type == 'photo'
+          if @post['type'] == 'photo'
             @fb_token = @user.tokens.find_by(provider: 'facebook')
             @graph = Koala::Facebook::API.new @fb_token.access_token
             begin

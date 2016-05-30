@@ -72,7 +72,7 @@
                       </div>
                   <% when 'video' %>
                     <div class="center">
-                      <% if post.text == 'youtube.com' ||  %>
+                      <% if post.text == 'youtube.com' || post.source.include?('youtube') %>
                         <iframe
                         id="ytplayer"
                         width="100%"

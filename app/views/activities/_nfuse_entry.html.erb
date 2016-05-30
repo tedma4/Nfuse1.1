@@ -1,5 +1,6 @@
   <% if !@post_entry.url.blank? %>
-    <p> <%= @post_entry.url_html %></p>
+    <div class='timeline-user-box center'></div>
+    <%= @post_entry.url_html %>
     <div class="url_caption">
       <%= truncate(@post_entry.content, lenght: 30) %>
     </div>

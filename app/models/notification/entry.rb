@@ -114,8 +114,11 @@ module Notification
         when 'instagram'
           @entry["images"]["low_resolution"]["url"]
         when 'facebook'
-          if type == nil
+          if @entry['type'] == 'photo'
+            @fb_token = @user.tokens.find_by(provider: 'facebook')
+            @graph = Koala::Facebook::API.new @fb_token.access_token
             begin
+              @entry = @graph.get_object(@entry['object_id'])
               @entry['images'][0]['source']
             rescue
               @entry['picture']
@@ -123,6 +126,15 @@ module Notification
           else
             @entry['picture']
           end
+          # if @entry['type'] == nil
+          #   begin
+          #     @entry['images'][0]['source']
+          #   rescue
+          #     @entry['picture']
+          #   end
+          # else
+          #   @entry['picture']
+          # end
         when 'tumblr'
           @entry['photos'][0]['alt_sizes'][0]['url']
         when 'gplus'
