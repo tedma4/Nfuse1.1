@@ -41,8 +41,70 @@
                   <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
                 <% end %>
               <% when "facebook" %>
-                <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>
-                  <%= render partial: "users/#{post.provider}_post", locals: {post: post} %>
+                <% unless post.story.present? && ((post.story.include? 'profile picture') || (post.story.include? 'cover photo')) %>  
+                  <% case post.type %>
+                  <% when 'photo' %>
+                    <div class="timeline-user-box">
+                      <%= image_tag(post.image, class: 'facebook_image') %>
+                    </div>
+                      <div class="center">
+                        <% if post.name.present? %>
+                            <%= post.name %>
+                        <%elsif post.message.present? %>
+                            <%= post.message %>
+                        <%end%>
+                      </div>
+                  <% when 'link' %>
+                    <% if post.image.present? %>
+                      <div class="timeline-user-box">
+                        <%= image_tag(post.image, class: 'facebook_image') %>
+                      </div>
+                    <%end%>
+                      <div class="center">
+                        <% if post.description.present? %>
+                            <%= post.description %>
+                        <%end%>
+                      </div>
+                      <div class="center">
+                        <% if post.message.present? %>
+                            <%= post.message%>
+                        <%end%>
+                      </div>
+                  <% when 'video' %>
+                    <div class="center">
+                      <% if post.text == 'youtube.com' ||  %>
+                        <iframe
+                        id="ytplayer"
+                        width="100%"
+                        autoplay=0
+                        src="<%= post.youtube_source %>"
+                        frameborder="0"
+                        allowfullscreen>
+                        </iframe>
+                      <div class="center">
+                        <% if post.message.present? %>
+                            <%= post.message%>
+                        <%end%>
+                      </div>
+                      <%else%>
+                        <video controls apreload="none" poster=<%= post.image %> >
+                          <source src="<%= post.source %>" type='video/mp4' />
+                          <source src="<%= post.source %>" type='video/ogv' />
+                        </video>
+                      <div class="center">
+                        <% if post.message.present? %>
+                            <%= post.message%>
+                        <%end%>
+                      </div>
+                      <%end%>
+                    </div>
+                  <% when 'status' %>
+                    <div class="center">
+                      <% if post.message.present? %>
+                          <%= post.message%>
+                      <%end%>
+                    </div>
+                  <% end %>
                 <% end %>
               <% when "twitter" %>
                 <% unless post.retweeted == true %>

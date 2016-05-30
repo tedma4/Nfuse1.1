@@ -193,7 +193,7 @@ class UsersController < ApplicationController
       all_pages << non_seen_pages
       pages = all_pages.flatten.map { |page| {page: page}}
       if params[:page]
-        @pages = get_page_and_offset(6, params[:page].to_i, pages)
+        @pages = get_page_and_offset(6, params[:page].to_i, pages.first(50))
       else
         @pages = get_page_and_offset(6, 1, pages)
       end

@@ -10,7 +10,7 @@
     <% if @page.profile_pic != nil %>
      <img src="<%= @page_image %>" alt="User Image"/>
     <% else %>
-     <img src="<%= @page.profile_pic %>" alt="User Image"/>
+     <img src="/assets/<%= @page.profile_pic || 'def.jpg' %>" alt="User Image"/>
     <% end %>
   </a>
   <ul id="user-stats" class="user-left">
@@ -32,7 +32,7 @@
           <% if @page.profile_pic != nil %>
             <img src="<%= @page_image %>" style="width:200px;" alt="User Image"/>
           <% else %>
-            <img src="<%= @page.profile_pic || 'def.jpg' %>" alt="User Image"/>
+            <img src="/assets/<%= @page.profile_pic || 'def.jpg' %>" alt="User Image"/>
           <% end %>
         </a>
       </li>
@@ -73,7 +73,7 @@
     <article class="individual_post item <%= post.provider %>_post0">
       <header class="post_header">
         <div class="user">
-          <%= image_tag(@page_image, class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
+          <%= image_tag(@page_image || 'def.jpg', class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
           <%= link_to truncate(@page.page_name, length: 16), "/pages/#{@page.page_name}" %>
         </div>
         <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>

@@ -44,9 +44,11 @@
               <%= link_to activities_path, id: "notifications", class: "icon-link", data: {toggle: 'offcanvas', target: '#notifications-list'}, alt: "Notifications", title: "Notifications", remote: true do %>
                 <i class="main-color fa fa-bell"></i>
                 <span id="count">
-                  <% activity1 = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
-                  <% activity2 = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).where(read: false).count %>
-                  <%= activity1 + activity2 %>
+                  <div>
+                    <% activity1 = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).count %>
+                    <% activity2 = PublicActivity::Activity.where("user_recipients LIKE ':id,%' or user_recipients LIKE '%, :id' or user_recipients LIKE '%, :id,%' or user_recipients = ':id'", id: current_user.id).where(read: false).count %>
+                    <%= activity1 + activity2 %>
+                  </div>
                 </span>
               <% end %>
               <%= link_to root_path, class: 'icon-link', id: 'home', title: 'Home' do %>

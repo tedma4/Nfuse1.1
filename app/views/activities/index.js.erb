@@ -9,6 +9,9 @@
   if($('#notifications').attr('href') == "/notifications"){
   	$('#notifications').removeAttr('href')
   }
+  if (+$('span#count div').text() != 0 ) {
+    $('span#count div').text('0')
+  }
 <% elsif params[:middle_page] %>
   $('#notifications-list .next').remove();
 	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
@@ -16,12 +19,19 @@
   if($('#notifications').attr('href') == "/notifications"){
   	$('#notifications').removeAttr('href')
   }
+  if (+$('span#count div').text() != 0 ) {
+    $('span#count div').text('0')
+  }
+
 <% else %>
 	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
   $('#notifications-list').append('<a href="/notifications?page=2" data-remote="true" class="next"></a>');
 $('#notifications').removeAttr('href');
   if($('#notifications').attr('href') == "/notifications"){
   	$('#notifications').removeAttr('href')
+  }
+  if (+$('span#count div').text() != 0 ) {
+    $('span#count div').text('0')
   }
 <% end %>
 
