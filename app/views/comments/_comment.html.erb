@@ -1,3 +1,10 @@
+<style>
+
+  .video.youtube iframe {
+    width: 100%;
+    height: 225px;
+  }
+</style>
 <!-- TOPIC -->
 <li class="media comment item topic_post">
   <header class="post_header">
@@ -31,9 +38,9 @@
     </div>
   </main>
   <footer class="post_actions">
-    <a class="commentPost" data-toggle="modal" data-target=".<%= comment.id %>Comments" href="#" rel="nofollow">
-      <i class="fa"></i><span><%= comment.children.size %></span>
-    </a>
+    <!-- <a class="commentPost" data-toggle="modal" data-target=".<%= comment.id %>Comments" href="#" rel="nofollow">
+      <i class="fa"></i><span><%#= comment.children.size %></span>
+    </a> -->
       <% if signed_in? %>
         <% if ActsAsVotable::Vote.where(votable_id: comment.id).pluck(:voter_id).include?(current_user.id) %>
           <%= link_to dislike_this_comment_path(id: comment.id,

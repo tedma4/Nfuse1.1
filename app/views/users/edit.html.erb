@@ -28,7 +28,7 @@
     <article class="content col-xs-12 tab-content">
       <!-- PANEL ONE -->
       <div role="tabpanel" class="tab-pane active" id="profile-images">
-        <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'edit_user_3', multipart: true} do |f| %>
+        <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'form1', multipart: true} do |f| %>
           <div class="row">
             <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
               <h5>Profile Picture</h5>
@@ -69,7 +69,7 @@
       </div>
       <!-- PANEL TWO -->
       <div role="tabpanel" class="tab-pane" id="account-info">
-        <%= form_for(@user, html: {class: 'minimal edit_user', id: 'edit_user_3'}) do |f| %>
+        <%= form_for(@user, html: {class: 'minimal edit_user', id: 'form2'}) do |f| %>
           <div class="error_messages">
             <div>
               <%= render 'shared/error_messages', object: f.object %>
@@ -299,7 +299,15 @@
     </article>
     <!-- SAVE ALL -->
     <div id="saveall" class="col-xs-12 content">
-      <button type="submit" class="fullw btn btn-default" form='edit_user_3'>Finished</button>
+      <button type="submit" class="fullw btn btn-default" onclick="submitForms()" >Finished</button>
     </div>
   </div>
 </section>
+
+
+<script>
+submitForms = function(){
+  $("#form1").submit();
+  $("#form2").submit();
+}
+</script>

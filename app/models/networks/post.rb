@@ -82,12 +82,12 @@ module Networks
               @post.object.attachments[0]['objectType']
             end
           else
-            case @post.object.object_type
-              when 'note'
-                'hiddenType'
-              else
+            # case @post.object.object_type
+            #   when 'note'
+            #     'hiddenType'
+            #   else
                 @post.object.object_type
-            end
+            # end
           end
         when 'pinterest'
           @post['media']['type']  
