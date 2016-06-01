@@ -1254,7 +1254,7 @@ pages = Page.create([
 
 {page_name: '9gag', full_name: '9gag', twitter_handle: nil, youtube_handle: nil, instagram_handle: '9gag', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: '9gag | Search Instagram Post on www.nfuse.it', description: 'The official Nfuse page for 9gag. Explore the top social media post and join the conversation on forum.', page_category: 'instagramers'},
 
-{page_name: 'smpweddings', full_name: 'Style Me Pretty', twitter_handle: nil, youtube_handle: nil, instagram_handle: 'smpweddings', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'Style Me Pretty | Top wedding post | Nfuse', description: 'The official Nfuse page for Style Me Pretty. Explore the top social media post and join the conversation on forum.', page_category: 'wedding'},
+{page_name: 'smpweddings', full_name: 'Style Me Pretty', twitter_handle: nil, youtube_handle: nil, instagram_handle: 'stylemepretty', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'Style Me Pretty | Top wedding post | Nfuse', description: 'The official Nfuse page for Style Me Pretty. Explore the top social media post and join the conversation on forum.', page_category: 'wedding'},
 
 {page_name: 'howheasked', full_name: 'How He Asked', twitter_handle: nil, youtube_handle: nil, instagram_handle: 'howheasked', facebook_handle: nil, pinterest_handle: nil, tumblr_handle: nil, gplus_handle: nil, metatag_title: 'How He Asked | Best wedding ideas on Nfuse', description: 'The official Nfuse page for How He Asked. Explore the top social media post and join the conversation on forum.', page_category: 'wedding'},
 

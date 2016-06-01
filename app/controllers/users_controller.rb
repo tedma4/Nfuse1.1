@@ -188,9 +188,7 @@ class UsersController < ApplicationController
     if Impression.where(user_id: @user.id, impressionable_type: 'Page').any? 
       all_pages = []
       seen_pages = Page.joins(:impressions).where("impressions.user_id = ?", @user.id).group("pages.id")
-      non_seen_pages = Page.where("id not in (?)", seen_pages.pluck(:id)).order("view_count desc")
       all_pages << seen_pages
-      all_pages << non_seen_pages
       pages = all_pages.flatten.map { |page| {page: page}}
       if params[:page]
         @pages = get_page_and_offset(6, params[:page].to_i, pages.first(50))
