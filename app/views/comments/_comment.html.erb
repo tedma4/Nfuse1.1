@@ -81,53 +81,52 @@
   </footer>
 
   <!-- COMMENTS MODAL -->
-  <div class="modal fade <%= comment.id %>Comments" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
+ <!--  <div class="modal fade <%#= comment.id %>Comments" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="notificationslabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="notificationslabel"><%= comment.topic.nil? ? 'I love Nfuse' : (comment.topic.empty? ? 'I Love Nfuse' : comment.topic) %></h4>
+          <h4 class="modal-title" id="notificationslabel"><%#= comment.topic.nil? ? 'I love Nfuse' : (comment.topic.empty? ? 'I Love Nfuse' : comment.topic) %></h4>
         </div>
         <div class="modal-body container-fluid">
-          <!-- COMMENT -->
-          <ul id="comments-list" class="row sub_<%= comment.id %>_comments">
-            <% comment.children.each do |this| %>
-              <%# comment.children.includes(:user).each do |this| %>
-              <%# user = User.find(this.user_id) %>
-              <%= render partial: 'comments/sub_comment', locals: {this: this} %>
-            <% end %>
+          <ul id="comments-list" class="row sub_<%#= comment.id %>_comments">
+            <%# comment.children.each do |this| %>
+              <%## comment.children.includes(:user).each do |this| %>
+              <%## user = User.find(this.user_id) %>
+              <%#= render partial: 'comments/sub_comment', locals: {this: this} %>
+            <%# end %>
           </ul>
         </div>
-        <% if signed_in? %>
+         <%# if signed_in? %>
           <div class="modal-footer">
             <a class="user">
-              <% if current_user.avatar_file_name.present? && current_user.avatar_file_name.include?('graph.facebook.com') %>
-                <%= image_tag current_user.avatar_file_name %>
-              <% else %>
-                <%= image_tag current_user.avatar(:small) %>
-              <% end %>
+              <%# if current_user.avatar_file_name.present? && current_user.avatar_file_name.include?('graph.facebook.com') %>
+                <%#= image_tag current_user.avatar_file_name %>
+              <%# else %>
+                <%#= image_tag current_user.avatar(:small) %>
+              <%# end %>
             </a>
-              <%= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form", class: "dropup minimal new_comment forum-image-upload sub_comment_form-#{comment.id}"}, remote: true do |f| %>
-                <%= f.hidden_field :parent_id %>
-                <%= f.hidden_field :user_id %>
+              <%#= form_for [@commentable, Comment.new(parent_id: comment, user_id: current_user.id)], :html => { :multipart => true, id: "upload_form", role:"form", class: "dropup minimal new_comment forum-image-upload sub_comment_form-#{comment.id}"}, remote: true do |f| %>
+                <%#= f.hidden_field :parent_id %>
+                <%#= f.hidden_field :user_id %>
                 <label for="forum_sub_comment_image_upload" class="forum_image_upload">
                   <i class="fa fa-photo"></i>
-                  <%= f.file_field :image_upload, class: "upload sub_comment_image_upload_#{comment.id}" %>
+                  <%#= f.file_field :image_upload, class: "upload sub_comment_image_upload_#{comment.id}" %>
                 </label>
                 <a id="link-drop-link" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" href="#"><i class="fa fa-link"></i></a>
                 <div id="link-drop" class="dropdown-menu" aria-labelledby="link-drop-link">
-                  <textarea id="subcomment_url_upload" class="form-control sub_comment_url_upload_<%= comment.id %>" name="comment[url]" onchange="previewUrl()" placeholder="Paste URL Here" type="search"></textarea>
+                  <textarea id="subcomment_url_upload" class="form-control sub_comment_url_upload_<%#= comment.id %>" name="comment[url]" onchange="previewUrl()" placeholder="Paste URL Here" type="search"></textarea>
                 </div>
-                  <textarea id="status_message" class="sub_comment_message_<%= comment.id %>" placeholder="Type a message..." rows="10" cols="40" name="comment[body]"></textarea>
+                  <textarea id="status_message" class="sub_comment_message_<%#= comment.id %>" placeholder="Type a message..." rows="10" cols="40" name="comment[body]"></textarea>
                 <button type='submit' class='submit'>Done</button>
-              <% end %>
+              <%# end %>
           </div>
-        <% end %>
+        <%# end %>
       </div>
     </div>
-  </div>
+  </div> -->
 </li>
 <script>
     $('.timeline-user-box p').each(function(){
