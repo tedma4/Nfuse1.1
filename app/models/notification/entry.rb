@@ -92,14 +92,14 @@ module Notification
           if @entry['type'] == 'quote'
             @entry['text']
           elsif @entry['type'] == 'link'
-            @post['description']              
+            @entry['description']
           else
             @entry['caption']
           end
         when 'vimeo'
           @entry.description
         when 'pinterest'
-          @post['note']
+          @entry['note']
         when 'gplus'
           @entry.object.content
       end
@@ -140,7 +140,7 @@ module Notification
         when 'gplus'
           @entry.object.attachments[0]["image"]["url"]
         when 'pinterest'
-          @post['image']['original']['url']
+          @entry['image']['original']['url']
       end
     end
 
@@ -178,7 +178,11 @@ module Notification
             @entry['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
           end
         when 'pinterest'
-          @post['attribution']['url']
+          if @entry['attribution']['url'].include?('youtube')
+            @entry['attribution']['url'].gsub('watch?v=', 'embed/')
+          else
+            @entry['attribution']['url']
+          end
         when 'gplus'
           if @entry.object.attachments[0].has_key? "embed"
             @entry.object.attachments[0]["embed"]["url"]
@@ -220,7 +224,7 @@ module Notification
         when 'tumblr'
           @entry['date']
         when 'gplus'
-          @entry['created_at']
+          @entry.attributes['published']
         when 'vimeo'
           @entry.created_time
         else
@@ -249,11 +253,19 @@ module Notification
             @entry['actions'][0]['link']
           end
         when 'pinterest'
-          @entry['link']  
+          begin
+            @entry['url']
+          rescue
+            @entry['link']
+          end
         when 'tumblr'
-          @entry['short_url']
+          begin
+            @entry['short_url']
+          rescue
+            @entry['post_url']
+          end
         when 'gplus'
-          @entry['link']  
+          @entry.attributes['url']
         when 'vimeo'
           @entry.link 
       end

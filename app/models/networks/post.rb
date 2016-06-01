@@ -202,7 +202,11 @@ module Networks
             @post.object.attachments[0]["image"]["url"]
           end
         when 'pinterest'
-          @post['attribution']['url']
+          if @post['attribution']['url'].include?('youtube')
+            @post['attribution']['url'].gsub('watch?v=', 'embed/')
+          else
+            @post['attribution']['url']
+          end
       end
     end
 
@@ -274,7 +278,7 @@ module Networks
             @post['link']
           end
         when 'pinterest'
-          @post['link']
+          @post['url']
         when 'tumblr'
           @post['short_url']
         when 'gplus'

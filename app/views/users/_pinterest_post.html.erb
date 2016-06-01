@@ -8,19 +8,16 @@
     </div>
   <% end %>
 <% elsif post.type == "video" %>
-  <div class="center">
     <iframe
         id="ytplayer"
         width="100%"
-        autoplay=0
         src="<%= post.video %>"
         frameborder="0"
         allowfullscreen>
     </iframe>
-  </div>
     <% if post.text.present? %>
-    <div class="center">
-      <%= post.text %>
-    </div>
+      <div class="center">
+        <%= post.text %>
+      </div>
     <% end %>
 <% end %>

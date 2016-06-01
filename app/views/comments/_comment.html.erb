@@ -134,15 +134,3 @@
       if($(this).text() === ''){$(this).remove()}
     });
 </script>
-
-<script>
- $('.sub_comment_form-<%= comment.id %>').submit(function(event){
-    var form_cannot_be_blank = $('.sub_comment_image_upload_<%= comment.id %>').val() != '' || $('.sub_comment_url_upload_<%= comment.id %>').val() != '' || $('.sub_comment_message_<%= comment.id %>').val() != ''
-    if (form_cannot_be_blank){
-      return true;
-    } else {
-    event.preventDefault();
-    return false;
-    }
-  });
-</script>

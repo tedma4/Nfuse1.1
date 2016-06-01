@@ -13,7 +13,7 @@ module Pinterest
     end
 
     def get_post(post_id)
-      Oj.load(Faraday.get("https://api.pinterest.com/v1/me/pins/#{post_id}/?access_token=#{@access_token}&fields=created_at,note,url,id,media,link,attribution,image").body)
+      Oj.load(Faraday.get("https://api.pinterest.com/v1/pins/#{post_id}/?access_token=#{@access_token}&fields=created_at,note,url,id,media,link,attribution,image").body)
     end
 
     private
