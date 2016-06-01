@@ -198,7 +198,7 @@ class UsersController < ApplicationController
         @pages = get_page_and_offset(6, 1, pages)
       end
     else
-      pages = Page.first(24)
+      pages = Page.first(24).map { |page| {page: page}}
       if params[:page]
         @pages = get_page_and_offset(6, params[:page].to_i, pages)
       else
