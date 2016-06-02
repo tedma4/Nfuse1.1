@@ -27,74 +27,76 @@
     <!-- SWITCHABLE CONTENT -->
     <article class="content col-xs-12 tab-content">
       <!-- PANEL ONE -->
-      <div role="tabpanel" class="tab-pane active" id="profile-images">
-        <%= form_for @user, html:{role: "form", class: 'edit_user', id: 'form1', multipart: true} do |f| %>
-          <div class="row">
-            <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
-              <h5>Profile Picture</h5>
-              <small>At least 200 x 200</small>
-              <!--  <div id="target">
-              <img alt="Default medium" src="img/users/default.jpg">
-              </div> -->
-              <div id="user_avatar_change">
-                <label for="user_avatar_upload">
-                  <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
-                    <%= image_tag @user.avatar_file_name %>
-                  <% else %>
-                    <%= image_tag @user.avatar(:large) %>
-                  <% end %>
-                </label>
+      <%= form_for @user, html:{role: "form", id: 'form1', multipart: true} do |f| %>
+        <div role="tabpanel" class="tab-pane active" id="profile-images">
+          <div class="edit_user">
+            <div class="row">
+              <div class="form-group image-upload col-xs-12 col-sm-4 col-md-4">
+                <h5>Profile Picture</h5>
+                <small>At least 200 x 200</small>
+                <!--  <div id="target">
+                <img alt="Default medium" src="img/users/default.jpg">
+                </div> -->
+                <div id="user_avatar_change">
+                  <label for="user_avatar_upload">
+                    <% if @user.avatar_file_name.present? && @user.avatar_file_name.include?('graph.facebook.com') %>
+                      <%= image_tag @user.avatar_file_name %>
+                    <% else %>
+                      <%= image_tag @user.avatar(:large) %>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :avatar, id: "user_avatar_upload", placeholder: "Snip", type: "file", class: "upload" %>
+                </div>
               </div>
-              <div class="fileUpload btn-link-1">
-                <%= f.file_field :avatar, id: "user_avatar_upload", placeholder: "Snip", type: "file", class: "upload" %>
+              <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
+                <h5>Profile Banner</h5>
+                <small>At least 2400 x 1000</small>
+                <!-- <div id="target2"> 
+                <img alt="Default2 medium" src="/assets/users/default-banner.jpg">
+                </div> -->
+                <div id="user_banner_change">
+                  <label for="user_banner_upload">
+                    <%= image_tag @user.banner %>
+                  </label>
+                </div>
+                <div class="fileUpload btn-link-1">
+                  <%= f.file_field :banner, id: "user_banner_upload", placeholder: "Snip", type: "file", class: "upload" %>
+                </div>
               </div>
             </div>
-            <div class="form-group image-upload col-xs-12 col-sm-8 col-md-8">
-              <h5>Profile Banner</h5>
-              <small>At least 2400 x 1000</small>
-              <!-- <div id="target2"> 
-              <img alt="Default2 medium" src="/assets/users/default-banner.jpg">
-              </div> -->
-              <div id="user_banner_change">
-                <label for="user_banner_upload">
-                  <%= image_tag @user.banner %>
-                </label>
+          </div>        
+        </div>
+        <!-- PANEL TWO -->
+        <div class="tab-pane minimal" id="account-info" style='display:none;'>
+          <div class= "minimal edit_user">
+            <div class="error_messages">
+              <div>
+                <%= render 'shared/error_messages', object: f.object %>
               </div>
-              <div class="fileUpload btn-link-1">
-                <%= f.file_field :banner, id: "user_banner_upload", placeholder: "Snip", type: "file", class: "upload" %>
+              <div class="form-group">
+                <div class="col-xs-12 col-md-6">
+                  <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
+                  <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search" %>
+                  <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                  <!--<input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">-->
+                  <!--<input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">-->
+                  <!--<input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">-->
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <%= f.text_field :email, :placeholder => "email", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                  <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                  <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"form-user-name", type: "search" %>
+                  <!--<input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">-->
+                  <!--<input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">-->
+                  <!--<input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">-->
+                </div>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
-      <!-- PANEL TWO -->
-      <div role="tabpanel" class="tab-pane" id="account-info">
-        <%= form_for(@user, html: {class: 'minimal edit_user', id: 'form2'}) do |f| %>
-          <div class="error_messages">
-            <div>
-              <%= render 'shared/error_messages', object: f.object %>
-            </div>
-            <div class="form-group">
-              <div class="col-xs-12 col-md-6">
-                <%= f.text_field :first_name, :placeholder => "First Name", class: "form-control input-lg", id:"form-first-name", type: "search" %>
-                <%= f.text_field :last_name, :placeholder => "Last Name", class: "form-control input-lg", id:"form-last-name", type: "search" %>
-                <%= f.text_field :user_name, :placeholder => "User Name", class: "form-control input-lg", id:"form-user-name", type: "search" %>
-                <!--<input class="form-control input-lg" id="form-first-name" name="user[first_name]" placeholder="First Name" type="search">-->
-                <!--<input class="form-control input-lg" id="form-last-name" name="user[last_name]" placeholder="Last Name" type="search">-->
-                <!--<input class="form-control input-lg" id="form-user-name" name="user[user_name]" placeholder="User Name" type="search">-->
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <%= f.text_field :email, :placeholder => "email", class: "form-control input-lg", id:"form-user-name", type: "search" %>
-                <%= f.text_field :password, :placeholder => "Password", class: "form-control input-lg", id:"form-user-name", type: "search" %>
-                <%= f.text_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control input-lg", id:"form-user-name", type: "search" %>
-                <!--<input class="form-control input-lg" id="form-email" name="user[email]" placeholder="Email" type="email">-->
-                <!--<input class="form-control input-lg" id="form-password" name="user[password]" placeholder="Password" type="password">-->
-                <!--<input class="form-control input-lg" id="inputPassword" name="user[password_confirmation]" placeholder="Password Confirmation" type="password">-->
-              </div>
-            </div>
-          </div>
-        <%end%>
-      </div>
+        </div>
+      <%end%>
       <!-- PANEL THREE -->
       <div role="tabpanel" class="tab-pane" id="networks">
         <!-- TWITTER -->
@@ -308,6 +310,20 @@
 <script>
 submitForms = function(){
   $("#form1").submit();
-  $("#form2").submit();
-}
+};
+$("a[href='#profile-images']").click( function() {
+    $('#account-info').hide();
+    $('#networks').hide();
+    $('#profile-images').show()
+});
+$("a[href='#account-info']").click( function() {
+    $('#profile-images').hide();
+    $('#networks').hide();
+    $('#account-info').show()
+});
+$("a[href='#networks']").click( function() {
+    $('#profile-images').hide();
+    $('#account-info').hide()
+    $('#networks').show()
+});
 </script>

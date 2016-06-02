@@ -3905,3 +3905,29 @@ h5.media-heading {
   #nfuse .slick-list{
     overflow: visible;
   }
+/*Setings form*/
+
+
+  .tab-pane.minimal input,
+  #signin input,
+  #signup input {
+      background: transparent;
+      border-radius: 0px;
+      border:0px;
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(153, 153, 153, 0.8);
+      font-weight: 300;
+      box-shadow: none;
+      height: 50px;
+      width: 100%;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+      padding: 10px;
+  }
+  .tab-pane.minimal .form-group,
+  #signin .form-group,
+  #signup .form-group {
+      margin-bottom: 30px;
+      float: left;
+      width: 100%;
+  }
