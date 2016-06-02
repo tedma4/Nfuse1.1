@@ -60,14 +60,24 @@ module Biz
     #-----------type----------
 
     def has_media?
-      @post.attrs.has_key? :extended_entities
+      @post.attrs.has_key?(:extended_entities) || @post.attrs.has_key?(:entities)
     end
     def type
       case(@provider)
         when 'instagram'
           @post["type"]
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:type]
+          if @post.attrs.has_key? :extended_entities
+            @post.attrs[:extended_entities][:media][0][:type]
+          elsif @post.attrs.has_key? :entities
+            if @post.attrs[:entities].has_key? :media
+              @post.attrs[:entities][:media][0][:type]
+            else
+              return false
+            end
+          else
+            return false
+          end
       end
     end
 
@@ -97,10 +107,32 @@ module Biz
 
     def image
       case(@provider)
-        when 'instagram'
-          @post["images"]["low_resolution"]["url"]
-        when 'twitter'
+      when 'instagram'
+        @post["images"]["low_resolution"]["url"]
+      when 'twitter'
+        begin
+        if @post.attrs.has_key? :extended_entities
           @post.attrs[:extended_entities][:media][0][:media_url]
+        elsif @post.attrs.has_key? :entities
+          if @post.attrs[:entities].has_key? :media
+            if @post.attrs[:entities][:media].is_a? Array
+              if @post.attrs[:entities][:media][0].has_key? :media_url
+                @post.attrs[:entities][:media][0][:media_url]
+              else
+                return false
+              end
+            else
+              return false
+            end
+          else
+            return false
+          end
+        else
+          return false
+        end
+        rescue
+          return false
+        end
       end
     end
 

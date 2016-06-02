@@ -57,13 +57,23 @@ module Networks
     #-----------type----------
 
     def has_media?
-      @post.attrs.has_key? :extended_entities
+      @post.attrs.has_key?(:extended_entities) || @post.attrs.has_key?(:entities)
     end
 
     def type
       case(@provider)
         when 'twitter'
-          @post.attrs[:extended_entities][:media][0][:type]
+          if @post.attrs.has_key? :extended_entities
+            @post.attrs[:extended_entities][:media][0][:type]
+          elsif @post.attrs.has_key? :entities
+            if @post.attrs[:entities].has_key? :media
+              @post.attrs[:entities][:media][0][:type]
+            else
+              return false
+            end
+          else
+            return false
+          end
         when 'instagram'
           @post["type"]
         when 'facebook'
@@ -97,30 +107,30 @@ module Networks
 
     def text
       case(@provider)
-        when 'twitter'
-          @post[:text]
-        when 'google_oauth2'
-          @post.description
-        when 'instagram'
-          if @post['caption'].present?
-            @post['caption']['text']
-          end
-        when 'facebook'
+      when 'twitter'
+        @post[:text]
+      when 'google_oauth2'
+        @post.description
+      when 'instagram'
+        if @post['caption'].present?
+          @post['caption']['text']
+        end
+      when 'facebook'
+        @post['caption']
+      when 'tumblr'
+        if @post['type'] == 'quote'
+          @post['text']
+        elsif @post['type'] == 'link'
+          @post['description']
+        else
           @post['caption']
-        when 'tumblr'
-          if @post['type'] == 'quote'
-            @post['text']
-          elsif @post['type'] == 'link'
-            @post['description']
-          else
-            @post['caption']
-          end
-        when 'vimeo'
-          @post.description
-        when 'pinterest'
-          @post['note']
-        when 'gplus'
-          @post.object.content
+        end
+      when 'vimeo'
+        @post.description
+      when 'pinterest'
+        @post['note']
+      when 'gplus'
+        @post.object.content
       end
     end
 
@@ -128,29 +138,51 @@ module Networks
 
     def image
       case(@provider)
-        when 'twitter'
+      when 'twitter'
+        begin
+        if @post.attrs.has_key? :extended_entities
           @post.attrs[:extended_entities][:media][0][:media_url]
-        when 'instagram'
-          @post["images"]["low_resolution"]["url"]
-        when 'facebook'
-          if @post['type'] == 'photo'
-            @fb_token = @user.tokens.find_by(provider: 'facebook')
-            @graph = Koala::Facebook::API.new @fb_token.access_token
-            begin
-              @post = @graph.get_object(@post['object_id'])
-              @post['images'][0]['source']
-            rescue
-              @post['picture']
+        elsif @post.attrs.has_key? :entities
+          if @post.attrs[:entities].has_key? :media
+            if @post.attrs[:entities][:media].is_a? Array
+              if @post.attrs[:entities][:media][0].has_key? :media_url
+                @post.attrs[:entities][:media][0][:media_url]
+              else
+                return false
+              end
+            else
+              return false
             end
           else
+            return false
+          end
+        else
+          return false
+        end
+        rescue
+          return false
+        end
+      when 'instagram'
+        @post["images"]["low_resolution"]["url"]
+      when 'facebook'
+        if @post['type'] == 'photo'
+          @fb_token = @user.tokens.find_by(provider: 'facebook')
+          @graph = Koala::Facebook::API.new @fb_token.access_token
+          begin
+            @post = @graph.get_object(@post['object_id'])
+            @post['images'][0]['source']
+          rescue
             @post['picture']
           end
-        when 'tumblr'
-          @post['photos'][0]['alt_sizes'][0]['url']
-        when 'pinterest'
-          @post['image']['original']['url']
-        when 'gplus'
-          @post.object.attachments[0]["image"]["url"]
+        else
+          @post['picture']
+        end
+      when 'tumblr'
+        @post['photos'][0]['alt_sizes'][0]['url']
+      when 'pinterest'
+        @post['image']['original']['url']
+      when 'gplus'
+        @post.object.attachments[0]["image"]["url"]
       end
     end
 
@@ -173,40 +205,40 @@ module Networks
 
     def video
       case(@provider)
-        when 'twitter'
-          if type == "animated_gif"
-            @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
-          elsif type == "video"
-            @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
-          end
-        when 'google_oauth2'
-          @post.id
-        when 'instagram'
-          @post["videos"]["standard_resolution"]["url"]
-        when 'facebook'
-          if @post['source'].include?('?autoplay=1')
-            @post['source'].sub!("?autoplay=1", "")
-          else
-            @post['source'].sub!("autoplay=1", "")
-          end
-        when 'tumblr'
-          if @post['video_type'] == 'tumblr'
-            @post['video_url']
-          else
-            @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
-          end
-        when 'gplus'
-          if @post.object.attachments[0].has_key? "embed"
-            @post.object.attachments[0]["embed"]["url"]
-          else
-            @post.object.attachments[0]["image"]["url"]
-          end
-        when 'pinterest'
-          if @post['attribution']['url'].include?('youtube')
-            @post['attribution']['url'].gsub('watch?v=', 'embed/')
-          else
-            @post['attribution']['url']
-          end
+      when 'twitter'
+        if type == "animated_gif"
+          @post.attrs[:extended_entities][:media][0][:video_info][:variants][0][:url]
+        elsif type == "video"
+          @post.attrs[:extended_entities][:media][0][:video_info][:variants][2][:url]
+        end
+      when 'google_oauth2'
+        @post.id
+      when 'instagram'
+        @post["videos"]["standard_resolution"]["url"]
+      when 'facebook'
+        if @post['source'].include?('?autoplay=1')
+          @post['source'].sub!("?autoplay=1", "")
+        else
+          @post['source'].sub!("autoplay=1", "")
+        end
+      when 'tumblr'
+        if @post['video_type'] == 'tumblr'
+          @post['video_url']
+        else
+          @post['player'][0]['embed_code'].match(/src="(.*)\?/)[1]
+        end
+      when 'gplus'
+        if @post.object.attachments[0].has_key? "embed"
+          @post.object.attachments[0]["embed"]["url"]
+        else
+          @post.object.attachments[0]["image"]["url"]
+        end
+      when 'pinterest'
+        if @post['attribution']['url'].include?('youtube')
+          @post['attribution']['url'].gsub('watch?v=', 'embed/')
+        else
+          @post['attribution']['url']
+        end
       end
     end
 
