@@ -30,36 +30,40 @@ module Search
         i.consumer_key = ENV['twitter_api_key']
         i.consumer_secret = ENV['twitter_api_secret']
       end
-      if !!(@search =~ USERNAME) #Searches by @username and then deletes the '@'
-        search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
-        begin
-          posts = client.user_timeline(search)
-        rescue
-          posts = client.search(search, lang: "en", result_type: "popular")
-        end
-        posts.take(25)
-      elsif !!(@search =~ HASHTAG)#Searches by #hashtag and then deletes the '#'
-        search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
-        posts = client.search(search, lang: "en", result_type: "popular")
-        posts.take(50)#result_type: "recent, "
-      else
-        begin
-          search = @search.gsub(/[^0-9A-Za-z]/, '')# general user search without spaces
-          posts = client.user_timeline(search)
+      begin
+        if !!(@search =~ USERNAME) #Searches by @username and then deletes the '@'
+          search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
+          begin
+            posts = client.user_timeline(search)
+          rescue
+            posts = client.search(search, lang: "en", result_type: "popular")
+          end
           posts.take(25)
-        rescue 
-          search = @search.gsub(/[^0-9A-Za-z+\s]/, '')# general post search with spaces
+        elsif !!(@search =~ HASHTAG)#Searches by #hashtag and then deletes the '#'
+          search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
           posts = client.search(search, lang: "en", result_type: "popular")
-          posts.take(50)
+          posts.take(50)#result_type: "recent, "
         else
-          search = @search.gsub(/[^0-9A-Za-z]/, '')# general post search without spaces
-          posts = client.search(search, lang: "en", result_type: "popular")
-          posts.take(50)
-        # ensure
-        #   posts = client.user_timeline('nfuse01').take(25)
+          begin
+            search = @search.gsub(/[^0-9A-Za-z]/, '')# general user search without spaces
+            posts = client.user_timeline(search)
+            posts.take(25)
+          rescue 
+            search = @search.gsub(/[^0-9A-Za-z+\s]/, '')# general post search with spaces
+            posts = client.search(search, lang: "en", result_type: "popular")
+            posts.take(50)
+          else
+            search = @search.gsub(/[^0-9A-Za-z]/, '')# general post search without spaces
+            posts = client.search(search, lang: "en", result_type: "popular")
+            posts.take(50)
+          # ensure
+          #   posts = client.user_timeline('nfuse01').take(25)
+          end
         end
+         posts.map { |post| Search::Entry.from(post, 'twitter') }
+       rescue
+        return []
       end
-       posts.map { |post| Search::Entry.from(post, 'twitter') }
     end
 
     def youtube_setup
@@ -68,62 +72,67 @@ module Search
         config.client_secret = ENV['google_client_secret']
         config.api_key = ENV['youtube_dev_key']
       end
-      #Yt.configuration.api_key = ENV['api_key']
-      if !!(@search =~ USERNAME) #Searches by @username and then deletes the '@'
-        search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
-        # client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
-        begin
-         client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
-          # if client['items'][0]['snippet']['channelTitle'].present?
+      begin
+        #Yt.configuration.api_key = ENV['api_key']
+        if !!(@search =~ USERNAME) #Searches by @username and then deletes the '@'
+          search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
+          # client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
           begin
-            usid = client['items'][0]['snippet']['channelTitle']
-            channel = Yt::Channel.new url: "https://www.youtube.com/user/#{usid}"#can't search youtube channels with spaces in the search params 
-            posts = channel.videos.where(order: "viewCount").first(15)
+           client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
+            # if client['items'][0]['snippet']['channelTitle'].present?
+            begin
+              usid = client['items'][0]['snippet']['channelTitle']
+              channel = Yt::Channel.new url: "https://www.youtube.com/user/#{usid}"#can't search youtube channels with spaces in the search params 
+              posts = channel.videos.where(order: "viewCount").first(15)
+            rescue
+              usid = client['items'][0]['id']['channelId']
+              channel = Yt::Channel.new url: "https://www.youtube.com/channel/#{usid}"
+              posts = channel.videos.where(order: "viewCount").first(15)
+            end
           rescue
-            usid = client['items'][0]['id']['channelId']
-            channel = Yt::Channel.new url: "https://www.youtube.com/channel/#{usid}"
-            posts = channel.videos.where(order: "viewCount").first(15)
+            videos = Yt::Collections::Videos.new
+            posts = videos.where(q: search, order: "viewCount").first(15)
           end
-        rescue
+          # posts = channel.videos.where(order: "viewCount").first(15)
+        elsif !!(@search =~ HASHTAG)#Searches by #hashtag and then deletes the '#'
+          search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
           videos = Yt::Collections::Videos.new
-          posts = videos.where(q: search, order: "viewCount").first(15)
-        end
-        # posts = channel.videos.where(order: "viewCount").first(15)
-      elsif !!(@search =~ HASHTAG)#Searches by #hashtag and then deletes the '#'
-        search = @search.gsub(/[^0-9A-Za-z]/, '')#deletes all special characters and spaces
-        videos = Yt::Collections::Videos.new
-        posts = videos.where(q: search, order: "viewCount").first(15) #uid = videos.where(q: search).first(15).m
-        #posts = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/videos?id=#{uids}&key=#{ENV['api_key']}&part=snippet,contentDetails,statistics").body)
-      else
-        begin
-          search = @search.gsub(/[^0-9A-Za-z]/, '')# general user search without spaces
-          client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
-
-          if client['items'][0]['snippet']['channelTitle'].present?
-            usid = client['items'][0]['snippet']['channelTitle']
-            channel = Yt::Channel.new url: "https://www.youtube.com/user/#{usid}"#can't search youtube channels with spaces in the search params 
-          else
-            usid = client['items'][0]['id']['channelId']
-            channel = Yt::Channel.new url: "https://www.youtube.com/channel/#{usid}"
-          end
-          posts = channel.videos.where(order: "viewCount").first(15)
-        rescue 
-          search = @search.gsub(/[^0-9A-Za-z+\s]/, '')# general post search with spaces
-          videos = Yt::Collections::Videos.new
-          posts = videos.where(q: search, order: "viewCount").first(15)
+          posts = videos.where(q: search, order: "viewCount").first(15) #uid = videos.where(q: search).first(15).m
+          #posts = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/videos?id=#{uids}&key=#{ENV['api_key']}&part=snippet,contentDetails,statistics").body)
         else
-          search = @search.gsub(/[^0-9A-Za-z]/, '')# general post search without spaces
-          videos = Yt::Collections::Videos.new
-          posts = videos.where(q: search, order: "viewCount").first(15)
-        # ensure
-        #   posts = client.user_timeline('nfuse01').take(25)
-        end        
+          begin
+            search = @search.gsub(/[^0-9A-Za-z]/, '')# general user search without spaces
+            client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{search}&key=#{ENV['api_key']}").body)
+
+            if client['items'][0]['snippet']['channelTitle'].present?
+              usid = client['items'][0]['snippet']['channelTitle']
+              channel = Yt::Channel.new url: "https://www.youtube.com/user/#{usid}"#can't search youtube channels with spaces in the search params 
+            else
+              usid = client['items'][0]['id']['channelId']
+              channel = Yt::Channel.new url: "https://www.youtube.com/channel/#{usid}"
+            end
+            posts = channel.videos.where(order: "viewCount").first(15)
+          rescue 
+            search = @search.gsub(/[^0-9A-Za-z+\s]/, '')# general post search with spaces
+            videos = Yt::Collections::Videos.new
+            posts = videos.where(q: search, order: "viewCount").first(15)
+          else
+            search = @search.gsub(/[^0-9A-Za-z]/, '')# general post search without spaces
+            videos = Yt::Collections::Videos.new
+            posts = videos.where(q: search, order: "viewCount").first(15)
+          # ensure
+          #   posts = client.user_timeline('nfuse01').take(25)
+          end        
+        end
+        posts.map { |post| Search::Entry.from(post, 'youtube')}
+      rescue
+        return []
       end
-      posts.map { |post| Search::Entry.from(post, 'youtube')}
     end
 
     def instagram_setup
       client_id = ENV['instagram_client_id']
+      begin
       if !!(@search =~ USERNAME) #Searches by @username and then deletes the '@'
         begin
           search = @search.gsub(/[^0-9A-Za-z+\s]/, '')#deletes all special characters and spaces
@@ -168,6 +177,9 @@ module Search
         #   posts = Oj.load(Faraday.get("https://api.instagram.com/v1/tags/#{search}/media/recent?client_id=#{client_id}&count=25").body)
         #   posts['data'].map { |post| Post::Entry.from(post,'instagram') }
         end
+      end
+      rescue
+        return []
       end
     end
 
