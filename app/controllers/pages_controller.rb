@@ -432,6 +432,9 @@ class PagesController < ApplicationController
     end
   end
 
+  def explore_posts
+  end
+
   def get_page_and_offset(per_page, page = 1, pages)
     total = pages.length
     if total > 0

@@ -103,7 +103,8 @@ Rails.application.routes.draw do
   
   # New Hub and hub all pages
 
-  # get '/hub/hq/nfusers',     to: 'pages#nfuse_user_posts'
+  get '/nfusers',     to: 'pages#nfuse_user_posts'
+  get 'explore_posts', to: 'pages#explore_posts'
   # get '/hub/hq/pages',       to: 'pages#nfuse_page_posts'
   # get '/hub/hq/nfuse',       to: 'pages#nfuse_posts'
   # get '/hub/hq/twitternews', to: 'pages#nfuse_trending_twitter_posts'

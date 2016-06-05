@@ -1,4 +1,12 @@
 <!-- TOP SEARCH AREA -->
+<style>
+  #explore_nav.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
 <section id="explorehead" class="vcenter center container-fluid">
   <div class="vcell">
     <div class="row">
@@ -21,15 +29,19 @@
   </div>
   <div class="bg"></div>
 </section>
+
+<section id="explore_nav" class="container-fluid clearfix">
+  <nav id="user-nav" class="center navbar">
+    <ul>
+      <li><%= link_to 'Nfusers', '/nfusers' , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', explore_user_path(current_user), class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Posts', '/explore_posts', class: "btn btn-link-2" %></li>
+    </ul>
+  </nav>
+</section>
+
 <section id="explorelist" class="container-fluid clearfix">
   <div class="row">
-    <article id="users" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <%= link_to explore_users_user_path(current_user) do %>
-        <h3>Nfusers</h3>
-        <p>All users throughout Nfuse.</p>
-        <div class="bg"></div>
-      <% end %>
-    </article>
     <article id="vue" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
       <%= link_to my_top_50_path do %>
         <h3>My Vue</h3>

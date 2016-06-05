@@ -16,7 +16,6 @@
 </style>
 <% if current_user.relationships.where(follow_type: 'User').collect(&:followed_id).any? %>
 <section id="thehub" class="container-fluid clearfix">
-
   <nav id="user-nav" class="hub center navbar">
     <ul>
       <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>

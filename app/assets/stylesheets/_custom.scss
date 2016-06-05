@@ -3632,6 +3632,25 @@ video {
     width: 100%;
     padding: 15px 30px;
   }
+/* EXPLORE NAV */
+
+  #explore_nav {
+      width: 100%;
+      /*min-height: calc(100vh - 160px);*/
+  }
+  #explore_nav #user-nav{
+    margin-bottom: 0px;
+    margin-top: 0;
+    text-align: center;
+  }
+  #explore_nav #user-nav li{
+    width: auto;
+    float: none;
+  }
+  #explore_nav #user-nav li a{
+    width: 100%;
+    padding: 15px 30px;
+  }
 
 @media (min-width: 480px){
   #user-nav ul li:first-of-type{

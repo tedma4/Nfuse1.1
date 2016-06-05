@@ -50,9 +50,13 @@ module Notification
             Biz::Post.from(entry, 'google_oauth2', @user)            
           end
         when 'gplus'
-          uid = @user.tokens.find_by(provider: 'gplus').uid
-          entry = configure_gplus(post_id)
-          Notification::Entry.from(entry, 'gplus', @user)
+          begin
+            uid = @user.tokens.find_by(provider: 'gplus').uid
+            entry = GooglePlus::Activity.get(post_id)
+            Notification::Entry.from(entry, 'gplus', @user)
+          rescue
+            []
+          end
         when 'vimeo'
           access_token = @user.tokens.find_by(provider: 'vimeo').access_token
           user = Vmo::Request.get_user(access_token)
@@ -133,8 +137,8 @@ module Notification
         client
       end
 
-      def configure_gplus(post_id)
-        post = GooglePlus::Activity.get(post_id)
-      end
+      # def configure_gplus(post_id)
+      #   post = GooglePlus::Activity.get(post_id)
+      # end
     end
 end

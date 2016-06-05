@@ -1,0 +1,74 @@
+<!-- TOP SEARCH AREA -->
+<style>
+  #explore_nav.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
+<section id="explorehead" class="vcenter center container-fluid">
+  <div class="vcell">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="brand-heading heavy">Explore</h1>
+        <%= form_tag search_path, method: 'get', id: "home-search", class: "down search" do %>
+          <% if signed_in? %>
+            <div class="dropdown loggedin">
+              <%= select_tag "selected_option", options_for_select([ "Nfusers", "Pages", "Posts" ], params[:selected_option]), id:"searchdrop" %>  
+            </div>
+          <% else %>
+            <a class="ilink randomize loggedout" href="/random"><img src="/assets/dice.png" alt="random search"/></a>
+          <% end %>
+          <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
+          <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+          <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="bg"></div>
+</section>
+
+<section id="explore_nav" class="container-fluid clearfix">
+  <nav id="user-nav" class="center navbar">
+    <ul>
+      <li><%= link_to 'Nfusers', '/nfusers' , class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Pages', explore_user_path(current_user), class: "btn btn-link-2" %></li>
+      <li><%= link_to 'Posts', '/explore_posts', class: "btn btn-link-2" %></li>
+    </ul>
+  </nav>
+</section>
+
+<section id="explorelist" class="container-fluid clearfix">
+  <div class="row">
+    <article id="vue" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to my_top_50_path do %>
+        <h3>My Vue</h3>
+        <p>Pages you've followed.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="random" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to random_path do %>
+        <h3>Random</h3>
+        <p>Discover new content.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+    <article id="trending" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to trending_path do %>
+        <h3>Trending</h3>
+        <p>What's being seached today.</p>
+        <div class="bg"></div>
+      <% end %>
+    </article>
+
+</div>
+</section>
+
+<script>
+// $(document).ready(function() {
+//   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
+// });
+</script>
