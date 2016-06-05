@@ -11,6 +11,7 @@ class PagesController < ApplicationController
                                    :wedding_connector, :animals_connector, :instagramers_connector,
                                    :nfuse_user_posts, :nfuse_page_posts, :nfuse_posts, 
                                    :nfuse_trending_twitter_posts, :nfuse_trending_youtube_posts, 
+                                   :explore_posts
                                    #:show#, :wiredtestthing
                                   ]
   before_action :page_from_params, only: :show

@@ -1,14 +1,14 @@
   <% if !@post_entry.url.blank? %>
     <div class='timeline-user-box center'></div>
     <%= @post_entry.url_html %>
-    <div class="url_caption">
+    <div class="url_center">
       <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% elsif @post_entry.is_pic? %>
     <div class="timeline-user-box image_post">
       <%= image_tag @post_entry.pic_url %>
     </div>
-    <div class="caption">
+    <div class="center">
         <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% elsif @post_entry.is_video? %>
@@ -26,7 +26,7 @@
         controls>
       </video>
     </div>
-    <div class="caption">
+    <div class="center">
       <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% elsif @post_entry.is_full_video? %>
@@ -43,7 +43,11 @@
         controls>
       </video>
     </div>
-    <div class="caption">
+    <div class="center">
+      <%= truncate(@post_entry.content, lenght: 30) %>
+    </div>
+  <% else %>
+    <div class="center text_only_post ">
       <%= truncate(@post_entry.content, lenght: 30) %>
     </div>
   <% end %>

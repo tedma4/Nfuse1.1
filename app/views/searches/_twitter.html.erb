@@ -10,6 +10,9 @@
         <%= image_tag(post.image, :class => "image_post") %>
       </div>
     <% end %>
+    <p>
+      <%= post.text %>
+    </p>
   <% elsif post.has_video_url? %>
     <iframe
     id="ytplayer"
@@ -20,8 +23,12 @@
     frameborder="0"
     allowfullscreen>
     </iframe>
+    <p>
+      <%= post.text %>
+    </p>
+  <% else %>
+    <div class='center text_only_post'>
+      <%= post.text %>
+    </div>
   <% end %>
 </div>
-<p>
-  <%= post.text %>
-</p>

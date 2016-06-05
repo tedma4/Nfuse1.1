@@ -56,14 +56,16 @@
       <%end%>
     </div>
   <% when 'status' %>
-    <div class="center">
+    <div class="center text_only_post">
       <% if @post_entry.message.present? %>
         <%= truncate(@post_entry.message, lenght: 30) %>
       <%end%>
     </div>
   <% end %>
 <% rescue %>
-  <% if @post_entry.message.present? %>
+  <div class='center text_only_post'>
+    <% if @post_entry.message.present? %>
       <%= truncate(@post_entry.message, lenght: 30) %>
-  <%end%>
+    <%end%>
+  </div>
 <% end %>

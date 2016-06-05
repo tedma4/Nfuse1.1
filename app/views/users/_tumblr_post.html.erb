@@ -45,13 +45,13 @@
         </div>
     <% end %>
 <% elsif post.type == 'text'  %>
-    <div class="center">
-      <%= post.body %>
-    </div>
+  <div class="center text_only_post">
+    <%= strip_tags(post.body) %>
+  </div>
 <% elsif post.type == 'quote'  %>
-    <div class="center">
-      <%= strip_tags(post.text) %>
-    </div>
+  <div class="center text_only_post">
+    <%= strip_tags(post.text) %>
+  </div>
 <% elsif post.type == 'link'  %>
     <div class="center">
       <a href="#{ post.link_to_url}">
@@ -60,7 +60,7 @@
       <%= strip_tags(post.text) %>
     </div>
 <% else %>
-  <div class="center">
+  <div class="center text_only_post">
     <%= strip_tags(post.text) %>
   </div>
 <% end %>
