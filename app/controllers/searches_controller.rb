@@ -15,9 +15,13 @@ class SearchesController < ApplicationController
       end
     when "Pages"
       if @search
-        @pages = Page.search(@search).order("id DESC")
+        if search == ''
+          @pages = Page.first(25)
+        else
+          @pages = Page.search(@search).order("id DESC")
+        end
       else
-        @pages = Pages.all.order('id DESC')
+        @pages = Pages.first(25)
       end
     when "Posts", ""
       unless @search.empty?
