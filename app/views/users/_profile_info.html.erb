@@ -39,8 +39,16 @@
 <!-- USER NAVBAR -->
 <nav id="user-nav" class="center navbar">
   <ul>
-    <li><%= link_to "Feed", feed_user_path(@user) %></li>
-    <li><%= link_to "Vue", vue_user_path(@user) %></li>
+    <% if current_page?(feed_user_path(@user)) %>
+      <li><%= link_to "Feed", feed_user_path(@user), style: 'color:#00eebc;' %></li>
+    <% else %>
+      <li><%= link_to "Feed", feed_user_path(@user) %></li>
+    <% end %>
+    <% if current_page?(vue_user_path(@user)  ) %>
+      <li><%= link_to "Vue", vue_user_path(@user), style: 'color:#00eebc' %></li>
+    <% else %>
+      <li><%= link_to "Vue", vue_user_path(@user) %></li>
+    <% end %>
     <li id="user-spacer">
       <!-- PROFILE PIC -->
       <% if current_user?(@user) %>
@@ -57,14 +65,15 @@
       <% end %>
       </a>
     </li>
-    <% if current_user?(@user) %>
+    <% if current_page?(user_likes_user_path(@user)) %>
+      <li><%= link_to 'Liked', user_likes_user_path(@user), style: 'color:#00eebc' %></li>
+    <% else %>
       <li><%= link_to 'Liked', user_likes_user_path(@user) %></li>
+    <% end %>
+    <% if current_user?(@user) %>
       <li><a href="#" data-toggle="modal" data-target="#sharemodal">+ Post</a></li>
       <!-- <li><a href="#" data-toggle="modal" data-target="#editmodal">Edit</a></li> -->
     <% else %>
-      <li>
-        <%= link_to 'Liked', user_likes_user_path(@user) %>
-      </li>
       <li>
         <a class="follow_form">
         <%= render 'follow_form' if signed_in? %>

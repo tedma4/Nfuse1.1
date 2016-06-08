@@ -24,7 +24,7 @@
   <!-- USER NAVBAR -->
   <nav id="user-nav" class="center navbar">
     <ul>
-      <li class="page_feed_cursor_icon"><a class='show_feed'>Feed</a></li>
+      <li class="page_feed_cursor_icon"><a class='show_feed' style='color:#00eebc'>Feed</a></li>
       <li class="page_forum_cursor_icon"><a class='show_forum'>Forum</a></li>
       <li id="user-spacer">
         <!-- PROFILE PIC -->
@@ -286,11 +286,16 @@ $(document).ready(function() {
 <script>
 $('a.show_forum').click( function() {
     $('section#masonJar').hide();
-    $('#forum').show()
+    $('#forum').show();
+    $('a.show_feed').removeAttr('style');
+    $('a.show_forum').attr('style', 'color:#00eebc');
 });
 $('a.show_feed').click( function() {
-    $('#forum').hide()
+    $('#forum').hide();
     $('section#masonJar').show();
+    $('a.show_feed').attr('style', 'color:#00eebc');
+    $('a.show_forum').removeAttr('style');
+    $grid.masonry('layout'); 
 });
 </script>
 

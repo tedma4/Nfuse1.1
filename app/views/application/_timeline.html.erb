@@ -18,8 +18,16 @@
 <section id="thehub" class="container-fluid clearfix">
   <nav id="user-nav" class="hub center navbar">
     <ul>
-      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
-      <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
+      <% if current_page?(root_path) %>
+        <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2", style: 'color:#00eebc' %></li>
+      <% else %>
+        <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
+      <% end %>
+      <% if current_page?(followed_pages_user_path(current_user)) %>
+        <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2", style: 'color:#00eebc' %></li>
+      <% else %>
+        <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
+      <% end %>
     </ul>
   </nav>
 </section>
@@ -92,10 +100,18 @@
 <% else %>
   <section id="thehub" class="container-fluid">
     <nav id="user-nav" class="hub center navbar">
-    <ul>
-      <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
-      <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
-    </ul>
+      <ul>
+        <% if current_page?(root_path) %>
+          <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2", style: 'color:#00eebc' %></li>
+        <% else %>
+          <li><%= link_to 'Nfusers', root_path , class: "btn btn-link-2" %></li>
+        <% end %>
+        <% if current_page?(followed_pages_user_path(current_user)) %>
+          <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2", style: 'color:#00eebc' %></li>
+        <% else %>
+          <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
+        <% end %>
+      </ul>
     </nav>
     <div class="row">
       <div class="explore_filters col-xs-12 center">

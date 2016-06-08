@@ -32,9 +32,21 @@
 <section id="explore_nav" class="container-fluid clearfix">
   <nav id="user-nav" class="center navbar">
     <ul>
-      <li><%= link_to 'Nfusers', '/nfusers' , class: "btn btn-link-2" %></li>
-      <li><%= link_to 'Pages', explore_user_path(current_user), class: "btn btn-link-2" %></li>
-      <li><%= link_to 'Posts', '/explore_posts', class: "btn btn-link-2" %></li>
+      <% if current_page?(nfusers_path) %>
+        <li><%= link_to 'Nfusers', '/nfusers' , class: "btn btn-link-2", style: 'color:#00eebc' %></li>
+      <% else %>
+        <li><%= link_to 'Nfusers', '/nfusers' , class: "btn btn-link-2" %></li>
+      <% end %>
+      <% if current_page?( explore_user_path(current_user)) %>
+        <li><%= link_to 'Pages', explore_user_path(current_user), class: "btn btn-link-2", style: 'color:#00eebc'  %></li>
+      <% else %>
+        <li><%= link_to 'Pages', explore_user_path(current_user), class: "btn btn-link-2" %></li>
+      <% end %>
+      <% if current_page?(explore_posts_path) %>
+        <li><%= link_to 'Posts', '/explore_posts', class: "btn btn-link-2", style: 'color:#00eebc'  %></li>
+      <% else %>
+        <li><%= link_to 'Posts', '/explore_posts', class: "btn btn-link-2" %></li>
+      <% end %>
     </ul>
   </nav>
 </section>
