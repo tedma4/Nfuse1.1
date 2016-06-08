@@ -9,9 +9,8 @@ class PagesController < ApplicationController
                                    :random, :trending, :individual_post, :news_connector,
                                    :fitness_connector, :nerdish_connector, :shopping_connector,
                                    :wedding_connector, :animals_connector, :instagramers_connector,
-                                   :nfuse_user_posts, :nfuse_page_posts, :nfuse_posts, 
-                                   :nfuse_trending_twitter_posts, :nfuse_trending_youtube_posts, 
-                                   :explore_posts
+                                   :nfuse_user_posts, :twitter_news, :viral_youtube, :youtube_music,
+                                   :youtube_trailers, :explore_posts
                                    #:show#, :wiredtestthing
                                   ]
   before_action :page_from_params, only: :show
@@ -121,20 +120,20 @@ class PagesController < ApplicationController
     @posts = Page.trending_user_posts
   end
 
-  def nfuse_page_posts
-    @posts = Page.trending_page_posts
-  end
-
-  def nfuse_posts
-    @posts = Page.trending_nfuse_posts
-  end
-
-  def nfuse_trending_twitter_posts
+  def twitter_news
     @posts = Page.trending_twitter_posts
   end
 
-  def nfuse_trending_youtube_posts
-    @posts = Page.trending_youtube_posts
+  def viral_youtube
+    @posts = Page.viral_youtube_videos
+  end
+
+  def youtube_music
+    @posts = Page.youtube_music_videos
+  end
+
+  def youtube_trailers
+    @posts = Page.youtube_trailer_videos
   end
 
   def help; end

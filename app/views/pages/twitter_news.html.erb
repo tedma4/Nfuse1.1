@@ -1,28 +1,3 @@
-<style>
-.tab-content {
-    border-radius: 0px;
-    padding: 0px 30px;
-}
-  .container-fluid {
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.row {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-</style>
-<section id="thehub" class="container-fluid clearfix">
-  <nav id="user-nav" class="hub center navbar">
-    <ul>
-      <li><%= link_to 'All', root_path , class: "btn btn-link-2" %> </li>
-      <li><%= link_to 'Nfusers', followed_nfusers_user_path(current_user) , class: "btn btn-link-2" %></li>
-      <li><%= link_to 'Pages', followed_pages_user_path(current_user), class: "btn btn-link-2" %></li>
-    </ul>
-  </nav>
-</section>
 <section id="masonJar" class="clearfix">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>

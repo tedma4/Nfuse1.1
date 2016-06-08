@@ -54,24 +54,31 @@
 
 <section id="explorelist" class="container-fluid clearfix">
   <div class="row">
-    <article id="vue" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <%= link_to my_top_50_path do %>
-        <h3>My Vue</h3>
-        <p>Pages you've followed.</p>
+    <article id="twitter_news" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to twitter_news_path do %>
+        <h3>Twitter NEWS</h3>
+        <p>News from Twitter.</p>
         <div class="bg"></div>
       <% end %>
     </article>
-    <article id="random" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <%= link_to random_path do %>
-        <h3>Random</h3>
-        <p>Discover new content.</p>
+    <article id="viral_youtube" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to viral_youtube_path do %>
+        <h3>Viral Youtube</h3>
+        <p>Best on Youtube.</p>
+        <div class="bg"></div>
+      <% end %> 
+    </article>
+    <article id="youtube_music" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to youtube_music_path do %>
+        <h3>Youtube Music</h3>
+        <p>Top Music Videos.</p>
         <div class="bg"></div>
       <% end %>
     </article>
-    <article id="trending" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
-      <%= link_to trending_path do %>
-        <h3>Trending</h3>
-        <p>What's being seached today.</p>
+    <article id="youtube_trailers" class="explorebox col-xs-12 col-sm-6 col-md-4 ">
+      <%= link_to youtube_trailers_path do %>
+        <h3>Youtube Trailers</h3>
+        <p>Cool Movie Trailers.</p>
         <div class="bg"></div>
       <% end %>
     </article>

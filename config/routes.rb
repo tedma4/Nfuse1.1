@@ -107,8 +107,11 @@ Rails.application.routes.draw do
   get 'explore_posts', to: 'pages#explore_posts'
   # get '/hub/hq/pages',       to: 'pages#nfuse_page_posts'
   # get '/hub/hq/nfuse',       to: 'pages#nfuse_posts'
-  # get '/hub/hq/twitternews', to: 'pages#nfuse_trending_twitter_posts'
-  # get '/hub/hq/youtube',     to: 'pages#nfuse_page_posts'
+
+  get '/twitter_news',     to: 'pages#twitter_news'
+  get '/viral_youtube',    to: 'pages#viral_youtube'
+  get '/youtube_music',    to: 'pages#youtube_music'
+  get '/youtube_trailers', to: 'pages#youtube_trailers'
 
   # Static pages
   get '/help',              to: 'pages#help'
