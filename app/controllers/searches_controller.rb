@@ -5,7 +5,11 @@ class SearchesController < ApplicationController
     case params[:selected_option]
     when "Nfusers"
       if @search
-        @users = User.search(@search).order("created_at DESC")
+        if @search == ''
+          @users = User.where.not(id: current_user.id).order('id desc')
+        else
+          @users = User.search(@search).order("created_at DESC")
+        end
       else
         @users = User.all.order('created_at DESC')
       end
