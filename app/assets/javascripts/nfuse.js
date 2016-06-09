@@ -70,11 +70,11 @@
   function responsive_resize(){
     var current_width = $(window).width();
     //do something with the width value here!
-    if (current_width < 970)
+    if (current_width < 970){
       $('html').addClass("mobile").removeClass("desktop")
-
-    else if (current_width > 971)
+    }else{
       $('html').addClass("desktop").removeClass("mobile");
+    }
   }
 
   // jQuery for background reload
