@@ -27,6 +27,7 @@ public/system
 **.DS_Store
 **.swp
 /app/controllers/application_controller.rb
+/config/environments/development.rb
 
 # Ignore application configuration
 /config/application.yml

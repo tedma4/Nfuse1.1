@@ -72,7 +72,7 @@
         <%= hidden_field_tag "selected_option" %>
       <% end %>
       <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
-      <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+      <button type="submit" class="ilink gosearch" style="color: #00eebc;"><i class=" fa fa-search"></i></button>
       <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
     <% end %>
 
@@ -88,8 +88,7 @@
           <a class="ilink randomize loggedout" href="/random_search"><img src="/assets/dice.png" alt="random search"/></a>
           <%= hidden_field_tag "selected_option" %>
         <% end %>
-        <!-- <a class="gosearch" type="submit"><i class="fa fa-search"></i></a> -->
-        <a class="ilink gosearch"><button type="submit"><i class=" fa fa-search"></i></button></a>
+          <button type="submit" class="ilink gosearch" style="color: #00eebc;"><i class=" fa fa-search"></i></button>
         <%= text_field_tag :search, params[:search], class: "searchform", placeholder: "#tags, @Users & Social Media" %>
       <% end %>
       <% if !signed_in? %>

@@ -17,8 +17,10 @@
     <%= render partial: 'pages/sort_loop_thingy', locals: {pages: @pages} %>
   </div>
 </article>
-<% if @seen_pages.size > 6 %>
-	<div id="add_more_vue_pages">
-	  <a href="/users/<%= @user.user_name %>/vue?page=2" class='nextVuePages' style="display:hidden;" data-remote= true></a>
-	</div>
+<% if @pages.any? %>
+    <% if @pages.size > 6 %>
+        <div id="add_more_vue_pages">
+          <a href="/users/<%= @user.user_name %>/vue?page=2" class='nextVuePages' style="display:hidden;" data-remote= true></a>
+        </div>
+    <% end %>
 <% end %>
