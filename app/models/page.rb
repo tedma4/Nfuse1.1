@@ -61,9 +61,9 @@ class Page < ActiveRecord::Base
       config.client_secret = ENV['google_client_secret']
       config.api_key = ENV['youtube_dev_key']
     end
-     client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
+     # client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
      videos = Yt::Collections::Videos.new
-     videos.where(chart: 'mostPopular').first(5).map { |post| Search::Entry.from(post, 'youtube') }
+     videos.where(chart: 'mostPopular').first(15).map { |post| Search::Entry.from(post, 'youtube') }
   end
   def self.youtube_music_videos
     Yt.configure do |config|
@@ -71,9 +71,9 @@ class Page < ActiveRecord::Base
       config.client_secret = ENV['google_client_secret']
       config.api_key = ENV['youtube_dev_key']
     end
-     client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
+     # client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
      videos = Yt::Collections::Videos.new
-     videos.where(chart: 'mostPopular').first(5).map { |post| Search::Entry.from(post, 'youtube') }
+     videos.where(video_category_id: 10).first(15).map { |post| Search::Entry.from(post, 'youtube') }
   end
   def self.youtube_trailer_videos
     Yt.configure do |config|
@@ -81,9 +81,9 @@ class Page < ActiveRecord::Base
       config.client_secret = ENV['google_client_secret']
       config.api_key = ENV['youtube_dev_key']
     end
-     client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
+     # client = Oj.load(Faraday.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=news&key=#{ENV['youtube_dev_key']}").body)
      videos = Yt::Collections::Videos.new
-     videos.where(chart: 'mostPopular').first(5).map { |post| Search::Entry.from(post, 'youtube') }
+     videos.where(video_category_id: 44).first(15).map { |post| Search::Entry.from(post, 'youtube') }
   end
   
   def self.trending_instagram_posts
