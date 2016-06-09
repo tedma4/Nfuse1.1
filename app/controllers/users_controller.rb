@@ -185,10 +185,10 @@ class UsersController < ApplicationController
   end
 
   def vue
-    if Impression.where(user_id: @user.id, impressionable_type: 'Page').any? 
+    if Impression.where(user_id: @user.id, impressionable_type: 'Page').any?
       all_pages = []
-      seen_pages = Page.joins(:impressions).where("impressions.user_id = ?", @user.id).group("pages.id")
-      all_pages << seen_pages
+      @seen_pages = Page.joins(:impressions).where("impressions.user_id = ?", @user.id).group("pages.id")
+      all_pages << @seen_pages
       pages = all_pages.flatten.map { |page| {page: page}}
       if params[:page]
         @pages = get_page_and_offset(6, params[:page].to_i, pages.first(50))
