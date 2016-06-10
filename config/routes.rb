@@ -187,6 +187,7 @@ Rails.application.routes.draw do
   get 'animals', to: 'pages#animals_connector'
   #####YOUTUBERS
   get 'instagramers', to: 'pages#instagramers_connector'
+  get 'sitemap.xml', :to => 'sitemaps#index', :defaults => {:format => 'xml'}
 end
  # http://stackoverflow.com/questions/25415123/is-there-something-wrong-with-my-current-user/25416296#25416296
 
