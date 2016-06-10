@@ -332,7 +332,6 @@
       -o-background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
       height: 100%;
       width: 100%;
       position: absolute;
@@ -341,6 +340,18 @@
       opacity: 0.25;
       z-index: 0;
   }
+
+  @media (max-width: 970px) {
+    .bg{
+      background-attachment: scroll;
+    }
+  }
+  @media (min-width: 971px) {
+    .bg{
+      background-attachment: fixed;
+    }
+  }
+
   .picbg .bg{
     position: fixed;
   }
