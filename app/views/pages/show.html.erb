@@ -84,63 +84,79 @@
       <main class="post_content">
         <% case post.provider %>
         <% when 'instagram' %>
-          <% if post.type == "image" %>
-            <div class="timeline-user-box">
+          <div class="timeline-user-box">
+            <% if post.type == "image" %>
               <%= image_tag(post.image, :class => "image_post") %>
+            <% elsif post.type == "video" %>
+              <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
+                <source src="<%= post.video %>" type='video/mp4' />
+                <source src="<%= post.video %>" type='video/ogv' />
+              </video>
+            <% end %>
+          </div>
+          <% if post.text.present? %>
+            <div class='center'>
+                <%= post.text %>
             </div>
-            <% if post.text.present? %>
-              <div class="center">
+          <% end %>
+        <% when 'twitter' %>
+          <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
+            <% case post.type %>
+            <% when 'youtube_video' %>
+              <div class="timeline-user-box">
+                <iframe
+                id="ytplayer"
+                type="text/html"
+                width="100%"
+                height="225"
+                src="https://www.youtube.com/embed/<%= post.twitter_url_video %>"
+                frameborder="0"
+                allowfullscreen>
+                </iframe>
+              </div>
+              <div class='center'>
                 <%= post.text %>
               </div>
-            <% end %>
-          <% elsif post.type == "video" %>
-            <div class="center">
+            <% when 'animated_gif', 'video' %>
+            <div class="timeline-user-box">
               <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
                 <source src="<%= post.video %>" type='video/mp4' />
                 <source src="<%= post.video %>" type='video/ogv' />
               </video>
             </div>
-            <% if post.text.present? %>
-              <div class="center">
+              <div class='center'>
+                <%= post.text %>
+              </div>
+            <% when 'photo' %>
+            <div class="timeline-user-box">
+              <%= image_tag(post.image, :class => "image_post") %>
+            </div>
+              <div class='center'>
+                <%= post.text %>
+              </div>
+            <% else %>
+              <div class='center text_only_post'>
                 <%= post.text %>
               </div>
             <% end %>
-          <% end %>
-        <% when 'twitter' %>
-          <% if post.is_not_in_reply.nil? && post.is_not_retweeted? %>
-            <% if post.has_media? %>
-              <% if post.type == 'animated_gif' || post.type== 'video' %>
-                <div class="center">
-                  <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
-                    <source src="<%= post.video %>" type='video/mp4' />
-                    <source src="<%= post.video %>" type='video/ogv' />
-                  </video>
-                </div>
-              <% elsif post.type == 'photo' %>
-                <div class="timeline-user-box">
-                  <%= image_tag(post.image, :class => "image_post") %>
-                </div>
-              <% end %>
-            <% end %>
-            <div class="center">
-              <%= post.text %>
-            </div>
           <%end%>
         <% when 'google_oauth2' %>
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="100%"
-            height="225"
-            src="https://www.youtube.com/embed/<%= post.video %>"
-            frameborder="0"
-            allowfullscreen>
-          </iframe>
+          <div class="timeline-user-box">
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="100%"
+              height="225"
+              src="https://www.youtube.com/embed/<%= post.video %>"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
           <% if post.text.present? %>
-            <div class="center">
+            <div class='center'>
               <%= post.text %>
             </div>
-          <%end%>
+          <% end %>
         <%end%>
       </main>
         <% if signed_in? %>

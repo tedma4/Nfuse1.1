@@ -93,58 +93,74 @@
             <main class="post_content">
               <% case @post_entry.provider %>
               <% when 'instagram' %>
-                <% if @post_entry.type == "image" %>
-                  <div class="timeline-user-box">
+                <div class="timeline-user-box">
+                  <% if @post_entry.type == "image" %>
                     <%= image_tag(@post_entry.image, :class => "image_post") %>
-                  </div>
-                  <% if @post_entry.text.present? %>
-                    <div class="center">
-                      <%= @post_entry.text %>
-                    </div>
-                  <% end %>
-                <% elsif @post_entry.type == "video" %>
-                  <div class="center">
+                  <% elsif @post_entry.type == "video" %>
                     <video controls autoload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
                       <source src="<%= @post_entry.video %>" type='video/mp4' />
                       <source src="<%= @post_entry.video %>" type='video/ogv' />
                     </video>
-                  </div>
-                  <% if @post_entry.text.present? %>
-                    <div class="center">
-                      <%= @post_entry.text %>
-                    </div>
                   <% end %>
+                </div>
+                <% if @post_entry.text.present? %>
+                  <div class='center'>
+                      <%= @post_entry.text %>
+                  </div>
                 <% end %>
               <% when 'twitter' %>
-                <% if @post_entry.has_media? %>
-                  <% if @post_entry.type == 'animated_gif' || @post_entry.type== 'video' %>
-                    <div class="center">
-                      <video controls autoload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
-                        <source src="<%= @post_entry.video %>" type='video/mp4' />
-                        <source src="<%= @post_entry.video %>" type='video/ogv' />
-                      </video>
-                    </div>
-                  <% elsif @post_entry.type == 'photo' %>
-                    <div class="timeline-user-box">
-                      <%= image_tag(@post_entry.image, :class => "image_post") %>
-                    </div>
-                  <% end %>
-                <% end %>
-                <div class="center">
-                  <%= @post_entry.text %>
+                <% case @post_entry.type %>
+                <% when 'youtube_video' %>
+                  <div class="timeline-user-box">
+                    <iframe
+                    id="ytplayer"
+                    type="text/html"
+                    width="100%"
+                    height="225"
+                    src="https://www.youtube.com/embed/<%= @post_entry.twitter_url_video %>"
+                    frameborder="0"
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+                  <div class='center'>
+                    <%= @post_entry.text %>
+                  </div>
+                <% when 'animated_gif', 'video' %>
+                <div class="timeline-user-box">
+                  <video controls autoload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
+                    <source src="<%= @post_entry.video %>" type='video/mp4' />
+                    <source src="<%= @post_entry.video %>" type='video/ogv' />
+                  </video>
                 </div>
+                  <div class='center'>
+                    <%= @post_entry.text %>
+                  </div>
+                <% when 'photo' %>
+                <div class="timeline-user-box">
+                  <%= image_tag(@post_entry.image, :class => "image_post") %>
+                </div>
+                  <div class='center'>
+                    <%= @post_entry.text %>
+                  </div>
+                <% else %>
+                  <div class='center text_only_post'>
+                    <%= @post_entry.text %>
+                  </div>
+                <% end %>
               <% when 'google_oauth2' %>
-                <iframe
-                  id="ytplayer"
-                  type="text/html"
-                  width="100%"
-                  height="225"
-                  src="https://www.youtube.com/embed/<%= @post_entry.video %>"
-                  frameborder="0"
-                  allowfullscreen>
-                </iframe>
+                <div class="timeline-user-box">
+                  <iframe
+                    id="ytplayer"
+                    type="text/html"
+                    width="100%"
+                    height="225"
+                    src="https://www.youtube.com/embed/<%= @post_entry.video %>"
+                    frameborder="0"
+                    allowfullscreen>
+                  </iframe>
+                </div>
                 <% if @post_entry.text.present? %>
-                  <div class="center">
+                  <div class='center'>
                     <%= @post_entry.text %>
                   </div>
                 <% end %>

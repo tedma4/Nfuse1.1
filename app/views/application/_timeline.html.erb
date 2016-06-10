@@ -119,26 +119,26 @@
           <%= link_to 'Start Exploring', explore_user_path(current_user), class: "btn btn-link-2" %>
       </div>
         <!-- SWITCHABLE CONTENT -->
-        <article class="col-xs-12 tab-content">
-          <!-- PANEL THREE -->
-          <div id="networks">
-            <% User.where.not(id: current_user.id).each do |user| %>
-              <!-- PROFILE -->
-              <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                <a href="/users/<%= user.user_name %>/feed">
-                  <div class="profile-head">
-                    <p><%= user.user_name %></p>
-                  </div>
-                  <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
-                    <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
-                  <% else %>
-                  <%= link_to image_tag(user.avatar(:regular), title: "#{ user.first_name}"), feed_user_path(user) %>
-                  <% end %>
-                </a>
-              </div>
-            <% end %>
-          </div>
-        </article>
-      </div>
+      <article class="col-xs-12 tab-content">
+        <!-- PANEL THREE -->
+        <div id="networks">
+          <% User.where.not(id: current_user.id).each do |user| %>
+            <!-- PROFILE -->
+            <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <a href="/users/<%= user.user_name %>/feed">
+                <div class="profile-head">
+                  <p><%= user.user_name %></p>
+                </div>
+                <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
+                  <%= link_to image_tag(user.avatar_file_name, title: "#{ user.first_name}"), feed_user_path(user) %>
+                <% else %>
+                 <%= link_to image_tag(user.avatar(:regular), title: "#{ user.first_name}"), feed_user_path(user) %>
+                <% end %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </article>
+    </div>
   </section>
 <% end %>

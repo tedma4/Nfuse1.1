@@ -1,17 +1,16 @@
-
 <% case post.type %>
 <% when 'youtube_video' %>
-<div class="timeline-user-box">
-  <iframe
-  id="ytplayer"
-  type="text/html"
-  width="100%"
-  height="225"
-  src="https://www.youtube.com/embed/<%= post.twitter_url_video %>"
-  frameborder="0"
-  allowfullscreen>
-  </iframe>
-</div>
+  <div class="timeline-user-box">
+    <iframe
+    id="ytplayer"
+    type="text/html"
+    width="100%"
+    height="225"
+    src="https://www.youtube.com/embed/<%= post.twitter_url_video %>"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+  </div>
   <div class='center'>
     <%= post.text %>
   </div>
