@@ -6,11 +6,11 @@
   <div class="row">
     <header class="col-xs-12 center">
       <h1 class="heavy"><%= current_user.user_name %></h1>
-      <p class="intro-text">Is you new user name</p>
+      <p class="intro-text">Is your new user name</p>
       <p>If you don't like it go ahead and change it below</p>
     </header>
     <!-- LOGIN FORM -->
-    <%= form_for @user, html: {class: 'minimal col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6'} do |f| %>
+    <%= form_for @user, html: {class: 'minimal col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6', id: 'user_name_form'} do |f| %>
       <div class="form-group">
         <div style='display:none;'>
           <%= f.text_field :user_name %>
@@ -35,4 +35,13 @@
 // $(document).ready(function() {
 //   $('body.nosearchbar').removeClass('nosearchbar').addClass('searchbar')
 // });
+  $('#user_name_form').submit(function( event ) {
+    if ($('#form-first-name').val() == '') {
+      event.preventDefault();
+      window.location='/callback_links/callbacks';
+    } else {
+      return true;
+    }
+  });
+
 </script>
