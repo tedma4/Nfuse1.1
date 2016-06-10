@@ -1,17 +1,7 @@
-<% if @post_entry.has_media? %>
-  <% if @post_entry.type == 'video' || @post_entry.type == "animated_gif" %>
-    <div class="center">
-      <video controls preload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
-        <source src="<%= @post_entry.video %>" type='video/mp4' />
-        <source src="<%= @post_entry.video %>" type='video/ogv' />
-      </video>
-    </div>
-  <% elsif @post_entry.type == 'photo' %>
-    <div class="timeline-user-box">
-      <%= image_tag(@post_entry.image, :class => "twitter_image") %>
-    </div>
-  <% end %>
-<% elsif @post_entry.has_video_url? %>
+
+<% case @post_entry.type %>
+<% when 'youtube_video' %>
+<div class="timeline-user-box">
   <iframe
   id="ytplayer"
   type="text/html"
@@ -21,7 +11,29 @@
   frameborder="0"
   allowfullscreen>
   </iframe>
-<% end %>
-<div class= 'center text_only_post'>
-  <%= truncate(@post_entry.text, lenght: 30) %><br>
 </div>
+  <div class='center'>
+    <%= @post_entry.text %>
+  </div>
+<% when 'animated_gif', 'video' %>
+<div class="timeline-user-box">
+  <video controls autoload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
+    <source src="<%= @post_entry.video %>" type='video/mp4' />
+    <source src="<%= @post_entry.video %>" type='video/ogv' />
+  </video>
+</div>
+  <div class='center'>
+    <%= @post_entry.text %>
+  </div>
+<% when 'photo' %>
+<div class="timeline-user-box">
+  <%= image_tag(@post_entry.image, :class => "image_post") %>
+</div>
+  <div class='center'>
+    <%= @post_entry.text %>
+  </div>
+<% else %>
+  <div class='center text_only_post'>
+    <%= @post_entry.text %>
+  </div>
+<% end %>

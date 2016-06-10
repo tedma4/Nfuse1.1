@@ -12,9 +12,9 @@
   allowfullscreen>
   </iframe>
 </div>
-  <p>
+  <div class='center'>
     <%= post.text %>
-  </p>
+  </div>
 <% when 'animated_gif', 'video' %>
 <div class="timeline-user-box">
   <video controls autoload="none" style="background:transparent url(<%= post.image %>) no-repeat 50% 50%;" >
@@ -22,18 +22,18 @@
     <source src="<%= post.video %>" type='video/ogv' />
   </video>
 </div>
-  <p>
+  <div class='center'>
     <%= post.text %>
-  </p>
+  </div>
 <% when 'photo' %>
 <div class="timeline-user-box">
   <%= image_tag(post.image, :class => "image_post") %>
 </div>
-  <p>
+  <div class='center'>
     <%= post.text %>
-  </p>
+  </div>
 <% else %>
-  <p class='center text_only_post'>
+  <div class='center text_only_post'>
     <%= post.text %>
-  </p>
+  </div>
 <% end %>

@@ -8,8 +8,8 @@
     </video>
   <% end %>
 </div>
-<p>
-  <% if post.text.present? %>
-    <%= post.text %>
-  <% end %>
-</p>
+<% if post.text.present? %>
+  <div class='center'>
+      <%= post.text %>
+  </div>
+<% end %>

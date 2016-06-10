@@ -1,22 +1,15 @@
-<% if @post_entry.type == "image" %>
-    <div class="timeline-user-box">
-      <%= image_tag(@post_entry.image, :class => "image_post") %>
-    </div>
-    <% if @post_entry.text.present? %>
-    <div class="center">
-      <%= truncate(@post_entry.text, lenght: 30) %>
-    </div>
-    <% end %>
-<% elsif @post_entry.type == "video" %>
-  <div class="center">
-    <video controls preload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
+<div class="timeline-user-box">
+  <% if @post_entry.type == "image" %>
+    <%= image_tag(@post_entry.image, :class => "image_post") %>
+  <% elsif @post_entry.type == "video" %>
+    <video controls autoload="none" style="background:transparent url(<%= @post_entry.image %>) no-repeat 50% 50%;" >
       <source src="<%= @post_entry.video %>" type='video/mp4' />
       <source src="<%= @post_entry.video %>" type='video/ogv' />
     </video>
+  <% end %>
+</div>
+<% if @post_entry.text.present? %>
+  <div class='center'>
+    <%= @post_entry.text %>
   </div>
-    <% if @post_entry.text.present? %>
-    <div class="center">
-      <%= truncate(@post_entry.text, lenght: 30) %>
-    </div>
-    <% end %>
 <% end %>

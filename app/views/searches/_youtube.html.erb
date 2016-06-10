@@ -9,8 +9,8 @@
     allowfullscreen>
   </iframe>
 </div>
-<p>
-  <% if post.text.present? %>
+<% if post.text.present? %>
+  <div class='center'>
     <%= post.text %>
-  <% end %>
-</p>
+  </div>
+<% end %>

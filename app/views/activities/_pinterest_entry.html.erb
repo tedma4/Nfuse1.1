@@ -8,7 +8,7 @@
     </div>
   <% end %>
 <% elsif @post_entry.type == "video" %>
-  <div class="center">
+  <div class="timeline-user-box">
     <iframe
         id="ytplayer"
         width="100%"
@@ -18,9 +18,9 @@
         allowfullscreen>
     </iframe>
   </div>
-    <% if @post_entry.text.present? %>
+  <% if @post_entry.text.present? %>
     <div class="center">
       <%= @post_entry.text %>
     </div>
-    <% end %>
+  <% end %>
 <% end %>

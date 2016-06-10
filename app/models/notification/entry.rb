@@ -44,7 +44,23 @@ module Notification
     def type
       case(@provider)
         when 'twitter'
-          @entry[:extended_entities][:media][0][:type]
+          if @entry.has_key? :extended_entities
+            @entry[:extended_entities][:media][0][:type]
+          elsif @entry.has_key? :entities
+            if !@entry[:entities][:urls].empty?
+              if @entry[:entities][:urls][0][:expanded_url].include?('youtube')
+              'youtube_video'
+              else
+                return false
+              end
+            elsif @entry[:entities].has_key? :media
+              @entry[:entities][:media][0][:type]
+            else
+              return false
+            end
+          else
+            return false
+          end
         when 'instagram'
           @entry["type"]
         when 'facebook'
@@ -110,7 +126,29 @@ module Notification
     def image
       case(@provider)
         when 'twitter'
-          @entry[:extended_entities][:media][0][:media_url]
+          begin
+          if @entry.has_key? :extended_entities
+            @entry[:extended_entities][:media][0][:media_url]
+          elsif @entry.has_key? :entities
+            if @entry[:entities].has_key? :media
+              if @entry[:entities][:media].is_a? Array
+                if @entry[:entities][:media][0].has_key? :media_url
+                  @entry[:entities][:media][0][:media_url]
+                else
+                  return false
+                end
+              else
+                return false
+              end
+            else
+              return false
+            end
+          else
+            return false
+          end
+          rescue
+            return false
+          end
         when 'instagram'
           @entry["images"]["low_resolution"]["url"]
         when 'facebook'

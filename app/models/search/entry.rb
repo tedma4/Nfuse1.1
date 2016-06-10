@@ -68,7 +68,13 @@ module Search
           if @post.attrs.has_key? :extended_entities
             @post.attrs[:extended_entities][:media][0][:type]
           elsif @post.attrs.has_key? :entities
-            if @post.attrs[:entities].has_key? :media
+            if !@post.attrs[:entities][:urls].empty?
+              if @post.attrs[:entities][:urls][0][:expanded_url].include?('youtube')
+              'youtube_video'
+              else
+                return false
+              end
+            elsif @post.attrs[:entities].has_key? :media
               @post.attrs[:entities][:media][0][:type]
             else
               return false
