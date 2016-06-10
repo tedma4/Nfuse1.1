@@ -15,7 +15,7 @@
 <% elsif params[:middle_page] %>
   $('#notifications-list .next').remove();
 	$('#notifications-list').append('<%= escape_javascript( render(partial: 'activities/activity' ) ).html_safe %>');
-  $('#notifications-list').append('<a href="/notifications?page=<%= params[:page] + 1 %>" data-remote="true" class="next"></a>');
+  $('#notifications-list').append('<a href="/notifications?page=<%= params[:page].to_i + 1 %>" data-remote="true" class="next"></a>');
   if($('#notifications').attr('href') == "/notifications"){
   	$('#notifications').removeAttr('href')
   }
