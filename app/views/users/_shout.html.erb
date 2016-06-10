@@ -2,16 +2,15 @@
   <div class="timeline-user-box center" style="iframe{width:100%;}">
     <%= shout.url_html %>
   </div>
-  <div class="url_center">
+  <div class="center">
     <%= shout.content %>
-    <!-- <p>Duration: <b><%#= shout.duration %></b></p> -->
   </div>
 <% elsif shout.is_pic? %>
   <div class="timeline-user-box">
     <%= image_tag shout.pic_url %>
   </div>
   <div class="center">
-      <%= shout.content %>
+    <%= shout.content %>
   </div>
 <% elsif shout.is_video? %>
   <div class="timeline-user-box">
@@ -27,10 +26,9 @@
       allowfullscreen
       controls>
     </video>
-    <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
   </div>
   <div class="center">
-      <%= shout.content %>
+    <%= shout.content %>
   </div>
 <% elsif shout.is_full_video? %>
   <div class="timeline-user-box">
@@ -46,7 +44,6 @@
       allowfullscreen
       controls>
     </video>
-    <%#= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"350" %>
   </div>
   <div class="center">
     <%= shout.content %>
