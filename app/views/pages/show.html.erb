@@ -159,24 +159,29 @@
           <% end %>
         <%end%>
       </main>
-        <% if signed_in? %>
-      <footer class="post_actions">
-        <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
-          <%= link_to dislike_shout_path(id: post.id, 
-            owner_id: @page.id, 
-            owner_type: @page.class.name, 
-            key: post.provider), 
-            {method: :delete, remote: true, class: 'likePost liked'} do %>
-            <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+      <% if signed_in? %>
+        <footer class="post_actions">
+          <% if ActsAsVotable::Vote.where(votable_id: post.id).pluck(:voter_id).include?(current_user.id) %>
+            <%= link_to dislike_shout_path(id: post.id, 
+              owner_id: @page.id, 
+              owner_type: @page.class.name, 
+              key: post.provider), 
+              {method: :delete, remote: true, class: 'likePost liked'} do %>
+              <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+            <% end %>
+          <% else %>
+            <%= link_to like_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
+              <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to like_shout_path(id: post.id, owner_id: @page.id, owner_type: @page.class.name, key: post.provider), {method: :post, remote: true, class: 'likePost'} do %>
-            <i class="fa"></i><span class="liked-<%= post.id %>"><%= post.like_score(post.id) %></span>
-          <% end %>
-        <% end %>
-      </footer>
-        <% end %>
+        </footer>
+      <% end %>
     </article>
+  <% end %>
+  <% unless signed_in? %>
+    <div class="item individual_post center">
+      <%= link_to 'Sign up now', signup_path, class: "btn btn-link-2" %>
+    </div>
   <% end %>
 </section>
 <!-- FORUM -->

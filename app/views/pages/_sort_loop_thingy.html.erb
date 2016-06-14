@@ -5,13 +5,10 @@
     <%= render partial: 'pages/page', locals: {page: page} %>
   <% end %>
 <% else %>
-<p>
-There aren't any pages in this category yet.
-</p>
-<p>
-Fill out the form and let us know what should go here
-</p>
-
-<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-"><div class="vcenter"><div class="vcell"><button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button></div></div></div>
+	<% if params['controller'] == 'Pages' %>
+		<p>There aren't any pages in this category yet.</p>
+		<p>Fill out the form and let us know what should go here</p>
+		<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-"><div class="vcenter"><div class="vcell"><button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button></div></div></div>
+	<% end %>
 <% end %>
 <!-- REQUEST ADDITIONAL -->
