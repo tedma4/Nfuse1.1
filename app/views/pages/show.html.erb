@@ -14,12 +14,12 @@
     <% end %>
   </a>
   <ul id="user-stats" class="user-left">
-    <li id="user-name"><h1><%= @page.full_name %></h1></li>
+    <li id="user-name"><h1><%= truncate(@page.full_name, length: 18, omission: '') %></h1></li>
     <li id="user-followers"><a href="#" data-toggle="modal" data-target="#followersmodal">Followers:  <%= Relationship.where(follow_type: 'Page', followed_id: 2).count %></a></li>
     <li id="user-likes">Likes: <a href=""><%= ActsAsVotable::Vote.where(owner_type: 'Page', owner_id: @page.id).count %></a></li>
   </ul>
   <p id="user-bio" class="user-right">
-    @<%= @page.full_name %> <%= @page.description %>
+    @<%= truncate(@page.full_name, length: 18, omission: '') %> <%= @page.description %>
   </p>
   <!-- USER NAVBAR -->
   <nav id="user-nav" class="center navbar">
@@ -273,7 +273,7 @@
                 </div>
                 <div class="col-xs-10">
                   <ul id="user-info">
-                    <li id="user-name"><%= user.follower.full_name %></li>
+                    <li id="user-name"><%= truncate(user.follower.full_name, length: 18, omission: '') %></li>
                     <li id="user-link"><%= link_to "@#{user.follower.user_name}", feed_user_path(user) %></li>
                   </ul>
                   <ul id="user-stats">
@@ -286,7 +286,7 @@
             <% end %>
           <% else %>
             <p class='center explore_filters'><%= @page.full_name %> doesn't have and followers yet.</p>
-            <p class='center explore_filters'>How about you be the first</p>          
+            <p class='center explore_filters'>How about being the first?</p>          
           <% end %>
         </div>
       </div>

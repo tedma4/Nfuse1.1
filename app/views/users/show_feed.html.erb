@@ -19,7 +19,7 @@
             <header class="post_header">
               <div class="user">
                   <%= image_tag("#{post.avatar}", class: 'user_profile_picture', size:'45x45', alt: 'P6pl2kfg normal') %>
-                  <%= link_to truncate(@user.user_name, length: 16), "/users/#{@user.user_name}/feed" %>
+                  <%= link_to truncate(@user.user_name, length: 18, omission: ''), "/users/#{@user.user_name}/feed" %>
                 </div>
                 <%= link_to post.link_to_post, class: 'timeStamp', target: 'blank', title: 'Go to entry' do %>
                 <!-- <a class="timeStamp" href="#" target="_blank" title="Go To Entry"> -->

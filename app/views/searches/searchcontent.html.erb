@@ -11,7 +11,7 @@
       <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
         <a href="/users/<%= user.user_name %>/feed">
           <div class="profile-head">
-            <p><%= user.user_name %></p>
+            <p><%= truncate(user.user_name, length: 18, omission: '') %></p>
           </div>
           <div>
           <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
@@ -31,7 +31,7 @@
       <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
         <a href="/pages/<%= page.page_name %>">
           <div class="profile-head">
-            <p><%= page.full_name %></p>
+            <p><%= truncate(page.full_name, length: 18, omission: '') %></p>
           </div>
           <%= image_tag(page.profile_pic) %>
         </a>

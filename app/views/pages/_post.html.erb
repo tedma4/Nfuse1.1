@@ -10,7 +10,7 @@
        <%= link_to image_tag(@page.profile_pic, :class => "user_profile_picture", size: "50x50"), "/pages/#{@page.page_name}" %>
      </li>
      <li class="user_name">
-       <%= link_to truncate(@page.full_name, length: 15), "/pages/#{@page.page_name}" %>
+       <%= link_to truncate(@page.full_name, length: 18, omission: ''), "/pages/#{@page.page_name}" %>
      </li>
    </ul>
   </div>
