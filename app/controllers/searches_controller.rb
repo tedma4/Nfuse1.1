@@ -39,4 +39,43 @@ class SearchesController < ApplicationController
     page     = Search::Timeline.new(@searched)
     @timeline = page.construct(params)
   end
+
+  def get_page_and_offset(per_page, page = 1, pages)
+    total = pages.length
+    if total > 0
+      if per_page >= total # 10 or 11
+        result = pages.first(total)
+        params[:last_page] = page
+        return result
+      elsif per_page < total # 23
+
+        if ( page * per_page ) < total # 2 * 11 < 23
+          if page == 1
+            result = pages[0..(per_page - 1)]
+            params[:first_page] = page
+            return result
+          else
+            offset_by = ( page - 1 ) * per_page # 1 * 11
+            next_page = (page * per_page) - 1
+            result = pages[offset_by..next_page]
+            params[:middle_page] = page
+            return result
+          end
+        elsif ( page * per_page ) >= total # 3 * 11 > 23
+          offset_by = ( page - 1 ) * per_page
+          to_end = total - 1
+          result = pages[offset_by..to_end]
+          params[:last_page] = page
+          return result
+        else
+          # Noting more to do
+        end
+
+      else
+        # Nothing more to do
+      end
+    else
+      # Do Nothing
+    end
+  end
 end
