@@ -5,39 +5,34 @@
 <% end %>
 <% case params[:selected_option] %>
 <% when "Nfusers" %>
-  <section id="profile-grid" class="container-fluid">
-    <% @users.each do |user| %>
-      <!-- PROFILE -->
-      <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-        <a href="/users/<%= user.user_name %>/feed">
-          <div class="profile-head">
-            <p><%= truncate(user.user_name, length: 18, omission: '') %></p>
-          </div>
-          <div>
-          <% if user.avatar_file_name.present? && user.avatar_file_name.include?('graph.facebook.com') %>
-            <%= image_tag user.avatar_file_name %>
-          <% else %>
-            <%= image_tag user.avatar.url(:large) %> 
-          <% end %>
-          </div>
-        </a>
+  <section id="profile-grid" class="container-fluid search_pagination">
+    <%= render partial: 'searches/search_loop', locals: {users: @users} %>
+  </section>
+
+  <% if @users.any? %>
+    <% if @users.size >= 1 %>
+      <div id="paginate_nfuser_search">
+        <a href="/search?selected_option=Nfusers&search=<%= @search %>&page=2" class='nextSearchPages' style="display:hidden;" data-remote= true></a>
       </div>
     <% end %>
-  </section>
+  <% end %>
+
+
+
+
 <% when "Pages" %>
-  <section id="profile-grid" class="container-fluid">
-    <% @pages.each do |page| %>
-      <!-- PROFILE -->
-      <div class="individual_profile col-xs-6 col-sm-4 col-md-3 col-lg-2">
-        <a href="/pages/<%= page.page_name %>">
-          <div class="profile-head">
-            <p><%= truncate(page.full_name, length: 18, omission: '') %></p>
-          </div>
-          <%= image_tag(page.profile_pic) %>
-        </a>
-      </div>
-    <% end %>
+  <section id="profile-grid" class="container-fluid search_pagination">
+    <%= render partial: 'searches/search_loop', locals: {pages: @pages} %>
   </section>
+
+<% if @pages.any? %>
+  <% if @pages.size >= 1 %>
+    <div id="paginate_nfuser_search">
+      <a href="/search?selected_option=Pages&search=<%= @search %>&page=2" class='nextSearchPages' style="display:hidden;" data-remote= true></a>
+    </div>
+  <% end %>
+<% end %>
+
 <% when "Posts", "", nil %>
   <% unless @timeline.nil? %>
     <section id="masonJar" class="clearfix">

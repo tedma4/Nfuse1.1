@@ -1,0 +1,17 @@
+<% if @users %>
+
+  <% @users.each do |user| %>
+    <%= render partial: 'searches/user_box', locals: {user: user} %>
+  <% end %>
+
+<% elsif @pages %>
+
+  <% pages.each do |page| %>
+    <!-- PROFILE -->
+    <%= render partial: 'searches/page_box', locals: {page: page} %>
+  <% end %>
+
+<% else %>
+<!-- 	<p>We cannot pull that search at this time, please try another one</p> -->
+<p>Somethhing might be broken</p>
+<% end %>

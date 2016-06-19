@@ -6,23 +6,63 @@ class SearchesController < ApplicationController
     when "Nfusers"
       if @search
         if @search == ''
-          @users = User.where.not(id: current_user.id).order('id desc')
+          users = User.where.not(id: current_user.id).order('id desc')
+          if params[:page]
+            @users = paginate_search_results(1, params[:page].to_i, users)
+          else
+            @users = paginate_search_results(1, 1, users)
+          end
         else
-          @users = User.search(@search).order("created_at DESC")
+          users = User.search(@search).order("created_at DESC")
+          if params[:page]
+            @users = paginate_search_results(1, params[:page].to_i, users)
+          else
+            @users = paginate_search_results(1, 1, users)
+          end
         end
       else
-        @users = User.all.order('created_at DESC')
+        users = User.all.order('created_at DESC')
+        if params[:page]
+          @users = paginate_search_results(1, params[:page].to_i, users)
+        else
+          @users = paginate_search_results(1, 1, users)
+        end
       end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_search.js.erb'}
+    end
     when "Pages"
       if @search
-        if search == ''
-          @pages = Page.first(25)
+        if @search == ''
+          pages = Page.first(25)
+          if params[:page]
+            @pages = paginate_search_results(1, params[:page].to_i, pages)
+          else
+            @pages = paginate_search_results(1, 1, pages)
+          end
         else
-          @pages = Page.search(@search).order("id DESC")
+          pages = Page.search(@search).order("id DESC")
+          if params[:page]
+            @pages = paginate_search_results(1, params[:page].to_i, pages)
+          else
+            @pages = paginate_search_results(1, 1, pages)
+          end
         end
       else
-        @pages = Pages.first(25)
+        pages = Pages.first(25)
+        if params[:page]
+          @pages = paginate_search_results(1, params[:page].to_i, pages)
+        else
+          @pages = paginate_search_results(1, 1, pages)
+        end
       end
+
+    respond_to do |format|
+      format.html
+      format.js {render 'paginate_search.js.erb'}
+    end
     when "Posts", ""
       unless @search.empty?
         page     = Search::Timeline.new(@search)
@@ -32,6 +72,7 @@ class SearchesController < ApplicationController
       end
     end
 	end
+
   def random_search
     getbeginning = ['@', '#', '']
     choosefromlist = Page.pluck(:page_name)
@@ -40,7 +81,7 @@ class SearchesController < ApplicationController
     @timeline = page.construct(params)
   end
 
-  def get_page_and_offset(per_page, page = 1, pages)
+  def paginate_search_results(per_page, page = 1, pages)
     total = pages.length
     if total > 0
       if per_page >= total # 10 or 11

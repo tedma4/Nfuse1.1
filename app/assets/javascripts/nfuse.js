@@ -35,6 +35,16 @@
         }
       }
     }
+
+    if ($('#profile-grid.search_pagination')) {
+      var next_vue_url = $('.nextSearchPages').attr('href')
+      if (next_vue_url && $(window).scrollTop() > $(document).height() - $(window).height() -25 ) {
+        if ($('.nextSearchPages').length ) {
+          $('#paginate_nfuser_search').html('<div id="paginate_only_once" style="text-align:center;">  <hr style="margin-left: 2rem; margin-right: 2rem; border-top: 1px solid #333;">  <i style="color: #00EEBC;" class="fa fa-cog fa-spin fa-3x fa-fw"></i><br>  <span>Loading...</span>  <br><br></div>');
+          $.getScript(next_vue_url)
+        }
+      }
+    }
     });
   }
 

@@ -1,21 +1,45 @@
 <% if params[:last_page] %>
-  $('.nextVuePages').remove();
-	<% @pages.each do |page| %>
-    $('article.tab-content #networks').append('<%= j render partial: "pages/page", locals: {page: page}  %>');
-  <% end %>
-  $('#add_more_vue_pages').text('')
-  <% if params['controller'] == 'Pages' %>
-    $('article.tab-content #networks').append('<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-"><div class="vcenter"><div class="vcell"><button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button></div></div></div>')
+  <% if @users %>
+    $('.nextSearchPages').remove();
+    <% @users.each do |user| %>
+      $('#profile-grid').append('<%= j render partial: "searches/user_box", locals: {user: user}  %>');
+    <% end %>
+    $('#paginate_nfuser_search').text('');
+  <% elsif @pages %>
+    $('.nextSearchPages').remove();
+    <% @pages.each do |page| %>
+      $('#profile-grid').append('<%= j render partial: "searches/page_box", locals: {page: page}  %>');
+    <% end %>
+    $('#paginate_nfuser_search').text('');
+    <% if params['controller'] == 'Pages' %>
+      $('#profile-grid').append('<div id="request" class="individual_profile col-xs-12 col-sm-8 col-md-6 col-lg-"><div class="vcenter"><div class="vcell"><button type="button" class="btn btn-default default" data-toggle="modal" data-target="#requestmodal">Request Missing</button></div></div></div>')
+    <% end %>
   <% end %>
 <% elsif params[:middle_page] %>
-//  $('article.tab-content #networks .nextVuePages').remove();
-	<% @pages.each do |page| %>
-	  $('article.tab-content #networks').append('<%= j render partial: "pages/page", locals: {page: page}  %>');
+  <% if @users %>
+  //  $('#profile-grid .nextSearchPages').remove();
+    <% @users.each do |user| %>
+      $('#profile-grid').append('<%= j render partial: "searches/user_box", locals: {user: user}  %>');
+    <% end %>
+    $('#paginate_nfuser_search').text('');
+    $('#paginate_nfuser_search').append('<a href="/search?selected_option=Nfusers&search=<%= @search %>&page=<%= params[:page].to_i + 1 %>" data-remote="true" class="nextSearchPages"></a>');
+  <% elsif @pages %>
+  //  $('#profile-grid .nextSearchPages').remove();
+    <% @pages.each do |page| %>
+      $('#profile-grid').append('<%= j render partial: "searches/page_box", locals: {page: page}  %>');
+    <% end %>
+    $('#paginate_nfuser_search').text('');
+    $('#paginate_nfuser_search').append('<a href="/search?selected_option=Pages&search=<%= @search %>&page=<%= params[:page].to_i + 1 %>" data-remote="true" class="nextSearchPages"></a>');
   <% end %>
-  $('#add_more_vue_pages').text('')
-  $('#add_more_vue_pages').append('<a href="/users/<%= @user.user_name %>/vue?page=<%= params[:page].to_i + 1 %>" data-remote="true" class="nextVuePages"></a>');
+
 <% else %>
-	<% @pages.each do |page| %>
-	  $('article.tab-content #networks').append('<%= j render partial: "pages/page", locals: {page: page}  %>');
+  <% if @users %>
+    <% @users.each do |user| %>
+      $('#profile-grid').append('<%= j render partial: "searches/user_box", locals: {user: user}  %>');
+    <% end %>
+  <% elsif @pages %>
+    <% @pages.each do |page| %>
+      $('#profile-grid').append('<%= j render partial: "searches/page_box", locals: {page: page}  %>');
+    <% end %>
   <% end %>
 <% end %>
